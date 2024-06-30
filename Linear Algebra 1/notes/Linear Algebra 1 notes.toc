@@ -1,0 +1,88 @@
+\contentsline {chapter}{序言}{I}{}%
+\contentsline {chapter}{\numberline {1}代数的起源}{1}{}%
+\contentsline {section}{\numberline {1.1}从代数起源到低阶行列式}{1}{}%
+\contentsline {section}{\numberline {1.2}集合(set)与映射(map)}{1}{}%
+\contentsline {subsection}{\numberline {1.2.1}集合的相关概念}{1}{}%
+\contentsline {section}{\numberline {1.3}二元关系与商映射}{2}{}%
+\contentsline {subsection}{\numberline {1.3.1}二元关系}{2}{}%
+\contentsline {subsection}{\numberline {1.3.2}等价关系}{2}{}%
+\contentsline {subsection}{\numberline {1.3.3}偏序关系}{2}{}%
+\contentsline {section}{\numberline {1.4}置换}{3}{}%
+\contentsline {subsection}{\numberline {1.4.1}置换的基本概念}{3}{}%
+\contentsline {subsection}{\numberline {1.4.2}与置换相关的定理/推论}{5}{}%
+\contentsline {section}{\numberline {1.5}整数的算术}{6}{}%
+\contentsline {subsection}{\numberline {1.5.1}与整数相关的定理/推论}{6}{}%
+\contentsline {section}{\numberline {1.6}第一章思考题}{7}{}%
+\contentsline {chapter}{\numberline {2}矩阵(matrices)}{8}{}%
+\contentsline {section}{\numberline {2.1}向量空间}{8}{}%
+\contentsline {subsection}{\numberline {2.1.1}向量空间的基本概念}{8}{}%
+\contentsline {subsection}{\numberline {2.1.2}向量空间的定理/推论}{9}{}%
+\contentsline {subsection}{\numberline {2.1.3}线性方程组的解集情况}{10}{}%
+\contentsline {subsection}{\numberline {2.1.4}线性方程组与向量空间的联系补充}{10}{}%
+\contentsline {subsection}{\numberline {2.1.5}线性相关与线性无关补充}{10}{}%
+\contentsline {subsection}{\numberline {2.1.6}分块矩阵}{10}{}%
+\contentsline {section}{\numberline {2.2}线性映射与矩阵运算}{11}{}%
+\contentsline {subsection}{\numberline {2.2.1}线性映射的基本概念}{11}{}%
+\contentsline {subsection}{\numberline {2.2.2}矩阵运算的基本概念}{11}{}%
+\contentsline {subsection}{\numberline {2.2.3}常见的特殊矩阵}{11}{}%
+\contentsline {subsection}{\numberline {2.2.4}线性方程组中的向量空间}{11}{}%
+\contentsline {subsection}{\numberline {2.2.5}理解矩阵是一种线性映射}{11}{}%
+\contentsline {section}{\numberline {2.3}第二章思考题}{11}{}%
+\contentsline {chapter}{\numberline {3}行列式(determinants)}{12}{}%
+\contentsline {section}{\numberline {3.1}行列式的构造和刻画}{12}{}%
+\contentsline {subsection}{\numberline {3.1.1}线性、多重线性映射}{12}{}%
+\contentsline {subsection}{\numberline {3.1.2}对称、斜对称函数}{12}{}%
+\contentsline {subsection}{\numberline {3.1.3}行列式的定义}{12}{}%
+\contentsline {subsection}{\numberline {3.1.4}行列式基本计算方法}{12}{}%
+\contentsline {section}{\numberline {3.2}行列式的特性}{12}{}%
+\contentsline {subsection}{\numberline {3.2.1}常见的特殊行列式}{12}{}%
+\contentsline {subsection}{\numberline {3.2.2}由伴随矩阵求矩阵逆}{12}{}%
+\contentsline {subsection}{\numberline {3.2.3}斜对称多重线性函数的重要性质}{12}{}%
+\contentsline {subsection}{\numberline {3.2.4}行列式的性质}{12}{}%
+\contentsline {subsection}{\numberline {3.2.5}伴随矩阵和 Cramer's Rule，(将section“由伴随矩阵求矩阵逆”内容整理到此节)}{12}{}%
+\contentsline {section}{\numberline {3.3}Laplace Expansion和Binet-Cauthy Theorem}{12}{}%
+\contentsline {subsection}{\numberline {3.3.1}Laplace Expansion（拉普拉斯展开）}{12}{}%
+\contentsline {subsection}{\numberline {3.3.2}Binet-Cauthy Theorem（比内-柯西定理）}{12}{}%
+\contentsline {subsection}{\numberline {3.3.3}“子式”的辨析}{12}{}%
+\contentsline {section}{\numberline {3.4}八大常见行列式及其解法}{12}{}%
+\contentsline {section}{\numberline {3.5}第三章思考题}{12}{}%
+\contentsline {chapter}{\numberline {4}群(group)、环(ring)、域(field)}{13}{}%
+\contentsline {section}{\numberline {4.1}群的概念与类型}{13}{}%
+\contentsline {subsection}{\numberline {4.1.1}群的基本概念}{13}{}%
+\contentsline {subsection}{\numberline {4.1.2}一些特殊的群}{13}{}%
+\contentsline {subsection}{\numberline {4.1.3}与群有关的定理/推论}{13}{}%
+\contentsline {section}{\numberline {4.2}群同态}{13}{}%
+\contentsline {subsection}{\numberline {4.2.1}陪集与Lagrange Theorem}{14}{}%
+\contentsline {subsection}{\numberline {4.2.2}正规子群}{14}{}%
+\contentsline {subsection}{\numberline {4.2.3}群同态与群同构}{14}{}%
+\contentsline {section}{\numberline {4.3}群作用在集合上}{14}{}%
+\contentsline {subsection}{\numberline {4.3.1}群对集合的作用及其推论}{14}{}%
+\contentsline {subsection}{\numberline {4.3.2}Sylow Theorem}{14}{}%
+\contentsline {section}{\numberline {4.4}有限群的结构特点}{14}{}%
+\contentsline {subsection}{\numberline {4.4.1}有限群的结构及其推论}{14}{}%
+\contentsline {subsection}{\numberline {4.4.2}三大同构定理}{14}{}%
+\contentsline {subsection}{\numberline {4.4.3}其它常用结论}{14}{}%
+\contentsline {section}{\numberline {4.5}群思维导图}{14}{}%
+\contentsline {section}{\numberline {4.6}环和域}{14}{}%
+\contentsline {subsection}{\numberline {4.6.1}环的相关概念}{14}{}%
+\contentsline {subsection}{\numberline {4.6.2}一些特殊的环}{14}{}%
+\contentsline {subsection}{\numberline {4.6.3}域的相关概念}{14}{}%
+\contentsline {subsection}{\numberline {4.6.4}一些特殊的域}{14}{}%
+\contentsline {section}{\numberline {4.7}环思维导图}{14}{}%
+\contentsline {section}{\numberline {4.8}群环域典型问题深入}{14}{}%
+\contentsline {subsection}{\numberline {4.8.1}“模”与商空间}{15}{}%
+\contentsline {subsection}{\numberline {4.8.2}子群/正规子群的传递性、交、积}{15}{}%
+\contentsline {subsection}{\numberline {4.8.3}子环/理想的传递性、交、积}{15}{}%
+\contentsline {subsection}{\numberline {4.8.4}群、环、域同态}{15}{}%
+\contentsline {subsection}{\numberline {4.8.5}证明某个群非单}{15}{}%
+\contentsline {subsection}{\numberline {4.8.6}主理想的定义与表示}{15}{}%
+\contentsline {subsection}{\numberline {4.8.7}从环过渡到域}{15}{}%
+\contentsline {subsection}{\numberline {4.8.8}$p^2$阶群、$p$群、$pq$群的性质}{15}{}%
+\contentsline {section}{\numberline {4.9}第四章思考题}{15}{}%
+\contentsline {chapter}{\numberline {5}多项式}{16}{}%
+\contentsline {section}{\numberline {5.1}一元多项式环}{16}{}%
+\contentsline {section}{\numberline {5.2}因式分解}{16}{}%
+\contentsline {section}{\numberline {5.3}上多项式的根}{16}{}%
+\contentsline {section}{\numberline {5.4}对称多项式}{16}{}%
+\contentsline {section}{\numberline {5.5}第五章思考题}{16}{}%
+\contentsline {chapter}{参考文献}{16}{}%

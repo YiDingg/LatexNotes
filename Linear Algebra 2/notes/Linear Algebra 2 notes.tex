@@ -1,0 +1,2164 @@
+% 设定文章类型,正文字号为小四，若为五号将-4改为5即可
+\documentclass[zihao=-4,UTF8]{report}		
+
+
+% 文章宏定义
+\def\N{\mathbb{N}}
+\def\F{\mathbb{F}}
+\def\Z{\mathbb{Z}}
+\def\Q{\mathbb{Q}}
+\def\R{\mathbb{R}}
+\def\C{\mathbb{C}}
+\def\T{\mathbb{T}}
+\def\S{\mathbb{S}}
+
+
+\def\A{\mathscr{A}}
+\def\I{\mathscr{I}}
+\def\d{\mathrm{d}}
+\def\p{\partial}
+
+
+% 导入基本宏包
+\usepackage[UTF8]{ctex}     % 设置文档为中文语言
+\usepackage{hyperref}   %(此宏包与标题中的数学环境冲突)  % 宏包：自动生成超链接
+% \usepackage{docmute}    % 宏包：子文件导入时自动去除导言区，用于主/子文件的写作方式，\include{./51单片机笔记}即可。注：启用此宏包会导致.tex文件capacity受限。
+\usepackage{amsmath}    % 宏包：数学公式
+\usepackage{mathrsfs}   % 宏包：提供更多数学符号
+\usepackage{amssymb}    % 宏包：提供更多数学符号
+\usepackage{pifont}     % 宏包：提供了特殊符号和字体
+\usepackage{extarrows}  % 宏包：更多箭头符号
+% 文章页面margin设置
+\usepackage[a4paper]{geometry}
+\geometry{top=1in}
+\geometry{bottom=1in}
+\geometry{left=0.75in}
+\geometry{right=0.75in}   % 设置上下左右页边距
+\geometry{marginparwidth=1.75cm}    % 设置边注距离（注释、标记等）
+
+% theorem环境自定义
+\usepackage{amsthm}
+\newtheoremstyle{mystyle}% <name>
+    {11pt}% <space above>
+    {11pt}% <space below>
+    {}% <body font> 使用默认正文字体
+    {}% <indent amount>
+    {\bfseries}% <theorem head font> 设置标题项为加粗
+    {：\\ }% <punctuation after theorem head>
+    {.5em}% <space after theorem head>
+    {\textbf{#1}\thmnumber{#2}\ \ (\,\textbf{#3}\,)}% 设置标题内容顺序
+\theoremstyle{mystyle} % 应用自定义的定理样式
+\newtheorem{theorem}{Theorem.\,}
+
+
+%宏包：有色文本框及其设置
+\usepackage[dvipsnames,svgnames]{xcolor}    %设置插入的文本框颜色
+\usepackage[strict]{changepage}     % 提供一个 adjustwidth 环境
+\usepackage{framed}     % 实现方框效果
+\definecolor{graybox_color}{rgb}{0.95,0.95,0.96} % 文本框颜色。修改此行中的 rgb 数值即可改变方框纹颜色，具体颜色的rgb数值可以在网站https://colordrop.io/ 中获得。（截止目前的尝试还没有成功过，感觉单位不一样）（找到喜欢的颜色，点击下方的小眼睛，找到rgb值，复制修改即可）
+\newenvironment{graybox}{%
+\def\FrameCommand{%
+\hspace{1pt}%
+{\color{gray}\small \vrule width 2pt}%
+{\color{graybox_color}\vrule width 4pt}%
+\colorbox{graybox_color}%
+}%
+\MakeFramed{\advance\hsize-\width\FrameRestore}%
+\noindent\hspace{-4.55pt}% disable indenting first paragraph
+\begin{adjustwidth}{}{7pt}%
+\vspace{2pt}\vspace{2pt}%
+}
+{%
+\vspace{2pt}\end{adjustwidth}\endMakeFramed%
+}
+
+% chapter标题自定义设置
+\usepackage{titlesec}   
+\titleformat{\chapter}[hang]{\normalfont\huge\bfseries\centering}{第\,\thechapter\,章}{20pt}{\Huge}
+\titlespacing*{\chapter}{0pt}{-20pt}{20pt} % 控制上方空白的大小
+
+% table设置
+\usepackage{float}
+\usepackage{booktabs}
+\usepackage{caption}
+
+
+% 页眉页脚设置
+\usepackage{fancyhdr}   %宏包：页眉页脚设置
+\pagestyle{fancy}
+\fancyhf{}
+\cfoot{\thepage}
+\renewcommand\headrulewidth{1pt}
+\renewcommand\footrulewidth{0pt}
+\chead{Linear Algebra Ⅱ Notes}    
+
+%宏包：图片插入设置
+\usepackage{graphicx}   
+\usepackage{float}      
+\usepackage{amssymb}    
+\usepackage{caption}\captionsetup[figure]{name=图}  
+
+% 文章默认字体设置
+\usepackage{fontspec}   % 宏包：字体设置
+\setmainfont{SimSun}    % 设置中文字体为宋体字体
+\setmainfont{Times New Roman} % 设置英文字体为Times New Roman
+
+% 参考文献引用设置
+\bibliographystyle{unsrt}   % 设置参考文献引用格式为unsrt
+\newcommand{\upcite}[1]{\textsuperscript{\cite{#1}}}     % 自定义上角标式引用
+
+% 文章序言设置
+\newcommand{\cnabstractname}{序言}
+\newenvironment{cnabstract}{%
+  \par\Large
+  \noindent\mbox{}\hfill{\bfseries \cnabstractname}\hfill\mbox{}\par
+  \vskip 2.5ex}{\par\vskip 2.5ex}
+
+%文档信息设置
+\title{线性代数Ⅱ笔记\\Linear Algebra Ⅱ Notes}
+\author{丁毅\\ \footnotesize 中国科学院大学，北京 100049\\ Yi Ding \\ \footnotesize University of Chinese Academy of Sciences, Beijing 100049, China}
+\date{\footnotesize 2024.2 -- 2024.7}
+
+% 开始编辑文章
+\begin{document}
+\maketitle
+\newpage
+
+\addcontentsline{toc}{chapter}{序言} % 手动添加为目录
+\thispagestyle{fancy}   % 显示页码、页眉等
+\begin{cnabstract}
+\normalsize 本文为笔者本科时的线性代数Ⅱ笔记。用灰色字体或灰色方框等表示对主干内容的补充、对晦涩概念的理解、定理的具体证明过程等，采用红色字体对重点部分进行强调，同时适当配有插图。这样的颜色和结构安排既突出了知识的主要框架，也保持了笔记的深度和广度，并且不会因为颜色过多而导致难以锁定文本内容，乃是尝试了多种安排后挑选出的最佳方案。如果读者有更佳的颜色和排版方案，可以将建议发送到笔者邮箱，在此感谢。\par
+由于个人精力及知识水平有限，书中难免有不妥、错误之处，望不吝指正，在此感谢。
+\end{cnabstract}
+\pagenumbering{Roman} % 页码为大写罗马数字
+
+\tableofcontents        % 目录页   
+
+\newpage
+\pagenumbering{arabic} 
+\chapter{空间与形式}
+\section{线性空间}
+
+{\par\color{gray}\small
+下面两小节是上学期未讲完的内容。
+\par}
+\begin{theorem}[牛顿公式]\label{牛顿公式}
+在$\mathbb{F}[x_1,...,x_n]$中，设$k \in \mathbb{N}_+$，规定下面的常见记号：
+\begin{gather*}
+    \text{sym}(x_1^{k_1}\cdots x_r^{k_r}) = \sum_{1 \le i_1 < \cdots <i_r \le n }x_{i_1}^{k_1}\cdots x_{i_r}^{k_r} \ ,\ \ s_k = \text{sym}(x_1^{k}) = \sum_{i=1}^{n}x_i^k\\
+    \sigma_k =\begin{cases}
+        1 &, k=0\\
+        \text{sym}(x_1\cdots x_k) =
+        \underset{1 \le i_1 < \cdots <i_r \le n }{\sum}x_{i_1}x_{i_2}\cdots x_{i_k} &, k \in [1,n]\\
+        0&, k>n 
+    \end{cases}
+\end{gather*}
+则$\forall\ k \in \mathbb{N}_+$，有牛顿公式：
+\begin{equation*}
+    \sum_{i=0}^{k}(-1)^i\sigma_i s_{k-i} = 0 \Longleftrightarrow s_k = (-1)^k\sum_{i=1}^{k}\sigma_{i}s_{k-i}
+\end{equation*}
+推论：
+\begin{equation*}
+    s_k = 
+    \begin{vmatrix}
+        \sigma_1 & 2\sigma_2 & 3\sigma_3 & \cdots & (k-1)\sigma_{k-1} & k\sigma_{k}\\
+        1 & \sigma_1 & \sigma_2  & \cdots & \sigma_{k-2} & \sigma_{k-1}\\
+        0 & 1 & \sigma_1 & \cdots  & \sigma_{k-3} & \sigma_{k-2}\\
+        \vdots &  \vdots &  \vdots & \ddots  &  \vdots &  \vdots\\
+        0 & 0 & 0 & \cdots  & \sigma_1 & \sigma_2\\
+        0 & 0 & 0 & \cdots & 1 & \sigma_1 
+    \end{vmatrix}\ ,\ \ \forall\  k \in \mathbb{N}_+
+\end{equation*}
+\end{theorem}
+
+\subsubsection{用初等对称多项式表示对称多项式：}
+给定任意对称多项式$f(x_1,...,x_n)$，将其表示为$\varphi(\sigma_1,...,\sigma_n) = f(x_1,...,x_n)$的步骤如下：
+\par
+\ding{172}\ 确定支配项(无需确定系数): $f(x_1,...,x_n) = \sum \text{sym}(a_{\vec{\gamma}}x^{\gamma})$\par
+\ding{173}\  确定其对应的初等对称多项式：
+\begin{equation*}
+    x_1^{k_1}\cdots x_r^{k_r} \longmapsto \sigma_1^{(k_1-k_2)}\sigma_2^{(k_2-k_3)} \cdots \sigma_{r-1}^{(k_{r-1}-k_r)}\sigma_{r}^{(k_{r}-0)}
+\end{equation*}
+ \par
+\ding{174}\  待定系数法求解系数： 设$f$为上面初等式的线性组合(其中第一项系数为1，这是由首1决定的)，取特殊元求解方程组。  \par
+{\par\color{gray}\small
+例如 homework 1.2 :
+$f(x_1,x_2,x_3) = (x_1 - x_2)^2(x_1-x_3)^2(x_2-x_3)^2$\par
+\ding{172}\ 支配项为：$x_1^4x_2^2,\ x_1^4x_2x_3,\ x_1^3x_2^3,\ x_1^3x_2^2x_3,\ x_1^2x_2^2x_3^2$共五项。\par
+\ding{173}\ 对应的初等多项式分别为：$\sigma_1^2\sigma_2^2,\ \sigma_1^3\sigma_2,\ \sigma_2^3,\ \sigma_1\sigma_2\sigma_3,\ \sigma_3^2$。\par
+\ding{174}\ 设$f = \sigma_1^2\sigma_2^2+a\sigma_1^3\sigma_2+b\sigma_2^3+c\sigma_1\sigma_2\sigma_3+d\sigma_3^2$，解四阶矩阵得到$f(x) =  \sigma_1^2\sigma_2^2-4\sigma_1^3\sigma_2-4\sigma_2^3+18\sigma_1\sigma_2\sigma_3-27\sigma_3^2$
+\par
+\par}
+
+ 
+
+\subsubsection{线性空间定义：}
+设$\mathbb{F}$为一个域，若集合$V$具有加法和（$\mathbb{F}$上的）数乘两种运算，且$V$关于加法构成交换群，关于数乘满足封闭性、结合律、分配律、有数乘幺$1_{\mathbb{F}}$，则称集合$V$构成$\mathbb{F}$上的\textbf{线性空间}。将上述两种运算统称为\textbf{线性运算}，线性空间$V$中的元素称为\textbf{向量}。
+\begin{graybox}
+    \textbf{“线性空间”与“向量空间”的区别}：\par
+    “线性空间”与“向量空间”有时被看做是同义词，但是也有时对线性空间取广义的含义，对向量空间取狭义的含义（即向量空间$V$是$\mathbb{R}^n$的子空间）。在徐晓平讲义中采用的是前者(认为两者等同)，在本笔记中采用的是后者(认为两者不同)。
+\end{graybox}
+{\color{gray}\small  例如：域$\mathbb{F}$上的全体矩阵$M_{m\times n}(\mathbb{R})$关于矩阵加法、$\mathbb{F}$上的数乘（纯量乘积）构成一个线性空间；多项式环$\mathbb{F}[x]$关于多项式加法、$\mathbb{F}$上的数乘（纯量乘积）构成一个线性空间。实数域$\mathbb{R}$是$\mathbb{Q}$上的向量空间，复数域$\mathbb{C}$是$\mathbb{R}$上的向量空间。
+}
+\subsubsection{线性空间基本性质：}
+\noindent
+\begin{align*}
+    &\text{\ding{172}\ }\exists\  0_{\mathbb{F}} \in \mathbb{F},\ \forall\  u\in V,\ a \in \mathbb{F},\ \text{有}0\cdot u = 0 = 0 \cdot a\\
+    &\text{\ding{173}\ }a\cdot u = 0_{\mathbb{F}} \Longrightarrow a = 0_{\mathbb{F}}\ \text{or}\ u = 0_V\\
+    &\text{\ding{174}\ }\forall\  n \in \mathbb{N},\ n\cdot u = u + u + \cdots u\ \text{（n个$u$）}\\
+    &\text{\ding{175}\ }(-1)\cdot u = -u
+\end{align*}\par
+
+\subsubsection{线性空间的子空间：}
+设$U$为$\mathbb{F}$上的线性空间$V$的非空子集，若$U$关于加法和数乘封闭，则称$U$为$V$的一个\textbf{子空间}。
+\subsubsection{一些常见的线性空间：}
+\begin{enumerate}
+    \item 矩阵线性空间：域$\mathbb{F}$上的全体矩阵$M_{m\times n}(\mathbb{R})$关于矩阵加法、$\mathbb{F}$上的数乘（纯量乘积）构成一个线性空间。
+    \item 多项式线性空间：多项式环$\mathbb{F}[x]$关于多项式加法、$\mathbb{F}$上的数乘（纯量乘积）构成一个线性空间。
+    \item 映射（函数）线性空间：设$X$是一个非空集合，记$\mathcal{F}_{\mathbb{F}}(X)$为从$X$到$\mathbb{F}$的全体映射（函数），定义$(af + bg)(x) = af(x)+bg(x),\ a,b\in \mathbb{F},\ f,g \in \mathcal{F}_{\mathbb{F}}(X)$，则$\mathcal{F}_{\mathbb{F}}(X)$构成$\mathbb{F}$上的线性空间。
+    \item 自由线性空间：定义\textbf{支撑集}supp\ $f=\{x\in X| f \in \mathcal{F}_{\mathbb{F}}(X),\ f(x) \ne 0 \}$，定义集合$V_{\mathbb{F}}(X) = \{f \in \mathcal{F}_{\mathbb{F}}(X)\mid |\text{supp}\ f|< \infty\}$（只在$X$的有限个元素处取非零值的全体函数），则$V_{\mathbb{F}}(X)$构成$\mathcal{F}_{\mathbb{F}}(X)$的一个子空间，我们称$V_{\mathbb{F}}(X)$为由$X$生成的$\mathbb{F}$上的自由线性空间。
+    \item 数域线性空间：设$\mathbb{F}$是特征为0的域，则从$\mathbb{Z}$到$\mathbb{F}$的映射$m\longmapsto m1_{\mathbb{F}}$构成环单同态，从而映射$\frac{m}{n}\longmapsto (m1_{\mathbb{F}})(n1_{\mathbb{F}})^{-1}$构成从$\mathbb{Q}$到$\mathbb{F}$的域单同态，再定义$\frac{m}{n}\cdot a =[(m1_{\mathbb{F}})(n1_{\mathbb{F}})^{-1}]\cdot a,\ \frac{m}{n}\in \mathbb{Q},\ a\in \mathbb{F} $，则域$\mathbb{F}$关于域的加法和上述数乘构成$\mathbb{Q}$上的线性空间。{\color{gray}\small 例如$\mathbb{R}$是$\mathbb{Q}$上的向量空间，$\mathbb{C}$是$\mathbb{R}$上的向量空间。}特别地，当$\mathbb{F}$的数乘建立在域$\mathbb{F}_p$上时（$\mathbb{F}_p$也即$\mathbb{Z}_p$，它既构成环，也构成域），定义$\bar{r}\cdot a = (r1_{\mathbb{F}})\cdot a,\ \bar{r}\in \mathbb{F}_p$，则$\mathbb{F}$关于域的加法和上述数乘构成一个$\mathbb{F}_p$上的线性空间。
+\end{enumerate}
+
+
+\section{基与维数}
+\subsubsection{线性相关/无关：}
+设$V$是$\mathbb{F}$上的一个线性空间，对于$V$的有限个元素$\{v_1,v_2,...,v_k\}$，若存在不全为零的纯量$\alpha_1,\alpha_2,...,\alpha_k \in \mathbb{F}$使得：
+\begin{equation*}
+    \alpha_1v_1+\alpha_2v_2+\cdots+\alpha_kv_k=0_V \in V
+\end{equation*}\par
+则称$\{v_1,v_2,...,v_k\}$线性相关，若这样的纯量$\alpha_i$不存在，则称其线性无关。\par
+特别地，对于含有无限个元素的$V$的子集$S = \{v_1,v_2,...,v_k,...\}$，若$S$中任意有限个向量都是线性无关的，则称$S$线性无关，否则称其线性相关。\par
+{\color{gray}\small 
+关于$n$维实坐标空间$\mathbb{R}^n$的、不涉及无限的结论，对线性空间也依然成立。例如：含零向量的向量组始终线性相关；向量组线性相关的充要条件为其中一个向量是其他向量的线性组合；一个线性无关向量组的任意部分组也线性无关。
+}
+
+\subsubsection{基：}
+线性空间$V$的一个线性无关子集$S$称为它的基如果$V = \text{Span}\ S$\par
+{\color{gray}\small 
+例如：$\{1,x,x^2,...,x^n,...\}$是$\mathbb{F}[x]$的一组基；记$E_{ij}$为$M_{m\times n}(\mathbb{F})$中$(i,j)$位置元素为1而其他位置元素为0的矩阵，则$\{E_{ij}\mid i = 1,2,...,m;\ j = 1,2,...,n\}$是$M_{m\times n}$的一组基；在自由线性空间$V_{\mathbb{F}}(X)$中定义映射$\delta_y:\delta_y(x) = \begin{cases}
+    1 & \text{ if } x= y\\
+    0 & \text{ if } x\ne y
+   \end{cases}$，则$\{\delta_y\mid y\in X \}$是$V_{\mathbb{F}}(X)$的一组基。
+}
+
+\subsubsection{等价向量组：}
+两个向量组$\{v_1,v_2,...,v_k\}$，$\{u_1,u_2,...,u_k\}$称为等价的如果：
+\begin{equation*}
+    \text{Span} \{v_1,v_2,...,v_k\} = \text{Span} \{u_1,u_2,...,u_k\}
+\end{equation*}\par
+等价的定义还有：$u_i$可由$\{v_1,v_2,...,v_k\}$线性表示，且$v_i$可由$\{u_1,u_2,...,u_k\}$线性表示。
+
+\begin{theorem}[Steinitz替换定理]\label{Steinitz替换定理}
+    设$V$是$\mathbb{F}$上的线性空 间，若$u_1,u_2,...,u_m\in V$线性无关且可由$v_1,v_2,...,v_n$线性表示，则$m\le n$，且用$u_1,u_2,...,u_m$替换$\{v_1,v_2,...,v_n\}$中的任意$m$个向量得到的新向量组都等价于原向量组$\{v_1,v_2,...,v_n\}$。
+\end{theorem}
+{\color{gray}\small  由定理\ref{Steinitz替换定理}可以知道，若两个分别线性无关的向量组$u_1,u_2,...,u_m$和向量组$v_1,v_2,...,v_n$等价，则$m=n$。}
+\subsubsection{维数：}
+若$\mathbb{F}$上的线性空间$V$存在一组有限基$S$，则$S$元素的个数称为$V$的维数，记作$\text{dim}_{\mathbb{F}}V=|S|$，简记为$\text{dim}\ V=|S|$。特别地，我们称零空间$\{0\}$是零维的，称不存在有限基的线性空间是无限维的，记作$\text{dim}\ V = \infty$。\par
+{\color{gray}\small 
+例如：$\text{dim}_{\mathbb{Q}}\mathbb{R}= \infty$；$\{1,\sqrt{-1}=i\}$是$\mathbb{R}$上的线性空间$\mathbb{C}$的一组基，故$\text{dim}_{\mathbb{R}}\mathbb{C}=2$}
+
+\begin{theorem}[基扩充定理]
+    任意线性无关组$\{v_1,v_2,...,v_k\}(k<n)$可扩充为$n$维线性空间$V$的一组基$\{v_1,v_2,...,v_k,...,v_n\}$。
+\end{theorem}
+
+\subsubsection{转换矩阵：}
+由$V$的基$\{u_1,u_2,...,u_n\}$向另一组基$\{v_1,v_2,...,v_n\}$转换时，有：
+\begin{equation*}
+    \left\{\begin{matrix}
+        v_1 &= a_{11}u_1 + a_{12}u_2 + \cdots a_{1n}u_n\\
+        v_2 &= a_{21}u_1 + a_{22}u_2 + \cdots a_{2n}u_n\\
+        \vdots  & \vdots\\
+        v_n &= a_{n1}u_1 + a_{n2}u_2 + \cdots a_{nn}u_n\\
+    \end{matrix}\right.
+\end{equation*}\par 
+记右侧的矩阵为$A$，并称$A$为转换矩阵(transfer\ matrix)。记$\vec{u} = [u_1,u_2,...,u_n]^{T}$，$\vec{v} =[v_1,v_2,...,v_n]^{T}$，则有基转换公式：
+\begin{equation*}
+    \vec{v}=A\vec{u},\ \text{也即}\ {\color{red}\vec{u}\longmapsto A\vec{u}}
+\end{equation*}
+设$\vec{\alpha}=[\alpha_1,\alpha_2,...,\alpha_n]$是向量$x\in V$在基$\{u_1,u_2,...,u_n\}$下的坐标，$\vec{\beta}$为新坐标，则有坐标转换公式：
+\begin{equation*}
+    \vec{\beta} = \vec{\alpha} A^{-1},\ \text{也即}\ {\color{red}\vec{\alpha} \longmapsto \vec{\alpha} A^{-1}} 
+\end{equation*}\par 
+{\color{red}注意：基向量为列向量，坐标向量为行向量。}{\color{gray}\small 坐标[1,3,7]与常规表示(1,3,7)同构。}\par
+容易证明，基的转换矩阵都是可逆矩阵。$\vec{\beta} = \vec{\alpha} A^{-1}$也可以写作$A^T\vec{\beta}^T = \vec{\alpha}^T$，求$\vec{\beta}$等价于解方程$A^T\vec{x} = \vec{\alpha}^T$（推荐用高斯消元法），解得的$\vec{x}$即为$\vec{\beta}^T$。
+\begin{theorem}[同维线性空间]\label{同维线性空间}
+    $\mathbb{F}$上维数相同的两个线性空间必同构（都同构于$\mathbb{F}^n$，$n$为线性空间的维数）。
+\end{theorem}
+
+\begin{theorem}[子空间维数关系]
+    子空间的交$U\cap V$、和$U+V$都构成新子空间，但子空间的并$U\cup V $不一定。且有：
+    \begin{equation*}
+        \color{red}
+        \text{dim}\ V + \text{dim}\ U = \text{dim}(U+V) + \text{dim}(U\cap V)    
+    \end{equation*}
+\end{theorem}
+
+\subsubsection{(内外)直和：}
+内直和：设$U_1$，$U_2$是$\mathbb{F}$上线性空间$V$的两个子空间，记$U = U_1+U_2$，若$\forall\  u \in U$，$\exists !\  u_1\in U_1$，$u_2 \in U_2$使$u = u_1 +u_2$，则称$U$是$U_1$和$U_2$的内直和，记作$U =U_1 \oplus U_2$。\par 
+外直和：\ 设$U_1$，$U_2$是$\mathbb{F}$上的任意两个线性空间，记$U = U_1\times U_2 = \{(u_1,u_2)\mid u_1\in U_1,\ u_2\in U_2\}$，并定义数乘$a\cdot(u_1,u_2) = (a\cdot u_1,a\cdot u_2)$，则$U$构成一个线性空间，称为$U_1,\ U_2$的外直和，同样记作$U = U_1\oplus U_2$。\par
+从同构意义下，内外直和没有差别，统称为直和。\par
+类似地，我们可以定义多个子空间的直和$V = U_1 \oplus U_2 \oplus \cdots \oplus U_k$，其等价定义见定理\ref{多维直和的等价定义}。
+
+\begin{theorem}[二维直和等价定义]
+    设$U_1$，$U_2$是$\mathbb{F}$上线性空间$V$的两个子空间，则下面的几个命题等价：\par
+    \ding{172}\ $U_1+U_2$是直和
+    \par
+    \ding{173}\ 若$\exists\  u_1\in U_1,\ u_2 \in U_2$使$ u_1 +u_2=0_{V}$，则$u_1=u_2=0_{V}$
+    \par
+    \ding{174}\ $U_1\cap U_2=0_{V}$
+    \par
+    \ding{175}\ $\text{dim}(U_1+U_2)= \text{dim}\ U_1 + \text{dim}\ U_2 $ 
+    \par
+\end{theorem}
+\begin{theorem}[多维直和的等价定义]\label{多维直和的等价定义}
+    设$U_1 ,U_2 , ..., U_k$是$\mathbb{F}$上线性空间$V$的$k$个子空间，则下面的几个命题等价：\par
+    \ding{172}\ $U_1+U_2+\cdots + U_k$是直和
+    \par
+    \ding{173}\ 若$\exists\  u_1\in U_1,\ u_2 \in U_2,...,u_k \in U_k$使$ u_1 +u_2+ \cdots u_k= 0_{V}$，则$u_1=u_2=\cdots =u_k=0_{V}$
+    \par
+    \ding{174}\ $ U_s\cap (\underset{i\ne s}{\sum}U_i)  =0_{V}$
+    \par
+    \ding{175}\ $\text{dim}(U_1+U_2+\cdots + U_k)= \text{dim}\ U_1 + \text{dim}\ U_2 +\cdots + \dim U_k$ 
+    \par
+\end{theorem}
+
+\subsubsection{一些常见的直和：}
+\begin{enumerate}
+    \item 矩阵空间的两种直和分解：在矩阵线性空间$M_{n\times n}(\mathbb{R})$中，记$\mathcal{S} _{n\times n}(\mathbb{R})$为全体对称矩阵（简记为$\mathcal{S}$），记$\mathcal{O}_{n\times n}(\mathbb{R})$为全体斜对称矩阵（简记为$\mathcal{O}$），记$\mathcal{T}_{n\times n}(\mathbb{R})$为全体上三角矩阵（简记为$\mathcal{T}$），则有：
+    \begin{equation*}
+        M_{n\times n}(\mathbb{R}) =\mathcal{S}\oplus  \mathcal{O},\ \ M_{n\times n}(\mathbb{R}) =\mathcal{T}\oplus  \mathcal{O}
+    \end{equation*}
+    \item 半幻方矩阵空间分解：
+    设$\mathbb{Q}$上的全体半幻方矩阵(行、列和相同)为：\begin{equation*}
+        \text{Smag}_n(\mathbb{Q}) = \left\{A = (a_{ij})_{n\times n} \in M_{n\times n}(\mathbb{Q}) \mid \sum_{i = 1}^{n}a_{ir} = \sum_{i=1}^{n}a_{ri} = \sigma(A),\ r = 1,...,n\right\}
+    \end{equation*}
+    相应的全体幻方矩阵(行、列、主副对角线和相同)为：
+    \begin{equation*}
+        \text{Mag}_n(\mathbb{Q}) = \left\{A \in \text{Smag}_n(\mathbb{Q}) \mid \sum_{i=1}^{n}a_{ii}=  \sum_{i = 1}^{n}a_{i(n+1-i)} = \sigma(A),\ r = 1,...,n\right\}
+    \end{equation*}
+并记矩阵：
+\begin{equation*}
+    I_n = 
+    {\begin{bmatrix}  
+        1 &  &  &  \\  
+         & 1 &  &  \\  
+         &  & \ddots & \\  
+         &  &  & 1 
+    \end{bmatrix},}_{n\times n}\ \ 
+    D_n = 
+    \begin{bmatrix}  
+        &&&1\\
+        &&1&\\
+        &\reflectbox{$\ddots$} &&\\
+        1&&&
+    \end{bmatrix}_{n\times n}
+\end{equation*}
+则有结论：
+\begin{equation*}
+    \text{Smag}_n(\mathbb{Q}) = \text{Mag}_n(\mathbb{Q}) \oplus \mathbb{Q}I_n \oplus  \mathbb{Q}D_n
+\end{equation*}
+
+    \begin{graybox}
+        \textbf{矩阵空间的两种直和分解证明：}\par
+        对于前者：考虑$M_{n\times n}(\mathbb{R})$的标准基$\{E_{ij}\mid i = 1,2,...,n;\ j = 1,2,...,n\}$，注意到
+    \begin{equation*}
+        E_{ij} = \frac{1}{2}(E_{ij}+E_{ji}) + \frac{1}{2}(E_{ij}-E_{ji})\in (\mathcal{S}+\mathcal{O})
+    \end{equation*}
+    因此
+    \begin{align*}
+        \text{Span} \left\{E_{ij}\right\} =  M_{n\times n}(\mathbb{R}) \subseteq \mathcal{S}+\mathcal{O}
+        \Longrightarrow 
+        M_{n\times n}(\mathbb{R}) =\mathcal{S}+ \mathcal{O} 
+    \end{align*}
+    另一方面，设$A \in \mathcal{S}\cap \mathcal{O}$，则$A^{T} = A =-A \Longrightarrow A = 0_{n\times n}$，故$\mathcal{S}+ \mathcal{O}$构成直和，也即$M_{n\times n}(\mathbb{R}) =\mathcal{S}\oplus  \mathcal{O}$。（也可从$ \text{dim}\ \mathcal{S} = \text{dim}\ \mathcal{T} = \frac{n(n+1)}{2},\ \ \text{dim}\ \mathcal{O} = \frac{(n-1)n}{2}$的角度说明构成直和）。\par
+    对于后者，设$1 \le i \le j \le n$，则$E_{ij}\in \mathcal{T}$，且有：
+    \begin{equation*}
+        E_{ji} = E_{ij} + (E_{ji} - E_{ij}) \in (\mathcal{T} + \mathcal{O})
+    \end{equation*}
+    同理得$M_{n\times n}(\mathbb{R}) =\mathcal{T}+ \mathcal{O}$，进而得$M_{n\times n}(\mathbb{R}) =\mathcal{S}\oplus \mathcal{O}$。\par
+    证必。
+    \end{graybox}
+\end{enumerate}
+
+\subsubsection{余维数：}
+    设线性空间$V = U \oplus \overline{U}$，则称$\overline{U}$为$U$在$V$中的补空间，称$\overline{U}$的维数为$U$在$V$中的余维数，且有：
+    \begin{equation*}
+        \text{codim}\ U = \text{dim}\overline{U} =  \text{dim}\ V - \text{dim}\  U
+    \end{equation*}\par
+    特别地，我们规定，$\{0\}$是$V$在$V$中的补空间。\par
+    {\color{gray}\small 无限维线性空间可以存在有限维子空间，因此子空间的余维数可以是有限的。例如：考虑无限维线性空间$V = \mathbb{F}[x]$，我们有$V = \mathcal{P}_n[x]\oplus \text{Span}\{x^i\mid n\le i ,\ i \in \mathbb{N}\} $，且$\text{dim}\ \text{Span}\{x^i\mid n\le i ,\ i \in \mathbb{N}\} = \infty,\ \text{codim}\ \text{Span}\{x^i\mid n\le i ,\ i \in \mathbb{N}\} = n$。}
+
+\subsubsection{超平面：}一个线性空间$V$中，余维数为1的子空间称为$V$中的超平面。
+\begin{theorem}[补空间存在定理]
+    设$U$是线性空间$V$中的一个子空间，则$U$在$V$中一定存在补空间$\overline{U}$。
+    {\color{ gray} 上述结论对有限维、无限维线性空间都成立，证明参考：\par https://www.zhihu.com/question/68641016/answer/265785313}
+\end{theorem}
+
+\subsubsection{商空间：}   
+设$W$是$\mathbb{F}$上线性空间$V$的子空间，定义$V$模$W$的商空间为：
+\begin{equation*}
+    V/W = \{\overline{v}\mid v \in V\}= \{v + W\mid v\in V\}
+\end{equation*}\par
+定义商空间中的线性运算：$a\overline{v_1} + b\overline{v_2} = \overline{av_1+bv_2},\ a,b \in \mathbb{F},\ v_1,v_2 \in V $，则$V/W$构成一个$\mathbb{F}$上的线性空间。\par
+{\color{gray}\small 考虑到$V$可以看作一个加法群，则子空间$W$构成$V$的子群，又$V$交换，因此$W \unlhd V$，从这个角度来看，商空间本质上还是群模正规子群得到的代数结构。}\par
+构造由补空间$\overline{W}$到商空间$V/W$的映射$\varphi:\varphi(u) = \overline{u},\ u \in \overline{W}  $，则$\varphi $构成一个同态(保持线性运算)，且为双射，故$\overline{W} \cong  V/W$，于是$\dim V/W = \dim \overline{W} = \text{codim}\ W$。\par
+{\color{gray}\small 要证明$\varphi $是满射，我们首先需要说明一个陪集$\overline{v} = v +W$的代表元不唯一，例如$\forall w \in W$，显然$\overline{v} = \overline{v + w}$，这表明我们可以向陪集的代表元“添加”$W$中的任意元素。又$V$中的元素可以做直和分解，也即$\forall\  v \in V,\ \exists\  w' \in \overline{W},w \in W \text{使}v = w' + w,\ $，于是对于任意的陪集$\overline{v}$，设$v = w' + w$，则$\exists\ w' \in \overline{W}\text{使}\  \varphi(w') = \overline{w'} = \overline{w' +w} = \overline{v}$，因此$\varphi$构成满射。又容易验证它是单射，所以$\varphi$构成双射。}\par
+于是，若$\{v_1,...,v_m\}$是$\overline{W}$的一组基，则$\{\overline{v_1},...,\overline{v_2}\}$构成$V/W$的一组基。
+
+\section{对偶空间} 
+\subsubsection{对偶空间：}
+记$V^*$为从$V$到$\mathbb{F}$的全体\textcolor{red}{线性}映射（函数），则$V^*$构成$\mathcal{F}_{\mathbb{F}}(V)$的子空间，称为$V$的对偶空间，且有$\dim V = \dim V^*$。\par
+{\color{gray}\small 记$V$的一个基向量为$\vec{v}_0 = [v_1,v_2,...,v_n]^T$，系数向量(坐标向量)为$\vec{a} = [a_1,a_2,...,a_n]$，则：对任意的$f \in V^*,\ v = a_1v_1 + \cdots + a_nv_n  = \vec{a}\cdot \vec{v}_0\in V$，我们有$f(v) = f(\vec{a}\cdot \vec{v}_0)= \vec{a}f(\vec{v}_0) $，类似地，假设$A$是由基$\vec{v}_0$向基$\vec{u}_0$的转换矩阵，也即$\vec{u}_0 = A\vec{v}_0$我们有$f(\vec{u}_0) = f(A\vec{v}_0) = Af(\vec{v}_0)$。这就是为什么称向量$f(\vec{v}_0)$是同变的。\par
+特别地，我们指出，在无限维线性空间中，$V^* \ne \text{Span} \{v^1,v^2,...,v^n\}$。事实上，在无限维的情况下$\text{Span} \{v^1,v^2,...,v^n\} \subsetneqq V^*$，这是因为$\text{Span}$只能是有限和，如果定义$V$到$\mathbb{F}$的映射$f: f(v_i) = 1,\ \forall\ i \in \mathbb{N}$，则$f \in V^*$且$f \notin \text{Span}\{v^1,v^2,...,v^n\}$。}
+
+\begin{theorem}[对偶空间重要结论]\label{对偶空间重要结论}
+    在线性空间及其对偶空间中，我们有一个重要而有用的结论：
+    \begin{equation*}
+       \textcolor{red}{ \{v \in V \mid \forall\ f \in V^*,\ f(v) = 0\} = \{0_V\}}
+    \end{equation*}
+\end{theorem}
+\subsubsection{对偶基及其转换：}
+设$\{v_1,v_2,...,v_n\}$是$V$的一组基，定义映射$v^i:\ v=a_1v_1 + \cdots + a_nv_n \longmapsto a_i,\ i \in \{1,2,...,n\},\ a_i \in \mathbb{F}$，也即$v^i(v_j) = \delta_{ij}$，则$\{v^1,v^2,...,v^n\}$构成$V^*$的一组基，称为对偶基。
+特别地，$\forall f \in V*$，我们有：
+\begin{equation*}
+    f = f(v_1)v^1 + f(v_2)v^2 + \cdots f(v_n)v^n
+\end{equation*}
+也即映射$f$在基$\{v^1,v^2,...,v^n\}$下的坐标为$\vec{x} = \left[f(v_1),...,f(v_n)\right]$。\par
+假设$A \in M_{n\times n}(\mathbb{F})$是$V$的基$\vec{v}_0$向基$\vec{u}_0$的转换矩阵，也即$\vec{u}_0 = A\vec{v}_0$，则$(A^T)^{-1}$是$V^*$的基$\vec{v}^0$向基$\vec{u}^0$的转换矩阵：
+\begin{equation*}
+    \vec{u}^{\, 0} =(A^T)^{-1}\vec{v}^{\, 0},\ \  \text{也即} \ {\color{red}\vec{v}^{\,0} \longmapsto (A^T)^{-1}\vec{v}^{\,0}}
+\end{equation*}\par
+\begin{graybox}
+    \textbf{对偶基转换式的证明：}\\
+    基$\vec{v}_0 = [v_1,...,v_n]$对应的对偶基为$\vec{v}^0 = [v^1,...,v^n]$，且$\forall\ f = b_1v^1+\cdots +b_nv^n \in V^*$，有：
+    \begin{align*}
+        f(v_i) = (b_1v^1+\cdots +b_nv^n)(v_i) = b_i \Longrightarrow f = f(v_1)v^1+\cdots +f(v_n)v^n
+    \end{align*}
+    类似地，设基$\vec{u}_0 = [u_1,...,u_n]$的对偶基为$\vec{u}^0 = [u^1,...,u^n]$，则有$f = f(u_1)u^1+\cdots +f(u_n)u^n$，于是：
+    \begin{align*}
+        v^i(u_r) &= v^i(a_{r1}v_1 + \cdots + a_{rn}v_n) = a_{ri} \\
+        \Longrightarrow  v^i &= v^i(u_1)u^1+\cdots +v^i(u_n)u^n\\
+        & = a_{1i}u^1 + \cdots + a_{ni}u^n\\
+        \Longrightarrow  \vec{v}^{\, 0} &= A^T\vec{u}^{\, 0}\\
+        \Longrightarrow  \vec{u}^{\, 0} &= (A^T)^{-1}\vec{v}^{\, 0}
+    \end{align*}
+    证毕。
+\end{graybox}
+
+\begin{theorem}[线性空间向量组的秩]\label{线性空间向量组的秩}
+    设$\{f_1,f_2,...,f_n\}$是对偶空间$V^*$的一组基，则对$V$中的任意向量组$\{u_1,u_2,...,u_k\}$，有：
+    \begin{equation*}
+        \text{rank}\{u_1,u_2,...,u_k\}  = \text{rank} 
+        \begin{bmatrix}
+            f_1(u_1) & f_1(u_2) & \cdots  & f_1(u_k) \\
+            f_2(u_1) & f_2(u_2) & \cdots  & f_2(u_k)\\
+            \vdots & \vdots & \ddots & \vdots\\
+            f_n(u_1) & f_n(u_2) & \cdots  & f_n(u_k)
+        \end{bmatrix}
+        = \text{rank}\ (f_i(u_j))_{n\times k}
+    \end{equation*}
+    \begin{graybox}
+        \textbf{定理\ref{线性空间向量组的秩}的证明： }\\
+        记列向量
+        \begin{equation*}
+            \vec{a}^{\,i} = \begin{bmatrix}
+                f_1(u_i)\\f_2(u_i)\\\vdots\\f_n(u_i)
+            \end{bmatrix},\ i = 1,2,...,k
+        \end{equation*}
+        我们只需证明对任意的$1 \le i_1 <i_2<\cdots <i_r\le k$，向量组$\{u_{i_1},u_{i_2},...,u_{i_r}\}$线性相关$\Longleftrightarrow $向量组$\{\vec{a}^{\,i_1},\vec{a}^{\,i_2},...,\vec{a}^{\,i_k}\}$线性相关。\par
+    $1.\ \Longrightarrow :$\par
+    假设$\{u_{i_1},u_{i_2},...,u_{i_r}\}$线性相关，即$\exists\ a_1,a_2,...,a_r \in \mathbb{F}$使得：
+    \begin{equation*}
+        a_1u_{i_1} + a_2u_{i_2} + \cdots + a_ru_{i_r} = 0 _V
+    \end{equation*}
+    依次吧映射$f_1,f_2,...,f_n$作用在方程两边，得到由$n$个方程构成的方程组：
+    \begin{equation*}
+        a_1f_i(u_{i_1}) + a_2f_i(u_{i_2}) + \cdots + a_rf_i(u_{i_r}) = f_i(0_V) \xlongequal{\text{定理}\ref{对偶空间重要结论}}0
+    \end{equation*}
+    这等价于：
+    \begin{equation*}
+        a_1\vec{a}^{\,i_1} + a_2\vec{a}^{\,i_2} + \cdots + a_r\vec{a}^{\,i_r} = \vec{0}
+    \end{equation*}
+    因此$\{\vec{a}^{\,i_1},\vec{a}^{\,i_2},...,\vec{a}^{\,i_k}\}$线性相关。\par
+    $2.\ \Longleftarrow :$\par
+    将上述过程逆过来即可，略。
+    \end{graybox}
+\end{theorem}
+
+\subsubsection{有限维线性空间的自反性：}
+考虑有限维对偶空间的对偶空间$(V^*)^* = V^{**}$，对任意$u\in V$，定义从$V^*$到$\mathbb{F}$的映射$\varepsilon_u \in V^{**}$为：$\varepsilon_u(f) = f(u),\ f \in V^*$，则映射$u \longmapsto \varepsilon_u$给出了$V$到$V^{**}$的同构，也即$V \cong  V^{**}$。要注意，上述结论在无限维不成立，无限维线性空间不具有自反性。{\color{red}在讲义中写作“$V = V^{**}$”，并且称$V$是自反的，其详细含义是什么？自反的定义不应该是$V \sim V$吗？}
+
+\begin{theorem}[线性空间的子空间]
+    设$\{f_1,f_2,...,f_k\}$是$n$维对偶空间$V^*$中的一个秩为$r$的向量组，则$\{v \in V\mid f_1(v) = f_2(v) = \cdots = f_k(v) = 0\}$构成$V$的$(n - r)$维子空间。{\color{gray}\small 定理的几何意义是$V$中$k$个超平面的交。}
+\end{theorem}
+   
+\section{双线性型和二次型}
+
+\subsubsection{双线性型：}
+$V$上的一个双线性型（双线性函数）是一个映射$f: V \times V \longmapsto \mathbb{F}$满足：
+\begin{align*}
+    &\forall\  v_1,v_2,u_1,u_2 \in V,\ a_1,a_2,b_1,b_2 \in \mathbb{F},\ \text{有：}\\
+    &f(a_1v_1+a_2v_2,u) = f(a_1v_1,u) + f(a_2v_2,u) = a_1f(v_1,u) + a_2f(v_2,u)\\
+    &f(v,b_1u_1 + b_2u_2) = f(v,b_1u_1) + f(v,b_2u_2) = b_1f(v,u_1) + b_2f(v,u_2)
+\end{align*}
+也即双线性型$f$是一个二重线性映射。
+{\color{gray}\small 特别地，我们指出，双线性型原空间可以是两个不同集合的内积，也即双线性型$f:X\times Y \longmapsto \mathbb{F}$，后文的相关概念也可据此作出适当延伸。}
+
+\subsubsection{双线性型线性空间：}
+记$\mathcal{L}_2(V,\mathbb{F})$为$V$上的全体双线性型，容易验证其关于映射的加法、数乘构成一个线性空间（$\mathcal{F}_{\mathbb{F}(V \times V)}$的子空间）。\par
+定义双线性型$f$在$V$的基$\vec{v}_0 = [v_1,v_2,...,v_n]^T$下的度量矩阵(表示矩阵)：
+\begin{equation*}
+    F = (f(v_i,v_j))_{n\times n} = (f_{ij})_{n \times n} = \begin{bmatrix}
+        f_{11} & f_{12}& \cdots  & f_{1n}\\
+        f_{21} & f_{22}& \cdots  & f_{2n}\\
+        \vdots  & \vdots  & \ddots  & \vdots \\
+        f_{n1} & f_{n2} & \cdots  & f_{nn}
+    \end{bmatrix}=
+    \begin{bmatrix}
+        f(v_1,v_1) & f(v_1,v_2) & \cdots  & f(v_1,v_n)\\
+        f(v_2,v_1) & f(v_2,v_2) & \cdots  & f(v_2,v_n)\\
+        \vdots  & \vdots  & \ddots  & \vdots \\
+        f(v_n,v_1) & f(v_n,v_2) & \cdots  & f(v_n,v_n)
+    \end{bmatrix}
+\end{equation*}
+{\color{gray}\small 其中$f_{ij}$定义为$f_{ij} = f(v_i,v_j)$。}\par
+并设$\vec{x},\vec{y}$分别是$u,v$在基$\vec{v}_0$下的坐标，则有：
+\begin{equation*}
+    f(u,v) = \vec{x}F\vec{y}^{\,T}
+\end{equation*}\par
+且映射$f \longmapsto F$给出了$\mathcal{L}_2(V,\mathbb{F})$到$M_{n \times n}(\mathbb{F})$的同构。\par
+
+\subsubsection{度量矩阵转换：}
+设$A = (a_{ij})_{n\times n}$为基$\vec{v}_0$向$\vec{u}_0$的转换矩阵，也即：
+\begin{equation*}
+    u_i = a_{i1}v_1 +  a_{i2}v_2 + \cdots a_{in}v_n,\ i = 1,2,...,n
+\end{equation*}\par
+设$F$为$f$在基$\vec{v}_0$下的度量矩阵，则$f$在$\vec{u}_0$下的新度量矩阵为：
+\begin{equation*}
+    F' = AFA^T,\ \ \text{也即}\ {\color{red}F \longmapsto AFA^T}
+\end{equation*}
+考虑到$A$为可逆矩阵，有$\text{rank}\ F' = \text{rank}\ F$，故度量矩阵$F$的秩不随基而变化，称为$f$的秩。
+
+\subsubsection{合同矩阵：}
+两个$n\times n $矩阵$G,\ F$称为合同的如果存在可逆矩阵$A$使得$AFA^T$。\par{\color{gray}\small 由此可得，一个双线性型在不同基下的度量矩阵是合同的。}
+
+\subsubsection{左(右)根空间：}
+给定$f \in \mathcal{L}_2(V,\mathbb{F})$，定义$f$的左根为$L_f = \{u \in V \mid \forall\ v \in V,\ f(u,v) = 0\}$，右根为$R_f = \{v \in V \mid \forall\ u \in V,\ f(u,v) = 0\}$，且有：
+\begin{equation*}
+    \dim L_f = \dim R_f = \dim \mathcal{L}_2(V,\mathbb{F}) - \text{rank}\ f
+\end{equation*}\par
+双线性型$f$称为非退化的(nondegenerate)如果$L_f = \{0\} \Longleftrightarrow R_f = \{0\} \Longleftrightarrow f\text{满秩}$，这里的0指零映射。\par
+{\color{gray}\small  一般$L_f \ne R_f$，且两者都构成$ \mathcal{L}_2(V,\mathbb{F})$的子空间。}
+
+\subsubsection{(斜)对称双线性型：}
+双线性型$f\in \mathcal{L}_2(V,\mathbb{F})$称为对称的如果$\forall\  u,v \in V,\ f(u,v) = f(v,u)$，称为斜对称的如果$\forall\  u,v \in V,\ f(u,v) = -f(v,u)$。\par 
+记$\mathcal{L}_2^+(V,\mathbb{F})$为全体对称双线性型，记$\mathcal{L}_2^-(V,\mathbb{F})$为全体斜对称双线性型，则有：
+\begin{equation*}
+    \mathcal{L}_2(V,\mathbb{F}) = \mathcal{L}_2^+(V,\mathbb{F}) \oplus \mathcal{L}_2^-(V,\mathbb{F})
+\end{equation*}\par
+特别地，我们有：双线性型$f$为对称的$\Longleftrightarrow  f$的度量矩阵$F$是对称矩阵
+{\par\color{gray}\small
+对称双线性型，或者说实对称矩阵的性质很特殊：\par
+1. 特征值为实数：实对称矩阵的特征多项式在复数域中的每一个根都是实数，因此其特征值都是实数。
+\par2. 特征向量为实向量：实对称矩阵的特征值对应的特征向量都是实向量。\par
+3. 可相似对角化：\textcolor{red}{n阶实对称矩阵必可对角化}，而对角矩阵上的对角元素即为原矩阵的特征值。\par
+4. 秩与非零特征值个数相等：实对称矩阵的秩等于其非零特征值的个数。
+\par}
+
+\subsubsection{二次型：}
+假设$\mathbb{F}$的特征不是2(推出2在$\mathbb{F}$中可逆)，$V$是$\mathbb{F}$上的线性空间，一个映射$q \in \mathcal{F}_{\mathbb{F}}(V)$称为二次型如果$\forall\ v \in V,\ q(v) = q(-v)$。\par
+定义$q$对应的对称双线性型$f_q$，并将$f_q$的秩称为$q$的秩：
+\begin{equation*}
+    f_q(u,v) = 2^{-1}(q(u+v) - q(u)-q(v)),\ u,v \in V
+\end{equation*}
+
+{\color{gray}\small 容易验证$f_q \in \mathcal{L}_2^+(V,\mathbb{F})$。考虑到我们的$\mathbb{F}$不一定是实数域或复数域，$f_q$定义式中的$2$其实是一个抽象含义，例如：令$\mathbb{F}$为模$p$剩余类$\mathbb{F}_p$，并定义映射$q$从$\mathbb{F}_p[x]$到$\mathbb{C}$，定义式中的$2$则对应$\mathbb{F}_p$中的$\overline{2}$，$2^{-1}$则对应$\mathbb{F}_p$中的$\overline{\frac{p+1}{2}}$，比如令$p = 5$，则$2$对应$\overline{2}$，$2^{-1}$对应$\overline{3}$。}
+
+类似地，给定对称双线性型$f \in \mathcal{L}_2^+(V,\mathbb{F})$，定义其对应的二次型：
+\begin{equation*}
+    q_f(v) = f(v,v),\ u \in V
+\end{equation*}\par
+
+{\color{gray}\small  而$f_q(0,0) = 0$(因为$f$是线性的)，由此我们得到$q(0) = f_q(0,0) = 0$\ ，且$f = f_{q_f},\ q = q_{f_q}$，两者一一对应。我们只在对称双线性型空间中同时讨论$f_q$和$q$及其对应关系。}\par
+称对称双线性型$f$在基$\vec{v}_0$下的度量矩阵$F$为$q_f$在基$\vec{v}_0$下的度量矩阵，可以简记为$F_{f_q} = F_q$。\par
+特别地，对所有坐标空间(即$\mathbb{F}^n$)中的二次型$q$，设$q$在基$\vec{v}_0$下的度量矩阵为$F$，$v$的坐标为$\vec{x}$，我们有：
+\begin{equation*}\color{red}
+    q(v) = \vec{x} F \vec{x}^{\,T}
+\end{equation*}\par
+推论：在坐标空间中，二次型始终是二次齐次多元多项式。
+\subsubsection{迷向空间：}
+对任意的$q$，由于$f_q(u,v)$是对称的，因此$L_{f_q} = R_{f_q}$，即左右根空间相等，统称为$q$的一个迷向空间(isotropic space)。并且事实上：
+\begin{equation*}
+    L_{f_q} = R_{f_q} = \left\{v\in V\mid q(u+v) = q(u) + q(v) \right\}
+\end{equation*}
+\subsubsection{规范型：}
+$V$的一组基$\vec{v}_0 = \left[v_1,...v_n\right]^T$称为二次型$q$的规范基如果对任意$v = x_1v_1 +\cdots +x_nv_n \in V$，有：
+\begin{equation*}
+    q(v) = \vec{x}F\vec{x}^{\,T} = f_{11}x_1^2 + f_{22}x_2^2 + \cdots +f_{nn}x_n^2
+\end{equation*}\par
+我们称上式为$q$在基$\vec{v}_0$下的规范型，对应生成的$f_q$也称为规范型。且此时，$q$的度量矩阵(也是$f_q$的)为：
+\begin{equation*}
+    F_q = 
+    \begin{bmatrix}  
+        f(v_1,v_1) & 0 & \cdots & 0 \\  
+        0 & f(v_2,v_2)& \cdots & 0 \\  
+        \vdots & \vdots & \ddots & \vdots \\  
+        0 & 0 & \cdots & f(v_n,v_n)  
+    \end{bmatrix} 
+\end{equation*}
+
+\begin{theorem}[对称二次型必有规范基]
+   有限维线性空间$V$上的每个二次型$q$，都存在规范基。\par
+   推论：任意对称矩阵都合同于一个对角阵，也即$ \forall\ A \in \left\{ M_{n\times n}\mid A = A^T \right\},\ \exists\  D =\\ \text{diag}(a_{11},a_{22},...,a_{nn}),\ B\in M_{n\times n}\ $使得：
+   \begin{equation*}
+    A = BDB^T
+   \end{equation*}
+\end{theorem}
+\subsubsection{标准型：}
+对于$q$在基$\vec{v}_0$下规范型$q(v) = \vec{x}
+F \vec{x}^{\,T}
+  =f(v_1,v_1)x_1^2 + \cdots +f(v_n,v_n)x_n^2 $，由于$f(v_i,v_i)$的取值在$\mathbb{R}$中不定，我们调换$\left\{v_1,...,v_n\right\}$中元素的顺序，使得：
+\begin{equation*}
+    \begin{cases}
+       f_{ii}>0 &  i \in [1,r] \\
+       f_{ii}<0 &  i \in [r+1,r+s]\\
+       f_{ii}=0 &  i \in [r+s+1,n]
+      \end{cases}
+\end{equation*}\par
+我们进行基变换：
+\begin{equation*}
+    \begin{cases}
+        u_i = \sqrt{f_{ii}}v_i &  i \in [1,r] \\
+        u_i = \sqrt{-f_{ii}}v_i &  i \in [r+1,r+s]\\
+        u_i = v_i &  i \in [r+s+1,n]
+       \end{cases}
+\end{equation*}\par
+得到基$\vec{u}_0$，相应地，坐标也由$\vec{x}$变为$\vec{y}$，则$q$在基$\vec{u}_0$下的式子化为：
+\begin{equation*}
+    q(v) = y_1^2 + \cdots + y_r^2-y_{r+1}^2- \cdots -y_{r+s}^2 ,\ \forall \ v = y_1u_1 + \cdots + y_nu_n \in V
+\end{equation*}\par
+我们称上式为$q$的标准型，也即：
+\begin{equation*}
+    \begin{cases}
+        f(u_i,u_i) = 1 &  i \in [1,r] \\
+        f(u_i,u_i) = -1 &  i \in [r+1,r+s]\\
+        f(u_i,u_i) = 0 &  i \in [r+s+1,n]
+    \end{cases}
+\end{equation*}\par
+{\color{gray}\small 标准基常指的是$\left\{\vec{e}_1,\dots , \vec{e}_n\right\}$，我们也可以把上面标准型对应的基称为标准基，但要注意辨别，不要引起歧义。}
+\begin{theorem}[$r$与$s$取决于二次型$q$]
+    对于任意的二次型$q$。其标准型中的整数$r$与$s$仅由$q$，与相应的规范基无关。
+\end{theorem}
+
+\subsubsection{快速确定二次型/双线性型在默认基下的矩阵：}
+步骤：(二次型$q\overset{\text{\ding{172}}}{\longrightarrow}$)双线性型$f\overset{\text{\ding{173}}}{\longrightarrow}$度量矩阵$F$\par
+\ding{172}\ $q$转$f$：设二次型为$q$，对每一项分别作左$y$变换和右$y$变换并相加，最后{\color{red}勿忘乘$\frac{1}{2}$}，即可得到$q$对应的双线性型$f_q$。\par{\color{gray}\small 例如$q(u) = 2x_1x_2 -6x_1x_3+2x_1x_3+x_3^2$经变换得到：
+\begin{align*}
+    f(u,v) &= \frac{1}{2}\left[(2x_1y_2 + 2y_1x_2)+(-6x_1y_3-6y_1x_3)+(2x_2y_3+2y_2x_3)+(x_3y_3 +y_3x_3) \right]\\
+    & = x_1y_2 + y_1x_2 -3x_1y_3-3y_1x_3 +x_2y_3+y_2x_3 +x_3y_3
+\end{align*}\noindent
+}\par
+\ding{173}\ $f$转$F$：设双线性型$f(u,v)$，其中$u = \vec{x}\cdot \vec{e}$，$v =\vec{y}\cdot \vec{e}$，则每一项中$x$的角标表示行，$y$的角标表示列，系数代表$F$此处entry的值。\par 
+{\color{gray}\small 继续上面的例子，对应的度量矩阵为$F = 
+\begin{bmatrix}  
+    0 & 1 & -3 \\  
+    1 & 0 & 1 \\  
+    -3 & 1 & 1  
+  \end{bmatrix} $，即为在默认基下的矩阵(一般认为是标准正交基)。}
+
+\subsubsection{将二次型化为标准型的三种方法：}
+初等变换法、配方法、\textcolor{red}{偏导数配方法}、正交变换法。\par 
+https://www.zhihu.com/question/465317828/answer/1943470027 \par
+https://www.zhihu.com/question/67528139/answer/1416472234\ (偏导数)\par
+https://zhaokaifeng.com/16920/ \ (偏导数)\par
+
+\subsubsection{偏导数法将二次型化为标准型：}
+设$q$ (或双线性型$f$化为$q_f$)为二次型, 步骤如下：
+\par
+\ding{172}\ 平方项的配方：
+令$f_1 = \frac{\partial f}{\partial x_1}$，求解$\textcolor{red}{g = f - \frac{1}{4a_{11}} f_1^2}$，则$g$中不再含有$x_1$；再令$g_2 = \frac{\partial g}{\partial x_2}$，求解$h = g - \frac{1}{4a_{22}}\cdot g_2^2 =f - \frac{1}{4a_{11}}\cdot f_1^2 - \frac{1}{4a_{22}}\cdot g_2^2$......(重复上面操作)   \par
+\ding{173}\  非平方项的配方：
+令$f_1 = \frac{\partial f}{\partial x_1},\  f_2 = \frac{\partial f}{\partial x_2}$，求解$\textcolor{red}{g = f - \frac{1}{4a_{12}}\left[ (f_1+f_2)^2 - (f_1-f_2)^2 \right]}$，则$g$中不再含有$x_1,x_2$；再令$ g_3,g_4 $，求解$h = f - \frac{1}{4a_{34}}\left[ (g_3+g_4)^2 - (g_3-g_4)^2 \right]$......(重复上面操作)
+\par
+\ding{174}\  最后将结果汇总，即可得到$f = $平方项之和。   \par
+
+
+特别地，将对称双线性型化为标准型的方法和二次型是一致的(将双线性转为二次型，标准化后再转回)。
+
+\subsubsection{惯性指数：}
+我们称$r+s$为$V$上的二次型$q$的指数，并称$r$为正惯性指数，$s$为负惯性指数。另外，设$q$是$\mathbb{R}$上的有限维向量空间$V$的一个二次型，则：
+\begin{align*}
+    &\text{\ding{172}\ $q$是正定的：}r = \dim V \iff q(v) > 0 ,\ \forall \ 0_V \ne v \in V\\
+    &\text{\ding{173}\ $q$是负定的：} s = \dim V \iff  q(v) < 0 ,\ \forall \ 0_V \ne v \in V\\
+    &\text{\ding{174}\ $q$是半正定的：} s = 0 \iff q(v) \ge  0 ,\ \forall \ 0_V \ne v \in V \\
+    &\text{\ding{175}\ $q$是半负定的：}  r = 0 \iff q(v) \le  0 ,\ \forall \ 0_V \ne v \in V\\
+    &\text{\ding{176}\ $q$是不定的：}  r\ne 0,\ s \ne 0  \iff \exists\ v,u \in V,\ q(v)>0,\ q(u)<0
+\end{align*}
+\begin{theorem}[矩阵正定的等价条件]\label{矩阵正定的等价条件}
+设对称矩阵$A \in M_{n\times n}(\mathbb{R})$，则：
+\begin{equation*}
+    \text{矩阵}\  A\ \text{正定}\Longleftrightarrow\text{存在可逆矩阵}\ S\in M_{n\times n}(\mathbb{R})\ \text{s.t.}\ A = SS^T
+\end{equation*}
+推论：
+\begin{gather*}
+    \text{矩阵}\  A\ \text{正定} \Longrightarrow A\ \text{的对角元都} >0\\
+    \text{矩阵}\  A\ \text{半正定} \Longrightarrow A\ \text{的对角元都} \ge 0\\
+    \text{矩阵}\  A\ \text{是不定的} \Longrightarrow A\ \text{的对角元既有$>0$也有$<0$}
+\end{gather*}
+{\par\color{gray}\small
+设对称矩阵$A \in \left\{A\in M_{n\times n }(\mathbb{R}) \mid A^T = A\right\}$，定义$A$所对应的对称双线性型为$f_A(u,v) = uAv^{T}$ (这表明A即为$f_A$的度量矩阵)，从而也有对应的二次型$q_{f_A}$，并将$q_{f_A}$的正定性称为对称矩阵$A$的正定性。
+\par}
+\end{theorem}
+
+
+\subsubsection{主子式：}
+设$F$是$V$上二次型$q$在基$\vec{v}_0 = \left[v_1,...,v_n\right]^T$下的度量矩阵，则$F$的主子式定义为：
+\begin{equation*}
+    \Delta_0 := 1,\ \   \Delta_1 = f_{11},\ \  
+    \Delta_2 =\begin{vmatrix}
+        f_{11} & f_{12}\\
+        f_{21} & f_{22 }
+    \end{vmatrix} ,\ \dots ,\ \ 
+    \Delta_n = 
+    \begin{vmatrix}  
+        f_{11}& f_{12}& \cdots  & f_{1n} \\  
+        f_{21}& f_{22}& \cdots  & f_{2n} \\  
+        \vdots & \vdots & \ddots & \vdots \\  
+        f_{n1}& f_{n2}& \cdots  & f_{nn}  
+      \end{vmatrix}  
+    = \left | F \right |       
+\end{equation*}
+\begin{theorem}[Jacobi Theorem]
+    设二次型$q$的度量矩阵$F$的主子式全都不为0，则存在一组基$\left\{u_1,u_2,...,u_n\right\}$使得$q$在此基下化成：
+    \begin{equation*}
+        q(u) = \frac{\Delta_0}{\Delta_1}y_1^2 + \frac{\Delta_1}{\Delta_2}y_2^2+ \cdots +\frac{\Delta_{n-1}}{\Delta_n}y_n^2,\  \ \forall \ u = y_1u_1 + \cdots y_nu_n \in V
+    \end{equation*}
+    且上面对应的转换矩阵$T$是下三角的，也即存在下三角可逆矩阵$T$使得：
+    \begin{equation*}
+        TFT^{-1} = \text{diag}(\frac{\Delta_0}{\Delta_1},...,\frac{\Delta_{n-1}}{\Delta_n} )
+    \end{equation*}\par
+    推论：二次型的负惯性指数个数是序列$\Delta_0,\Delta_1,\dots,\Delta_n$的变号个数。特别地，我们有：
+    \begin{equation*}
+        q \ \text{是正定的}\Longleftrightarrow \Delta_i >0,\ \forall\  i \in \{0,1,...,n-1\}
+    \end{equation*}
+{\par\color{gray}\small
+\begin{equation*}
+    q \ \text{是负定的}\Longrightarrow \Delta_i\Delta_{i+1}<0,\ \forall\  i \in \{0,1,...,n-1\}
+\end{equation*}
+\par}
+
+\end{theorem}
+\subsubsection{斜对称双线性型：}
+给定一个双线性型$f$，对应的度量矩阵是$F$，类似地，我们有：
+\begin{gather*}
+    f(u,v) = \vec{x}F\vec{y}^{\, T}\ \ ,\ \ \     f\ \text{是斜对称的} \Longleftrightarrow F\ \text{是斜对称的} 
+\end{gather*}
+{\color{gray}\small 斜对称双线性型的秩一定是偶数。}
+\begin{theorem}[斜对称双线性型必有规范基]\label{斜对称双线性型必有规范基}
+    设$f$是$V$上的斜对称双线性型，则存在基$\left\{v_1,\dots,v_n\right\}$使得$f$在此基下化成：
+    \begin{gather*}
+        f(u,v) = (x_1y_2 - x_2y_1) + \cdots + (x_{2r-1}y_{2r} - x_{2r}y_{2r-1}) = \sum_{k = 1}^{r} (-1)^{k+1}(x_{2k-1}y_{2k} - x_{2k}y_{2k-1})\\
+        \forall \ u = x_1v_1 + \cdots x_nv_n,\ \ v = y_1v_1 + \cdots + y_nv_n
+    \end{gather*}
+    并称上式为$f$的标准型。\par
+    推论：对任意的斜对称矩阵$A \in \left\{A\in M_{n\times n }(\mathbb{R}) \mid A^T =- A\right\}$，存在可逆矩阵$S$使得：
+    \begin{equation*}
+        SAS^T = 
+        \begin{bmatrix}  
+            O_{r\times r} & I &  \\  
+            -I & O_{r\times r} &  \\  
+             &  & O_{(n-2r)\times (n-2r)}  
+          \end{bmatrix} 
+    \end{equation*}\par
+    且：\ \ $A$可逆$\Longleftrightarrow n=2r \Longrightarrow \det A = (\det S)^{-2}$\par
+
+    {\color{gray}\small 这是因为由上面的度量矩阵转换，可以得到：对任意的斜对称矩阵$A \in \left\{A\in M_{n\times n }(\mathbb{R}) \mid A^T =- A\right\}$，记
+    $H = \begin{bmatrix}
+        0&1\\
+        -1&0
+    \end{bmatrix}$，存在可逆矩阵$S$使得：
+    \begin{align*}
+        SAS^T = \begin{bmatrix}  
+            H &  &  &  \\  
+             & \ddots &  &  \\  
+             &  & H &  \\  
+             &  &  & O  
+          \end{bmatrix}_{n \times n} 
+    \end{align*}\par
+    对$SAS^T$进一步同时做的行变换和列变换，即可得到推论中的形式。特别地，当$A$可逆时，有$n = 2r$，且$\det A = (\det S)^{-2}$。}
+\end{theorem}
+
+\subsubsection{将斜对称双线性型$f$化为规范型的方法：}
+\noindent 方法一：利用定理\ref{斜对称双线性型必有规范基}。
+设$\left\{\vec{e}_1,...,\vec{e}_n\right\}$是原基，$\left\{v_1,...,v_n\right\}$是标准基(规范基)，步骤如下：\par
+\ding{172}\ 找到$v_1,v_2$使得$f(v_1,v_2) = 1$；\par
+\ding{173}\ 诱导出$W' = \left\{ v \in V\mid \forall\  u = \alpha_1v_1 + \alpha_2v_2 \in W,\  f(u,v)=0\right\}$，下面找到$W'$的一组基；\par
+\ding{174}\ 任取$w \in V$，并构造\ {\color{red}$v_3 = w +f(v_2,w)v_1-f(v_1,w)v_2 $}\ ，则$v_3 \in W'$；\par
+\ding{175}\ 再取$w \in V$，依次构造$v_4,v_5,...$，并分析是否线性无关，直至得到$W'$的一组基。\par
+\ding{176}\ 依次验证$f(v_3,v_4)$，$...$，$f(v_{n-1},v_{n})==1$，若非$1$，添加系数得到$v_{i}'$(如$v_3'$)使其变为$1$。\par
+\ding{177}合并即得标准基(规范基)$\ \left\{v_1,v_2,v_3',v_4,...,v_n\right\}$\par
+\noindent  方法二：配凑法(不好用)。https://zhuanlan.zhihu.com/p/99513090\par
+\noindent 方法三：矩阵合同初等变换(在忘记方法一时使用)，注意$A$要做合同变换但是$I_n$仅做行变换(或仅做列变换)。
+
+
+\chapter{线性算子}
+\section{向量空间的线性映射}
+\subsubsection{线性映射的秩：}
+记$\mathscr{L}_{\mathbb{F}}(U,V)$为从$U$到$V$的全体线性映射，对于$f \in \mathscr{L}_{\mathbb{F}}(U,V)$，定义$f$的“像”和“核”：
+\begin{equation*}
+    \text{Im}\  f = \left\{f(u) \in V\mid u\in U\right\}\ , \ \ \ker f = \left\{u \in U\mid f(u) = 0\right\}
+\end{equation*}
+容易验证，$\text{Im}\  f$是$V$的子空间，$\ker f$是$U$的子空间。我们称$f$的秩为：
+\begin{equation*}
+    \text{rank}\ f = \dim \text{Im}\  f
+\end{equation*}
+
+\subsubsection{线性映射诱导的同构：}
+设$\left\{u_1,...,u_m\right\}$是$U$的基，设$f \in \mathscr{L}_{\mathbb{F}}(U,V)$，定义映射$\varphi : f \longmapsto \left( f(u_1),f(u_2),...,f(u_m)\right)$，则$\varphi$给出$\mathscr{L}_{\mathbb{F}}(U,V)$到$V^m$的同构。{\color{gray}\small 依次验证单射、满射(ker $ = \left\{0\right\}$)即可证明同构，由此可得$\dim \mathscr{L}_{\mathbb{F}}(U,V) = \dim U \cdot \dim V$。}
+\begin{theorem}[线性空间维数分解]
+    设$U$是有限维向量空间，则对任意$f \in \mathscr{L}_{\mathbb{F}}(U,V)$，我们有：
+    \begin{equation*}
+        \text{rank}\   f + \dim \ker f = \dim U
+    \end{equation*}
+    {\color{gray}\small 由此可推导出常用结论：$\text{rank}\  A + \dim \ker \varphi_A = n$}
+\end{theorem}
+
+\section{线性算子}
+\subsubsection{线性变换(线性算子)：}
+设$V$是$\mathbb{F}$上的一个线性空间，从$V$到$V$的线性映射称为线性变换(linear transformation)，也称为线性算子，相应的集合为$\mathscr{L}_{\mathbb{F}}(V,V)$，简记为$\mathscr{L}(V)$。{\color{gray}\small 线性算子不一定要求是满的，也即映射的像(值域)可以是$V$的子空间。}
+
+
+\subsubsection{常见的线性算子：}
+\begin{enumerate}
+    \item $\mathbb{F}[x]$上的求导算子$\frac{\mathrm{d}}{\mathrm{d}x}$：$f \longmapsto \frac{\mathrm{d}f}{\mathrm{d}x}$
+    \item $C[a,b]$上的积分算子：$f \longmapsto \int_{a}^{x}f(t)\mathrm{d}t$
+    \item 投影算子：设$V = U \oplus W$，则对于任意$\xi  \in V$，有$\xi  = \varepsilon_U + \xi _W$。定义映射$\mathscr{P}: \xi  \longmapsto \xi_U$，则$\mathscr{P}$构成一个线性映射，称为$V$到$U$(与$W$平行)的投影算子。并且可以证明：
+    \begin{equation*}
+        f \in \mathscr{L}(V),\ f^2 = f \Longleftrightarrow f\ \text{是投影算子}
+    \end{equation*}
+    其中映射的积定义为映射的复合，也即$f^2:x \longmapsto f(f(x))$
+\end{enumerate}
+
+\subsubsection{代数：}
+带有双线性乘积的线性空间称为代数。对任意的$ f,g \in \mathscr{L}(V)$，有：
+\begin{gather*}
+    (fg)(av + bu) = a(fg)(v) + b(fg)(u)\ ,\ \  \forall\  a,b \in \mathbb{F},\ v,u \in V\\
+    (af_1 + bf_2)g = a(f_1g) + b(f_2g)\ ,\ \  \forall\  a,b \in \mathbb{F},\ f_1,f_2 \in  \mathscr{L}(V)
+\end{gather*}
+故$\mathscr{L}(V)$上映射的乘积(也即复合)满足双线性性，称为代数。特别的，由于上述运算也是结合的，称$\mathscr{L}(V)$为结合代数。
+
+\subsubsection{线性算子的极小多项式：}
+定义线性算子的幂：$\varphi^0 = e_V,\ \varphi^k = \varphi \varphi\cdots \varphi\ (k\text{个})$，
+由$\dim \mathscr{L}(V) = n^2 < +\infty$可知存在正整数$N \le n^2 $使得$\left\{e_V, \varphi, ..., \varphi^k\right\}$线性相关，也即：
+\begin{equation*}
+    \exists\  0 \ne f\in \mathbb{F}[x]\ ,\  \ f(\varphi) = a_0\varphi^0 + a_1\varphi^1 + \cdots + a_N\varphi^N = 0
+\end{equation*}\par
+此时称多项式$f$零化线性算子$\varphi$，在零化$\varphi$的多项式中，首一且次数最低的称为$\varphi$的极小多项式，记为$\mu _{\varphi}(x)$。\par
+由多项式的理论：所有零化$\varphi$的多项式构成由$\mu_{\varphi}(x)$生成的主理想：
+\begin{equation*}
+    \left\{f \in \mathbb{F}[x] \mid f(\varphi) = 0\right\} =\mu_{\varphi}(x) \cdot  \mathbb{F}[x]
+\end{equation*}
+\par
+{\color{gray}\small 例如：零算子0满足$\mu_{\text{0}}(x) = x $，幂零指数为$m$的算子$\varphi$满足$\mu_{\varphi}(x) = x^m $，恒等算子$e_V$满足$\mu_{e_V}(x) = x-1$，投影算子$\varphi$满足$\mu_{\varphi}(x) = x^2 -x$。\par
+求矩阵的最小多项式可参考：\par
+https://www.zhihu.com/question/402082188/answer/1289182806 \par
+https://www.zhihu.com/question/605777999/answer/3067899521
+}
+
+\begin{theorem}[线性算子可逆的等价条件]\label{线性算子可逆的等价条件}
+设$\varphi \in \mathscr{L}(V)$，则：
+\begin{equation*}
+    \varphi\, \text{可逆} \Longleftrightarrow \mu_{\varphi}(0) \ne 0 
+\end{equation*}
+
+\begin{graybox}
+\textbf{定理\ref{线性算子可逆的等价条件}的证明：}\\
+\ding{172}\ $\varphi\, \text{可逆} \Longrightarrow \mu_{\varphi}(0) \ne 0$\ :\par
+反证法，假设$\mu_{\varphi}(0) = 0$，则$a_0 = 0$，于是存在$h(x)$使得$\mu_{\varphi}(x) = xh(x)$，由$\deg h < \deg \mu_{\varphi}$且$\mu_{\varphi}$是极小的知道$h(\varphi) \ne 0$。另外，$\mu_{\varphi}(0) = \varphi h(\varphi) = 0 \Longrightarrow \varphi^{-1}(\varphi h(\varphi)) = h(\varphi) = 0$，矛盾。\par
+\noindent\ding{173}\ $\varphi\, \text{可逆} \Longleftarrow\mu_{\varphi}(0) \ne 0$\ :\par
+设$\mu_{\varphi}(x) = a_0 + a_1x + \cdots +a_mx^m$，其中$a_0 \ne 0$，$\deg \mu_{\varphi} = m$。记$g(x) = a_1 + a_2x + \cdots a_mx^{m-1}$，则$\mu_{\varphi}(x) = a_0 + xg(x) \Longrightarrow (-a_0^{-1}g(\varphi))\varphi = \varphi(-a_0^{-1}g(\varphi)) = e_V$，因此$\varphi^{1} = -a_0^{-1}g(\varphi)$。
+\end{graybox}
+\end{theorem}
+
+\begin{theorem}[由算子生成空间基]\label{由算子生成空间基}
+设$V$是$\mathbb{F}$上的$n$维线性空间，$\varphi \in \mathscr{L}(V)$满足$\{e_V,\varphi,...,\varphi^{n-1}\}$线性无关，则：
+\begin{equation*}
+    \exists\ v \in V\ \ \text{s.t.}\ \ \left\{v,\varphi(v),...,\varphi^{n-}(v) \right\}\ \text{构成$V$的基}
+\end{equation*}
+{\par\color{gray}\small
+Homework 8.1，其中两种证明在:\par
+https://zhuanlan.zhihu.com/p/368560846 \ \ 
+https://zhuanlan.zhihu.com/p/499412875
+\par}
+\end{theorem}
+
+
+
+\subsubsection{线性算子的矩阵：}
+设$\left\{u_1,...,u_n\right\}$是$V$的一组基且$\varphi \in \mathscr{L}(V)$，定义线性算子$\varphi$在基$\vec{u}_0 = [u_1,...,u_n]^T$下的矩阵$M_{\varphi,\vec{u}_0}$满足：
+\begin{equation*}
+    \varphi(\vec{u}_0) = M_{\varphi,\vec{u}_0}\cdot \vec{u}_0
+      \Longleftrightarrow 
+      \varphi(\vec{u}_0) = 
+      \begin{bmatrix}
+        \varphi(u_1)  \\
+         \varphi(u_2) \\
+         \vdots  \\
+         \varphi(u_n)
+      \end{bmatrix} =
+      \begin{bmatrix}  
+          a_{11}& a_{12}& \cdots  & a_{1n} \\  
+          a_{21}& a_{22}& \cdots  & a_{2n} \\  
+          \vdots & \vdots & \ddots & \vdots \\  
+          a_{m1}& a_{m2}& \cdots  & a_{mn}  
+        \end{bmatrix}  
+        \begin{bmatrix}
+          u_1  \\
+           u_2 \\
+           \vdots  \\
+           u_n
+        \end{bmatrix}
+\end{equation*}
+
+容易验证推论：
+\begin{equation*}
+    \forall\ \varphi, \psi \in \mathscr{L}(V)\ ,\ \ M_{\psi \varphi,\vec{u}_0} = M_{\psi,\vec{u}_0}\cdot M_{\varphi,\vec{u}_0}
+\end{equation*}
+
+\subsubsection{相似矩阵：}
+两个矩阵$A$，$B$称为相似的如果存在可逆矩阵$S$使得：
+\begin{equation*}
+    B = SAS^{-1}
+\end{equation*}
+
+\subsubsection{线性算子度量矩阵的转换：}
+设$A$是基$\vec{u}$向基$ \vec{v}$的转换矩阵，即$\vec{v} = A\vec{u}$，则：
+\begin{equation*}
+    M_{\varphi,\vec{v}} = AM_{\varphi, \vec{u}} A^{-1}\ ,\ \ \text{也即}\ {\color{red} M_{\varphi, \vec{u}} \longmapsto AM_{\varphi, \vec{u}} A^{-1}}
+\end{equation*}
+{\color{gray}\small 注意这里是相似而不是合同，与之前度量矩阵的转换是不同的！}
+
+\subsubsection{线性算子的行列式和迹：}
+设$\varphi \in \mathscr{L}(V)$，定义$\varphi$的在基$\vec{u}_0$下的行列式为$\det M_{\varphi, \vec{u}_0} = \left | M_{\varphi, \vec{u}_0} \right | $，容易验证$\varphi$在任何基下的行列式都相等，称为$\varphi$的行列式。{\color{gray}\small 行列式不同的线性算子必不同，但行列式相同不代表线性算子相同。}\par
+类似地，定义$\varphi$在基$\vec{u}_0$下的迹为$\text{Tr}\  M_{\varphi,\vec{u}_0}$，容易验证$\varphi$在任何基下的迹都相等，称为$\varphi$的迹。{\color{gray}\small 迹不同的线性算子必不同。}
+\section{特征值与特征向量}
+
+\begin{theorem}[线性空间的投影分解]
+设$\mathscr{P}_1,\mathscr{P}_2,...,\mathscr{P}_m \in \mathscr{L}(V)$满足：
+\begin{align*}
+    \text{\ding{172}\ 恒等：}&\mathscr{P}_1 + \cdots + \mathscr{P}_m = e_V\\
+    \text{\ding{173}\ 投影：}&\mathscr{P}^2_i = \mathscr{P}_i\\
+    \text{\ding{174}\ 正交：}&\mathscr{P}_i\mathscr{P}_j =0\ ,\ \ i\ne j
+\end{align*}
+则有结论：
+\begin{equation*}
+    V = \mathscr{P}_1(V) \oplus \mathscr{P}_2(V) \oplus \cdots \oplus \mathscr{P}_m(V)
+\end{equation*}
+{\color{gray}\small 例如，已知$V = W_1 \oplus W_2 \oplus \cdots \oplus W_m$，对任意的$v = v_1 + \cdots + v_n ,\ v_i \in W_i$，定义算子$\mathscr{P}_i \in \mathscr{L}(V)$，则此算子满足定理条件。}
+\end{theorem}
+\subsubsection{不变子空间：}
+设$\varphi \in \mathscr{L}(V)$，$U$是$V$的子空间。在$\varphi$下，$U$称为不变的如果$\varphi(U)$嵌入$U$，也即$\varphi(U) \subseteq U$，或者说$\forall\ u \in U, \varphi(u) \in U$。\par
+{\color{gray}\small 例如：在上面的定理中，$\mathscr{P}_i(V)$是关于所有$\mathscr{P}_1,...,\mathscr{P}_m$的不变子空间；在$\mathbb{F}[x]$中，$\mathcal{P}_n[x]$是关于求导算子$\frac{\mathrm{d}}{\mathrm{d}x}$的不变子空间；$\left\{ 0_V\right\}$和$V$是关于任意算子的不变子空间。}
+\subsubsection{商算子：}
+设$U$是$V$关于$\varphi$的不变子空间，定义$\varphi$关于$U$的商算子$\overline{\varphi}$：
+\begin{equation*}
+    \overline{\varphi}(\overline{v}) =  \varphi(v) + U\ ,\ \ \forall\ \overline{v} = v + U \in V/U
+\end{equation*}
+容易验证$\overline{\varphi} \in \mathscr{L}(V/U)$。
+
+\begin{theorem}[不变空间补空间的不变性]
+在线性算子$\varphi$下，设$U$是$V$的一个非零不变真子空间，$\overline{U}$为$U$的补空间，则：
+\begin{equation*}
+    \overline{U} \ \text{不变}\ \Longleftrightarrow \exists \ 0,e_V \ne \mathscr{P} \in \mathscr{L}(V,U),\  \mathscr{P}^2 = \mathscr{P}\ ,\ \ \text{使得}\  \varphi \mathscr{P} = \mathscr{P} \varphi 
+\end{equation*}
+{\color{gray}\small 定理证明的关键在于右推左时，令$W = (e_V - \mathscr{P})(V) $，则$V = U \oplus W$且$W$是不变的。
+推论：$V$是在$\varphi$下不变的两个子空间的直和的等价条件是$\exists \ 0,e_V \ne \mathscr{P} \in \mathscr{L}(V,U),\  \mathscr{P}^2 = \mathscr{P}\ ,\ \ \text{使得}  \varphi \mathscr{P} = \mathscr{P} \varphi$。}
+\end{theorem}
+\subsubsection{特征子空间：}
+当不变子空间$U = \mathbb{F}u$为一维时，若$\exists \ \lambda \in \mathbb{F},0 \ne u \in U,\ \text{使得}\ \varphi(u) = \lambda u$，则称$\lambda$为$\varphi$的特征值，称$u$为此特征值对应$\varphi$的特征向量。\par
+考虑到$\varphi$的线性性，$\varphi^i(u) = \varphi(\varphi\cdots \varphi(u)\cdots ) = \lambda^i u$，可推出$0 = \mu_{\varphi}(\varphi)(u) = \mu_{\varphi}(\lambda)u \Longrightarrow \mu_{\varphi}(\lambda) = 0$，$\lambda$是极小多项式的根(反之也成立)。{\color{gray}\small 多维时也是类似的，下面我们会讨论。}\par
+定义关于$\varphi$的、特征值为$\lambda$的特征空间：
+\begin{equation*}
+    V_{\lambda} = \left\{v\in V \mid \varphi(v) = \lambda v \right\}
+\end{equation*}
+则$V_{\lambda}$构成关于$\varphi$的不变子空间，并称$\dim V_{\lambda}$为$\lambda$的几何重数(geometric multiplicity)。
+\begin{theorem}[不同特征空间的向量线性无关]\label{不同特征空间的向量线性无关}
+    设$U$是$V$的关于$\varphi$的不变子空间(可以是零空间)，设$\lambda_1,...,\lambda_m$是$\varphi$的$m$个不同特征值，且$u_i \in V_{\lambda_i}$，有结论：若$u_1 + \cdots + u_m \in U$，则$u_1,...,u_m \in U$。\\
+    推论：设$\lambda_1,...,\lambda_m$为$\varphi$的不同特征值，$v_i$为$\lambda_i$对应的特征向量，则$\left\{v_1,...,v_m \right\}$线性无关。
+\end{theorem}
+\subsubsection{特征值、特征向量、特征多项式：}
+\ding{172}\ 特征值：
+\begin{equation*}
+    \lambda\ \text{是}\ \varphi\ \text{的特征值} \Longleftrightarrow   \left |  \lambda I_n -M_{\varphi,\vec{u}_0} \right | = 0\Longleftrightarrow\left |  \lambda I_n -M_{\varphi,\vec{u}_0} \right |  = 0 \Longleftrightarrow \chi_{\varphi}(\lambda) = 0
+\end{equation*}\par
+{\color{gray}\small 其中$\vec{u}_0$是$V$的一组基，$\vec{e}_0$是标准正交基。}\par
+\ding{173}\ 特征向量：
+设$\lambda$对应的特征向量为$u = \vec{x}\cdot \vec{u}_0$，$ \vec{x} \ne \vec{0}$，则：
+\begin{equation*}
+   u \text{为特征向量} \Longleftrightarrow \varphi(u) = \vec{x}A\vec{u}_0 = \lambda u \Longleftrightarrow \vec{x}\cdot ( M_{\varphi,\vec{u}_0}- \lambda I_n )  = \vec{0}_{1\times n}
+\end{equation*}
+{\color{gray}\small $\vec{x}$要么只有零解，要么有无限个解，这里需要用到基础解系的知识。}\par
+\ding{174}\ 特征多项式：
+定义关于$\varphi$的特征多项式为：
+\begin{equation*}
+    \chi_{\varphi}(x) = \left |x I_n  - M_{\varphi,\vec{u}_0}\right | = \begin{bmatrix}  
+        x -a_{11}& -a_{12}& \cdots  & -a_{1n} \\  
+        a_{21}& x -a_{22}& \cdots  & -a_{2n} \\  
+        \vdots & \vdots & \ddots & \vdots \\  
+        -a_{n1}& -a_{n2}& \cdots  & x-a_{nn}  
+      \end{bmatrix}  
+\end{equation*}\par
+对任意的基$\vec{u}_0$，$\vec{v}_0$，可以推得$\left |x I_n  - M_{\varphi,\vec{u}_0}\right | = \left |x I_n  - M_{\varphi,\vec{v}_0}\right |$，故特征多项式$\chi_{\varphi}(x)$与基的选取无关。称$\lambda$作为$\chi_{\varphi}(x)$的根的重数(如$(x-1)^3$重数为3)为$\lambda$的代数重数，可以证明几何重数$\le$代数重数。
+\subsubsection{线性算子对角化：}
+线性算子$\varphi \in \mathscr{L}(V)$称为可对角化的如果$\varphi$在$V$某组基下的矩阵是对角矩阵。
+\begin{theorem}[算子对角化]\label{线性算子对角化}
+设线性算子$\varphi$的特征多项式$\chi_{\varphi}(x) = (x-\lambda_1)^{m_1}(x-\lambda_2)^{m_2} \cdots (x-\lambda_r)^{m_r}$，则：
+\begin{equation*}
+   \text{$\varphi$可对角化} \Longleftrightarrow \forall\ \lambda_i,\ \dim V_{\lambda_i} = \dim \ker_{\psi_{\lambda_i}}= m_i 
+\end{equation*}
+\end{theorem}
+\begin{graybox}
+\textbf{定理\ref{线性算子对角化}的证明：}\par
+\noindent \textbf{(1)}\ \ $\varphi$对角化$\Longrightarrow$ $\chi_{\varphi}(x)$且$\dim V_{\lambda_i} = m_i$：\\
+设$\varphi$在基$\vec{v}_0 = [v_1,...,v_n]^T$下对角化，则
+\begin{equation*}
+    M_{\varphi,\vec{v}_0} = \text{diag}(a_{11},...,a_{nn}) \Longleftrightarrow \varphi(v_i) = a_{ii}v_i 
+\end{equation*}
+故$a_{ii}$是特征值，$v_i$是对应的特征向量。设$\left\{\lambda_1,...,\lambda_r\right\}$是$\left\{a_{11},...,a_{nn}\right\}$中的所有不同元素($r\le n$)，记$V^j = \text{Span} \left\{ v_i \mid a_{ii} = \lambda_j\right\},\ j = 1,2,...,r$，记$m_j = \dim V^j$，则：
+\begin{equation*}
+    \chi_{\varphi}(x) = (x-a_{11})(x-a_{22}) \cdots (x-a_{nn}) = (x-\lambda_1)^{m_1}(x-\lambda_2)^{m_2} \cdots (x-\lambda_r)^{m_r}
+\end{equation*}
+再说明$V^j = V_{\lambda_j}$：\\
+\ding{172}\ $V_{\lambda_j} \subseteq V^j$：\\
+$V = \text{Span} \left\{v_1,...,v_n\right\} = V^1 \oplus \cdots \oplus V^r$，设$v \in V_{\lambda_i} = \left\{v \in V\mid \varphi(v) = \lambda_iv\right\} \subseteq V$，设$v = u_1 + \cdots u_r$且$u_j \in V^j$，由$\varphi(v) = \lambda_i v$得：
+\begin{gather*}
+    \varphi(v) =\varphi(u_1 + \cdots u_r) = \varphi(u_1) + \cdots \varphi(u_1) 
+    \overset{\textcolor{gray}{V^j\subseteq V_{\lambda_j}} }{=} \lambda_1u_1 + \cdots \lambda_ru_r =\lambda_iv = \lambda_i(v_1 + \cdots v_r) \\
+    \Longleftrightarrow  (\lambda_1- \lambda_j)u_1 + \cdots (\lambda_r -\lambda_j)u_r = 0
+\end{gather*}
+根据定理\ref{不同特征空间的向量线性无关}，推出$\forall\ k \in \left\{1,...,r\right\} \setminus \left\{j\right\},\ u_k = 0 $，于是$v = u_j \in V^j \Longrightarrow V_{\lambda_j } \subseteq V^j$\\
+\ding{173}\ $V_{\lambda_j} \subseteq V^j$：验证定义即知成立，略。\\
+\textbf{(2)} $ \chi_{\varphi}(x)$且$\dim V_{\lambda_i} = m_i$\ $\Longrightarrow$ $\varphi$对角化 ：\\
+设：
+\begin{equation*}
+    \chi_{\varphi}(x) = (x-\lambda_1)^{m_1}(x-\lambda_2)^{m_2} \cdots (x-\lambda_r)^{m_r}
+\end{equation*}
+根据定理\ref{不同特征空间的向量线性无关}，$V_{\lambda_1} + \cdots V_{\lambda_r}$构成直和，且$\dim \left( V_{\lambda_1} + \cdots+ V_{\lambda_r}\right)  = \lambda_1 + \cdots + \lambda_r = m_1 + \cdots m_r = \deg \chi_\varphi = \dim V$，故$V = V_{\lambda_1} \oplus \cdots \oplus V_{\lambda_r}$，取每个$V_{\lambda_i}$的一组基$\mathcal{B}_i$，则$\mathcal{B}_1 \cup \cdots \cup \mathcal{B}_r $构成$V$的矩阵，由于$V_{\lambda_i}$是不变的(有嵌入)，故$\varphi$在此基下的矩阵：
+\begin{equation*}
+    M_{\varphi} = \begin{bmatrix}  
+        \lambda_1I& 0& \cdots  &  0 \\  
+        0& \lambda_2I& \cdots  &  0 \\  
+        \vdots & \vdots & \ddots & \vdots \\  
+        0& 0& \cdots  & \lambda_rI  
+      \end{bmatrix}        
+\end{equation*}
+也即$\varphi$在此基下对角化，证毕。
+\end{graybox}
+
+\subsubsection{线性算子对角化的方法：}
+把一个线性算子$\varphi \in \mathscr{L}$对角化，就是要找由其特征向量构成的一组基，因此需要解$\varphi$的特征值，并根据矩阵方程(作列初等变换)，求取其对应的特征向量(找到线性无关的特解即可)，最后由定理得到对角化后的矩阵为：
+\begin{equation*}
+    M_{\varphi} = \begin{bmatrix}  
+        \lambda_1I& 0& \cdots  &  0 \\  
+        0& \lambda_2I& \cdots  &  0 \\  
+        \vdots & \vdots & \ddots & \vdots \\  
+        0& 0& \cdots  & \lambda_rI  
+      \end{bmatrix}       
+\end{equation*}
+{\color{gray}\small 借助线性算子对角化，我们可以得到原矩阵的另一种表达式，进一步还可以方便地计算原矩阵的幂(比如用于数列通项的求解)。}
+
+\begin{theorem}[不变子空间与对角化]\label{不变子空间与对角化}
+设$\varphi \in \mathscr{L}(V)$且可对角化，$W$是$V$关于$\varphi$不变的子空间。记$\varphi$在$W$上的限制为$\varphi|_{W}$，则:
+\begin{equation*}
+    \varphi|_{W} \in \mathscr{L}(W)\ \text{且}\ \textcolor{red}{ \varphi|_{W}\ \text{可对角化}}
+\end{equation*}
+\begin{graybox}
+\textbf{定理\ref{不变子空间与对角化}的证明：}\\
+$W$关于$\varphi$不变，取$W$的一组基扩充为$V$的一组基使得$\varphi$的矩阵形如：
+\begin{equation*}
+    A =     
+    \begin{bmatrix}
+       A_1 & O\\
+       A_2 & A_3
+    \end{bmatrix}
+\end{equation*}
+其中$A_1$是$\varphi|_{W}$的矩阵，于是 
+\begin{align*}
+    &\mu_\varphi(A) = \begin{bmatrix}
+        \mu_\varphi(A_1)&O\\
+        * & \mu_\varphi(A_3)
+    \end{bmatrix} = 0 \\
+    &\Longrightarrow  \mu_\varphi(A_1) = 0 \Longrightarrow \mu_{A_1}\mid \mu_\varphi\ ,\ \ \text{而$\varphi$可对角化等价于$\mu_\varphi$无重因式}\\
+    &\Longrightarrow \mu_{A_1}\ \text{无重因式} \Longleftrightarrow \varphi|_W \ \text{可对角化，证毕。}
+\end{align*}
+\end{graybox}
+\end{theorem}
+
+\begin{theorem}[Skolem-Noether]\label{Skolem-Noether}
+设$0\ne \varphi \in \mathscr{L}(V)$满足$\varphi(AB) = \varphi(A)\varphi(B)$，$\forall\ A,B \in M_{n\times n}(\mathbb{F})$，也即$\varphi$是同态线性算子，则：
+\begin{equation*}
+    \exists\ T\in M_{n\times n}(\mathbb{F})\ \  \text{s.t.}\ \ \varphi(A) = TAT^{-1}\ ,\ \forall\  A\in  M_{n\times n}(\mathbb{F})
+\end{equation*}
+{\par\color{gray}\small
+Homework 7.6，证明详见“ 习题课7.pdf ”。
+\par}
+
+\end{theorem}
+
+
+\begin{theorem}[算子积的特征多项式]\label{算子积的特征多项式}
+$\forall\ \varphi,\psi \in \mathscr{L}(V)$，有：
+\begin{align*}
+    \chi_{\varphi \psi}(x) =  \chi_{ \psi \varphi}(x)
+\end{align*}
+{\par\color{gray}\small
+证明$\forall\ A,B\in M_{n\times n}(\mathbb{F})\ , \ \ \left | AB - xI_n \right | = \left | BA - xI_n \right |$即可证明此定理。
+\par}
+
+\end{theorem}
+
+\subsubsection{对偶算子：}
+设$\varphi \in \mathscr{L}(V)$，定义$\varphi$对应的对偶算子$\varphi^*:\ V^* \longmapsto V^*$为：
+\begin{equation*}
+    \varphi^*(f) = f\varphi\ ,\ \  \forall f \in V^*
+\end{equation*}
+也即$\forall\ v \in V,\ (\varphi^*(f))(v) =  f\varphi(v) = f(\varphi(v))$，且$\varphi^* \in \mathscr{L}(V^*)$。\\
+{\color{gray}\small 对偶算子的一个应用是证明具有不变超平面的充分条件：设$\varphi^* \in \mathscr{L}(V^*)$且$\varphi^*$有非零特征值$\lambda$\ (易证$\varphi^*$在基下的矩阵是$\varphi$矩阵的转置)，对应的特征向量为$f$。令$U = \left\{v\in V\mid f(v) = 0 \right\}$，
+则$\forall\ u \in U,\  f(\varphi(u)) = (\varphi^*(f))(u) = \lambda f(u) = 0 \Longrightarrow \varphi(u) \in U$，因此$U$是$V$余维数为1的、不变的子空间(即不变的超平面)}\par
+另外， 我们有：
+\begin{equation*}
+    (\varphi\psi)^* = \psi^*\varphi^*
+\end{equation*}
+于是映射$\varphi \longmapsto \varphi^*$构成一个代数反同态。
+\subsubsection{对偶算子的矩阵：}
+设$\vec{v}_0 = [v_1,...,v_n]^T$是$V$的一组基，对应的$\vec{v}^{\,0} = [v^1,...,v^n]^T$是$V^*$的一组基，则有：
+\begin{equation*}
+    M_{\varphi^*,\vec{v}^{0}} = M_{\varphi, \vec{v}_0}^{\textcolor{red}{T}}
+\end{equation*}
+{\color{gray}\small 由此可说明映射$\varphi \longmapsto \varphi^*$ 是一个代数同构。\par
+}
+
+\section{Jordan标准型}
+本节我们总假设$\mathbb{F} = \mathbb{C}$。
+\begin{theorem}[Hamilton-Cayley Theorem]\label{Hamilton-Cayley Theorem}
+设$V$是$\mathbb{C}$上的向量空间且$\varphi \in \mathscr{L}(V)$，则：
+\begin{equation*}
+    \chi_{\varphi}(\varphi) =  \left | xI_n - M_{\varphi,\vec{u}_0}\right |_{x = \varphi}= 0
+\end{equation*}
+
+\end{theorem}
+\subsubsection{广义特征子空间(根子空间)：}
+设$\varphi$的特征多项式$ \chi_{\varphi}(x) = (x-\lambda_1)^{m_1}(x-\lambda_2)^{m_2} \cdots (x-\lambda_r)^{m_r}$，$\lambda_i$为$\varphi$的特征值，$\varphi$的特征值为$\lambda_i$的广义特征子空间：
+\begin{equation*}
+    V(\lambda_i) = \left\{v\in V\mid \exists\ k \in \mathbb{N}\ \text{使}\ (\varphi - \lambda_i)^k(v) = 0   \right\}
+\end{equation*}
+容易验证$V(\lambda_i)$是关于$\varphi$不变的。
+
+\begin{theorem}[线性空间的广义特征子空间分解]\label{线性空间的广义特征子空间分解}
+设$\varphi \in \mathscr{L}(V)$，$\lambda_1,...,\lambda_r$为$\varphi$所有不同特征值，则：
+\begin{equation*}
+    V = V(\lambda_1) \oplus V(\lambda_2) \oplus \cdots \oplus V(\lambda_r)\ ,\ \ \text{且}\ \dim V(\lambda_i) = m_i
+\end{equation*}
+\end{theorem}
+\subsubsection{Jordan 块:}
+设$\varphi$满足$r=1$且$(\varphi - \lambda)$的幂零指数是$n$，则$\chi_\varphi(x) = (x - \lambda)^m$。由定理\ref{Hamilton-Cayley Theorem}、定理\ref{线性空间的广义特征子空间分解}，$m = n = \dim V$，存在$v_1$使得$(\varphi-\lambda)^{n-1}(v_1) \ne 0$，且$\varphi$在基$\left\{ v_1,(\varphi-\lambda)(v_1),...,(\varphi-\lambda)^{n-1}(v_1) \right\}$下的矩阵为：
+\begin{equation*}
+    J_n(\lambda) = 
+    \begin{bmatrix}
+        \lambda&  1&  0&  \cdots&0 \\
+        0&  \lambda&  1&  \cdots&0 \\
+        0&  0&  \lambda&  \cdots&0 \\
+        \vdots&  \vdots&  \vdots&  \ddots & 1\\
+        0&  0&  0&  \cdots&\lambda
+      \end{bmatrix}_{ n\times n}
+\end{equation*}
+称$J_n(\lambda)$是特征值为$\lambda$的$n$阶Jordan块。
+\subsubsection{循环子空间：}
+设$V$是$\mathbb{F}$上的线性空间且$\varphi \in \mathscr{L}(V)$，定义由$v$生成的、关于$\varphi$的循环子空间：
+\begin{equation*}
+    \mathbb{F}[\varphi]v = \text{Span}\left\{\varphi^i(v)\mid i \in \mathbb{N} \right\} = \text{Span}\left\{\varphi^0(v), \varphi(v), \varphi^2(v),... \right\}
+\end{equation*}
+容易验证$\mathbb{F}[\varphi]v$关于$\varphi$不变。
+
+
+\begin{theorem}[幂零算子可诱导循环分解]\label{循环分解}
+设$\psi$是$V$上的幂零算子，令$t = \dim \ker_{\psi} $，则存在线性无关的$v_1,...,v_t \in V$使得：
+\begin{equation*}
+    V = \mathbb{C}[\psi]v_1 \oplus \cdots \oplus \mathbb{C}[\psi]v_t\ ,\ \ \text{且记}\ k_j = \min \left\{k\mid \psi^k(v_j)=0 \right\},\ \text{则有}\dim V = \sum_{j=1}^{t} k_j
+\end{equation*}\par
+{\color{gray}\small 其中$\mathbb{C}[\psi]v_j = \text{Span}\left\{\psi^0(v_j),\psi(v_j),...,\psi^{k_j-1}(v_j) \right\}$是由$v_j$生成的关于$\psi$的循环子空间。}
+\end{theorem}
+\begin{graybox}
+\textbf{定理\ref{循环分解}的证明：}\par\noindent
+对$\dim V = n$归纳，当$n = 0,1$时显然成立，假设结论对$<n$成立：
+记$W = ker_{\psi} = V_{\lambda} = \left\{v \in V\mid \psi(v)=0 \right\}$，考虑$V/W$到$V/W$的映射：
+\begin{equation*}
+    \tilde{\psi}:\ v + W \longmapsto \psi(v) + W
+\end{equation*}
+由于$\dim V/W = \dim V - \dim W = \dim \text{Im} (\psi) $，$\psi$幂零因此$\tilde{\psi}$也幂零$\Longrightarrow \dim \text{Im}(\psi) < \dim V = n$。根据假设，存在$\overline{v}_1,...,\overline{v}_{\tilde{t}}$，$\tilde{k}_1,...,\tilde{k}_{\tilde{t}}$使得：
+\begin{equation*}
+    V/W = \mathbb{C}[\tilde{\psi}](\overline{v}_1) \oplus \cdots \oplus \mathbb{C}[\tilde{\psi}](\overline{v}_{\tilde{t}}) = \bigoplus_{j =1}^{\tilde{t}} \text{Span}\left\{ \overline{\psi^0(v_j)},...,\overline{\psi^{\tilde{k}_j-1}(v_j)}\right\} \ ,\ \ \text{且}\ \ \sum_{j=1}^{\tilde{t}}\tilde{k}_j = \dim V/W 
+\end{equation*}
+又$\tilde{k}_j= \min \{ k\mid (\tilde{\psi})^k(\overline{v}_j) = \overline{\psi^k(v)} =\overline{0} \sim \psi^k(v) \in W\} \Longrightarrow k_j = \tilde{k}_j +1$，于是：
+\begin{equation*}
+    V = W \oplus \bigoplus_{j =1}^{\tilde{t}} \text{Span}\left\{ \psi^0(v_j),...,\psi^{k_j-2}(v_j)\right\}\ ,\ \ \text{且}\ \sum_{j=1}^{\tilde{t}}k_j + (\dim W - \tilde{t}) = n
+\end{equation*}
+考虑$\{\psi^{\tilde{k}_1}(v_1),...,\psi^{\tilde{k}_{\tilde{t}}}(v_{\tilde{t}})\} \subset W$是否线性相关，假设$\exists\  a_1,...,a_{\tilde{t}}$使：
+\begin{gather*}
+    0 = a_1\psi^{\tilde{k}_1}(v_1) + \cdots a_{\tilde{t}}\psi^{\tilde{k}_{\tilde{t}}}(v_{\tilde{t}}) = \psi \left( a_1\psi^{k_1-2}(v_1) + \cdots a_{\tilde{t}}\psi^{k_{\tilde{t}-2}}(v_{\tilde{t}})\right)\\
+     \Longrightarrow 
+      a_1\psi^{k_1-2}(v_1) + \cdots a_{\tilde{t}}\psi^{k_{\tilde{t}-2}}(v_{\tilde{t}}) \in \ker_{\psi} = W \\
+     \Longleftrightarrow 
+     \exists\   w \in W , \ s.t.\ \   w =  a_1\psi^{k_1-2}(v_1) + \cdots a_{\tilde{t}}\psi^{k_{\tilde{t}-2}}(v_{\tilde{t}})\\
+     \Longrightarrow  
+     w \in \bigoplus_{j =1}^{\tilde{t}} \text{Span}\left\{ \psi^0(v_j),...,\psi^{k_j-2}(v_j)\right\} 
+     \Longrightarrow a_1 = \cdots a_{\tilde{t}} = 0
+\end{gather*}
+故为线性无关组，将其扩充为$W$的一组基$\{\psi^{\tilde{k}_1}(v_1),...,\psi^{\tilde{k}_{\tilde{t}}}(v_{\tilde{t}}), w_{\tilde{t}+1},...,w_{\dim W}\}$，此时$\forall \ j \in \{\tilde{t}+1,...,\dim W\},\ k_j = 1$，且：
+\begin{equation*}
+V =  \bigoplus_{j =1}^{\tilde{t}} \text{Span}\left\{ \psi^0(v_j),...,\psi^{k_j-1}(v_j)\right\}\oplus \bigoplus_{j =\tilde{t}+1}^{t = \dim W} \text{Span}\left\{ w_j\right\} \ ,\ \ \text{且}\ \sum_{j=1}^{t}k_j= n
+\end{equation*}
+也即：
+\begin{equation*}
+    V =  \bigoplus_{j =1}^{\tilde{t}}\mathbb{C}[\psi]v_j \oplus \bigoplus_{j =\tilde{t}+1}^{t = \dim W} \mathbb{C}[\psi]v_j = \bigoplus_{j =1}^{t}\mathbb{C}[\psi]v_j \ ,\ \ \text{且}\ \sum_{j=1}^{t}k_j= n
+\end{equation*}
+证毕。
+\end{graybox}
+
+\begin{theorem}[算子必有Jordan标准型]\label{算子必有Jordan标准型}
+设$\varphi \in \mathscr{L}(V)$，则存在$V$的一组基使得$\varphi$在其下的矩阵为：
+\begin{equation*}
+    J_{\varphi} = \bigoplus_{i=1}^{r}\bigoplus_{j=1}^{t_i} J_{k_{ij}}(\lambda_i)= 
+    \begin{bmatrix}  
+        J_1& O& \cdots  & O \\  
+        O& J_2& \cdots  & O \\  
+        \vdots & \vdots & \ddots & \vdots \\  
+        O& O& \cdots  & J_r  
+    \end{bmatrix}_{n \times n},\ 
+    J_i = 
+    \begin{bmatrix}
+        J_{k_{i1}}(\lambda_i)& O& \cdots  & O \\  
+        O& J_{k_{i2}}(\lambda_i)& \cdots  & O \\  
+        \vdots & \vdots & \ddots & \vdots \\  
+        O& O& \cdots  & J_{k_{it_i}}(\lambda_i)
+    \end{bmatrix}_{m_i \times m_i}
+\end{equation*}
+{\color{gray}\small 称为$\varphi$的Jordan标准型，相应的基称为Jordan基。\par}
+并且，设以$\lambda_i$为特征值的Jordan块中的最大阶是$k_i$，则$\varphi$的极小多项式为：
+\begin{equation*}
+    \mu_{\varphi}(x) =  (x-\lambda_1)^{k_1}\cdots (x-\lambda_r)^{k_r}
+\end{equation*}
+{\color{gray}\small 其中$\chi_{\varphi}(x) = (x-\lambda_1)^{m_1}(x-\lambda_2)^{m_2} \cdots (x-\lambda_r)^{m_r}$，$t_i = \dim \ker_{\psi_i} = \dim V_{\lambda_i}$，$k_{ij}= \min \{k\mid \psi_i^k(v_j) = 0 \}$，$\sum_{j=1}^{t_i} k_{ij} = m_i = \dim V(\lambda_i)$，$\sum_{i=1}^{r}m_i = n = \dim V$。\par}
+{\color{gray}\small 对于$J_i$，可以简记其分为“维数个部分”(由$\dim V_{\lambda_i}$个Jordan块构成)，每个Jordan块的大小是“ij幂零指数”(即$k_{ij}$，是$\psi_i = \varphi - \lambda_i e$对$v_j$的幂零指数)。\par
+{\color{red}
+另外，需要特别注意：
+\begin{gather*}
+    \text{$V$的基}\ \vec{v}_0 = 
+    \begin{bmatrix}
+        v_1\\
+        v_2\\
+        \vdots\\
+        v_n
+    \end{bmatrix} \in\ {^nV}\ ,\ \ 
+    \text{$V$的元素}\ v = \vec{x}\cdot \vec{v}_0 \in V \ ,\ \ 
+    \text{元素的坐标}\ \vec{x} = \left[x_1,...,x_n\right]\in \mathbb{F}^n\\
+    \text{矩阵$A$对应的算子$\varphi_{A}$定义为：}\ \varphi_A(v) = \vec{x}A\vec{v}_0 
+\end{gather*}}}
+
+\noindent
+\begin{graybox}
+\textbf{定理\ref{算子必有Jordan标准型}的证明：}\par
+\noindent 
+\textbf{(1)}\ 根子空间分解：\\
+设$\chi_{\varphi}(x) = (x-\lambda_1)^{m_1}(x-\lambda_2)^{m_2} \cdots (x-\lambda_r)^{m_r}$，其中$\lambda_1,...,\lambda_r$为$\varphi$的所有不同特征值。由定理\ref{线性空间的广义特征子空间分解}，我们有：
+\begin{equation*}
+    V = V(\lambda_1) \oplus \cdots \oplus V(\lambda_r)
+\end{equation*}
+设$\mathcal{B}_i$为$V(\lambda_i)$的一组基，则$\mathcal{B}_1 \cup \cdots \cup \mathcal{B}_r$构成$V$的一组基，$\varphi$在该基下的矩阵$A = A_1 \dotplus \cdots \dotplus A_r$(因为广义特征子空间是不变的)。因此只需要证明，限制在$V(\lambda_i)$上的映射$\varphi|_{V(\lambda_i)}$有Jordan标准型。\\
+\textbf{(2)}\ 每个根子空间上有标准型：\\
+对根子空间$V(\lambda_i)$，令$\psi_i = \varphi|_{V(\lambda_i)} - \lambda_i e$，由定理\ref{Hamilton-Cayley Theorem}，
+$\chi_{\varphi|_{V(\lambda_i)}}(\varphi|_{V(\lambda_i)}) = \psi_i^{\dim V(\lambda_i)} = \psi_i^{m_i} = 0$，故$\psi$是$V(\lambda_i)$上的幂零算子。
+由定理\ref{循环分解}，记$t_i = \dim \ker_{\psi_i}$，则存在$\{v_{i1},...,v_{it_i}\} \subset V(\lambda_i) $使得：
+\begin{equation*}
+    V(\lambda_i) =  \bigoplus_{j =1}^{t_i}\mathbb{C}[\psi_i]v_{ij}\ ,\ \ \text{且}\ \sum_{j=1}^{t_i}k_{ij}= \dim V(\lambda_i) = m_i
+\end{equation*}
+又$\mathbb{C}[\varphi|_{V(\lambda_i)}]v = \mathbb{C}[\psi_i]v$，因此$V(\lambda_i) =  \bigoplus_{j =1}^{t_i}\mathbb{C}[\psi_i]v_{ij}$，
+且$\varphi|_{V(\lambda_i)}$在基$\left\{\psi^0 (v_1),...,\psi^{k_{i1}-1}(v_1)\right\} \cup \cdots \cup \left\{\psi^0 (v_{t_i}),...,\psi^{k_{it_i}-1}(v_{t_i})\right\}$下的矩阵是：
+\begin{equation*}
+    J_i = J_{k_{i1}}(\lambda_i) \dotplus \cdots \dotplus J_{k_{it_i}}(\lambda_i)
+\end{equation*}
+\textbf{(3)}综合：\\
+综合(1)(2)得到：
+\begin{equation*}
+    J = \bigoplus_{i=1}^{r}J_i = \bigoplus_{i=1}^{r}\bigoplus_{j=1}^{t_i} J_{k_{ij}}(\lambda_i)
+\end{equation*}
+其中$t_i = \dim \ker_{\psi_i} = \dim V_{\lambda_i}$，$k_{ij}= \min \{k\mid \psi_i^k(v_j) = 0 \}$，$\sum_{j=1}^{t_i} k_{ij} = m_i = \dim V(\lambda_i)$，$\sum_{i=1}^{r}m_i = n = \dim V$。证毕。
+\end{graybox}
+\end{theorem}
+
+https://www.zybuluo.com/ybtang21c/note/1827223 (求Jordan标准型的方法及例子) \par
+https://zhuanlan.zhihu.com/p/553660985 (Jordan标准型理论概要)\par
+https://zhuanlan.zhihu.com/p/75745789 (Jordan标准型的循环子空间证明)
+\begin{theorem}[算子的Jordan标准型唯一]
+设$\varphi \in \mathscr{L}_{\mathbb{C}}(V)$，则：
+\begin{equation*}
+    \text{除小 Jordan 块$J_{k_{ij}}(\lambda_i)$的次序外，}\varphi\  \text{的Jordan标准型是唯一的。}
+\end{equation*}
+\end{theorem}
+\subsubsection{\textcolor{red}{算子Jordan化并求Jordan基: }}
+依据定理\ref{循环分解}，定理\ref{算子必有Jordan标准型}，我们给出将线性算子Jordan化的系统方法: 
+设算子$\varphi \in \mathscr{L}(V)$，$A$是$\varphi$在某组基下的矩阵(一般认为是标准正交基)，则Jordan化步骤如下: \par
+\ding{172}\ 求特征值：$\chi_{\varphi}(x) = \left | xI_n - M_{\varphi,\vec{u}_0}\right | =(x-\lambda_1)^{m_1} \cdots (x-\lambda_r)^{m_r} \Longrightarrow V = V(\lambda_1) \oplus \cdots \oplus V(\lambda_r)$\\
+对于每个$\lambda_i$，令$\psi = \varphi -\lambda e_V$。 \par
+\ding{173}\ 确定$V(\lambda_i)$分为几部分：求出$\text{rank}\ \psi = \text{rank}\ (A -\lambda I) $，则“份数”$ = \dim \ker_{\psi} = n - \text{rank}\ \psi$。{\color{gray}\small “份数” = 几何重数 = 特征子空间维度}
+\par
+\ding{174}\ 确定$V(\lambda_i)$每部分的维数：先根据$m_i$和$\dim \ker_{\psi}$判断是否能确定维数，若不能，进一步计算$\psi^2,\psi^3,...$，直至确定各部分维数。\par
+\ding{175}\ 确定$V(\lambda_i)$的所有小Jordan块: 设某份维数是$k$，找到$v \in V$使得：
+\begin{equation*}
+    \begin{cases}
+        v\, \textcolor{red}{\notin\ker_{\psi^{k-1}}} \Longleftrightarrow \vec{x}(A - \lambda I)^{k-1} \ne 0 \\
+        v\,  \textcolor{red}{\in \ker_{\psi^{k}} }\Longleftrightarrow\vec{x}(A - \lambda I)^{k} = 0 
+    \end{cases}
+\end{equation*}
+即得到基$\{v, \psi(v),..., \psi^{k-1}(v)\}$下的一个小Jordan块。改变$k$为下一份的值并重复此步骤，得到$V(\lambda_i)$的所有小Jordan块。
+\par
+\ding{176}\ 将所有根子空间的基合并，得到最终结果。\par
+
+\begin{theorem}[极小多项式]\label{极小多项式}
+设矩阵$A = A_1 \dotplus A_2 \dotplus \cdots \dotplus A_m$，则：
+\begin{equation*}
+    \mu_A = l.c.m(\mu_{A_1},...,\mu_{A_m})
+\end{equation*}
+\end{theorem}
+{\par\color{gray}\small
+对于线性算子$\varphi$，考虑到算子在不同基下的特征多项式不变，可借助Jordan标准型求此算子的最小多项式。特别地，如果算子在基下的矩阵就是矩阵直和，则省去了Jordan分解的步骤。
+\par}
+\begin{theorem}[特征多项式的性质]\label{特征多项式的性质}
+设$\varphi \in \mathscr{L}(V)$的特征多项式为
+\begin{equation*}
+    \chi_{\varphi}(x) = (x-\lambda_1)^{m_1}(x-\lambda_2)^{m_2} \cdots (x-\lambda_r)^{m_r} = x^n + a_{n-1}x^{n-1} + \cdots + a_1x^1 + a_0    
+\end{equation*}
+由韦达定理，我们有：
+\begin{gather*}
+    a_{n-1} = (-1)^1\left(m_1\lambda_1 + \cdots + m_r\lambda_r \right)\\
+    \vdots \\
+    a_0 = (-1)^n \lambda_1^{m_1}\cdots\lambda_r^{m_r}\Longrightarrow \det(M_{\varphi}) =  \lambda_1^{m_1}\cdots\lambda_r^{m_r}
+\end{gather*}
+\end{theorem}
+
+\begin{theorem}[幂零矩阵等价于仅有零特征值]\label{幂零矩阵仅有零特征值}
+设$A \in M_{n\times n}(\mathbb{C})$，则：
+\begin{equation*}
+    A\ \text{为幂零矩阵}\ \Longleftrightarrow A\ \text{有且仅有零特征值}
+\end{equation*}
+{\par\color{gray}\small
+Homework 10.1 
+\par}
+
+\begin{graybox}
+\textbf{定理\ref{幂零矩阵仅有零特征值}的证明：}\\
+\textbf{(1) }幂零$\Longrightarrow$零特征值：\\
+$\exists\ m \in \mathbb{N}_+$使得$A^m = 0 \Longrightarrow |A^m| = |A|^m = 0 \Longrightarrow |A| = 0 \Longrightarrow \chi_{\varphi_A}(0) = |0I - A| = |A| = 0 \Longrightarrow 0$为$A$的特征值。设$\lambda$为$A$的任一特征值，$0 \ne v_{\lambda} \in V(\lambda)$为一特征向量，则$varphi^m(v) = \lambda^m v = 0 \Longrightarrow \lambda = 0$，因此$A$有且仅有零特征值。\\
+\textbf{(2) }幂零$\Longleftarrow$零特征值：
+$A$有且仅有零特征值，因此特征多项式$\chi_{\varphi}(x) = (x-0)^n = x^n$，由 Hamilton-Cayley Theorem，$\chi_{\varphi}(\varphi) = 0 \Longrightarrow A^n = 0 \Longrightarrow A$为幂零矩阵。
+\end{graybox}
+\end{theorem}
+
+\chapter{带有数乘的线性空间：}
+\section{欧几里得空间(Euclidean Space)}
+\subsubsection{欧几里得空间：}
+一个\textcolor{red}{$\mathbb{R}$上的}线性空间$V$称为欧式空间如果它带有正定的双线性型$f: V\times V \longrightarrow \textcolor{red}{\mathbb{R}}$
+\begin{gather*}
+    f:(u,v) \longmapsto (u\mid v)\ ,\ \ u,v \in V    
+\end{gather*}
+称为上面的映射为欧内积，并且有相关概念：\par
+\ding{172}\ 模/长度：$\left \| u \right \|  = \sqrt{(u\mid u)}$\par
+\ding{173}\ 距离：$d_{uv} = \left \| u -v \right \|$\par
+\ding{174}\ 正交：$u \perp v \Longleftrightarrow (u\mid v) = 0$\par
+\ding{175}\ 夹角：$\theta = \frac{(u\mid v)}{ \left \| u \right \|\cdot  \left \| v \right \|}$ \par
+\ding{176}\ 单位：$ \left \| u \right \| = \sqrt{(u\mid u) } = 1$\par
+\ding{177}\ 标准正交：一组正交向量$\{v_1,...v_r\}$称为标准的如果$v_i$是单位的，$i = 1,...,r$。
+
+{\color{gray}\small 欧内积是一个正定的对称双线性型，有其对应的二次型。\par
+例如：通常的$n$维坐标空间$\mathbb{R}^n$中，我们定义的内积是$f(u,v) = \vec{x}I_n\vec{y}^T = \vec{x}\cdot\vec{y}^T = \sum_{i=1}^{n}x_iy_i $，也就是$(\vec{x} \mid \vec{y}) = \sum_{i = 1}^{n}x_iy_i,\ \vec{x} = [x_1 ... x_n],\ \vec{y} = [y_1...,y_n] \in \mathbb{R}^n$；$[a,b]$上的实连续函数空间$C([a,b])$内积定义为$(u \mid v) = \int_{a}^{b}u(x)v(x)\mathrm{d}x,\ u(x),v(x)\in C([a,b])$。}
+
+\begin{theorem}[Cauchy-Schwarz Inequality]
+    设$V$是欧式空间，$u,v \in V$，则有：
+    \begin{equation*}
+        |(u\mid v) | \le \left \| u \right \|\cdot\left \| v \right \| \ ,\ \ \text{当且仅当$u,v$线性相关时取等}
+    \end{equation*}
+推论：
+\begin{equation*}
+    \left \| u \pm v \right \| \le \left \| u \right \| + \left \| v \right \|
+\end{equation*}
+\end{theorem}
+\begin{theorem}[欧式空间必有标准正交基]\label{有限维欧式空间必有标准正交基}
+    设$V$为有限维欧式空间，$\dim V = n$，则：
+    \begin{equation*}
+        V\ \text{存在正交标准基}\ \vec{u}_0 = [u_1,...,u_n]^T
+    \end{equation*}
+\begin{graybox}
+\textbf{定理\ref{有限维欧式空间必有标准正交基}的证明：}\par \noindent
+\textbf{(1)}\ 引理(施密特正交化)：\\
+设$0 \ne v_0,v_1,v_2,...,v_r \in V$，令$u = v_0 - \frac{(u\mid v_1)}{(v_1 \mid v_1)}\cdot v_1 - \cdots -  \frac{(u\mid v_{r})}{(v_{r} \mid v_{r})}\cdot v_{r}$，则:
+\begin{equation*}
+    u \perp v_i , i =1,...,r   
+\end{equation*}
+\textbf{(2)}\ 构造标准正交基：\\
+设$\vec{v}_0 = [v_1,...,v_n]^T$是$V$的一组基，考虑施密特正交化。令：
+\begin{equation*}
+    u_1 = v_1\ ,\ \ u_2 = v_2 - \frac{(v_2\mid u_1)}{\left \| u_1 \right \|^2}\cdot u_1\ ,\ \ u_n = v_r -\sum_{i=1}^{n-1} \frac{(v_n\mid u_i)}{\left \| u_i \right \|^2}\cdot u_i
+\end{equation*}
+则$\vec{u}_0 = [u_1,...,u_n]^T$构成一组正交基，再做标准化：
+\begin{equation*}
+    w_i = \frac{u_i}{\left \| u_i \right \|}\ ,\ \ i = 1,...,n
+\end{equation*}
+即可得到一组标准正交基$\vec{w}_0 = [w_1,...,w_n]^T$。证毕。
+\end{graybox}
+\end{theorem}
+
+\begin{theorem}[欧式子空间与其补正交]\label{欧式子空间与其补正交}
+    设$V$为有限维欧式空间，$\dim V = n$，$U$为$V$的子空间，$\overline{U}$是$U$的补空间，则：
+    \begin{equation*}
+        \overline{U} = U^{\perp} = \left\{ v \in V\mid \forall \ u \in U,\ (v\mid u) = 0 \right\}\ ,\ \ \text{也即}\ V = U \oplus U^{\perp}
+    \end{equation*}
+    推论\ding{172}(任意标准正交组可扩充)：
+    \begin{equation*}
+        \text{任意一组标准正交向量}\ \{v_1,...,v_r \}\ \text{可扩充为$V$的标准正交基}\{v_1,...,v_r,v_{r+1},...,v_n \}
+    \end{equation*}
+    推论\ding{173}(向量的基表示): 
+\begin{equation*}
+    \text{设$\vec{w}_0$为V的标准正交基，则:}\ v = \sum_{i=1}^{n}\langle v \mid w_i \rangle w_i
+\end{equation*}  
+    推论\ding{174}(帕塞瓦尔恒等式)：设$\{w_1,...w_n \}$是$V$的标准正交基，则
+    \begin{equation*}
+        \sum_{i=1}^{n}(v\mid w_i)(w_i\mid u) = (v\mid u)
+    \end{equation*}
+\end{theorem}
+\subsubsection{对偶欧式空间：}
+设$V$为欧式空间，$u \in V$，定义$\varPhi_u(v) \in V^*$为：
+\begin{equation*}
+    \varPhi_u(v) = (u\mid v)\ ,\ \ \forall\ v \in V
+\end{equation*}\par
+定义$V^*$上的内积为：
+\begin{equation*}
+    (\varPhi_u \mid \varPhi_v)^* = (u\mid v)
+\end{equation*}
+{\color{gray}\small 容易验证它构成一个正定的对称双线性型。}\par
+另外，映射$\varphi: u \longmapsto \varPhi_u$给出了$V$到$V^*$的线性同构，进一步地，$\varphi$构成欧几里得同构。{\color{gray}\small 线性+同构+保持内积运算}\par
+
+\subsubsection{伴随算子：}
+设$\varphi \in \mathscr{L}(V)$，定义$\varphi$的伴随算子(adjoint operator)\ $\varphi^* \in \mathscr{L}(V)$为：
+\begin{equation*}
+    \left(\varphi^*(u)\mid v\right) = (u\mid \varphi(v))\ ,\ \ \forall\ u,v \in V
+\end{equation*}\par
+设$\vec{w}_0$是任意一组标准正交基，则有：
+\begin{equation*}
+    M_{\varphi^*,\vec{w}_0} = M_{\varphi,\vec{w}_0}^T
+\end{equation*}
+{\par\color{gray}\small
+一般情形：$M_{\varphi^*,\vec{v}_0} = AA^TM_{\varphi,\vec{w}_0}^T (A^{-1})^TA^{-1}$
+\par}
+
+\begin{theorem}[自伴随算子]
+    
+    $\varphi$为$V$的自伴随线性算子如果
+    \begin{equation*}
+        \varphi^* = \varphi \Longleftrightarrow V = \text{Im}\ \varphi \oplus \ker \varphi \Longleftrightarrow \varphi\ \text{在某组标准正交基下的矩阵是对称矩阵}    
+\end{equation*}
+    
+
+\subsubsection{欧算子(欧自同构)：}
+{\par\color{gray}\small
+在本笔记中，我们将“欧几里得自同构”称为“欧算子”，这是为了突出其与酉空间中“酉算子”的对应关系，将酉空间中的“Hermitian算子”也称为“自伴随算子”，这是为了突出其和欧空间中“自伴随算子”的对应关系。
+\par}
+设$V$是欧式空间，线性算子$\varphi$称为欧的如果：
+\begin{equation*}
+    \left(\varphi(u) | \varphi(v)\right) = (u\mid v)\ ,\ \ \forall\ u,v \in V
+\end{equation*}
+更常见的名字为欧几里得自同构。
+设欧算子的矩阵为$A$，有推论：
+\begin{gather*}
+    A\ \text{为欧矩阵} \Longleftrightarrow AA^T = I_n \Longleftrightarrow A^{-1} = A^T \Longleftrightarrow A \ \text{为正交矩阵}\\
+    \varphi\ \text{为欧算子} \Longleftrightarrow \varphi\varphi^* = e_V \Longleftrightarrow \varphi^{-1} = \varphi^*  \Longleftrightarrow \varphi \ \text{为正交变换}
+\end{gather*}\par
+{\par\color{gray}\small 例如，设$\{v_1,...,v_n\}$，$\{u_1,...,u_n\}$分别是$V$和$U$的一组标准正交基，定义线性映射$\varphi:v_i = u_i,\ i = 1,...,n$，则$\varphi$构成一个欧几里得同构。}\par
+{\color{gray}\small 欧式空间$V$上的全体自同构$\text{Aut}_e(V)$关于映射的乘积(复合)构成群，且映射$\varphi \longmapsto M_{\varphi, \vec{w}_0}$构成$\text{Aut}_e(V)$到正交群$O_n(\mathbb{R})$的群同构。}
+
+{\par\color{gray}\small
+这是因为在有限维欧式空间$V$，$\forall\ \varphi \in \mathscr{L}(V)$，有：
+\begin{equation*}
+    (\text{Im}\ \varphi)^{\perp} = \ker \varphi^* \Longrightarrow V = \text{Im}\ \varphi \oplus (\text{Im}\ \varphi)^{\perp}= \text{Im}\ \varphi \oplus \ker \varphi^*
+\end{equation*}
+\par}
+\end{theorem}
+\section{辛空间(Symplectic Space)}
+\subsubsection{辛空间、辛算子、辛矩阵：}
+一个线性空间空间$V$称为辛空间如果它带有非退化的斜对称双线性型(称为辛内积)：
+\begin{equation*}
+    (u,v) \longmapsto [u\mid v]
+\end{equation*}\par
+
+线性算子$\varphi \in \mathscr{L}(V)$称为辛算子如果：
+\begin{equation*}
+    [\varphi(u)\mid \varphi(v)] = [u\mid v]
+\end{equation*}\par
+{\color{gray}\small
+由第一章内容，$\dim V = 2m$为偶数，且辛内积$[\cdot \mid \cdot]$在某组基$\vec{u}_0$下的度量矩阵为：
+\begin{equation*}
+    J_0 = \begin{bmatrix}  
+        [u_1\mid u_1] & \cdots & [u_1\mid u_{2m}]  \\  
+        \vdots & \ddots & \vdots \\  
+        [u_{2m}\mid u_1] & \cdots &  [u_{2m}\mid u_{2m}] 
+      \end{bmatrix} =
+      \begin{bmatrix}
+        O & I_m\\
+        -I_m & O
+      \end{bmatrix}
+\end{equation*}
+}\par   
+设辛算子\textcolor{red}{在辛标准基$\vec{u}_0$下}的矩阵为$A$，则有：$AJ_0A^T = J_0$，并称$A$为辛矩阵。
+
+\subsubsection{辛群：}
+记全体$2m\times 2m$辛矩阵为$Sp_{2m}(\mathbb{R})$，则$Sp_{2m}(\mathbb{R})$构成$GL_{2m\times 2m}(\mathbb{R})$的一个子群，称为辛群。
+并且，设$A = \begin{bmatrix}
+    A_{11}&A_{12}\\
+    A_{21}&A_{22}
+\end{bmatrix}$，则有：
+\begin{equation*}
+    AJ_0A^T = J_0  \Longleftrightarrow \begin{cases}
+        A_{11}A_{22}^T - A_{12}A_{21}^T = I_{2m}\\
+        (A_{11}A_{12}^T)^T = A_{11}A_{12}^T\\
+        (A_{21}A_{22}^T)^T = A_{21}A_{22}^T
+    \end{cases}
+\end{equation*}\par
+全体辛算子关于映射的乘积构成一个群，记为$Sp(V)$，且映射$\varphi \longmapsto M_{\varphi,\vec{u}_0}$是$Sp(V)$到$Sp_{2m}(\mathbb{R})$的同构。
+{\par\color{gray}\small
+构成辛群是因为对于矩阵$A$，$B$，我们有结论：
+\begin{gather*}
+    \textcolor{red}{A}J_0A^T = J_0 \Longleftrightarrow (\textcolor{red}{A^T})J_0(A^T)^T = J_0 \Longleftrightarrow (\textcolor{red}{A^{-1}})J_0(A^{-1})^T = J_0\\
+    A,\ B \in Sp_{2m}(\mathbb{R})\Longrightarrow AB \in Sp_{2m}(\mathbb{R})
+\end{gather*}\par 
+\par}
+{\par\color{gray}\small
+由等价定义，我们可以构造一些辛矩阵，如下：
+\begin{gather*}
+    \begin{bmatrix}
+        A  & O\\
+        O & (A^T)^{-1}
+    \end{bmatrix} \in Sp_{2m}(\mathbb{R})\ ,\ \  \forall\ A \in GL_n(\mathbb{R})\\
+    \begin{bmatrix}
+        I_m & A\\
+        O & I_m
+    \end{bmatrix},\ 
+    \begin{bmatrix}
+        I_m & A\\
+        O & I_m
+    \end{bmatrix} \in Sp_{2m}(\mathbb{R})\ ,\ \  \forall\ A \in GL_n(\mathbb{R}) 
+\end{gather*}
+可以证明辛群是由上述矩阵生成的。特别地，辛矩阵行列式为$1$\ (注意不是$-1$)，也即$Sp_{2m}(\mathbb{F}) \le SL_{2m}(\mathbb{F})$。
+\par}
+
+\begin{theorem}[辛算子的特征多项式]\label{辛算子的特征多项式}
+    设$V$是有限维辛空间，$\varphi \in Sp_{2m}(\mathbb{R})$，则：
+    \begin{equation*}
+        \chi_{\varphi}(x) = x^{2m}\chi_{\varphi}(x^{-1})
+    \end{equation*}
+    {\par\color{gray}\small
+    此定理可以导出一些与辛算子特征值有关的结论。在欧空间中，我们类似地有：
+    $\chi_{\varphi}(x) = x^n\chi_{\varphi}(x^{-1})$，详见 Homework 11.6
+    \par}
+\end{theorem}
+
+\subsubsection{辛空间与欧空间的联系：}
+设$V = \mathbb{R}^{2m}$，$\vec{u}_0$是$V$的一组基，定义辛内积和欧内积，定义算子$\mathcal{J}$：
+\begin{gather*}
+    [u\mid v] = \sum_{i=1}^{m}(x_iy_{m+i} - x_{m+i}y_{i})\ ,\ \ (u\mid v) = \sum_{i=1}^{2m}x_iy_i\ ,\ \ \forall\ u = \vec{x}\cdot\vec{u}_0,\ v = \vec{y}\cdot\vec{u}_0\\
+    \mathcal{J}(u) = \mathcal{J}(\vec{x})\cdot\vec{u}_0 = [x_{m+1},...,x_{2m},-x_1,...,-x_m]\cdot \vec{u}_0\ ,\ \ \forall\ u = \vec{x}\cdot\vec{u}_0
+\end{gather*}\par
+则$(V,[\cdot\mid \cdot])$构成辛空间，$(V,(\cdot\mid \cdot))$构成欧空间，$\mathcal{J} \in Sp_{2m}(\mathbb{R})$。
+且$[\cdot\mid \cdot]$在基$\vec{u}_0$下的度量矩阵为$J_0$，$\mathcal{J} $在基$\vec{u}_0$下的矩阵为$-J_0$，$\mathcal{J}$构成一个辛算子。
+\par
+另外，容易验证$\mathcal{J}^2 = -e_V$，$[u\mid v] = (u\mid \mathcal{J}(v))$。\par
+https://zhuanlan.zhihu.com/p/606731586
+
+\subsubsection{辛子空间的正交空间：}
+设$V$是有限维辛空间，$W$是$V$的子空间，则：
+\begin{gather*}
+    \dim W + \dim W^{\perp} = \dim V\ , \ \ (W^{\perp})^{\perp} = W\\
+    V = W \oplus W^{\perp} \Longleftrightarrow  W \cap  W^{\perp} = {0} \Longleftrightarrow W\ \text{构成辛空间} \Longleftrightarrow W^{\perp}\ \text{构成辛空间} 
+\end{gather*}
+{\par\color{gray}\small
+与欧空间类似，其中$W^{\perp} = \left\{v \in V\mid [v\mid w] = 0,\ \forall\ w \in W \right\}$。注意：欧空间中一定有$V = W \oplus W^{\perp}$但辛空间不一定。$W$称为辛子空间如果$W \oplus W^{\perp}$，称为迷向子空间如果$ W \subseteq W^{\perp}$，称为Larange子空间如果$W = W^{\perp}$。\par
+且辛迷向的维数$\le \frac{\dim V}{2}$。这是因为$W \perp J(W) \Longrightarrow J(W) \subseteq W^{\perp} \Longrightarrow 2\dim W = \dim W + \dim \mathcal{J}(W) \le \dim W + \dim W^{\perp} = \dim V$。\par
+这个例子表明，子空间(满足封闭性)并不一定能继承原空间的内积成为新的内积空间。
+\par}
+
+\section{酉空间(Unitary Space)}
+{\par\color{gray}\small
+欧空间$V$是$\mathbb{R}$上的，带有正定双线性型$f:V\times V \longrightarrow \mathbb{R}$的线性空间。而我们希望将其拓展到$\mathbb{C}$上，由此产生了$\mathbb{C}$上的，带有正定Hermitian型$f:V\times V \longrightarrow \mathbb{C}$的线性空间，称为酉空间。
+\par}
+\subsubsection{Hermitian型: }
+映射$f:V\times V \longrightarrow \mathbb{C}$称为Hermitian型如果：
+\begin{align*}
+    &\text{\ding{172}\ 共轭对称(Hermitian对称)：}\ f(u,v) = \overline{f(v,u)}\ \ ,\forall u,v \in V \\
+    &\text{\ding{173}\ 左线性：}\ f(au_1 + bu_2,v) = af(u_1,v) + bf(u_2,v)\ \ ,\forall a,b\in \mathbb{C},\  u_1,u_2,v \in V \\
+    &\text{\ding{174}\ 右共轭线性：}\ f(u,av_1+bv_2) = \overline{a}f(u,v_1) + \overline{b}f(u,v_2)\ \ ,\forall a,b\in \mathbb{C},\  u,v_1,v_2 \in V 
+\end{align*}
+{\color{gray}\small
+对任意Hermitian型$f$，其在基$\vec{v}_0$下的矩阵$F$满足$ F=F^H \Longleftrightarrow G = G^T \text{且}H = -H^T$，称为Her矩阵。\par
+\par}
+与欧空间中的实双线性型类似，在酉空间下的坐标空间$\mathbb{C}^n$中，Hermitian型可表示为: 
+\begin{equation*}
+    f(u,v) = \vec{x}F\vec{y}^{\,\textcolor{red}{H}} = \vec{x}F\vec{y}^{\,*}\ ,\ \ \forall\ u = \vec{x}\cdot\vec{v}_0,\ v = \vec{y}\cdot\vec{v}_0 \in \mathbb{C}
+\end{equation*}\par
+{\par\color{gray}\small
+$F = M_{f,\vec{v}_0}$是$f$在基$\vec{v}_0$下的矩阵。双线性型(包括对称和斜对称)的伴随是转置$T$，Hermitian型的伴随是共轭转置$H$，常统一用$*$表示伴随。
+\par}
+
+相应地，可以建立Hermitian二次型的概念: $ q(u) = f(u,u) = \vec{x}F\vec{x}^{\,\textcolor{red}{H}}\ ,\ \ \forall\  u = \vec{x}\cdot\vec{v}_0 \in V$\par
+
+{\par\color{gray}\small
+https://www.zhihu.com/question/533224060/answer/3345977116
+\par}
+Hermitian矩阵空间与实对称矩阵空间同构，并且很多实对称矩阵(双线性型)的性质、结论都可以直接推广到Hermitian矩阵(Hermitian型)。下面是一些基本的性质、结论：
+\subsubsection{Hermitian矩阵的性质：}
+\par\ding{172}\  对角元素为实数：  Hermitian矩阵对角元素都是实数，因为它们与自身的共轭相等。  \par
+\ding{173}\   实特征值：Hermitian矩阵的特征值都是实数。  \par
+\ding{174}\   正定性：Hermitian矩阵正定等价于特征值都大于零  \par
+\ding{175}\   可对角化：Hermitian矩阵可以酉对角化($GFG^{-1} = GFG^H = D$)  \par
+\ding{176}\ 度量矩阵：$ \textcolor{red}{F \longmapsto AFA^*}$
+
+\begin{theorem}[Hermitian型分解]\label{Hermitian型分解}
+
+设$f: V\times V\longrightarrow \mathbb{C}$为Hermitain型，则存在唯一的实对称双线性$g$和唯一的实斜对称双线性型$h$，使得：
+\begin{gather*}
+    \text{\ding{172}}\ f(u,v)= g(u,v)+ih(u,v) \Longleftrightarrow F = G+iH\\
+    \text{\ding{173}}\ f(u,v) = g(u,v) + ig(u,iv) 
+\end{gather*}
+
+{\par\color{gray}\small
+$G$为$g$对应的实对称矩阵，$H$为$h$对应的实斜对称矩阵。\ding{172}\ding{173}中的$g$是同一个，且反之也成立，即两者一一对应（\textcolor{red}{有待考察}）。
+由Hermitian型关于实对称/实斜对称的分解易证，详略。
+\par}
+推论：
+记全体Hermitian矩阵为$M = \{F\in M_{n\times n}(\mathbb{C}) \mid F = F^H\}$，全体实对称矩阵为$R = \{G\in M_{n\times n}(\mathbb{R}) \mid G = G^T\}$，则：
+\begin{equation*}
+    M \cong R \Longleftrightarrow \text{Hermitian型$f$与实对称双线性型$g$一一对应}
+\end{equation*}
+\end{theorem}
+
+\begin{theorem}[Hermitian型正定等价条件]\label{Hermitian型正定等价条件}
+设Hermitian型$f = g+ih$在基$\vec{u}_0$下的矩阵为$F = G +iH$，则：
+\begin{gather*}
+    f,F\ \text{正定}\ \Longleftrightarrow g,G\ \text{正定}\ \Longleftrightarrow \hat{G} = \begin{bmatrix}
+        G &H\\
+        H^ T&G
+    \end{bmatrix}\ \text{正定}
+\end{gather*}
+\end{theorem}
+{\par\color{gray}\small
+Hermitian型$f$称为正定的如果$f(u,u) > 0,\ \forall\ 0 \ne u \in V$，其中$f(u,u)$必属于$\mathbb{R}$。
+\par}
+
+\subsubsection{酉空间(Unitary Space)：}
+一个\textcolor{red}{$\mathbb{C}$} 上的线性空间$V$称为酉空间如果它带有\textcolor{red}{正定的Hermitian型}$f:V\times V \longrightarrow \mathbb{C}$
+\begin{equation*}
+    f: (u,v) \longmapsto \langle \cdot \mid \cdot \rangle 
+\end{equation*}
+称上面的内积为酉内积，并且有相关概念：\par
+\ding{172}\ 模/长度：$\left \| u \right \|  = \sqrt{\langle u\mid u \rangle\ }$\par
+\ding{173}\ 复绝对值：$|a| = \sqrt{a\cdot\overline{a}\ },\ a \in \mathbb{C}$\par
+\ding{174}\ 正交：$u \perp v \Longleftrightarrow \langle u\mid u \rangle = 0$\par
+\ding{175}\ 夹角：$\theta = \frac{\langle u\mid u \rangle}{ \left \| u \right \|\cdot  \left \| v \right \|}$ \par
+\ding{176}\ 单位：$ \left \| u \right \|= 1$\par
+\ding{177}\ 标准正交：一组正交向量$\{v_1,...v_r\}$称为标准的如果$v_i$是单位的，$i = 1,...,r$。
+
+\begin{theorem}[酉空间中的定理]\label{酉空间中的定理}
+回想欧空间中出现的定理，很多在有限维酉空间中仍成立，如下：
+\par
+\ding{172}\ Cauchy-Schwarz Inequality: 
+\begin{equation*}
+    |(u\mid v) | \le \left \| u \right \|\cdot\left \| v \right \| \ ,\ \ \text{仅线性相关时取等}\Longrightarrow \left \| u \pm v \right \| \le \left \| u \right \| + \left \| v \right \|
+\end{equation*}\par
+\ding{173}\ 施密特正交化：
+\begin{equation*}
+    \text{设}\ 0 \ne v_0, v \in V,\ u = v_0 - \frac{\langle v_0\mid v\rangle }{ \left \| v \right \| }v,\ \text{则}\ u\perp v \Longrightarrow \text{任意酉空间存在标准正交基}
+\end{equation*}\par
+\ding{174}\ 任意子空间与其正交补构成直和：
+\begin{equation*}
+    V = U\oplus U^{\perp} \Longrightarrow\  \text{\ding{175}\ding{176}\ding{177}}
+\end{equation*}    \par
+\ding{175}\ 标准基扩充：任意标准正交组可扩充为$V$的一组标准正交基。\par
+\ding{176}\ 向量的基表示:
+\begin{equation*}
+    \text{设$\vec{w}_0$为$V$的一组标准正交基，则:}\ v = \sum_{i=1}^{n}\langle v \mid w_i \rangle w_i
+\end{equation*}    \par
+\ding{177}\ 帕塞瓦尔恒等式(Parseval's Identity):
+\begin{equation*}
+    \sum_{i=1}^{n} \langle u \mid w_i \rangle \langle w_i  \mid v \rangle = \langle u \mid v \rangle
+\end{equation*}    \par
+\end{theorem}
+\ding{178}\ 自伴随算子(Hermitian算子):
+$\varphi$为$V$的自伴随线性算子(Hermitian算子)如果
+\begin{equation*}
+    \varphi^* = \varphi \Longleftrightarrow V = \text{Im}\ \varphi \oplus \ker \varphi \Longleftrightarrow \varphi\ \text{在某组标准正交基下的矩阵是Hermitian矩阵}    
+\end{equation*}
+{\par\color{gray}\small
+与欧类似，酉空间中的伴随算子$\varphi^*$定义为: $\langle \varphi^*(u) \mid v \rangle = \langle u \mid \varphi(v) \rangle$，\textcolor{red}{这里的$^*$表示$^H$}，容易验证无论欧or酉，任意标准正交基$\vec{w}_0$下的矩阵：$M_{\varphi^*,\vec{w}_0}  = M_{\varphi,\vec{w}_0}^* $。\par}
+
+\subsubsection{酉算子、酉矩阵：}
+线性算子$\varphi$称为酉的如果：
+\begin{equation*}
+    \langle \varphi(u) \mid \varphi(v) \rangle = \langle u \mid v \rangle\ ,\ \ \forall\ u,v \in V
+\end{equation*}
+酉算子$\varphi$在标准正交基下的矩阵$M_{\varphi,\vec{w}_0}$称为酉矩阵，构成酉群：
+\begin{gather*}
+    U_n(\mathbb{C})  = \left\{A\mid AA^H = I_n\right\}\\
+    A\ \text{为酉矩阵} \Longleftrightarrow AA^*= I_n \Longleftrightarrow A^{-1} = A^* \\
+    \varphi\ \text{为酉算子} \Longleftrightarrow \varphi\varphi^* = e_V \Longleftrightarrow \varphi^{-1} = \varphi^* 
+\end{gather*}
+{\par\color{gray}\small
+$\Longleftrightarrow A$是标准正交基之间的转换矩阵。
+\par}
+
+全体酉算子记为$U_o(V) \cong U_n(\mathbb{C})$。
+{\par\color{gray}\small
+(可逆)矩阵群$GL_n(\mathbb{C})$，特殊线性群$SL_n(\mathbb{R}) = \left\{A\mid \det A = 1 \right\}$，正交群$O_n(\mathbb{R}) = \left\{ A\mid AA^T = I_n\right\}$，正常正交群$SO_n(\mathbb{R}) = \left\{ A\mid AA^T = I_n,\ \det A = 1\right\}$。且容易验证$SO_n(\mathbb{R}) \subseteq O_n(\mathbb{R}) \cong U_n(\mathbb{R}) \subseteq U_n(\mathbb{C}) $。
+\par}
+\begin{theorem}[欧酉矩阵、转换矩阵、标准正交基的等价性]\label{欧酉矩阵、转换矩阵、标准正交基的等价性}
+    无论是欧空间还是酉空间，设算子$\varphi$在某组标准正交基下的矩阵为$A$，则有：
+\begin{equation*}
+    A\ \text{是欧(酉)矩阵}\ \Longleftrightarrow  A\ \text{是某两组标准正交基间的转换矩阵} \Longleftrightarrow  A\ \text{是一组标准正交基} 
+\end{equation*}
+\end{theorem}
+
+\section{内积空间上的线性算子}
+\subsubsection{正规算子：}
+$\mathbb{C}$上的算子$\varphi \in \mathscr{L}(V)$称为正规算子如果：
+\begin{equation*}
+    \varphi\varphi^* = \varphi^*\varphi \Longleftrightarrow AA^* = A^*A
+\end{equation*}
+正规矩阵的性质：
+\par\ding{172}\  \textcolor{red}{可对角化(等价)：} $A$是正规矩阵$\Longleftrightarrow \exists\ \text{酉矩阵}\ G \ \ s.t.\ \ GAG^H = GAG^{-1} = D $  \par
+\ding{173}\   特征子空间：$A$有$n$个不同的、两两正交的特征子空间。  \par
+\ding{174}\  $A^H$的特征值： 若$\lambda$是$A$的特征值，$u = \vec{x}\cdot\vec{v}_0$是对应的特征向量，则$\overline{\lambda}$是$A^H$的特征值，$u = \vec{x}\cdot\vec{v}_0$？？是对应的特征向量  \par
+
+{\par\color{gray}\small
+酉对角化也就是在某组标准正交基下为对角阵，这是因为标准正交基、标准正交基之间的转换矩阵都是酉矩阵(内积空间中的标准正交矩阵)。\par
+当正规矩阵的特征值全部为实数时，是Hermitian矩阵(对应自伴随算子、Hermitian型)\par
+当正规矩阵的特征值全部模为1时，是酉矩阵(即复正交矩阵，对应酉算子)
+\par}
+
+\subsubsection{自伴随算子与内积的关系：}
+设$f: V\times V \longmapsto \mathbb{F}$是一个内积(对称双线性型或Hermitian型)，记它在基下的度量矩阵为$F$，则$F = F^*$。定义$\varphi \in \mathscr{L}(V)$使得$\varphi$在基下的矩阵为$F$，则$\varphi$是自伴随算子。反之也成立。
+
+因此，对同一个Hermitian矩阵$F$，既可以把它看作一个自伴随算子(Hermitian算子)，也可以看作某个Hermitian型的度量矩阵(但并不构成同构关系)。由此可以知道，Hermitian矩阵所具有的性质也就是自伴随算子所具有的性质(如特征值、可对角化等)。
+
+
+\begin{theorem}[谱定理]\label{谱定理}
+设$\varphi$是酉空间$V$上的正规算子，及$\varphi$的所有不同特征值为$\lambda_1,...,\lambda_m$，则：
+\begin{gather*}
+    \text{存在唯一正交投影算子组}\  \{\mathscr{P}_1,...,\mathscr{P}_m\}\ \ s.t. \ \ \varphi = \sum_{i=1}^{m}\lambda_i\mathscr{P}_i\\
+    \text{进一步，存在}\ f_1(x),...,f_m(x) \in \mathbb{C}[x]\ \ s.t.\ \ \mathscr{P}_i\ = f_i(\varphi)\ \text{且}\ f_i(\lambda_j) = \delta_{ij}
+\end{gather*}
+{\par\color{gray}\small
+后一个推论表明：任意可由$\mathscr{P}_i$线性表出的算子$\psi$都可表示为$\psi = g(\varphi)$。
+\par}
+
+\end{theorem}
+
+\begin{theorem}[内积同时对角化]\label{内积同时对角化}
+{\par\color{gray}\small
+为了体现对称双线性型和Hermitian型的统一性，我们将两者统称为内积空间上的准内积，其称为内积当且仅当它是正定的。
+\par}
+设$f_1,f_2$是内积空间上的两个\textcolor{red}{准}内积(欧-对称双，酉-Hermi型)，则：
+\begin{equation*}
+    f_1,f_2\ \text{可同时对角化} \Longleftrightarrow \text{其中有一个是正定的}
+\end{equation*}
+\end{theorem}
+
+\begin{theorem}[半正定自伴随算子可开根]\label{半正定自伴随算子可开根}
+设$\varphi$是内积空间上一个半正定的自伴随算子，则：
+\begin{equation*}
+    \text{存在唯一的半正定自伴随算子$\varphi_1$使得}\ \varphi_1^2 = \varphi\ ,\ \ \text{记作}\ \varphi_1 = \sqrt{\varphi} 
+\end{equation*}
+用矩阵的语言：
+\begin{equation*}
+    \text{存在唯一的半正定自伴随矩阵$A_1$使得}\ A_1^2 = A\ ,\ \ \text{记作}\ A_1 = \sqrt{A} 
+\end{equation*}
+\end{theorem}
+
+{\color{gray}
+注：在以下的内容中，我们将酉空间、欧式空间统称为“内积空间”，Hermitian型、对称双线性型统称为“准内积”，正定的Hermitian型、正定的对称双线性型统称为“内积”，Hermitian算子、欧空间自伴随算子统称为自伴随算子，酉算子、欧空间自同构(欧空间正交算子)统称为正交算子，欧空间对称矩阵、酉空间Hermitian矩阵统称为自伴随矩阵。
+\par}
+
+\begin{theorem}[极化定理]\label{极化定理}
+设$\varphi \in \mathscr{L}(V)$是内积空间上的线性算子，$\varphi$在某组(标准正交)基下的矩阵为A，则：\\
+矩阵语言：
+\begin{align*}
+    \text{\ding{172}\ }& \text{存在唯一的(半)正定矩阵$G$和正交矩阵$T$使得}\ A = GT\\
+    \text{\ding{173}\ }& A\ \text{是正规矩阵}\ \Longleftrightarrow GT = TG\\
+    \text{\ding{174}\ }& A \ \text{非退化}\Longleftrightarrow T\  \text{唯一}
+\end{align*}
+算子语言：
+\begin{align*}
+    \text{\ding{172}\ }&\text{存在唯一的(半)正定算子$\zeta $和正交算子$\psi$使得}\ \varphi = \zeta \psi\\
+    \text{\ding{173}\ }&\varphi\ \text{是正规算子}\ \Longleftrightarrow \zeta \psi = \psi \zeta\\
+    \text{\ding{174}\ }&\varphi \ \text{非退化}\Longleftrightarrow \psi\   \text{唯一}
+\end{align*}
+\end{theorem}
+
+\begin{theorem}[实正规算子半对角化]\label{实正规算子半对角化}
+设$V$是欧几里得内积空间且$\varphi \in \mathscr{L}(V)$，记矩阵$J[a_1,b_1] = \begin{bmatrix}
+    a& \textcolor{red}{-b} \\
+    b& a
+  \end{bmatrix}$，则：
+\begin{gather*}
+\varphi\ \text{是正规算子}\ \Longleftrightarrow \text{在某组基下$\varphi$的矩阵}\ J_\varphi = \text{diag}(c_1,...,c_r) \dotplus J[a_1,b_1] \dotplus \cdots \dotplus J[a_s,b_s]\\
+\varphi \text{是正交算子}\ \Longleftrightarrow |c_i|=1,\ a_j^2+b_j^2 = 1,\ i=1,...,r,\ j = 1,...,s
+\end{gather*}
+{\par\color{gray}\small
+\par}
+
+\end{theorem}
+
+\chapter{仿射空间与欧几里得点空间}
+
+\section{仿射空间}
+\subsubsection{仿射空间基本概念：}
+一个$\F$上的非空集合$\A$称为仿射空间如果它与一个$\F$上的向量空间$V$相伴，且存在从$\A\times V$到$\A$的映射$f:(a,v) \longmapsto a+v,\ \forall\ a\in \A,\ v\in V$\ 满足：
+\par\ding{172}\ 右幺性：$a+0_{V} = a,\ \forall\ a\in \A$\par
+\ding{173}\  加法结合律：$(a+v_1)+v_2 = a+(v_1+v_2),\ \forall\ a\in \A,\ v_1,v_2\in V$   \par
+\ding{174}\  唯一性：$\forall\ a,b\in \A,\ \exists\ !\ w \in V\ \ s.t.\ \ a+w=b$，记作$w = \overrightarrow{ab}  $ \par
+
+$t_u$称为沿$u$对$\A$的平移，且$\A^{\sharp } = \{t_u\mid u\in V\}$构成群，同构于加法群$V$，即$\A^{\sharp } \cong V$。
+
+此外，$\overrightarrow{ab} = -\overrightarrow{ba},\ \overrightarrow{aa}=0,\  \overrightarrow{ab}+ \overrightarrow{bc} =  \overrightarrow{ac}$
+
+\begin{theorem}[仿射空间同构]\label{仿射空间同构}
+设$\A$和$\A'$是$\F$上的相伴向量空间分别为$V$和$V'$的仿射空间，则$\A\cong\A' \Longleftrightarrow V \cong V' $。
+\end{theorem}
+
+
+\subsubsection{仿射空间的坐标系：}
+\par\ding{172}\ 定义：给定点$\dot{o}\in \A$和$V$的一组基$\{v_1,...,v_n\}$，称$\{\dot{o};v_1,...,v_n\}$为仿射空间$(\A,V)$的一个坐标系。
+\par
+\ding{173}\  坐标系变换： 
+对于两个仿射空间坐标系$O = \{\dot{o};\vec{u}_0\}$和$O' = \{\dot{o}';\vec{v}_0\}$，设点$\dot{p},\ \dot{o}'$在$O$下的坐标分别为$\vec{x},\ \vec{o}$，且$\vec{v} = A\vec{u}$，则$\dot{p}$在新坐标系$O'$下的坐标：
+\begin{equation*}
+    \textcolor{red}{\vec{y} = (\vec{x} - \vec{o})A^{-1}}
+\end{equation*}
+\par
+等价条件：
+\subsubsection{仿射子空间：}
+设$(\A,V)$是仿射空间而$U$是$V$的子空间，定义$\A$的仿射子空间$\Pi(\dot{p},U) = \dot{p} + U$，则它是以$U$为伴随空间的仿射空间。若$\dim U = m< +\infty$，称$\Pi(\dot{p},U)$为$\A$的$m$维平面。\par
+特别地，若$\dim U = 1$，则$\forall\  0 \ne\overrightarrow{\dot{p}\dot{q}} \in \A$，有$U = \F\overrightarrow{\dot{p}\dot{q}}$，也即$\Pi (\dot{p},U) =\{\dot{p} + t\overrightarrow{\dot{p}\dot{q}}\mid t \in \F\} $
+
+等价条件：设$\F$的特征不为2。$\Pi$为仿射空间$\A$的一个子集，则：
+\begin{equation*}
+    \text{$\Pi$是仿射子空间} \Longleftrightarrow \Pi\text{上任意两点的直线都在$\Pi$内}
+\end{equation*}
+推论：仿射子空间的交仍是子空间，且$\Pi(U_1)\cap\Pi(U_2) = \Pi(U_1\cap U_2)$。
+
+
+\subsubsection{仿射包络：}
+设$X$为$\A$的一个子空间(不一定是仿射子空间!)，定义$\A$关于$X$的仿射包络：
+\begin{equation*}
+    A(X) = \left\{  \dot{p} +\text{Span}\{\overrightarrow{\dot{p}\dot{q}}\mid\forall\  \dot{q} \in X\}\mid \forall \dot{p}\in X \right\}
+\end{equation*}
+
+容易验证它和$\dot{p}$或$\dot{q}$的选取无关，且构成$\A$的仿射子空间。\par
+如果$X$只有一个点，则$A(X)=X$是0维的仿射子空间。$X$有两个点时，$A(X)$是过他们的直线。$X$有三个点时，$A(X)$是由该直线和点确定的平面。
+\par\ding{172}\ 仿射无关：若$X = \{\dot{p}_{\textcolor{red}{0}},\dot{p}_1,...,\dot{p}_{\textcolor{red}{m}}\}$且$\dim \A(X) = m$，则称$X$仿射无关。这等价于$\{\overrightarrow{\dot{p}_{\textcolor{red}{0}}\dot{p}_1},...,\overrightarrow{\dot{p}_{\textcolor{red}{0}}\dot{p}_m}  \}$线性无关    \par
+\ding{173}\ 重心组合：设$\dot{p}_0,...,\dot{p}_m \in \A$是任意$m+1$个点(可以相同)，称$\sum_{i=0}^{m}a_i\dot{p}_i\ \ s.t.\ \ \sum_{i=0}^{m}a_i = 1  $为$\{\dot{p}_0,...,\dot{p}_m \}$的重心组合。(上面写法省略了原点$o'\dot{o}$，因为重心组合的结果与原点选取无关)    \par
+\ding{174}\  仿射映射：映射$\varphi:\ \A \longrightarrow \A'$为仿射映射等价于它保持重心组合，也即：
+\begin{equation*}
+    \varphi\left(\sum_{i=0}^{m} a_i\dot{p}_i \right) = \sum_{i=0}^{m} a_i\varphi(\dot{p}_i)
+\end{equation*}
+\par
+
+\subsubsection{仿射映射：}
+线性映射$\psi: \A \longmapsto \A'$称为仿射映射如果满足下面任意一条命题(第一条为定义，其它为等价条件)
+\par\ding{172}\  定义：
+\begin{equation*}
+    \psi(\dot{p}+v) = \psi(\dot{p}) + (D\psi)(v) \ \ ,\ \forall\ \dot{p}\in \A,\ v \in V
+\end{equation*}   \par
+\ding{173}\   保持向量：
+\begin{equation*}
+    (D\psi)(\overrightarrow{\dot{p}\dot{q}}) = \overrightarrow{\psi(\dot{p})\psi(\dot{q})}
+\end{equation*}  \par
+\ding{174}\  保持重心：
+\begin{equation*}
+    \psi\left(\sum_{i=0}^{m} a_i\dot{p}_i \right) = \sum_{i=0}^{m} a_i\psi(\dot{p}_i)
+\end{equation*} 
+
+
+\subsubsection{仿射线性映射：}
+从$\A$到$\F$的仿射映射$\varphi$称为仿射线性映射。全体\par
+性质：
+取$\A$仿射无关的$n+1$个点$\{\dot{p}_1,\dot{p}_2,\}$，它可生成$V$的一组基，且集合
+\begin{equation*}
+    \left\{ \dot{p} = \dot{p}_0 + a_1\overrightarrow{\dot{p}_0\dot{p}_1} + \cdots + a_n\overrightarrow{\dot{p}_0\dot{p}_n} \in \A \mid \varphi(\sum_{i=0}^{m} a_i\dot{p}_i) = 0 \right\}
+\end{equation*}
+构成$\A$的超平面($n-1$维)，也即$\varphi^{-1}(0)= ker_\varphi $构成$\A$的超平面($n-1$维)。
+{\par\color{gray}\small
+此处有一个$\Pi  = \bigcap_{i=1}^{n-r}\varphi^{-1}_i(0) $的结论，详见讲义P104。
+\par}
+
+\subsubsection{平行、相交、交错：}
+\par\ding{172}\ 平行： 设$(\Pi_1, U_1)$，$(\Pi_2, U_2)$是$\A$的两个仿射子空间，我们称$\Pi_1$与$\Pi_2$平行如果$U_1 \subseteq U_2$。\par
+此时，若$\Pi_1 \cap \Pi_2 \ne \emptyset$，则$\Pi_1 \subseteq \Pi_2$；若$\Pi_1 \cap \Pi_2 = \emptyset$，考虑它们并集的仿射包络，有$V(\Pi_1\cup\Pi_2 ) = \F\overrightarrow{\dot{p}\dot{q}} + U' \Longrightarrow \dim A(\Pi_1\cup\Pi_2 ) = \dim \Pi_2 + 1$。\par   \par
+\ding{173}\  相交：$\Pi_1 \cap \Pi_2 \ne \emptyset$且不平行。   \par
+\ding{174}\  交错：既不平行也不相交 \par
+
+\section{欧几里得点空间}
+
+\subsubsection{欧几里得点空间：}
+仿射空间$(\A,V)$称为欧几里得点空间如果$(V,(\cdot\mid\cdot))$构成欧内积空间。点空间中有相关定义：
+\par\ding{172}\ 距离：$\rho(\dot{p}, \dot{q}) = \|\overrightarrow{\dot{p}\dot{q}}\|$    \par
+\ding{173}\  线段：$\dot{p}\dot{q} = \{\dot{p} + t\overrightarrow{\dot{p}\dot{q}}\mid t \in [0,1]\}$   \par
+\ding{174}\  线段长度：$|\dot{p}\dot{q}| =\|\overrightarrow{\dot{p}\dot{q}}\|= \rho(\dot{p}, \dot{q}) $   \par
+\ding{175}\ 夹角：$\cos \theta = \frac{(\overrightarrow{\dot{p}\dot{q}}\mid \overrightarrow{\dot{r}\dot{s}})}{\| \overrightarrow{\dot{p}\dot{q}} \| \| \overrightarrow{\dot{r}\dot{s}} \|}$
+{\par\color{gray}\small
+其中$\Pi_1 = \dot{p} + \R\overrightarrow{\dot{p}\dot{q}}$，$\Pi_1 = \dot{r} + \R\overrightarrow{\dot{r}\dot{s}}$是$\A$中的两条直线
+\par}
+
+\begin{theorem}[仿射空间的距离]\label{仿射空间的距离}
+设$\Pi_1 = \Pi_1(\dot{o}_1,U), \Pi_2 = \Pi_2(\dot{o}_2,U)$是$\A$中的两个不相交的仿射子空间，$\{u_1,...,u_m\}$是$U+V$的一组正交基，则有：
+\begin{equation*}
+    \rho(\Pi_1,\Pi_2)= \left \|  \overrightarrow{\dot{p}\dot{q}} - \sum_{i=1}^{m}\frac{(\overrightarrow{\dot{p}\dot{q}}\mid u_i)}{\| u_i \|^2}u_i  \right \|=\left \| \overrightarrow{\dot{p}\dot{q}} - \frac{(\overrightarrow{\dot{p}\dot{q}}\mid u_1)}{(u_1\mid u_1)}u_1 - \cdots -   \frac{(\overrightarrow{\dot{p}\dot{q}}\mid u_1)}{(u_m\mid u_m)}u_m \right \|
+\end{equation*}
+\end{theorem}
+
+\begin{theorem}[点到超平面的距离]\label{点到超平面的距离}
+设$\dot{p} = [\alpha_1,...,\alpha_n]$是$\dot{\R}^n$中一点，$\Pi = \{[x_1,...,x_n]\in \A \mid a_1x_1 + \cdots + a_nx_n \textcolor{red}{\,+\,b} = 0 \}$是$\A$的超平面，则：
+\begin{equation*}
+    \rho(\dot{p},\Pi) = \frac{\left| a_1\alpha_1 + \cdots +a_n\alpha_n \textcolor{red}{\,+\,b}\right| }{\sqrt{a_1^2+\cdots+a_n^2}}
+\end{equation*}
+\end{theorem}
+
+\begin{theorem}[夹角]\label{夹角}
+设超平面$\Pi_1$和超平面$\Pi_2$的法向量分别为$w_1$和$w_2$，则两平面夹角$\theta$：
+\begin{equation*}
+    cos \theta = \frac{(w_1\mid w_2)}{\|w_1\|\|w_2\|} = \frac{w_1\cdot w_2}{\|w_1\|\|w_2\|}
+\end{equation*}
+
+设$u$是直线$\Pi$的方向向量而$w$是超平面$\Pi'$的法向量，则夹角$\theta$：
+\begin{equation*}
+    sin \theta = \frac{(u\mid w)}{\|u\|\|w\|} = \frac{u\cdot w}{\|u\|\|w\|}
+\end{equation*}
+
+\end{theorem}
+
+\begin{theorem}[公垂线]\label{公垂线}
+设直线$\Pi_1$和直线$\Pi_2$的方向向量分别为$v_1$和$v_2$，令$w=v_1\times v_2$，则公垂线由下面方程确定：
+\begin{equation*}
+    \begin{cases}
+        \Delta (\overrightarrow{\dot{p}\dot{r}},v_1,w)=0 \\
+        \Delta (\overrightarrow{\dot{q}\dot{r}},v_2,w)=0 \\
+    \end{cases}
+\end{equation*}
+\end{theorem}
+
+\begin{theorem}[过某点的平面]\label{过某点的平面}
+设$\dot{\R}$上的直线$\mathscr{L}:\begin{cases}
+    \vec{a}\cdot\vec{x}+a_0=0\Longleftrightarrow a_1x+a_2y+a_3z+a_0=0 \\
+    \vec{b}\cdot\vec{x}+b_0=0\Longleftrightarrow b_1x+b_2y+b_3z+b_0=0 \\
+\end{cases} $，$s=\vec{x}_0\cdot\vec{w}_0 = (x_0,y_0,z_0)$是不在$\mathscr{L}$上的一点，则过直线$\mathscr{L}$和点$s$的平面：
+\begin{equation*}
+    (\vec{b}\cdot\vec{x}_0+b_0)(\vec{a}\cdot\vec{x}+a_0)=(\vec{b}\cdot\vec{x}+b_0)(\vec{a}\cdot\vec{x}_0+a_0)
+\end{equation*}
+
+\end{theorem}
+
+
+\section{群与几何}
+{\par\color{gray}
+受课时所限，课程跳过了下一节“群与几何”和第五章“常见曲面”，直接进入第六章“张量”
+\par}
+
+\chapter{常见曲面}
+\chapter{张量}
+
+拓展阅读：https://zhuanlan.zhihu.com/p/508715535
+
+\section{多重线性映射与张量}
+
+\subsubsection{张量(tensor)：}
+定义：\begin{equation*}
+    f:V_1\times V_2\times \cdots \times V_k \overset{linear}{\longmapsto }W \in \mathscr{L}(V_1,...,V_k:W)
+\end{equation*}  
+{\par\color{gray}\small
+记$V_1\times V_2\times \cdots \times V_k$到$W$的全体多重线性映射为$\mathscr{L}(V_1,...,V_k:W)$，则其构成一个向量空间。 设$\{v_{j_i}\mid j_i \in J_i\}$是$V_i$的一组基，$f:V_1\times V_2\times \cdots \times V_k \overset{linear}{\longmapsto }W \in \mathscr{L}(V_1,...,V_k:W)$，我们有：
+\begin{equation*}
+    f(u_1,...,u_k)=\sum_{j_1\in J_1}\sum_{j_2\in J_2}\cdots \sum_{j_k\in J_k}a_{j_1}a_{j_2}\cdots a_{j_k}f(v_{j_1},v_{j_2},...,v_{j_k})\ \ ,\   \forall\  u_i=\sum_{j_i \in J_i}a_{j_i}v_{j_i}\in V_i
+\end{equation*}
+故映射$f$由$\{f(v_{j_1},v_{j_2},...,v_{j_k})\mid j_1\in J_1,j_2\in J_2,\cdots,j_k\in J_k\}$唯一确定，反之也成立（通过定义）。记$W(J_1,J_2,\cdots,J_k) = \{\nu \mid \nu: J_1\times J_2\times \cdots \times J_k \overset{linear}{\longmapsto} W\}$，则映射$f\longmapsto \{\}$
+\par}
+{\par\color{gray}\small
+例如$\mathscr{L}(V;\F)=V^*$，$\mathscr{L}(V,V;\F) = \{f\mid f:V \times V \overset{linear}{\longmapsto} \F\}$
+\par}
+
+\subsubsection{张量性质：}
+\par\ding{172} $\{f(v_{j_1},...,v_{j_k})\mid j_1 \in J_1,...,j_k \in J_k\}$构成$\mathscr{L}(V_1,...,V_k:W)$的一组基，tensor
+ $f$由它在此基下的坐标唯一确定。 \par
+{\par\color{gray}\small
+例如，当$V_i=V,\ \dim V=n$时：设$V_1$的基为$\{v_{j_1}\mid j_1 \in J_1\}=\{v_{1,1},...,v_{1,n} \},\ ...,\ V_k$的基为$\{v_{j_k}\mid j_k \in J_k\}=\{v_{k,1},...,v_{k,n} \}$，$u_i=\vec{x_i}\cdot\vec{v_i}$，则$f(u_1,...,u_k)=\sum $
+\par}
+
+\ding{173}\  映射的张量积(tensor product of maps)：
+\begin{equation*}
+    (f \otimes g)(u_1,...,u_s,u_{s+1},...,u_{s+r}) = f(u_1,...,u_s)\cdot g(u_{s+1},...,u_{s+r})
+\end{equation*}
+{\par\color{gray}\small
+满足结合律、分配律，且为线性乘积。事实上，张量乘积$\otimes$是一个双线性映射$\otimes: T^p_q(V)\times T^r_s \longrightarrow T^{p+r}_{q+s}(V)$\par}
+\par
+\ding{174}\ 空间的张量积(tensor product of linear spaces)： 
+\begin{gather*}
+    V_1 \otimes V_2 \otimes \cdots \otimes V_k = \text{Span}\{v_{j_1} \otimes v_{j_2} \otimes\cdots \otimes v_{j_k}\mid j_1\in J_1,j_2\in J_2,\cdots,j_k\in J_k\}\\ 
+    \dim (V_1 \otimes V_2 \otimes \cdots \otimes V_k) = \dim V_1 \cdot \dim V_2 \cdots  \dim V_k
+\end{gather*}
+\par
+
+{\par\color{gray}\small
+$\forall\  U^*_i \subseteq V^*_i, i=1,...,k$, we define the tensor product of dual linear space(对偶线性空间): 
+\begin{align*}
+    U^*_1\times U^*_2\times \cdots \times U^*_k &= \text{Span}\{f_1 \otimes f_2 \otimes \cdots \otimes f_k \mid f_1 \in U^*_1, f_2 \in U^*_2, \cdots, f_k \in U^*_k\}\\
+    &=\text{Span}\{\nu_{j_1} \otimes\nu_{j_2} \otimes\cdots \otimes\nu_{j_k}\mid j_1\in J_1,j_2\in J_2,\cdots,j_k\in J_k\}
+\end{align*}
+
+Suppose $V$ is a linear space on $\F$，regard $V = (V^*)^*$ as we define $v(f) = f(v) \in P,\ \forall\ f \in V^*$, then $v: V^* \longmapsto \F \in (V^*)^*$, so we have:
+\begin{equation*}
+    V_1 \otimes V_2 \otimes \cdots \otimes V_k = \text{Span}\{v_{j_1} \otimes v_{j_2} \otimes\cdots \otimes v_{j_k}\mid j_1\in J_1,j_2\in J_2,\cdots,j_k\in J_k\}
+\end{equation*}
+
+并且$\{v_{j_1} \otimes v_{j_2} \otimes\cdots \otimes v_{j_k}\mid j_1\in J_1,j_2\in J_2,\cdots,j_k\in J_k\}$构成$V_1 \otimes V_2 \otimes \cdots \otimes V_k$的一组基。
+\par}
+
+\begin{theorem}[]\label{}
+设$U$和$V$为$\F$上的有限维向量空间，对任意$\zeta = \sum_{i=1}^{n}f_i\otimes v_i \in U^*\otimes V $，定义$\varphi_{\zeta}(u) = \sum_{i=1}^{n}f_i(u)v_i \in V,\ \forall\ u\in U$，则$\varphi_{\zeta} \in \mathscr{L}(U,V)$且有：
+\begin{equation*}
+    \text{映射}\ \begin{cases}
+        U^*\otimes V \longrightarrow \mathscr{L}(U,V)\\
+        \zeta \longmapsto \varphi_{\zeta}
+    \end{cases} \ \text{构成}\ U^*\otimes V \cong \mathscr{L}(U,V)
+\end{equation*}
+
+\section{张量代数}
+
+\end{theorem}
+
+\subsubsection{全张量空间、张量代数：}
+
+$V$的$r$阶张量空间$\T^m(V)$：
+\begin{equation*}
+    \T^0(V) = \mathbb{F}\ ,\ \  \T^m(V) = \overset{m}{\overbrace{V\otimes V \otimes \cdots \otimes V}}\ ,\ \ \T^p_q = \overset{p}{\overbrace{V\otimes V \otimes \cdots \otimes V}}\otimes \overset{q}{\overbrace{V^*\otimes V^* \otimes \cdots \otimes V^*}}
+\end{equation*}
+{\par\color{gray}\small
+$\T^m(V)$中的元素称为$V$的$m$阶张量。
+\par}
+
+全张量空间：
+\begin{equation*}
+    \T(V) = \bigoplus^{+\infty}_{i=0} \T^i(V)
+\end{equation*}
+
+张量代数：
+在$\T(V)$中定义双线性乘积
+
+\subsubsection{全对称张量空间：}
+\par\ding{172}\ 对称张量：$\T^m(V)$中的一个元素$\xi$称为对称张量如果$\xi$是$(V^*)^m$上的对称函数(例如$f$是对称多项式如果$f$是$\F[x_1,...,x_n]$上的对称函数)。 {\par\color{gray}\small
+类似地定义：
+\begin{equation*}
+    \text{Sym}(v_{j_1} \otimes v_{j_2} \otimes\cdots \otimes v_{j_m}) = {\color{red}\frac{1}{m!}}\sum_{\sigma\in S_m}v_{j_{\sigma(1)}} \otimes v_{j_{\sigma(2)}} \otimes\cdots \otimes v_{j_{\sigma(m)}}\ \ \ {\color{gray}\text{依次调换其位置}}
+\end{equation*}
+这样，我们有：
+\begin{equation*}
+    \xi \in T^m(V)\ \text{为对称张量}\ \Longleftrightarrow \text{Sym}(\xi) = \xi
+\end{equation*}
+\par}
+  \par
+\ding{173}\ 对称张量空间：\begin{equation*}
+    \S^0(V) = \text{Sym}(\T^0(V)) = \text{Sym}(\F) \ ,\ \ \S^m(V) = \text{Sym}(\T^m(V))
+\end{equation*}
+{\par\color{gray}\small
+后者称为$V$的$m$阶对称张量空间，即$\S^m(V)= \text{Sym}(\T^m(V)) = \{ \xi \in \T^m(V) \mid \text{Sym}(\xi) = \xi  \mid \}${\color{red}待定！！！}
+\par}
+
+\par
+\ding{174}\  全对称张量空间：
+\begin{equation*}
+    \S = \sum_{i=0}^{\infty}\S^i(V) = \sum_{i=0}^{\infty} \text{Sym}(\T^i(V))
+\end{equation*}   \par
+
+\subsubsection{ddd}
+设$\A$为带幺结合代数，$\A$的子空间$\I$称为$\A$的理想如果：
+\begin{equation*}
+    u\cdot \I,\ \I\cdot u \subseteq \I\ ,\ \ \forall\ u\in \I
+\end{equation*}
+并且有结论：$\forall\ \text{理想}\ \I,\ 1_{\A} \in I \Longrightarrow \I = \A$。
+
+
+\subsubsection{全斜对称张量空间：}
+\par\ding{172}\ 斜对称张量：$\T^m(V)$中的一个元素$\xi$称为斜对称张量如果$\xi$是$(V^*)^m$上的斜对称函数(例如$f$是斜对称多项式如果$f$是$\F[x_1,...,x_n]$上的斜对称函数)。
+{\par\color{gray}\small
+类似地定义：
+\begin{equation*}
+    \text{Alt}(v_{j_1} \otimes v_{j_2} \otimes\cdots \otimes v_{j_m}) =  {\color{red}\frac{1}{m!}}\sum_{\sigma\in S_m}{\color{red}\varepsilon_{\sigma}}v_{j_{\sigma(1)}} \otimes v_{j_{\sigma(2)}} \otimes\cdots \otimes v_{j_{\sigma(m)}}
+\end{equation*}   
+其中$\varepsilon=\begin{cases}
+    1 &, \text{if }\  \sigma\ \text{为奇置换}\\
+    -1 &, \text{if }\  \sigma\ \text{为偶置换}
+\end{cases}$
+\par}
+
+\par
+\ding{173}\  斜对称张量空间：
+\begin{equation*}
+    \mathbb{A}^0(V) = \text{Alt}(\T^0(V)) = \text{Alt}(\F) \ ,\ \ \mathbb{A}^m(V) = \text{Alt}(\T^m(V))
+\end{equation*}
+
+\par
+\ding{174}\  全斜对称张量空间：
+\begin{equation*}
+    \mathbb{A}(V) = \sum_{i=0}^{\infty} \mathbb{A}^i(V) = \sum_{i=0}^{\infty}\text{Alt}(\T^i(V))
+\end{equation*}   \par
+
+
+
+\nocite{*}
+\bibliography{re}
+\thispagestyle{fancy} 
+\addcontentsline{toc}{chapter}{参考文献}
+\end{document}
+
+% VScode 常用快捷键：
+
+% F2:                       变量重命名
+% Ctrl + Enter:             行中换行
+% Alt + up/down:            上下移行
+% 鼠标中键 + 移动:           快速多光标
+% Shift + Alt + up/down:    上下复制
+% Ctrl + left/right:        左右跳单词
+% Ctrl + Backspace/Delete:  左右删单词    
+% Shift + Delete:           删除此行
+% Ctrl + J:                 打开 VScode 下栏(输出栏)
+% Ctrl + B:                 打开 VScode 左栏(目录栏)
+% Ctrl + `:                 打开 VScode 终端栏
+% Ctrl + 0:                 定位文件
+% Ctrl + Tab:               切换已打开的文件(切标签)
+% Ctrl + Shift + P:         打开全局命令(设置)
+
+% Latex 常用快捷键
+
+% Ctrl + Alt + J:           由代码定位到PDF
+% 
+
+
+% Git提交规范：
+% update: Linear Algebra 2 notes
+% add: Linear Algebra 2 notes
+% import: Linear Algebra 2 notes
+% delete: Linear Algebra 2 notes

@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.10.30)  30 JUN 2024 12:29
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.10.30)  2 JUL 2024 21:24
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -828,24 +828,28 @@ Chapter 3.
 Chapter 4.
 [20
 
-] [21]
+] [21] [22]
 File: pic/热机冷机示意图.pdf Graphic file (type pdf)
 <use pic/热机冷机示意图.pdf>
- [22] [23]
+ [23] [24]
 Chapter 5.
-[24
+[25
 
-] [25] [26] [27] [28] [29] [30]
+] [26] [27] [28] [29] [30] [31]
 Chapter 6.
-[31
 
-] [32] [33] [34]
+Underfull \vbox (badness 4805) detected at line 1297
+ []
+
+[32
+
+] [33] [34] [35]
 Chapter 7.
-[35
+[36
 
-] [36]
+] [37]
 No file "Thermodynamics Notes".bbl.
-[37] (./Thermodynamics Notes.aux)
+[38] (./Thermodynamics Notes.aux)
  ***********
 LaTeX2e <2023-06-01> patch level 1
 L3 programming layer <2022/07/14>
@@ -862,4 +866,4 @@ Here is how much of TeX's memory you used:
  1348 hyphenation exceptions out of 8191
  93i,17n,97p,412b,608s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on Thermodynamics Notes.pdf (41 pages).
+Output written on Thermodynamics Notes.pdf (42 pages).

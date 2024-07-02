@@ -593,9 +593,9 @@ $\mathrm{d}t$时间内通过狭缝$\mathrm{d}l$的总粒子数：
     \end{equation}
     化简得到：
     \begin{equation}
-        \mathrm{d}p = - \rho g\mathrm{d}h
+        \mathrm{d}p = - \rho g\mathrm{d}h = - nm_0g\mathrm{d}h
     \end{equation}
-    联立理想状态方程$p = nkT$消去，得到：
+    联立理想状态方程$p = nkT$消去$n$，得到：
     \begin{equation}
         \frac{1}{p}\mathrm{d}p = -\frac{m_0g}{kT}\mathrm{d}h \Longrightarrow p = p_0e^{-\frac{m_0gh}{kT}}
     \end{equation}
@@ -687,9 +687,9 @@ $\mathrm{d}t$时间内通过狭缝$\mathrm{d}l$的总粒子数：
     \overline{\lambda} = \frac{1}{\textcolor{red}{\sqrt{2}}n \sigma } = \frac{kT}{\sqrt{2}p\sigma}
 \end{equation}\par
 {\color{gray}\small 其中$\sigma = \pi d^2$为分子碰撞截面。特别地，当容器中分子极为稀薄，平均自由程远大于容器线度$l$时，可以认为分子仅与容器发生碰撞(称为克努曾气体)，此时，实际的碰撞频率为分子与器壁间的碰撞频率，分子平均自由程$\overline{\lambda}$等于容器线度$l$。}
-\subsubsection{平均碰撞概率：}
+\subsubsection{平均碰撞频率：}
 \begin{equation}
-    Z = n\sigma \textcolor{red}{\overline{u}} = \textcolor{red}{\sqrt{2}}n\sigma \overline{v}
+    Z = \frac{1}{\ \overline{t}\ } =  n\sigma \textcolor{red}{\overline{u}} = \textcolor{red}{\sqrt{2}}n\sigma \overline{v}
 \end{equation}
 \par
 
@@ -740,15 +740,15 @@ $\mathrm{d}t$时间内通过狭缝$\mathrm{d}l$的总粒子数：
 \subsubsection{常见流动现象：}
 \ding{172}\ 牛顿黏滞定律：
 \begin{equation}
-    q = P_0 = m_0v \Longrightarrow \textcolor{red}{\boldsymbol{j}_P = \frac{\mathrm{d}f}{\mathrm{d}S} = - \eta \nabla v }\ ,\ \  \eta = \frac{1}{3}\rho \overline{v}\overline{\lambda} \textcolor{gray}{\ , \ \ \frac{\partial v}{\partial t} =\kappa \nabla^2 v =\kappa \Delta T}
+    {\color{red}q = P_0 = m_0v} \Longrightarrow \textcolor{red}{\boldsymbol{j}_P = \frac{\mathrm{d}f}{\mathrm{d}S} = - \eta \nabla v }\ ,\ \  \eta = \frac{1}{3}\rho \overline{v}\overline{\lambda} \textcolor{gray}{\ , \ \ \frac{\partial v}{\partial t} =\kappa \nabla^2 v =\kappa \Delta T}
 \end{equation}\par
 \ding{173}\ 傅里叶热传导定律：
 \begin{equation}
-    q = \varepsilon = \frac{i}{2}kT \Longrightarrow \textcolor{red}{\boldsymbol{j}_Q = -\kappa \nabla T }\ ,\ \ \kappa = \frac{1}{6}ink\overline{v}\overline{\lambda} = \frac{1}{3}c_V\rho \overline{v} \overline{\lambda} \textcolor{gray}{\ , \ \ \frac{\partial T}{\partial t} =\kappa \nabla^2 T =\alpha \Delta T}
+    {\color{red}q = \varepsilon = \frac{i}{2}kT} \Longrightarrow \textcolor{red}{\boldsymbol{j}_Q = -\kappa \nabla T }\ ,\ \ \kappa = \frac{1}{6}ink\overline{v}\overline{\lambda} = \frac{1}{3}c_V\rho \overline{v} \overline{\lambda} \textcolor{gray}{\ , \ \ \frac{\partial T}{\partial t} =\kappa \nabla^2 T =\alpha \Delta T}
 \end{equation}\par
 \ding{174}\ 菲克扩散定律(Fick Diffusion Law)：
 \begin{gather}
-    q = 1 \Longrightarrow \textcolor{red}{\boldsymbol{j}_N = -D\nabla n}\ ,\ \ D = \frac{1}{3}\overline{v}\overline{\lambda} \textcolor{gray}{\ , \ \ \frac{\partial n}{\partial t} =D \nabla^2 n =D\Delta n}\\ 
+    {\color{red}q = 1} \Longrightarrow \textcolor{red}{\boldsymbol{j}_N = -D\nabla n}\ ,\ \ D = \frac{1}{3}\overline{v}\overline{\lambda} \textcolor{gray}{\ , \ \ \frac{\partial n}{\partial t} =D \nabla^2 n =D\Delta n}\\ 
     q = m_0 \Longrightarrow \boldsymbol{j}_m = -D\nabla \rho\ ,\ \ D = \frac{1}{3}\overline{v}\overline{\lambda}\textcolor{gray}{\ , \ \ \frac{\partial \rho}{\partial t} =D \nabla^2 \rho=D\Delta \rho}
 \end{gather}\par
 {\color{gray}\small 其中$m_0$为单个粒子质量，$v$为粒子速度，$\eta$为黏度系数，$\rho$为气体密度，$i$为粒子自由度，$k$为玻尔兹曼常量，$n$为粒子数密度，$\kappa$为热导率(导热系数)，$c_V = \frac{C_V}{m}$为比热容，$\alpha = \frac{k}{\rho c_V}$为热扩散系数，$D$为扩散系数。\par
@@ -758,11 +758,15 @@ $\mathrm{d}t$时间内通过狭缝$\mathrm{d}l$的总粒子数：
 \subsubsection{热导率串并联：}
 \ding{172}\ 串联：$S$相同，$l_1,\kappa_1,l_2,\kappa_2$不同，$L=l_1+l_2$为总长度，则有:
 \begin{equation}
-    J = -\kappa\frac{\Delta T}{L}S\ ,\ \ \frac{L}{\kappa} = \frac{l_1}{\kappa_1} +\frac{l_2}{\kappa_2}
+    J = -\frac{\Delta T}{\frac{L}{\kappa}}S\ ,\ \ {\color{red}\frac{L}{\kappa} = \frac{l_1}{\kappa_1} +\frac{l_2}{\kappa_2}}
 \end{equation}\par
+{\par\color{gray}\small
+注意：是$l$在上，不是$\kappa$在上。
+\par}
+
 \ding{173}\ 并联：$l$相同，$S_1,\kappa_1,S_2,\kappa_2$不同，$S=S_1+S_2$为总面积则有:
 \begin{equation}
-    J = -\kappa\frac{\Delta T}{L}S\ ,\ \ \kappa S = \kappa_1 S_1 +\kappa_2 S_2
+    J = -\kappa\frac{\Delta T}{L}S\ ,\ \ {\color{red}\kappa S = \kappa_1 S_1 +\kappa_2 S_2}
 \end{equation}
 \section{稀薄气体中的物理量密度流：}
 稀薄气体中，平均自由程与容器线度相等(即$\overline{\lambda} = L$)，流密度更正为：
@@ -794,12 +798,12 @@ $\mathrm{d}t$时间内通过狭缝$\mathrm{d}l$的总粒子数：
 为实现准静态过程，要求扰动/操作过程进行得足够缓慢，从而使得其特征时间大于系统的弛豫时间。若无特殊说明，后文讨论的过程均指准静态过程。
 \subsubsection{热力学第一定律：}
 热力学第一定律可用微分形式表示为：
-\begin{equation}\color{red}
-    \mathrm{d}U = \mathrm{d}W +\mathrm{d}Q
+\begin{equation}
+    {\color{red}\mathrm{d}U = \mathrm{d}Q +\mathrm{d}W}
 \end{equation}
 其中$W$表示外界对系统所做的功，用$Q$表示外界向系统提供的热量(系统吸收的热量)。其常用于表示热容关系：
 \begin{equation}
-    \mathrm{d}Q = \mathrm{d}U - \mathrm{d}W \Longrightarrow C\mathrm{d}T = C_V\mathrm{d}T \ {\color{red}+}\ p   \mathrm{d}V
+    \mathrm{d}Q = \mathrm{d}U - \mathrm{d}W = \mathrm{d}U + p \mathrm{d}V \Longrightarrow C\mathrm{d}T = C_V\mathrm{d}T \ + p \mathrm{d}V
 \end{equation}
 \section{热力学第一定律的应用}
 \subsubsection{物体热容量：}
@@ -809,24 +813,29 @@ $\mathrm{d}t$时间内通过狭缝$\mathrm{d}l$的总粒子数：
 \end{equation}\par
 \ding{173}\ 等体热容：
 \begin{equation}
-    C_V = \left(\frac{\partial Q}{\partial T}\right)_V= \textcolor{red}{\left(\frac{\partial U}{\partial T}\right)_V}
+    {\color{red}C_V =} \left(\frac{\partial Q}{\partial T}\right)_V= \textcolor{red}{\left(\frac{\partial U}{\partial T}\right)_V}
 \end{equation}\par
 \ding{174}\ 等压热容：
 \begin{equation}
-    C_p  = \left(\frac{\partial Q}{\partial T}\right)_p = \textcolor{red}{\left(\frac{\partial H}{\partial T}\right)_p}
+    {\color{red}C_p =} \left(\frac{\partial Q}{\partial T}\right)_p = \textcolor{red}{\left(\frac{\partial H}{\partial T}\right)_p}
 \end{equation}\par
-对于理想气体，由$H$的定义，容易推导：{\color{red} $C_V = \frac{i}{2}\nu R$}，$\textcolor{red}{C_p = C_V + \nu R = (\frac{i}{2}+1)\nu R }$\par
-{\color{gray}\small 其中$i = t + r +2s$为气体分子自由度，特别地，对于纯相对论气体$i = \textcolor{red}{2t} + r +2s$。}
+对于理想气体，由$H$的定义，容易推导：
+\begin{equation}
+    {\color{red} C_V = \frac{i}{2}\nu R\ ,\ \ C_p = C_V + \nu R }= (\frac{i}{2}+1)\nu R 
+\end{equation}
+
+{\par\color{gray}\small 其中$i = t + r +2s$为气体分子自由度。特别地，对于纯相对论气体，$i = \textcolor{red}{2t} + r +2s$。}
 \subsubsection{物体的内能与焓：}
 物体的内能通常表示为$T$和$V$的函数(分别指向动能、势能)，定义为：
 \begin{equation}
     U = U(T,V)
 \end{equation}\par
-物体的焓通常表示为$T$和$p$ (或V)的函数，定义为：
+物体的焓通常表示为$T$和$p$的函数，定义为：
 \begin{equation}
     H = H(T,p) = U +pV
 \end{equation}\par
-{\color{gray}\small 特别地，对理想气体而言，分子间势能恒为0，分子动能由温度确定，因此压强或体积不影响气体内能，内能仅是温度$T$的函数，也即$U = U(T)$。进一步，由$pV = \nu RT$，可以知道理想气体的焓也满足$H = H(T)$。}
+{\color{gray}\small 特别地，对理想气体而言，分子间势能恒为0，分子动能由温度确定，因此压强或体积不影响气体内能，内能仅是温度$T$的函数，也即$U = U(T)$。进一步，由$pV = \nu RT$，可以知道理想气体的焓也满足$H = H(T)$。\par
+上面的两个物理量可由状态方程确定，具体结论见后文。}
 \subsubsection{在理想气体上的应用：}
 \ding{172}\ 等体过程($\mathrm{d}V = 0$)：
 \begin{equation}
@@ -903,15 +912,15 @@ $\mathrm{d}t$时间内通过狭缝$\mathrm{d}l$的总粒子数：
 \ding{172}\ 正循环效率(热机效率)：\par
 热机是一种将热量转化为功的机器。热机对外做功，自身的热量减少，外界热量增加。
 \begin{equation}
-    \eta = \frac{W}{Q} = \frac{Q - Q'}{Q}
+    {\color{red}\eta = \frac{W}{Q} = \frac{Q - Q'}{Q}}
 \end{equation}
-{\color{gray}\small $Q$为气体吸收的热量，$Q'$为气体放出的热量。}\par
+{\color{gray}\small $Q$为气体吸收的热量，$W$为装置对外做的机械功，$Q'$为气体放出的热量。}\par
 \ding{173}\ 逆循环效率(制冷系数)：\par
 制冷机是一种将功转化为热量的机器。外界对制冷机做功，自身热量增加，外界热量减少。
 \begin{equation}
-    \varepsilon =\frac{Q}{W} = \frac{Q}{Q' - Q}
+    {\color{red}\varepsilon =\frac{Q}{W} = \frac{Q}{Q' - Q}}
 \end{equation}
-{\color{gray}\small $Q$为气体吸收的热量(低温热源放出的热量)，$Q'= W+Q$为气体放出的热量(高温热源吸收的热量)。}
+{\color{gray}\small $Q$为制冷量(气体吸收的热量，即低温热源放出的热量)，$W$为外界对气体做的功，$Q'= W+Q$为气体放出的热量(高温热源吸收的热量)。}
 \begin{figure}[H]
     \centering
     \includegraphics[width = \textwidth]{pic/热机冷机示意图.pdf}
@@ -919,9 +928,9 @@ $\mathrm{d}t$时间内通过狭缝$\mathrm{d}l$的总粒子数：
 \end{figure}
 热机从高温热源吸收热量，对外做功，并将将剩下的热量返还给低温热源；冷机从低温热源吸收热量，对外做功，并将剩下的热量返还给高温热源。
 \subsubsection{卡诺定理：}
-\ding{172}\ 可逆卡诺热机的效率$\eta$仅取决于温度$T_2$、$T_1$，与热机过程无关。\par
-\ding{173}\ 不可逆热机的效率$\eta' \le \eta$。
-{\par\color{gray}\small 只有无耗散的准静态过程才是可逆过程，其它一切过程(包括所有实际过程)都是不可逆过程。}\par
+\ding{172}\ 一对高低温热源之间的可逆热机效率$\eta$仅取决于温度$T_2$、$T_1$，与热机过程无关。\par
+\ding{173}\ 不可逆热机的效率$\eta' \le $可逆热机效率$\eta$。
+{\par\color{gray}\small 只有无耗散的准静态过程才是可逆过程，其它一切过程(包括所有实际过程)都是不可逆过程。但是，目前所接触到的几乎所有问题，都是近似为可逆过程来计算。}\par
 推论：可逆卡诺热机效率、卡诺制冷机制冷系数为(一对高低温热源间理论最高效率)：
 \begin{equation}
     \eta = \frac{T_1 - T_2}{T_1} = \frac{\Delta T}{T_{\text{高}}}\ ,\ \ \varepsilon = \frac{T_2}{T_1 - T_2} =\frac{T_{\text{低}}}{\Delta T} = \frac{1}{\eta} -1
@@ -948,7 +957,12 @@ https://www.zhihu.com/question/22702847?utm\_id=1919810 \par
 \subsubsection{热力学第二定律：}
 \ding{172}\ 克劳修斯表述：不可能将热量从低温物体传递到高温物体而不产生任何其它影响。\par
 \ding{173}\ 开尔文表述：不可能从单一热源吸收热量使之完全转化为有用功而不产生其它影响。\par
-\ding{174}\ 克劳修斯不等式(数学表述)：
+\ding{174}\ 熵增原理：孤立系统熵值永不减小(可逆时不变，不可逆时增大)。\par
+{\par\color{gray}\small
+孤立系统发生的过程都为绝热过程，本质是系统经绝热过程由一状态达到另一状态，熵不减小
+\par}
+
+\ding{175}\ 克劳修斯不等式(数学表述)：
 \begin{gather}
     \oint \frac{\mathrm{d}Q}{\, T\, } \le 0\ ,\ \ 
     \mathrm{d}S \ge \frac{\mathrm{d}Q}{T}
@@ -985,12 +999,12 @@ https://www.zhihu.com/question/22702847?utm\_id=1919810 \par
 \end{gather}
 \noindent\ding{173}\ 理想气体的熵函数与熵变：
 \begin{gather}
-    {\color{red}\Delta S(T,V) = C_V\ln \left(\frac{T}{T_0}\right) + \nu R \ln \left(\frac{V}{V_0}\right)}  \\
-    {\color{red}\Delta S(T,p) = C_p\ln \left(\frac{T}{T_0}\right) {\ \color{red} -\ } \nu R \ln \left(\frac{p}{p_0}\right)} \\
+    \Delta S(T,V) = C_V\ln \left(\frac{T}{T_0}\right) + \nu R \ln \left(\frac{V}{V_0}\right)  \\
+    \Delta S(T,p) = C_p\ln \left(\frac{T}{T_0}\right) - \nu R \ln \left(\frac{p}{p_0}\right) \\
     \Delta S = C_V \ln \left( \frac{p}{p_0}\right) + C_p \ln \left(\frac{V}{V_0}\right)\ \ \ {\color{red}\text{待定！！！}}
 \end{gather}
 {\par\color{gray}\small
-例如，计算{\color{red}自由膨胀过程 ($Q= 0, W=0, T=T_0$)} 的熵变时，可以设计等温过程，也可设计绝热+等体过程。
+{\color{red}掌握推导}，并注意两式为一加一减。另外，计算{\color{red}自由膨胀过程 ($Q= 0, W=0, T=T_0$)} 的熵变时，可以设计等温过程，也可设计绝热+等体过程。
 \par}
 
 \begin{graybox}
@@ -1104,9 +1118,9 @@ $n=0$时等压，$n=1$时等温，$n=\gamma$时绝热，$n=+\infty$时等体。�
     \toprule
     名称 & 定义 & 热力学基本方程(可逆) & 基本方程(不可逆)  \\
     \midrule
-     内能$U$ & $U = U(T,V)$ & $\mathrm{d}U = T\mathrm{d}S -p\mathrm{d}V $ &  $\mathrm{d}U < T\mathrm{d}S -p\mathrm{d}V $ \\
-     焓$H$ & $H = U+pV$ & $\mathrm{d}H = T\mathrm{d}S V + \mathrm{d}p$ &$\mathrm{d}H < T\mathrm{d}S V + \mathrm{d}p$\\
-     自由能$F$ & $F = U-TS$ & $\mathrm{d}F = -S\mathrm{d}T-p\mathrm{d}V$ & $\mathrm{d}F < -S\mathrm{d}T-p\mathrm{d}V$  \\
+    内能$U$ & $U = U(T,V)$ & $\mathrm{d}U = T\mathrm{d}S -p\mathrm{d}V $ &  $\mathrm{d}U < T\mathrm{d}S -p\mathrm{d}V $ \\
+    焓$H$ & $H = U+pV$ & $\mathrm{d}H = T\mathrm{d}S  + V\mathrm{d}p$ &$\mathrm{d}H < T\mathrm{d}S  + V\mathrm{d}p$\\
+    自由能$F$ & $F = U-TS$ & $\mathrm{d}F = -S\mathrm{d}T-p\mathrm{d}V$ & $\mathrm{d}F < -S\mathrm{d}T-p\mathrm{d}V$  \\
     自由焓$G$ & $G = H - TS$ & $\mathrm{d}G = -S\mathrm{d}T + V\mathrm{d}p$ & $\mathrm{d}G < -S\mathrm{d}T + V\mathrm{d}p$  \\
     \bottomrule
     \end{tabular}
@@ -1114,7 +1128,7 @@ $n=0$时等压，$n=1$时等温，$n=\gamma$时绝热，$n=+\infty$时等体。�
 (等温等体)最大功原理： $\mathrm{d}W' \le -\mathrm{d}F$，(等温等压)最大非体积功： $\mathrm{d}W'' \le -\mathrm{d}G$
 
 {\par\color{gray}\small
-上表中的不等式当且仅当过程可逆时取等，在实际的题目中，除非题目特别指明，一般都近似为可逆过程处理。另外，在等温等体条件下，系统热平衡态对应自由能$F$的极小值点，在等温等压条件下，系统热平衡态对应自由焓(吉布斯自由能) $G$的极小值点。
+上表中的不等式当且仅当过程可逆时取等，在实际的题目中，除非题目特别指明，一般都近似为可逆过程处理。另外，{\color{red}在等温等体条件下，系统热平衡态对应自由能$F$极小，在等温等压条件下，系统热平衡态对应自由焓(吉布斯自由能) $G$极小。}
 \par}
 八个偏导数关系（由热力学基本方程导出）：
 \begin{table}[H]
@@ -1134,11 +1148,11 @@ $n=0$时等压，$n=1$时等温，$n=\gamma$时绝热，$n=+\infty$时等体。�
 
 两个热容关系：
 \begin{gather}
-     C_V = \left(\frac{\partial U }{\partial T }\right)_{V} =  \left(\frac{\partial U }{\partial S }\right)_{V} \left(\frac{\partial S }{\partial T }\right)_{V} = T \left(\frac{\partial S }{\partial T }\right)_{V}
-     \Longrightarrow {\color{red}\left(\frac{\partial S}{\partial T}\right)_V = \frac{C_V}{T} }
-     \\
-      C_p = \left(\frac{\partial H }{\partial T }\right)_{p} =  \left(\frac{\partial H }{\partial S }\right)_{p} \left(\frac{\partial S }{\partial T }\right)_{p} = T \left(\frac{\partial S }{\partial T }\right)_{p}
-      \Longrightarrow  {\color{red}\left(\frac{\partial S}{\partial T}\right)_p =\frac{C_p}{T} }
+    C_V = \left(\frac{\partial U }{\partial T }\right)_{V} =  \left(\frac{\partial U }{\partial S }\right)_{V} \left(\frac{\partial S }{\partial T }\right)_{V} = T \left(\frac{\partial S }{\partial T }\right)_{V}
+    \Longrightarrow {\color{red}\left(\frac{\partial S}{\partial T}\right)_V = \frac{C_V}{T} }
+    \\
+    C_p = \left(\frac{\partial H }{\partial T }\right)_{p} =  \left(\frac{\partial H }{\partial S }\right)_{p} \left(\frac{\partial S }{\partial T }\right)_{p} = T \left(\frac{\partial S }{\partial T }\right)_{p}
+    \Longrightarrow  {\color{red}\left(\frac{\partial S}{\partial T}\right)_p =\frac{C_p}{T} }
 \end{gather}
 
 Maxwell关系：
@@ -1154,11 +1168,11 @@ Maxwell关系：
 \par}
 
 \subsubsection{内能、焓与状态方程：}
-\noindent\ding{172} $S = S(T,V)$导出内能$U$与状态方程$p,V,T$的关系：
+\noindent\ding{172} $S = S(T,V)$导出内能$U$与状态方程$p,V,T$的关系，即$\mathrm{d}U = \mathrm{d}U(T,V)$：
 \begin{gather}{\color{red}
     \left(\frac{\partial U }{\partial V }\right)_{T} = T \left(\frac{\partial p }{\partial T }\right)_{V} -p}
     \Longrightarrow 
-    \mathrm{d}U = \left[ T \left(\frac{\partial p }{\partial T }\right)_{V} -p\right]\mathrm{d}V + C_V\mathrm{d}T
+    \mathrm{d}U(T,V) = C_V\mathrm{d}T + \left[ T \left(\frac{\partial p }{\partial T }\right)_{V} -p\right]\mathrm{d}V 
 \end{gather}
 \begin{graybox}
 \textbf{上式的证明：}
@@ -1171,9 +1185,9 @@ Maxwell关系：
 \end{align*}
 \end{graybox}
 
-\noindent\ding{173} $S = S(T,p)$导出焓$H$与状态方程$p,V,T$的关系：
+\noindent\ding{173} $S = S(T,p)$导出焓$H$与状态方程$p,V,T$的关系，即$\mathrm{d}H = \mathrm{d}H(T,p)$：
 \begin{equation}
-    {\color{red}\left(\frac{\partial H }{\partial V }\right)_{T} = - T\left(\frac{\partial V }{\partial T }\right)_{p} +V}\Longrightarrow \mathrm{d}H = \left[- T\left(\frac{\partial V }{\partial T }\right)_{p} +V\right]\mathrm{d}p + C_p\mathrm{d}T
+    {\color{red}\left(\frac{\partial H }{\partial V }\right)_{T} = - T\left(\frac{\partial V }{\partial T }\right)_{p} +V}\Longrightarrow \mathrm{d}H = C_p\mathrm{d}T + \left[- T\left(\frac{\partial V }{\partial T }\right)_{p} +V\right]\mathrm{d}p 
 \end{equation}
 \begin{graybox}
 \textbf{上式的证明：}
@@ -1194,7 +1208,7 @@ Maxwell关系：
 {\par\color{gray}\small
 相应的，会衍生出开放系统下的热力学基本方程，例如$T\mathrm{d}S = \mathrm{d}U + p\mathrm{d}V +\mu\mathrm{d}N$，它们可由$\mathrm{d}G = -S\mathrm{d}T +V\mathrm{d}p + \mu\mathrm{d}N$导出，这里不再赘述。\par
 \par}
-特别地，对所有单相物质，其吉布斯自由能$G$与粒子个数$N$成正比，因此$ \mu = \left(\frac{\partial G }{\partial N }\right)_{T,p} = \frac{G}{N}$
+特别地，对所有单相物质，其吉布斯自由能$G$与粒子个数$N$成正比，因此$ \mu = \left(\frac{\partial G }{\partial N }\right)_{T,p} {\color{red}= \frac{G}{N}}$
 
 
 \subsubsection{开放系统：}
@@ -1235,24 +1249,32 @@ Maxwell关系：
 能斯特定理表明，在绝对零度的条件下，任何凝聚物质系统的熵的差值都为 0。这就是说，确实存在使任何物质的熵都相同的状态。因此对于熵，存在标准参考点。像上式，选取绝对零度为熵的零点，称为普朗克熵。
 \par}
 \subsubsection{热力学第三定律：}
-\ding{172} 普朗克熵表述：任意纯物质在绝对温度为0时的熵为0，即$\lim_{T\rightarrow 0} S(T) = 0$\par
-\ding{173} 另一表述：
-不可能通过有限的过程把一个物体的温度冷却到绝对零度。
+\ding{172} 常见表述：
+不可能通过有限步骤把一个物体的温度冷却到绝对零度。
 {\par\color{gray}\small
 但不排除通过一些手段无限接近绝对零度的可能性。
 \par}
+\ding{173} 普朗克熵表述：任意纯物质在绝对温度为0时的熵为0，即$\lim_{T\rightarrow 0} S(T) = 0$\par
 
 \chapter{液态系统的性质}
 \section{液体的性质}
 液体的分类，微观结构与研究方法详见课本，这里不再赘述。
+\subsubsection{液体黏度}
+对液体的(剪切)黏度，我们有费朗科尔-安德逊公式：
+\begin{equation}
+\eta = \eta_0e^{\frac{E_a}{k_BT}}
+\end{equation}
+{\par\color{gray}\small
+其中$\eta_0$为常量，$E_a$为液体分子激活能，它们都由系统的内禀性质决定。
+\par}
+
 \subsubsection{液体热容量：}
+液体的定压热容$C_p^{(l)}$与固体定压热容相近，但定体热容不确定。
 \ding{172}定压热容$C_p^{(l)}$：\par
-液体的定压热容$C_p^{(l)}$与固体定压热容相近：
 \begin{equation}
     C_p^{(l)} = C_p^{(s)} = 3\nu R\ \ {\color{gray}(t=0, r=0, s=3)} 
 \end{equation}
 \par\ding{173}定体热容$C_V^{(l)}$：\par
-但定体热容不确定：
 \begin{gather}\label{液体定体热容}
     C_p - C_V = T\left(\frac{\partial p}{\partial T}\right)_V\left(\frac{\partial V}{\partial T}\right)_p = VT\frac{\alpha^2}{\kappa}\ \ \text{\color{gray}(对任意系统成立)}\\
     \Longrightarrow C_V  = 3\nu R  - T\left(\frac{\partial p}{\partial T}\right)_V\left(\frac{\partial V}{\partial T}\right)_p
@@ -1299,8 +1321,8 @@ Maxwell关系：
     \sigma = (1 - \xi )\frac{L_m}{N_A}\left(\frac{\rho N_A}{\mu}\right)^{\frac{2}{3}}
 \end{equation}   \par
 {\par\color{gray}\small
-$\sigma = \frac{\mathrm{d}W}{\mathrm{d}A}$称为表面张力系数，$\mathrm{d}A$表示液体的面积增量微元；$\xi$为相对粒子数密度(液体表面层内的组分粒子数密度占内部的粒子数密度的百分比，多数液体$\xi \approx 0.7$)，$L_m$为液体摩尔汽化热，$\rho$为气体密度，$\mu$为液体摩尔质量。\par
-注意：液膜有两个表面，因此表面积发生变化时，表面能变化(即外界做功量) ${\color{red}\mathrm{d}F = 2\sigma \mathrm{d}A}$
+$\sigma = \frac{\mathrm{d}W}{\mathrm{d}A}$称为表面张力系数，$\mathrm{d}A$表示液体的面积增量微元；$\xi$为相对粒子数密度(液体表面层粒子数密度占内部粒子数密度的比值，多数为$\xi \approx 0.7$)，$L_m$为液体摩尔汽化热，$\rho$为气体密度，$\mu$为液体摩尔质量。\par
+注意：液膜有两个表面，因此表面积发生变化时，表面能变化(即外界做功量) ${\color{red}\mathrm{d}F_S = 2\sigma \mathrm{d}A}$
 \par}
 
 \subsubsection{表面能与表面内能：}
@@ -1310,7 +1332,7 @@ $\sigma = \frac{\mathrm{d}W}{\mathrm{d}A}$称为表面张力系数，$\mathrm{d}
 \end{equation*}
 {\par\color{gray}\small
 其中$A$为表面面积，$\sigma$为表面张力系数。\par
-注意：$F_S$仅为表面自由能，总自由能由$F_G = U-TS$和$F_S = \sigma A$构成，例如$\Delta W =  \Delta F = \Delta F_G + \Delta F_S$。
+注意：$F_S$仅为表面自由能，总自由能由$F_G = U-TS$和$F_S = \sigma A$构成，例如 {\color{red}$\Delta W =  \Delta F = \Delta F_G + \Delta F_S$}。
 \par}
 \begin{graybox}
 \textbf{上式的证明：}\\
@@ -1320,7 +1342,7 @@ $\sigma = \frac{\mathrm{d}W}{\mathrm{d}A}$称为表面张力系数，$\mathrm{d}
     \mathrm{d}F(A,T)  = \left(\frac{\partial F }{\partial A }\right)_{T}\mathrm{d}A + \left(\frac{\partial F }{\partial T }\right)_{A}\mathrm{d}T &= \sigma \mathrm{d}A + A \left(\frac{\partial \sigma }{\partial T }\right)_{A}\mathrm{d}T \ \ \text{\color{gray}(由$F = F(A,T) = \sigma A$)} 
 \end{align*}
 两式对比即得{\color{red}$S = -  A \left(\frac{\partial \sigma }{\partial T }\right)_{A}$}，因此：
-\begin{equation*}
+\noindent\begin{equation*}
     F_S = \sigma A\ ,\ \ U_S = \sigma A -TA \left(\frac{\partial \sigma }{\partial T }\right)_{A}
 \end{equation*}
 \end{graybox}
@@ -1351,7 +1373,7 @@ $\sigma = \frac{\mathrm{d}W}{\mathrm{d}A}$称为表面张力系数，$\mathrm{d}
     \cos\theta = \frac{\sigma_{13}^2 - (\sigma_{12} +\sigma_{23})^2}{2\sigma_{12}\sigma_{23}}
 \end{equation} 
 {\par\color{gray}\small
-在液体1与空气2的交界面上有一滴液体2，在三者交界处取一线元$\mathrm{d}l$，由力学平衡，作平方后相加即得。两种介质交界面处，若两种都不为真空，则表面张力系数是相对的，因此写作$\sigma_{12}$。
+在液体1与空气3的交界面上有一滴液体2，在三者交界处取一线元$\mathrm{d}l$，由力学平衡，作平方后相加即得。两种介质交界面处，若两种都不为真空，则表面张力系数是相对的，因此写作$\sigma_{ij}$或$\sigma_{ji}$。
 \par} \par
 \ding{175}\ 固液接触角：
 \begin{equation}
@@ -1359,35 +1381,46 @@ $\sigma = \frac{\mathrm{d}W}{\mathrm{d}A}$称为表面张力系数，$\mathrm{d}
 \end{equation}\par
 \ding{176}\ 粗糙表面：
 \begin{equation}
-    \cos \theta' = r\cos\theta
+    \cos \theta' = r\cos\theta\ ,\ \ r \in [1,+\infty]
 \end{equation}
 \ding{177}\ 有气泡粗糙表面：
 \begin{equation}
-    \cos \theta' = f-1 + rf\cos\theta
+    \cos \theta' = f-1 + rf\cos\theta\ ,\ \ f \in [0,1],\ r \in [1,+\infty] 
 \end{equation}
 {\par\color{gray}\small
 $\theta'$为粗糙面上的接触角，$r = \frac{\text{真实表面面积}}{\text{投影面积}} >1$为粗糙度，$0\le f\le 1$为投影面积中润湿部分的比值(全部润湿时$f=1$)。
 \par}
 
 \subsubsection{毛细现象：}
-\par\ding{172}\  直立圆柱毛细管：
+
+任意固定一高度为参考点(一般选取管外液体表明)，设该点处液体压强为$p_0$，则我们有：
 \begin{equation}
+    {\color{red}\Delta p = \rho g h}
+\end{equation}
+{\par\color{gray}\small
+其中$h$为高出参考点的高度，$\Delta p$由拉普拉斯定理得到。下面是三个具体例子：
+\par}
+
+{\par\color{gray}\small
+\par\ding{172}\  直立圆柱毛细管：
+\begin{equation*}
     h = \frac{2\sigma \cos\theta}{\rho gr}
-\end{equation}  
+\end{equation*}  
 {\par\color{gray}\small
 $\sigma$为液体与空气间的表面张力系数，$r$为毛细管半径，$\theta$为固液接触角。
-\par}
- \par
+\par}\par
 \ding{173}\   两竖直平行板：  \par
 {\par\color{gray}\small
-\begin{equation}
+\begin{equation*}
     h = \frac{2\sigma \cos\theta}{\rho gr}
-\end{equation}
+\end{equation*}
 \par}
 \ding{174}\  两相交平面：
-\begin{equation}
-   h= h = \frac{2\sigma \cos\theta}{\rho g \varphi x}
-\end{equation}   \par
+\begin{equation*}
+    h= h = \frac{2\sigma \cos\theta}{\rho g \varphi x}
+\end{equation*}   \par
+\par}
+
 
 \chapter{相变与复相平衡}
 \section{相变与相平衡}
@@ -1415,22 +1448,26 @@ $\sigma$为液体与空气间的表面张力系数，$r$为毛细管半径，$\t
     \frac{\mathrm{d} p}{\mathrm{d}T} = \frac{\Lambda_m}{T(V_{\beta,m}-V_{\alpha,m})}
 \end{equation}
 {\par\color{gray}\small
-其中$\Lambda_m$为摩尔相变潜热(例如摩尔熔解热、摩尔汽化热)，$T$为相变温度(如熔解稳定)$V_{\beta,m}$为$\beta$相的摩尔体积，$V_{\alpha,m}$为$\alpha$相的摩尔体积。\par
-设$V_{\alpha,m}$可忽略且$\beta$可视为理想气体，则可以估算某温度区间的平均相变潜热(两点趋近即为某确定温度的相变潜热)：
-\begin{equation}
-   \Lambda_m = R\frac{\frac{1}{p}\mathrm{d}p}{\frac{1}{T^2}\mathrm{d}T}\Longrightarrow \overline{\Lambda_m} = \frac{R(\ln p_1 - \ln p_2)}{\frac{1}{T_1} - \frac{1}{T_2}} =  R\ln(\frac{p_1}{p_2})\frac{T_1T_2}{T_1 - T_2}
-\end{equation}
+其中$\Lambda_m$为摩尔相变潜热(例如摩尔熔解热、摩尔汽化热)，在一级相变中$\Lambda_m = T(S_{\beta,m} - S_{\alpha,m})$，$T$为相变温度(如熔解稳定)$V_{\beta,m}$为$\beta$相的摩尔体积，$V_{\alpha,m}$为$\alpha$相的摩尔体积。\par
+设$V_{\alpha,m}$可忽略且$\beta$可视为理想气体，则可以估算某温度区间的平均相变潜热：
+\begin{equation*}
+    \Lambda_m = R\frac{\frac{1}{p}\mathrm{d}p}{\frac{1}{T^2}\mathrm{d}T}\Longrightarrow \overline{\Lambda_m} = \frac{R(\ln p_1 - \ln p_2)}{\frac{1}{T_1} - \frac{1}{T_2}} =  R\ln(\frac{p_1}{p_2})\frac{T_1T_2}{T_1 - T_2}
+\end{equation*}
+当然，其实也可以用：
+\begin{equation*}
+    \Lambda_m = R\frac{\frac{1}{p}\mathrm{d}p}{\frac{1}{T^2}\mathrm{d}T} = \frac{RT^2}{p}\cdot \frac{\mathrm{d}p}{\mathrm{d}T}
+\end{equation*}
 注意：熔解热、液化热、汽化热都是指\textcolor{red}{单位质量}吸收/放出的热量，有 \textcolor{red}{ $l = \frac{\Lambda_m}{\mu}$}。
 \par}
 
 \subsubsection{二级相变：}
-二级相变的结论需要利用麦克斯韦偏导关系：
+对于二级相变，我们有埃伦费斯特方程：
 \begin{gather}
     \frac{\mathrm{d} p}{\mathrm{d}T} = \frac{C_{p,m,\beta} - C_{p,m,\alpha}}{TV_m(\alpha_\beta - \alpha_\alpha)}\\
     \frac{\mathrm{d} p}{\mathrm{d}T} = \frac{\alpha_\beta - \alpha_\alpha}{\kappa_{T,\beta} - \kappa_{T,\alpha}}
 \end{gather}
 {\par\color{gray}\small
-其中$C_{p,m,\beta}, C_{p,m,\alpha}$为摩尔定压热容，$\alpha_\beta, \alpha_\alpha$为体膨胀系数，$\kappa_{T,\beta}, \kappa_{T,\alpha}$为等温压缩系数。
+其中$C_{p,m,\beta}, C_{p,m,\alpha}$为摩尔定压热容，$\alpha_\beta, \alpha_\alpha$为体膨胀系数，$\kappa_{T,\beta}, \kappa_{T,\alpha}$为等温压缩系数。结论的推导用到 Maxwell 偏导关系。
 \par}
 
 

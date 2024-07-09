@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.10.30)  2 JUL 2024 21:24
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.10.30)  3 JUL 2024 08:36
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -835,12 +835,12 @@ File: pic/热机冷机示意图.pdf Graphic file (type pdf)
 Chapter 5.
 [25
 
-] [26] [27] [28] [29] [30] [31]
-Chapter 6.
-
-Underfull \vbox (badness 4805) detected at line 1297
+] [26]
+Underfull \vbox (badness 1348) detected at line 1080
  []
 
+[27] [28] [29] [30] [31]
+Chapter 6.
 [32
 
 ] [33] [34] [35]
@@ -858,10 +858,10 @@ Package rerunfilecheck Info: File `"Thermodynamics Notes".out' has not changed.
 (rerunfilecheck)             Checksum: <no file>.
  ) 
 Here is how much of TeX's memory you used:
- 20350 strings out of 475055
- 431870 string characters out of 5767765
+ 20349 strings out of 475055
+ 431859 string characters out of 5767765
  1950667 words of memory out of 5000000
- 41828 multiletter control sequences out of 15000+600000
+ 41827 multiletter control sequences out of 15000+600000
  577728 words of font info for 166 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  93i,17n,97p,412b,608s stack positions out of 10000i,1000n,20000p,200000b,200000s

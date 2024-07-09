@@ -95,7 +95,7 @@
 \contentsline {subsubsection}{热力学基本关系：}{28}{section.5.3}%
 \contentsline {subsubsection}{内能、焓与状态方程：}{29}{equation.5.3.19}%
 \contentsline {subsubsection}{化学势：}{30}{equation.5.3.21}%
-\contentsline {subsubsection}{开放系统：}{30}{equation.5.3.21}%
+\contentsline {subsubsection}{开放系统：}{31}{equation.5.3.21}%
 \contentsline {subsubsection}{不同系统的热平衡判据：}{31}{equation.5.3.21}%
 \contentsline {section}{\numberline {5.4}热力学第三定律}{31}{section.5.4}%
 \contentsline {subsubsection}{熵的标准参考点：}{31}{section.5.4}%
@@ -106,17 +106,16 @@
 \contentsline {subsubsection}{液体热容量：}{32}{equation.6.1.1}%
 \contentsline {subsubsection}{液体输运性质：}{33}{equation.6.1.4}%
 \contentsline {subsubsection}{液体表面性质：}{33}{equation.6.1.6}%
-\contentsline {subsubsection}{表面能与表面内能：}{34}{equation.6.1.8}%
+\contentsline {subsubsection}{表面能与表面内能：}{33}{equation.6.1.8}%
 \contentsline {subsubsection}{拉普拉斯公式：}{34}{equation.6.1.8}%
 \contentsline {section}{\numberline {6.2}润湿与毛细现象}{34}{section.6.2}%
 \contentsline {subsubsection}{润湿现象：}{34}{section.6.2}%
 \contentsline {subsubsection}{毛细现象：}{35}{equation.6.2.14}%
 \contentsline {chapter}{\numberline {7}相变与复相平衡}{36}{chapter.7}%
-\contentsline {section}{\numberline {7.1}相变与相平衡}{36}{section.7.1}%
-\contentsline {subsubsection}{相与相平衡：}{36}{section.7.1}%
-\contentsline {subsubsection}{相变：}{36}{equation.7.1.2}%
-\contentsline {subsubsection}{一级相变：}{36}{equation.7.1.3}%
-\contentsline {subsubsection}{二级相变：}{37}{equation.7.1.4}%
-\contentsline {chapter}{参考文献}{38}{equation.7.1.6}%
-\contentsline {chapter}{附录}{38}{equation.7.1.6}%
+\contentsline {subsubsection}{相与相平衡：}{36}{chapter.7}%
+\contentsline {subsubsection}{相变：}{36}{equation.7.0.2}%
+\contentsline {subsubsection}{一级相变：}{36}{equation.7.0.3}%
+\contentsline {subsubsection}{二级相变：}{37}{equation.7.0.4}%
+\contentsline {chapter}{参考文献}{38}{equation.7.0.6}%
+\contentsline {chapter}{附录}{38}{equation.7.0.6}%
 \contentsline {section}{\numberline {.1}常见物理常量表}{38}{section.Alph0.1}%

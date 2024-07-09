@@ -959,7 +959,7 @@ https://www.zhihu.com/question/22702847?utm\_id=1919810 \par
 \ding{173}\ 开尔文表述：不可能从单一热源吸收热量使之完全转化为有用功而不产生其它影响。\par
 \ding{174}\ 熵增原理：孤立系统熵值永不减小(可逆时不变，不可逆时增大)。\par
 {\par\color{gray}\small
-孤立系统发生的过程都为绝热过程，本质是系统经绝热过程由一状态达到另一状态，熵不减小
+孤立系统发生的过程都为绝热过程，本质是系统经绝热过程由一状态达到另一状态，熵不减小。也可表述为：热力学系统从一个平衡态经绝热过程到达另一个平衡态, 它的熵永不减少。若过程可逆，则其熵不变；若过程不可逆，则其熵增加。
 \par}
 
 \ding{175}\ 克劳修斯不等式(数学表述)：
@@ -1265,7 +1265,7 @@ Maxwell关系：
 \eta = \eta_0e^{\frac{E_a}{k_BT}}
 \end{equation}
 {\par\color{gray}\small
-其中$\eta_0$为常量，$E_a$为液体分子激活能，它们都由系统的内禀性质决定。
+其中$\eta_0 = \underset{{T\rightarrow+\infty}}{\lim} \eta(T)$为常量，$E_a$为液体分子激活能，它们都由系统的内禀性质决定。
 \par}
 
 \subsubsection{液体热容量：}
@@ -1286,10 +1286,12 @@ Maxwell关系：
 \begin{graybox}
 \textbf{公式 \ref{液体定体热容} 的证明：}
 \begin{align*}
-    C_V &= \left(\frac{\partial Q}{\partial T}\right)_V = \left(\frac{\partial U}{\partial T}\right)_V\ \ {\color{gray} \mathrm{d}U = \mathrm{d}Q -p\mathrm{d}V,\ \mathrm{d}V=0} \\
-    C_p &= \left(\frac{\partial Q}{\partial T}\right)_p  =  \left(\frac{\partial H}{\partial T}\right)_p  \ \ {\color{gray} \mathrm{d}U = \mathrm{d}Q -p\mathrm{d}V ,\ H = U+pV,\ \mathrm{d}H = \mathrm{d}U + p\mathrm{d}V + V\mathrm{d}p (\mathrm{d}p=0)}\\
-    &= \left(\frac{\partial (U+pV)}{\partial T}\right)_p =  \left(\frac{\partial U}{\partial T}\right)_p + p \left(\frac{\partial V}{\partial T}\right)_p\\
-    &= \left[ \left(\frac{\partial U}{\partial T}\right)_V  + \left(\frac{\partial U}{\partial V}\right)_T\left(\frac{\partial V}{\partial T}\right)_p  \right]  + p \left(\frac{\partial V}{\partial T}\right)_p\ \  {\color{gray}U = U(T,V(T,p)),\ \text{由复合函数求导}}\\
+    C_V &= \left(\frac{\partial Q}{\partial T}\right)_V = \left(\frac{\partial U}{\partial T}\right)_V\ \ {\color{gray} \mathrm{d}U = \mathrm{d}Q -p\mathrm{d}V,\ \mathrm{d}V=0} \\ 
+    C_p &= \left(\frac{\partial Q}{\partial T}\right)_p  =  \left(\frac{\partial H}{\partial T}\right)_p  \ \ {\color{gray} \mathrm{d}U = \mathrm{d}Q -p\mathrm{d}V ,\ H = U+pV,\ \mathrm{d}H = \mathrm{d}U + p\mathrm{d}V + V\mathrm{d}p (\mathrm{d}p=0)}\\ 
+    &= \left(\frac{\partial (U+pV)}{\partial T}\right)_p =  \left(\frac{\partial U}{\partial T}\right)_p + p \left(\frac{\partial V}{\partial T}\right)_p \\ 
+    &= \left[ \left(\frac{\partial U}{\partial T}\right)_V  + \left(\frac{\partial U}{\partial V}\right)_T\left(\frac{\partial V}{\partial T}\right)_p  \right]  + p \left(\frac{\partial V}{\partial T}\right)_p\ \  {\color{gray}U = U(T,V(T,p)),\ \text{由复合函数求导}}
+\end{align*}
+\begin{align*}
     &= \left(\frac{\partial U}{\partial T}\right)_V + \left[ \left(\frac{\partial U}{\partial V}\right)_T +p \right]\left(\frac{\partial V}{\partial T}\right)_p\\
     &= \left(\frac{\partial U}{\partial T}\right)_V + \left[ T\left(\frac{\partial p}{\partial T}\right)_V\right]\left(\frac{\partial V}{\partial T}\right)_p\ \ {\color{gray}\text{内能与状态方程关系} \left(\frac{\partial U}{\partial V} \right)_T = T \left(\frac{\partial p}{\partial T}\right)_V - p}\\
     &\Longrightarrow C_p - C_V =  T\left(\frac{\partial p}{\partial T}\right)_V\left(\frac{\partial V}{\partial T}\right)_p
@@ -1423,7 +1425,6 @@ $\sigma$为液体与空气间的表面张力系数，$r$为毛细管半径，$\t
 
 
 \chapter{相变与复相平衡}
-\section{相变与相平衡}
 \subsubsection{相与相平衡：}
 在没有外界影响下，被一定边界包围的，具有确定并且均匀的物理和化学性质的一个系统（或系统的一部分）所处的状态称为物质的一个相。一般地，平衡态稳定条件可以表示为：
 \begin{equation}
@@ -1485,38 +1486,38 @@ $\sigma$为液体与空气间的表面张力系数，$r$为毛细管半径，$\t
 \newpage
 \appendix
 \addcontentsline{toc}{chapter}{附录}
-\titleformat{\section}{\large\centering\bfseries}{附录\thesection}{1em}{}
+\titleformat{\section}{\large\centering\bfseries}{Apendix\thesection}{1em}{}
 \titleformat{\subsection}{\normalsize\bfseries}{\thesubsection}{1em}{}
 
 \section{常见物理常量表}
 \begin{longtable}[H]{cccc}
-     \caption{\textbf{常见物理常量数值}}\\
-     \toprule
-     名称 & 符号&  数值& 单位\\
-     \midrule
-     \endfirsthead
-     % 这里是表格内容
-     \bottomrule
-     \endfoot
+    \caption{\textbf{常见物理常量数值}}\\
+    \toprule
+    名称 & 符号&  数值& 单位\\
+    \midrule
+    \endfirsthead
+    % 这里是表格内容
+    \bottomrule
+    \endfoot
 
-     \toprule
-     \multicolumn{4}{c}{\textbf{续上表}}\\
-     \midrule
-     名称 & 符号&  数值& 单位\\
-     \midrule
-     \endhead
-     % 这里是表格内容
-     \bottomrule
-     \endlastfoot
-     阿伏伽德罗常量& $N_\text{A}$ & $6.02\times 10^{23}  $ & $\mathrm{mol}^{-1}$\\
-     普适气体常量& $R=\frac{p_0V_m}{T_0} $& $8.31$& $\mathrm{J\cdot mol^{-1} \cdot K^{-1}}$\\
-     普适气体常量& $R=\frac{p_0V_m}{T_0} $& $0.082$& $\mathrm{atm\cdot L\cdot mol^{-1} \cdot K^{-1}}$\\ 
-     玻尔兹曼常量& $k_B=\frac{R}{N_A} $& $1.38\times10^{-23}$& $\mathrm{J\cdot K^{-1}}$\\
-     大气压强& $p_0$& $1.01\times 10^5$& $\mathrm{Pa}$\\
-     大气压强& $p_0$& $1$& $\mathrm{atm}$\\
-     大气压强& $p_0$& $760$& $\mathrm{mmHg}$\\
-     标准状况温度& $T_0$& $273.15$& $\mathrm{K}$\\
-     空气平均摩尔质量& $\mu_{\text{air}}$& $29\times 10^{-3}$& $\mathrm{kg\cdot mol^{-1}}$
-  \end{longtable}
-  
+    \toprule
+    \multicolumn{4}{c}{\textbf{续上表}}\\
+    \midrule
+    名称 & 符号&  数值& 单位\\
+    \midrule
+    \endhead
+    % 这里是表格内容
+    \bottomrule
+    \endlastfoot
+    阿伏伽德罗常量& $N_\text{A}$ & $6.02\times 10^{23}  $ & $\mathrm{mol}^{-1}$\\
+    普适气体常量& $R=\frac{p_0V_m}{T_0} $& $8.31$& $\mathrm{J\cdot mol^{-1} \cdot K^{-1}}$\\
+    普适气体常量& $R=\frac{p_0V_m}{T_0} $& $0.082$& $\mathrm{atm\cdot L\cdot mol^{-1} \cdot K^{-1}}$\\ 
+    玻尔兹曼常量& $k_B=\frac{R}{N_A} $& $1.38\times10^{-23}$& $\mathrm{J\cdot K^{-1}}$\\
+    大气压强& $p_0$& $1.01\times 10^5$& $\mathrm{Pa}$\\
+    大气压强& $p_0$& $1$& $\mathrm{atm}$\\
+    大气压强& $p_0$& $760$& $\mathrm{mmHg}$\\
+    标准状况温度& $T_0$& $273.15$& $\mathrm{K}$\\
+    空气平均摩尔质量& $\mu_{\text{air}}$& $29\times 10^{-3}$& $\mathrm{kg\cdot mol^{-1}}$
+\end{longtable}
+
 \end{document}

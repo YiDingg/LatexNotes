@@ -102,9 +102,10 @@
 \contentsline {section}{\numberline {6.1}多重线性映射与张量}{45}{section.6.1}%
 \contentsline {subsubsection}{张量(tensor)：}{45}{section.6.1}%
 \contentsline {subsubsection}{张量性质：}{45}{section.6.1}%
-\contentsline {section}{\numberline {6.2}张量代数}{46}{section.6.2}%
-\contentsline {subsubsection}{全张量空间、张量代数：}{46}{section.6.2}%
-\contentsline {subsubsection}{全对称张量空间：}{46}{section.6.2}%
-\contentsline {subsubsection}{ddd}{47}{section.6.2}%
-\contentsline {subsubsection}{全斜对称张量空间：}{47}{section.6.2}%
-\contentsline {chapter}{参考文献}{47}{section.6.2}%
+\contentsline {subsubsection}{线性空间的$(k,l)$型张量：}{46}{section.6.1}%
+\contentsline {section}{\numberline {6.2}张量代数}{47}{section.6.2}%
+\contentsline {subsubsection}{全张量空间、张量代数：}{47}{section.6.2}%
+\contentsline {subsubsection}{全对称张量空间：}{47}{section.6.2}%
+\contentsline {subsubsection}{带幺结合代数：}{48}{section.6.2}%
+\contentsline {subsubsection}{全斜对称张量空间：}{48}{section.6.2}%
+\contentsline {chapter}{参考文献}{48}{section.6.2}%

@@ -1987,9 +1987,19 @@ $t_u$称为沿$u$对$\A$的平移，且$\A^{\sharp } = \{t_u\mid u\in V\}$构成
 \section{多重线性映射与张量}
 
 \subsubsection{张量(tensor)：}
-定义：\begin{equation*}
+建议先阅读：\\ 
+https://zhuanlan.zhihu.com/p/311558501\\
+https://zhuanlan.zhihu.com/p/356975719\\ 
+https://zhuanlan.zhihu.com/p/340956105\par
+{\color{red}注：下面的笔记还未整理，有很多是不妥的甚至错误的。}
+{\par\color{gray}\small
+张量的定义在引入张量积之后，直接采取$(k,l)$型张量更自然。
+\par}
+
+定义：\begin{gather*}
+    V_1\otimes V_2\otimes \cdots \otimes V_k  =  \mathscr{L}(V_1,...,V_k:W)\\
     f:V_1\times V_2\times \cdots \times V_k \overset{linear}{\longmapsto }W \in \mathscr{L}(V_1,...,V_k:W)
-\end{equation*}  
+\end{gather*}  
 {\par\color{gray}\small
 记$V_1\times V_2\times \cdots \times V_k$到$W$的全体多重线性映射为$\mathscr{L}(V_1,...,V_k:W)$，则其构成一个向量空间。 设$\{v_{j_i}\mid j_i \in J_i\}$是$V_i$的一组基，$f:V_1\times V_2\times \cdots \times V_k \overset{linear}{\longmapsto }W \in \mathscr{L}(V_1,...,V_k:W)$，我们有：
 \begin{equation*}
@@ -2029,7 +2039,7 @@ $\forall\  U^*_i \subseteq V^*_i, i=1,...,k$, we define the tensor product of du
     &=\text{Span}\{\nu_{j_1} \otimes\nu_{j_2} \otimes\cdots \otimes\nu_{j_k}\mid j_1\in J_1,j_2\in J_2,\cdots,j_k\in J_k\}
 \end{align*}
 
-Suppose $V$ is a linear space on $\F$，regard $V = (V^*)^*$ as we define $v(f) = f(v) \in P,\ \forall\ f \in V^*$, then $v: V^* \longmapsto \F \in (V^*)^*$, so we have:
+Suppose $V$ is a linear space on $\F$，regard $V = (V^*)^*$ as we define $v(f) = f(v) \in \F,\ \forall\ f \in V^*$, then $v: V^* \longmapsto \F \in (V^*)^*$, so we have:
 \begin{equation*}
     V_1 \otimes V_2 \otimes \cdots \otimes V_k = \text{Span}\{v_{j_1} \otimes v_{j_2} \otimes\cdots \otimes v_{j_k}\mid j_1\in J_1,j_2\in J_2,\cdots,j_k\in J_k\}
 \end{equation*}
@@ -2037,7 +2047,48 @@ Suppose $V$ is a linear space on $\F$，regard $V = (V^*)^*$ as we define $v(f) 
 并且$\{v_{j_1} \otimes v_{j_2} \otimes\cdots \otimes v_{j_k}\mid j_1\in J_1,j_2\in J_2,\cdots,j_k\in J_k\}$构成$V_1 \otimes V_2 \otimes \cdots \otimes V_k$的一组基。
 \par}
 
-\begin{theorem}[]\label{}
+\ding{175}\ 矩阵张量积：
+设$A=(a_{ij})_{m_1\times n_1}\in M_{m_2\times n_2},B=(b_{ij})_{m_2\times n_2}\in M_{m_2\times n_2}$，定义其张量积：
+\begin{equation*}
+    A \otimes B = 
+    \begin{bmatrix}  
+        a_{11}B& a_{12}B& \cdots  & a_{1n}B \\  
+        a_{21}B& a_{22}B& \cdots  & a_{2n}B \\  
+        \vdots & \vdots & \ddots & \vdots \\  
+        a_{m1}B& a_{m2}B& \cdots  & a_{mn}B  
+    \end{bmatrix}_{m_1m_2\times n_1n_2}
+\end{equation*}
+{\par\color{gray}\small
+\begin{align*}
+    A,B: \begin{cases}
+        V \longrightarrow V',\ \F^n \longrightarrow \F^m, \vec{x} \longmapsto \vec{y}\\
+        V\times (V')^* \longrightarrow \F,\ \F^n \times (\F^m)^* \longrightarrow \F\\
+    \end{cases}\\
+    A\otimes B: \begin{cases}
+        V \longrightarrow V'\ \ (A\ \text{为线性变换而非线性函数($V \longrightarrow \F$)}) \\
+        \F^n \longrightarrow \F^m \\
+        \vec{x} \longmapsto \vec{y}
+    \end{cases}
+\end{align*}
+\par}
+\begin{equation*}
+    \varphi(A\otimes B) = \text{一坨}
+\end{equation*}
+\subsubsection{线性空间的$(k,l)$型张量：}
+通过自然同构，任意的张量$T: V^l \longrightarrow V^k$可看作是${V^*\times\cdots\times V^*}_l \longrightarrow \F$，反之也成立，因此我们只定义线性函数的张量积即可。\par
+定义线性空间$V$上的$(k,l)$型张量空间$\mathscr{T}_V(k, l)$，其中$v \in V : V^* \longrightarrow \F$视为线性函数(不一定是到$\F$)：
+\begin{align*}
+    \mathscr{T}_V(k, l) 
+    & = \underbrace{V\otimes\cdots\otimes V}_k\otimes\underbrace{V^*\otimes\cdots\otimes V^*}_l 
+    =\text{Span}\{\underbrace{v_{j_1} \otimes\cdots \otimes v_{j_k}}_k\otimes \underbrace{v^{j_1} \otimes\cdots \otimes v^{j_l}}_l\mid j_{r} \in J_{r}\} \\
+    T &\in \mathscr{T}_V(k, l): (V)^k \times (V^*)^l = \underbrace{V\times\cdots\times V}_k\times\underbrace{V^*\times\cdots\times V^*}_l \longrightarrow \F
+\end{align*}
+{\par\color{gray}\small
+元素$T\in \mathscr{T}_V(k, l)$称为$V$的$(k,l)$型张量。容易看出，$V = \mathscr{T}_V(1,0)$而$V^* = \mathscr{T}_V(0,1)$。
+\par}
+
+
+\begin{theorem}[无名]\label{无名}
 设$U$和$V$为$\F$上的有限维向量空间，对任意$\zeta = \sum_{i=1}^{n}f_i\otimes v_i \in U^*\otimes V $，定义$\varphi_{\zeta}(u) = \sum_{i=1}^{n}f_i(u)v_i \in V,\ \forall\ u\in U$，则$\varphi_{\zeta} \in \mathscr{L}(U,V)$且有：
 \begin{equation*}
     \text{映射}\ \begin{cases}
@@ -2045,6 +2096,7 @@ Suppose $V$ is a linear space on $\F$，regard $V = (V^*)^*$ as we define $v(f) 
         \zeta \longmapsto \varphi_{\zeta}
     \end{cases} \ \text{构成}\ U^*\otimes V \cong \mathscr{L}(U,V)
 \end{equation*}
+
 
 \section{张量代数}
 
@@ -2093,7 +2145,7 @@ $\T^m(V)$中的元素称为$V$的$m$阶张量。
     \S = \sum_{i=0}^{\infty}\S^i(V) = \sum_{i=0}^{\infty} \text{Sym}(\T^i(V))
 \end{equation*}   \par
 
-\subsubsection{ddd}
+\subsubsection{带幺结合代数：}
 设$\A$为带幺结合代数，$\A$的子空间$\I$称为$\A$的理想如果：
 \begin{equation*}
     u\cdot \I,\ \I\cdot u \subseteq \I\ ,\ \ \forall\ u\in \I
@@ -2106,9 +2158,9 @@ $\T^m(V)$中的元素称为$V$的$m$阶张量。
 {\par\color{gray}\small
 类似地定义：
 \begin{equation*}
-    \text{Alt}(v_{j_1} \otimes v_{j_2} \otimes\cdots \otimes v_{j_m}) =  {\color{red}\frac{1}{m!}}\sum_{\sigma\in S_m}{\color{red}\varepsilon_{\sigma}}v_{j_{\sigma(1)}} \otimes v_{j_{\sigma(2)}} \otimes\cdots \otimes v_{j_{\sigma(m)}}
+    \text{Alt}(v_{j_1} \otimes v_{j_2} \otimes\cdots \otimes v_{j_m}) =  \frac{1}{m!}\sum_{\sigma\in S_m}\varepsilon_{\sigma}\cdot v_{j_{\sigma(1)}} \otimes v_{j_{\sigma(2)}} \otimes\cdots \otimes v_{j_{\sigma(m)}}
 \end{equation*}   
-其中$\varepsilon=\begin{cases}
+其中$\varepsilon_{\sigma}=\begin{cases}
     1 &, \text{if }\  \sigma\ \text{为奇置换}\\
     -1 &, \text{if }\  \sigma\ \text{为偶置换}
 \end{cases}$

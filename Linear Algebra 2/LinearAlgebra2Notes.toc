@@ -1,0 +1,113 @@
+\contentsline {chapter}{序言}{I}{Doc-Start}%
+\contentsline {chapter}{\numberline {1}空间与形式}{1}{chapter.1}%
+\contentsline {section}{\numberline {1.1}线性空间}{1}{section.1.1}%
+\contentsline {subsubsection}{用初等对称多项式表示对称多项式：}{1}{theorem.1}%
+\contentsline {subsubsection}{线性空间定义：}{2}{theorem.1}%
+\contentsline {subsubsection}{线性空间基本性质：}{2}{theorem.1}%
+\contentsline {subsubsection}{线性空间的子空间：}{2}{theorem.1}%
+\contentsline {subsubsection}{一些常见的线性空间：}{2}{theorem.1}%
+\contentsline {section}{\numberline {1.2}基与维数}{3}{section.1.2}%
+\contentsline {subsubsection}{线性相关/无关：}{3}{section.1.2}%
+\contentsline {subsubsection}{基：}{3}{section.1.2}%
+\contentsline {subsubsection}{等价向量组：}{3}{section.1.2}%
+\contentsline {subsubsection}{维数：}{3}{theorem.2}%
+\contentsline {subsubsection}{转换矩阵：}{4}{theorem.3}%
+\contentsline {subsubsection}{(内外)直和：}{4}{theorem.5}%
+\contentsline {subsubsection}{一些常见的直和：}{5}{theorem.7}%
+\contentsline {subsubsection}{余维数：}{6}{Item.7}%
+\contentsline {subsubsection}{超平面：}{6}{Item.7}%
+\contentsline {subsubsection}{商空间：}{6}{theorem.8}%
+\contentsline {section}{\numberline {1.3}对偶空间}{6}{section.1.3}%
+\contentsline {subsubsection}{对偶空间：}{6}{section.1.3}%
+\contentsline {subsubsection}{对偶基及其转换：}{7}{theorem.9}%
+\contentsline {subsubsection}{有限维线性空间的自反性：}{8}{theorem.10}%
+\contentsline {section}{\numberline {1.4}双线性型和二次型}{8}{section.1.4}%
+\contentsline {subsubsection}{双线性型：}{8}{section.1.4}%
+\contentsline {subsubsection}{双线性型线性空间：}{8}{section.1.4}%
+\contentsline {subsubsection}{度量矩阵转换：}{9}{section.1.4}%
+\contentsline {subsubsection}{合同矩阵：}{9}{section.1.4}%
+\contentsline {subsubsection}{左(右)根空间：}{9}{section.1.4}%
+\contentsline {subsubsection}{(斜)对称双线性型：}{9}{section.1.4}%
+\contentsline {subsubsection}{二次型：}{10}{section.1.4}%
+\contentsline {subsubsection}{迷向空间：}{10}{section.1.4}%
+\contentsline {subsubsection}{规范型：}{10}{section.1.4}%
+\contentsline {subsubsection}{标准型：}{11}{theorem.12}%
+\contentsline {subsubsection}{快速确定二次型/双线性型在默认基下的矩阵：}{11}{theorem.13}%
+\contentsline {subsubsection}{将二次型化为标准型的三种方法：}{12}{theorem.13}%
+\contentsline {subsubsection}{偏导数法将二次型化为标准型：}{12}{theorem.13}%
+\contentsline {subsubsection}{惯性指数：}{12}{theorem.13}%
+\contentsline {subsubsection}{主子式：}{13}{theorem.14}%
+\contentsline {subsubsection}{斜对称双线性型：}{13}{theorem.15}%
+\contentsline {subsubsection}{将斜对称双线性型$f$化为规范型的方法：}{14}{theorem.16}%
+\contentsline {chapter}{\numberline {2}线性算子}{15}{chapter.2}%
+\contentsline {section}{\numberline {2.1}向量空间的线性映射}{15}{section.2.1}%
+\contentsline {subsubsection}{线性映射的秩：}{15}{section.2.1}%
+\contentsline {subsubsection}{线性映射诱导的同构：}{15}{section.2.1}%
+\contentsline {section}{\numberline {2.2}线性算子}{15}{section.2.2}%
+\contentsline {subsubsection}{线性变换(线性算子)：}{15}{section.2.2}%
+\contentsline {subsubsection}{常见的线性算子：}{15}{section.2.2}%
+\contentsline {subsubsection}{代数：}{16}{Item.10}%
+\contentsline {subsubsection}{线性算子的极小多项式：}{16}{Item.10}%
+\contentsline {subsubsection}{线性算子的矩阵：}{17}{theorem.19}%
+\contentsline {subsubsection}{相似矩阵：}{17}{theorem.19}%
+\contentsline {subsubsection}{线性算子度量矩阵的转换：}{17}{theorem.19}%
+\contentsline {subsubsection}{线性算子的行列式和迹：}{17}{theorem.19}%
+\contentsline {section}{\numberline {2.3}特征值与特征向量}{17}{section.2.3}%
+\contentsline {subsubsection}{不变子空间：}{18}{theorem.20}%
+\contentsline {subsubsection}{商算子：}{18}{theorem.20}%
+\contentsline {subsubsection}{特征子空间：}{18}{theorem.21}%
+\contentsline {subsubsection}{特征值、特征向量、特征多项式：}{18}{theorem.22}%
+\contentsline {subsubsection}{线性算子对角化：}{19}{theorem.22}%
+\contentsline {subsubsection}{线性算子对角化的方法：}{20}{theorem.23}%
+\contentsline {subsubsection}{对偶算子：}{21}{theorem.26}%
+\contentsline {subsubsection}{对偶算子的矩阵：}{21}{theorem.26}%
+\contentsline {section}{\numberline {2.4}Jordan标准型}{21}{section.2.4}%
+\contentsline {subsubsection}{广义特征子空间(根子空间)：}{21}{theorem.27}%
+\contentsline {subsubsection}{Jordan 块:}{22}{theorem.28}%
+\contentsline {subsubsection}{循环子空间：}{22}{theorem.28}%
+\contentsline {subsubsection}{\textcolor {red}{算子Jordan化并求Jordan基: }}{24}{theorem.31}%
+\contentsline {chapter}{\numberline {3}带有数乘的线性空间：}{26}{chapter.3}%
+\contentsline {section}{\numberline {3.1}欧几里得空间(Euclidean Space)}{26}{section.3.1}%
+\contentsline {subsubsection}{欧几里得空间：}{26}{section.3.1}%
+\contentsline {subsubsection}{对偶欧式空间：}{27}{theorem.37}%
+\contentsline {subsubsection}{伴随算子：}{27}{theorem.37}%
+\contentsline {subsubsection}{欧算子(欧自同构)：}{28}{theorem.38}%
+\contentsline {section}{\numberline {3.2}辛空间(Symplectic Space)}{28}{section.3.2}%
+\contentsline {subsubsection}{辛空间、辛算子、辛矩阵：}{28}{section.3.2}%
+\contentsline {subsubsection}{辛群：}{28}{section.3.2}%
+\contentsline {subsubsection}{辛空间与欧空间的联系：}{29}{theorem.39}%
+\contentsline {subsubsection}{辛子空间的正交空间：}{29}{theorem.39}%
+\contentsline {section}{\numberline {3.3}酉空间(Unitary Space)}{30}{section.3.3}%
+\contentsline {subsubsection}{Hermitian型: }{30}{section.3.3}%
+\contentsline {subsubsection}{自伴随矩阵的性质：}{30}{section.3.3}%
+\contentsline {subsubsection}{酉空间(Unitary Space)：}{31}{theorem.41}%
+\contentsline {subsubsection}{酉算子、酉矩阵：}{32}{theorem.42}%
+\contentsline {subsubsection}{\color {red}欧酉空间统一：}{32}{theorem.43}%
+\contentsline {section}{\numberline {3.4}内积空间上的线性算子}{32}{section.3.4}%
+\contentsline {subsubsection}{正规算子：}{32}{section.3.4}%
+\contentsline {subsubsection}{自伴随算子与内积的关系：}{33}{section.3.4}%
+\contentsline {chapter}{\numberline {4}仿射空间与欧几里得点空间}{35}{chapter.4}%
+\contentsline {section}{\numberline {4.1}仿射空间}{35}{section.4.1}%
+\contentsline {subsubsection}{仿射空间基本概念：}{35}{section.4.1}%
+\contentsline {subsubsection}{重心组合：}{35}{section.4.1}%
+\contentsline {subsubsection}{仿射空间的坐标系：}{35}{theorem.50}%
+\contentsline {subsubsection}{仿射子空间：}{35}{theorem.50}%
+\contentsline {subsubsection}{仿射包络：}{35}{theorem.50}%
+\contentsline {subsubsection}{仿射映射：}{36}{theorem.50}%
+\contentsline {subsubsection}{仿射线性映射：}{36}{theorem.50}%
+\contentsline {subsubsection}{平行、相交、交错：}{36}{theorem.50}%
+\contentsline {section}{\numberline {4.2}欧几里得点空间}{36}{section.4.2}%
+\contentsline {subsubsection}{欧几里得点空间：}{36}{section.4.2}%
+\contentsline {section}{\numberline {4.3}群与几何}{37}{section.4.3}%
+\contentsline {chapter}{\numberline {5}常见曲面}{38}{chapter.5}%
+\contentsline {chapter}{\numberline {6}张量}{39}{chapter.6}%
+\contentsline {section}{\numberline {6.1}多重线性映射与张量}{39}{section.6.1}%
+\contentsline {subsubsection}{张量(tensor)：}{39}{section.6.1}%
+\contentsline {subsubsection}{张量性质：}{39}{section.6.1}%
+\contentsline {subsubsection}{线性空间的$(k,l)$型张量：}{40}{section.6.1}%
+\contentsline {section}{\numberline {6.2}张量代数}{40}{section.6.2}%
+\contentsline {subsubsection}{全张量空间、张量代数：}{40}{section.6.2}%
+\contentsline {subsubsection}{全对称张量空间：}{41}{section.6.2}%
+\contentsline {subsubsection}{带幺结合代数：}{41}{section.6.2}%
+\contentsline {subsubsection}{全斜对称张量空间：}{41}{section.6.2}%
+\contentsline {chapter}{参考文献}{41}{section.6.2}%

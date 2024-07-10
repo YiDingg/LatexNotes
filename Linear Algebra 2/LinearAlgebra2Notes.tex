@@ -1,5 +1,5 @@
-% 设定文章类型,正文字号为小四，若为五号将-4改为5即可
-\documentclass[zihao=-4,UTF8]{report}		
+% 设定文章类型,正文字号为五号，若需小四将5改为-4即可
+\documentclass[zihao=5,UTF8]{report}		
 
 
 % 文章宏定义
@@ -13,7 +13,7 @@
 \def\S{\mathbb{S}}
 
 
-\def\A{\mathscr{A}}
+\def\A{\mathbb{A}}
 \def\I{\mathscr{I}}
 \def\d{\mathrm{d}}
 \def\p{\partial}
@@ -74,7 +74,7 @@
 
 % chapter标题自定义设置
 \usepackage{titlesec}   
-\titleformat{\chapter}[hang]{\normalfont\huge\bfseries\centering}{第\,\thechapter\,章}{20pt}{\Huge}
+\titleformat{\chapter}[hang]{\normalfont\huge\bfseries\centering}{第\,\thechapter\,章}{20pt}{}
 \titlespacing*{\chapter}{0pt}{-20pt}{20pt} % 控制上方空白的大小
 
 % table设置
@@ -697,7 +697,7 @@ https://zhaokaifeng.com/16920/ \ (偏导数)\par
 \end{align*}
 \begin{theorem}[矩阵正定的等价条件]\label{矩阵正定的等价条件}
 设对称矩阵$A \in M_{n\times n}(\mathbb{R})$，则：
-\begin{equation*}
+\begin{equation*}\color{red}
     \text{矩阵}\  A\ \text{正定}\Longleftrightarrow\text{存在可逆矩阵}\ S\in M_{n\times n}(\mathbb{R})\ \text{s.t.}\ A = SS^T
 \end{equation*}
 推论：
@@ -1374,14 +1374,20 @@ $A$有且仅有零特征值，因此特征多项式$\chi_{\varphi}(x) = (x-0)^n 
 \end{gather*}
 称为上面的映射为欧内积，并且有相关概念：\par
 \ding{172}\ 模/长度：$\left \| u \right \|  = \sqrt{(u\mid u)}$\par
-\ding{173}\ 距离：$d_{uv} = \left \| u -v \right \|$\par
-\ding{174}\ 正交：$u \perp v \Longleftrightarrow (u\mid v) = 0$\par
+\ding{173}\ 距离：$d_{uv} = \left \| u -v \right \| = \sqrt{(u-v\mid u-v)}$\par
+\ding{174}\ 正交：$(u\mid v) = 0\Longleftrightarrow u \perp v $\par
 \ding{175}\ 夹角：$\theta = \frac{(u\mid v)}{ \left \| u \right \|\cdot  \left \| v \right \|}$ \par
 \ding{176}\ 单位：$ \left \| u \right \| = \sqrt{(u\mid u) } = 1$\par
 \ding{177}\ 标准正交：一组正交向量$\{v_1,...v_r\}$称为标准的如果$v_i$是单位的，$i = 1,...,r$。
 
 {\color{gray}\small 欧内积是一个正定的对称双线性型，有其对应的二次型。\par
-例如：通常的$n$维坐标空间$\mathbb{R}^n$中，我们定义的内积是$f(u,v) = \vec{x}I_n\vec{y}^T = \vec{x}\cdot\vec{y}^T = \sum_{i=1}^{n}x_iy_i $，也就是$(\vec{x} \mid \vec{y}) = \sum_{i = 1}^{n}x_iy_i,\ \vec{x} = [x_1 ... x_n],\ \vec{y} = [y_1...,y_n] \in \mathbb{R}^n$；$[a,b]$上的实连续函数空间$C([a,b])$内积定义为$(u \mid v) = \int_{a}^{b}u(x)v(x)\mathrm{d}x,\ u(x),v(x)\in C([a,b])$。}
+例如：通常的$n$维坐标空间$\mathbb{R}^n$中，我们定义的内积是$f(u,v) = \vec{x}I_n\vec{y}^T = \vec{x}\cdot\vec{y}^T = \sum_{i=1}^{n}x_iy_i $，也就是$(\vec{x} \mid \vec{y}) = [x_1 ... x_n] \cdot 
+\begin{bmatrix}
+    y_1\\
+    \vdots\\
+    y_n
+\end{bmatrix}
+=\sum_{i = 1}^{n}x_iy_i,\ \vec{x} = [x_1 ... x_n],\ \vec{y} = [y_1...,y_n] \in \mathbb{R}^n$；$[a,b]$上的实连续函数空间$C([a,b])$内积定义为$(u \mid v) = \int_{a}^{b}u(x)v(x)\mathrm{d}x,\ u(x),v(x)\in C([a,b])$。}
 
 \begin{theorem}[Cauchy-Schwarz Inequality]
     设$V$是欧式空间，$u,v \in V$，则有：
@@ -1499,10 +1505,17 @@ $A$有且仅有零特征值，因此特征多项式$\chi_{\varphi}(x) = (x-0)^n 
 \begin{equation*}
     (u,v) \longmapsto [u\mid v]
 \end{equation*}\par
+{\par\color{gray}\small
+最常见也是默认的辛内积为：
+\begin{equation*}
+    [u\mid v] = \vec{x}J_0\vec{y}^T\ ,\ \ \forall\ u,v \in V
+\end{equation*}\par
+\par}
+
 
 线性算子$\varphi \in \mathscr{L}(V)$称为辛算子如果：
 \begin{equation*}
-    [\varphi(u)\mid \varphi(v)] = [u\mid v]
+    [\varphi(u)\mid \varphi(v)] = [u\mid v] \Longleftrightarrow AJ_0A^T = J_0\ \text{称为辛矩阵。}
 \end{equation*}\par
 {\color{gray}\small
 由第一章内容，$\dim V = 2m$为偶数，且辛内积$[\cdot \mid \cdot]$在某组基$\vec{u}_0$下的度量矩阵为：
@@ -1511,11 +1524,11 @@ $A$有且仅有零特征值，因此特征多项式$\chi_{\varphi}(x) = (x-0)^n 
         [u_1\mid u_1] & \cdots & [u_1\mid u_{2m}]  \\  
         \vdots & \ddots & \vdots \\  
         [u_{2m}\mid u_1] & \cdots &  [u_{2m}\mid u_{2m}] 
-      \end{bmatrix} =
-      \begin{bmatrix}
+    \end{bmatrix} =
+    \begin{bmatrix}
         O & I_m\\
         -I_m & O
-      \end{bmatrix}
+    \end{bmatrix}
 \end{equation*}
 }\par   
 设辛算子\textcolor{red}{在辛标准基$\vec{u}_0$下}的矩阵为$A$，则有：$AJ_0A^T = J_0$，并称$A$为辛矩阵。
@@ -1623,18 +1636,23 @@ $F = M_{f,\vec{v}_0}$是$f$在基$\vec{v}_0$下的矩阵。双线性型(包括�
 https://www.zhihu.com/question/533224060/answer/3345977116
 \par}
 Hermitian矩阵空间与实对称矩阵空间同构，并且很多实对称矩阵(双线性型)的性质、结论都可以直接推广到Hermitian矩阵(Hermitian型)。下面是一些基本的性质、结论：
-\subsubsection{Hermitian矩阵的性质：}
-\par\ding{172}\  对角元素为实数：  Hermitian矩阵对角元素都是实数，因为它们与自身的共轭相等。  \par
-\ding{173}\   实特征值：Hermitian矩阵的特征值都是实数。  \par
-\ding{174}\   正定性：Hermitian矩阵正定等价于特征值都大于零  \par
-\ding{175}\   可对角化：Hermitian矩阵可以酉对角化($GFG^{-1} = GFG^H = D$)  \par
-\ding{176}\ 度量矩阵：$ \textcolor{red}{F \longmapsto AFA^*}$
+\subsubsection{自伴随矩阵的性质：}
+对称双线性型的矩阵，Hermitian型的矩阵，Hermitian算子的矩阵都是自伴随矩阵，而自伴随矩阵满足以下性质：
+\par\ding{172}\  对角元素为实数：自伴随矩阵对角元素都是实数，因为它们与自身的共轭相等。  \par
+\ding{173}\   实特征值：自伴随矩阵的特征值都是实数。  \par
+\ding{175}\   可正交对角化：$\exists\  G, GG^*=I_n$使得矩阵$F$正交对角化：$GFG^{-1} = GFG^* = D$\par
+
+{\par\color{gray}\small
+另有一些结论，例如，正定等价于特征值都大于零、不同基下的矩阵变换等，这里不再提。事实上，可对角化的结论能推广到$\C$上的正规矩阵，并且是正规矩阵的充分必要条件。
+\par}
+
+
 
 \begin{theorem}[Hermitian型分解]\label{Hermitian型分解}
 
-设$f: V\times V\longrightarrow \mathbb{C}$为Hermitain型，则存在唯一的实对称双线性$g$和唯一的实斜对称双线性型$h$，使得：
+设$f: V\times V\longrightarrow \mathbb{C}$为Hermitain型，则存在唯一的实对称双线性$g$和唯一的实斜对称双线性型$h$，也即唯一的实对称矩阵$G$和唯一的实斜对称矩阵$H$，使得：
 \begin{gather*}
-    \text{\ding{172}}\ f(u,v)= g(u,v)+ih(u,v) \Longleftrightarrow F = G+iH\\
+    \text{\ding{172}}\ f(u,v)= g(u,v)+ih(u,v) \Longleftrightarrow {\color{red}F = G+iH}\\
     \text{\ding{173}}\ f(u,v) = g(u,v) + ig(u,iv) 
 \end{gather*}
 
@@ -1652,7 +1670,7 @@ $G$为$g$对应的实对称矩阵，$H$为$h$对应的实斜对称矩阵。\ding
 \begin{theorem}[Hermitian型正定等价条件]\label{Hermitian型正定等价条件}
 设Hermitian型$f = g+ih$在基$\vec{u}_0$下的矩阵为$F = G +iH$，则：
 \begin{gather*}
-    f,F\ \text{正定}\ \Longleftrightarrow g,G\ \text{正定}\ \Longleftrightarrow \hat{G} = \begin{bmatrix}
+    {\color{red}F\ \text{正定}\ \Longleftrightarrow G\ \text{正定}}\ \Longleftrightarrow \hat{G} = \begin{bmatrix}
         G &H\\
         H^ T&G
     \end{bmatrix}\ \text{正定}
@@ -1669,11 +1687,11 @@ Hermitian型$f$称为正定的如果$f(u,u) > 0,\ \forall\ 0 \ne u \in V$，其�
 \end{equation*}
 称上面的内积为酉内积，并且有相关概念：\par
 \ding{172}\ 模/长度：$\left \| u \right \|  = \sqrt{\langle u\mid u \rangle\ }$\par
-\ding{173}\ 复绝对值：$|a| = \sqrt{a\cdot\overline{a}\ },\ a \in \mathbb{C}$\par
-\ding{174}\ 正交：$u \perp v \Longleftrightarrow \langle u\mid u \rangle = 0$\par
+\ding{173}\ 复绝对值：等同于模\par
+\ding{174}\ 正交：$\langle u\mid u \rangle = 0 \Longleftrightarrow u \perp v$\par
 \ding{175}\ 夹角：$\theta = \frac{\langle u\mid u \rangle}{ \left \| u \right \|\cdot  \left \| v \right \|}$ \par
 \ding{176}\ 单位：$ \left \| u \right \|= 1$\par
-\ding{177}\ 标准正交：一组正交向量$\{v_1,...v_r\}$称为标准的如果$v_i$是单位的，$i = 1,...,r$。
+\ding{177}\ 标准正交：一组正交向量$\{v_1,...v_r\}$称为标准的如果$v_i$是单位的（$\| v_i \|$=1），$i = 1,...,r$。
 
 \begin{theorem}[酉空间中的定理]\label{酉空间中的定理}
 回想欧空间中出现的定理，很多在有限维酉空间中仍成立，如下：
@@ -1734,6 +1752,25 @@ $\Longleftrightarrow A$是标准正交基之间的转换矩阵。
 \end{equation*}
 \end{theorem}
 
+\subsubsection{\color{red}欧酉空间统一：}
+
+\par\ding{172}\  内积： 本质是正定自伴随矩阵。欧内积是正定对称双线性型，酉内积是正定Hermitian型。  \par
+{\par\color{gray}\small
+自伴随算子的矩阵也是自伴随矩阵，其与内积的关系详见下一节：自伴随算子与内积的关系
+\par}
+\ding{173}\  自伴随算子：本质是自伴随矩阵。欧中称自伴随算子，酉中称Hermitain算子。   \par
+\ding{174}\  正交算子：本质是正交矩阵。欧中称欧几里得同构（或欧算子），酉中称酉算子。\par
+特别地，算子{\color{red}为正交算子的等价条件是保持内积不变}：
+\begin{gather*}
+    (\varphi(u) \mid \varphi(v)) = (u\mid v)\\
+    \langle \varphi(u)  \mid \varphi(v) \rangle = \langle u  \mid v \rangle
+\end{gather*}  \par
+\ding{175}\ 正规算子：
+
+
+以下的内容，我们不再区分是欧空间还是酉空间，因为下面的内容对它们都成立。事实上，大多数结论对内积空间都成立。如无特别说明，我们的数域$\F$总默认为$\C$。
+
+
 \section{内积空间上的线性算子}
 \subsubsection{正规算子：}
 $\mathbb{C}$上的算子$\varphi \in \mathscr{L}(V)$称为正规算子如果：
@@ -1741,20 +1778,26 @@ $\mathbb{C}$上的算子$\varphi \in \mathscr{L}(V)$称为正规算子如果：
     \varphi\varphi^* = \varphi^*\varphi \Longleftrightarrow AA^* = A^*A
 \end{equation*}
 正规矩阵的性质：
-\par\ding{172}\  \textcolor{red}{可对角化(等价)：} $A$是正规矩阵$\Longleftrightarrow \exists\ \text{酉矩阵}\ G \ \ s.t.\ \ GAG^H = GAG^{-1} = D $  \par
-\ding{173}\   特征子空间：$A$有$n$个不同的、两两正交的特征子空间。  \par
-\ding{174}\  $A^H$的特征值： 若$\lambda$是$A$的特征值，$u = \vec{x}\cdot\vec{v}_0$是对应的特征向量，则$\overline{\lambda}$是$A^H$的特征值，$u = \vec{x}\cdot\vec{v}_0$？？是对应的特征向量  \par
+\par\ding{172}\  \textcolor{red}{可对角化(等价)：} $A$是正规矩阵$\Longleftrightarrow \exists\ \text{自伴随矩阵}\ G \ \ s.t.\ \ GAG^* = GAG^{-1} = D $  \par
+\ding{173}\ 特征向量(等价)：$A$有$n$个正交的特征向量\par
+\ding{174}\ 模的平方和(等价)：$\sum_{i=1}^{n}\sum_{j=1}^{n}\left| a_{ij} \right|^2 = \sum_{i=1}^{n}\left| \lambda_i \right|^2 $\par
+\ding{175}\  $A^*$的特征值： 若$\lambda$是$A$的特征值，$u$是对应的特征向量，则$\overline{\lambda}$是$A^*$的特征值，$u$也是对应的特征向量。  \par
+
+设$F$为正规矩阵，则有推论：
+\par\ding{172}\ 特征值全为实数$\Longleftrightarrow F$为自伴随矩阵   \par
+\ding{173}\  特征值模都为$1 \Longleftrightarrow F$正交矩阵   \par
+
 
 {\par\color{gray}\small
 酉对角化也就是在某组标准正交基下为对角阵，这是因为标准正交基、标准正交基之间的转换矩阵都是酉矩阵(内积空间中的标准正交矩阵)。\par
-当正规矩阵的特征值全部为实数时，是Hermitian矩阵(对应自伴随算子、Hermitian型)\par
+当时，是Hermitian矩阵(对应自伴随算子、Hermitian型)\par
 当正规矩阵的特征值全部模为1时，是酉矩阵(即复正交矩阵，对应酉算子)
 \par}
 
 \subsubsection{自伴随算子与内积的关系：}
-设$f: V\times V \longmapsto \mathbb{F}$是一个内积(对称双线性型或Hermitian型)，记它在基下的度量矩阵为$F$，则$F = F^*$。定义$\varphi \in \mathscr{L}(V)$使得$\varphi$在基下的矩阵为$F$，则$\varphi$是自伴随算子。反之也成立。
+设$f: V\times V \longmapsto \mathbb{F}$是一个内积(正定的对称双线性型或正定的Hermitian型)，记它在基下的度量矩阵为$F$，则$F = F^*$。定义$\varphi \in \mathscr{L}(V)$使得$\varphi$在基下的矩阵为$F$，则$\varphi$是正定的自伴随算子。反之也成立。
 
-因此，对同一个Hermitian矩阵$F$，既可以把它看作一个自伴随算子(Hermitian算子)，也可以看作某个Hermitian型的度量矩阵(但并不构成同构关系)。由此可以知道，Hermitian矩阵所具有的性质也就是自伴随算子所具有的性质(如特征值、可对角化等)。
+因此，对同一个Hermitian矩阵$F$，既可以把它看作一个正定的自伴随算子(Hermitian算子)，也可以看作某个正定Hermitian型的度量矩阵(但并不构成同构关系)。由此可以知道，Hermitian矩阵所具有的性质也就是自伴随算子所具有的性质(如特征值、可对角化等)。
 
 
 \begin{theorem}[谱定理]\label{谱定理}
@@ -1764,19 +1807,39 @@ $\mathbb{C}$上的算子$\varphi \in \mathscr{L}(V)$称为正规算子如果：
     \text{进一步，存在}\ f_1(x),...,f_m(x) \in \mathbb{C}[x]\ \ s.t.\ \ \mathscr{P}_i\ = f_i(\varphi)\ \text{且}\ f_i(\lambda_j) = \delta_{ij}
 \end{gather*}
 {\par\color{gray}\small
-后一个推论表明：任意可由$\mathscr{P}_i$线性表出的算子$\psi$都可表示为$\psi = g(\varphi)$。
+后一个推论表明：任意可由$\mathscr{P}_i$线性表出的算子$\psi$都可表示为$\psi = g(\varphi)$。\par
+事实上，谱定理和“正规算子可对角化”是等价的，不过上面的形式更容易得到其它推论。
 \par}
 
 \end{theorem}
 
-\begin{theorem}[内积同时对角化]\label{内积同时对角化}
-{\par\color{gray}\small
-为了体现对称双线性型和Hermitian型的统一性，我们将两者统称为内积空间上的准内积，其称为内积当且仅当它是正定的。
-\par}
-设$f_1,f_2$是内积空间上的两个\textcolor{red}{准}内积(欧-对称双，酉-Hermi型)，则：
+\begin{theorem}[正规算子等价条件]\label{正规算子等价条件}
+设$A\in M_{n\times n}(\F)$，$\F$可以是$\R$或$\C$，则有：
 \begin{equation*}
-    f_1,f_2\ \text{可同时对角化} \Longleftrightarrow \text{其中有一个是正定的}
+    \text{$A$为正规矩阵}\ \Longleftrightarrow \exists f \in \F\ s.t.\ A^* = f(A)
 \end{equation*}
+\begin{graybox}
+\textbf{定理\ref{正规算子等价条件}的证明：}\\
+复数域上的情况由谱定理和拉格朗日插值容易得到，这里仅提一下$\R$上的情况。\\
+同理得到$A^T = f(A), f \in \C[x]$，将$f$分解为$f = g +ih$，其中$g,h \in \R[x]$，则$A^T = g(A) + ih(A) $而$A^T \in M_{n\times n}(\R) \Longrightarrow ih(A) = 0$，因此存在$g \in \R[x]$使得$A^T = g(A)$。
+\end{graybox}
+\end{theorem}
+
+
+\begin{theorem}[同时对角化]\label{内积同时对角化}
+
+设$F_1,F_2$是两个自伴随矩阵，则：
+\begin{equation*}
+    \text{其中有一个是正定的} \Longleftrightarrow F_1,F_2\ \text{可同时对角化} 
+\end{equation*}
+{\par\color{gray}\small
+同时对角化的步骤：
+\par\ding{172}\ 将正定的$F_1$作为内积$f(\cdot,\cdot) = (\cdot\mid\cdot)_0$，基于$\{e_1,...,e_n\}$，由施密特正交化+标准化，得到内积$f$下的标准正交基$\vec{u}_0 = S\vec{e}_0 = S$，此时$SF_1S^* = I_n$。  \par
+\ding{173}\  求$F_2$在此基下的矩阵$SF_2S^*$，并作正交对角化，得到：
+$GSF_2S^{-1}G^{-1} = (GS)F_2(GS)^{-1} = D$。（如果不是让双线性型同时对角化，即无需合同对角化，只需相似对角化，那么这里仅对角化$SF_2S^*$即可，无需正交）  \par
+\ding{174}\  取$P = GS$，则$P$即为所求矩阵，也是所求基。$F_1$在此基下的矩阵为$GI_nG^{-1} = I_n$，$F_2$在此基下的矩阵为 $PF_2P^{-1} = D$。  \par
+\par}
+
 \end{theorem}
 
 \begin{theorem}[半正定自伴随算子可开根]\label{半正定自伴随算子可开根}
@@ -1808,6 +1871,12 @@ $\mathbb{C}$上的算子$\varphi \in \mathscr{L}(V)$称为正规算子如果：
     \text{\ding{173}\ }&\varphi\ \text{是正规算子}\ \Longleftrightarrow \zeta \psi = \psi \zeta\\
     \text{\ding{174}\ }&\varphi \ \text{非退化}\Longleftrightarrow \psi\   \text{唯一}
 \end{align*}
+{\par\color{gray}\small
+极化分解$A = GT$的步骤：例如 Homework 14.2, 14.3\par
+计算$AA^* = GTT^*G^* = GG^* = G^2$，将结果对角化$SG^2S^{-1} = D$后开根，求得$G = S^{-1}\sqrt{D}S$，最后用$T = G^{-1}A = (S\sqrt{D^{-1}}S^{-1})A$求得$T$（最后一步的拆分是为了不再多求一次矩阵逆）。   \par
+
+\par}
+
 \end{theorem}
 
 \begin{theorem}[实正规算子半对角化]\label{实正规算子半对角化}
@@ -1819,8 +1888,6 @@ $\mathbb{C}$上的算子$\varphi \in \mathscr{L}(V)$称为正规算子如果：
 \varphi\ \text{是正规算子}\ \Longleftrightarrow \text{在某组基下$\varphi$的矩阵}\ J_\varphi = \text{diag}(c_1,...,c_r) \dotplus J[a_1,b_1] \dotplus \cdots \dotplus J[a_s,b_s]\\
 \varphi \text{是正交算子}\ \Longleftrightarrow |c_i|=1,\ a_j^2+b_j^2 = 1,\ i=1,...,r,\ j = 1,...,s
 \end{gather*}
-{\par\color{gray}\small
-\par}
 
 \end{theorem}
 
@@ -1837,6 +1904,9 @@ $t_u$称为沿$u$对$\A$的平移，且$\A^{\sharp } = \{t_u\mid u\in V\}$构成
 
 此外，$\overrightarrow{ab} = -\overrightarrow{ba},\ \overrightarrow{aa}=0,\  \overrightarrow{ab}+ \overrightarrow{bc} =  \overrightarrow{ac}$
 
+\subsubsection{重心组合：}
+重心组合：设$\dot{p}_0,...,\dot{p}_m \in \A$是任意$m+1$个点(可以相同)，称$\sum_{i=0}^{m}a_i\dot{p}_i\ \ s.t.\ \ \sum_{i=0}^{m}a_i = 1  $为$\{\dot{p}_0,...,\dot{p}_m \}$的重心组合。(上面写法省略了原点$o'\dot{o}$，因为重心组合的结果与原点选取无关) 
+
 \begin{theorem}[仿射空间同构]\label{仿射空间同构}
 设$\A$和$\A'$是$\F$上的相伴向量空间分别为$V$和$V'$的仿射空间，则$\A\cong\A' \Longleftrightarrow V \cong V' $。
 \end{theorem}
@@ -1851,33 +1921,27 @@ $t_u$称为沿$u$对$\A$的平移，且$\A^{\sharp } = \{t_u\mid u\in V\}$构成
     \textcolor{red}{\vec{y} = (\vec{x} - \vec{o})A^{-1}}
 \end{equation*}
 \par
-等价条件：
+
 \subsubsection{仿射子空间：}
 设$(\A,V)$是仿射空间而$U$是$V$的子空间，定义$\A$的仿射子空间$\Pi(\dot{p},U) = \dot{p} + U$，则它是以$U$为伴随空间的仿射空间。若$\dim U = m< +\infty$，称$\Pi(\dot{p},U)$为$\A$的$m$维平面。\par
 特别地，若$\dim U = 1$，则$\forall\  0 \ne\overrightarrow{\dot{p}\dot{q}} \in \A$，有$U = \F\overrightarrow{\dot{p}\dot{q}}$，也即$\Pi (\dot{p},U) =\{\dot{p} + t\overrightarrow{\dot{p}\dot{q}}\mid t \in \F\} $
 
 等价条件：设$\F$的特征不为2。$\Pi$为仿射空间$\A$的一个子集，则：
 \begin{equation*}
-    \text{$\Pi$是仿射子空间} \Longleftrightarrow \Pi\text{上任意两点的直线都在$\Pi$内}
+    \text{$\Pi$构成仿射子空间} \Longleftrightarrow \text{$\Pi$上任意两点的直线都在$\Pi$内}
 \end{equation*}
 推论：仿射子空间的交仍是子空间，且$\Pi(U_1)\cap\Pi(U_2) = \Pi(U_1\cap U_2)$。
 
 
 \subsubsection{仿射包络：}
-设$X$为$\A$的一个子空间(不一定是仿射子空间!)，定义$\A$关于$X$的仿射包络：
+设$X$为$\A$的一个子集(不一定是仿射子空间)，定义$\A$关于$X$的仿射包络：
 \begin{equation*}
     A(X) = \left\{  \dot{p} +\text{Span}\{\overrightarrow{\dot{p}\dot{q}}\mid\forall\  \dot{q} \in X\}\mid \forall \dot{p}\in X \right\}
 \end{equation*}
 
 容易验证它和$\dot{p}$或$\dot{q}$的选取无关，且构成$\A$的仿射子空间。\par
 如果$X$只有一个点，则$A(X)=X$是0维的仿射子空间。$X$有两个点时，$A(X)$是过他们的直线。$X$有三个点时，$A(X)$是由该直线和点确定的平面。
-\par\ding{172}\ 仿射无关：若$X = \{\dot{p}_{\textcolor{red}{0}},\dot{p}_1,...,\dot{p}_{\textcolor{red}{m}}\}$且$\dim \A(X) = m$，则称$X$仿射无关。这等价于$\{\overrightarrow{\dot{p}_{\textcolor{red}{0}}\dot{p}_1},...,\overrightarrow{\dot{p}_{\textcolor{red}{0}}\dot{p}_m}  \}$线性无关    \par
-\ding{173}\ 重心组合：设$\dot{p}_0,...,\dot{p}_m \in \A$是任意$m+1$个点(可以相同)，称$\sum_{i=0}^{m}a_i\dot{p}_i\ \ s.t.\ \ \sum_{i=0}^{m}a_i = 1  $为$\{\dot{p}_0,...,\dot{p}_m \}$的重心组合。(上面写法省略了原点$o'\dot{o}$，因为重心组合的结果与原点选取无关)    \par
-\ding{174}\  仿射映射：映射$\varphi:\ \A \longrightarrow \A'$为仿射映射等价于它保持重心组合，也即：
-\begin{equation*}
-    \varphi\left(\sum_{i=0}^{m} a_i\dot{p}_i \right) = \sum_{i=0}^{m} a_i\varphi(\dot{p}_i)
-\end{equation*}
-\par
+\par\ding{172}\ 仿射无关：若$X = \{\dot{p}_{\textcolor{red}{0}},\dot{p}_1,...,\dot{p}_{\textcolor{red}{m}}\}$且$\dim A(X) = m$，则称$X$仿射无关。这等价于$\{\overrightarrow{\dot{p}_{\textcolor{red}{0}}\dot{p}_1},...,\overrightarrow{\dot{p}_{\textcolor{red}{0}}\dot{p}_m}  \}$线性无关    \par
 
 \subsubsection{仿射映射：}
 线性映射$\psi: \A \longmapsto \A'$称为仿射映射如果满足下面任意一条命题(第一条为定义，其它为等价条件)
@@ -1896,7 +1960,7 @@ $t_u$称为沿$u$对$\A$的平移，且$\A^{\sharp } = \{t_u\mid u\in V\}$构成
 
 
 \subsubsection{仿射线性映射：}
-从$\A$到$\F$的仿射映射$\varphi$称为仿射线性映射。全体\par
+从$\A$到$\F$的仿射映射$\varphi: A \overset{linear}{\longrightarrow} F$称为仿射线性映射。\par
 性质：
 取$\A$仿射无关的$n+1$个点$\{\dot{p}_1,\dot{p}_2,\}$，它可生成$V$的一组基，且集合
 \begin{equation*}
@@ -2146,11 +2210,11 @@ $\T^m(V)$中的元素称为$V$的$m$阶张量。
 \end{equation*}   \par
 
 \subsubsection{带幺结合代数：}
-设$\A$为带幺结合代数，$\A$的子空间$\I$称为$\A$的理想如果：
+设$\mathscr{A}$为带幺结合代数，$\mathscr{A}$的子空间$\I$称为$\mathscr{A}$的理想如果：
 \begin{equation*}
     u\cdot \I,\ \I\cdot u \subseteq \I\ ,\ \ \forall\ u\in \I
 \end{equation*}
-并且有结论：$\forall\ \text{理想}\ \I,\ 1_{\A} \in I \Longrightarrow \I = \A$。
+并且有结论：$\forall\ \text{理想}\ \I,\ 1_{\mathscr{A}} \in I \Longrightarrow \I = \mathscr{A}$。
 
 
 \subsubsection{全斜对称张量空间：}

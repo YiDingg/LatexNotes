@@ -1,10 +1,10 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.10.30)  9 JUL 2024 14:18
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.10.30)  10 JUL 2024 23:40
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**"Linear Algebra 2 notes"
-(./Linear Algebra 2 notes.tex
+**LinearAlgebra2Notes
+(./LinearAlgebra2Notes.tex
 LaTeX2e <2023-06-01> patch level 1
 L3 programming layer <2023-10-23>
 (c:/texlive/2023/texmf-dist/tex/latex/base/report.cls
@@ -164,8 +164,8 @@ File: ctex-scheme-chinese.def 2022/07/14 v2.5.10 Chinese scheme for generic (CTE
 File: ctex-name-utf8.cfg 2022/07/14 v2.5.10 Caption with encoding UTF-8 (CTEX)
 )) (c:/texlive/2023/texmf-dist/tex/latex/tools/indentfirst.sty
 Package: indentfirst 1995/11/23 v1.03 Indent first paragraph (DPC)
-) (c:/texlive/2023/texmf-dist/tex/latex/ctex/ctex-cs4size.clo
-File: ctex-cs4size.clo 2022/07/14 v2.5.10 cs4size option (CTEX)
+) (c:/texlive/2023/texmf-dist/tex/latex/ctex/ctex-c5size.clo
+File: ctex-c5size.clo 2022/07/14 v2.5.10 c5size option (CTEX)
 ) (c:/texlive/2023/texmf-dist/tex/latex/ctex/fontset/ctex-fontset-windows.def
 File: ctex-fontset-windows.def 2022/07/14 v2.5.10 Windows fonts definition (CTEX)
 
@@ -597,8 +597,9 @@ Package fontspec Info: Font family 'TimesNewRoman(0)' created for font 'Times
 (fontspec)             <->"Times New
 (fontspec)             Roman/BI/OT:script=latn;language=dflt;+smcp;mapping=tex-text;"
 
- (./Linear Algebra 2 notes.aux)
-\openout1 = `"Linear Algebra 2 notes.aux"'.
+
+No file LinearAlgebra2Notes.aux.
+\openout1 = `LinearAlgebra2Notes.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 123.
 LaTeX Font Info:    ... okay on input line 123.
@@ -677,10 +678,11 @@ LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
 (Font)                  OT1/cmtt/m/n --> TU/lmtt/b/n on input line 123.
 Package hyperref Info: Link coloring OFF on input line 123.
- (./Linear Algebra 2 notes.out) (./Linear Algebra 2 notes.out)
 \@outlinefile=\write3
-\openout3 = `"Linear Algebra 2 notes.out"'.
+\openout3 = `LinearAlgebra2Notes.out'.
 
+
+Package hyperref Warning: Rerun to get /PageLabels entry.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: xetex
@@ -722,12 +724,8 @@ LaTeX Font Info:    Trying to load font information for U+rsfs on input line 125
 (c:/texlive/2023/texmf-dist/tex/latex/jknapltx/ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
-
-LaTeX Font Warning: Font shape `U/rsfs/m/n' in size <15.05624> not available
-(Font)              size <14.4> substituted on input line 125.
-
 LaTeX Font Info:    Trying to load font information for U+msa on input line 125.
-(c:/texlive/2023/texmf-dist/tex/latex/amsfonts/umsa.fd
+ (c:/texlive/2023/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
 LaTeX Font Info:    Trying to load font information for U+msb on input line 125.
@@ -735,47 +733,135 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 125.
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
-] [1] (./Linear Algebra 2 notes.toc)
+] [1]
+No file LinearAlgebra2Notes.toc.
 \tf@toc=\write4
-\openout4 = `"Linear Algebra 2 notes.toc"'.
+\openout4 = `LinearAlgebra2Notes.toc'.
 
- [2
+[2
 
 ]
 Chapter 1.
 
 LaTeX Font Warning: Font shape `U/rsfs/m/n' in size <10.53937> not available
-(Font)              size <10.95> substituted on input line 186.
+(Font)              size <10.95> substituted on input line 146.
 
 [1
 
-] [2] [3] [4] [5] [6] [7] [8] [9] [10] [11] [12] [13] [14] [15] [16]
+]
+Overfull \hbox (2.45062pt too wide) in paragraph at lines 226--227
+[]\TU/SimSun(0)/m/n/10.53937 设 $\OML/cmm/m/it/10.53937 V$ \TU/SimSun(0)/m/n/10.53937 是 $\U/msb/m/n/10.53937 F$ \TU/SimSun(0)/m/n/10.53937 上 的 一 个 线 性 空 间，|  对 于 $\OML/cmm/m/it/10.53937 V$ \TU/SimSun(0)/m/n/10.53937 的 有 限 个 元 素 $\OMS/cmsy/m/n/10.53937 f\OML/cmm/m/it/10.53937 v[]; v[]; :::; v[]\OMS/cmsy/m/n/10.53937 g$\TU/SimSun(0)/m/n/10.53937 ，|  若 存 在 不 全 为 零 的 纯 量 $\OML/cmm/m/it/10.53937 ^^K[]; ^^K[]; :::; ^^K[] \OMS/cmsy/m/n/10.53937 2
+ []
+
+[2]
+
+LaTeX Warning: Reference `Steinitz替换定理' on page 3 undefined on input line 255.
+
+[3]
+
+LaTeX Warning: Reference `多维直和的等价定义' on page 4 undefined on input line 301.
+
+[4] [5] [6]
+
+LaTeX Warning: Reference `线性空间向量组的秩' on page 7 undefined on input line 462.
+
+
+LaTeX Warning: Reference `对偶空间重要结论' on page 7 undefined on input line 477.
+
+
+LaTeX Warning: Reference `对偶空间重要结论' on page 7 undefined on input line 477.
+
+[7] [8] [9] [10] [11] [12] [13]
+
+LaTeX Warning: Reference `斜对称双线性型必有规范基' on page 14 undefined on input line 793.
+
+[14]
 Chapter 2.
-[17
+[15
 
-] [18] [19] [20] [21] [22] [23] [24] [25] [26] [27] [28] [29]
+]
+
+LaTeX Warning: Reference `线性算子可逆的等价条件' on page 16 undefined on input line 876.
+
+[16] [17] [18]
+
+LaTeX Warning: Reference `线性算子对角化' on page 19 undefined on input line 1022.
+
+
+LaTeX Warning: Reference `不同特征空间的向量线性无关' on page 19 undefined on input line 1040.
+
+
+LaTeX Warning: Reference `不同特征空间的向量线性无关' on page 19 undefined on input line 1047.
+
+[19]
+
+LaTeX Warning: Reference `不变子空间与对角化' on page 20 undefined on input line 1077.
+
+[20]
+
+LaTeX Warning: Reference `Hamilton-Cayley Theorem' on page 21 undefined on input line 1165.
+
+
+LaTeX Warning: Reference `线性空间的广义特征子空间分解' on page 21 undefined on input line 1165.
+
+[21]
+
+LaTeX Warning: Reference `循环分解' on page 22 undefined on input line 1193.
+
+[22]
+
+LaTeX Warning: Reference `算子必有Jordan标准型' on page 23 undefined on input line 1271.
+
+
+LaTeX Warning: Reference `线性空间的广义特征子空间分解' on page 23 undefined on input line 1274.
+
+
+LaTeX Warning: Reference `Hamilton-Cayley Theorem' on page 23 undefined on input line 1280.
+
+
+LaTeX Warning: Reference `循环分解' on page 23 undefined on input line 1282.
+
+[23]
+
+LaTeX Warning: Reference `循环分解' on page 24 undefined on input line 1310.
+
+
+LaTeX Warning: Reference `算子必有Jordan标准型' on page 24 undefined on input line 1310.
+
+[24]
+
+LaTeX Warning: Reference `幂零矩阵仅有零特征值' on page 25 undefined on input line 1360.
+
+[25]
 Chapter 3.
-[30
 
-] [31] [32] [33] [34] [35] [36] [37] [38] [39]
+LaTeX Warning: Reference `有限维欧式空间必有标准正交基' on page 26 undefined on input line 1408.
+
+[26
+
+] [27] [28] [29] [30] [31] [32]
+
+LaTeX Warning: Reference `正规算子等价条件' on page 33 undefined on input line 1822.
+
+[33] [34]
 Chapter 4.
-[40
+[35
 
-] [41] [42] [43]
+] [36] [37]
 Chapter 5.
-[44
+[38
 
 ]
 Chapter 6.
-[45
+[39
 
-] [46] [47]
-No file "Linear Algebra 2 notes".bbl.
+] [40]
+No file LinearAlgebra2Notes.bbl.
 
 Package caption Warning: Unused \captionsetup[figure] on input line 99.
 See the caption package documentation for explanation.
 
-[48] (./Linear Algebra 2 notes.aux)
+[41] (./LinearAlgebra2Notes.aux)
  ***********
 LaTeX2e <2023-06-01> patch level 1
 L3 programming layer <2022/07/14>
@@ -783,18 +869,30 @@ L3 programming layer <2022/07/14>
 
 
 LaTeX Font Warning: Size substitutions with differences
-(Font)              up to 0.65625pt have occurred.
+(Font)              up to 0.41063pt have occurred.
 
-Package rerunfilecheck Info: File `"Linear Algebra 2 notes".out' has not changed.
-(rerunfilecheck)             Checksum: <no file>.
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+
+Package rerunfilecheck Warning: File `LinearAlgebra2Notes.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `LinearAlgebra2Notes.out':
+(rerunfilecheck)             Before: <no file>
+(rerunfilecheck)             After:  1BCEECFCF71DBE22565216B87C9459C4;2683.
  ) 
 Here is how much of TeX's memory you used:
- 19109 strings out of 475055
- 414853 string characters out of 5767765
- 1943667 words of memory out of 5000000
- 40645 multiletter control sequences out of 15000+600000
- 574174 words of font info for 149 fonts, out of 8000000 for 9000
+ 19064 strings out of 475055
+ 413582 string characters out of 5767765
+ 1950667 words of memory out of 5000000
+ 40610 multiletter control sequences out of 15000+600000
+ 572456 words of font info for 141 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 93i,22n,97p,761b,539s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 93i,22n,97p,756b,523s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on Linear Algebra 2 notes.pdf (51 pages).
+Output written on LinearAlgebra2Notes.pdf (44 pages).

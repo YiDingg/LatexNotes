@@ -1,0 +1,46 @@
+This is BibTeX, Version 0.99d (TeX Live 2023)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: LinearAlgebra1Notes.aux
+The style file: unsrt.bst
+Database file #1: re.bib
+You've used 4 entries,
+            1791 wiz_defined-function locations,
+            466 strings with 3752 characters,
+and the built_in function-call counts, 628 in all, are:
+= -- 52
+> -- 16
+< -- 0
++ -- 8
+- -- 4
+* -- 26
+:= -- 105
+add.period$ -- 12
+call.type$ -- 4
+change.case$ -- 0
+chr.to.int$ -- 0
+cite$ -- 4
+duplicate$ -- 40
+empty$ -- 77
+format.name$ -- 4
+if$ -- 145
+int.to.chr$ -- 0
+int.to.str$ -- 4
+missing$ -- 8
+newline$ -- 23
+num.names$ -- 4
+pop$ -- 24
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 8
+stack$ -- 0
+substring$ -- 0
+swap$ -- 4
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 0
+while$ -- 4
+width$ -- 5
+write$ -- 46

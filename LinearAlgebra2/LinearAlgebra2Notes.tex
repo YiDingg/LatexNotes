@@ -136,7 +136,7 @@
 
 \newpage
 \pagenumbering{arabic} 
-\chapter{空间与形式}
+\chapter{空间与形式}\thispagestyle{fancy} 
 \section{线性空间}
 
 {\par\color{gray}\small
@@ -802,7 +802,7 @@ https://zhaokaifeng.com/16920/ \ (偏导数)\par
 \noindent 方法三：矩阵合同初等变换(在忘记方法一时使用)，注意$A$要做合同变换但是$I_n$仅做行变换(或仅做列变换)。
 
 
-\chapter{线性算子}
+\chapter{线性算子}\thispagestyle{fancy} 
 \section{向量空间的线性映射}
 \subsubsection{线性映射的秩：}
 记$\mathscr{L}_{\mathbb{F}}(U,V)$为从$U$到$V$的全体线性映射，对于$f \in \mathscr{L}_{\mathbb{F}}(U,V)$，定义$f$的“像”和“核”：
@@ -1365,7 +1365,7 @@ $A$有且仅有零特征值，因此特征多项式$\chi_{\varphi}(x) = (x-0)^n 
 \end{graybox}
 \end{theorem}
 
-\chapter{带有数乘的线性空间：}
+\chapter{带有数乘的线性空间：}\thispagestyle{fancy} 
 \section{欧几里得空间(Euclidean Space)}
 \subsubsection{欧几里得空间：}
 一个\textcolor{red}{$\mathbb{R}$上的}线性空间$V$称为欧式空间如果它带有正定的双线性型$f: V\times V \longrightarrow \textcolor{red}{\mathbb{R}}$
@@ -1779,7 +1779,7 @@ $\mathbb{C}$上的算子$\varphi \in \mathscr{L}(V)$称为正规算子如果：
 \end{equation*}
 正规矩阵的性质：
 \par\ding{172}\  \textcolor{red}{可对角化(等价)：} $A$是正规矩阵$\Longleftrightarrow \exists\ \text{自伴随矩阵}\ G \ \ s.t.\ \ GAG^* = GAG^{-1} = D $  \par
-\ding{173}\ 特征向量(等价)：$A$有$n$个正交的特征向量\par
+\ding{173}\ 特征向量(等价)：$A$有$n$个相互正交的特征向量\par
 \ding{174}\ 模的平方和(等价)：$\sum_{i=1}^{n}\sum_{j=1}^{n}\left| a_{ij} \right|^2 = \sum_{i=1}^{n}\left| \lambda_i \right|^2 $\par
 \ding{175}\  $A^*$的特征值： 若$\lambda$是$A$的特征值，$u$是对应的特征向量，则$\overline{\lambda}$是$A^*$的特征值，$u$也是对应的特征向量。  \par
 
@@ -1891,7 +1891,7 @@ $GSF_2S^{-1}G^{-1} = (GS)F_2(GS)^{-1} = D$。（如果不是让双线性型同�
 
 \end{theorem}
 
-\chapter{仿射空间与欧几里得点空间}
+\chapter{仿射空间与欧几里得点空间}\thispagestyle{fancy} 
 
 \section{仿射空间}
 \subsubsection{仿射空间基本概念：}
@@ -1947,7 +1947,7 @@ $t_u$称为沿$u$对$\A$的平移，且$\A^{\sharp } = \{t_u\mid u\in V\}$构成
 线性映射$\psi: \A \longmapsto \A'$称为仿射映射如果满足下面任意一条命题(第一条为定义，其它为等价条件)
 \par\ding{172}\  定义：
 \begin{equation*}
-    \psi(\dot{p}+v) = \psi(\dot{p}) + (D\psi)(v) \ \ ,\ \forall\ \dot{p}\in \A,\ v \in V
+    \exists\  D_{\psi}: V \overset{linear}{\longrightarrow}V'\ \ s.t.\ \   \psi(\dot{p}+v) = \psi(\dot{p}) + (D_\psi)(v) \ \ ,\ \forall\ \dot{p}\in \A,\ v \in V
 \end{equation*}   \par
 \ding{173}\   保持向量：
 \begin{equation*}
@@ -1955,7 +1955,7 @@ $t_u$称为沿$u$对$\A$的平移，且$\A^{\sharp } = \{t_u\mid u\in V\}$构成
 \end{equation*}  \par
 \ding{174}\  保持重心：
 \begin{equation*}
-    \psi\left(\sum_{i=0}^{m} a_i\dot{p}_i \right) = \sum_{i=0}^{m} a_i\psi(\dot{p}_i)
+    \psi\left(\sum_{i=0}^{m} a_i\dot{p}_i \right) = \sum_{i=0}^{m} a_i\psi(\dot{p}_i)\ ,\ \ \sum_{i=0}^{m} a_i = 1
 \end{equation*} 
 
 
@@ -1973,9 +1973,16 @@ $t_u$称为沿$u$对$\A$的平移，且$\A^{\sharp } = \{t_u\mid u\in V\}$构成
 
 \subsubsection{平行、相交、交错：}
 \par\ding{172}\ 平行： 设$(\Pi_1, U_1)$，$(\Pi_2, U_2)$是$\A$的两个仿射子空间，我们称$\Pi_1$与$\Pi_2$平行如果$U_1 \subseteq U_2$。\par
-此时，若$\Pi_1 \cap \Pi_2 \ne \emptyset$，则$\Pi_1 \subseteq \Pi_2$；若$\Pi_1 \cap \Pi_2 = \emptyset$，考虑它们并集的仿射包络，有$V(\Pi_1\cup\Pi_2 ) = \F\overrightarrow{\dot{p}\dot{q}} + U' \Longrightarrow \dim A(\Pi_1\cup\Pi_2 ) = \dim \Pi_2 + 1$。\par   \par
-\ding{173}\  相交：$\Pi_1 \cap \Pi_2 \ne \emptyset$且不平行。   \par
+此时，若$\Pi_1 \cap \Pi_2 \ne \emptyset$，则$\Pi_1 \subseteq \Pi_2$
+\ding{173}\  相交：$ \Pi_1 \cap \Pi_2 \ne \emptyset$且不平行。   \par
 \ding{174}\  交错：既不平行也不相交 \par
+
+对于任意情况，我们考虑$\Pi_1, \Pi_2$并集的仿射包络，有：
+\begin{align*}
+    &V(\Pi_1\cup\Pi_2 ) = U_1 + U_2 + \F\overrightarrow{\dot{p_0}\dot{q_0}}\\ 
+    \Longrightarrow \dim V(\Pi_1\cup\Pi_2 ) &= \dim V_1 +  \dim V_2 + 1  - \dim (V_1\cap V_2) - \dim ((V_1+V_2)\cap \F\overrightarrow{\dot{p_0}\dot{q_0}}) \\ 
+    &\le \dim V_1 +  \dim V_2 + 1
+\end{align*} \par
 
 \section{欧几里得点空间}
 
@@ -1990,10 +1997,25 @@ $t_u$称为沿$u$对$\A$的平移，且$\A^{\sharp } = \{t_u\mid u\in V\}$构成
 \par}
 
 \begin{theorem}[仿射空间的距离]\label{仿射空间的距离}
-设$\Pi_1 = \Pi_1(\dot{o}_1,U), \Pi_2 = \Pi_2(\dot{o}_2,U)$是$\A$中的两个不相交的仿射子空间，$\{u_1,...,u_m\}$是$U+V$的一组正交基，则有：
+\ding{172}\ 常规方法：\par
+设$\Pi_1 = \Pi_1(\dot{o}_1,U_1), \Pi_2 = \Pi_2(\dot{o}_2,U_2)$是$(\A, V)$中的两个不相交的仿射子空间，$\{u_1,...,u_m\}$是$U_1+U_2$的一组{\color{red}正交基}，则有：
 \begin{equation*}
-    \rho(\Pi_1,\Pi_2)= \left \|  \overrightarrow{\dot{p}\dot{q}} - \sum_{i=1}^{m}\frac{(\overrightarrow{\dot{p}\dot{q}}\mid u_i)}{\| u_i \|^2}u_i  \right \|=\left \| \overrightarrow{\dot{p}\dot{q}} - \frac{(\overrightarrow{\dot{p}\dot{q}}\mid u_1)}{(u_1\mid u_1)}u_1 - \cdots -   \frac{(\overrightarrow{\dot{p}\dot{q}}\mid u_1)}{(u_m\mid u_m)}u_m \right \|
+    \rho(\Pi_1,\Pi_2)= \left \|  \overrightarrow{\dot{o}_1\dot{o}_2} - \sum_{i=1}^{m}\frac{(\overrightarrow{\dot{o}_1\dot{o}_2}\mid u_i)}{\| u_i \|^2}u_i  \right \|=\left \| \overrightarrow{\dot{o}_1\dot{o}_2} - \frac{(\overrightarrow{\dot{o}_1\dot{o}_2}\mid u_1)}{(u_1\mid u_1)}u_1 - \cdots -   \frac{(\overrightarrow{\dot{o}_1\dot{o}_2}\mid u_1)}{(u_m\mid u_m)}u_m \right \|
 \end{equation*}
+\ding{173}\ 投影方法（$U_1 + U_2$为超平面时适用）：\par
+求出$U_1+U_2$的正交补空间$(U_1+U_2)^{\perp} = \text{Span}\{w\}$，计算$\overrightarrow{\dot{o}_1\dot{o}_2}$在$(U_1+U_2)^{\perp}$上的投影，即为所求距离：
+\begin{equation*}
+    \rho(\Pi_1,\Pi_2) = \frac{( w \mid \overrightarrow{\dot{o}_1\dot{o}_2} )}{\| w \|\| \overrightarrow{\dot{o}_1\dot{o}_2} \|} \cdot \| \overrightarrow{\dot{o}_1\dot{o}_2} \| = \frac{( w \mid \overrightarrow{\dot{o}_1\dot{o}_2} )}{\| w \|} 
+\end{equation*}
+{\par\color{gray}\small
+例如$U_1+U_2 =\text{Span}\{ u_1, u_2, u_3 \} = \text{Span}\{ (-2,0,1,1), (2,1,0,0), (0,1,2,1) \}$，则$(U_1+U_2)^{\perp}$为下面齐次方程组的解空间：
+\begin{align*}
+    \vec{x}_1\cdot\vec{y} = -2x_1 + 0 +1x_3 + 1x_4&= 0\\ 
+    \vec{x}_2\cdot\vec{y} = 2x_1 + 1x_2 +0 +0 &= 0\\ 
+    \vec{x}_3\cdot\vec{y} = 0 + 1x_2 + 2x_3 + 1x_4 &= 0
+\end{align*}
+详见 Homework 17.2
+\par}
 \end{theorem}
 
 \begin{theorem}[点到超平面的距离]\label{点到超平面的距离}
@@ -2017,22 +2039,28 @@ $t_u$称为沿$u$对$\A$的平移，且$\A^{\sharp } = \{t_u\mid u\in V\}$构成
 \end{theorem}
 
 \begin{theorem}[公垂线]\label{公垂线}
-设直线$\Pi_1$和直线$\Pi_2$的方向向量分别为$v_1$和$v_2$，令$w=v_1\times v_2$，则公垂线由下面方程确定：
+设直线$\Pi_1$和直线$\Pi_2$的方向向量分别为$v_1$和$v_2$，令$w=v_1\times v_2$，分别在$\Pi_1$和$\Pi_2$上任取一点$\dot{p}, \dot{q}$，$\dot{r} = (x,y,z)$为所求公垂线上任意一点，则公垂线由下面方程确定：
 \begin{equation*}
     \begin{cases}
-        \Delta (\overrightarrow{\dot{p}\dot{r}},v_1,w)=0 \\
-        \Delta (\overrightarrow{\dot{q}\dot{r}},v_2,w)=0 \\
+        \Delta ({\color{red}\overrightarrow{\dot{p}\dot{r}}},v_1,w)=0 \\
+        \Delta ({\color{red}\overrightarrow{\dot{q}\dot{r}}},v_2,w)=0 \\
     \end{cases}
 \end{equation*}
+其中$\Delta(\vec{a}, \vec{b}, \vec{c}) = 
+\begin{bmatrix}  
+    a_1 & a_2 & a_3 \\  
+    b_1 & b_2 & b_3 \\  
+    c_1 & c_2 & c_3 
+\end{bmatrix}$，几何意义上是三条向量围成六面体的体积。
 \end{theorem}
 
-\begin{theorem}[过某点的平面]\label{过某点的平面}
+\begin{theorem}[过点和直线]\label{过点和直线}
 设$\dot{\R}$上的直线$\mathscr{L}:\begin{cases}
     \vec{a}\cdot\vec{x}+a_0=0\Longleftrightarrow a_1x+a_2y+a_3z+a_0=0 \\
     \vec{b}\cdot\vec{x}+b_0=0\Longleftrightarrow b_1x+b_2y+b_3z+b_0=0 \\
 \end{cases} $，$s=\vec{x}_0\cdot\vec{w}_0 = (x_0,y_0,z_0)$是不在$\mathscr{L}$上的一点，则过直线$\mathscr{L}$和点$s$的平面：
 \begin{equation*}
-    (\vec{b}\cdot\vec{x}_0+b_0)(\vec{a}\cdot\vec{x}+a_0)=(\vec{b}\cdot\vec{x}+b_0)(\vec{a}\cdot\vec{x}_0+a_0)
+    (\vec{b}\cdot\vec{x}_0+b_0)(\vec{a}\cdot{\color{red}\vec{x}}+a_0)=(\vec{b}\cdot{\color{red}\vec{x}}+b_0)(\vec{a}\cdot\vec{x}_0+a_0)
 \end{equation*}
 
 \end{theorem}
@@ -2043,76 +2071,70 @@ $t_u$称为沿$u$对$\A$的平移，且$\A^{\sharp } = \{t_u\mid u\in V\}$构成
 受课时所限，课程跳过了下一节“群与几何”和第五章“常见曲面”，直接进入第六章“张量”
 \par}
 
-\chapter{常见曲面}
+\chapter{常见曲面（略）}\thispagestyle{fancy} 
 \chapter{张量}
 
 拓展阅读：https://zhuanlan.zhihu.com/p/508715535
 
-\section{多重线性映射与张量}
+\section{多重线性映射与张量}\thispagestyle{fancy} 
 
-\subsubsection{张量(tensor)：}
+\subsubsection{开始之前：}
+\par\ding{172}\ 张量是什么：多重线性映射，也可以看作多重线性函数    \par
+\ding{173}\ 张量在做什么：输入矢量、对偶矢量，输出标量，也可理解为输入矢量或对偶矢量，输出退化后的低阶张量。    \par
+\ding{173}\ 张量积是什么：把两个张量“相乘”，得到一个更高阶的张量    \par
+\ding{174}\ 常见例子：向量$\vec{x} \in \F^n$是一阶张量， 可视为(1,0)型或(0,1)型，$V = \F^n$是一阶张量空间（(0,1)型张量构成的空间）；矩阵$A \in M_{n\times n}(\F)$是$\F^n$上的2阶张量，可视为(2,0)型、(1,1)型或(0,2)型，矩阵空间$V = M_{n\times n}(\F)$可视为二阶张量空间（(0,2)型张量构成的空间）。双线性型$f: V\times V: \longrightarrow \F$是一个(0,2)型张量。
+
+\par\noindent
 建议先阅读：\\ 
 https://zhuanlan.zhihu.com/p/311558501\\
 https://zhuanlan.zhihu.com/p/356975719\\ 
 https://zhuanlan.zhihu.com/p/340956105\par
-{\color{red}注：下面的笔记还未整理，有很多是不妥的甚至错误的。}
-{\par\color{gray}\small
-张量的定义在引入张量积之后，直接采取$(k,l)$型张量更自然。
-\par}
 
-定义：\begin{gather*}
-    V_1\otimes V_2\otimes \cdots \otimes V_k  =  \mathscr{L}(V_1,...,V_k:W)\\
-    f:V_1\times V_2\times \cdots \times V_k \overset{linear}{\longmapsto }W \in \mathscr{L}(V_1,...,V_k:W)
-\end{gather*}  
-{\par\color{gray}\small
-记$V_1\times V_2\times \cdots \times V_k$到$W$的全体多重线性映射为$\mathscr{L}(V_1,...,V_k:W)$，则其构成一个向量空间。 设$\{v_{j_i}\mid j_i \in J_i\}$是$V_i$的一组基，$f:V_1\times V_2\times \cdots \times V_k \overset{linear}{\longmapsto }W \in \mathscr{L}(V_1,...,V_k:W)$，我们有：
-\begin{equation*}
-    f(u_1,...,u_k)=\sum_{j_1\in J_1}\sum_{j_2\in J_2}\cdots \sum_{j_k\in J_k}a_{j_1}a_{j_2}\cdots a_{j_k}f(v_{j_1},v_{j_2},...,v_{j_k})\ \ ,\   \forall\  u_i=\sum_{j_i \in J_i}a_{j_i}v_{j_i}\in V_i
-\end{equation*}
-故映射$f$由$\{f(v_{j_1},v_{j_2},...,v_{j_k})\mid j_1\in J_1,j_2\in J_2,\cdots,j_k\in J_k\}$唯一确定，反之也成立（通过定义）。记$W(J_1,J_2,\cdots,J_k) = \{\nu \mid \nu: J_1\times J_2\times \cdots \times J_k \overset{linear}{\longmapsto} W\}$，则映射$f\longmapsto \{\}$
-\par}
-{\par\color{gray}\small
-例如$\mathscr{L}(V;\F)=V^*$，$\mathscr{L}(V,V;\F) = \{f\mid f:V \times V \overset{linear}{\longmapsto} \F\}$
-\par}
-
-\subsubsection{张量性质：}
-\par\ding{172} $\{f(v_{j_1},...,v_{j_k})\mid j_1 \in J_1,...,j_k \in J_k\}$构成$\mathscr{L}(V_1,...,V_k:W)$的一组基，tensor
- $f$由它在此基下的坐标唯一确定。 \par
-{\par\color{gray}\small
-例如，当$V_i=V,\ \dim V=n$时：设$V_1$的基为$\{v_{j_1}\mid j_1 \in J_1\}=\{v_{1,1},...,v_{1,n} \},\ ...,\ V_k$的基为$\{v_{j_k}\mid j_k \in J_k\}=\{v_{k,1},...,v_{k,n} \}$，$u_i=\vec{x_i}\cdot\vec{v_i}$，则$f(u_1,...,u_k)=\sum $
-\par}
-
-\ding{173}\  映射的张量积(tensor product of maps)：
-\begin{equation*}
-    (f \otimes g)(u_1,...,u_s,u_{s+1},...,u_{s+r}) = f(u_1,...,u_s)\cdot g(u_{s+1},...,u_{s+r})
-\end{equation*}
-{\par\color{gray}\small
-满足结合律、分配律，且为线性乘积。事实上，张量乘积$\otimes$是一个双线性映射$\otimes: T^p_q(V)\times T^r_s \longrightarrow T^{p+r}_{q+s}(V)$\par}
-\par
-\ding{174}\ 空间的张量积(tensor product of linear spaces)： 
+\subsubsection{张量(tensor)：}
+$V$上的(1,0)型张量$T_1^0$、(0,1)型张量$T_0^1$和(p,q)型张量$T_p^q$：
 \begin{gather*}
-    V_1 \otimes V_2 \otimes \cdots \otimes V_k = \text{Span}\{v_{j_1} \otimes v_{j_2} \otimes\cdots \otimes v_{j_k}\mid j_1\in J_1,j_2\in J_2,\cdots,j_k\in J_k\}\\ 
-    \dim (V_1 \otimes V_2 \otimes \cdots \otimes V_k) = \dim V_1 \cdot \dim V_2 \cdots  \dim V_k
+    T_1^0: V\to \F,\ v_i \longmapsto a\\
+    T_0^1: V^* \to \F,\ v^* \longmapsto a\\ 
+    T_p^q: (V)^p \times (V^*)^q  \longrightarrow \F
 \end{gather*}
-\par
-
 {\par\color{gray}\small
-$\forall\  U^*_i \subseteq V^*_i, i=1,...,k$, we define the tensor product of dual linear space(对偶线性空间): 
-\begin{align*}
-    U^*_1\times U^*_2\times \cdots \times U^*_k &= \text{Span}\{f_1 \otimes f_2 \otimes \cdots \otimes f_k \mid f_1 \in U^*_1, f_2 \in U^*_2, \cdots, f_k \in U^*_k\}\\
-    &=\text{Span}\{\nu_{j_1} \otimes\nu_{j_2} \otimes\cdots \otimes\nu_{j_k}\mid j_1\in J_1,j_2\in J_2,\cdots,j_k\in J_k\}
-\end{align*}
-
-Suppose $V$ is a linear space on $\F$，regard $V = (V^*)^*$ as we define $v(f) = f(v) \in \F,\ \forall\ f \in V^*$, then $v: V^* \longmapsto \F \in (V^*)^*$, so we have:
-\begin{equation*}
-    V_1 \otimes V_2 \otimes \cdots \otimes V_k = \text{Span}\{v_{j_1} \otimes v_{j_2} \otimes\cdots \otimes v_{j_k}\mid j_1\in J_1,j_2\in J_2,\cdots,j_k\in J_k\}
-\end{equation*}
-
-并且$\{v_{j_1} \otimes v_{j_2} \otimes\cdots \otimes v_{j_k}\mid j_1\in J_1,j_2\in J_2,\cdots,j_k\in J_k\}$构成$V_1 \otimes V_2 \otimes \cdots \otimes V_k$的一组基。
+其中$(V)^p \times (V^*)^q = \underbrace{V\times\cdots\times V}_p\times\underbrace{V^*\times\cdots\times V^*}_q$
 \par}
+当然，也有由低阶张量构成的高阶张量，如$p+q$阶张量$T$：
+\begin{equation*}
+    T: \underbrace{V_1 \times V_2 \times\cdots\times V_p}_p\times\underbrace{V_{p+1}^* \times V_{p+2}^* \times\cdots\times V_{p+q}^*}_q\longrightarrow \F
+\end{equation*}\par
+对于任意一个线性空间$V$，由自然同构有$V = (V^*)^*$，因此$V$中的任意元素$v$都可视作一个(0,1)型张量$v:V^* \to \F, v(v^*) = v^*(v) \in \F,\ \forall\ v^* \in V^*$。在实际的处理中，无论$V$是什么，我们都可以这样认为（这也侧面体现了张量阶数的相对性）。
+\subsubsection{张量积(tensor product)：}
+设张量$T_1$和$T_2$分别为：
+\begin{gather*}
+    T_1: \underbrace{V_1 \times\cdots\times V_{p_1}}_{p_1}\times\underbrace{V_{p_1+1}^* \times\cdots\times V_{p_1+q_1}^*}_{q_1}\longrightarrow \F 
+\end{gather*}
+\begin{gather*}
+    T_2: \underbrace{U_1 \times\cdots\times U_{p_2}}_{p_2}\times\underbrace{U_{p_2+1}^* \times\cdots\times U_{p_2+q_2}^*}_{q_2}\longrightarrow \F
+\end{gather*}
 
-\ding{175}\ 矩阵张量积：
-设$A=(a_{ij})_{m_1\times n_1}\in M_{m_2\times n_2},B=(b_{ij})_{m_2\times n_2}\in M_{m_2\times n_2}$，定义其张量积：
+定义它们的张量积$T_1 \otimes T_2$：
+\begin{gather*}
+    T_1 \otimes T_2: \underbrace{V_1 \times\cdots\times V_{p_1}}_{p_1}\times\underbrace{U_1 \times\cdots\times U_{p_2}}_{p_2}\times\underbrace{V_{p_1+1}^* \times\cdots\times V_{p_1+q_1}^*}_{q_1}\times \underbrace{U_{p_2+1}^* \times\cdots\times U_{p_2+q_2}^*}_{q_2}\longrightarrow \F \\ 
+    T_1 \otimes T_2 (input_1,input_2) = T_1(input_1) \cdot T_2(input_2) 
+\end{gather*}
+张量积的性质：
+\par\ding{172}\ 多重线性：    \par
+\ding{173}\  结合律   \par
+\ding{174}\  分配律   
+
+\noindent 我们还可以定义线性空间的张量积。设$\dim V_i = n_i$，$\vec{u}_i = [u_{i,1}, u_{i,2},..., u_{i,n_i}]^T$是$V_i$的一组基，$i=1,2,...,k$，定义它们的张量积：
+\begin{equation*}
+    V_1 \otimes \cdots \otimes V_k = \text{Span}\left\{ u_{1,j_1} \otimes u_{2,j_2} \otimes \cdots \otimes u_{k,j_k} \mid j_1 \in [1, n_1],\cdots,j_k \in [1, n_k]\right\}
+\end{equation*}
+因此线性空间的张量积还是线性空间，并且容易验证，基的张量积构成张量积的基。听起来很绕hhh，就是说线性空间基的张量积（等式右侧）构成了线性空间张量积（等式左侧）的一组基。
+{\par\color{gray}\small
+若将$v_i$视为(0,1)型张量，则$V_i$是由一堆(0,1)型张量构成的线性空间，而$V_1 \otimes \cdots \otimes V_k$是由一大堆(0,k)型张量构成的线性空间。
+\par}
+$V$上的全部(1,1)型张量构成的线性空间就是$V\otimes V^*$，全部(0,2)型张量构成的线性空间就是$V \otimes V$，全部(2,0)型张量构成的线性空间就是$V^* \otimes V^*$。上面的结论容易推广到任意维，也即：$V$上的全部(p,q)型张量构成线性空间$\underbrace{V\otimes\cdots\otimes V}_{q}\otimes\underbrace{V^* \otimes\cdots\otimes V^*}_{p}$。
+
+无论将矩阵$A\in M_{m_1\times n_1}(\F),  B \in M_{m_2\times n_2}(\F)$视为几型张量，我们都可定义矩阵的张量积：
 \begin{equation*}
     A \otimes B = 
     \begin{bmatrix}  
@@ -2122,92 +2144,36 @@ Suppose $V$ is a linear space on $\F$，regard $V = (V^*)^*$ as we define $v(f) 
         a_{m1}B& a_{m2}B& \cdots  & a_{mn}B  
     \end{bmatrix}_{m_1m_2\times n_1n_2}
 \end{equation*}
-{\par\color{gray}\small
-\begin{align*}
-    A,B: \begin{cases}
-        V \longrightarrow V',\ \F^n \longrightarrow \F^m, \vec{x} \longmapsto \vec{y}\\
-        V\times (V')^* \longrightarrow \F,\ \F^n \times (\F^m)^* \longrightarrow \F\\
-    \end{cases}\\
-    A\otimes B: \begin{cases}
-        V \longrightarrow V'\ \ (A\ \text{为线性变换而非线性函数($V \longrightarrow \F$)}) \\
-        \F^n \longrightarrow \F^m \\
-        \vec{x} \longmapsto \vec{y}
-    \end{cases}
-\end{align*}
-\par}
-\begin{equation*}
-    \varphi(A\otimes B) = \text{一坨}
-\end{equation*}
-\subsubsection{线性空间的$(k,l)$型张量：}
-通过自然同构，任意的张量$T: V^l \longrightarrow V^k$可看作是${V^*\times\cdots\times V^*}_l \longrightarrow \F$，反之也成立，因此我们只定义线性函数的张量积即可。\par
-定义线性空间$V$上的$(k,l)$型张量空间$\mathscr{T}_V(k, l)$，其中$v \in V : V^* \longrightarrow \F$视为线性函数(不一定是到$\F$)：
-\begin{align*}
-    \mathscr{T}_V(k, l) 
-    & = \underbrace{V\otimes\cdots\otimes V}_k\otimes\underbrace{V^*\otimes\cdots\otimes V^*}_l 
-    =\text{Span}\{\underbrace{v_{j_1} \otimes\cdots \otimes v_{j_k}}_k\otimes \underbrace{v^{j_1} \otimes\cdots \otimes v^{j_l}}_l\mid j_{r} \in J_{r}\} \\
-    T &\in \mathscr{T}_V(k, l): (V)^k \times (V^*)^l = \underbrace{V\times\cdots\times V}_k\times\underbrace{V^*\times\cdots\times V^*}_l \longrightarrow \F
-\end{align*}
-{\par\color{gray}\small
-元素$T\in \mathscr{T}_V(k, l)$称为$V$的$(k,l)$型张量。容易看出，$V = \mathscr{T}_V(1,0)$而$V^* = \mathscr{T}_V(0,1)$。
-\par}
-
-
-\begin{theorem}[无名]\label{无名}
-设$U$和$V$为$\F$上的有限维向量空间，对任意$\zeta = \sum_{i=1}^{n}f_i\otimes v_i \in U^*\otimes V $，定义$\varphi_{\zeta}(u) = \sum_{i=1}^{n}f_i(u)v_i \in V,\ \forall\ u\in U$，则$\varphi_{\zeta} \in \mathscr{L}(U,V)$且有：
-\begin{equation*}
-    \text{映射}\ \begin{cases}
-        U^*\otimes V \longrightarrow \mathscr{L}(U,V)\\
-        \zeta \longmapsto \varphi_{\zeta}
-    \end{cases} \ \text{构成}\ U^*\otimes V \cong \mathscr{L}(U,V)
-\end{equation*}
-
 
 \section{张量代数}
 
-\end{theorem}
-
-\subsubsection{全张量空间、张量代数：}
-
-$V$的$r$阶张量空间$\T^m(V)$：
+\subsubsection{张量空间(tensor space)：}
+由前面张量的定义，$V$上所有(0,2)阶张量构成线性空间$V\otimes V$，我们给它起个别名,记作$\T^1(V)$，称为$V$的2阶张量空间（实际上是$V$的(0,2)型张量空间）。类似地，我们定义$V$的$m$阶张量空间：
 \begin{equation*}
-    \T^0(V) = \mathbb{F}\ ,\ \  \T^m(V) = \overset{m}{\overbrace{V\otimes V \otimes \cdots \otimes V}}\ ,\ \ \T^p_q = \overset{p}{\overbrace{V\otimes V \otimes \cdots \otimes V}}\otimes \overset{q}{\overbrace{V^*\otimes V^* \otimes \cdots \otimes V^*}}
+    \T^0(V) = \F,\ \T^m(V) = \underbrace{V\otimes\cdots\otimes V}_{m}
 \end{equation*}
-{\par\color{gray}\small
-$\T^m(V)$中的元素称为$V$的$m$阶张量。
-\par}
-
-全张量空间：
+并定义$V$的全张量空间$\T(V)$：
 \begin{equation*}
-    \T(V) = \bigoplus^{+\infty}_{i=0} \T^i(V)
+\T(V) = \bigoplus_{m = 0}^{\infty} \T^m(V)
 \end{equation*}
 
-张量代数：
-在$\T(V)$中定义双线性乘积
+\subsubsection{对称/反对称张量：}
+与曾经讨论双线性型、多项式时类似，张量也可以有对称和反对称的性质，下面我们讨论m阶张量空间$\T^m(V)$中元素的对称性。
 
-\subsubsection{全对称张量空间：}
-\par\ding{172}\ 对称张量：$\T^m(V)$中的一个元素$\xi$称为对称张量如果$\xi$是$(V^*)^m$上的对称函数(例如$f$是对称多项式如果$f$是$\F[x_1,...,x_n]$上的对称函数)。 {\par\color{gray}\small
-类似地定义：
+一个(0,m)型张量$T_0^m \in \T^m(V)$称为对称（取$+$号）或反对称（取$-$号）的如果：
 \begin{equation*}
-    \text{Sym}(v_{j_1} \otimes v_{j_2} \otimes\cdots \otimes v_{j_m}) = {\color{red}\frac{1}{m!}}\sum_{\sigma\in S_m}v_{j_{\sigma(1)}} \otimes v_{j_{\sigma(2)}} \otimes\cdots \otimes v_{j_{\sigma(m)}}\ \ \ {\color{gray}\text{依次调换其位置}}
+    T(v^1,...,v^i,v^{i+1},...,v^m) = \pm\  T(v^1,...,v^{i+1},v^{i},...,v^m) \ ,\ \ \forall\ v^1,...,v^m \in V^*, i=1,2,...,m-1
 \end{equation*}
-这样，我们有：
+与多项式类似，我们定义$\T^m(V)$上的线性算子$\text{Sym}: \T^m(V) \T^m(V)$为：
 \begin{equation*}
-    \xi \in T^m(V)\ \text{为对称张量}\ \Longleftrightarrow \text{Sym}(\xi) = \xi
+    \text{Sym}(\T^m) = \text{Sym}(v_1 \otimes \cdots \otimes v_m) = \frac{1}{m!}\sum_{\sigma\in S_m}v_{j_{\sigma(1)}} \otimes v_{j_{\sigma(2)}} \otimes\cdots \otimes v_{j_{\sigma(m)}}
 \end{equation*}
-\par}
-  \par
-\ding{173}\ 对称张量空间：\begin{equation*}
-    \S^0(V) = \text{Sym}(\T^0(V)) = \text{Sym}(\F) \ ,\ \ \S^m(V) = \text{Sym}(\T^m(V))
-\end{equation*}
-{\par\color{gray}\small
-后者称为$V$的$m$阶对称张量空间，即$\S^m(V)= \text{Sym}(\T^m(V)) = \{ \xi \in \T^m(V) \mid \text{Sym}(\xi) = \xi  \mid \}${\color{red}待定！！！}
-\par}
+这样，则$\text{Sym}(\T^m(V))$中的元素都是对称张量，构成一个线性空间，称为$V$的$m$阶对称张量空间，并称$\text{Sym}(\T(V))= \sum_{i=0}^{\infty}\text{Sym}(\T^m(V))$为$V$的全对称张量空间。
 
-\par
-\ding{174}\  全对称张量空间：
-\begin{equation*}
-    \S = \sum_{i=0}^{\infty}\S^i(V) = \sum_{i=0}^{\infty} \text{Sym}(\T^i(V))
-\end{equation*}   \par
+这里需要注意$\dim V>1$时，是否直接有$\S(V) = \text{Sym}(\T(V))$。另外，讲义上给出了一个结论：$\S(V)$的一组基是$\{1_{V}, \text{Sym}(v_{j_1} \otimes \cdots \otimes v_{j_k})\mid k = 1,...,m, 1 \le j_1 < \cdots < j_k \le m\}$。{\color{red}讲义上写的是$1_{\F}$，我认为不对，应为$1_V$。另外，$\text{Alt}$都不写作$\A$，因此我们也不将$\text{Sym}$写作$\S$（讲义中写作了$\S$）。}
+
+同理有$V$的$m$阶反对称张量空间$\text{Alt}(\T^m(V))$，全斜对称张量空间$\text{Alt}(V) =  \sum_{i=0}^{\infty}\text{Alt}(\T^m(V))$。
+
 
 \subsubsection{带幺结合代数：}
 设$\mathscr{A}$为带幺结合代数，$\mathscr{A}$的子空间$\I$称为$\mathscr{A}$的理想如果：
@@ -2216,31 +2182,6 @@ $\T^m(V)$中的元素称为$V$的$m$阶张量。
 \end{equation*}
 并且有结论：$\forall\ \text{理想}\ \I,\ 1_{\mathscr{A}} \in I \Longrightarrow \I = \mathscr{A}$。
 
-
-\subsubsection{全斜对称张量空间：}
-\par\ding{172}\ 斜对称张量：$\T^m(V)$中的一个元素$\xi$称为斜对称张量如果$\xi$是$(V^*)^m$上的斜对称函数(例如$f$是斜对称多项式如果$f$是$\F[x_1,...,x_n]$上的斜对称函数)。
-{\par\color{gray}\small
-类似地定义：
-\begin{equation*}
-    \text{Alt}(v_{j_1} \otimes v_{j_2} \otimes\cdots \otimes v_{j_m}) =  \frac{1}{m!}\sum_{\sigma\in S_m}\varepsilon_{\sigma}\cdot v_{j_{\sigma(1)}} \otimes v_{j_{\sigma(2)}} \otimes\cdots \otimes v_{j_{\sigma(m)}}
-\end{equation*}   
-其中$\varepsilon_{\sigma}=\begin{cases}
-    1 &, \text{if }\  \sigma\ \text{为奇置换}\\
-    -1 &, \text{if }\  \sigma\ \text{为偶置换}
-\end{cases}$
-\par}
-
-\par
-\ding{173}\  斜对称张量空间：
-\begin{equation*}
-    \mathbb{A}^0(V) = \text{Alt}(\T^0(V)) = \text{Alt}(\F) \ ,\ \ \mathbb{A}^m(V) = \text{Alt}(\T^m(V))
-\end{equation*}
-
-\par
-\ding{174}\  全斜对称张量空间：
-\begin{equation*}
-    \mathbb{A}(V) = \sum_{i=0}^{\infty} \mathbb{A}^i(V) = \sum_{i=0}^{\infty}\text{Alt}(\T^i(V))
-\end{equation*}   \par
 
 
 

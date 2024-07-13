@@ -1,5 +1,5 @@
-% 设定文章类型,正文字号为小四，若为五号将-4改为5即可
-\documentclass[zihao=-4,UTF8]{report}		
+% 设定文章类型,正文字号为五号，若需小四将5改为-4即可
+\documentclass[zihao=5,UTF8]{report}		
 
 % 文章宏定义
 
@@ -77,7 +77,7 @@
 \setmainfont{Times New Roman} % 设置英文字体为Times New Roman
 
 % 参考文献引用设置
-\bibliographystyle{unsrt}   % 设置参考文献引用格式为unsrt
+\bibliographystyle{unsrt}   % 设置参考文献引用格式为unsrt(所有作者姓名全拼，参考文献按照文章中先后顺系排序)
 \newcommand{\upcite}[1]{\textsuperscript{\cite{#1}}}     % 自定义上角标式引用
 
 % chapter标题自定义设置
@@ -1289,9 +1289,7 @@ Maxwell关系：
     C_V &= \left(\frac{\partial Q}{\partial T}\right)_V = \left(\frac{\partial U}{\partial T}\right)_V\ \ {\color{gray} \mathrm{d}U = \mathrm{d}Q -p\mathrm{d}V,\ \mathrm{d}V=0} \\ 
     C_p &= \left(\frac{\partial Q}{\partial T}\right)_p  =  \left(\frac{\partial H}{\partial T}\right)_p  \ \ {\color{gray} \mathrm{d}U = \mathrm{d}Q -p\mathrm{d}V ,\ H = U+pV,\ \mathrm{d}H = \mathrm{d}U + p\mathrm{d}V + V\mathrm{d}p (\mathrm{d}p=0)}\\ 
     &= \left(\frac{\partial (U+pV)}{\partial T}\right)_p =  \left(\frac{\partial U}{\partial T}\right)_p + p \left(\frac{\partial V}{\partial T}\right)_p \\ 
-    &= \left[ \left(\frac{\partial U}{\partial T}\right)_V  + \left(\frac{\partial U}{\partial V}\right)_T\left(\frac{\partial V}{\partial T}\right)_p  \right]  + p \left(\frac{\partial V}{\partial T}\right)_p\ \  {\color{gray}U = U(T,V(T,p)),\ \text{由复合函数求导}}
-\end{align*}
-\begin{align*}
+    &= \left[ \left(\frac{\partial U}{\partial T}\right)_V  + \left(\frac{\partial U}{\partial V}\right)_T\left(\frac{\partial V}{\partial T}\right)_p  \right]  + p \left(\frac{\partial V}{\partial T}\right)_p\ \  {\color{gray}U = U(T,V(T,p)),\ \text{由复合函数求导}}\\
     &= \left(\frac{\partial U}{\partial T}\right)_V + \left[ \left(\frac{\partial U}{\partial V}\right)_T +p \right]\left(\frac{\partial V}{\partial T}\right)_p\\
     &= \left(\frac{\partial U}{\partial T}\right)_V + \left[ T\left(\frac{\partial p}{\partial T}\right)_V\right]\left(\frac{\partial V}{\partial T}\right)_p\ \ {\color{gray}\text{内能与状态方程关系} \left(\frac{\partial U}{\partial V} \right)_T = T \left(\frac{\partial p}{\partial T}\right)_V - p}\\
     &\Longrightarrow C_p - C_V =  T\left(\frac{\partial p}{\partial T}\right)_V\left(\frac{\partial V}{\partial T}\right)_p
@@ -1472,11 +1470,6 @@ $\sigma$为液体与空气间的表面张力系数，$r$为毛细管半径，$\t
 \par}
 
 
-
-
-
-
-
 \newpage
 \nocite{*}
 \bibliography{re}
@@ -1489,7 +1482,7 @@ $\sigma$为液体与空气间的表面张力系数，$r$为毛细管半径，$\t
 \titleformat{\section}{\large\centering\bfseries}{Apendix\thesection}{1em}{}
 \titleformat{\subsection}{\normalsize\bfseries}{\thesubsection}{1em}{}
 
-\section{常见物理常量表}
+\section*{Apendix. 常见物理常量表}
 \begin{longtable}[H]{cccc}
     \caption{\textbf{常见物理常量数值}}\\
     \toprule

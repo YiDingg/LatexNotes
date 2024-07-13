@@ -98,16 +98,15 @@
 \contentsline {subsubsection}{平行、相交、交错：}{36}{theorem.50}%
 \contentsline {section}{\numberline {4.2}欧几里得点空间}{36}{section.4.2}%
 \contentsline {subsubsection}{欧几里得点空间：}{36}{section.4.2}%
-\contentsline {section}{\numberline {4.3}群与几何}{37}{section.4.3}%
-\contentsline {chapter}{\numberline {5}常见曲面}{38}{chapter.5}%
-\contentsline {chapter}{\numberline {6}张量}{39}{chapter.6}%
-\contentsline {section}{\numberline {6.1}多重线性映射与张量}{39}{section.6.1}%
-\contentsline {subsubsection}{张量(tensor)：}{39}{section.6.1}%
-\contentsline {subsubsection}{张量性质：}{39}{section.6.1}%
-\contentsline {subsubsection}{线性空间的$(k,l)$型张量：}{40}{section.6.1}%
-\contentsline {section}{\numberline {6.2}张量代数}{40}{section.6.2}%
-\contentsline {subsubsection}{全张量空间、张量代数：}{40}{section.6.2}%
-\contentsline {subsubsection}{全对称张量空间：}{41}{section.6.2}%
-\contentsline {subsubsection}{带幺结合代数：}{41}{section.6.2}%
-\contentsline {subsubsection}{全斜对称张量空间：}{41}{section.6.2}%
-\contentsline {chapter}{参考文献}{41}{section.6.2}%
+\contentsline {section}{\numberline {4.3}群与几何}{38}{section.4.3}%
+\contentsline {chapter}{\numberline {5}常见曲面（略）}{39}{chapter.5}%
+\contentsline {chapter}{\numberline {6}张量}{40}{chapter.6}%
+\contentsline {section}{\numberline {6.1}多重线性映射与张量}{40}{section.6.1}%
+\contentsline {subsubsection}{开始之前：}{40}{section.6.1}%
+\contentsline {subsubsection}{张量(tensor)：}{40}{section.6.1}%
+\contentsline {subsubsection}{张量积(tensor product)：}{40}{section.6.1}%
+\contentsline {section}{\numberline {6.2}张量代数}{41}{section.6.2}%
+\contentsline {subsubsection}{张量空间(tensor space)：}{41}{section.6.2}%
+\contentsline {subsubsection}{对称/反对称张量：}{42}{section.6.2}%
+\contentsline {subsubsection}{带幺结合代数：}{42}{section.6.2}%
+\contentsline {chapter}{参考文献}{43}{chapter*.2}%

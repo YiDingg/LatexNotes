@@ -3,8 +3,8 @@ entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**ThermodynamicsNotes
-(./ThermodynamicsNotes.tex
+**MathematicalPhysicsMethodsNotes
+(./MathematicalPhysicsMethodsNotes.tex
 LaTeX2e <2023-06-01> patch level 1
 L3 programming layer <2023-10-23>
 (c:/texlive/2023/texmf-dist/tex/latex/base/report.cls
@@ -379,12 +379,15 @@ LaTeX Info: Redefining \Relbar on input line 971.
 \mathdisplay@stack=\toks22
 LaTeX Info: Redefining \[ on input line 2953.
 LaTeX Info: Redefining \] on input line 2954.
+) (c:/texlive/2023/texmf-dist/tex/latex/jknapltx/mathrsfs.sty
+Package: mathrsfs 1996/01/01 Math RSFS package v1.0 (jk)
+\symrsfs=\mathgroup4
 ) (c:/texlive/2023/texmf-dist/tex/latex/amsfonts/amssymb.sty
 Package: amssymb 2013/01/14 v3.01 AMS font symbols
  (c:/texlive/2023/texmf-dist/tex/latex/amsfonts/amsfonts.sty
 Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
-\symAMSa=\mathgroup4
-\symAMSb=\mathgroup5
+\symAMSa=\mathgroup5
+\symAMSb=\mathgroup6
 LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
@@ -399,7 +402,37 @@ LaTeX Font Info:    Trying to load font information for U+psy on input line 64.
 File: upsy.fd 2001/06/04 font definitions for U/psy.
 )) (c:/texlive/2023/texmf-dist/tex/latex/extarrows/extarrows.sty
 Package: extarrows 2020/03/12 v1.2.0 Some extensible arrows
-) (c:/texlive/2023/texmf-dist/tex/latex/xcolor/xcolor.sty
+) (c:/texlive/2023/texmf-dist/tex/latex/geometry/geometry.sty
+Package: geometry 2020/01/02 v5.9 Page Geometry
+ (c:/texlive/2023/texmf-dist/tex/generic/iftex/ifvtex.sty
+Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
+)
+\Gm@cnth=\count316
+\Gm@cntv=\count317
+\c@Gm@tempcnt=\count318
+\Gm@bindingoffset=\dimen188
+\Gm@wd@mp=\dimen189
+\Gm@odd@mp=\dimen190
+\Gm@even@mp=\dimen191
+\Gm@layoutwidth=\dimen192
+\Gm@layoutheight=\dimen193
+\Gm@layouthoffset=\dimen194
+\Gm@layoutvoffset=\dimen195
+\Gm@dimlist=\toks23
+) (c:/texlive/2023/texmf-dist/tex/latex/amscls/amsthm.sty
+Package: amsthm 2020/05/29 v2.20.6
+\thm@style=\toks24
+\thm@bodyfont=\toks25
+\thm@headfont=\toks26
+\thm@notefont=\toks27
+\thm@headpunct=\toks28
+\thm@preskip=\skip63
+\thm@postskip=\skip64
+\thm@headsep=\skip65
+\dth@everypar=\toks29
+)
+\c@theorem=\count319
+ (c:/texlive/2023/texmf-dist/tex/latex/xcolor/xcolor.sty
 Package: xcolor 2022/06/12 v2.14 LaTeX color extensions (UK)
  (c:/texlive/2023/texmf-dist/tex/latex/graphics-cfg/color.cfg
 File: color.cfg 2016/01/02 v1.6 sample color configuration
@@ -422,104 +455,73 @@ File: dvipsnam.def 2016/06/17 v3.0m Driver-dependent file (DPC,SPQR)
 File: svgnam.def 2022/06/12 v2.14 Predefined colors according to SVG 1.1 (UK)
 )) (c:/texlive/2023/texmf-dist/tex/latex/changepage/changepage.sty
 Package: changepage 2009/10/20 v1.0c check page and change page layout
-\c@cp@cntr=\count316
-\cp@tempcnt=\count317
+\c@cp@cntr=\count320
+\cp@tempcnt=\count321
 ) (c:/texlive/2023/texmf-dist/tex/latex/framed/framed.sty
 Package: framed 2011/10/22 v 0.96: framed or shaded text with page breaks
-\OuterFrameSep=\skip63
-\fb@frw=\dimen188
-\fb@frh=\dimen189
-\FrameRule=\dimen190
-\FrameSep=\dimen191
-) (c:/texlive/2023/texmf-dist/tex/latex/geometry/geometry.sty
-Package: geometry 2020/01/02 v5.9 Page Geometry
- (c:/texlive/2023/texmf-dist/tex/generic/iftex/ifvtex.sty
-Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
-)
-\Gm@cnth=\count318
-\Gm@cntv=\count319
-\c@Gm@tempcnt=\count320
-\Gm@bindingoffset=\dimen192
-\Gm@wd@mp=\dimen193
-\Gm@odd@mp=\dimen194
-\Gm@even@mp=\dimen195
-\Gm@layoutwidth=\dimen196
-\Gm@layoutheight=\dimen197
-\Gm@layouthoffset=\dimen198
-\Gm@layoutvoffset=\dimen199
-\Gm@dimlist=\toks23
-) (c:/texlive/2023/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
-Package: fancyhdr 2022/11/09 v4.1 Extensive control of page headers and footers
-\f@nch@headwidth=\skip64
-\f@nch@O@elh=\skip65
-\f@nch@O@erh=\skip66
-\f@nch@O@olh=\skip67
-\f@nch@O@orh=\skip68
-\f@nch@O@elf=\skip69
-\f@nch@O@erf=\skip70
-\f@nch@O@olf=\skip71
-\f@nch@O@orf=\skip72
-) (c:/texlive/2023/texmf-dist/tex/latex/titling/titling.sty
-Package: titling 2009/09/04 v2.1d maketitle typesetting
-\thanksmarkwidth=\skip73
-\thanksmargin=\skip74
-\droptitle=\skip75
+\OuterFrameSep=\skip66
+\fb@frw=\dimen196
+\fb@frh=\dimen197
+\FrameRule=\dimen198
+\FrameSep=\dimen199
+) (c:/texlive/2023/texmf-dist/tex/latex/titlesec/titlesec.sty
+Package: titlesec 2023/10/27 v2.16 Sectioning titles
+\ttl@box=\box58
+\beforetitleunit=\skip67
+\aftertitleunit=\skip68
+\ttl@plus=\dimen256
+\ttl@minus=\dimen257
+\ttl@toksa=\toks30
+\titlewidth=\dimen258
+\titlewidthlast=\dimen259
+\titlewidthfirst=\dimen260
+) (c:/texlive/2023/texmf-dist/tex/latex/float/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count322
+\float@exts=\toks31
+\float@box=\box59
+\@float@everytoks=\toks32
+\@floatcapt=\box60
 ) (c:/texlive/2023/texmf-dist/tex/latex/booktabs/booktabs.sty
 Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
-\heavyrulewidth=\dimen256
-\lightrulewidth=\dimen257
-\cmidrulewidth=\dimen258
-\belowrulesep=\dimen259
-\belowbottomsep=\dimen260
-\aboverulesep=\dimen261
-\abovetopsep=\dimen262
-\cmidrulesep=\dimen263
-\cmidrulekern=\dimen264
-\defaultaddspace=\dimen265
-\@cmidla=\count321
-\@cmidlb=\count322
-\@aboverulesep=\dimen266
-\@belowrulesep=\dimen267
-\@thisruleclass=\count323
-\@lastruleclass=\count324
-\@thisrulewidth=\dimen268
-) (c:/texlive/2023/texmf-dist/tex/latex/tools/tabularx.sty
-Package: tabularx 2020/01/15 v2.11c `tabularx' package (DPC)
- (c:/texlive/2023/texmf-dist/tex/latex/tools/array.sty
-Package: array 2022/09/04 v2.5g Tabular extension package (FMi)
-\col@sep=\dimen269
-\ar@mcellbox=\box58
-\extrarowheight=\dimen270
-\NC@list=\toks24
-\extratabsurround=\skip76
-\backup@length=\skip77
-\ar@cellbox=\box59
+\heavyrulewidth=\dimen261
+\lightrulewidth=\dimen262
+\cmidrulewidth=\dimen263
+\belowrulesep=\dimen264
+\belowbottomsep=\dimen265
+\aboverulesep=\dimen266
+\abovetopsep=\dimen267
+\cmidrulesep=\dimen268
+\cmidrulekern=\dimen269
+\defaultaddspace=\dimen270
+\@cmidla=\count323
+\@cmidlb=\count324
+\@aboverulesep=\dimen271
+\@belowrulesep=\dimen272
+\@thisruleclass=\count325
+\@lastruleclass=\count326
+\@thisrulewidth=\dimen273
+) (c:/texlive/2023/texmf-dist/tex/latex/caption/caption.sty
+Package: caption 2023/08/05 v3.6o Customizing captions (AR)
+ (c:/texlive/2023/texmf-dist/tex/latex/caption/caption3.sty
+Package: caption3 2023/07/31 v2.4d caption3 kernel (AR)
+\caption@tempdima=\dimen274
+\captionmargin=\dimen275
+\caption@leftmargin=\dimen276
+\caption@rightmargin=\dimen277
+\caption@width=\dimen278
+\caption@indent=\dimen279
+\caption@parindent=\dimen280
+\caption@hangindent=\dimen281
+Package caption Info: Standard document class detected.
 )
-\TX@col@width=\dimen271
-\TX@old@table=\dimen272
-\TX@old@col=\dimen273
-\TX@target=\dimen274
-\TX@delta=\dimen275
-\TX@cols=\count325
-\TX@ftn=\toks25
-) (c:/texlive/2023/texmf-dist/tex/latex/tools/longtable.sty
-Package: longtable 2021-09-01 v4.17 Multi-page Table package (DPC)
-\LTleft=\skip78
-\LTright=\skip79
-\LTpre=\skip80
-\LTpost=\skip81
-\LTchunksize=\count326
-\LTcapwidth=\dimen276
-\LT@head=\box60
-\LT@firsthead=\box61
-\LT@foot=\box62
-\LT@lastfoot=\box63
-\LT@gbox=\box64
-\LT@cols=\count327
-\LT@rows=\count328
-\c@LT@tables=\count329
-\c@LT@chunks=\count330
-\LT@p@ftn=\toks26
+\c@caption@flags=\count327
+\c@continuedfloat=\count328
+Package caption Info: changepage package is loaded.
+\caption@adjustwidth@hsize=\dimen282
+\caption@adjustwidth@linewidth=\dimen283
+Package caption Info: float package is loaded.
+Package caption Info: hyperref package is loaded.
 ) (c:/texlive/2023/texmf-dist/tex/latex/graphics/graphicx.sty
 Package: graphicx 2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
  (c:/texlive/2023/texmf-dist/tex/latex/graphics/graphics.sty
@@ -531,84 +533,9 @@ File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
 Package graphics Info: Driver file: xetex.def on input line 107.
 )
-\Gin@req@height=\dimen277
-\Gin@req@width=\dimen278
-) (c:/texlive/2023/texmf-dist/tex/latex/float/float.sty
-Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count331
-\float@exts=\toks27
-\float@box=\box65
-\@float@everytoks=\toks28
-\@floatcapt=\box66
-) (c:/texlive/2023/texmf-dist/tex/latex/caption/caption.sty
-Package: caption 2023/08/05 v3.6o Customizing captions (AR)
- (c:/texlive/2023/texmf-dist/tex/latex/caption/caption3.sty
-Package: caption3 2023/07/31 v2.4d caption3 kernel (AR)
-\caption@tempdima=\dimen279
-\captionmargin=\dimen280
-\caption@leftmargin=\dimen281
-\caption@rightmargin=\dimen282
-\caption@width=\dimen283
-\caption@indent=\dimen284
-\caption@parindent=\dimen285
-\caption@hangindent=\dimen286
-Package caption Info: Standard document class detected.
+\Gin@req@height=\dimen284
+\Gin@req@width=\dimen285
 )
-\c@caption@flags=\count332
-\c@continuedfloat=\count333
-Package caption Info: changepage package is loaded.
-\caption@adjustwidth@hsize=\dimen287
-\caption@adjustwidth@linewidth=\dimen288
-Package caption Info: float package is loaded.
-Package caption Info: hyperref package is loaded.
-Package caption Info: longtable package is loaded.
- (c:/texlive/2023/texmf-dist/tex/latex/caption/ltcaption.sty
-Package: ltcaption 2021/01/08 v1.4c longtable captions (AR)
-)) (c:/texlive/2023/texmf-dist/tex/latex/adjustbox/adjustbox.sty
-Package: adjustbox 2022/10/17 v1.3a Adjusting TeX boxes (trim, clip, ...)
- (c:/texlive/2023/texmf-dist/tex/latex/xkeyval/xkeyval.sty
-Package: xkeyval 2022/06/16 v2.9 package option processing (HA)
- (c:/texlive/2023/texmf-dist/tex/generic/xkeyval/xkeyval.tex (c:/texlive/2023/texmf-dist/tex/generic/xkeyval/xkvutils.tex
-\XKV@toks=\toks29
-\XKV@tempa@toks=\toks30
-)
-\XKV@depth=\count334
-File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
-)) (c:/texlive/2023/texmf-dist/tex/latex/adjustbox/adjcalc.sty
-Package: adjcalc 2012/05/16 v1.1 Provides advanced setlength with multiple back-ends (calc, etex, pgfmath)
-) (c:/texlive/2023/texmf-dist/tex/latex/adjustbox/trimclip.sty
-Package: trimclip 2020/08/19 v1.2 Trim and clip general TeX material
- (c:/texlive/2023/texmf-dist/tex/latex/collectbox/collectbox.sty
-Package: collectbox 2022/10/17 v0.4c Collect macro arguments as boxes
-\collectedbox=\box67
-)
-\tc@llx=\dimen289
-\tc@lly=\dimen290
-\tc@urx=\dimen291
-\tc@ury=\dimen292
-Package trimclip Info: Using driver 'tc-xetex.def'.
- (c:/texlive/2023/texmf-dist/tex/latex/adjustbox/tc-xetex.def
-File: tc-xetex.def 2019/01/04 v2.2 Clipping driver for xetex
-))
-\adjbox@Width=\dimen293
-\adjbox@Height=\dimen294
-\adjbox@Depth=\dimen295
-\adjbox@Totalheight=\dimen296
-\adjbox@pwidth=\dimen297
-\adjbox@pheight=\dimen298
-\adjbox@pdepth=\dimen299
-\adjbox@ptotalheight=\dimen300
- (c:/texlive/2023/texmf-dist/tex/latex/ifoddpage/ifoddpage.sty
-Package: ifoddpage 2022/10/18 v1.2 Conditionals for odd/even page detection
-\c@checkoddpage=\count335
-LaTeX Info: Redefining \checkoddpage on input line 45.
-) (c:/texlive/2023/texmf-dist/tex/latex/varwidth/varwidth.sty
-Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
-\@vwid@box=\box68
-\sift@deathcycles=\count336
-\@vwid@loff=\dimen301
-\@vwid@roff=\dimen302
-))
 
 Package fontspec Info: Could not resolve font "SimSun/BI" (it probably doesn't
 (fontspec)             exist).
@@ -659,100 +586,100 @@ Package fontspec Info: Font family 'TimesNewRoman(0)' created for font 'Times
 (fontspec)             <->"Times New
 (fontspec)             Roman/BI/OT:script=latn;language=dflt;+smcp;mapping=tex-text;"
 
- (c:/texlive/2023/texmf-dist/tex/latex/titlesec/titlesec.sty
-Package: titlesec 2023/10/27 v2.16 Sectioning titles
-\ttl@box=\box69
-\beforetitleunit=\skip82
-\aftertitleunit=\skip83
-\ttl@plus=\dimen303
-\ttl@minus=\dimen304
-\ttl@toksa=\toks31
-\titlewidth=\dimen305
-\titlewidthlast=\dimen306
-\titlewidthfirst=\dimen307
-) (./ThermodynamicsNotes.aux)
-\openout1 = `ThermodynamicsNotes.aux'.
+ (c:/texlive/2023/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
+Package: fancyhdr 2022/11/09 v4.1 Extensive control of page headers and footers
+\f@nch@headwidth=\skip69
+\f@nch@O@elh=\skip70
+\f@nch@O@erh=\skip71
+\f@nch@O@olh=\skip72
+\f@nch@O@orh=\skip73
+\f@nch@O@elf=\skip74
+\f@nch@O@erf=\skip75
+\f@nch@O@olf=\skip76
+\f@nch@O@orf=\skip77
+) (./MathematicalPhysicsMethodsNotes.aux)
+\openout1 = `MathematicalPhysicsMethodsNotes.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 107.
-LaTeX Font Info:    ... okay on input line 107.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 107.
-LaTeX Font Info:    ... okay on input line 107.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 107.
-LaTeX Font Info:    ... okay on input line 107.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 107.
-LaTeX Font Info:    ... okay on input line 107.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 107.
-LaTeX Font Info:    ... okay on input line 107.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 107.
-LaTeX Font Info:    ... okay on input line 107.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 107.
-LaTeX Font Info:    ... okay on input line 107.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 107.
-LaTeX Font Info:    ... okay on input line 107.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 107.
-LaTeX Font Info:    ... okay on input line 107.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 107.
-LaTeX Font Info:    ... okay on input line 107.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 122.
+LaTeX Font Info:    ... okay on input line 122.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 122.
+LaTeX Font Info:    ... okay on input line 122.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 122.
+LaTeX Font Info:    ... okay on input line 122.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 122.
+LaTeX Font Info:    ... okay on input line 122.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 122.
+LaTeX Font Info:    ... okay on input line 122.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 122.
+LaTeX Font Info:    ... okay on input line 122.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 122.
+LaTeX Font Info:    ... okay on input line 122.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 122.
+LaTeX Font Info:    ... okay on input line 122.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 122.
+LaTeX Font Info:    ... okay on input line 122.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 122.
+LaTeX Font Info:    ... okay on input line 122.
 
 Package fontspec Info: Adjusting the maths setup (use [no-math] to avoid
 (fontspec)             this).
 
-\symlegacymaths=\mathgroup6
+\symlegacymaths=\mathgroup7
 LaTeX Font Info:    Overwriting symbol font `legacymaths' in version `bold'
-(Font)                  OT1/cmr/m/n --> OT1/cmr/bx/n on input line 107.
-LaTeX Font Info:    Redeclaring math accent \acute on input line 107.
-LaTeX Font Info:    Redeclaring math accent \grave on input line 107.
-LaTeX Font Info:    Redeclaring math accent \ddot on input line 107.
-LaTeX Font Info:    Redeclaring math accent \tilde on input line 107.
-LaTeX Font Info:    Redeclaring math accent \bar on input line 107.
-LaTeX Font Info:    Redeclaring math accent \breve on input line 107.
-LaTeX Font Info:    Redeclaring math accent \check on input line 107.
-LaTeX Font Info:    Redeclaring math accent \hat on input line 107.
-LaTeX Font Info:    Redeclaring math accent \dot on input line 107.
-LaTeX Font Info:    Redeclaring math accent \mathring on input line 107.
-LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 107.
-LaTeX Font Info:    Redeclaring math symbol \Delta on input line 107.
-LaTeX Font Info:    Redeclaring math symbol \Theta on input line 107.
-LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 107.
-LaTeX Font Info:    Redeclaring math symbol \Xi on input line 107.
-LaTeX Font Info:    Redeclaring math symbol \Pi on input line 107.
-LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 107.
-LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 107.
-LaTeX Font Info:    Redeclaring math symbol \Phi on input line 107.
-LaTeX Font Info:    Redeclaring math symbol \Psi on input line 107.
-LaTeX Font Info:    Redeclaring math symbol \Omega on input line 107.
-LaTeX Font Info:    Redeclaring math symbol \mathdollar on input line 107.
-LaTeX Font Info:    Redeclaring symbol font `operators' on input line 107.
+(Font)                  OT1/cmr/m/n --> OT1/cmr/bx/n on input line 122.
+LaTeX Font Info:    Redeclaring math accent \acute on input line 122.
+LaTeX Font Info:    Redeclaring math accent \grave on input line 122.
+LaTeX Font Info:    Redeclaring math accent \ddot on input line 122.
+LaTeX Font Info:    Redeclaring math accent \tilde on input line 122.
+LaTeX Font Info:    Redeclaring math accent \bar on input line 122.
+LaTeX Font Info:    Redeclaring math accent \breve on input line 122.
+LaTeX Font Info:    Redeclaring math accent \check on input line 122.
+LaTeX Font Info:    Redeclaring math accent \hat on input line 122.
+LaTeX Font Info:    Redeclaring math accent \dot on input line 122.
+LaTeX Font Info:    Redeclaring math accent \mathring on input line 122.
+LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 122.
+LaTeX Font Info:    Redeclaring math symbol \Delta on input line 122.
+LaTeX Font Info:    Redeclaring math symbol \Theta on input line 122.
+LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 122.
+LaTeX Font Info:    Redeclaring math symbol \Xi on input line 122.
+LaTeX Font Info:    Redeclaring math symbol \Pi on input line 122.
+LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 122.
+LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 122.
+LaTeX Font Info:    Redeclaring math symbol \Phi on input line 122.
+LaTeX Font Info:    Redeclaring math symbol \Psi on input line 122.
+LaTeX Font Info:    Redeclaring math symbol \Omega on input line 122.
+LaTeX Font Info:    Redeclaring math symbol \mathdollar on input line 122.
+LaTeX Font Info:    Redeclaring symbol font `operators' on input line 122.
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `normal' on input line 107.
+(Font)              `operators' in the math version `normal' on input line 122.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  OT1/cmr/m/n --> TU/TimesNewRoman(0)/m/n on input line 107.
+(Font)                  OT1/cmr/m/n --> TU/TimesNewRoman(0)/m/n on input line 122.
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `bold' on input line 107.
+(Font)              `operators' in the math version `bold' on input line 122.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  OT1/cmr/bx/n --> TU/TimesNewRoman(0)/m/n on input line 107.
+(Font)                  OT1/cmr/bx/n --> TU/TimesNewRoman(0)/m/n on input line 122.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  TU/TimesNewRoman(0)/m/n --> TU/TimesNewRoman(0)/m/n on input line 107.
+(Font)                  TU/TimesNewRoman(0)/m/n --> TU/TimesNewRoman(0)/m/n on input line 122.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
-(Font)                  OT1/cmr/m/it --> TU/TimesNewRoman(0)/m/it on input line 107.
+(Font)                  OT1/cmr/m/it --> TU/TimesNewRoman(0)/m/it on input line 122.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
-(Font)                  OT1/cmr/bx/n --> TU/TimesNewRoman(0)/b/n on input line 107.
+(Font)                  OT1/cmr/bx/n --> TU/TimesNewRoman(0)/b/n on input line 122.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/cmss/m/n --> TU/lmss/m/n on input line 107.
+(Font)                  OT1/cmss/m/n --> TU/lmss/m/n on input line 122.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/cmtt/m/n --> TU/lmtt/m/n on input line 107.
+(Font)                  OT1/cmtt/m/n --> TU/lmtt/m/n on input line 122.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  TU/TimesNewRoman(0)/m/n --> TU/TimesNewRoman(0)/b/n on input line 107.
+(Font)                  TU/TimesNewRoman(0)/m/n --> TU/TimesNewRoman(0)/b/n on input line 122.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  OT1/cmr/bx/it --> TU/TimesNewRoman(0)/b/it on input line 107.
+(Font)                  OT1/cmr/bx/it --> TU/TimesNewRoman(0)/b/it on input line 122.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/cmss/bx/n --> TU/lmss/b/n on input line 107.
+(Font)                  OT1/cmss/bx/n --> TU/lmss/b/n on input line 122.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/cmtt/m/n --> TU/lmtt/b/n on input line 107.
-Package hyperref Info: Link coloring OFF on input line 107.
- (./ThermodynamicsNotes.out) (./ThermodynamicsNotes.out)
+(Font)                  OT1/cmtt/m/n --> TU/lmtt/b/n on input line 122.
+Package hyperref Info: Link coloring OFF on input line 122.
+ (./MathematicalPhysicsMethodsNotes.out) (./MathematicalPhysicsMethodsNotes.out)
 \@outlinefile=\write3
-\openout3 = `ThermodynamicsNotes.out'.
+\openout3 = `MathematicalPhysicsMethodsNotes.out'.
 
 
 *geometry* driver: auto-detecting
@@ -791,83 +718,58 @@ Package hyperref Info: Link coloring OFF on input line 107.
 
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 108.
-(c:/texlive/2023/texmf-dist/tex/latex/amsfonts/umsa.fd
+LaTeX Font Info:    Trying to load font information for U+rsfs on input line 124.
+(c:/texlive/2023/texmf-dist/tex/latex/jknapltx/ursfs.fd
+File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
+)
+LaTeX Font Info:    Trying to load font information for U+msa on input line 124.
+ (c:/texlive/2023/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 108.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 124.
  (c:/texlive/2023/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
-] [1] (./ThermodynamicsNotes.toc [2
+] [1] (./MathematicalPhysicsMethodsNotes.toc
 
-])
+LaTeX Font Warning: Font shape `U/rsfs/m/n' in size <10.53937> not available
+(Font)              size <10.95> substituted on input line 3.
+
+)
 \tf@toc=\write4
-\openout4 = `ThermodynamicsNotes.toc'.
+\openout4 = `MathematicalPhysicsMethodsNotes.toc'.
 
- [3]
-Chapter 1.
-[1
-
-] [2] [3]
-File: pic/示意图一_crop.pdf Graphic file (type pdf)
-<use pic/示意图一_crop.pdf>
- [4] [5]
-Chapter 2.
-[6
+ [2
 
 ]
-File: pic/麦克斯韦速率分布函数.pdf Graphic file (type pdf)
-<use pic/麦克斯韦速率分布函数.pdf>
- [7] [8] [9] [10]
-Underfull \vbox (badness 6316) detected at line 573
- []
+Chapter 1.
 
+Package caption Warning: Unused \captionsetup[figure] on input line 89.
+See the caption package documentation for explanation.
 
-Underfull \vbox (badness 5985) detected at line 573
- []
+[1
 
-[11] [12] [13] [14] [15]
-Chapter 3.
-[16
-
-] [17]
-Chapter 4.
-[18
-
-] [19]
-File: pic/热机冷机示意图.pdf Graphic file (type pdf)
-<use pic/热机冷机示意图.pdf>
- [20] [21]
-Chapter 5.
-[22
-
-] [23] [24] [25] [26] [27]
-Chapter 6.
-[28
-
-] [29] [30] [31]
-Chapter 7.
-[32
-
-] (./ThermodynamicsNotes.bbl) [33
-
-] [34] (./ThermodynamicsNotes.aux)
+] (./MathematicalPhysicsMethodsNotes.aux)
  ***********
 LaTeX2e <2023-06-01> patch level 1
 L3 programming layer <2022/07/14>
  ***********
-Package rerunfilecheck Info: File `ThermodynamicsNotes.out' has not changed.
-(rerunfilecheck)             Checksum: 6B6B26DCF6F5F2DEB830B85D190CB99D;4262.
+
+
+LaTeX Font Warning: Size substitutions with differences
+(Font)              up to 0.41063pt have occurred.
+
+Package rerunfilecheck Info: File `MathematicalPhysicsMethodsNotes.out' has not changed.
+(rerunfilecheck)             Checksum: 94AAB35E705DD270C4ADC7023E1FD39D;228.
  ) 
 Here is how much of TeX's memory you used:
- 20338 strings out of 475055
- 431895 string characters out of 5767765
- 1959667 words of memory out of 5000000
- 41816 multiletter control sequences out of 15000+600000
- 575254 words of font info for 156 fonts, out of 8000000 for 9000
+ 18499 strings out of 475055
+ 381967 string characters out of 5767765
+ 1921667 words of memory out of 5000000
+ 40048 multiletter control sequences out of 15000+600000
+ 569618 words of font info for 125 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 93i,17n,97p,409b,608s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 93i,11n,97p,564b,364s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on ThermodynamicsNotes.pdf (38 pages).
+Output written on MathematicalPhysicsMethodsNotes.pdf (4 pages).

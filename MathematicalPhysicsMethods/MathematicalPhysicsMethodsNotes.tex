@@ -1,0 +1,174 @@
+% 设定文章类型,正文字号为五号，若需小四将5改为-4即可
+\documentclass[zihao=5,UTF8]{report}		
+
+
+% 文章宏定义
+\def\N{\mathbb{N}}
+\def\F{\mathbb{F}}
+\def\Z{\mathbb{Z}}
+\def\Q{\mathbb{Q}}
+\def\R{\mathbb{R}}
+\def\C{\mathbb{C}}
+\def\T{\mathbb{T}}
+\def\S{\mathbb{S}}
+
+
+\def\A{\mathbb{A}}
+\def\I{\mathscr{I}}
+\def\d{\mathrm{d}}
+\def\p{\partial}
+
+
+% 导入基本宏包
+\usepackage[UTF8]{ctex}     % 设置文档为中文语言
+\usepackage{hyperref}   %(此宏包与标题中的数学环境冲突)  % 宏包：自动生成超链接
+% \usepackage{docmute}    % 宏包：子文件导入时自动去除导言区，用于主/子文件的写作方式，\include{./51单片机笔记}即可。注：启用此宏包会导致.tex文件capacity受限。
+\usepackage{amsmath}    % 宏包：数学公式
+\usepackage{mathrsfs}   % 宏包：提供更多数学符号
+\usepackage{amssymb}    % 宏包：提供更多数学符号
+\usepackage{pifont}     % 宏包：提供了特殊符号和字体
+\usepackage{extarrows}  % 宏包：更多箭头符号
+% 文章页面margin设置
+\usepackage[a4paper]{geometry}
+\geometry{top=1in}
+\geometry{bottom=1in}
+\geometry{left=0.75in}
+\geometry{right=0.75in}   % 设置上下左右页边距
+\geometry{marginparwidth=1.75cm}    % 设置边注距离（注释、标记等）
+
+% theorem环境自定义
+\usepackage{amsthm}
+\newtheoremstyle{mystyle}% <name>
+    {11pt}% <space above>
+    {11pt}% <space below>
+    {}% <body font> 使用默认正文字体
+    {}% <indent amount>
+    {\bfseries}% <theorem head font> 设置标题项为加粗
+    {：\\ }% <punctuation after theorem head>
+    {.5em}% <space after theorem head>
+    {\textbf{#1}\thmnumber{#2}\ \ (\,\textbf{#3}\,)}% 设置标题内容顺序
+\theoremstyle{mystyle} % 应用自定义的定理样式
+\newtheorem{theorem}{Theorem.\,}
+
+
+%宏包：有色文本框及其设置
+\usepackage[dvipsnames,svgnames]{xcolor}    %设置插入的文本框颜色
+\usepackage[strict]{changepage}     % 提供一个 adjustwidth 环境
+\usepackage{framed}     % 实现方框效果
+\definecolor{graybox_color}{rgb}{0.95,0.95,0.96} % 文本框颜色。修改此行中的 rgb 数值即可改变方框纹颜色，具体颜色的rgb数值可以在网站https://colordrop.io/ 中获得。（截止目前的尝试还没有成功过，感觉单位不一样）（找到喜欢的颜色，点击下方的小眼睛，找到rgb值，复制修改即可）
+\newenvironment{graybox}{%
+\def\FrameCommand{%
+\hspace{1pt}%
+{\color{gray}\small \vrule width 2pt}%
+{\color{graybox_color}\vrule width 4pt}%
+\colorbox{graybox_color}%
+}%
+\MakeFramed{\advance\hsize-\width\FrameRestore}%
+\noindent\hspace{-4.55pt}% disable indenting first paragraph
+\begin{adjustwidth}{}{7pt}%
+\vspace{2pt}\vspace{2pt}%
+}
+{%
+\vspace{2pt}\end{adjustwidth}\endMakeFramed%
+}
+
+% chapter标题自定义设置
+\usepackage{titlesec}   
+\titleformat{\chapter}[hang]{\normalfont\huge\bfseries\centering}{第\,\thechapter\,章}{20pt}{}
+\titlespacing*{\chapter}{0pt}{-20pt}{20pt} % 控制上方空白的大小
+
+% table设置
+\usepackage{float}
+\usepackage{booktabs}
+\usepackage{caption}
+
+%宏包：图片插入设置
+\usepackage{graphicx}   
+\usepackage{float}      
+\usepackage{amssymb}    
+\usepackage{caption}\captionsetup[figure]{name=图}  
+
+% 文章默认字体设置
+\usepackage{fontspec}   % 宏包：字体设置
+\setmainfont{SimSun}    % 设置中文字体为宋体字体
+\setmainfont{Times New Roman} % 设置英文字体为Times New Roman
+
+% 参考文献引用设置
+\bibliographystyle{unsrt}   % 设置参考文献引用格式为unsrt
+\newcommand{\upcite}[1]{\textsuperscript{\cite{#1}}}     % 自定义上角标式引用
+
+% 文章序言设置
+\newcommand{\cnabstractname}{序言}
+\newenvironment{cnabstract}{%
+  \par\Large
+  \noindent\mbox{}\hfill{\bfseries \cnabstractname}\hfill\mbox{}\par
+  \vskip 2.5ex}{\par\vskip 2.5ex}
+
+%文档信息设置
+\title{数学物理方法笔记\\Notes of Mathematical Physics Methods}
+\author{丁毅\\ \footnotesize 中国科学院大学，北京 100049\\ Yi Ding \\ \footnotesize University of Chinese Academy of Sciences, Beijing 100049, China}
+\date{\footnotesize 2024.9 -- 2025.1}
+
+
+% 页眉页脚设置
+\usepackage{fancyhdr}   %宏包：页眉页脚设置
+\pagestyle{fancy}
+\fancyhf{}
+\cfoot{\thepage}
+\renewcommand\headrulewidth{1pt}
+\renewcommand\footrulewidth{0pt}
+\chead{Notes of Mathematical Physics Methods}    
+
+\begin{document}
+\maketitle
+\newpage
+
+\addcontentsline{toc}{chapter}{序言} % 手动添加为目录
+\thispagestyle{fancy}   % 显示页码、页眉等
+\begin{cnabstract}
+\normalsize 本文为笔者本科时的数学物理方法笔记笔记,总结了数学物理方法中的主要知识，也有适当的拓展延伸。同时，对一些晦涩的概念或公式，给出了笔者的个人理解，以帮助阅读。\par
+由于个人精力及知识水平有限，书中难免有不妥、错误之处，望不吝指正，在此感谢。我的邮箱是 dingyi233@mails.ucas.ac.cn 。
+\end{cnabstract}
+\pagenumbering{Roman} % 页码为大写罗马数字
+
+\tableofcontents        % 目录页   
+
+\newpage
+\pagenumbering{arabic} 
+\chapter{空间与形式}\thispagestyle{fancy} 
+\section{线性空间}
+
+{\par\color{gray}\small
+下面两小节是上学期未讲完的内容。
+\par}
+
+\end{document}
+
+% VScode 常用快捷键：
+
+% F2:                       变量重命名
+% Ctrl + Enter:             行中换行
+% Alt + up/down:            上下移行
+% 鼠标中键 + 移动:           快速多光标
+% Shift + Alt + up/down:    上下复制
+% Ctrl + left/right:        左右跳单词
+% Ctrl + Backspace/Delete:  左右删单词    
+% Shift + Delete:           删除此行
+% Ctrl + J:                 打开 VScode 下栏(输出栏)
+% Ctrl + B:                 打开 VScode 左栏(目录栏)
+% Ctrl + `:                 打开 VScode 终端栏
+% Ctrl + 0:                 定位文件
+% Ctrl + Tab:               切换已打开的文件(切标签)
+% Ctrl + Shift + P:         打开全局命令(设置)
+
+% Latex 常用快捷键
+
+% Ctrl + Alt + J:           由代码定位到PDF
+% 
+
+
+% Git提交规范：
+% update: Linear Algebra 2 notes
+% add: Linear Algebra 2 notes
+% import: Linear Algebra 2 notes
+% delete: Linear Algebra 2 notes

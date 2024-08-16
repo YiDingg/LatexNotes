@@ -1,0 +1,56 @@
+% MATLAB code here
+x = 0:0.1:2*pi;
+y = sin(x);
+plot(x, y);
+xlabel('x');
+ylabel('sin(x)');
+title('Sine Function');
+% ... (MATLAB code here，最好是插入文件)
+% MATLAB code here
+x = 0:0.1:2*pi;
+y = sin(x);
+plot(x, y);
+xlabel('x');
+ylabel('sin(x)');
+title('Sine Function');
+% ... (MATLAB code here，最好是插入文件)
+% MATLAB code here
+x = 0:0.1:2*pi;
+y = sin(x);
+plot(x, y);
+xlabel('x');
+ylabel('sin(x)');
+title('Sine Function');
+% ... (MATLAB code here，最好是插入文件)
+% MATLAB code here
+x = 0:0.1:2*pi;
+y = sin(x);
+plot(x, y);
+xlabel('x');
+ylabel('sin(x)');
+title('Sine Function');
+% ... (MATLAB code here，最好是插入文件)
+% MATLAB code here
+x = 0:0.1:2*pi;
+y = sin(x);
+plot(x, y);
+xlabel('x');
+ylabel('sin(x)');
+title('Sine Function');
+% ... (MATLAB code here，最好是插入文件)
+% MATLAB code here
+x = 0:0.1:2*pi;
+y = sin(x);
+plot(x, y);
+xlabel('x');
+ylabel('sin(x)');
+title('Sine Function');
+% ... (MATLAB code here，最好是插入文件)% ... (MATLAB code here，最好是插入文件)% ... (MATLAB code here，最好是插入文件)% ... (MATLAB code here，最好是插入文件)% ... (MATLAB code here，最好是插入文件)A
+% MATLAB code here
+x = 0:0.1:2*pi;
+y = sin(x);
+plot(x, y);
+xlabel('x');
+ylabel('sin(x)');
+title('Sine Function');
+% ... (MATLAB code here，最好是插入文件)

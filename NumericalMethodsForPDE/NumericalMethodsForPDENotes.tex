@@ -183,7 +183,7 @@
     
     其中 $a,\ b,\ c,\ d,\ e,\ f$ 可以是常数，也可以是 $x,\ y,\ ,u$ 及其导数的函数。$a,...,f$ 仅是 $x,y$ 的函数时（包括常数），方程是线性的，$a,b,c$ 是 $x,y,u,u_x',u_y'$ 的函数时，方程是拟线性的，其它情况都是非线性的。
     
-    \begin{equation*}
+    \begin{equation}
         \begin{cases}
             \begin{aligned}
                 &b^2 - 4ac < 0, && \text{椭圆型方程}\\ 
@@ -191,13 +191,13 @@
                 &b^2 - 4ac > 0, && \text{双曲型方程}
             \end{aligned}
         \end{cases}
-    \end{equation*}
+    \end{equation}
     
     {\par\color{gray}\small
     方程系数取值也范围会影响方程的类型，例如，下面方程在单位圆内是椭圆型，在单位元外是双曲型：
-    \begin{equation*}
+    \begin{equation}
         \begin{aligned}\frac{\partial^2u}{\partial x^2}+(1-x^2-y^2)\frac{\partial^2u}{\partial y^2}=0\end{aligned}
-    \end{equation*}
+    \end{equation}
     \par}
     
 \end{definition}
@@ -227,7 +227,7 @@ $\text{矩阵;若 }a_{ij}=0(i\neq j)\text{,则称 }A\text{ 为对角矩阵;若 }
 
 \begin{definition}[置换矩阵]
 置换矩阵 $P = (p_{ij})_{n\times n}$ 是对单位矩阵做行重排（或列重排）而得到的矩阵，这意味着 $p_{ij} \in \{0,1\}$ 且每行每列有且仅有一个非零值。例如：
-\begin{equation*}
+\begin{equation}
     P_{21} = 
     \begin{bmatrix}
         0 & 1 & 0 \\
@@ -246,12 +246,21 @@ $\text{矩阵;若 }a_{ij}=0(i\neq j)\text{,则称 }A\text{ 为对角矩阵;若 }
         0 & 0 & 1 \\
         1 & 0 & 0
     \end{bmatrix}\ , \ \ 
-    \end{equation*}
+    \end{equation}
     
     置换矩阵 $P$ 是一种特殊的正交矩阵（$PP^T = I$）。
         
 \end{definition}
 
+
+\begin{definition}[谱、谱半径]
+设矩阵 $A \in \C^{n\times n} $ 的全部特征值为 $\lambda_1, \lambda_2,..., \lambda_n$，则称这些根构成集合为谱，记作 $\lambda(A) = \{\lambda_1, \lambda_2,..., \lambda_n\}$，并称包含$A$所有特征值的最小圆半径为 $A$ 的谱半径 $\rho(A)$：
+
+\begin{equation}
+    \rho(A)=\max|\lambda_i|, \ \lambda_i \in \lambda(A)
+\end{equation}
+
+\end{definition}
 
 \begin{definition}[规定]
 $\boldsymbol{x}, \vec{x}$ 默认为列向量，且基底为标准正交基时，$(x_1, ..., x_n) $ 与 $\begin{bmatrix}
@@ -267,10 +276,10 @@ $\boldsymbol{x}, \vec{x}$ 默认为列向量，且基底为标准正交基时，
 \subsubsection{二阶差分方程通解（数列）：}
 
 二阶齐次常系数线性差分方程（可以理解为数列）及其通解为：
-\begin{gather*}
+\begin{gather}
 ax_{j+1}+bx_j+cx_{j-1}=0 \\ 
 x_j=C_1\mu_1^j+C_2\mu_2^j,\quad j=1,2,..., n, ...
-\end{gather*}
+\end{gather}
 
 其中 $\mu_1, \mu_2$ 是特征方程 $a\mu^2 + b\mu + c = 0$ 的两个根，$C_1, C_2$ 是待定常数（由初始值 $x_1, x_2$ 确定）。
 
@@ -280,36 +289,36 @@ x_j=C_1\mu_1^j+C_2\mu_2^j,\quad j=1,2,..., n, ...
 矩阵 $A$ 称为三对角矩阵如果有如下形式：
 
 
-\begin{equation*}
+\begin{equation}
 A = 
 \begin{bmatrix}
     a&b\\c&a&\ddots\\&\ddots&\ddots&b\\&&c&a
 \end{bmatrix}_{n \times n}
-\end{equation*}
+\end{equation}
 
 其特征值为：
 
-\begin{equation*}
+\begin{equation}
     \lambda_j=a+2\sqrt{bc}\cdot\cos\frac{j\pi}{n+1}, j=1,2,...,n
-\end{equation*}
+\end{equation}
 
 右特征向量（$A \boldsymbol{x} = \lambda \boldsymbol{x}$）构成右特征矩阵（$AX = \lambda X$）的列：
 
-\begin{equation*}
+\begin{equation}
     X=(x_{jk})_{n\times n} = \left[\left(\frac{c}{b}\right)^{\frac{j}{2}}\sin\frac{jk\pi}{n+1}\right]_{n\times n},\quad j,k=1,2,...,n
-\end{equation*}
+\end{equation}
 
 左特征向量（$\boldsymbol{y}^TA  =  \boldsymbol{y}^T\lambda$）构成左特征矩阵（$YA = Y\lambda $）的行：
 
-\begin{equation*}
+\begin{equation}
     Y = X^{-1}=(y_{jk})_{n\times n} = \left[\frac{2}{n+1}\left(\frac{c}{b}\right)^{\frac{j}{2}}\sin\frac{jk\pi}{n+1}\right]_{n\times n},\quad j,k=1,2,...,n
-\end{equation*}
+\end{equation}
 
 \begin{theorem}[Gerschgorin 圆盘定理]\label{Gerschgorin 圆盘定理}
     矩阵 $A = (a_{ij})_{n \times n}\in C^{n\times n} $ 的特征值都位于复平面上 $n$ 个的并集内：
-    \begin{equation*}
+    \begin{equation}
         |\lambda-a_{jj}|\leqslant\sum_{k=1,k\neq j}^n|a_{jk}|,\quad s=1,2,...,n
-    \end{equation*}
+    \end{equation}
 
 \end{theorem}
 
@@ -318,6 +327,197 @@ A =
 若矩阵 $A \in M(\C)_{n\times n}$ 是严格对角占优矩阵，则 $A$ 非奇异（满秩）。
 \end{theorem}
 
+\section{向量和矩阵的范数}
+
+\begin{definition}[向量范数]
+向量范数是满足以下三条性质的、从 $\C^n$ 到 $[0, +\infty)$ 的映射：
+
+\par\ding{172}\ 正定性： $\| \boldsymbol{x} \| >0,\ \forall\  0 \ne \boldsymbol{x} \in \C^n$   \par
+\ding{173}\ 齐次性： $\| c\boldsymbol{x} \| = | c |\cdot \| \boldsymbol{x} \|,\ \forall\  c \in \C$   \par
+\ding{174}\  三角不等式： $\| \boldsymbol{x}+y \| \leqslant  \| \boldsymbol{x} \| + \| \boldsymbol{y} \|,\ \forall\  \boldsymbol{x},\boldsymbol{y} \in \C^n$   \par\noindent
+
+最常见的是三种 $p-\text{范数}$，分别称为 1-范数、2-范数、$\infty$-范数：
+\begin{equation}
+    ||\boldsymbol{x}||_p=(|x_1|^p+|x_2|^p+\cdots+|x_n|^p)^{\frac{1}{p}},\quad p=1,2,\infty,\quad \boldsymbol{x} = (x_1, x_2, \cdots, x_n)
+\end{equation}
+
+特别地，$||\boldsymbol{x}||_{\infty} = \max_i|x_i|$，证明如下：
+
+\begin{gather}
+    ||\boldsymbol{x}||_{p}=\left(\sum_{i=1}^{n}|x_{i}|^{p}\right)^{\frac{1}{p}}=\max_{i}|x_{i}|\left(\sum_{i=1}^{n}\frac{|x_{i}|^{p}}{(\max_{i}|x_{i}|)^{p}}\right)^{\frac{1}{p}} \\ 
+    1\leqslant\left(\sum_{i=1}^n\frac{|x_i|^p}{(\max_i|x_i|)^p}\right)^{\frac1p}\leqslant n^{\frac1p}
+    \Longrightarrow ||\boldsymbol{x}||_{\infty}=\operatorname*{lim}_{p\to\infty}||\boldsymbol{x}||_{p}=\max_{i}|x_{i}|
+\end{gather}
+
+\end{definition}
+
+\begin{definition}[矩阵范数]
+
+矩阵范数是满足以下四条性质的、从 $\C^{m\times n}$ 到$[0, +\infty)$ 的映射：
+
+\par\ding{172}\ 正定性： $\| A \| >0,\ \forall\  0 \ne A \in \C^{m\times n}$   \par
+\ding{173}\ 齐次性： $\| cA \| = | c |\cdot \| A \|,\ \forall\  c \in \C$   \par
+\ding{174}\  三角不等式： $\| A+B \| \leqslant  \| A \| + \| B \|,\ \forall\  A,B \in \C^{m\times n}$   \par
+\ding{175} 相容性：$\| AB \| \leqslant \| A \|\cdot \| B \|, \ \forall\  A,B \in \C^{m\times n}$   \par\noindent
+
+
+矩阵 1-范数、2-范数和向量完全相同，但 $\infty$-范数无法直接推广（不满足相容性），我们利用矩阵与向量的相容性来定义矩阵诱导 p-范数，
+
+\par\ding{172}\ 列和范数：$\| A \|_1 = \max_{j} \sum_{i=1}^{m} |a_{ij}|$   \par
+\ding{173}\  谱范数：$\| A \|_2 = \max\sqrt{\lambda(AA^H)} = \sqrt{\rho(AA^H)}$   \par
+\ding{174}\  行和范数： $\| A \|_{\infty} = \max_{i} \sum_{j=1}^{n} |a_{ij}|$  \par\noindent
+
+\end{definition}
+
+\section{常用定理}
+
+\begin{theorem}[实系数多项式的根]\label{实系数多项式的根}
+实系数二次方程 $x^2 + bx + c = 0$的两根按模不大于1的充要条
+件是 $|b| \leqslant 1-c \leqslant 2 $
+
+\end{theorem}
+
+\begin{definition}[Newton-Cotes 型数值积分公式]
+
+Newton-Cotes 数值积分公式借助 Lagrange 插值来近似计算函数积分，例如 $f(x)$ 在 $[a,b]$ 上的 $n$ 阶 Newton-Cotes 型数值积分（需要 $n+1$ 个已知结点）：
+
+\begin{gather}
+    \int_{a}^{b} f(x)\mathrm{d}x \approx I_n(f) = 
+    \sum_{i=0}^{n} \int_{a}^{b} P_i(x) \mathrm{d}x
+    \\ 
+    P_i(x) = f(a_i)\cdot\frac{(x-a_{0})\cdots(x-a_{i-1})(x-a_{i+1})\cdots(x-a_{n})}{(a_{i}-a_{0})\cdots(a_{i}-a_{i-1})(a_{i}-a_{i+1})\cdots(a_{i}-a_{n})}
+\end{gather}
+其中$a_0,a_1, ..., a_{n} \in [a,b]$ 为给定的 $n+1$ 个结点横坐标。 
+
+若 $f$ 有 $n+1$ 阶连续导数，积分误差为：
+
+\begin{equation}
+   E_n(f) =  \frac{f^{(n+1)}(\xi)}{(n+1)!} \int_{a}^{b}(x-a_{0})(x-a_{1})\cdots(x-a_{n})\mathrm{d}x\ ,\ \ \xi \in (a,b)
+\end{equation}
+
+特别地，当结点为等距结点 $h = x_i - x_{i-1}$ 时，Newton-Cotes 型数值积分公式可简化为：
+
+\begin{equation}
+    \int_{a}^{b} P_i(x) \mathrm{d}x = (-1)^{n+1-i}\frac{h}{(i-1)!(n+1-i)!}\int_{0}^{n} x(x-1)\cdots(x-n)\mathrm{d}x
+\end{equation}
+
+\end{definition}
+
+\chapter{有限差分近似基础}
+
+\section{离散与差分}
+
+\begin{definition}[网格及有限差分记号]
+最简单的平面网格涉及时间和一维空间（共二维），也即 $[x_0,x_e] \times [t_0,t_e]$，空间间隔记为 $h_x$，时间间隔记为 $h_t$，直线的交点称为结点。离散化后，我们通常将 $u(x,t)$ 简记为 $u(x,t) = u(x_0 + jh_x, t_0 + kh_t) = u_j^k$，类似的，多元函数的情况简记为 $u_{j_1,j_2,\cdots,j_n}^k$。
+
+
+
+
+\end{definition}
+
+\begin{definition}[空间导数近似]
+导数的差分近似可由泰勒公式推得：在固定其它变量的情况下，对单一变元使用 Talor 公式以求得导数的差分表达式。
+
+例如，对函数 $u$ 在 $x+rh_x \in [x_0,x_e]$ 处进行 Talor 展开（$r \in \Z $）：
+
+\begin{equation}\label{公式1}
+    u_{j+r}=u_j+(rh_x)\left(\frac{\partial u}{\partial x}\right)_j+\frac{1}{2}(rh_x)^2\left(\frac{\partial^2u}{\partial x^2}\right)_j+\cdots+\frac{1}{n!}(rh_x)^n\left(\frac{\partial^nu}{\partial x^n}\right)_j+\cdots 
+\end{equation}
+
+在公式 \ref{公式1} 中令 $r = -1,1$ 得到：
+
+\begin{align}
+    &u_{j+1}=u_{j}+h_x\left(\frac{\partial u}{\partial x}\right)_{j}+\frac{1}{2}h_x^{2}\left(\frac{\partial^{2}u}{\partial x^{2}}\right)_{j}+\cdots+\frac{1}{n!}h_x^{n}\left(\frac{\partial^{n}u}{\partial x^{n}}\right)_{j}+\cdots \label{公式2}  \\ 
+    &u_{j-1}=u_j-h_x\left(\frac{\partial u}{\partial x}\right)_j+\frac{1}{2}h_x^2\left(\frac{\partial^2u}{\partial x^2}\right)_j-\cdots+\frac{(-1)^n}{n!}h_x^n\left(\frac{\partial^nu}{\partial x^n}\right)_j+\cdots \label{公式3}
+\end{align}
+
+公式 \ref{公式2}、公式 \ref{公式3}、两式相减消去二阶导数，一共得到三种一阶导数差分：
+
+\begin{equation}
+\begin{aligned}
+    &\text{一阶导数向前差分：}&& \left(\frac{\partial u }{\partial x }\right)_{j} = \frac{u_{j+1}-u_j}{h_x}  + O(h_x)\\ 
+    &\text{一阶导数向后差分：}&& \left(\frac{\partial u }{\partial x }\right)_{j} = \frac{u_{j}-u_{j-1}}{h_x}  + O(h_x)\\ 
+    &\text{一阶导数中心差分：}&& \left(\frac{\partial u }{\partial x }\right)_{j} = \frac{u_{j+1}-u_{j-1}}{2h_x}  + O(h_x^2)
+\end{aligned}
+\end{equation}
+
+公式 \ref{公式2}和公式 \ref{公式3}相加消去一阶导数，得到二阶导数的差分：
+
+\begin{equation}
+    \left(\frac{\partial^2u}{\partial x^2}\right)_j=\frac{u_{j+1}-2u_j+u_{j-1}}{h_x^2}+O(h_x^2)
+\end{equation}
+
+\end{definition}
+
+\begin{definition}[更高阶空间导数近似]
+
+更高阶的空间导数近似可由待定系数法解线性方程组得到，例如考虑 $\left(\frac{\partial^2u}{\partial x^2}\right)$ 的更高阶近似：
+
+\begin{equation}
+    h_x^2\left(\frac{\partial^2u}{\partial x^2}\right)_j=c_1u_{j-2}+c_2u_{j-1}+c_3u_j+c_4u_{j+1}+c_5u_{j+2}+O(h_x^?)
+\end{equation}
+
+其中 $c_1, ...,c_5$ 为待定常量。将右端四项在$x$处作泰勒展开，也即在公式 \ref{公式1} 中令 $r = \pm 1 , \pm 2$，整理得：
+
+\begin{align}
+    \begin{aligned}
+        h_x^{2}\left(\frac{\partial^{2}u}{\partial x^{2}}\right)_{j}& =(c_1+c_2+c_3+c_4+c_5)u_j  \\
+        &+\left[\frac{(-2)}{1!}c_1+\frac{(-1)}{1!}c_2+\frac{(+1)}{1!}c_4+\frac{(+2)}{1!}c_5\right](h_x)\left(\frac{\partial u}{\partial x}\right)_j \\
+        &+\left[\frac{(-2)^2}{2!}c_1+\frac{(-1)^2}{2!}c_2+\frac{(+1)^2}{2!}c_4+\frac{(+2)^2}{2!}c_5\right](h_x)^2\left(\frac{\partial^2u}{\partial x^2}\right)_j \\
+        &+\left[\frac{(-2)^3}{3!}c_1+\frac{(-1)^3}{3!}c_2+\frac{(+1)^3}{3!}c_4+\frac{(+2)^3}{3!}c_5\right](h_x)^3\left(\frac{\partial^3u}{\partial x^3}\right) \\
+        &+\left[\frac{(-2)^4}{4!}c_1+\frac{(-1)^4}{4!}c_2+\frac{(+1)^4}{4!}c_4+\frac{(+2)^4}{4!}c_5\right](h_x)^4\left(\frac{\partial^4u}{\partial x^4}\right)_j \\
+        &+\left[\frac{(-2)^{5}}{5!}c_{1}+\frac{(-1)^{5}}{5!}c_{2}+\frac{(+1)^{5}}{5!}c_{4}+\frac{(+2)^{5}}{5!}c_{5}\right](h_x)^{5}\left(\frac{\partial^{5}u}{\partial x^{5}}\right)_{j} \\
+        &+O(h_x^{6}).
+        \end{aligned}
+\end{align}
+
+两端各项系数应相同，因此有方程组：
+
+\begin{gather}
+    \begin{cases}
+    \begin{aligned}
+        c_1&+&c_2&+&c_3+c_4&+&c_5&=0\\
+        -2c_1&-&c_2&+&c_4&+&2c_5&=0\\
+        4c_1&+&c_2&+&c_4&+&4c_5&=2\\
+        -8c_1&-&c_2&+&c_4&+&8c_5&=0\\
+        16c_1&+&c_2&+&c_4&+&16c_5&=0
+    \end{aligned}
+    \end{cases} \Longleftrightarrow 
+    \begin{bmatrix}
+        1&  1& 1& 1& 1 \\
+       -2& -1& 0& 1& 2 \\ 
+        4&  1& 0& 1& 4 \\ 
+       -8& -1& 0& 1& 8 \\ 
+       16&  1& 0& 1& 16
+    \end{bmatrix} \cdot 
+    \begin{bmatrix}
+        c_1 \\ c_2 \\ c_3 \\ c_4 \\ c_5
+    \end{bmatrix} = 
+    \begin{bmatrix}
+        0 \\ 0 \\ 2 \\ 0 \\ 0
+    \end{bmatrix} \\ 
+    \Longrightarrow 
+    \begin{bmatrix}
+        c_1 & c_2 & c_3 & c_4 & c_5
+    \end{bmatrix} = 
+    \begin{bmatrix}
+        -\frac{1}{12} & \frac{4}{3} & -\frac{5}{2} & \frac{4}{3} & - \frac{1}{12}
+    \end{bmatrix} \\ 
+    \Longrightarrow 
+    \frac{\partial^2u}{\partial x^2}=\frac{-u_{j-2}+16u_{j-1}-30u_j+16u_{j+1}-u_{j+2}}{12h_x^2}+O(h_x^4)
+\end{gather}
+
+{\par\color{gray}\small
+例如，方程 $\frac{\partial u}{\partial t}=a\frac{\partial^2u}{\partial x^2}$ 的一个 $O(h_x^4 + h_t)$ 阶精度近似为：
+
+\begin{equation}
+    u_j^{k+1}=u_j^k+\frac{ah_t}{12h_x^2}(-u_{j-2}^k+16u_{j-1}^k-30u_j^k+16u_{j+1}^k-u_{j+2}^k)
+\end{equation}
+
+\par}
+\end{definition}
+
+\section{差分精度}
 
 \end{document}
 

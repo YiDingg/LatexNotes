@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.10.30)  16 AUG 2024 19:31
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.10.30)  17 AUG 2024 00:42
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -747,12 +747,16 @@ LaTeX Font Warning: Font shape `U/rsfs/m/n' in size <10.53937> not available
 Chapter 1.
 [1
 
-] [2]
+] [2] [3] [4]
+Chapter 2.
+[5
+
+]
 
 Package caption Warning: Unused \captionsetup[figure] on input line 106.
 See the caption package documentation for explanation.
 
-[3] (./NumericalMethodsForPDENotes.aux)
+[6] (./NumericalMethodsForPDENotes.aux)
  ***********
 LaTeX2e <2023-06-01> patch level 1
 L3 programming layer <2022/07/14>
@@ -762,16 +766,22 @@ L3 programming layer <2022/07/14>
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 0.41063pt have occurred.
 
-Package rerunfilecheck Info: File `NumericalMethodsForPDENotes.out' has not changed.
-(rerunfilecheck)             Checksum: 5836679DC70AC439A44B2E7110ED4473;488.
+
+Package rerunfilecheck Warning: File `NumericalMethodsForPDENotes.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `NumericalMethodsForPDENotes.out':
+(rerunfilecheck)             Before: 85AE7AB272A841A7DD543AFBCF89DEE3;877
+(rerunfilecheck)             After:  7B27BF15A36889ECB644FC40B8BAD612;980.
  ) 
 Here is how much of TeX's memory you used:
- 18738 strings out of 475055
- 393979 string characters out of 5767765
- 1939667 words of memory out of 5000000
- 40269 multiletter control sequences out of 15000+600000
+ 18788 strings out of 475055
+ 396854 string characters out of 5767765
+ 1944667 words of memory out of 5000000
+ 40319 multiletter control sequences out of 15000+600000
  574117 words of font info for 145 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 93i,15n,97p,560b,447s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 93i,20n,97p,560b,484s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on NumericalMethodsForPDENotes.pdf (6 pages).
+Output written on NumericalMethodsForPDENotes.pdf (9 pages).

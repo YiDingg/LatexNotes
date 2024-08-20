@@ -1,0 +1,10 @@
+# .gitignore for Latex
+
+# 忽略附属次要文件
+*.aux
+*.bbl 
+*.blg
+*.log
+*.out
+*.gz
+*.toc

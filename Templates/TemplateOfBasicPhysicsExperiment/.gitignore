@@ -1,3 +1,5 @@
+# .gitignore for Latex
+
 # 忽略所有文件，同时不忽略文件夹  
 *.*
 
@@ -11,3 +13,6 @@
 # 不忽略 assets 文件夹及其下的所有文件
 !assets/
 !assets/*.*
+
+# 不忽略 .bib 文件
+!*.bib

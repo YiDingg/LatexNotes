@@ -21,13 +21,16 @@
 
 % 导入基本宏包
 \usepackage[UTF8]{ctex}     % 设置文档为中文语言
-\usepackage{hyperref}   %(此宏包与标题中的数学环境冲突)  % 宏包：自动生成超链接
+\usepackage[colorlinks,linkcolor=blue,anchorcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}   %(此宏包与标题中的数学环境冲突)  % 宏包：自动生成超链接
 % \usepackage{docmute}    % 宏包：子文件导入时自动去除导言区，用于主/子文件的写作方式，\include{./51单片机笔记}即可。注：启用此宏包会导致.tex文件capacity受限。
 \usepackage{amsmath}    % 宏包：数学公式
 \usepackage{mathrsfs}   % 宏包：提供更多数学符号
 \usepackage{amssymb}    % 宏包：提供更多数学符号
 \usepackage{pifont}     % 宏包：提供了特殊符号和字体
 \usepackage{extarrows}  % 宏包：更多箭头符号
+\usepackage{tabularray} % 宏包：更多表格设置
+\usepackage{booktabs}   % 宏包：更多表格设置
+\usepackage{longtable}  % 宏包：更多表格设置
 % 文章页面margin设置
 \usepackage[a4paper]{geometry}
 \geometry{top=1in}
@@ -103,7 +106,10 @@
 \usepackage{graphicx}   
 \usepackage{float}      
 \usepackage{amssymb}    
-\usepackage{caption}\captionsetup[figure]{name=图}  
+\usepackage{caption}
+\captionsetup[figure]{name=图}  
+\captionsetup[table]{name=表}
+\captionsetup{labelfont=bf, font=small}
 
 % 文章默认字体设置
 \usepackage{fontspec}   % 宏包：字体设置
@@ -441,7 +447,7 @@ Newton-Cotes 数值积分公式借助 Lagrange 插值来近似计算函数积分
 \end{aligned}
 \end{equation}
 
-公式 \ref{公式2}和公式 \ref{公式3}相加消去一阶导数，得到二阶导数的差分：
+公式 \ref{公式2} 和公式 \ref{公式3} 相加消去一阶导数，得到二阶导数的差分：
 
 \begin{equation}
     \left(\frac{\partial^2u}{\partial x^2}\right)_j=\frac{u_{j+1}-2u_j+u_{j-1}}{h_x^2}+O(h_x^2)
@@ -451,10 +457,12 @@ Newton-Cotes 数值积分公式借助 Lagrange 插值来近似计算函数积分
 
 \begin{definition}[更高阶空间导数近似]
 
-更高阶的空间导数近似可由待定系数法解线性方程组得到，例如考虑 $\left(\frac{\partial^2u}{\partial x^2}\right)$ 的更高阶近似：
+更高阶的空间导数近似可由待定系数法解线性方程组得到，一般地，由 $n$ 个离散值构造的差分公式（含有 $n$ 个未知系数）的精度不低于 $O(h^{n-1})$。
 
-\begin{equation}
-    h_x^2\left(\frac{\partial^2u}{\partial x^2}\right)_j=c_1u_{j-2}+c_2u_{j-1}+c_3u_j+c_4u_{j+1}+c_5u_{j+2}+O(h_x^?)
+例如考虑 $\left(\frac{\partial^2u}{\partial x^2}\right)$ 的更高阶近似：
+
+\begin{equation}\label{公式4}
+    h_x^2\left(\frac{\partial^2u}{\partial x^2}\right)_j=c_1u_{j-2}+c_2u_{j-1}+c_3u_j+c_4u_{j+1}+c_5u_{j+2} + h_x^2O(h_x^4)
 \end{equation}
 
 其中 $c_1, ...,c_5$ 为待定常量。将右端四项在$x$处作泰勒展开，也即在公式 \ref{公式1} 中令 $r = \pm 1 , \pm 2$，整理得：
@@ -508,7 +516,7 @@ Newton-Cotes 数值积分公式借助 Lagrange 插值来近似计算函数积分
 \end{gather}
 
 {\par\color{gray}\small
-例如，方程 $\frac{\partial u}{\partial t}=a\frac{\partial^2u}{\partial x^2}$ 的一个 $O(h_x^4 + h_t)$ 阶精度近似为：
+例如，方程 $\frac{\partial u}{\partial t}=a\frac{\partial^2u}{\partial x^2}$ 的一个 $O(h_x^4 + h_t)$ 阶精度的差分方程为：
 
 \begin{equation}
     u_j^{k+1}=u_j^k+\frac{ah_t}{12h_x^2}(-u_{j-2}^k+16u_{j-1}^k-30u_j^k+16u_{j+1}^k-u_{j+2}^k)
@@ -517,7 +525,976 @@ Newton-Cotes 数值积分公式借助 Lagrange 插值来近似计算函数积分
 \par}
 \end{definition}
 
-\section{差分精度}
+
+\begin{definition}[导数的算子表示]
+
+导数的差分近似可以利用下面的线性算子来表示：
+
+\begin{equation}
+    \begin{aligned}
+        &T_x\text{ 移位算子}:&& T_{x}(u_{j})=u_{j+1} \\
+        &\Delta_x\text{ 前差算子}:&& \Delta_{x}(u_{j})=u_{j+1}-u_{j} \\
+        &\nabla_x\text{ 后差算子}:&& \nabla_{x}(u_{j})=u_{j}-u_{j-1} \\
+        &\delta_x\text{ 中心差分算子}:&& \delta_{x}(u_{j})=u_{j+\frac{1}{2}}-u_{j-\frac{1}{2}} \\
+        &\delta_x\text{中心差分算子方}:&& \delta_{x}^2(u_{j})= u_{j+1}-2u_{j}+u_{j-1} \\
+        &\mu_x\text{ 平均算子}:&& \mu_{x}(u_{j})=\frac{1}{2}(u_{j+\frac{1}{2}}+u_{j-\frac{1}{2}}) \\
+        &D_x\text{ 偏导算子}:&& D_{x}=\frac{\partial}{\partial x},\ D_{x}^2=\frac{\partial^2}{\partial x^2} \\
+        &I\text{ 恒等算子}:&& I(u_j)=u_j
+        \end{aligned}
+\end{equation}
+
+并且这些算子之间也可以相互表达，例如用移位算子 $T_x$ 表达其它算子：
+
+\begin{align*}
+&\Delta_x = T_x - I \\ 
+&\nabla_x = I - T_x^{-1} \\ 
+&\delta_x = T_x^{\frac{1}{2}} -  T_x^{-\frac{1}{2}} \\ 
+&\delta_x^2=T_x-2I+T_x^{-1}  \\ 
+&\mu_{x}\delta_{x}=\frac{1}{2}(T_{x}-T_{x}^{-1}) \\ 
+&\mu_{x}^{2}=\frac{1}{4}(T_{x}+2I+T_{x}^{-1})  \\ 
+& D_x=\frac{1}{h}\ln T_x\quad\text{或}\quad T_x=e^{hD_x} \\ 
+\end{align*}
+
+
+\end{definition}
+
+
+
+\section{任意差分精度}
+
+
+\begin{definition}[任意阶精度差分格式的建立]
+
+Talor 级数表可以方便我们建立任意阶精度、任意差分格式下的差分公式。以求解下面表达式为例：
+
+\begin{equation}
+    \left(\frac{\partial^2u}{\partial x^2}\right)_j-\frac{1}{h_x^2}(au_{j-1}+bu_j+cu_{j+1})=?
+\end{equation}
+
+作出 Talor 级数表如下，每一行构成一项的 Talor 展开，
+
+\begin{table}[H]
+    \caption{\textbf{三点二阶导数近似的 Taylor 级数表}}
+    \begin{equation*}
+        \begin{tblr}{
+            hline{1,6} = {-}{0.08em},
+            hline{2} = {-}{},
+            colspec = {cccccc},
+        }
+        \text{求和项}& u_j & h_x\left(\frac{\partial u}{\partial x}\right)_j & h_x^2\left(\frac{\partial^2u}{\partial x^2}\right)_j & h_x^3\left(\frac{\partial^3u}{\partial x^3}\right)_j & h_x^4\left(\frac{\partial^4u}{\partial x^4}\right)_j \\
+        h_x^2\left(\frac{\partial^2u}{\partial x^2}\right)_j& 0 & 0 & 1 & 0 & 0 \\
+        -au_{j-1}&-a&-a(-1)\frac{1}{1}&-a(-1)^2\frac{1}{2}&-a(-1)^3\frac{1}{6}&-a(-1)^4\frac{1}{24}\\
+        -bu_j&-b&0&0&0&0\\
+        -cu_{j+1}&-c&-c(1)\frac{1}{1}&-c(1)^2\frac{1}{2}&-c(1)^3\frac{1}{6}&-c(1)^4\frac{1}{24}
+        \end{tblr}
+    \end{equation*}
+\end{table}
+
+从第一列开始，每一列系数之和为零，取前三列即得：
+
+\begin{equation}
+    \begin{bmatrix}-1&&-1&&-1\\1&&0&&-1\\-1&&0&&-1\end{bmatrix}\begin{bmatrix}a\\b\\c\end{bmatrix}=\begin{bmatrix}0\\0\\-2\end{bmatrix} \Longrightarrow 
+    (a, b, c) = (1, -2, 1)
+\end{equation}
+
+求和不为零的列构成截断误差，求和后第一个不为零的列称为截断误差首项，记作 $R_j$，在这里即为：
+
+\begin{equation}
+    R_j=\frac{1}{h_x^2}\left(\frac{-a}{24}+\frac{-c}{24}\right)h_x^4\left(\frac{\partial^4u}{\partial x^4}\right)_j=-\frac{h_x^2}{12}\left(\frac{\partial^4u}{\partial x^4}\right)_j = O(h_x^2)
+\end{equation}
+
+\end{definition}
+
+因此此差分公式具有二阶精度。
+
+
+\begin{definition}[非均匀网格]
+
+
+
+\end{definition}
+
+
+\begin{definition}[Fourier 误差分析]
+
+知识补充：
+\href{https://zhuanlan.zhihu.com/p/108017728}{积分变换（1）：傅里叶级数}，
+\href{https://zhuanlan.zhihu.com/p/108271985}{积分变换（2）：傅里叶变换}
+
+\end{definition}
+
+\chapter{紧致差分格式}
+
+为了减小误差提高计算精度，需要更多的网格点来作高阶导数近似，这导致存储和计算量的激增。本章介绍紧致差分格式，与传统的有限差分格式相比，紧致差分格式可以用较少的结点构造出更高精度的格式．
+
+\section{差分近似的推广}
+
+
+\begin{definition}[差分近似推广]
+一般地，函数 $u = u(x)$，在结点 $j$ 处 $m$ 阶导数的差分近似可以写成 $p+q+1$ 个相邻点的形式：
+
+\begin{equation}
+    \left(\frac{\partial^mu}{\partial x^m}\right)_j-\sum_{k=-p}^qa_ku_{i+k}=R_j
+\end{equation}
+
+其中 $\{a_k \mid  k = -p, -p + 1, ..., q\} $ 为待定的 $p+q+1$ 个系数。显然，由上一章的 Talor 级数表和线性方程组可以求得这些系数。事实上，这些系数也可以由插值方法得到，例如 Lagrange 插值和 Hermite 插值。
+\end{definition}
+
+
+\begin{definition}[Lagrange 差分近似]
+对函数 $f = f(x)$，给定三点 $(x_0, f_0), (x_1, f_1), (x_2, f_2)$，则有 Lagrange 插值近似：
+
+\begin{equation}
+    f(x) \approx L_3(x) =  f_0\frac{(x_1-x)(x_2-x)}{(x_1-x_0)(x_2-x_0)}+f_1\frac{(x_0-x)(x_2-x)}{(x_0-x_1)(x_2-x_1)}+f_2\frac{(x_0-x)(x_1-x)}{(x_0-x_2)(x_1-x_2)}
+\end{equation}
+
+两边同求一阶导得到：
+
+\begin{equation}
+    \frac{\partial L_3}{\partial x}=f_{0}\frac{2x-(x_{1}+x_{2})}{2h_x^2}-f_{1}\frac{2x-(x_{0}+x_{2})}{h_x^2}+f_{2}\frac{2x_{1}-(x_{1}+x_{0})}{2h_x^2}
+\end{equation}
+
+上式中令 $x = x_0, x_1, x_2$，可分别得到一阶导数的三点向前差分、三点中心差分和三点向后差分。
+
+类似地，对于更高阶导数和更高的精确度，可以取更多真实点以构成高阶 Lagrange 插值多项式。这样导出的差分公式称为 Lagrange 差分近似。
+
+\end{definition}
+
+
+
+\begin{definition}[Hermite 差分近似]
+
+Hermite 插值在 Lagrange 插值的基础上，又保证了插值函数与原函数在结点处具有相同的一阶导数。Hermite 插值可以直接从零构造而得，也可在 Lagrange 插值函数 $L_n(x)$ 的基础上构造而得。假设对函数 $f(x)$ 进行拟合，Hermite 插值的一般表达式为（给定 $n$ 个结点）：
+
+\begin{gather}
+H_n(x) = \sum_{i=1}^{n} f_il_i(x)+\sum_{i=1}^{n} f_i'h_i(x) \\ 
+l_i(x) = \prod_{j=1,j\neq i}^{n}\frac{x - x_j}{x_i - x_j} = \frac{(x-x_{0})\cdots(x-x_{i-1})(x-x_{i+1})\cdots(x-x_{n})}{(x_{i}-x_{0})\cdots(x_{i}-x_{i-1})(x_{i}-x_{i+1})\cdots(x_{i}-x_{n})}  \\ 
+h_i(x) =(x-x_i)\cdot l_i(x)^2 = (x-x_i) \prod_{j=1,j\neq i}^{n}\left(   \frac{x - x_j}{x_i - x_j}  \right)^2 
+\end{gather}
+
+% = (x - x_i)\cdot \left[\frac{(x-x_1) \cdots (x-x_{i-1})(x - x_{i+1}) \cdots (x-x_n)}{(x_i-x_1) \cdots (x_i-x_{i-1})(x_i - x_{i+1}) \cdots (x_i-x_n)}\right]^2
+
+由 Hermite 插值构造差分公式的一般形式为：
+
+\begin{equation}
+    \sum_{k=-r}^{s}b_{k}\left(\frac{\partial^{m}f}{\partial x^{m}}\right)_{i+k}-\sum_{k=-p}^{q}a_{k}f_{i+k}=R_{t}
+\end{equation}
+
+例如求解一阶导数的三点 Hermite 差分近似，也即求解：
+
+\begin{equation}
+    d\left(\frac{\partial f}{\partial x}\right)_{i-1}+\left(\frac{\partial f}{\partial x}\right)_{i}+e\left(\frac{\partial f}{\partial x}\right)_{i+1}-\frac{1}{h_x}(af_{i-1}+bf_{i}+cf_{i+1})=?
+\end{equation}
+
+列出 Talor 级数表，可解得 $(a,b,c,d,e)=(-\frac34,0,\frac34,\frac14,\frac14)$，从而得到 $f(x)$ 一阶导数的 4 阶精度的经典Pade格式（也称为紧致格式）：
+
+\begin{equation}
+    \left(\frac{\partial f}{\partial x}\right)_{i-1}+4\left(\frac{\partial f}{\partial x}\right)_i+\left(\frac{\partial f}{\partial x}\right)_{i+1}+\frac{3}{h_x}(f_{j-1}-f_{j+1})=O(h_x^4)
+\end{equation}
+
+
+
+\end{definition}
+
+
+\section{各阶导数的紧致格式}
+
+{\par\color{gray}\small
+紧致格式将原函数及其导数结合到一起，这在差分方程中的意义是什么？
+\par}
+
+\section{交错网格上的紧致格式}
+\section{联合一阶和二阶导数的紧致格式}
+\section{单边格式}
+\chapter{差分格式稳定性分析}
+
+\chapter{抛物型方程}
+
+\section{一维热传导方程（常系数扩散方程）}
+
+
+\begin{definition}[一维热传导方程]
+
+方程如下：
+\begin{equation}
+    \frac{\partial u}{\partial t}=a\frac{\partial^2u}{\partial x^2},\quad x\in [x_0, x_e],\quad t \in [t_0, t_e]
+\end{equation}
+
+其中 $a \in (0, +\infty)$ 为常量，下面推导一些典型的差分格式（对 $x$ 都采取三点中心差分离散）。    
+
+\end{definition}
+
+
+
+\begin{definition}[向前差分格式]
+
+对 $t$ 采用向前差分格式，即：
+
+\begin{gather}
+    \frac{u_j^{k+1}-u_j^k}{h_t}=a\frac{u_{j+1}^k-2u_j^k+u_{j-1}^k}{h_x^2} \\ 
+    \Longleftrightarrow    
+    u_j^{k+1} = (1-2r)u_j^k + r(u_{j+1}^k+u_{j-1}^k)
+\end{gather}
+
+其中 $r = \frac{ah_t }{h_x^2}$，上式的截断误差 $R = O(h_y + h_x^2)$，增长因子为：
+
+\begin{equation}
+    G(h_t,\sigma)=1-4r\sin^2\frac{\sigma h}{2} = 1 - 2r(1-\cos(\sigma h)) \in [1 - 4r, 1]
+\end{equation}
+
+其中 $r = \frac{ah_t}{h_x^2}$，当 $r \leqslant \frac{1}{2} \Longleftrightarrow h_t \leqslant \frac{h_x^2}{2a}$时 $|G(h_t,\sigma)|\leqslant1$，即满足 von Neumann 条件，此时差分格式达到稳定。
+
+\end{definition}
+
+
+
+\begin{definition}[向后差分格式]
+
+对 $t$ 采用向后差分格式，即：
+
+\begin{equation}
+    \frac{u_j^{k}-u_j^{k-1}}{h_t}=a\frac{u_{j+1}^k-2u_j^k+u_{j-1}^k}{h_x^2}
+\end{equation}
+
+其截断误差 $R = O(h_y + h_x^2)$，增长因子为：
+
+\begin{equation}
+    G(h_t,\sigma)=\frac{1}{1+4ar\sin^2\frac{\sigma h}{2}} \in [\frac{1}{1+4ar}, 1]
+\end{equation}
+
+其中 $r = \frac{h_t}{h_x^2}$，恒有 $|G(h_t,\sigma)|\leqslant1$，因此该格式无条件稳定。
+\end{definition}
+
+
+\begin{definition}[向后加权隐式格式]
+
+将向前差分与向后差分加权组合起来，得到：
+
+\begin{equation}\label{公式5}
+    \frac{u_{j}^{k}-u_{j}^{k-1}}{h_t}=a\theta\frac{u_{j+1}^{k}-2u_{j}^{k}+u_{j-1}^{k}}{h_x^2}+a(1-\theta)\frac{u_{j+1}^{k-1}-2u_{j}^{k-1}+u_{j-1}^{k-1}}{h_x^2}
+\end{equation}
+
+其中 $\theta \in [0, 1]$ 为权重，其截断误差 $R = a\left(\frac{1}{2}-\theta\right)h_t\left[\frac{\partial^{3}u}{\partial x^{2}\partial t}\right]_{j}^{k}+O(h_t^{2}+h_x^2)$，因此当 $\theta = \frac{1}{2}$ 时，方程具有 $O(h_t^{2}+h_x^2)$ 精度，称为 Crank-Nicolson 格式（CN 格式）。
+
+
+公式 \ref{公式5} 的增长因子及稳定性条件为：
+
+\begin{equation}
+    G(h_t,\sigma)=\frac{1-4(1-\theta)ar\sin^2\frac{\sigma h}2}{1+4\theta ar\sin^2\frac{\sigma h}2}, \ \ 
+    \begin{cases}
+        r\leqslant\frac{1}{2a(1-2\theta)}, & \theta \in [0, \frac{1}{2}) \\ 
+        \text{无条件稳定}, & \theta \in [\frac{1}{2}, 1] \\ 
+    \end{cases}
+\end{equation}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{assets/差分格式示意图.pdf}
+    \caption{\textbf{向后加权隐式差分结点示意图}}\label{向后加权隐式差分结点示意图}
+\end{figure}
+\end{definition}
+
+
+
+\begin{definition}[三层显式格式（R格式、DF格式）]
+“三层”是指时间项占据三层，对 $t$ 采用两点中心差分，对 $x$ 采用三点中心差分，即得 Richardson 格式，虽然经典，却是完全不稳定格式，如下：
+\begin{equation}
+    \frac{u_j^{k+1}-u_j^{k-1}}{2h_t}-a\frac{u_{j+1}^k-2u_j^k+u_{j-1}^k}{h_x^2}=0
+\end{equation}
+
+在 Richardson 格式基础上进行修正，得到 DuFort-Frankel 格式，它是无条件稳定的：
+
+\begin{gather}
+    \frac{u_{j}^{k+1} - u_{j}^{k-1}}{2h_t}=a\frac{u_{j+1}^{k}-(u_{j}^{k+1}+u_{j}^{k-1})+u_{j-1}^{k}}{h_x^2} \\ 
+    \Longleftrightarrow    u_{j}^{k+1} = \frac{1}{2} \left(u_{j+1}^k + u_{j-1}^k + \frac{h_t}{h_x^2}(u_{j+1}^{k-1} - u_{j-1}^{k-1}) \right)
+\end{gather}
+
+\end{definition}
+
+
+\begin{definition}[三层隐式格式]
+
+将CN格式的两个时间层推广到三个时间层，所得隐式格式为：
+\begin{equation}
+    \frac{u_j^{k+1}-u_j^{k-1}}{2h_t}=a\frac{1}{3h^2}(\delta_x^2u_j^{k+1}+\delta_x^2u_j^k+\delta_x^2u_j^{k-1})
+\end{equation}
+
+其截断误差为 $O(h_t^2 + h_x^2)$，且是无条件稳定格式。
+
+\end{definition}
+
+
+\begin{definition}[预测－校正格式]
+\end{definition}
+
+
+\begin{definition}[不对称格式]
+\end{definition}
+
+
+\section{对流扩散方程}
+
+
+\begin{definition}[对流扩散方程]
+
+当对流和扩散都存在时，如边界层流动，就要考虑对流扩散方程，如Brugres方程：
+
+\begin{equation}
+    \frac{\partial u}{\partial t}+u\frac{\partial u}{\partial x}=\nu\frac{\partial^{2}u}{\partial x^{2}}
+\end{equation}
+
+对流与扩散达到平衡时，有边界条件：
+
+\begin{equation}
+    u(0,t)=u_{0},\ u(L,t)=0\ \text{，也即} \ u(x_0,t)=u_{0},\ u(x_e,t)=0
+\end{equation}
+
+\end{definition}
+
+
+\section{二维热传导方程}
+
+
+\begin{definition}[二维热传导方程]
+
+现讨论二维热传导方程的差分格式：
+
+\begin{equation}
+    \frac{\partial u}{\partial t}=\frac{\partial^2u}{\partial x^2}+\frac{\partial^2u}{\partial y^2},\quad(x,y)\in\Omega 
+\end{equation}
+
+\end{definition}
+
+
+\begin{definition}[向前加权差分格式]
+
+对 $t$ 采用向前差分格式，对 $x$ 和 $y$ 采用（向前）加权中心差分格式，这样可以得到多种显式或隐式格式：
+
+\begin{equation}
+    \begin{aligned}
+        \frac{u_{i,j}^{k+1}-u_{i,j}^{k}}{h_t}& =\frac{\theta_{1}}{h^{2}}(u_{i+1,j}^{k+1}-2u_{i,j}^{k+1}+u_{i-1,j}^{k+1})+\frac{1-\theta_{1}}{h^{2}}(u_{i+1,j}^{k}-2u_{i,j}^{k}+u_{i-1,j}^{k})  \\
+        &+\frac{\theta_{2}}{h^{2}}(u_{i,j+1}^{k+1}-2u_{i,j}^{k+1}+u_{i,j-1}^{k+1})+\frac{1-\theta_{2}}{h^{2}}(u_{i,j+1}^{k}-2u_{i,j}^{k}+u_{i,j-1}^{k})
+    \end{aligned}
+\end{equation}
+
+也即：
+
+\begin{equation}
+    \frac{u_{i,j}^{k+1}-u_{i,j}^{k}}{h_t} = \theta_1\frac{\delta^2_x u_{i,j}^{k+1}}{h_x^2} + (1- \theta_1)\frac{\delta^2_x u_{i,j}^{k}}{h_x^2} + \theta_2\frac{\delta^2_y u_{i,j}^{k+1}}{h_y^2} + (1- \theta_2)\frac{\delta^2_y u_{i,j}^{k}}{h_y^2}
+\end{equation}
+
+\end{definition}
+
+例如，令 $\theta_1 = \theta_2 = 0$，可得截断精度 $O(h_t + h_x^2 + h_y^2)$，稳定性条件为 $h_t\leqslant\frac{1}{2\left(\frac{1}{\Delta x^{2}}+\frac{1}{\Delta y^{2}}\right)}$ 的差分格式。
+
+
+\begin{definition}[Saul'yev 不对称格式]
+\end{definition}
+
+
+\begin{definition}[DuFort-Frankel格式]
+
+一维DuFort-Frankel 方法可推广到二维，首先写出二维 Richardson 格式（对时间采用两点中心差分，对空间采用三点中心差分），改格式为无条件不稳定格式，然后作替换 $u_{i,j}^{k} \longmapsto \frac12(u_{i,j}^{k+1}+u_{i,j}^{k-1})$，即得 DuFort-Frankel 格式：
+
+\begin{gather}
+    \frac{u_{i,j}^{k+1}-u_{i,j}^{k-1}}{2h_t}=\frac{u_{i+1,j}^k+u_{i-1,j}^k-u_{i,j}^{k+1}-u_{i,j}^{k-1}}{h_x^2}+\frac{u_{i,j+1}^k+u_{i,j-1}^k-u_{i,j}^{k+1}-u_{i,j}^{k-1}}{h_y^2} \\ 
+    \Longleftrightarrow    u_{i,j}^{k+1}= \frac{1}{\frac{1}{2} + \frac{h_t}{h_x^2} + \frac{h_t}{h_y^2}} \left[\frac{h_t}{h_x^2}(u_{i+1,j}^{k}+u_{i-1,j}^{k})  + \frac{h_t}{h_y^2}(u_{i,j+1}^{k}+u_{i,j-1}^{k}) + (\frac{1}{2} - \frac{h_t}{h_x^2} - \frac{h_t}{h_y^2})u_{i,j}^{k-1} \right] \label{公式6}
+\end{gather}
+
+该式是显式格式，截断误差 $O(h_t^{2}+h_x^{2} + h_y^2 +\frac{h_t^{2}}{h_x^{2}} + \frac{h_t^{2}}{h_y^{2}})$，且无条件稳定。计算时，需要已知两个时间层上的值，其中 $k = 0$ 上的值由初始条件给出，$k = 1$上的值由前面其他公式或 $\frac{1}{2} - \frac{h_t}{h_x^2} - \frac{h_t}{h_y^2} = 0$（例如 $h_t = \frac{h_x^2}{4} = \frac{h_y^2}{4 }$ ） 时的公式 \ref{公式6}  来计算。
+
+
+
+\end{definition}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 \end{document}
 

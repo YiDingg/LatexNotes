@@ -1,8 +1,8 @@
-% 设定文章类型,正文字号为五号，若需小四将5改为-4即可
+% 设定文章编码类型，正文字号为五号，若需小四将 5 改为 -4 即可
 \documentclass[zihao=5,UTF8]{report}		
 
 
-% 文章宏定义
+% 自定义宏定义
 \def\N{\mathbb{N}}
 \def\F{\mathbb{F}}
 \def\Z{\mathbb{Z}}
@@ -11,8 +11,6 @@
 \def\C{\mathbb{C}}
 \def\T{\mathbb{T}}
 \def\S{\mathbb{S}}
-
-
 \def\A{\mathbb{A}}
 \def\I{\mathscr{I}}
 \def\d{\mathrm{d}}
@@ -21,103 +19,169 @@
 
 % 导入基本宏包
 \usepackage[UTF8]{ctex}     % 设置文档为中文语言
-\usepackage{hyperref}   %(此宏包与标题中的数学环境冲突)  % 宏包：自动生成超链接
+\usepackage[colorlinks, linkcolor=blue, anchorcolor=blue, citecolor=blue, urlcolor=blue]{hyperref}  % 宏包：自动生成超链接 (此宏包与标题中的数学环境冲突)
 % \usepackage{docmute}    % 宏包：子文件导入时自动去除导言区，用于主/子文件的写作方式，\include{./51单片机笔记}即可。注：启用此宏包会导致.tex文件capacity受限。
 \usepackage{amsmath}    % 宏包：数学公式
 \usepackage{mathrsfs}   % 宏包：提供更多数学符号
 \usepackage{amssymb}    % 宏包：提供更多数学符号
 \usepackage{pifont}     % 宏包：提供了特殊符号和字体
 \usepackage{extarrows}  % 宏包：更多箭头符号
+
+
 % 文章页面margin设置
 \usepackage[a4paper]{geometry}
-\geometry{top=1in}
-\geometry{bottom=1in}
-\geometry{left=0.75in}
-\geometry{right=0.75in}   % 设置上下左右页边距
-\geometry{marginparwidth=1.75cm}    % 设置边注距离（注释、标记等）
+    \geometry{top=1in}
+    \geometry{bottom=1in}
+    \geometry{left=0.75in}
+    \geometry{right=0.75in}   % 设置上下左右页边距
+    \geometry{marginparwidth=1.75cm}    % 设置边注距离（注释、标记等）
 
+
+\usepackage{amsthm} % 宏包：数学环境配置
 % theorem环境自定义
-\usepackage{amsthm}
-\newtheoremstyle{mystyle}% <name>
-    {11pt}% <space above>
-    {11pt}% <space below>
-    {}% <body font> 使用默认正文字体
-    {}% <indent amount>
-    {\bfseries}% <theorem head font> 设置标题项为加粗
-    {：\\ }% <punctuation after theorem head>
-    {.5em}% <space after theorem head>
-    {\textbf{#1}\thmnumber{#2}\ \ (\,\textbf{#3}\,)}% 设置标题内容顺序
-\theoremstyle{mystyle} % 应用自定义的定理样式
-\newtheorem{theorem}{Theorem.\,}
-
+    \newtheoremstyle{MyTheoremStyle}% <name>
+        {11pt}% <space above>
+        {11pt}% <space below>
+        {}% <body font> 使用默认正文字体
+        {}% <indent amount>
+        {\bfseries}% <theorem head font> 设置标题项为加粗
+        {：\\ }% <punctuation after theorem head>
+        {.5em}% <space after theorem head>
+        {\textbf{#1}\thmnumber{#2}\ \ (\,\textbf{#3}\,)}% 设置标题内容顺序
+    \theoremstyle{MyTheoremStyle} % 应用自定义的定理样式
+    \newtheorem{theorem}{Theorem.\,}
+% definition 环境自定义
+    \newtheoremstyle{MySubsubsectionStyle}% <name>
+        {11pt}% <space above>
+        {11pt}% <space below>
+        {}% <body font> 使用默认正文字体
+        {}% <indent amount>
+        {\bfseries}% <theorem head font> 设置标题项为加粗
+        {：\\ \indent}% <punctuation after theorem head>
+        {0pt}% <space after theorem head>
+        {\textbf{#3}}% 设置标题内容顺序
+    \theoremstyle{MySubsubsectionStyle} % 应用自定义的定理样式
+    \newtheorem{definition}{}
 
 %宏包：有色文本框及其设置
 \usepackage[dvipsnames,svgnames]{xcolor}    %设置插入的文本框颜色
 \usepackage[strict]{changepage}     % 提供一个 adjustwidth 环境
 \usepackage{framed}     % 实现方框效果
-\definecolor{graybox_color}{rgb}{0.95,0.95,0.96} % 文本框颜色。修改此行中的 rgb 数值即可改变方框纹颜色，具体颜色的rgb数值可以在网站https://colordrop.io/ 中获得。（截止目前的尝试还没有成功过，感觉单位不一样）（找到喜欢的颜色，点击下方的小眼睛，找到rgb值，复制修改即可）
-\newenvironment{graybox}{%
-\def\FrameCommand{%
-\hspace{1pt}%
-{\color{gray}\small \vrule width 2pt}%
-{\color{graybox_color}\vrule width 4pt}%
-\colorbox{graybox_color}%
-}%
-\MakeFramed{\advance\hsize-\width\FrameRestore}%
-\noindent\hspace{-4.55pt}% disable indenting first paragraph
-\begin{adjustwidth}{}{7pt}%
-\vspace{2pt}\vspace{2pt}%
-}
-{%
-\vspace{2pt}\end{adjustwidth}\endMakeFramed%
-}
+    \definecolor{graybox_color}{rgb}{0.95,0.95,0.96} % 文本框颜色。修改此行中的 rgb 数值即可改变方框纹颜色，具体颜色的rgb数值可以在网站https://colordrop.io/ 中获得。（截止目前的尝试还没有成功过，感觉单位不一样）（找到喜欢的颜色，点击下方的小眼睛，找到rgb值，复制修改即可）
+    \newenvironment{graybox}{%
+    \def\FrameCommand{%
+    \hspace{1pt}%
+    {\color{gray}\small \vrule width 2pt}%
+    {\color{graybox_color}\vrule width 4pt}%
+    \colorbox{graybox_color}%
+    }%
+    \MakeFramed{\advance\hsize-\width\FrameRestore}%
+    \noindent\hspace{-4.55pt}% disable indenting first paragraph
+    \begin{adjustwidth}{}{7pt}%
+    \vspace{2pt}\vspace{2pt}%
+    }
+    {%
+    \vspace{2pt}\end{adjustwidth}\endMakeFramed%
+    }
 
 % chapter标题自定义设置
 \usepackage{titlesec}   
-\titleformat{\chapter}[hang]{\normalfont\huge\bfseries\centering}{第\,\thechapter\,章}{20pt}{}
-\titlespacing*{\chapter}{0pt}{-20pt}{20pt} % 控制上方空白的大小
+    \titleformat{\chapter}[hang]{\normalfont\huge\bfseries\centering}{第\,\thechapter\,章}{20pt}{}
+    \titlespacing*{\chapter}{0pt}{-20pt}{20pt} % 控制上方空白的大小
+    % section标题自定义设置 
+    \titleformat{\section}[hang]{\normalfont\Large\bfseries}{§\,\thesection\,}{8pt}{}
+    % subsubsection标题自定义设置
+    %\titleformat{\subsubsection}[hang]{\normalfont\bfseries}{}{8pt}{}
+
+% 外源代码插入设置
+\usepackage{matlab-prettifier}
+    \lstset{
+        style=Matlab-editor,  % 继承matlab代码颜色等
+    }
+\usepackage[most]{tcolorbox} % 引入tcolorbox包 
+\usepackage{listings} % 引入listings包
+    \tcbuselibrary{listings, skins, breakable}
+    \lstdefinestyle{matlabstyle}{
+        language=Matlab,
+        basicstyle=\small,
+        breakatwhitespace=false,
+        breaklines=true,
+        captionpos=b,
+        keepspaces=true,
+        numbers=left,
+        numbersep=15pt,
+        showspaces=false,
+        showstringspaces=false,
+        showtabs=false,
+        tabsize=2
+    }
+    \newtcblisting{matlablisting}{
+        arc=0pt,
+        top=0pt,
+        bottom=0pt,
+        left=1mm,
+        listing only,
+        listing style=matlabstyle,
+        breakable,
+        colback=white   % 选一个合适的颜色
+    }
 
 % table设置
-\usepackage{float}
-\usepackage{booktabs}
-\usepackage{caption}
+\usepackage{booktabs}   % 宏包：三线表
+\usepackage{tabularray} % 宏包：表格排版
+\usepackage{longtable}  % 宏包：长表格
 
-%宏包：图片插入设置
-\usepackage{graphicx}   
-\usepackage{float}      
-\usepackage{amssymb}    
-\usepackage{caption}\captionsetup[figure]{name=图}  
+% figure设置
+\usepackage{graphicx}  % 支持 jpg, png, eps, pdf 图片 
+\usepackage{svg}       % 支持 svg 图片
+    \svgsetup{
+        % 指向 inkscape.exe 的路径
+        inkscapeexe = D:/aa_my_apps_main/Inkscape/bin/inkscape.exe, 
+        % 一定程度上修复导入后图片文字溢出几何图形的问题
+        inkscapelatex = false                 
+    }
+
+\usepackage{amssymb}   %  
+
+% 图表进阶设置
+\usepackage{caption}    % 图注、表注
+    \captionsetup[figure]{name=图}  
+    \captionsetup[table]{name=表}
+    \captionsetup{labelfont=bf, font=small}
+\usepackage{float}     % 图表位置浮动设置 
 
 % 文章默认字体设置
 \usepackage{fontspec}   % 宏包：字体设置
-\setmainfont{SimSun}    % 设置中文字体为宋体字体
-\setmainfont{Times New Roman} % 设置英文字体为Times New Roman
+    \setmainfont{SimSun}    % 设置中文字体为宋体字体
+    \setmainfont{Times New Roman} % 设置英文字体为Times New Roman
 
 % 参考文献引用设置
-\bibliographystyle{unsrt}   % 设置参考文献引用格式为unsrt
-\newcommand{\upcite}[1]{\textsuperscript{\cite{#1}}}     % 自定义上角标式引用
+    \bibliographystyle{unsrt}   % 设置参考文献引用格式为unsrt
+    \newcommand{\upcite}[1]{\textsuperscript{\cite{#1}}}     % 自定义上角标式引用
 
 % 文章序言设置
-\newcommand{\cnabstractname}{序言}
-\newenvironment{cnabstract}{%
-  \par\Large
-  \noindent\mbox{}\hfill{\bfseries \cnabstractname}\hfill\mbox{}\par
-  \vskip 2.5ex}{\par\vskip 2.5ex}
+    \newcommand{\cnabstractname}{序言}
+    \newenvironment{cnabstract}{%
+        \par\Large
+        \noindent\mbox{}\hfill{\bfseries \cnabstractname}\hfill\mbox{}\par
+        \vskip 2.5ex
+        }{\par\vskip 2.5ex}
+
+% 页眉页脚设置
+\usepackage{fancyhdr}   %宏包：页眉页脚设置
+    \pagestyle{fancy}
+    \fancyhf{}
+    \cfoot{\thepage}
+    \renewcommand\headrulewidth{1pt}
+    \renewcommand\footrulewidth{0pt}
+    \chead{Notes of Mathematical Physics Methods}    
+
 
 %文档信息设置
 \title{数学物理方法笔记\\Notes of Mathematical Physics Methods}
 \author{丁毅\\ \footnotesize 中国科学院大学，北京 100049\\ Yi Ding \\ \footnotesize University of Chinese Academy of Sciences, Beijing 100049, China}
 \date{\footnotesize 2024.9 -- 2025.1}
 
-
-% 页眉页脚设置
-\usepackage{fancyhdr}   %宏包：页眉页脚设置
-\pagestyle{fancy}
-\fancyhf{}
-\cfoot{\thepage}
-\renewcommand\headrulewidth{1pt}
-\renewcommand\footrulewidth{0pt}
-\chead{Notes of Mathematical Physics Methods}    
 
 \begin{document}
 \maketitle
@@ -142,6 +206,10 @@
 下面两小节是上学期未讲完的内容。
 \par}
 
+\nocite{*}
+\bibliography{re}
+\thispagestyle{fancy} 
+\addcontentsline{toc}{chapter}{参考文献}
 \end{document}
 
 % VScode 常用快捷键：

@@ -1,0 +1,39 @@
+<svg host="65bd71144e" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="277px" height="165px" viewBox="-0.5 -0.5 277 165" content="&lt;mxfile&gt;&lt;diagram id=&quot;AR2wt1b7V8VK1LDNt1i5&quot; name=&quot;第 1 页&quot;&gt;7ZhNb6MwEIZ/DdcIcAjJsaTN9rArrZTDnl2YgLcGI2Py0V+/dhi+ClXabNUoalIpwa/HY3vm8cjFIst0/0PSPPklIuCWa0d7i9xbrjv1Xf1thAMKjlMJsWRRJXWENXsBFG1USxZB0TNUQnDF8r4YiiyDUPU0KqXY9c02gvdnzWkMA2EdUj5U/7BIJag6s0Xb8QgsTnDquetXHSltjCuhSGgkdpV03Bx5sMhSCqGqp3S/BG5iV8elisDqjd5mYRIy9Z4BmIgt5SXuDdelDvVmpSizCIy9bZFglzAF65yGpnens6u1RKVctxz9uGGcLwUX8jiWTO/Nn9ZxGpAK9m8u1WkCoMEBkYKSB22CA4iN2a+h8bC9a1Pg1jZJJ/oYApti1uPGdRsY/YCxGY8TOR0niDQj2MxEpn8CIVUiYpFR/lOIHEP0F5Q6INO0VKIfwH60OX0CHtDwOT7qdWQj2NCS6+0FhZLiGYb6RmRqRVPGTbAegW9BsZBiB07uONgeDocsujPnRIshp0XBwkpcMV4vVJObGy94xowDzLIJxEdz3MnhHNMlgVPFtn1XYzlEb78F05M0uHjTPi6e60+8vpNClDIEHNc9JCdcTZ2BK0VlDGrgSgeRHjpmuTEoBuA1gXgXi96AxZcBjPqYqT5YlLM4M/nSqQCTLHMYNRP8DjtSFkVmeCChYC/06ejKQIiL1n69wPLMaTbYFgjRAEJkv1sJUPqEIuDVu8dUkIVbp6KDEBmpAuQTqsDs21YB3EpbAuwrKAGNn/rcEn/izM6sAe5pX19ZBPwbileFor+YzGZ9gub2mSg6p319JYrzG4rfFcURX81l6RIoLm4oXhOK45VsYnc+znlgjni+KJj1m4sbmddB5uurI/HPvzqOFdzj7bFD+fSCaDo3NK8Jzdf/ifwPmmMF+HJo6mb75rMyb18fk4d/&lt;/diagram&gt;&lt;/mxfile&gt;">
+    <defs/>
+    <g>
+        <rect x="20" y="73" width="200" height="20" fill="#4d4d4d" stroke="rgb(0, 0, 0)" pointer-events="all"/>
+        <path d="M 260 150.5 L 260 46.87" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
+        <path d="M 260 41.62 L 263.5 48.62 L 260 46.87 L 256.5 48.62 Z" fill="rgb(0, 0, 0)" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="all"/>
+        <rect x="245" y="15.5" width="30" height="30" fill="none" stroke="none" pointer-events="all"/>
+        <g transform="translate(-0.5 -0.5)">
+            <switch>
+                <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 31px; margin-left: 260px;">
+                        <div data-drawio-colors="color: rgb(0, 0, 0); " style="box-sizing: border-box; font-size: 0px; text-align: center;">
+                            <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; white-space: nowrap;">
+                                z
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="260" y="34" fill="rgb(0, 0, 0)" font-family="Helvetica" font-size="12px" text-anchor="middle">
+                    z
+                </text>
+            </switch>
+        </g>
+        <path d="M 0 60.16 L 240 60.16" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
+        <path d="M -0.34 103 L 239.66 103" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
+        <path d="M -0.34 103 L -0.34 163" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
+        <path d="M 239.66 103 L 239.66 163" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
+        <path d="M 0 0.16 L -0.34 60.16" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
+        <path d="M 240 0.16 L 239.66 60.16" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
+    </g>
+    <switch>
+        <g requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"/>
+        <a transform="translate(0,-5)" xlink:href="https://www.diagrams.net/doc/faq/svg-export-text-problems" target="_blank">
+            <text text-anchor="middle" font-size="10px" x="50%" y="100%">
+                Text is not SVG - cannot display
+            </text>
+        </a>
+    </switch>
+</svg>

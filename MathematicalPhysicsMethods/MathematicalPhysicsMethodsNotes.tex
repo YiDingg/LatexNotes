@@ -1,3 +1,7 @@
+% 若编译失败，且生成 .synctex(busy) 辅助文件，可能有两个原因：
+% 1. 需要插入的图片不存在：Ctrl + F 搜索 'figure' 将这些代码注释/删除掉即可
+% 2. 路径/文件名含中文或空格：更改路径/文件名即可
+
 % 设定文章编码类型，正文字号为五号，若需小四将 5 改为 -4 即可
 \documentclass[zihao=5,UTF8]{report}		
 
@@ -15,6 +19,10 @@
 \def\I{\mathscr{I}}
 \def\d{\mathrm{d}}
 \def\p{\partial}
+\def\R{\mathrm{Re}\,}
+\def\I{\mathrm{Im}\,}
+\def\arg{\mathrm{arg}\,}
+\def\Arg{\mathrm{Arg}\,}
 
 
 % 导入基本宏包
@@ -38,18 +46,30 @@
 
 
 \usepackage{amsthm} % 宏包：数学环境配置
-% theorem环境自定义
-    \newtheoremstyle{MyTheoremStyle}% <name>
+% theorem-line 环境自定义
+    \newtheoremstyle{MyLineTheoremStyle}% <name>
         {11pt}% <space above>
         {11pt}% <space below>
         {}% <body font> 使用默认正文字体
         {}% <indent amount>
         {\bfseries}% <theorem head font> 设置标题项为加粗
-        {：\\ }% <punctuation after theorem head>
+        {：}% <punctuation after theorem head>
         {.5em}% <space after theorem head>
         {\textbf{#1}\thmnumber{#2}\ \ (\,\textbf{#3}\,)}% 设置标题内容顺序
-    \theoremstyle{MyTheoremStyle} % 应用自定义的定理样式
-    \newtheorem{theorem}{Theorem.\,}
+    \theoremstyle{MyLineTheoremStyle} % 应用自定义的定理样式
+    \newtheorem{LineTheorem}{Theorem.\,}
+% theorem-block 环境自定义
+    \newtheoremstyle{MyBlockTheoremStyle}% <name>
+        {11pt}% <space above>
+        {11pt}% <space below>
+        {}% <body font> 使用默认正文字体
+        {}% <indent amount>
+        {\bfseries}% <theorem head font> 设置标题项为加粗
+        {：\\ \indent}% <punctuation after theorem head>
+        {.5em}% <space after theorem head>
+        {\textbf{#1}\thmnumber{#2}\ \ (\,\textbf{#3}\,)}% 设置标题内容顺序
+    \theoremstyle{MyBlockTheoremStyle} % 应用自定义的定理样式
+    \newtheorem{BlockTheorem}[LineTheorem]{Theorem.\,} % 使用 LineTheorem 的计数器
 % definition 环境自定义
     \newtheoremstyle{MySubsubsectionStyle}% <name>
         {11pt}% <space above>
@@ -141,7 +161,10 @@
         inkscapelatex = false                 
     }
 
-\usepackage{amssymb}   %  
+% 列表环境设置
+\usepackage{enumitem}   % 宏包：列表环境设置
+    \setlist[enumerate]{itemsep=0pt, parsep=0pt, topsep=0pt, partopsep=0pt, leftmargin=3em} 
+    \setlist[itemize]{itemsep=0pt, parsep=0pt, topsep=0pt, partopsep=0pt, leftmargin=3em}
 
 % 图表进阶设置
 \usepackage{caption}    % 图注、表注
@@ -199,12 +222,93 @@
 
 \newpage
 \pagenumbering{arabic} 
-\chapter{空间与形式}\thispagestyle{fancy} 
-\section{线性空间}
+\chapter{复数与复数运算}\thispagestyle{fancy} 
+\section{预备知识}
 
+
+\begin{definition}[复数定义]
+    一个有序实数对 $(x,y)$ 称为复数如果其满足如下运算：
+\begin{gather}
+    \begin{aligned}
+        &\text{加法}&&(x_1,y_1)+(x_2,y_2)=(x_1+x_2,y_1+y_2)\\
+        &\text{乘法}&&(x_1,y_1)(x_2,y_2)=(x_1x_2-y_1y_2,x_1y_2+y_1x_2)
+    \end{aligned}
+\end{gather}
+记作 $z = x + iy$，其中 $x = \R z$，$y = \I z$，$i^2 = 1$。
+
+\end{definition}
+
+
+\begin{definition}[相关概念] 
+    下面是一些相关概念：
+\begin{enumerate}
+    \item 复数的三种表示：$z = x + iy = r(\cos \theta + i\sin \theta) =  re^{i\theta} = e^{\ln r + i\theta}$
+    \item 模：$|z| = r =\sqrt{x^2+y^2}$
+    \item 幅角：$\arg z = \theta \in (-\pi, \pi]$称为幅角主值，$\Arg z = \theta + 2k\pi$称为幅角补值，$k\in\Z$。
+    \item 0 与 $\infty$：是两个特殊的复数，分别表示复平面中模为 0 和无穷大而幅角任意的“一个点”。在复平面的球表示中，$0$ 对应南极，$\infty$ 对应北极。
+    \item 扩充复平面：称包含无穷远点 $\infty$ 的复平面 $\C \cup \{\infty\}$为扩充复平面。
+    \item 共轭复数：$ z = x + iy, z^* = x - iy$
+    \item 复数除法：设$z_1 = x_1 + iy_1, z_2 = x_2 + iy_2$，则：
+    \begin{equation}
+    \frac{z_1}{z_2}= \frac{x_1+\mathrm{i}y_1}{x_2+\mathrm{i}y_2}=\frac{(x_1+\mathrm{i}y_1)(x_2-\mathrm{i}y_2)}{(x_2+\mathrm{i}y_2)(x_2-\mathrm{i}y_2)} = \frac{1}{| z_2 |^2}\left[ (x_1x_2+y_1y_2) + \mathrm{i}(y_1x_2-x_1y_2) \right]
+    \end{equation}
+    用棣莫弗定理更易理解复数除法：设 $z_1 = r_1e^{i\theta_1}, z_2 = r_2e^{i\theta_2}$，则： 
+    \begin{equation}
+    \frac{z_1}{z_2} = \frac{r_1}{r_2}e^{i(\theta_1-\theta_2)}
+    \end{equation}
+    \item 复数乘法：$z_1z_2 = r_1r_2e^{i(\theta_1+\theta_2)}$
+\end{enumerate}
+
+
+
+\end{definition}
+
+
+\section{复数序列}
+
+\begin{definition}[相关概念]
+    一个复数序列 $\{z_n\}$ 完全等价于两个实数序列 $\{x_n\}$ 和$\{y_n\}$
+    \begin{enumerate}
+        \item 聚点：给点复序列 $\{z_n\}$，若存在 $z \in \C$，使 $\forall\ \varepsilon >0$，恒有无穷多个$n$ 使得 $| z_n - z | < \varepsilon$则称$z$ 为序列$\{z_n\}$ 的一个聚点。
+        {\par\color{gray}\small
+        例如序列 $\{(-1)^{n+1}\frac n{n+1}\mid n \in \mathbb{N}_+\} =  \{\frac12,-\frac23,\frac34,-\frac45,\frac56,-\frac67,\cdots,(-1)^{n+1}\frac n{n+1},\cdots \}$ 有两个聚点 $1,-1$
+        \par}
+        \item 有界 / 无界序列：序列 $\{z_n\}$ 称为有界的如果 $\exists\ M>0 \ \ \text{s.t.}\ \ | z_n | < M,\ \forall\ n \in \mathbb{N}_+$，否则称为无界的。
+        \item 极限：称序列$\{z_n\}$收敛于$z \in \C$ 如果 $ \forall\ \varepsilon > 0,\ \exists\ N>0 \ \ \text{s.t.}\ \ | z - z_n | < \varepsilon, \forall\ n > N$ ，记作 $\displaystyle \lim_{n \rightarrow \infty} z_n = z $，否则称为发散序列。
+        极限的必要条件是唯一聚点，无界序列不可能收敛
+        \item 
+    \end{enumerate}
+\end{definition}
+
+\begin{LineTheorem}[Bolzano - Weierstrass 定理]\label{Bolzano - Weierstrass 定理}
+一个有界序列至少有一个聚点。
+\end{LineTheorem}
+
+\begin{LineTheorem}[Cauchy 判别法]\label{Cauchy 判别法}
+序列收敛的等价条件是：$\forall\ \varepsilon > 0, \exists\ N = N(\varepsilon) \ \ \text{s.t.}\ \ | z_{N+p} - z_N | < \varepsilon, \forall\ p \in \mathbb{N}_+$。
+\end{LineTheorem}
+
+\section{复变函数}
+
+
+\begin{definition}[相关概念]
+你好
+\begin{enumerate}
+\item 点集：复平面内点的集合
+\item 区域：复点集称为区域如果全部由内点组成，且具有连通性
 {\par\color{gray}\small
-下面两小节是上学期未讲完的内容。
+连通性：集合中任意两点都可以用一条折线连接起来，且折线上的点全部属于此点集
 \par}
+\item 单连通区域：区域称为单连通的如果在其内作任何简单闭合围道（自身不相交的闭合曲线），围道内的点都属于该区域，否则称为多联通区域（也称复联通区域）
+\end{enumerate}
+
+\begin{figure}[H]\centering
+\includegraphics[width=0.5\textwidth]{assets/4d651e08624250e2b6a287f557fe1cf8.png}
+\caption{\textbf{(a) (b) 构成区域，(c) 不构成区域}}\label{(a) (b) 构成区域，(c) 不构成区域}
+\end{figure}
+
+\end{definition}
+
 
 \nocite{*}
 \bibliography{re}

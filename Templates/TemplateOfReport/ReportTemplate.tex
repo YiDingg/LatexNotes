@@ -42,18 +42,30 @@
 
 
 \usepackage{amsthm} % 宏包：数学环境配置
-% theorem环境自定义
-    \newtheoremstyle{MyTheoremStyle}% <name>
+% theorem-line 环境自定义
+    \newtheoremstyle{MyLineTheoremStyle}% <name>
         {11pt}% <space above>
         {11pt}% <space below>
         {}% <body font> 使用默认正文字体
         {}% <indent amount>
         {\bfseries}% <theorem head font> 设置标题项为加粗
-        {：\\ }% <punctuation after theorem head>
+        {：}% <punctuation after theorem head>
         {.5em}% <space after theorem head>
         {\textbf{#1}\thmnumber{#2}\ \ (\,\textbf{#3}\,)}% 设置标题内容顺序
-    \theoremstyle{MyTheoremStyle} % 应用自定义的定理样式
-    \newtheorem{theorem}{Theorem.\,}
+    \theoremstyle{MyLineTheoremStyle} % 应用自定义的定理样式
+    \newtheorem{LineTheorem}{Theorem.\,}
+% theorem-block 环境自定义
+    \newtheoremstyle{MyBlockTheoremStyle}% <name>
+        {11pt}% <space above>
+        {11pt}% <space below>
+        {}% <body font> 使用默认正文字体
+        {}% <indent amount>
+        {\bfseries}% <theorem head font> 设置标题项为加粗
+        {：\\ \indent}% <punctuation after theorem head>
+        {.5em}% <space after theorem head>
+        {\textbf{#1}\thmnumber{#2}\ \ (\,\textbf{#3}\,)}% 设置标题内容顺序
+    \theoremstyle{MyBlockTheoremStyle} % 应用自定义的定理样式
+    \newtheorem{BlockTheorem}[LineTheorem]{Theorem.\,} % 使用 LineTheorem 的计数器
 % definition 环境自定义
     \newtheoremstyle{MySubsubsectionStyle}% <name>
         {11pt}% <space above>
@@ -145,7 +157,10 @@
         inkscapelatex = false                 
     }
 
-\usepackage{amssymb}   %  
+% 列表环境设置
+\usepackage{enumitem}   % 宏包：列表环境设置
+    \setlist[enumerate]{itemsep=0pt, parsep=0pt, topsep=0pt, partopsep=0pt, leftmargin=3em} 
+    \setlist[itemize]{itemsep=0pt, parsep=0pt, topsep=0pt, partopsep=0pt, leftmargin=3em}
 
 % 图表进阶设置
 \usepackage{caption}    % 图注、表注
@@ -231,9 +246,15 @@
     \end{cases}
 \end{equation}
 
-\begin{theorem}[这是一个定理]\label{这是一个定理}
+
+\begin{LineTheorem}[这是一个 Line Theorem]\label{这是一个 Line Theorem}
     你好你好你好
-\end{theorem}
+\end{LineTheorem}
+
+\begin{BlockTheorem}[这是一个 Block Theorem]\label{这是一个 Block Theorem}
+    你好你好你好
+\end{BlockTheorem}
+
 
 
 \begin{graybox}

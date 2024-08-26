@@ -44,21 +44,33 @@
     \geometry{marginparwidth=1.75cm}    % 设置边注距离（注释、标记等）
 
 % 自定义数学环境
-\usepackage{amsthm}     % 宏包：数学环境配置
-% theorem环境自定义
-    \newtheoremstyle{MyTheoremStyle}% <name>
+\usepackage{amsthm} % 宏包：数学环境配置
+% theorem-line 环境自定义
+    \newtheoremstyle{MyLineTheoremStyle}% <name>
         {11pt}% <space above>
         {11pt}% <space below>
         {}% <body font> 使用默认正文字体
         {}% <indent amount>
         {\bfseries}% <theorem head font> 设置标题项为加粗
-        {：\\ }% <punctuation after theorem head>
+        {：}% <punctuation after theorem head>
         {.5em}% <space after theorem head>
         {\textbf{#1}\thmnumber{#2}\ \ (\,\textbf{#3}\,)}% 设置标题内容顺序
-    \theoremstyle{MyTheoremStyle} % 应用自定义的定理样式
-    \newtheorem{theorem}{Theorem.\,}
+    \theoremstyle{MyLineTheoremStyle} % 应用自定义的定理样式
+    \newtheorem{LineTheorem}{Theorem.\,}
+% theorem-block 环境自定义
+    \newtheoremstyle{MyBlockTheoremStyle}% <name>
+        {11pt}% <space above>
+        {11pt}% <space below>
+        {}% <body font> 使用默认正文字体
+        {}% <indent amount>
+        {\bfseries}% <theorem head font> 设置标题项为加粗
+        {：\\ \indent}% <punctuation after theorem head>
+        {.5em}% <space after theorem head>
+        {\textbf{#1}\thmnumber{#2}\ \ (\,\textbf{#3}\,)}% 设置标题内容顺序
+    \theoremstyle{MyBlockTheoremStyle} % 应用自定义的定理样式
+    \newtheorem{BlockTheorem}[LineTheorem]{Theorem.\,} % 使用 LineTheorem 的计数器
 % definition 环境自定义
-    \newtheoremstyle{MySubsubsubsectionStyle}% <name>
+    \newtheoremstyle{MySubsubsectionStyle}% <name>
         {11pt}% <space above>
         {11pt}% <space below>
         {}% <body font> 使用默认正文字体
@@ -67,8 +79,9 @@
         {：\\ \indent}% <punctuation after theorem head>
         {0pt}% <space after theorem head>
         {\textbf{#3}}% 设置标题内容顺序
-    \theoremstyle{MySubsubsubsectionStyle} % 应用自定义的定理样式
+    \theoremstyle{MySubsubsectionStyle} % 应用自定义的定理样式
     \newtheorem{definition}{}
+
 
 % 有色文本框及其设置
 \usepackage[dvipsnames,svgnames]{xcolor}    %设置插入的文本框颜色

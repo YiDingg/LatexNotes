@@ -102,10 +102,10 @@
 
 % 各级标题自定义设置
 \usepackage{titlesec}   
-    \titleformat{\chapter}[hang]{\normalfont\huge\bfseries\centering}{第\,\thechapter\,章}{20pt}{}
-    \titlespacing*{\chapter}{0pt}{-20pt}{20pt} % 控制上方空白的大小
+    \titleformat{\chapter}[hang]{\normalfont\Large\bfseries\centering}{Homework \thechapter :}{10pt}{}
+    \titlespacing*{\chapter}{0pt}{-30pt}{10pt} % 控制上方空白的大小
     % section标题自定义设置 
-    \titleformat{\section}[hang]{\normalfont\Large\bfseries}{§\,\thesection\,}{8pt}{}
+    \titleformat{\section}[hang]{\normalfont\large\bfseries}{\thesection}{8pt}{}
     % subsubsection标题自定义设置
     %\titleformat{\subsubsection}[hang]{\normalfont\bfseries}{}{8pt}{}
 
@@ -203,11 +203,13 @@
     \cfoot{\thepage}
     \renewcommand\headrulewidth{1pt}
     \renewcommand\footrulewidth{0pt}
-    \chead{here is the header，这里是页眉}    
+    \chead{电路原理作业,\ 丁毅,\ 2023K8009908031}
+
+        
 
 
 %文档信息设置
-\title{这里是标题\\The Title of the Report}
+\title{电路原理课程作业\\ Homework of Circuit Theory}
 \author{丁毅\\ \footnotesize 中国科学院大学，北京 100049\\ Yi Ding \\ \footnotesize University of Chinese Academy of Sciences, Beijing 100049, China}
 \date{\footnotesize 2024.8 -- 2025.1}
 
@@ -215,28 +217,265 @@
 
 \begin{document}
 
-\maketitle
+\maketitle  % 封面
 
-\newpage
-\pagenumbering{Roman} % 页码为大写罗马数字
+\newpage    % 序言、目录页
+\pagenumbering{Roman}
 
 \thispagestyle{fancy}   % 显示页码、页眉等
 \begin{cnabstract}
-\normalsize 
-本文为笔者本科时的某课程笔记（Notes of Linear Algebra 2, 2024.9-2025.1）。用灰色字体或灰色方框等表示对主干内容的补充、对晦涩概念的理解、定理的具体证明过程等，采用红色字体对重点部分进行强调，同时适当配有插图。这样的颜色和结构安排既突出了知识的主要框架，也保持了笔记的深度和广度，并且不会因为颜色过多而导致难以锁定文本内容，乃是尝试了多种安排后挑选出的最佳方案。如果读者有更佳的颜色和排版方案，可以将建议发送到笔者邮箱 dingyi233@mails.ucas.ac.cn，在此感谢。\par
-由于个人学识浅陋，认识有限，书中难免有不妥甚至错误之处，望读者不吝指正，在此感谢。
-
-本文为笔者本科时的“电路原理”课程作业（Homework of Circuit Theory, 2024.9-2025.1）。由于个人学识浅陋，认识有限，文中难免有不妥甚至错误之处，望读者不吝指正，在此感谢。\par
+\normalsize 本文为笔者本科时的“电路原理”课程作业（Homework of Circuit Theory, 2024.9-2025.1）。由于个人学识浅陋，认识有限，文中难免有不妥甚至错误之处，望读者不吝指正，在此感谢。\par 
 我的邮箱是 dingyi233@mails.ucas.ac.cn。
 \end{cnabstract}\addcontentsline{toc}{chapter}{序言} % 手动添加为目录
 
-\tableofcontents    % 目录页
+% 控制目录不换页
+\setcounter{tocdepth}{0}
+\noindent\rule{\textwidth}{0.1em}   % 分割线
+\noindent\begin{minipage}{\textwidth}\centering 
+    \vspace{1cm}
+    \tableofcontents\thispagestyle{fancy}   % 显示页码、页眉等   
+\end{minipage}  
 \addcontentsline{toc}{chapter}{目录} % 手动添加为目录
-\thispagestyle{fancy}   % 显示页码、页眉等 
-
 
 \newpage
 \pagenumbering{arabic} 
+
+\chapter{2024.8.27 - 2024.9.2}\thispagestyle{fancy}
+
+\section{习题集 1-2}
+
+\begin{enumerate}
+\item[(a)] 短路，因此 $U = 0,\  I = \frac{U_S}{R_i}$
+\item[(b)] 开路，因此 $U = U_s, \ I = 0$
+\item[(c)] 构成回路，因此  $ U = \frac{U_SR}{R + R_i},\ I = \frac{U_S}{R + R_i}$ 
+\end{enumerate}
+
+\begin{figure}[H]\centering
+\includegraphics[width=0.6\textwidth]{assets/ae1cfc03fad5c98bfff08a663714a004.png}
+\end{figure}
+
+\section{习题集 1-9}
+
+\begin{enumerate}
+    \item[(a)]  $ \varphi_a - 3\ \mathrm{V} + 2\ \mathrm{V} = \varphi_b \Longrightarrow U_{ab} = 1\ \mathrm{V} $ 
+    \item[(b)] $I = 1\ \mathrm{A},\  3 -IR= -4 \Longrightarrow R = 7\ \Omega$ 
+    \item[(c)] $-3 + U_S = 1 \Longrightarrow U_S = 4 \ \mathrm{V}$ 
+    \item[(d)] $R=2\ \Omega,\ -IR + 2 = 3 \Longrightarrow I = -0.5\ \mathrm{A}$ 
+\end{enumerate}
+
+\begin{figure}[H]\centering
+\includegraphics[width=0.65\textwidth]{assets/d3d69ecd6b1c1bc476fd4a4957fb9e56.png}
+\end{figure}
+
+\section{习题集 1-10}
+
+
+
+\begin{enumerate}
+\item[(a)] 
+记参考点 a 的电势 $\varphi_a=0$，则 $\varphi_c = 2\ \mathrm{V} ,\ \varphi_b = -2\ \mathrm{V}$，因此 $U_{ab} = 2\ \mathrm{V}$
+
+\item[(b)] 
+记参考点 d 的电势 $\varphi_d = \varphi_b =0$，则 $\varphi_c = 6\ \mathrm{V},\ \varphi_a = -2\ \mathrm{V}$，因此 $U_{ab} = -2\ \mathrm{V}$
+
+\end{enumerate}
+
+\begin{figure}[H]\centering
+\includegraphics[width=0.6\textwidth]{assets/9dda9e5f333b8cb7f498d15c015e5fd0.png}
+\end{figure}
+
+\section{习题集 1-15}
+
+\begin{enumerate}
+    \item[(a)] $I = -\frac{U}{R} + 4\ \mathrm{A} = -2 \ \mathrm{A}$
+    \item[(b)] $U =12 \ \mathrm{V} + 3\ \Omega \times 4 \ \mathrm{A} = 0 $ 
+    \item[(c)] $I = 8 \ \mathrm{A} - 6\ \mathrm{A} = 2 \ \mathrm{A}$，$ U = 12 \ \mathrm{V} + 3\times8 \ \mathrm{V} = 36 \ \mathrm{V}$ 
+    \item[(d)] 取点 $ d $ 为参考点，则 $\varphi_d = \varphi_c = 0$，$\varphi_b = \varphi_a = 9 \ \mathrm{V}$，于是 $U_1 = 9 + 2\times3 = 15\ \mathrm{V},\ U_2 = 9 + 2\times 2 = 13 \ \mathrm{V},\ I =2 -  (9-3) = - 4 \ \mathrm{A}$
+\end{enumerate}
+
+\begin{figure}[H]\centering
+\includegraphics[width=0.7\textwidth]{assets/b82ef4f3b4efd9d0ee903e5f19353345.png}
+\end{figure}
+
+\section{习题集 1-29}
+
+取点 $a$ 为参考点 $\varphi_a = 0$，可得 $\varphi_b = 100U_1 - 80$，于是在结点 $a$ 有电流：
+\begin{equation*}
+I_S + \frac{100U_1 - 80}{5} = 2
+\end{equation*}
+
+$0.2\ \Omega$ 电阻处又有 $U_1 = 0.2 I_S$，联立解得 $I_S = 3.6 \ \mathrm{A}, U_1 = 7.2 \ \mathrm{V}$。
+
+\section{习题集 1-30}
+
+这里要注意左二元器件是受控电流源，因此 $0.5U$ 是指电流大小而非电压。$I_1$ 处可列出方程：
+
+\begin{equation*}
+\frac{U}{2} + 12 - \frac{U}{3} = 0.5U \Longrightarrow U = 36 \ \mathrm{V} \Longrightarrow P = UI = 432 \ \mathrm{W}
+\end{equation*}
+
+\begin{figure}[H]\centering
+\includegraphics[width=0.7\textwidth]{assets/94b342032a5f6622a60b3c9d99e37993.png}
+\end{figure}
+
+\section{讲义题 1-6}
+
+$\alpha $ 指什么？讲义中似乎没有找到 $\alpha$。
+
+\section{讲义题 1-7}
+
+
+\begin{definition}[充放电倍率 C 的含义]
+C （充放电倍率）表示电池充放电时电流相对电池容量的大小数值，$\mathrm{C} = \frac{\text{电池容量}}{\text{充放电所需时间}}$。例如，1 C 电流充电表示电池需要 1 小时充满，5 C 充电表示电池需要 $0.2$ 小时充满。放电也是类似的，一个 10 Ah 的电池以 2 C 放电，表示以 20 A 的电流放电 0.5 h。 \par
+若倍率上升，总时间就会下降，若倍率下降，总时间就会上升。通俗来讲，$C$ 代表了电池的爆发力大小，高倍率的动力电池瞬间放电电流大，特别适合大电流放电产品使用，如航模。
+\end{definition}
+
+
+\begin{definition}[涓流充电]
+涓流充电是指在电池接近完全充满电后，采用非常小的电流进行充电，以弥补电池自放电造成的容量损失。理论倍率 C 约为 最大倍率 $\mathrm{C_{max}}$ 的 $\frac{1}{100}$ 至 $\frac{1}{1000}$，但由于倍率太小，常常根本无法充电，一个比较好的方法是脉冲式充电，例如以 $\frac{\mathrm{C_{max}}}{10}$ 充电 6 s，然后停止充电 54 s。
+\end{definition}
+
+
+\begin{definition}[快速充电]
+快速充电至少要求 1 C，现阶段的快速充电多在 1.5 C 至 2 C 之间。
+\end{definition}
+
+
+\section{讲义题 1-8（Multisim 仿真）}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 \chapter{基础知识}\thispagestyle{fancy} 
@@ -273,31 +512,7 @@
     你好你好你好
 \end{BlockTheorem}
 
-
-
-\begin{graybox}
-\textbf{定理 \ref{这是一个定理} 的证明：}\\
-你好你好你好
-\end{graybox}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.5\textwidth]{assets/差分格式示意图.pdf}
-    \caption{\textbf{插入pdf图片}}\label{插入pdf图片}
-\end{figure}
 \end{definition}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.5\textwidth]{assets/波浪能装置示意图.jpg}
-    \caption{\textbf{插入 jpg}}\label{插入 jpg}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includesvg[width=0.5\textwidth]{assets/draw.io_test.drawio.svg}
-    \caption{\textbf{插入 svg}}\label{插入 svg}
-\end{figure}
 
 表格：
 
@@ -450,15 +665,6 @@
      $x$ & hello  & $123.456$ \\* \bottomrule
 \end{longtable}
 
-\chapter{这里是第三章}\thispagestyle{fancy} 
-\section{一个小节}
-\section{一个小节}
-\section{一个小节}
-\section{一个小节}
-\chapter{这里是第四章}\thispagestyle{fancy} 
-\section{一个小节}
-\section{一个小节}
-\section{一个小节}
 
 
 \nocite{*}

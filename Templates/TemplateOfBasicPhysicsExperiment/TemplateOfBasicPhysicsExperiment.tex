@@ -214,13 +214,13 @@
 % 开始编辑文章
 
 \begin{document}
-
-\begin{flushright}
+\noindent\begin{flushright}
     \zihao{2}{分组号：3-07}
 \end{flushright}
 
 \setCJKfamilyfont{boldsong}[AutoFakeBold = {2.17}]{SimSun}
 \newcommand*{\boldsong}{\CJKfamily{boldsong}}
+
 
 \begin{center}\large
     \noindent{\Huge\bfseries\boldsong《基础物理实验》实验报告 }
@@ -242,7 +242,15 @@
         成绩：\uline{\hspace{2cm}}}
 \end{center}
 % \vspace{-0.2cm}
-\noindent\rule{\textwidth}{0.1em}\zihao{-4}   % 分割线
+\noindent\rule{\textwidth}{0.1em}   % 分割线
+
+% 控制目录不换页
+\vspace{1cm}
+\setcounter{tocdepth}{2}  % 目录深度为 2（不显示 subsubsection）
+\noindent\begin{minipage}{\textwidth}\centering
+\tableofcontents\thispagestyle{fancy}   % 显示页码、页眉等   
+\end{minipage}  
+\newpage
 
 \section{拉伸法测量金属的杨氏模量}\thispagestyle{fancy} 
 

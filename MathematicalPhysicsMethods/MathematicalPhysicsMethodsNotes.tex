@@ -104,7 +104,7 @@
     \vspace{2pt}\end{adjustwidth}\endMakeFramed%
     }
 
-% chapter标题自定义设置
+% 各级标题自定义设置
 \usepackage{titlesec}   
     \titleformat{\chapter}[hang]{\normalfont\huge\bfseries\centering}{第\,\thechapter\,章}{20pt}{}
     \titlespacing*{\chapter}{0pt}{-20pt}{20pt} % 控制上方空白的大小
@@ -161,10 +161,20 @@
         inkscapelatex = false                 
     }
 
+% 圆圈序号自定义
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{\node[shape=circle,draw,inner sep=0.8pt, line width = 0.03em] (char) {\small \bfseries #1};}}   % TikZ solution
+
+
 % 列表环境设置
 \usepackage{enumitem}   % 宏包：列表环境设置
     \setlist[enumerate]{itemsep=0pt, parsep=0pt, topsep=0pt, partopsep=0pt, leftmargin=3em} 
     \setlist[itemize]{itemsep=0pt, parsep=0pt, topsep=0pt, partopsep=0pt, leftmargin=3em}
+    \newlist{circledenum}{enumerate}{1} % 创建一个新的枚举环境  
+    \setlist[circledenum,1]{  
+        label=\protect\circled{\arabic*}, % 使用 \arabic* 来获取当前枚举计数器的值，并用 \circled 包装它  
+        ref=\arabic*, % 如果需要引用列表项，这将决定引用格式（这里仍然使用数字）
+        itemsep=0pt, parsep=0pt, topsep=0pt, partopsep=0pt, leftmargin=3em
+    }  
 
 % 图表进阶设置
 \usepackage{caption}    % 图注、表注
@@ -241,12 +251,12 @@
 
 \begin{definition}[相关概念] 
     下面是一些相关概念：
-\begin{enumerate}
+\begin{circledenum}
     \item 复数的三种表示：$z = x + iy = r(\cos \theta + i\sin \theta) =  re^{i\theta} = e^{\ln r + i\theta}$
     \item 模：$|z| = r =\sqrt{x^2+y^2}$
     \item 幅角：$\arg z = \theta \in (-\pi, \pi]$称为幅角主值，$\Arg z = \theta + 2k\pi$称为幅角补值，$k\in\Z$。
     \item 0 与 $\infty$：是两个特殊的复数，分别表示复平面中模为 0 和无穷大而幅角任意的“一个点”。在复平面的球表示中，$0$ 对应南极，$\infty$ 对应北极。
-    \item 扩充复平面：称包含无穷远点 $\infty$ 的复平面 $\C \cup \{\infty\}$为扩充复平面。
+    \item 扩充复平面：称包含无穷远点 $\infty$ 的复平面 $\overline{\C} = \C \cup \{\infty\}$为扩充复平面。
     \item 共轭复数：$ z = x + iy, z^* = x - iy$
     \item 复数除法：设$z_1 = x_1 + iy_1, z_2 = x_2 + iy_2$，则：
     \begin{equation}
@@ -257,7 +267,7 @@
     \frac{z_1}{z_2} = \frac{r_1}{r_2}e^{i(\theta_1-\theta_2)}
     \end{equation}
     \item 复数乘法：$z_1z_2 = r_1r_2e^{i(\theta_1+\theta_2)}$
-\end{enumerate}
+\end{circledenum}
 
 
 
@@ -268,7 +278,7 @@
 
 \begin{definition}[相关概念]
     一个复数序列 $\{z_n\}$ 完全等价于两个实数序列 $\{x_n\}$ 和$\{y_n\}$
-    \begin{enumerate}
+    \begin{circledenum}
         \item 聚点：给点复序列 $\{z_n\}$，若存在 $z \in \C$，使 $\forall\ \varepsilon >0$，恒有无穷多个$n$ 使得 $| z_n - z | < \varepsilon$则称$z$ 为序列$\{z_n\}$ 的一个聚点。
         {\par\color{gray}\small
         例如序列 $\{(-1)^{n+1}\frac n{n+1}\mid n \in \mathbb{N}_+\} =  \{\frac12,-\frac23,\frac34,-\frac45,\frac56,-\frac67,\cdots,(-1)^{n+1}\frac n{n+1},\cdots \}$ 有两个聚点 $1,-1$
@@ -276,15 +286,14 @@
         \item 有界 / 无界序列：序列 $\{z_n\}$ 称为有界的如果 $\exists\ M>0 \ \ \text{s.t.}\ \ | z_n | < M,\ \forall\ n \in \mathbb{N}_+$，否则称为无界的。
         \item 极限：称序列$\{z_n\}$收敛于$z \in \C$ 如果 $ \forall\ \varepsilon > 0,\ \exists\ N>0 \ \ \text{s.t.}\ \ | z - z_n | < \varepsilon, \forall\ n > N$ ，记作 $\displaystyle \lim_{n \rightarrow \infty} z_n = z $，否则称为发散序列。
         极限的必要条件是唯一聚点，无界序列不可能收敛
-        \item 
-    \end{enumerate}
+    \end{circledenum}
 \end{definition}
 
 \begin{LineTheorem}[Bolzano - Weierstrass 定理]\label{Bolzano - Weierstrass 定理}
-一个有界序列至少有一个聚点。
+任意有界序列至少有一个聚点。
 \end{LineTheorem}
 
-\begin{LineTheorem}[Cauchy 判别法]\label{Cauchy 判别法}
+\begin{LineTheorem}[Cauchy判别法]\label{Cauchy判别法}
 序列收敛的等价条件是：$\forall\ \varepsilon > 0, \exists\ N = N(\varepsilon) \ \ \text{s.t.}\ \ | z_{N+p} - z_N | < \varepsilon, \forall\ p \in \mathbb{N}_+$。
 \end{LineTheorem}
 
@@ -292,22 +301,250 @@
 
 
 \begin{definition}[相关概念]
-你好
-\begin{enumerate}
+如下：
+\begin{circledenum}
 \item 点集：复平面内点的集合
 \item 区域：复点集称为区域如果全部由内点组成，且具有连通性
 {\par\color{gray}\small
 连通性：集合中任意两点都可以用一条折线连接起来，且折线上的点全部属于此点集
 \par}
-\item 单连通区域：区域称为单连通的如果在其内作任何简单闭合围道（自身不相交的闭合曲线），围道内的点都属于该区域，否则称为多联通区域（也称复联通区域）
-\end{enumerate}
+\item 单连通 / 多联通区域：区域称为单连通的如果在其内作任何简单闭合围道（自身不相交的闭合曲线），围道内的点都属于该区域，否则称为多联通区域（也称复联通区域）
+{\par\color{gray}\small
+图 \ref{(a) (b) 构成区域，(c) 不构成区域} 中的 (a) 区域就属于单连通区域，而图 \ref{(a) (b) 构成区域，(c) 不构成区域} 中的(b)区域则为多连通区域.
+\par}
+\item 边界：区域$G$ 的全体边界点构成其边界，记为 $\p G$
+\item 边界方向：沿着区域的边界前进，区域恒保持在边界的左侧，则此走向称为边界的正向 
+\end{circledenum}
 
 \begin{figure}[H]\centering
-\includegraphics[width=0.5\textwidth]{assets/4d651e08624250e2b6a287f557fe1cf8.png}
+\includegraphics[width=0.45\textwidth]{assets/4d651e08624250e2b6a287f557fe1cf8.png}
 \caption{\textbf{(a) (b) 构成区域，(c) 不构成区域}}\label{(a) (b) 构成区域，(c) 不构成区域}
 \end{figure}
+\end{definition}
+
+
+\begin{definition}[复变函数]
+复变函数 $f$ 是复数域子域 $G \subseteq \C$ 到复数域的映射，记作 $f:\ z \longmapsto \C$，或者 $f(z) = w,\ z \in G$。区域 $G$ 称为函数$f$  的定义域。事实上，复变函数等价于两个实变函数的有序组合。特别地，多值函数允许一个自变量对应多个函数值，我们在第二章会讨论。
 
 \end{definition}
+
+\section{无穷远点}
+
+\begin{definition}[Riemann 球面]
+如 图 \ref{Riemann 球面（复数球面）} ，过扩充的复平面$\overline{\C}$中的原点$(0,0)$作直径为 1 的球面，使之与$\overline{\C}$相切，切点称为南极 S，南极直径另一端称为北极 N。$\forall\ z \in \overline{\C}$，将它和复数球面的北极 N 相连，连线和球面有且仅有一个交点，因此存在一一对应关系。容易理解，$0$ 对应南极 S 而 $\infty$ 对应北极 N。
+
+\begin{figure}[H]\centering
+\includegraphics[width=0.40\textwidth]{assets/79ee2f440c28e683147e653d153efc72.png}
+\caption{\textbf{Riemann 球面（复数球面）}}\label{Riemann 球面（复数球面）}
+\end{figure}
+{\par\color{gray}\small
+Theorem.\ref{Bolzano - Weierstrass 定理} 告诉我们有界序列必有聚点，事实上，在扩充复数域 $\overline{\C}$ 中，这对无界序列也成立（$\infty$ 必为聚点）。
+\par}
+\end{definition}
+
+\chapter{解析函数}
+
+\section{复变函数的极限和连续}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 \nocite{*}

@@ -173,17 +173,19 @@
             itemsep=0pt, parsep=0pt, topsep=0pt, partopsep=0pt, leftmargin=3.5em
         }  
 
-% 参考文献引用设置
-    \bibliographystyle{unsrt}   % 设置参考文献引用格式为unsrt
-    \newcommand{\upcite}[1]{\textsuperscript{\cite{#1}}}     % 自定义上角标式引用
-
-% 文章序言设置
-    \newcommand{\cnabstractname}{序言}
-    \newenvironment{cnabstract}{%
-        \par\Large
-        \noindent\mbox{}\hfill{\bfseries \cnabstractname}\hfill\mbox{}\par
-        \vskip 2.5ex
-        }{\par\vskip 2.5ex}
+% 其它设置
+    % 脚注设置
+    \renewcommand\thefootnote{\ding{\numexpr171+\value{footnote}}}
+    % 参考文献引用设置
+        \bibliographystyle{unsrt}   % 设置参考文献引用格式为unsrt
+        \newcommand{\upcite}[1]{\textsuperscript{\cite{#1}}}     % 自定义上角标式引用
+    % 文章序言设置
+        \newcommand{\cnabstractname}{序言}
+        \newenvironment{cnabstract}{%
+            \par\Large
+            \noindent\mbox{}\hfill{\bfseries \cnabstractname}\hfill\mbox{}\par
+            \vskip 2.5ex
+            }{\par\vskip 2.5ex}
 
 % 文章默认字体设置
 \usepackage{fontspec}   % 宏包：字体设置

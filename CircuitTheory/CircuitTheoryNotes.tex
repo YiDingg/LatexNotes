@@ -172,17 +172,19 @@
             itemsep=0pt, parsep=0pt, topsep=0pt, partopsep=0pt, leftmargin=3.5em
         }  
 
-% 参考文献引用设置
-    \bibliographystyle{unsrt}   % 设置参考文献引用格式为unsrt
-    \newcommand{\upcite}[1]{\textsuperscript{\cite{#1}}}     % 自定义上角标式引用
-
-% 文章序言设置
-    \newcommand{\cnabstractname}{序言}
-    \newenvironment{cnabstract}{%
-        \par\Large
-        \noindent\mbox{}\hfill{\bfseries \cnabstractname}\hfill\mbox{}\par
-        \vskip 2.5ex
-        }{\par\vskip 2.5ex}
+% 其它设置
+    % 脚注设置
+        \renewcommand\thefootnote{\ding{\numexpr171+\value{footnote}}}
+    % 参考文献引用设置
+        \bibliographystyle{unsrt}   % 设置参考文献引用格式为unsrt
+        \newcommand{\upcite}[1]{\textsuperscript{\cite{#1}}}     % 自定义上角标式引用
+    % 文章序言设置
+        \newcommand{\cnabstractname}{序言}
+        \newenvironment{cnabstract}{%
+            \par\Large
+            \noindent\mbox{}\hfill{\bfseries \cnabstractname}\hfill\mbox{}\par
+            \vskip 2.5ex
+            }{\par\vskip 2.5ex}
 
 % 文章默认字体设置
 \usepackage{fontspec}   % 宏包：字体设置
@@ -254,33 +256,221 @@
 % >> --------------------- 封面序言与目录 --------------------- << %
 % ------------------------ 封面序言与目录 ------------------------ %
 
-\chapter{绪论}
+\chapter{绪论}\thispagestyle{fancy}
 
 本章首先介绍几个有关电路的基本问题，然后介绍电路中相关物理量的定义，再简单介绍电路在信号处理与能量处理方面的应用，最后讨论电路的分类。本章是所有后续章节的共同基础。
 
 \section{电路}
-一般来讲，电路的研究内容分为电路分析、电路综合，分别对应电路研究的正问题（已知电路求电路的解）和逆问题（已知解求电路结构参数）。
+一般来讲，电路的研究内容分为电路分析、电路综合，分别对应电路研究的正问题（已知电路求电路的解）和逆问题（已知解求电路结构参数），本课程的重点在电路分析，对电路综合不深入探讨。
 
 \begin{figure}[H]\centering
 \includegraphics[width=0.5\textwidth]{assets/11b7879b24f71ddbf3e5316424203201.png}
 \caption{\textbf{电路原理与其他电类主要课程的联系}}\label{电路原理与其他电类主要课程的联系}
 \end{figure}
 
-有些电路原理课程习惯用大写英文字母表示不随时间变化的常量，用小写英文字母表示随时间变化的量。在本笔记中，时变量、瞬时量、微元量均用小写表示，其它情况一般用大写。
-
-\section{电流和电压}
+有些电路原理课程习惯用大写英文字母表示不随时间变化的常量，用小写英文字母表示随时间变化的量。在本笔记中，时变量（非恒定量）、瞬时量、微元量均用小写表示，其它情况一般用大写。
 
 
+
+\section{电流、电压和电势}
+
+电势（电位，potential）：选定参考点（reference point）后，电路中某一点的电势，用 $\varphi$ 表示。如果不引起歧义，也常用 $U$ 表示。两点间电位差（电势差，potential difference）即为电压。电动势（electromotive force, e.m.f.）：非静电力克服电场力搬运单位正电荷所做的功（电势升， potential rise）。
+
+在分析电路时，必须事先规定电路电流的参考方向（正方向），也必须规定电压的参考方向或参考极性。
+
+电压与电动势一般有三种表示方式，分别为结点、正负和箭头，如图 \ref{电压与电动势的三种表示方法} 所示，要特别注意两者方向相反。
+
+\begin{figure}[H]\centering
+\includegraphics[width=0.45\textwidth]{assets/电动势与电压.drawio.pdf}
+\caption{\textbf{电压与电动势的三种表示方法}}\label{电压与电动势的三种表示方法}
+\end{figure}
+
+电压、电流定义式：
+\begin{equation}
+u_{ab} = \frac{\mathrm{d} w_{ab}}{\mathrm{d}q},\ i_{ab} = \frac{\mathrm{d} q_{ab}}{\mathrm{d}t}
+\end{equation}
+
+部分常见的电路元件如图 \ref{部分常见电路元件} 所示：
+
+\begin{figure}[H]\centering
+\includegraphics[width=0.5\textwidth]{assets/7d3f6db847882c6447cc046186ede6ef.png}
+\includegraphics[width=0.5\textwidth]{assets/3f5d73ec5ae9909ab42cd864852b0d72.png}
+\caption{\textbf{部分常见电路元件}}\label{部分常见电路元件}
+\end{figure}
+
+端口：封装好的电路元件与电路其它部分的联接点称为端纽、端子或接线端（terminal）。如果从元件的两个端纽看进去满足 $i = -i'$，则这两个端子被称为一个端口（port）
+\footnote{任意二端电路元件都可以看作是一个端口}
+，如图 \ref{端口示意图} 所示。
+
+\begin{figure}[H]\centering
+\includegraphics[width=0.33\textwidth]{assets/端口.drawio.png}
+\caption{\textbf{端口示意图}}\label{端口示意图}
+\end{figure}
+
+与外部电路有 $n$ 个端口相连的电路称为 $n$ 端口网络（n-port network）。
 
 \section{电路分析基本观点}
+
+
+\begin{definition}[建立电路模型]
+电阻、电感与电容：
+\begin{equation}
+U = RI,\ \varPsi = LI,\ Q = CU
+\end{equation}
+
+$R, L, C$ 被称为电路基本模型，是电路分析的最基本模型。对不同的电路，应采用不同的模型，以适应实际需要并满足所需精度。另外，电路中常常使用大量的等效观点来简化电路的分析，使其求解更易、物理意义更清晰、应用更方便。
+
+\end{definition}
+
+
 \section{电路信号处理}
+
+电路信号可分为 图 \ref{信号分类} 中的几类，它们的示意图如 图 \ref{信号示意图} 所示： 
+
+\begin{figure}[H]\centering
+\includesvg[width=0.55\textwidth]{assets/信号分类.drawio.svg}
+\caption{\textbf{信号分类}}\label{信号分类}
+\end{figure}
+
+\begin{figure}[H]\centering
+\includegraphics[width=0.7\textwidth]{assets/1b9e0bed85e1f3a049de96f4c6018da8.png}
+\caption{\textbf{信号示意图}}\label{信号示意图}
+\end{figure}
+
 \section{电路能量处理}
+
+
+\begin{definition}[功率]
+
+二端元件吸收的瞬时功率（instantaneous power）为其单位时间内吸收的电能\footnote{在非关联参考方向下，吸收的瞬时功率为 $p = -ui$}：
+\begin{equation*}
+p(t) = \frac{\mathrm{d}w}{\mathrm{d}t} = \frac{\mathrm{d}w}{\mathrm{d}q}\cdot\frac{\mathrm{d}q}{\mathrm{d}t} = u(t)i(t) 
+\end{equation*}
+
+
+\begin{definition}[平均值、有效值]
+对周期信号而言，其物理量有瞬时值、平均值、平均绝对值和有效值等特征量。以电压 $u = u(t)$ 为例：
+
+\begin{enumerate}
+\item 平均值（average value）：$\bar{u} = \frac{1}{T}\int_0^T u(t)\mathrm{d}t$
+\item 绝对平均值（average absolute value）：$\overline{| u |} = \frac{1}{T}\int_0^T | u(t) |\mathrm{d}t$
+\item 有效值（effective value）：$ U = \sqrt{\frac{1}{T}\int_0^T u^2(t)\mathrm{d}t} $
+\end{enumerate}
+电流 $i$ 与上面同理。特别地，对正弦交流电流（sinusoidal altering current）而言，其有效值 $I = \frac{I_{\mathrm{m}}}{\sqrt{2}},\ U = \frac{U_{\mathrm{m}}}{\sqrt{2}}$。
+\end{definition}
+
+
+\end{definition}
+
+
 \section{电流分类}
+
+
+\begin{definition}[静态 / 动态电路]
+    电路里，将可以提供能量或信号的元件称为源（source），将对能量或信号进行传输、分配和处理的元件称为负载（load）。
+    负载全为电阻的电路称为电阻电路或静态电路，否则称为动态电路。前者需求解代数方程组，后者需求解微分方程组。本书第 2~4 章讨论静态电路，第 5~6 章讨论动态电路。
+\end{definition}
+
+
+\begin{definition}[线性 / 非线性电路]
+判断是否线性需要先定义系统的激励（excitation）和响应（response），设激励为 $x$ 而响应为 $y = f(x)$，则系统是否线性由 $f$ 决定。例如电阻是二端线性系统，发光二极管是二端非线性系统。
+\end{definition}
+
+
+\begin{definition}[时变 / 非时变电流]
+参数随时间变化的元件称为时变元件，含此类元件的电路称为时变电路，否则称为非时变电路。
+\end{definition}
+
+其它还可分为 无源 / 有源电路、集总 / 分布参数电路、模拟 / 数字电路等。
 
 \chapter{简单电阻电路}
 \section{电阻}
+设一均匀线性电阻微元长 $\mathrm{d} l$，横截面积为 $\mathrm{d}S$，电阻率为 $\sigma$，则阻值为
+\begin{gather}
+    \mathrm{d}R = \frac{\mathrm{d} l}{\sigma\mathrm{d}S} \Longrightarrow R = \frac{L}{\sigma S} = \frac{\rho L}{S} \\
+\text{串联：}\ R = \sum_{i}R_i\ , \ \ 
+\text{并联：}\ \frac{1}{R} = \sum_{i}\frac{1}{R_i} 
+\end{gather}
+
+多数金属材料的电阻率随温度变化见下式，其中 $\alpha$ 称为电阻温度系数，在实际使用时，最好保持额定功率在实际承受功率的两倍以上，以免过载。常见材料的具体数值见表 \ref{常见材料的0度电阻率和温度系数}。
+\begin{equation}
+\rho(T) = \rho_0(1+\alpha T)
+\end{equation}
+\begin{table}[H]\centering\small
+    \setlength{\tabcolsep}{2mm} % 调整列间距
+    \caption{\textbf{常见材料的 0 \textdegree C 电阻率和温度系数 }}
+    \label{常见材料的0度电阻率和温度系数}
+    \resizebox{\linewidth}{!}{
+        \begin{tabular}{cccccccccc}\toprule
+            名称 & 银 & 铜 & 铝 & 钨 & 铁 & 碳 & 镍铬合金 & 镍铜合金\\
+            \midrule
+            $\rho_0\ (\Omega\cdot \mathrm{m})$
+            &$1.5 \times 10^{-8}$ 
+            &$1.6 \times 10^{-8}$ 
+            &$2.5 \times 10^{-8}$ 
+            &$2.5 \times 10^{-8}$ 
+            &$8.7 \times 10^{-8}$ 
+            &$3500 \times 10^{-8}$ 
+            &$110 \times 10^{-8}$ 
+            &$50 \times 10^{-8}$ \\
+            $\alpha\ (\text{\textdegree C}^{-1})$
+            &$4.0 \times 10^{-3}$ 
+            &$4.3 \times 10^{-3}$ 
+            &$4.7 \times 10^{-3}$ 
+            &$4.6 \times 10^{-3}$ 
+            &$5.0 \times 10^{-3}$ 
+            &$-5.0 \times 10^{-4}$ 
+            &$1.6 \times 10^{-4}$ 
+            &$4.0 \times 10^{-5}$ \\
+            \bottomrule
+        \end{tabular}
+    }
+\end{table}
+
+
+我们有欧姆定律微分形式和焦耳定律微分形式
+\begin{equation}
+i = \sigma E\ ,\ \ q =  \sigma E^2 = \frac{1}{\sigma} i^2  
+\end{equation}
+
+二极管模型：
+\begin{equation}
+i = I_{\mathrm{S}}\left(e^{\frac{u}{U_{\mathrm{TH}}}} - 1\right)
+\end{equation}
+其中 $I_{\mathrm{S}}$ 为反向饱和电流（硅二极管的典型值为 $10^{-12}$ A），$U_{TH}$ 为常数（典型值 25 mV）。
+
+到目前为止，我们讨论的电阻 $u$-$i$ 关系都在平面的一三象限（正电阻），后文我们将在等效观念指导下用运算放大器来实现负电阻性质。
+
 \section{电源}
-\section{MOSFET（金属氧化物半导体场效应管）}
+
+
+\begin{definition}[独立电源]
+与外接电路无关的二端电源称为独立电源（independent source），例如独立电压源（independent voltage source）和独立电流源（independent current source）
+\footnote{电压为零的独立电压源等效于短路，电流为零的独立电流源等效于断路}。
+\end{definition}
+
+
+\begin{definition}[受控电源]
+
+流经元件的电压或电流受电路中其它部分电压或电流控制的元件称为受控电源。最常见的例子是放大器，如电子管、晶体管（又称三极管）等。
+依据控制量和受控量的不同，受控电源一般分为 4 种：
+    \begin{itemize}
+    \item 压控电压源（voltage controlled voltage source, VCVS）
+    \item 流控电压源（current controlled voltage source, CCVS）
+    \item 压控电流源（voltage controlled current source, VCCS）
+    \item 流控电流源（current controlled current source, CCCS）
+    \end{itemize}
+它们的电路符号如图 \ref{受控电源电路符号} 所示。 
+
+\begin{figure}[H]\centering
+\includegraphics[width=0.7\textwidth]{assets/受控电源电路符号.drawio.pdf}
+\caption{\textbf{受控电源电路符号}}\label{受控电源电路符号}
+\end{figure}
+
+\end{definition}
+
+
+\section{MOSFET（金属氧化物半导体场效应晶体管）}
 \section{基尔霍夫定律}
 \section{电路等效变换}
 \section{运算方法区}
@@ -751,16 +941,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
 \nocite{*}
 \bibliography{re}
 \thispagestyle{fancy} 
@@ -771,14 +951,12 @@
 
 \newpage
 \appendix
-\titleformat{\chapter}[hang]{\normalfont\huge\bfseries\centering}{}{20pt}{\thechapter}
+\titlespacing*{\chapter}{0pt}{-15pt}{8pt} % 控制上方空白的大小
 \titleformat{\section}{\large\centering\bfseries}{\thesection}{1em}{}
 \titleformat{\subsection}{\normalsize\bfseries}{\thesubsection}{1em}{}
 
 \chapter*{附录 A: 中英文对照表}\addcontentsline{toc}{chapter}{附录 A: 中英文对照表}\thispagestyle{fancy} 
-
 \begin{multicols}{2}  
-
 \begin{table}[H]\centering
 \caption{\textbf{中英文对照表}}
 \begin{tabular}{cccccccc}\toprule
@@ -791,6 +969,9 @@
     conductance        & 电导 \\
     inductance         & 电感 \\
     capacitance        & 电容 \\
+    resistor           & 电阻器 \\
+    capacitor          & 电容器 \\
+    inductor           & 电感器 \\
     frequency          & 频率 \\
     circuit            & 电路 \\
     circuit element    & 电流元件 \\
@@ -799,9 +980,39 @@
     circuit synthesis  & 电路综合 \\
     circuit design     & 电路设计 \\
     circuit topology   & 电路拓扑 \\
+    electromotive force, e.m.f. & 电动势 \\
+    potential & 电势 \\
+    reference point & 参考点 \\
+    potential rise & 电势升 \\
+    potential drop & 电势降 \\
+    terminal & 端纽，接线端\\ 
+    source & 源 \\
+    load & 负载 \\
+    independent source & 独立源 \\ 
+    independent voltage source & 独立电压源 \\ 
+    independent current source & 独立电流源 \\ 
+    excitation & 激励 \\
+    response & 响应 \\
+    n-port network & n 端口网络 \\
+    instantaneous power & 瞬时功率 \\
+    average value & 平均值 \\
+    average absolute value & 绝对平均值 \\
+    effective value & 有效值 \\
     \bottomrule
 \end{tabular}
 \end{table}
+
+\begin{table}[H]\centering
+    \caption{\textbf{中英文对照表}}
+    \begin{tabular}{cccccccc}\toprule
+        English & 中文 \\
+        \midrule
+        sinusoidal altering current & 正弦交流电流 \\
+        \bottomrule
+    \end{tabular}
+    \end{table}
+
+
 
 
 \end{multicols} 

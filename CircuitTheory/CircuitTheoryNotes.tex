@@ -5,7 +5,7 @@
 % --------------------- 文章宏包及相关设置 --------------------- %
 % >> ------------------ 文章宏包及相关设置 ------------------ << %
 % 设定文章类型与编码格式
-    \documentclass[UTF8]{report}		
+\documentclass[UTF8]{report}		
 
 
 % 自定义宏定义
@@ -31,9 +31,8 @@
     \usepackage{mathrsfs}   % 宏包：提供更多数学符号
     \usepackage{amssymb}    % 宏包：提供更多数学符号
     \usepackage{pifont}     % 宏包：提供了特殊符号和字体
-    \usepackage{extarrows}  % 宏包：更多箭头符号
+    \usepackage{extarrows}  % 宏包：更多箭头符号 
     \usepackage{multicol}   % 宏包：支持多栏 
-
 
 % 文章页面margin设置
     \usepackage[a4paper]{geometry}
@@ -211,11 +210,12 @@
         \cfoot{\thepage}
         \renewcommand\headrulewidth{1pt}
         \renewcommand\footrulewidth{0pt}
-        \lhead{2024.8-2025.1} 
-        \chead{here is the header，这里是页眉}    
+        \lhead{2024.8-2025.1}
+        \chead{Notes of Circuit Theory}    
         \rhead{dingyi233@mails.ucas.ac.cn}
+
 %文档信息设置
-    \title{这里是标题\\The Title of the Report}
+    \title{电路原理笔记\\ Notes of Circuit Theory}
     \author{丁毅\\ \footnotesize 中国科学院大学，北京 100049\\ Yi Ding \\ \footnotesize University of Chinese Academy of Sciences, Beijing 100049, China}
     \date{\footnotesize 2024.8 -- 2025.1}
 % ------------------------ 文章信息区 ------------------------ %
@@ -235,10 +235,7 @@
 
 % 序言
     \begin{cnabstract}\normalsize 
-        本文为笔者本科时的某课程笔记（Notes of Linear Algebra 2, 2024.9-2025.1）。用灰色字体或灰色方框等表示对主干内容的补充、对晦涩概念的理解、定理的具体证明过程等，采用红色字体对重点部分进行强调，同时适当配有插图。这样的颜色和结构安排既突出了知识的主要框架，也保持了笔记的深度和广度，并且不会因为颜色过多而导致难以锁定文本内容，乃是尝试了多种安排后挑选出的最佳方案。如果读者有更佳的颜色和排版方案，可以将建议发送到笔者邮箱 dingyi233@mails.ucas.ac.cn，在此感谢。\par
-        由于个人学识浅陋，认识有限，书中难免有不妥甚至错误之处，望读者不吝指正，在此感谢。
-
-        本文为笔者本科时的“电路原理”课程作业（Homework of Circuit Theory, 2024.9-2025.1）。由于个人学识浅陋，认识有限，文中难免有不妥甚至错误之处，望读者不吝指正，在此感谢。\par
+        本文为笔者本科时的电路原理笔记（Notes of Circuit Theory, 2024.9-2025.1）。由于个人学识浅陋，认识有限，文中难免有不妥甚至错误之处，望读者不吝指正，在此感谢。\par
         我的邮箱是 dingyi233@mails.ucas.ac.cn。
     \end{cnabstract}
     \addcontentsline{toc}{chapter}{序言} % 手动添加为目录
@@ -257,229 +254,511 @@
 % >> --------------------- 封面序言与目录 --------------------- << %
 % ------------------------ 封面序言与目录 ------------------------ %
 
+\chapter{绪论}
 
-\chapter{基础知识}\thispagestyle{fancy} 
-\section{第一章第一节}
+本章首先介绍几个有关电路的基本问题，然后介绍电路中相关物理量的定义，再简单介绍电路在信号处理与能量处理方面的应用，最后讨论电路的分类。本章是所有后续章节的共同基础。
 
+\section{电路}
+一般来讲，电路的研究内容分为电路分析、电路综合，分别对应电路研究的正问题（已知电路求电路的解）和逆问题（已知解求电路结构参数）。
 
-\begin{definition}[向后加权隐式格式]
-
-将向前差分与向后差分加权组合起来，得到：
-
-\begin{equation}\label{公式5}
-    \frac{u_{j}^{k}-u_{j}^{k-1}}{h_t}=a\theta\frac{u_{j+1}^{k}-2u_{j}^{k}+u_{j-1}^{k}}{h_x^2}+a(1-\theta)\frac{u_{j+1}^{k-1}-2u_{j}^{k-1}+u_{j-1}^{k-1}}{h_x^2}
-\end{equation}
-
-其中 $\theta \in [0, 1]$ 为权重，其截断误差 $R = a\left(\frac{1}{2}-\theta\right)h_t\left[\frac{\partial^{3}u}{\partial x^{2}\partial t}\right]_{j}^{k}+O(h_t^{2}+h_x^2)$，因此当 $\theta = \frac{1}{2}$ 时，方程具有 $O(h_t^{2}+h_x^2)$ 精度，称为 Crank-Nicolson 格式（CN 格式）。
-
-
-公式 \ref{公式5} 的增长因子及稳定性条件为：
-
-\begin{equation}
-    G(h_t,\sigma)=\frac{1-4(1-\theta)ar\sin^2\frac{\sigma h}2}{1+4\theta ar\sin^2\frac{\sigma h}2}, \ \ 
-    \begin{cases}
-        r\leqslant\frac{1}{2a(1-2\theta)}, & \theta \in [0, \frac{1}{2}) \\ 
-        \text{无条件稳定}, & \theta \in [\frac{1}{2}, 1] \\ 
-    \end{cases}
-\end{equation}
-
-
-\begin{LineTheorem}[这是一个 Line Theorem]\label{这是一个 Line Theorem}
-    你好你好你好
-\end{LineTheorem}
-
-\begin{BlockTheorem}[这是一个 Block Theorem]\label{这是一个 Block Theorem}
-    你好你好你好
-\end{BlockTheorem}
-
-
-
-\begin{graybox}
-\textbf{定理 \ref{这是一个定理} 的证明：}\\
-你好你好你好
-\end{graybox}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.5\textwidth]{assets/差分格式示意图.pdf}
-    \caption{\textbf{插入pdf图片}}\label{插入pdf图片}
-\end{figure}
-\end{definition}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.5\textwidth]{assets/波浪能装置示意图.jpg}
-    \caption{\textbf{插入 jpg}}\label{插入 jpg}
+\begin{figure}[H]\centering
+\includegraphics[width=0.5\textwidth]{assets/11b7879b24f71ddbf3e5316424203201.png}
+\caption{\textbf{电路原理与其他电类主要课程的联系}}\label{电路原理与其他电类主要课程的联系}
 \end{figure}
 
-\begin{figure}[H]
-    \centering
-    \includesvg[width=0.5\textwidth]{assets/draw.io_test.drawio.svg}
-    \caption{\textbf{插入 svg}}\label{插入 svg}
-\end{figure}
+有些电路原理课程习惯用大写英文字母表示不随时间变化的常量，用小写英文字母表示随时间变化的量。在本笔记中，时变量、瞬时量、微元量均用小写表示，其它情况一般用大写。
 
-表格：
-
-\begin{table}[H]
-    \centering
-    \caption{\textbf{符号含义与约定}}
-    \label{tab:waterpump}
-    \begin{tabular}{ccccc}
-    \toprule
-    符号 & 符号含义& 单位\\
-    \midrule
-    符号1& 含义1& 单位1\\
-    符号2& 含义2& 单位2\\
-    符号3& 含义3& 单位3\\
-    符号4& 含义4& 单位4\\
-    \bottomrule
-    \end{tabular}
-\end{table}
-
-\chapter{这里是第二章}\thispagestyle{fancy} 
-
-\href{https://www.latex-tables.com/}{Latex Table Editor} 示例：
-
-% \usepackage{tabularray}
-
-\begin{longtblr}[caption={\bfseries 示例表格},label=tab:example]{
-    hline{1,51} = {-}{0.08em},
-    hline{2} = {-}{},
-  }
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ 
-\end{longtblr}
-
-\href{https://www.tablesgenerator.com/latex_tables#}{Create Latex Tables Online} 示例：
-
-% Please add the following required packages to your document preamble:
-% \usepackage{booktabs}
-% \usepackage{longtable}
-% Note: It may be necessary to compile the document several times to get a multi-page table to line up properly
-\begin{longtable}[c]{ccc}
-    \caption{\bfseries Create Latex Tables Online 示例}
-    \label{tab:my-table}\\
-    \toprule
-    表头& 表头 & 表头 \\* \midrule
-    \endfirsthead
-    %
-    \multicolumn{3}{c}%
-    {{\bfseries Table \thetable :\ continued from previous page}} \\
-    \toprule
-    表头& 表头 & 表头 \\* \midrule
-    \endhead
-    %
-    \bottomrule
-    \endfoot
-    %
-    \endlastfoot
-    %
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\* \bottomrule
-\end{longtable}
+\section{电流和电压}
 
 
 
-\chapter{这里是第三章}\thispagestyle{fancy} 
-\section{一个小节}
-\section{一个小节}
-\section{一个小节}
-\section{一个小节}
-\chapter{这里是第四章}\thispagestyle{fancy} 
-\section{一个小节}
-\section{一个小节}
-\section{一个小节}
+\section{电路分析基本观点}
+\section{电路信号处理}
+\section{电路能量处理}
+\section{电流分类}
+
+\chapter{简单电阻电路}
+\section{电阻}
+\section{电源}
+\section{MOSFET（金属氧化物半导体场效应管）}
+\section{基尔霍夫定律}
+\section{电路等效变换}
+\section{运算方法区}
+\section{二端口网络}
+\section{数字系统}
+\section{门电路}
+
+\chapter{线性电阻电路}
+\section{支路电流法}
+\section{节点电压法}
+\section{回路电流法}
+\section{叠加定理与齐性定理}
+\section{替代定理}
+\section{戴维南定理和诺顿定理}
+\section{特勒根定理}
+\section{互易定理}
+\section{对偶电路和对偶原理}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 \nocite{*}
@@ -496,133 +775,57 @@
 \titleformat{\section}{\large\centering\bfseries}{\thesection}{1em}{}
 \titleformat{\subsection}{\normalsize\bfseries}{\thesubsection}{1em}{}
 
-\chapter*{附录 A}\addcontentsline{toc}{chapter}{附录 A}\thispagestyle{fancy} 
-
-\setcounter{section}{0}
-\renewcommand\thesection{A.\arabic{section}}
-
-\section{支撑材料列表} 
-
-\begin{center}
-  这里插入一张图片（类似思维导图那种）
-\end{center}
+\chapter*{附录 A: 中英文对照表}\addcontentsline{toc}{chapter}{附录 A: 中英文对照表}\thispagestyle{fancy} 
 
 \begin{multicols}{2}  
 
-    \begin{table}[H]\centering
-    \caption{\textbf{中英文对照表}}
-    \begin{tabular}{cccccccc}\toprule
-        English & 中文 \\
-        \midrule
-        voltage            & 电压 \\
-        current            & 电流 \\
-        power              & 功率 \\
-        resistance         & 电阻 \\
-        conductance        & 电导 \\
-        inductance         & 电感 \\
-        capacitance        & 电容 \\
-        frequency          & 频率 \\
-        circuit            & 电路 \\
-        circuit element    & 电流元件 \\
-        signal             & 信号 \\
-        circuit analysis   & 电路分析 \\
-        circuit synthesis  & 电路综合 \\
-        circuit design     & 电路设计 \\
-        circuit topology   & 电路拓扑 \\
-        \bottomrule
-    \end{tabular}
-    \end{table}
-    
-    \begin{table}[H]\centering
-        \caption{\textbf{中英文对照表}}
-        \begin{tabular}{cccccccc}\toprule
-            English & 中文 \\
-            \midrule
-            voltage            & 电压 \\
-            current            & 电流 \\
-            power              & 功率 \\
-            resistance         & 电阻 \\
-            conductance        & 电导 \\
-            inductance         & 电感 \\
-            capacitance        & 电容 \\
-            frequency          & 频率 \\
-            circuit            & 电路 \\
-            circuit element    & 电流元件 \\
-            signal             & 信号 \\
-            circuit analysis   & 电路分析 \\
-            circuit synthesis  & 电路综合 \\
-            circuit design     & 电路设计 \\
-            circuit topology   & 电路拓扑 \\
-            \bottomrule
-        \end{tabular}
-    \end{table}
+\begin{table}[H]\centering
+\caption{\textbf{中英文对照表}}
+\begin{tabular}{cccccccc}\toprule
+    English & 中文 \\
+    \midrule
+    voltage            & 电压 \\
+    current            & 电流 \\
+    power              & 功率 \\
+    resistance         & 电阻 \\
+    conductance        & 电导 \\
+    inductance         & 电感 \\
+    capacitance        & 电容 \\
+    frequency          & 频率 \\
+    circuit            & 电路 \\
+    circuit element    & 电流元件 \\
+    signal             & 信号 \\
+    circuit analysis   & 电路分析 \\
+    circuit synthesis  & 电路综合 \\
+    circuit design     & 电路设计 \\
+    circuit topology   & 电路拓扑 \\
+    \bottomrule
+\end{tabular}
+\end{table}
+
+
 \end{multicols} 
-    
 
-\section{这里是我的第二节附录}
-% 注意：listing环境中手动输入的代码需要顶格写
 
-\begin{matlablisting}
-% MATLAB code here
-x = 0:0.1:2*pi;
-y = sin(x);
-plot(x, y);
-xlabel('x');
-ylabel('sin(x)');
-title('Sine Function');
-% ... (MATLAB code here，最好是插入文件)
-% MATLAB code here
-x = 0:0.1:2*pi;
-y = sin(x);
-plot(x, y);
-xlabel('x');
-ylabel('sin(x)');
-title('Sine Function');
-% ... (MATLAB code here，最好是插入文件)
-% MATLAB code here
-x = 0:0.1:2*pi;
-y = sin(x);
-plot(x, y);
-xlabel('x');
-ylabel('sin(x)');
-title('Sine Function');
-% ... (MATLAB code here，最好是插入文件)
-% MATLAB code here
-x = 0:0.1:2*pi;
-y = sin(x);
-plot(x, y);
-xlabel('x');
-ylabel('sin(x)');
-title('Sine Function');
-% ... (MATLAB code here，最好是插入文件)
-% MATLAB code here
-x = 0:0.1:2*pi;
-y = sin(x);
-plot(x, y);
-xlabel('x');
-ylabel('sin(x)');
-title('Sine Function');
-% ... (MATLAB code here，最好是插入文件)
-% MATLAB code here
-x = 0:0.1:2*pi;
-y = sin(x);
-plot(x, y);
-xlabel('x');
-ylabel('sin(x)');
-title('Sine Function');
-% ... (MATLAB code here，最好是插入文件)% ... (MATLAB code here，最好是插入文件)% ... (MATLAB code here，最好是插入文件)% ... (MATLAB code here，最好是插入文件)% ... (MATLAB code here，最好是插入文件)A
-% MATLAB code here
-x = 0:0.1:2*pi;
-y = sin(x);
-plot(x, y);
-xlabel('x');
-ylabel('sin(x)');
-title('Sine Function');
-% ... (MATLAB code here，最好是插入文件)
-\end{matlablisting}
 
-\section{这里是我的第三节附录}
-你好你好你好你好你好你好
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 \end{document}
 

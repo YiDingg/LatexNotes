@@ -19,8 +19,8 @@
 \def\I{\mathscr{I}}
 \def\d{\mathrm{d}}
 \def\p{\partial}
-\def\R{\mathrm{Re}\,}
-\def\I{\mathrm{Im}\,}
+\def\Re{\mathrm{Re}\,}
+\def\Im{\mathrm{Im}\,}
 \def\arg{\mathrm{arg}\,}
 \def\Arg{\mathrm{Arg}\,}
 
@@ -106,10 +106,10 @@
 
 % 各级标题自定义设置
 \usepackage{titlesec}   
-    \titleformat{\chapter}[hang]{\normalfont\huge\bfseries\centering}{第\,\thechapter\,章}{20pt}{}
-    \titlespacing*{\chapter}{0pt}{-20pt}{20pt} % 控制上方空白的大小
+    \titleformat{\chapter}[hang]{\normalfont\Large\bfseries\centering}{Homework \thechapter :}{10pt}{}
+    \titlespacing*{\chapter}{0pt}{-30pt}{10pt} % 控制上方空白的大小
     % section标题自定义设置 
-    \titleformat{\section}[hang]{\normalfont\Large\bfseries}{§\,\thesection\,}{8pt}{}
+    \titleformat{\section}[hang]{\normalfont\large\bfseries}{\thesection}{8pt}{}
     % subsubsection标题自定义设置
     %\titleformat{\subsubsection}[hang]{\normalfont\bfseries}{}{8pt}{}
 
@@ -167,15 +167,15 @@
 
 % 列表环境设置
 \usepackage{enumitem}   % 宏包：列表环境设置
-    \setlist[enumerate]{itemsep=0pt, parsep=0pt, topsep=0pt, partopsep=0pt, leftmargin=3em} 
-    \setlist[itemize]{itemsep=0pt, parsep=0pt, topsep=0pt, partopsep=0pt, leftmargin=3em}
+    \setlist[enumerate]{itemsep=0pt, parsep=0pt, topsep=0pt, partopsep=0pt, leftmargin=3.5em} 
+    \setlist[itemize]{itemsep=0pt, parsep=0pt, topsep=0pt, partopsep=0pt, leftmargin=3.5em}
     \newlist{circledenum}{enumerate}{1} % 创建一个新的枚举环境  
     \setlist[circledenum,1]{  
         label=\protect\circled{\arabic*}, % 使用 \arabic* 来获取当前枚举计数器的值，并用 \circled 包装它  
         ref=\arabic*, % 如果需要引用列表项，这将决定引用格式（这里仍然使用数字）
-        itemsep=0pt, parsep=0pt, topsep=0pt, partopsep=0pt, leftmargin=3em
+        itemsep=0pt, parsep=0pt, topsep=0pt, partopsep=0pt, leftmargin=3.5em
     }  
-
+    
 % 图表进阶设置
 \usepackage{caption}    % 图注、表注
     \captionsetup[figure]{name=图}  
@@ -188,17 +188,19 @@
     \setmainfont{SimSun}    % 设置中文字体为宋体字体
     \setmainfont{Times New Roman} % 设置英文字体为Times New Roman
 
-% 参考文献引用设置
-    \bibliographystyle{unsrt}   % 设置参考文献引用格式为unsrt
-    \newcommand{\upcite}[1]{\textsuperscript{\cite{#1}}}     % 自定义上角标式引用
-
-% 文章序言设置
-    \newcommand{\cnabstractname}{序言}
-    \newenvironment{cnabstract}{%
-        \par\Large
-        \noindent\mbox{}\hfill{\bfseries \cnabstractname}\hfill\mbox{}\par
-        \vskip 2.5ex
-        }{\par\vskip 2.5ex}
+% 其它设置
+    % 脚注设置
+        \renewcommand\thefootnote{\ding{\numexpr171+\value{footnote}}}
+    % 参考文献引用设置
+        \bibliographystyle{unsrt}   % 设置参考文献引用格式为unsrt
+        \newcommand{\upcite}[1]{\textsuperscript{\cite{#1}}}     % 自定义上角标式引用
+    % 文章序言设置
+        \newcommand{\cnabstractname}{序言}
+        \newenvironment{cnabstract}{%
+            \par\Large
+            \noindent\mbox{}\hfill{\bfseries \cnabstractname}\hfill\mbox{}\par
+            \vskip 2.5ex
+            }{\par\vskip 2.5ex}
 
 % 页眉页脚设置
 \usepackage{fancyhdr}   %宏包：页眉页脚设置
@@ -207,13 +209,14 @@
     \cfoot{\thepage}
     \renewcommand\headrulewidth{1pt}
     \renewcommand\footrulewidth{0pt}
-    \chead{Notes of Mathematical Physics Methods}    
-
+    \lhead{2024.8-2025.1}
+    \chead{Notes of Mathematical Physics Methods}     
+    \rhead{dingyi233@mails.ucas.ac.cn}
 
 %文档信息设置
 \title{数学物理方法笔记\\Notes of Mathematical Physics Methods}
 \author{丁毅\\ \footnotesize 中国科学院大学，北京 100049\\ Yi Ding \\ \footnotesize University of Chinese Academy of Sciences, Beijing 100049, China}
-\date{\footnotesize 2024.9 -- 2025.1}
+\date{\footnotesize 2024.8 -- 2025.1}
 
 
 \begin{document}
@@ -228,6 +231,7 @@
 \end{cnabstract}
 \pagenumbering{Roman} % 页码为大写罗马数字
 
+\setcounter{tocdepth}{2}                % 目录深度（为1时显示到section）
 \tableofcontents        % 目录页   
 
 \newpage
@@ -281,7 +285,7 @@
     \begin{circledenum}
         \item 聚点：给点复序列 $\{z_n\}$，若存在 $z \in \C$，使 $\forall\ \varepsilon >0$，恒有无穷多个$n$ 使得 $| z_n - z | < \varepsilon$则称$z$ 为序列$\{z_n\}$ 的一个聚点。
         {\par\color{gray}\small
-        例如序列 $\{(-1)^{n+1}\frac n{n+1}\mid n \in \mathbb{N}_+\} =  \{\frac12,-\frac23,\frac34,-\frac45,\frac56,-\frac67,\cdots,(-1)^{n+1}\frac n{n+1},\cdots \}$ 有两个聚点 $1,-1$
+        例如序列 $\{(-1)^{n+1}\frac n{n+1}\mid n \in \mathbb{N}_+\} =  \{\frac12,-\frac23,\frac34,-\frac45,\frac56,-\frac67,\cdots,(-1)^{n+1}\frac n{n+1},\cdots \}$ 有两个聚点 $1,-1$.
         \par}
         \item 有界 / 无界序列：序列 $\{z_n\}$ 称为有界的如果 $\exists\ M>0 \ \ \text{s.t.}\ \ | z_n | < M,\ \forall\ n \in \mathbb{N}_+$，否则称为无界的。
         \item 极限：称序列$\{z_n\}$收敛于$z \in \C$ 如果 $ \forall\ \varepsilon > 0,\ \exists\ N>0 \ \ \text{s.t.}\ \ | z - z_n | < \varepsilon, \forall\ n > N$ ，记作 $\displaystyle \lim_{n \rightarrow \infty} z_n = z $，否则称为发散序列。
@@ -291,6 +295,8 @@
 
 \begin{LineTheorem}[Bolzano - Weierstrass 定理]\label{Bolzano - Weierstrass 定理}
 任意有界序列至少有一个聚点。
+\footnote{
+    Theorem.\ref{Bolzano - Weierstrass 定理} 告诉我们有界序列必有聚点，事实上，在扩充复数域 $\overline{\C}$ 中，这对无界序列也成立（$\infty$ 必为聚点），也即任意序列都必有聚点。}
 \end{LineTheorem}
 
 \begin{LineTheorem}[Cauchy判别法]\label{Cauchy判别法}
@@ -304,13 +310,11 @@
 如下：
 \begin{circledenum}
 \item 点集：复平面内点的集合
-\item 区域：复点集称为区域如果全部由内点组成，且具有连通性
-{\par\color{gray}\small
-连通性：集合中任意两点都可以用一条折线连接起来，且折线上的点全部属于此点集
-\par}
+\item 区域：复点集称为区域如果全部由内点组成，且具有连通性 
+\footnote{连通性：集合中任意两点都可以用一条折线连接起来，且折线上的点全部属于此点集}
 \item 单连通 / 多联通区域：区域称为单连通的如果在其内作任何简单闭合围道（自身不相交的闭合曲线），围道内的点都属于该区域，否则称为多联通区域（也称复联通区域）
 {\par\color{gray}\small
-图 \ref{(a) (b) 构成区域，(c) 不构成区域} 中的 (a) 区域就属于单连通区域，而图 \ref{(a) (b) 构成区域，(c) 不构成区域} 中的(b)区域则为多连通区域.
+例如，图 \ref{(a) (b) 构成区域，(c) 不构成区域} 中的 (a) 区域就属于单连通区域，而图 \ref{(a) (b) 构成区域，(c) 不构成区域} 中的(b)区域则为多连通区域.
 \par}
 \item 边界：区域$G$ 的全体边界点构成其边界，记为 $\p G$
 \item 边界方向：沿着区域的边界前进，区域恒保持在边界的左侧，则此走向称为边界的正向 
@@ -337,14 +341,186 @@
 \includegraphics[width=0.40\textwidth]{assets/79ee2f440c28e683147e653d153efc72.png}
 \caption{\textbf{Riemann 球面（复数球面）}}\label{Riemann 球面（复数球面）}
 \end{figure}
-{\par\color{gray}\small
-Theorem.\ref{Bolzano - Weierstrass 定理} 告诉我们有界序列必有聚点，事实上，在扩充复数域 $\overline{\C}$ 中，这对无界序列也成立（$\infty$ 必为聚点）。
-\par}
 \end{definition}
 
 \chapter{解析函数}
 
 \section{复变函数的极限和连续}
+
+
+
+\begin{definition}[极限]
+设复变函数 $f(z)$ 在 $z_0$ 的空心邻域 $U^\circ_{\delta}(z_0)$ 中有定义
+\footnote{$z_0$ 的空心邻域是指以 $z_0$ 为圆心的环域 $0 < | z - z_0 | < \varepsilon$}，
+若 $\exists\ A \in \C $ 满足 $ \forall\ \varepsilon > 0,\ \exists\ \delta = \delta(\varepsilon)>0 \ \ \text{s.t.}\ \ | f(z) - A |<\varphi,\ \forall\ 0<| z - z_0 |<\delta $，则称 $z \to z_0$ 时 $f(z)$ 存在极限 $A$，记作：
+\begin{equation}
+\lim_{z \to z_0}f(z) = A
+\end{equation} 
+并且，设 $f(z) = u(z) + iv(z)$，$u,v$ 是 $\C$ 到 $\R$ 的函数，可以证明：
+\begin{equation}
+\lim_{z \to z_0}f(z) = \lim_{z \to z_0}u(z) + \mathrm{i}  \lim_{z \to z_0}v(z)
+\end{equation} 
+\end{definition}
+
+
+\begin{definition}[连续]
+设复变函数 $f(z)$ 在 $z_0$ 的邻域 $U_{\delta}(z_0)$ 中有定义，且 $ \lim_{z\to z_0}f(z) = f(z_0)$，则称 $f(z)$ 在 $z_0$ 处连续。
+
+在有界必域 $\overline{G}$ 中连续的函数 $f(z)$ 具有两个重要性质：
+\begin{circledenum}[leftmargin=4em]
+\item  $ | f(z) | $ 在 $\overline{G}$ 中有界，并且上下界可取到
+\item $f(x)$ 在 $\overline{G}$ 中一致连续，即 $| f(z_1) - f(z_2) | < \varepsilon, \forall\ | z_1 - z_2 | < \delta $
+\end{circledenum}
+\end{definition}
+
+
+\section{可导与可微}
+
+
+\begin{definition}[可导]
+单值复变函数 $f(z)$ 在 $z_0$ 处可导如果 $\lim\frac{f(z + \Delta z) - f(z)}{\Delta z} = C \in \R$ 
+\footnote{这要求 $\Delta z$ 以任意方式趋于零，此极限都存在，类似二元函数的导数。}
+，记为 $f'(z)$。
+
+容易证明，高等数学中的各种求导公式都可以直接搬用到复变函数。
+
+Cauchy-Riemann 条件是函数可导的必要条件：
+\begin{equation}
+(\frac{\partial f }{\partial x }) = \Re (\frac{\partial f }{\partial y }) \ ,\ \ \Im (\frac{\partial f }{\partial x }) = -\Im (\frac{\partial f }{\partial y })
+\end{equation}
+\end{definition}
+
+
+\begin{definition}[可微]
+若存在 $A = A(z) \in \C \ \ \text{s.t.}\ \ \Delta f(z) = A(z) \cdot \Delta z + O(\Delta z)$，则称 $f(z)$ 在 $z_0$ 处可微，记作 $\mathrm{d} f = A \mathrm{d}z$.
+
+和实数一样，$\mathrm{d} f = f'(z) \mathrm{d}z$，并且 可微 $\Longrightarrow$ 可导 $\Longrightarrow$ 连续。
+\end{definition}
+
+\section{解析函数}
+
+
+函数 $f$ 称为 $G$ 上的解析函数如果 $f$ 在区域 $G$ 内每一点都可导，又称为 $f$ 在 $G$ 上解析。
+
+在 $G$ 内解析的函数必满足 Cauchy-Riemann 方程，因此只要知道其中之一，例如 $f(x,y) = u(x,y) + iv(x,y)$ 的实部 $u(z)$，就可以唯一地确定其虚部（可加减实常数），这是因为：
+\begin{gather}
+\mathrm{d} v = \frac{\partial v }{\partial x }\mathrm{d}x + \frac{\partial v }{\partial y } \mathrm{d}y = - \frac{\partial u}{\partial y } \mathrm{d}x + \frac{\partial u}{\partial x } \mathrm{d}y \\ \Longrightarrow
+v(x,y) = \int \left( - \frac{\partial u}{\partial y } \mathrm{d}x + \frac{\partial u}{\partial x } \mathrm{d}y  \right)
+\end{gather}
+
+为求此原函数，设 $v(x,y) = g_1(x,y) + g_2(y)$，则：
+\begin{gather}
+\frac{\partial v }{\partial x} = \frac{\partial g_1 }{\partial x } 
+\Longrightarrow 
+g_1(x,y) = \int \frac{\partial v }{\partial x } \mathrm{d} x = \int (- \frac{\partial u }{\partial y }) \mathrm{d}x
+\\ 
+\frac{\partial v }{\partial y } = \frac{\partial g_1 }{\partial y } + \frac{\partial g_2 }{\partial y } \Longrightarrow 
+g_2(y) = \int (\frac{\partial v }{\partial y } - \frac{\partial g_1 }{\partial y }) \mathrm{d}y = \int (\frac{\partial u }{\partial x } - \frac{\partial g_1 }{\partial y }) \mathrm{d}y 
+\end{gather}
+最后相加即得 $v(x,y)$.
+
+解析函数实部与虚部之间的这种依赖关系，还可以形象地表现出来。在 $x-y$ 平面中，分别作出 $u(x,y)$ 和 $v(x,y)$ 的等高线图，在任意一点 $(x,y)$，由 Cauchy-Reimann 方程，两者方向矢量的内积为零：
+\begin{equation}
+\begin{bmatrix}
+    \frac{\partial u }{\partial y } & - \frac{\partial u }{\partial x }
+\end{bmatrix}
+\cdot 
+\begin{bmatrix}
+    \frac{\partial v }{\partial y } \\  -\frac{\partial v }{\partial x }
+\end{bmatrix}
+= \frac{\partial u }{\partial y }\frac{\partial v }{\partial y } + \frac{\partial u }{\partial x } \frac{\partial v }{\partial x } = 0
+\end{equation}
+因此两者的等高线图处处正交（表现为曲线处处正交）。
+% {\par\color{gray}\small
+% 例如 $f(z) = z^2$，则：
+% \begin{gather*}
+%     f(z) 
+%     = \frac{1}{z^2}
+%     = \frac{1}{(x^2-y^2) + (2xy) \mathrm{i} } 
+%     = \frac{x^2-y^2}{(x^2 + y^2)^2} + \frac{-2xy}{(x^2 +y^2)^2}  % \mathrm{i} \\ 
+%     \Longrightarrow u(x,y) = \frac{x^2-y^2}{(x^2 + y^2)^2} ,\ v(x,% y) = \frac{-2xy}{(x^2 +y^2)^2}
+% \end{gather*}
+% 它们的等高线图如图 ；
+% \par}
+
+{\par\color{gray}\small
+例如 $f(z) = z^2$，则：
+\begin{gather*}
+    f(z) 
+    = z^2
+    = (x^2-y^2) + (2xy) \mathrm{i} 
+    \Longrightarrow u(x,y) = x^2-y^2 ,\ v(x,y) = 2xy
+\end{gather*}
+它们的等高线图如图 \ref{解析函数 $f(z) = z^2$ 实虚部示意图} 所示：
+\begin{figure}[H]\centering
+\includegraphics[width=0.45\textwidth]{assets/2024-08-28_10-23-23.png}
+\caption{\textbf{解析函数 $f(z) = z^2$ 实虚部示意图}}\label{解析函数 $f(z) = z^2$ 实虚部示意图}
+\end{figure}
+\par}
+
+之后我们会证明，解析函数的实部 $u(x,y)$ 和虚部 $v(x,y)$ 的二阶偏导一定存在且连续，并且满足二维 Laplace 方程，这表明解析函数的实部和虚部构成一对共轭调和函数
+\footnote{共轭是因为满足 Cauchy-Riemann 方程}
+。
+\begin{equation}
+    \Delta u = \Delta v = 0 \Longleftrightarrow
+    \frac{\partial^{2}u}{\partial x^{2}}+\frac{\partial^{2}u}{\partial y^{2}}=0 \quad\frac{\partial^{2}v}{\partial x^{2}}+\frac{\partial^{2}v}{\partial y^{2}}=0
+\end{equation}
+
+函数的解析性总是和给点区域联系在一起，有时也称函数在 $z_0$ 点解析，也即在邻域 $U_{\delta}(z_0)$ 内解析。讨论解析函数的各种特殊性质，就是复变函数论的中心课题。
+
+\section{初等函数}
+
+一些实初等函数推广到复数域时会有比较的特殊性质，下面进行讨论。
+
+\begin{definition}[幂函数 $z^n$]
+当 $n \in \N$ 时，$z^n$ 在 $\C$ 内解析，并且当 $n \in \N^*$时，$z^n$ 在 $\infty$ 不解析；当 $n \in -\N^*$ 时，$z^n$ 在 $z=0$ 不解析，在 $\overline{\C}\setminus \{0\}$ 内解析。
+\end{definition}
+
+
+\begin{definition}[指数函数 $e^z$]
+复指数函数在 $\C$ 内解析，但在 $\infty$ 无意义，因为极限 $\lim_{z \to \infty}e^z$ 不存在
+\begin{equation}
+e^z = e^{x + \mathrm{i} y} = e^x(\cos y + \mathrm{i} \sin y)
+\end{equation}
+\end{definition}
+
+
+\begin{definition}[三角函数 $\sin z,\ \cos z,\ ...$]
+复三角函数是用复指数函数定义的，如下：
+\begin{equation}
+    \sin z=\frac{\mathrm{e}^{\mathrm{i}z}-\mathrm{e}^{-\mathrm{i}z}}{2\mathrm{i}},\quad\cos z=\frac{\mathrm{e}^{\mathrm{i}z}+\mathrm{e}^{-\mathrm{i}z}}{2}
+\end{equation}
+$\sin z,\ \cos z$ 在 $\C$ 内解析，唯一奇点是 $z = \infty$。可以证明，实三角函数的各种恒等式对复三角函数仍成立。
+\end{definition}
+
+
+\begin{definition}[双曲函数 $\sinh z,\ \cosh z,\ ...$]
+双曲函数也是通过复指数函数来定义的，如下
+\begin{gather}
+    \sinh z=\frac{\mathrm{e}^{z}-\mathrm{e}^{-z}}{2},\cosh z=\frac{\mathrm{e}^{z}+\mathrm{e}^{-z}}{2},\quad\tanh z=\frac{\sinh z}{\cosh z},\\\coth z=\frac{\cosh z}{\sinh z},\quad\mathrm{sech}z=\frac{1}{\cosh z},\quad\cosh z=\frac{1}{\sinh z}
+\end{gather}
+由定义可知，双曲函数和三角函数能够互化：
+\begin{equation}
+    \sinh z=-\mathrm{i}\sin\mathrm{i}z,\quad\cosh z=\cos\mathrm{i}z,\quad\tanh z=-\mathrm{i}\tan\mathrm{i}z.
+\end{equation}
+另外注意导数公式：
+\begin{equation}
+    (\sinh z)'=\cosh z,\quad(\cosh z)'=\sinh z,\quad(\tanh z)'=\mathrm{sech}^2z
+\end{equation}
+其它结论：
+\begin{gather}
+    \cosh^{2}z-\sinh^{2}z=1, \quad1-\tanh^{2}z=\mathrm{sech}^{2}z \\ 
+    \sinh\left(z_{1}\pm z_{2}\right)=\sinh z_{1}\cosh z_{2}\pm\cosh z_{1}\sinh z_{2}\\
+    \cosh\left(z_{1}\pm z_{2}\right)=\cosh z_{1}\cosh z_{2}\pm\sinh z_{1}\sinh z_{2}
+\end{gather}
+\end{definition}
+
+\section{解析函数的保角性（略）}
+\section{多值函数}
+
+
+
+
 
 
 

@@ -9,6 +9,8 @@
 *.gz
 *.toc
 *.listing
+*.bkp  
+*.drawio
 
 # 忽略插入 svg 时 inkscape 生成的中间文件
 svg-inkscape

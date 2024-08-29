@@ -278,7 +278,7 @@
 
 在分析电路时，必须事先规定电路电流的参考方向（正方向），也必须规定电压的参考方向或参考极性。
 
-电压与电动势一般有三种表示方式，分别为结点、正负和箭头，如图 \ref{电压与电动势的三种表示方法} 所示，要特别注意两者方向相反。
+电压与电动势参考方向有三种表示方式，分别为结点、正负和箭头，如图 \ref{电压与电动势的三种表示方法} 所示，要特别注意两者方向相反。
 
 \begin{figure}[H]\centering
 \includegraphics[width=0.45\textwidth]{assets/电动势与电压.drawio.pdf}
@@ -333,7 +333,7 @@ $R, L, C$ 被称为电路基本模型，是电路分析的最基本模型。对�
 \end{figure}
 
 \begin{figure}[H]\centering
-\includegraphics[width=0.7\textwidth]{assets/1b9e0bed85e1f3a049de96f4c6018da8.png}
+\includegraphics[width=0.75\textwidth]{assets/1b9e0bed85e1f3a049de96f4c6018da8.png}
 \caption{\textbf{信号示意图}}\label{信号示意图}
 \end{figure}
 
@@ -363,7 +363,7 @@ p(t) = \frac{\mathrm{d}w}{\mathrm{d}t} = \frac{\mathrm{d}w}{\mathrm{d}q}\cdot\fr
 \end{definition}
 
 
-\section{电流分类}
+\section{电路分类}
 
 
 \begin{definition}[静态 / 动态电路]
@@ -381,7 +381,37 @@ p(t) = \frac{\mathrm{d}w}{\mathrm{d}t} = \frac{\mathrm{d}w}{\mathrm{d}q}\cdot\fr
 参数随时间变化的元件称为时变元件，含此类元件的电路称为时变电路，否则称为非时变电路。
 \end{definition}
 
-其它还可分为 无源 / 有源电路、集总 / 分布参数电路、模拟 / 数字电路等。
+
+\begin{definition}[有源 / 无源电路]
+对任意的一端口网络来说，设其端口电压 $u = u(t)$ 且 $u(0) = 0$ ，电流 $i = i(t)$ 且 $i(0) = 0$，该电路称为无源电路如果：
+\begin{equation}
+\int_{0}^{t} u(t)i(t)\mathrm{d}t \geqslant 0,\ \forall\ t >0
+\end{equation}
+否则称为有源电路，无源元件和有源元件同理。
+\end{definition}
+
+
+其它还可分为集总 / 分布参数电路、模拟 / 数字电路等。
+
+\section{其它}
+
+\begin{definition}[电路的基本名词]
+以图 \ref{电路基本名词} 为例：
+\begin{enumerate}
+\item 支路：若干元件无分岔地首尾相连构成一条支路。图里有三条支路（竖向的），因此 $p = 3$。
+\item 节点（node）：3个或更多支路的连接点。图中 $n = 4$。 
+\item 路径（path）：两个节点间包含的支路个数。
+\item 回路（loop）：由支路构成的闭合路径。图中 $l = 7$
+\item 网格（mesh）：平面电路中不与其余支路相交的回路，即最小网格数。图中 $m = 3$
+\end{enumerate}
+
+\begin{figure}[H]\centering
+\includesvg[width=0.35\textwidth]{assets/电路基本名词.drawio.svg}
+\caption{\textbf{电路基本名词}}\label{电路基本名词}
+\end{figure}
+
+\end{definition}
+
 
 \chapter{简单电阻电路}
 \section{电阻}
@@ -439,7 +469,8 @@ i = I_{\mathrm{S}}\left(e^{\frac{u}{U_{\mathrm{TH}}}} - 1\right)
 \end{equation}
 其中 $I_{\mathrm{S}}$ 为反向饱和电流（硅二极管的典型值为 $10^{-12}$ A），$U_{TH}$ 为常数（典型值 25 mV）。
 
-到目前为止，我们讨论的电阻 $u$-$i$ 关系都在平面的一三象限（正电阻），后文我们将在等效观念指导下用运算放大器来实现负电阻性质。
+伏安特性曲线（$u$-$i$ 特性曲线，voltage current relationship，VCR）的表达式为 $i = f(u)$ 或 $f(u,i) = 0$，
+到目前为止，我们讨论的电阻 $u$-$i$ 特性曲线都在平面的一三象限（正电阻），后文我们将在等效观念指导下用运算放大器来实现负电阻性质。
 
 \section{电源}
 
@@ -467,12 +498,72 @@ i = I_{\mathrm{S}}\left(e^{\frac{u}{U_{\mathrm{TH}}}} - 1\right)
 \caption{\textbf{受控电源电路符号}}\label{受控电源电路符号}
 \end{figure}
 
+图 \ref{受控电源电路符号} 中，控制量 $u_1$ 和 $i_1$ 分别是电路其它部分任意两点间的电压或电流；$\mu$ 是一个无量纲常数，称为电压放大倍数（转移电压比）；$r_m$ 是电阻量纲常数，称为转移电阻；$g_m$ 是电导量纲常数，称为转移电导；$\beta$ 是无量纲常数，称为电流放大倍数（转移电流比）。
+
+分析含受控源电路时需要注意，受控源性质和独立源有本质差别，不应简单等同。
 \end{definition}
 
 
 \section{MOSFET（金属氧化物半导体场效应晶体管）}
+\noindent % 避免第一栏内容产生缩进  
+\begin{minipage}[t]{0.69\textwidth} % 左栏  
+
+\hspace{2em} MOSFET standing for ``metal oxide semiconductor field effect transistor''，右图是一个 N MOSFET 的示意图，三个端纽分别称为栅极 G、源级 S 和漏级 D。
+
+\hspace{2em} 由于 MOSFET 结构上的特点，没有电流流经栅极 G，因此可以把 D-S 看作一个二端元件，研究其伏安特性曲线 VCR。栅极和源级之间的电压 $u_{GS}$ 会对 VCR 产生影响，主要表现为 D-S 开路或非开路。N MOS 管可视为一个非线性的 VCVS。
+
+\hspace{2em} 使得 D-S 之间不再开路的电压阈值称为阈值电压，记为 $U_T$（典型值为 1 V）。对一个非开路的 D-S VCR，大致可分为两段：电阻区（斜线区）和恒流区（水平线区）。
+\end{minipage}%  
+\hfill % 填充空白以使两栏间无间隙  
+\begin{minipage}[t]{0.3\textwidth} % 右栏  
+\begin{figure}[H]\centering
+    \includesvg[width=\textwidth]{assets/MOS管符号.drawio.svg}
+    \caption{\textbf{N MOS 示意图}}\label{N MOS 示意图}
+\end{figure}
+\end{minipage}\vfill
+
+可以证明，$u_{\mathrm{GS}}$ 和 $i_{\mathrm{DS}, max}$ 是非线性关系。其中 $K$ 为常数（典型值 1 $\mathrm{mA V^{-2}}$），$U_{\mathrm{T}}$ 为阈值电压。
+\begin{equation}
+    i_{\mathrm{DS}, max} = \frac{K}{2}(u_{\mathrm{GS}} - U_{\mathrm{T}})^2
+\end{equation}
+
+
+
 \section{基尔霍夫定律}
+
+
+\begin{BlockTheorem}[基尔霍夫电流定律, KCL]
+基尔霍夫电流定律（Kirchhoff's Current Law，KCL）表示，在任意时刻，电路中流入任一节点的电流代数和都为 0。
+\begin{equation}
+\sum i(t) = 0,\ \forall\ t 
+\end{equation}
+KCL 不仅适用于节点，对含多个端子的子电路也适用，称为广义 KCL。此定律本质上是是电流连续性 $\frac{\mathrm{d}q}{\mathrm{d}t} = 0$。
+
+$n$ 节点电路含 $n-1$ 个独立的电流节点方程，构成第一方程组。
+\end{BlockTheorem}
+
+\begin{BlockTheorem}[基尔霍夫电压定律, KVL]
+基尔霍夫电压定律（Kirchhoff's Voltage Law，KVL）表示，在任意时刻，沿任意回路的电压降（代数和）为 0。
+\begin{equation}
+\sum u(t) = 0,\ \forall\ t
+\end{equation}
+此定律本质上是法拉第电磁感应定律 $\oint \boldsymbol{E} \mathrm{d}\boldsymbol{l} = -\frac{\p \phi_B}{\p t} = 0$。
+
+$n$ 节点 $p$ 支路的电路含有 $p-n+1$ 个独立的回路方程（即最小网格数），构成第二方程组。
+\end{BlockTheorem}
+
+
 \section{电路等效变换}
+
+
+
+\begin{definition}[Y-$\Delta$ 等效变换]
+
+
+    
+\end{definition}
+
+
 \section{运算方法区}
 \section{二端口网络}
 \section{数字系统}

@@ -210,6 +210,7 @@
 % ------------------------ 文章信息区 ------------------------ %
 % >> --------------------- 文章信息区 --------------------- << %
 % 页眉页脚设置
+
 \usepackage{fancyhdr}   %宏包：页眉页脚设置
     \pagestyle{fancy}
     \fancyhf{}
@@ -367,28 +368,23 @@ C （充放电倍率）表示电池充放电时电流相对电池容量的大小
 仿真电路如图 \ref{仿真电路图} 所示，
 
 \begin{figure}[H]\centering
-\includegraphics[width=0.36\textwidth]{assets/5c45ed5b5258df3fa8e1babac4a7ace2.png}
+\includegraphics[width=0.6\textwidth]{assets/0a8415cd441f34c5e74db8771fba1eb5.png}
 \caption{\textbf{仿真电路图}}\label{仿真电路图}
 \end{figure}
 
-先固定 $U_{GS} = 5\ \mathrm{V}$ 不变（即 $V_1 = 5\ \mathrm{V}$），横坐标 $U_{DS} \in [0\ \mathrm{V},\ 12\ \mathrm{V}]$，画出 $I_{DS}$（即 $I_2$）的变化曲线，如图 \ref{仿真结果1} 所示。再固定 $U_{DS} = 10\ \mathrm{V}$ 不变（即 $V_2 = 10\ \mathrm{V}$），横坐标 $U_{GS} \in [0\ \mathrm{V},\ 10\ \mathrm{V}]$，画出 $I_{DS}$（即 $I_2$）的变化曲线，如图 \ref{仿真结果2} 所示。
-\begin{center}
-    \noindent\begin{minipage}{0.42\textwidth}
-        \begin{figure}[H]\centering
-        \includegraphics[width=\textwidth]{assets/2024-08-30_00-57-32.pdf}
-        \caption{\textbf{仿真结果1}}\label{仿真结果1}
-        \end{figure}
-    \end{minipage}\hspace{5mm}
-    \begin{minipage}{0.42\textwidth}
-        \begin{figure}[H]\centering
-        \includegraphics[width=\textwidth]{assets/2024-08-30_00-57-34.pdf}
-    \caption{\textbf{仿真结果2}}\label{仿真结果2}
-    \end{figure}
-    \end{minipage}
-\end{center}
+先固定 $U_{GS} = 5\ \mathrm{V}$ 不变（即 $V_1 = 5\ \mathrm{V}$），横坐标 $U_{DS} \in [0\ \mathrm{V},\ 12\ \mathrm{V}]$，画出 $I_{DS}$（即 $I_2$）的变化曲线，如图 \ref{仿真结果1} 所示。
 
+\begin{figure}[H]\centering
+\includegraphics[width=0.8\textwidth]{assets/2024-08-29_23-45-52.pdf}
+\caption{\textbf{仿真结果1}}\label{仿真结果1}
+\end{figure}
 
+再固定 $U_{DS} = 10\ \mathrm{V}$ 不变（即 $V_2 = 10\ \mathrm{V}$），横坐标 $U_{GS} \in [0\ \mathrm{V},\ 10\ \mathrm{V}]$，画出 $I_{DS}$（即 $I_2$）的变化曲线，如图 \ref{仿真结果2} 所示。
 
+\begin{figure}[H]\centering
+\includegraphics[width=0.8\textwidth]{assets/2024-08-29_23-45-47.pdf}
+\caption{\textbf{仿真结果2}}\label{仿真结果2}
+\end{figure}
 
 
 
@@ -509,65 +505,23 @@ C （充放电倍率）表示电池充放电时电流相对电池容量的大小
 
 
 
-\chapter{基础知识}\thispagestyle{fancy} 
-\section{第一章第一节}
 
 
-\begin{definition}[向后加权隐式格式]
 
-将向前差分与向后差分加权组合起来，得到：
 
-\begin{equation}\label{公式5}
-    \frac{u_{j}^{k}-u_{j}^{k-1}}{h_t}=a\theta\frac{u_{j+1}^{k}-2u_{j}^{k}+u_{j-1}^{k}}{h_x^2}+a(1-\theta)\frac{u_{j+1}^{k-1}-2u_{j}^{k-1}+u_{j-1}^{k-1}}{h_x^2}
-\end{equation}
 
-其中 $\theta \in [0, 1]$ 为权重，其截断误差 $R = a\left(\frac{1}{2}-\theta\right)h_t\left[\frac{\partial^{3}u}{\partial x^{2}\partial t}\right]_{j}^{k}+O(h_t^{2}+h_x^2)$，因此当 $\theta = \frac{1}{2}$ 时，方程具有 $O(h_t^{2}+h_x^2)$ 精度，称为 Crank-Nicolson 格式（CN 格式）。
 
 
-公式 \ref{公式5} 的增长因子及稳定性条件为：
 
-\begin{equation}
-    G(h_t,\sigma)=\frac{1-4(1-\theta)ar\sin^2\frac{\sigma h}2}{1+4\theta ar\sin^2\frac{\sigma h}2}, \ \ 
-    \begin{cases}
-        r\leqslant\frac{1}{2a(1-2\theta)}, & \theta \in [0, \frac{1}{2}) \\ 
-        \text{无条件稳定}, & \theta \in [\frac{1}{2}, 1] \\ 
-    \end{cases}
-\end{equation}
 
 
-\begin{LineTheorem}[这是一个 Line Theorem]\label{这是一个 Line Theorem}
-    你好你好你好
-\end{LineTheorem}
+\chapter{2024.9.3 - 2024.9.9}\thispagestyle{fancy} 
+\chapter{2024.9.10 - 2024.9.16}\thispagestyle{fancy} 
+\chapter{2024.9.17 - 2024.9.23}\thispagestyle{fancy} 
 
-\begin{BlockTheorem}[这是一个 Block Theorem]\label{这是一个 Block Theorem}
-    你好你好你好
-\end{BlockTheorem}
-
-\end{definition}
-
-表格：
-
-\begin{table}[H]
-    \centering
-    \caption{\textbf{符号含义与约定}}
-    \label{tab:waterpump}
-    \begin{tabular}{ccccc}
-    \toprule
-    符号 & 符号含义& 单位\\
-    \midrule
-    符号1& 含义1& 单位1\\
-    符号2& 含义2& 单位2\\
-    符号3& 含义3& 单位3\\
-    符号4& 含义4& 单位4\\
-    \bottomrule
-    \end{tabular}
-\end{table}
-
-\chapter{这里是第二章}\thispagestyle{fancy} 
-
+\newpage
 \href{https://www.latex-tables.com/}{Latex Table Editor} 示例：
 
-% \usepackage{tabularray}
 
 \begin{longtblr}[caption={\bfseries 示例表格},label=tab:example]{
     hline{1,51} = {-}{0.08em},

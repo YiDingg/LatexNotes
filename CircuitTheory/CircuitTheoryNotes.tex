@@ -555,12 +555,59 @@ $n$ 节点 $p$ 支路的电路含有 $p-n+1$ 个独立的回路方程（即最�
 
 \section{电路等效变换}
 
+\subsection{电阻等效变换}
+
+\begin{definition}[平衡电桥]
+
+如 图 \ref{平衡电桥}，当 $\frac{R_1}{R_2} = \frac{R_3}{R_4}$ 时，$\varphi_A = \varphi_B$，AB 段无电流通过。 
+
+\begin{figure}[H]\centering
+\includegraphics[width=0.43\textwidth]{assets/平衡电桥.drawio.pdf}
+\caption{\textbf{平衡电桥}}\label{平衡电桥}
+\end{figure}
+
+\end{definition}
 
 
 \begin{definition}[Y-$\Delta$ 等效变换]
 
+已知 Y 型，求 $\Delta$ 型：
+\begin{equation}
+\begin{aligned}
+    R_{12}&=\frac{1}{R_{3}}(R_{1}R_{2}+R_{1}R_{3}+R_{2}R_{3})\\
+    R_{13}&=\frac{1}{R_{2}}(R_{1}R_{2}+R_{1}R_{3}+R_{2}R_{3})\\
+    R_{23}&=\frac{1}{R_{1}}(R_{1}R_{2}+R_{1}R_{3}+R_{2}R_{3})
+\end{aligned}
+\end{equation}
 
-    
+已知 $\Delta$ 型，求 Y 型：、
+\begin{equation}
+\begin{aligned}
+    R_{1}&=\frac{R_{12}R_{13}}{R_{12}+R_{13}+R_{23}}\\
+    R_{2}&=\frac{R_{21}R_{23}}{R_{12}+R_{13}+R_{23}}\\
+    R_{3}&=\frac{R_{31}R_{32}}{R_{12}+R_{13}+R_{23}}
+\end{aligned}
+\end{equation}
+
+\begin{figure}[H]\centering
+\includegraphics[width=0.65\textwidth]{assets/YDelta等效变换.drawio.pdf}
+\caption{\textbf{Y-$\Delta$ 等效变换}}\label{Y-Delta等效变换}
+\end{figure}
+\end{definition}
+
+\subsection{电源等效变换}
+
+含电阻和受控源的二端网络一般可等效为一个电阻。由于电路性质只与电路内部结构和参数有关，与外接激励无关，因此无论是外接独立电压源，还是外接独立电流源，都可以求出等效电阻。
+
+
+\begin{definition}[独立源等效替换]
+如图 \ref{}，当满足下式时，两者可以等效替换。
+\begin{equation}
+U_S = I_SR_S\ \  \text{或}\ \  I_S = \frac{U_S}{R_S}
+\end{equation}
+
+
+
 \end{definition}
 
 

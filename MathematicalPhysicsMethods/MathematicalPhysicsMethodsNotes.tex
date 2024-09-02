@@ -2,191 +2,178 @@
 % 1. 需要插入的图片不存在：Ctrl + F 搜索 'figure' 将这些代码注释/删除掉即可
 % 2. 路径/文件名含中文或空格：更改路径/文件名即可
 
-% 设定文章编码类型，正文字号为五号，若需小四将 5 改为 -4 即可
-\documentclass[zihao=5,UTF8]{report}		
+% --------------------- 文章宏包及相关设置 --------------------- %
+% >> ------------------ 文章宏包及相关设置 ------------------ << %
+% 设定文章类型与编码格式
+\documentclass[UTF8]{report}		
 
+% 本文特殊宏包
 
 % 自定义宏定义
-\def\N{\mathbb{N}}
-\def\F{\mathbb{F}}
-\def\Z{\mathbb{Z}}
-\def\Q{\mathbb{Q}}
-\def\R{\mathbb{R}}
-\def\C{\mathbb{C}}
-\def\T{\mathbb{T}}
-\def\S{\mathbb{S}}
-\def\A{\mathbb{A}}
-\def\I{\mathscr{I}}
-\def\d{\mathrm{d}}
-\def\p{\partial}
-\def\Re{\mathrm{Re}\,}
-\def\Im{\mathrm{Im}\,}
-\def\arg{\mathrm{arg}\,}
-\def\Arg{\mathrm{Arg}\,}
+    \def\N{\mathbb{N}}
+    \def\F{\mathbb{F}}
+    \def\Z{\mathbb{Z}}
+    \def\Q{\mathbb{Q}}
+    \def\R{\mathbb{R}}
+    \def\C{\mathbb{C}}
+    \def\T{\mathbb{T}}
+    \def\S{\mathbb{S}}
+    \def\A{\mathbb{A}}
+    \def\I{\mathscr{I}}
+    \def\Arg{\mathrm{Arg}}
+    \def\d{\mathrm{d}}
+    \def\p{\partial}
 
 
 % 导入基本宏包
-\usepackage[UTF8]{ctex}     % 设置文档为中文语言
-\usepackage[colorlinks, linkcolor=blue, anchorcolor=blue, citecolor=blue, urlcolor=blue]{hyperref}  % 宏包：自动生成超链接 (此宏包与标题中的数学环境冲突)
-% \usepackage{docmute}    % 宏包：子文件导入时自动去除导言区，用于主/子文件的写作方式，\include{./51单片机笔记}即可。注：启用此宏包会导致.tex文件capacity受限。
-\usepackage{amsmath}    % 宏包：数学公式
-\usepackage{mathrsfs}   % 宏包：提供更多数学符号
-\usepackage{amssymb}    % 宏包：提供更多数学符号
-\usepackage{pifont}     % 宏包：提供了特殊符号和字体
-\usepackage{extarrows}  % 宏包：更多箭头符号
+    \usepackage[UTF8]{ctex}     % 设置文档为中文语言
+    \usepackage[colorlinks, linkcolor=blue, anchorcolor=blue, citecolor=blue, urlcolor=blue]{hyperref}  % 宏包：自动生成超链接 (此宏包与标题中的数学环境冲突)
+    % \usepackage{docmute}    % 宏包：子文件导入时自动去除导言区，用于主/子文件的写作方式，\include{./51单片机笔记}即可。注：启用此宏包会导致.tex文件capacity受限。
+    \usepackage{amsmath}    % 宏包：数学公式
+    \usepackage{mathrsfs}   % 宏包：提供更多数学符号
+    \usepackage{amssymb}    % 宏包：提供更多数学符号
+    \usepackage{pifont}     % 宏包：提供了特殊符号和字体
+    \usepackage{extarrows}  % 宏包：更多箭头符号
+    \usepackage{multicol}   % 宏包：支持多栏 
 
 
 % 文章页面margin设置
-\usepackage[a4paper]{geometry}
-    \geometry{top=1in}
-    \geometry{bottom=1in}
-    \geometry{left=0.75in}
-    \geometry{right=0.75in}   % 设置上下左右页边距
-    \geometry{marginparwidth=1.75cm}    % 设置边注距离（注释、标记等）
+    \usepackage[a4paper]{geometry}
+        \geometry{top=1in}  % 1 inch= 2.46 cm, 0.75 inch = 1.85 cm
+        \geometry{bottom=1in}
+        \geometry{left=0.75in}
+        \geometry{right=0.75in}   % 设置上下左右页边距
+        \geometry{marginparwidth=1.75cm}    % 设置边注距离（注释、标记等）
 
+% 配置数学环境
+    \usepackage{amsthm} % 宏包：数学环境配置
+    % theorem-line 环境自定义
+        \newtheoremstyle{MyLineTheoremStyle}% <name>
+            {11pt}% <space above>
+            {11pt}% <space below>
+            {}% <body font> 使用默认正文字体
+            {}% <indent amount>
+            {\bfseries}% <theorem head font> 设置标题项为加粗
+            {：}% <punctuation after theorem head>
+            {.5em}% <space after theorem head>
+            {\textbf{#1}\thmnumber{#2}\ \ (\,\textbf{#3}\,)}% 设置标题内容顺序
+        \theoremstyle{MyLineTheoremStyle} % 应用自定义的定理样式
+        \newtheorem{LineTheorem}{Theorem.\,}
+    % theorem-block 环境自定义
+        \newtheoremstyle{MyBlockTheoremStyle}% <name>
+            {11pt}% <space above>
+            {11pt}% <space below>
+            {}% <body font> 使用默认正文字体
+            {}% <indent amount>
+            {\bfseries}% <theorem head font> 设置标题项为加粗
+            {：\\ \indent}% <punctuation after theorem head>
+            {.5em}% <space after theorem head>
+            {\textbf{#1}\thmnumber{#2}\ \ (\,\textbf{#3}\,)}% 设置标题内容顺序
+        \theoremstyle{MyBlockTheoremStyle} % 应用自定义的定理样式
+        \newtheorem{BlockTheorem}[LineTheorem]{Theorem.\,} % 使用 LineTheorem 的计数器
+    % definition 环境自定义
+        \newtheoremstyle{MySubsubsectionStyle}% <name>
+            {11pt}% <space above>
+            {11pt}% <space below>
+            {}% <body font> 使用默认正文字体
+            {}% <indent amount>
+            {\bfseries}% <theorem head font> 设置标题项为加粗
+            {：\\ \indent}% <punctuation after theorem head>
+            {0pt}% <space after theorem head>
+            {\textbf{#3}}% 设置标题内容顺序
+        \theoremstyle{MySubsubsectionStyle} % 应用自定义的定理样式
+        \newtheorem{definition}{}
 
-\usepackage{amsthm} % 宏包：数学环境配置
-% theorem-line 环境自定义
-    \newtheoremstyle{MyLineTheoremStyle}% <name>
-        {11pt}% <space above>
-        {11pt}% <space below>
-        {}% <body font> 使用默认正文字体
-        {}% <indent amount>
-        {\bfseries}% <theorem head font> 设置标题项为加粗
-        {：}% <punctuation after theorem head>
-        {.5em}% <space after theorem head>
-        {\textbf{#1}\thmnumber{#2}\ \ (\,\textbf{#3}\,)}% 设置标题内容顺序
-    \theoremstyle{MyLineTheoremStyle} % 应用自定义的定理样式
-    \newtheorem{LineTheorem}{Theorem.\,}
-% theorem-block 环境自定义
-    \newtheoremstyle{MyBlockTheoremStyle}% <name>
-        {11pt}% <space above>
-        {11pt}% <space below>
-        {}% <body font> 使用默认正文字体
-        {}% <indent amount>
-        {\bfseries}% <theorem head font> 设置标题项为加粗
-        {：\\ \indent}% <punctuation after theorem head>
-        {.5em}% <space after theorem head>
-        {\textbf{#1}\thmnumber{#2}\ \ (\,\textbf{#3}\,)}% 设置标题内容顺序
-    \theoremstyle{MyBlockTheoremStyle} % 应用自定义的定理样式
-    \newtheorem{BlockTheorem}[LineTheorem]{Theorem.\,} % 使用 LineTheorem 的计数器
-% definition 环境自定义
-    \newtheoremstyle{MySubsubsectionStyle}% <name>
-        {11pt}% <space above>
-        {11pt}% <space below>
-        {}% <body font> 使用默认正文字体
-        {}% <indent amount>
-        {\bfseries}% <theorem head font> 设置标题项为加粗
-        {：\\ \indent}% <punctuation after theorem head>
-        {0pt}% <space after theorem head>
-        {\textbf{#3}}% 设置标题内容顺序
-    \theoremstyle{MySubsubsectionStyle} % 应用自定义的定理样式
-    \newtheorem{definition}{}
-
-%宏包：有色文本框及其设置
-\usepackage[dvipsnames,svgnames]{xcolor}    %设置插入的文本框颜色
-\usepackage[strict]{changepage}     % 提供一个 adjustwidth 环境
-\usepackage{framed}     % 实现方框效果
-    \definecolor{graybox_color}{rgb}{0.95,0.95,0.96} % 文本框颜色。修改此行中的 rgb 数值即可改变方框纹颜色，具体颜色的rgb数值可以在网站https://colordrop.io/ 中获得。（截止目前的尝试还没有成功过，感觉单位不一样）（找到喜欢的颜色，点击下方的小眼睛，找到rgb值，复制修改即可）
-    \newenvironment{graybox}{%
-    \def\FrameCommand{%
-    \hspace{1pt}%
-    {\color{gray}\small \vrule width 2pt}%
-    {\color{graybox_color}\vrule width 4pt}%
-    \colorbox{graybox_color}%
-    }%
-    \MakeFramed{\advance\hsize-\width\FrameRestore}%
-    \noindent\hspace{-4.55pt}% disable indenting first paragraph
-    \begin{adjustwidth}{}{7pt}%
-    \vspace{2pt}\vspace{2pt}%
-    }
-    {%
-    \vspace{2pt}\end{adjustwidth}\endMakeFramed%
-    }
-
-% 各级标题自定义设置
-\usepackage{titlesec}   
-    \titleformat{\chapter}[hang]{\normalfont\Large\bfseries\centering}{Homework \thechapter :}{10pt}{}
-    \titlespacing*{\chapter}{0pt}{-30pt}{10pt} % 控制上方空白的大小
-    % section标题自定义设置 
-    \titleformat{\section}[hang]{\normalfont\large\bfseries}{\thesection}{8pt}{}
-    % subsubsection标题自定义设置
-    %\titleformat{\subsubsection}[hang]{\normalfont\bfseries}{}{8pt}{}
+%宏包：有色文本框（proof环境）及其设置
+    \usepackage[dvipsnames,svgnames]{xcolor}    %设置插入的文本框颜色
+    \usepackage[strict]{changepage}     % 提供一个 adjustwidth 环境
+    \usepackage{framed}     % 实现方框效果
+        \definecolor{graybox_color}{rgb}{0.95,0.95,0.96} % 文本框颜色。修改此行中的 rgb 数值即可改变方框纹颜色，具体颜色的rgb数值可以在网站https://colordrop.io/ 中获得。（截止目前的尝试还没有成功过，感觉单位不一样）（找到喜欢的颜色，点击下方的小眼睛，找到rgb值，复制修改即可）
+        \newenvironment{graybox}{%
+        \def\FrameCommand{%
+        \hspace{1pt}%
+        {\color{gray}\small \vrule width 2pt}%
+        {\color{graybox_color}\vrule width 4pt}%
+        \colorbox{graybox_color}%
+        }%
+        \MakeFramed{\advance\hsize-\width\FrameRestore}%
+        \noindent\hspace{-4.55pt}% disable indenting first paragraph
+        \begin{adjustwidth}{}{7pt}%
+        \vspace{2pt}\vspace{2pt}%
+        }
+        {%
+        \vspace{2pt}\end{adjustwidth}\endMakeFramed%
+        }
 
 % 外源代码插入设置
-\usepackage{matlab-prettifier}
-    \lstset{
-        style=Matlab-editor,  % 继承matlab代码颜色等
-    }
-\usepackage[most]{tcolorbox} % 引入tcolorbox包 
-\usepackage{listings} % 引入listings包
-    \tcbuselibrary{listings, skins, breakable}
-    \lstdefinestyle{matlabstyle}{
-        language=Matlab,
-        basicstyle=\small,
-        breakatwhitespace=false,
-        breaklines=true,
-        captionpos=b,
-        keepspaces=true,
-        numbers=left,
-        numbersep=15pt,
-        showspaces=false,
-        showstringspaces=false,
-        showtabs=false,
-        tabsize=2
-    }
-    \newtcblisting{matlablisting}{
-        arc=0pt,
-        top=0pt,
-        bottom=0pt,
-        left=1mm,
-        listing only,
-        listing style=matlabstyle,
-        breakable,
-        colback=white   % 选一个合适的颜色
-    }
+    % matlab 代码插入设置
+    \usepackage{matlab-prettifier}
+        \lstset{
+            style=Matlab-editor,  % 继承matlab代码颜色等
+        }
+    \usepackage[most]{tcolorbox} % 引入tcolorbox包 
+    \usepackage{listings} % 引入listings包
+        \tcbuselibrary{listings, skins, breakable}
+        \lstdefinestyle{matlabstyle}{
+            language=Matlab,
+            basicstyle=\small,
+            breakatwhitespace=false,
+            breaklines=true,
+            captionpos=b,
+            keepspaces=true,
+            numbers=left,
+            numbersep=15pt,
+            showspaces=false,
+            showstringspaces=false,
+            showtabs=false,
+            tabsize=2
+        }
+        \newtcblisting{matlablisting}{
+            arc=0pt,
+            top=0pt,
+            bottom=0pt,
+            left=1mm,
+            listing only,
+            listing style=matlabstyle,
+            breakable,
+            colback=white   % 选一个合适的颜色
+        }
 
-% table设置
-\usepackage{booktabs}   % 宏包：三线表
-\usepackage{tabularray} % 宏包：表格排版
-\usepackage{longtable}  % 宏包：长表格
+% table 支持
+    \usepackage{booktabs}   % 宏包：三线表
+    \usepackage{tabularray} % 宏包：表格排版
+    \usepackage{longtable}  % 宏包：长表格
 
-% figure设置
-\usepackage{graphicx}  % 支持 jpg, png, eps, pdf 图片 
-\usepackage{svg}       % 支持 svg 图片
-    \svgsetup{
-        % 指向 inkscape.exe 的路径
-        inkscapeexe = D:/aa_my_apps_main/Inkscape/bin/inkscape.exe, 
-        % 一定程度上修复导入后图片文字溢出几何图形的问题
-        inkscapelatex = false                 
-    }
+% figure 设置
+    \usepackage{graphicx}  % 支持 jpg, png, eps, pdf 图片 
+    \usepackage{svg}       % 支持 svg 图片
+        \svgsetup{
+            % 指向 inkscape.exe 的路径
+            inkscapeexe = D:/aa_my_apps_main/Inkscape/bin/inkscape.exe, 
+            % 一定程度上修复导入后图片文字溢出几何图形的问题
+            inkscapelatex = false                 
+        }
+
+% 图表进阶设置
+    \usepackage{caption}    % 图注、表注
+        \captionsetup[figure]{name=图}  
+        \captionsetup[table]{name=表}
+        \captionsetup{labelfont=bf, font=small}
+    \usepackage{float}     % 图表位置浮动设置 
 
 % 圆圈序号自定义
-\newcommand*\circled[1]{\tikz[baseline=(char.base)]{\node[shape=circle,draw,inner sep=0.8pt, line width = 0.03em] (char) {\small \bfseries #1};}}   % TikZ solution
+    \newcommand*\circled[1]{\tikz[baseline=(char.base)]{\node[shape=circle,draw,inner sep=0.8pt, line width = 0.03em] (char) {\small \bfseries #1};}}   % TikZ solution
 
-
-% 列表环境设置
-\usepackage{enumitem}   % 宏包：列表环境设置
-    \setlist[enumerate]{itemsep=0pt, parsep=0pt, topsep=0pt, partopsep=0pt, leftmargin=3.5em} 
-    \setlist[itemize]{itemsep=0pt, parsep=0pt, topsep=0pt, partopsep=0pt, leftmargin=3.5em}
-    \newlist{circledenum}{enumerate}{1} % 创建一个新的枚举环境  
-    \setlist[circledenum,1]{  
-        label=\protect\circled{\arabic*}, % 使用 \arabic* 来获取当前枚举计数器的值，并用 \circled 包装它  
-        ref=\arabic*, % 如果需要引用列表项，这将决定引用格式（这里仍然使用数字）
-        itemsep=0pt, parsep=0pt, topsep=0pt, partopsep=0pt, leftmargin=3.5em
-    }  
-    
-% 图表进阶设置
-\usepackage{caption}    % 图注、表注
-    \captionsetup[figure]{name=图}  
-    \captionsetup[table]{name=表}
-    \captionsetup{labelfont=bf, font=small}
-\usepackage{float}     % 图表位置浮动设置 
-
-% 文章默认字体设置
-\usepackage{fontspec}   % 宏包：字体设置
-    \setmainfont{SimSun}    % 设置中文字体为宋体字体
-    \setmainfont{Times New Roman} % 设置英文字体为Times New Roman
+% 列表设置
+    \usepackage{enumitem}   % 宏包：列表环境设置
+        \setlist[enumerate]{itemsep=0pt, parsep=0pt, topsep=0pt, partopsep=0pt, leftmargin=3.5em} 
+        \setlist[itemize]{itemsep=0pt, parsep=0pt, topsep=0pt, partopsep=0pt, leftmargin=3.5em}
+        \newlist{circledenum}{enumerate}{1} % 创建一个新的枚举环境  
+        \setlist[circledenum,1]{  
+            label=\protect\circled{\arabic*}, % 使用 \arabic* 来获取当前枚举计数器的值，并用 \circled 包装它  
+            ref=\arabic*, % 如果需要引用列表项，这将决定引用格式（这里仍然使用数字）
+            itemsep=0pt, parsep=0pt, topsep=0pt, partopsep=0pt, leftmargin=3.5em
+        }  
 
 % 其它设置
     % 脚注设置
@@ -202,40 +189,79 @@
             \vskip 2.5ex
             }{\par\vskip 2.5ex}
 
-% 页眉页脚设置
-\usepackage{fancyhdr}   %宏包：页眉页脚设置
-    \pagestyle{fancy}
-    \fancyhf{}
-    \cfoot{\thepage}
-    \renewcommand\headrulewidth{1pt}
-    \renewcommand\footrulewidth{0pt}
-    \lhead{2024.8-2025.1}
-    \chead{Notes of Mathematical Physics Methods}     
-    \rhead{dingyi233@mails.ucas.ac.cn}
+% 文章默认字体设置
+\usepackage{fontspec}   % 宏包：字体设置
+    \setmainfont{SimSun}    % 设置中文字体为宋体字体
+    \setCJKmainfont[AutoFakeBold=3]{SimSun} % 设置加粗字体为 SimSun 族，AutoFakeBold 可以调整字体粗细
+    \setmainfont{Times New Roman} % 设置英文字体为Times New Roman
 
+% 各级标题自定义设置
+\usepackage{titlesec}   
+\titleformat{\chapter}[hang]{\normalfont\huge\bfseries\centering}{第\,\thechapter\,章}{20pt}{}
+\titlespacing*{\chapter}{0pt}{-20pt}{20pt} % 控制上方空白的大小
+% section标题自定义设置 
+\titleformat{\section}[hang]{\normalfont\Large\bfseries}{§\,\thesection\,}{8pt}{}
+% subsubsection标题自定义设置
+%\titleformat{\subsubsection}[hang]{\normalfont\bfseries}{}{8pt}{}
+
+% --------------------- 文章宏包及相关设置 --------------------- %
+% >> ------------------ 文章宏包及相关设置 ------------------ << %
+
+% ------------------------ 文章信息区 ------------------------ %
+% ------------------------ 文章信息区 ------------------------ %
+% 页眉页脚设置
+    \usepackage{fancyhdr}   %宏包：页眉页脚设置
+        \pagestyle{fancy}
+        \fancyhf{}
+        \cfoot{\thepage}
+        \renewcommand\headrulewidth{1pt}
+        \renewcommand\footrulewidth{0pt}
+        \lhead{2024.8-2025.1}
+        \chead{Notes of Mathematical Physics Methods}     
+        \rhead{dingyi233@mails.ucas.ac.cn}
 %文档信息设置
 \title{数学物理方法笔记\\Notes of Mathematical Physics Methods}
 \author{丁毅\\ \footnotesize 中国科学院大学，北京 100049\\ Yi Ding \\ \footnotesize University of Chinese Academy of Sciences, Beijing 100049, China}
 \date{\footnotesize 2024.8 -- 2025.1}
+% ------------------------ 文章信息区 ------------------------ %
+% ------------------------ 文章信息区 ------------------------ %
+
+% 开始编辑文章
+
+\begin{document} 
+\zihao{5}             % 设置全文字号大小, -4 为小四, 5 为五号
+
+% ------------------------ 封面序言与目录 ------------------------ %
+% >> --------------------- 封面序言与目录 --------------------- << %
+% 封面
+    \maketitle\newpage  
+    \pagenumbering{Roman} % 页码为大写罗马数字
+    \thispagestyle{fancy}   % 显示页码、页眉等
+
+% 序言
+    \begin{cnabstract}\normalsize 
+        本文为笔者本科时的数学物理方法笔记笔记,总结了数学物理方法中的主要知识，也有适当的拓展延伸。同时，对一些晦涩的概念或公式，给出了笔者的个人理解，以帮助阅读。\par
+        由于个人精力及知识水平有限，书中难免有不妥、错误之处，望不吝指正，在此感谢。我的邮箱是 dingyi233@mails.ucas.ac.cn 。
+    \end{cnabstract}
+    \addcontentsline{toc}{chapter}{序言} % 手动添加为目录
+
+% 目录
+    \setcounter{tocdepth}{2}                % 目录深度（为1时显示到section）
+    \tableofcontents                        % 目录页
+    \addcontentsline{toc}{chapter}{目录}    % 手动添加此页为目录
+    \thispagestyle{fancy}                   % 显示页码、页眉等 
+
+% 收尾工作
+    \newpage    
+    \pagenumbering{arabic} 
 
 
-\begin{document}
-\maketitle
-\newpage
+% >> --------------------- 封面序言与目录 --------------------- << %
+% ------------------------ 封面序言与目录 ------------------------ %
 
-\addcontentsline{toc}{chapter}{序言} % 手动添加为目录
-\thispagestyle{fancy}   % 显示页码、页眉等
-\begin{cnabstract}
-\normalsize 本文为笔者本科时的数学物理方法笔记笔记,总结了数学物理方法中的主要知识，也有适当的拓展延伸。同时，对一些晦涩的概念或公式，给出了笔者的个人理解，以帮助阅读。\par
-由于个人精力及知识水平有限，书中难免有不妥、错误之处，望不吝指正，在此感谢。我的邮箱是 dingyi233@mails.ucas.ac.cn 。
-\end{cnabstract}
-\pagenumbering{Roman} % 页码为大写罗马数字
 
-\setcounter{tocdepth}{2}                % 目录深度（为1时显示到section）
-\tableofcontents        % 目录页   
 
-\newpage
-\pagenumbering{arabic} 
+
 \chapter{复数与复数运算}\thispagestyle{fancy} 
 \section{预备知识}
 
@@ -518,7 +544,31 @@ $\sin z,\ \cos z$ 在 $\C$ 内解析，唯一奇点是 $z = \infty$。可以证�
 \section{解析函数的保角性（略）}
 \section{多值函数}
 
+\begin{definition}[多值函数的概念]
+$f$ 称为区域 $G \subseteq \C$ 上的多值函数如果 $\forall\ z \in G$ 存在多个 $w \in \C$ 使得 $f(z) = w_1 = w_2 = \cdots $。许多函数的逆运算都是多值函数。
+\end{definition}
 
+\begin{definition}[开方]
+考虑 $z-a$ 的开方 $w =\sqrt{z-a}$，设 $w = \rho_1 e^{\alpha}$ 而 $z-a = \rho_2e^{\theta}$，代入解得：
+\begin{gather}
+     w = \sqrt{| z-a |} e^{\frac{\theta}{2} + n\pi}, \quad n \in \Z \\ \Longleftrightarrow 
+     | w | = \sqrt{| z-a |},\quad \arg w = \frac{1}{2} \arg (z-a)
+\end{gather}
+$\omega $ 的多值性来源于 $z-a$ 幅角的多样性，我们把这样量称为\textbf{宗量}\footnote{宗量通常不同于自变量.例如，多值函数 $\sqrt{z-a}$ 的宗量就是 $z-a$，多值函数号 $\sqrt[3]{(z - a)(z - b)}$ 的宗量就是$(z-a)(z-b)$。当然，也有宗量就是自变量的情形.例如多值函数 $\sqrt{z}$ 的宗量就是自变量 $z$。}（而不是自变量）。
+
+为了进一步揭示多值函数 $w = \sqrt{z-a}$ 的性质，我们讨论“还原”与“不还原”。在 $z$ 复平面上依次画两个圆，如图 \ref{沿闭合曲线一周回到原处时} 左侧，第一个圆在点 $a$ 外，第二个圆包含了点 $a$。
+
+对第一种情况，$z$ 沿路径 $C_1$ 逆时针旋转一圈后，由于 $a$ 在圆外，因此旋转前后的 $\arg (z-a)$ 不变，$\arg w = \frac{1}{2} \arg (z-a)$ 也不变，从而使得旋转前后 $w$ 也不变，称为 $w$ 值“还原”。对第二种情况，$z$ 沿路径 $C_2$ 逆时针旋转一圈后，由于 $a$ 在圆内，$\arg (z-a)$ 增加了 $2\pi$ 但 $\arg w = \frac{1}{2} \arg (z-a)$ 使得 $\arg w$ 仅增加 $\pi$，从而使得旋转前后 $w$ 未回到原点，称为 $w$ 值“不还原”。
+
+因此，点 $a$ 对多值函数 $w =\sqrt{z-a}$ 有特殊意义，它是否位于简单闭合路径内就决定了当 $z$ 沿这个路径行进一周回到原处时，相应的 $w$ 值是否能还原。
+
+
+\begin{figure}[H]\centering
+\includegraphics[width=0.55\textwidth]{assets/image (43).jpg}
+\caption{\textbf{$z$ 沿闭合曲线一周回到原处时，$w = \sqrt{z-a}$ 值的不同变化}}\label{沿闭合曲线一周回到原处时}
+\end{figure}
+
+\end{definition}
 
 
 

@@ -7,6 +7,7 @@
 % 设定文章类型与编码格式
     \documentclass[UTF8]{report}		
 
+% 本文特殊宏包
 
 % 自定义宏定义
     \def\N{\mathbb{N}}
@@ -37,7 +38,7 @@
 
 % 文章页面margin设置
     \usepackage[a4paper]{geometry}
-        \geometry{top=1in}
+        \geometry{top=1in}  % 1 inch= 2.46 cm, 0.75 inch = 1.85 cm
         \geometry{bottom=1in}
         \geometry{left=0.75in}
         \geometry{right=0.75in}   % 设置上下左右页边距
@@ -175,7 +176,7 @@
 
 % 其它设置
     % 脚注设置
-    \renewcommand\thefootnote{\ding{\numexpr171+\value{footnote}}}
+        \renewcommand\thefootnote{\ding{\numexpr171+\value{footnote}}}
     % 参考文献引用设置
         \bibliographystyle{unsrt}   % 设置参考文献引用格式为unsrt
         \newcommand{\upcite}[1]{\textsuperscript{\cite{#1}}}     % 自定义上角标式引用
@@ -190,6 +191,7 @@
 % 文章默认字体设置
 \usepackage{fontspec}   % 宏包：字体设置
     \setmainfont{SimSun}    % 设置中文字体为宋体字体
+    \setCJKmainfont[AutoFakeBold=3.5]{SimSun} % 设置加粗字体为 SimSun 族，AutoFakeBold 可以调整字体粗细
     \setmainfont{Times New Roman} % 设置英文字体为Times New Roman
 
 % 各级标题自定义设置
@@ -226,7 +228,7 @@
 % 开始编辑文章
 
 \begin{document} 
-\zihao{5}           % 设置全文字号大小
+\zihao{5}             % 设置全文字号大小, -4 为小四, 5 为五号
 
 % ------------------------ 封面序言与目录 ------------------------ %
 % >> --------------------- 封面序言与目录 --------------------- << %
@@ -484,25 +486,34 @@
 \section{一个小节}
 \section{一个小节}
 
-
+% ------------------------- 参考文献 ------------------------- %
+% >> ---------------------- 参考文献 ---------------------- << %
 \nocite{*}
 \bibliography{re}
 \thispagestyle{fancy} 
 \addcontentsline{toc}{chapter}{参考文献}
+% ------------------------- 参考文献 ------------------------- %
+% >> ---------------------- 参考文献 ---------------------- << %
 
+% --------------------------- 附录 --------------------------- %
+% >> ------------------------ 附录 ------------------------ << %
 
-
-
+% 附录设置
 \newpage
 \appendix
-\titleformat{\chapter}[hang]{\normalfont\huge\bfseries\centering}{}{20pt}{\thechapter}
-\titleformat{\section}{\large\centering\bfseries}{\thesection}{1em}{}
-\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection}{1em}{}
+% chapter 标题自定义设置
+\titleformat{\chapter}[hang]{\normalfont\huge\bfseries\centering}{}{20pt}{}
+\titlespacing*{\chapter}{0pt}{-25pt}{8pt} % 控制上方空白的大小
+% section 标题自定义设置 
+\titleformat{\section}[hang]{\normalfont\centering\Large\bfseries}{\thesection}{8pt}{}
 
-\chapter*{附录 A}\addcontentsline{toc}{chapter}{附录 A}\thispagestyle{fancy} 
-
-\setcounter{section}{0}
-\renewcommand\thesection{A.\arabic{section}}
+% 附录 A
+\chapter*{附录 A. 中英文对照表}\addcontentsline{toc}{chapter}{附录 A. 中英文对照表}   
+\thispagestyle{fancy} 
+\setcounter{section}{0}   
+\renewcommand\thesection{A.\arabic{section}}   
+\renewcommand{\thefigure}{A.\arabic{figure}} 
+\renewcommand{\thetable}{A.\arabic{table}}
 
 \section{中英文对照表}
 \begin{multicols}{2}  
@@ -563,7 +574,14 @@
 \end{center}
 
 
-\section{这里是我的第三节附录}
+% 附录 B
+\chapter*{附录 B. 代码}\addcontentsline{toc}{chapter}{附录 B. 代码}   
+\thispagestyle{fancy} 
+\setcounter{section}{0}   
+\renewcommand\thesection{B.\arabic{section}}   
+\renewcommand{\thefigure}{B.\arabic{figure}} 
+\renewcommand{\thetable}{B.\arabic{table}}
+
 % 注意：listing环境中手动输入的代码需要顶格写
 
 \begin{matlablisting}
@@ -625,8 +643,8 @@ title('Sine Function');
 % ... (MATLAB code here，最好是插入文件)
 \end{matlablisting}
 
-\section{这里是我的第三节附录}
-你好你好你好你好你好你好
+% --------------------------- 附录 --------------------------- %
+% >> ------------------------ 附录 ------------------------ << %
 
 \end{document}
 

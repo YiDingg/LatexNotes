@@ -2,11 +2,14 @@
 % 1. 需要插入的图片不存在：Ctrl + F 搜索 'figure' 将这些代码注释/删除掉即可
 % 2. 路径/文件名含中文或空格：更改路径/文件名即可
 
+
 % --------------------- 文章宏包及相关设置 --------------------- %
 % >> ------------------ 文章宏包及相关设置 ------------------ << %
 % 设定文章类型与编码格式
     \documentclass[UTF8]{report}		
 
+% 本文特殊宏包
+    \usepackage{siunitx} % 埃米单位
 
 % 自定义宏定义
     \def\N{\mathbb{N}}
@@ -417,7 +420,14 @@
 % section 标题自定义设置 
 \titleformat{\section}[hang]{\normalfont\centering\Large\bfseries}{\thesection}{8pt}{}
 
-\chapter*{附录 A. 波理论}\addcontentsline{toc}{chapter}{附录 A. 波理论}\thispagestyle{fancy} \setcounter{section}{0}\renewcommand\thesection{A.\arabic{section}}
+% 附录 A
+\chapter*{附录 A. 波理论}\addcontentsline{toc}{chapter}{附录 A. 波理论}   
+\thispagestyle{fancy} 
+\setcounter{section}{0}   
+\renewcommand\thesection{A.\arabic{section}}   
+\renewcommand{\thefigure}{A.\arabic{figure}} 
+\renewcommand{\thetable}{A.\arabic{table}}
+
 
 光的真实本性是光学的全部讨论的中心问题， 在本书中我们从头到尾都得对待这个问题。“光究竟是一种波动现象还是一种粒子现象？” 这个似乎干脆利索的问题， 远比它初看之下复杂得多。
 
@@ -425,19 +435,83 @@
 要的东西打好基础。下面叙说的想法将用于一切物理波， 从一杯茶的表面张力皱波， 到从某个遥远的星系照到我们的光脉冲。
 
 \section{一维波}
+
+
+\begin{definition}[一维波的形式]
 一维波函数的最一般的形式：
 \begin{equation}
 \psi(x,t) = f(x-vt) = g(t - \frac{x}{v})
 \end{equation}
 
 具体而言，对于给定的波形（波的形状），我们只需令 $t=0$，拍一张“照片”（例如 $\psi(x) = \frac{3}{10x^2+1}$），得到 $\psi(x,0) = f(x)$，然后将 $f(x)$ 中的 $x$ 换为 $x-vt$，即可得到一个以速度 $v$（可为负） 向 $x$ 轴正方向运动的波 $\psi(x,t) = f(x - vt) = g(t - \frac{x}{v})$。
+{\par\color{gray}\small
+绳索的上下振动是在第二个维度上的，但振动导出的波仍是一维波。
+\par}
+\end{definition}
 
-我们说图2.2中所示的脉冲和(2. 5) 式描述的扰动是一维的， 因为波扫过的是位于一条直线上的点－只需要一个空间变量来规定这些点在这个具体场合， 绳
-索的上下振动是在第二个维度上的。与之相反， 一个二维波在一个面上传播， 像池塘上的皱
-波， 它由两个空间变量描述。
 
-\chapter*{附录 B}\addcontentsline{toc}{chapter}{附录 B}\thispagestyle{fancy} \setcounter{section}{0}
-\renewcommand\thesection{B.\arabic{section}}
+\begin{definition}[微分波动方程]
+无损耗介质中的波动方程（无阻尼系统\footnote{无阻尼系统考虑的区域中不包含源}的波动方程，阻尼效应可以添加一个 $\frac{\partial \psi }{\partial t }$ 项来描述，后文会进行讨论）：
+\begin{equation}
+    \frac{\partial^{2}\psi}{\partial t^{2}}  = v^2\frac{\partial^{2}\psi}{\partial x^{2}}\Longleftrightarrow \frac{\partial^{2}\psi}{\partial x^{2}}=\frac{1}{v^{2}}\frac{\partial^{2}\psi}{\partial t^{2}} 
+\end{equation}
+如果代表一个波的函数 $\psi$ 是这个方程的解， 它将同时是 $(x-vt)$ 的函数（即 $t - \frac{x}{v}$ 的函数），它还是一个可以同时对 $x$ 和 $t$ 以非平庸方式求二次微商的函数。\par
+特别地，我们有结论：$\psi$ 是一维波函数 $\Longleftrightarrow$ $\psi$ 是 $(x-vt)$ 的二次可微函数。
+\end{definition}
+
+\section{谐波}
+
+\begin{definition}[谐波的概念]
+谐波，指简谐波、正弦波，其轮廓图是正弦曲线，是最简单的波形。在后续的傅里叶变换一节我们可以看到，任何波形都可以由谐波叠加合成，因此谐波具有特殊的意义。
+
+考虑如下波形：
+\begin{equation}
+    \psi(x,\:t)\big|_{t=0}=\psi(x)=A\:\sin kx=f(x)
+\end{equation}
+其中 $k>0$ 是一个常数，称为传播数（空间角频率），且 $k = \frac{2\pi}{\lambda} \cdot \mathrm{m}$（$\lambda$ 为波长），也即数值上等于频率 $\nu$ 但是量纲为 1 的常数；$A$ 称为振幅。\par
+光学中常用的长度单位是纳米 $\mathrm{nm}$、微米 $\mathrm{\mu m}$ 和埃米 $1\ \si{\angstrom}$ $ = 10^{-10}\ \mathrm{m}$。本文规定，若无特殊情况，一般用 $\lambda$ 表示波长，$\tau $ 表示周期，$\nu = \frac{1}{\tau}$ 表示时间频率，$\omega = 2\pi\nu$ 表示时间角频率，波数（空间频率）$\kappa = \frac{1}{\lambda}$，传播数（空间角频率）$k = 2\pi \kappa$。
+
+谐波最常见的形式是：
+\begin{equation}
+    \psi(x,t)=A\sin k(x\mp vt) \Longleftrightarrow \psi=A\sin(kx\mp\omega t)
+\end{equation}
+\end{definition}
+
+
+\begin{definition}[空间频率]
+光学信息可以以一种周期性方式散布在空间里，很像一个波的截图，我们可以将其视作（$v=0$）的波，并用空间频率 $\kappa$ 来描述它们。
+
+
+\noindent\begin{minipage}{0.63\textwidth}
+    \begin{figure}[H]\centering
+    \includegraphics[height=120pt]{assets/image (41).jpg}
+    \caption{\textbf{空间频率较低的正弦亮度分布}}\label{空间频率较低的正弦亮度分布}
+    \end{figure}
+    \end{minipage}
+    \begin{minipage}{0.35\textwidth}
+    \begin{figure}[H]\centering
+    \includegraphics[height=120pt]{assets/image (42).jpg}
+    \caption{\textbf{空间频率较高的正弦亮度分布}}\label{空间频率较高的正弦亮度分布}
+    \end{figure}
+\end{minipage}
+\end{definition}
+
+\section{相位和相速度}
+考虑任何一个一维波函数 $\psi(x,t) = A \sin(kx-vt + \varphi_0)$，$\varphi = kx+vt$ 称为相位，$\varphi_0$ 称为初相。
+
+由热力学中的偏微分关系，我们定义相速度：
+\begin{equation}
+    \left(\frac{\partial x }{\partial t }\right)_{\varphi} = -\frac{\left(\frac{\partial \varphi }{\partial t }\right)_{x}}{\left(\frac{\partial \varphi }{\partial x }\right)_{t}}
+\end{equation}
+
+
+
+\chapter*{附录 B. 标题}\addcontentsline{toc}{chapter}{附录 B. 标题}   % B 章节
+\thispagestyle{fancy} 
+\setcounter{section}{0}   
+\renewcommand\thesection{B.\arabic{section}}   
+\renewcommand{\thefigure}{B.\arabic{figure}} 
+\renewcommand{\thetable}{B.\arabic{table}}
 
 \section{支撑材料列表} 
 

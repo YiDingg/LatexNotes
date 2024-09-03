@@ -5,7 +5,7 @@
 % --------------------- 文章宏包及相关设置 --------------------- %
 % >> ------------------ 文章宏包及相关设置 ------------------ << %
 % 设定文章类型与编码格式
-    \documentclass[UTF8]{report}		
+\documentclass[UTF8]{report}		
 
 % 自定义宏定义
     \def\N{\mathbb{N}}
@@ -210,20 +210,21 @@
 % ------------------------ 文章信息区 ------------------------ %
 % >> --------------------- 文章信息区 --------------------- << %
 % 页眉页脚设置
+
 \usepackage{fancyhdr}   %宏包：页眉页脚设置
     \pagestyle{fancy}
     \fancyhf{}
     \cfoot{\thepage}
     \renewcommand\headrulewidth{1pt}
     \renewcommand\footrulewidth{0pt}
-    \chead{电路原理作业,\ 丁毅,\ 2023K8009908031}
+    \chead{光学作业,\ 丁毅,\ 2023K8009908031}
     \lhead{Homework \thechapter}
     \rhead{dingyi233@mails.ucas.ac.cn}
 
 %文档信息设置
-\title{电路原理课程作业\\ Homework of Circuit Theory}
+\title{光学作业\\ Homework of Optics}
 \author{丁毅\\ \footnotesize 中国科学院大学，北京 100049\\ Yi Ding \\ \footnotesize University of Chinese Academy of Sciences, Beijing 100049, China}
-\date{\footnotesize 2024.8 -- 2025.1}
+\date{\footnotesize 2024.9 -- 2025.1}
 % >> --------------------- 文章信息区 --------------------- << %
 % ------------------------ 文章信息区 ------------------------ %
 
@@ -241,7 +242,7 @@
 
 % 序言
     \begin{cnabstract}\normalsize 
-        本文为笔者本科时的“电路原理”课程作业（Homework of Circuit Theory, 2024.9-2025.1）。由于个人学识浅陋，认识有限，文中难免有不妥甚至错误之处，望读者不吝指正，在此感谢。\par 
+        本文为笔者本科时的“光学”课程作业（Homework of Optics, 2024.9-2025.1）。由于个人学识浅陋，认识有限，文中难免有不妥甚至错误之处，望读者不吝指正，在此感谢。\par 
         我的邮箱是 dingyi233@mails.ucas.ac.cn。
     \end{cnabstract}
     \addcontentsline{toc}{chapter}{序言} % 手动添加为目录
@@ -262,466 +263,179 @@
 % >> --------------------- 封面序言与目录 --------------------- << %
 % ------------------------ 封面序言与目录 ------------------------ %
 
-\chapter{2024.8.27 - 2024.9.2}\thispagestyle{fancy}
+\chapter{2024.9.2 - 2024.9.8}\thispagestyle{fancy}
 
-\section{习题集 1-2}
-
-\begin{enumerate}
-\item[(a)] 短路，因此 $U = 0,\  I = \frac{U_S}{R_i}$
-\item[(b)] 开路，因此 $U = U_s, \ I = 0$
-\item[(c)] 构成回路，因此  $ U = \frac{U_SR}{R + R_i},\ I = \frac{U_S}{R + R_i}$ 
-\end{enumerate}
-
-\begin{figure}[H]\centering
-\includegraphics[width=0.6\textwidth]{assets/1/ae1cfc03fad5c98bfff08a663714a004.png}
-\end{figure}
-
-\section{习题集 1-9}
-
-\begin{enumerate}
-    \item[(a)]  $ \varphi_a - 3\ \mathrm{V} + 2\ \mathrm{V} = \varphi_b \Longrightarrow U_{ab} = 1\ \mathrm{V} $ 
-    \item[(b)] $I = 1\ \mathrm{A},\  3 -IR= -4 \Longrightarrow R = 7\ \Omega$ 
-    \item[(c)] $-3 + U_S = 1 \Longrightarrow U_S = 4 \ \mathrm{V}$ 
-    \item[(d)] $R=2\ \Omega,\ -IR + 2 = 3 \Longrightarrow I = -0.5\ \mathrm{A}$ 
-\end{enumerate}
-
-\begin{figure}[H]\centering
-\includegraphics[width=0.65\textwidth]{assets/1/d3d69ecd6b1c1bc476fd4a4957fb9e56.png}
-\end{figure}
-
-\section{习题集 1-10}
-
-
-
-\begin{enumerate}
-\item[(a)] 
-记参考点 a 的电势 $\varphi_a=0$，则 $\varphi_c = 2\ \mathrm{V} ,\ \varphi_b = -2\ \mathrm{V}$，因此 $U_{ab} = 2\ \mathrm{V}$
-
-\item[(b)] 
-记参考点 d 的电势 $\varphi_d = \varphi_b =0$，则 $\varphi_c = 6\ \mathrm{V},\ \varphi_a = -2\ \mathrm{V}$，因此 $U_{ab} = -2\ \mathrm{V}$
-
-\end{enumerate}
-
-\begin{figure}[H]\centering
-\includegraphics[width=0.6\textwidth]{assets/1/9dda9e5f333b8cb7f498d15c015e5fd0.png}
-\end{figure}
-
-\section{习题集 1-15}
-
-\begin{enumerate}
-    \item[(a)] $I = -\frac{U}{R} + 4\ \mathrm{A} = -2 \ \mathrm{A}$
-    \item[(b)] $U =12 \ \mathrm{V} + 3\ \Omega \times 4 \ \mathrm{A} = 0 $ 
-    \item[(c)] $I = 8 \ \mathrm{A} - 6\ \mathrm{A} = 2 \ \mathrm{A}$，$ U = 12 \ \mathrm{V} + 3\times8 \ \mathrm{V} = 36 \ \mathrm{V}$ 
-    \item[(d)] 取点 $ d $ 为参考点，则 $\varphi_d = \varphi_c = 0$，$\varphi_b = \varphi_a = 9 \ \mathrm{V}$，于是 $U_1 = 9 + 2\times3 = 15\ \mathrm{V},\ U_2 = 9 + 2\times 2 = 13 \ \mathrm{V},\ I =2 -  (9-3) = - 4 \ \mathrm{A}$
-\end{enumerate}
-
-\begin{figure}[H]\centering
-\includegraphics[width=0.7\textwidth]{assets/1/b82ef4f3b4efd9d0ee903e5f19353345.png}
-\end{figure}
-
-\section{习题集 1-29}
-
-取点 $a$ 为参考点 $\varphi_a = 0$，可得 $\varphi_b = 100U_1 - 80$，于是在结点 $a$ 有电流：
-\begin{equation*}
-I_S + \frac{100U_1 - 80}{5} = 2
-\end{equation*}
-
-$0.2\ \Omega$ 电阻处又有 $U_1 = 0.2 I_S$，联立解得 $I_S = 3.6 \ \mathrm{A}, U_1 = 7.2 \ \mathrm{V}$。
-
-\section{习题集 1-30}
-
-这里要注意左二元器件是受控电流源，因此 $0.5U$ 是指电流大小而非电压。$I_1$ 处可列出方程：
-
-\begin{equation*}
-\frac{U}{2} + 12 - \frac{U}{3} = 0.5U \Longrightarrow U = 36 \ \mathrm{V} \Longrightarrow P = UI = 432 \ \mathrm{W}
-\end{equation*}
-
-\begin{figure}[H]\centering
-\includegraphics[width=0.7\textwidth]{assets/1/94b342032a5f6622a60b3c9d99e37993.png}
-\end{figure}
-
-\section{讲义题 1-6}
-
-$\alpha > 90 \text{\textdegree}$ 时，电阻为“负电阻”。
-
-\section{讲义题 1-7}
-
-
-\begin{definition}[充放电倍率 C 的含义]
-C （充放电倍率）表示电池充放电时电流相对电池容量的大小数值，$\mathrm{C} = \frac{\text{电池容量}}{\text{充放电所需时间}}$。例如，1 C 电流充电表示电池需要 1 小时充满，5 C 充电表示电池需要 $0.2$ 小时充满。放电也是类似的，一个 10 Ah 的电池以 2 C 放电，表示以 20 A 的电流放电 0.5 h。 \par
-若倍率上升，总时间就会下降，若倍率下降，总时间就会上升。通俗来讲，$C$ 代表了电池的爆发力大小，高倍率的动力电池瞬间放电电流大，特别适合大电流放电产品使用，如航模。
-\end{definition}
-
-
-\begin{definition}[涓流充电]
-涓流充电是指在电池接近完全充满电后，采用非常小的电流进行充电，以弥补电池自放电造成的容量损失。理论倍率 C 约为 最大倍率 $\mathrm{C_{max}}$ 的 $\frac{1}{100}$ 至 $\frac{1}{1000}$，但由于倍率太小，常常根本无法充电，一个比较好的方法是脉冲式充电，例如以 $\frac{\mathrm{C_{max}}}{10}$ 充电 6 s，然后停止充电 54 s。
-\end{definition}
-
-
-\begin{definition}[快速充电]
-快速充电至少要求 1 C，现阶段的快速充电多在 1.5 C 至 2 C 之间。
-\end{definition}
-
-
-\section{讲义题 1-8（Multisim 仿真）}
-
-仿真电路如图 \ref{仿真电路图} 所示，
-
-\begin{figure}[H]\centering
-\includegraphics[width=0.36\textwidth]{assets/1/5c45ed5b5258df3fa8e1babac4a7ace2.png}
-\caption{\textbf{仿真电路图}}\label{仿真电路图}
-\end{figure}
-
-先固定 $U_{GS} = 5\ \mathrm{V}$ 不变（即 $V_1 = 5\ \mathrm{V}$），横坐标 $U_{DS} \in [0\ \mathrm{V},\ 12\ \mathrm{V}]$，画出 $I_{DS}$（即 $I_2$）的变化曲线，如图 \ref{仿真结果1} 所示。再固定 $U_{DS} = 10\ \mathrm{V}$ 不变（即 $V_2 = 10\ \mathrm{V}$），横坐标 $U_{GS} \in [0\ \mathrm{V},\ 10\ \mathrm{V}]$，画出 $I_{DS}$（即 $I_2$）的变化曲线，如图 \ref{仿真结果2} 所示。
-\begin{center}
-    \noindent\begin{minipage}{0.42\textwidth}
-        \begin{figure}[H]\centering
-        \includegraphics[width=\textwidth]{assets/1/2024-08-30_00-57-32.pdf}
-        \caption{\textbf{仿真结果1}}\label{仿真结果1}
-        \end{figure}
-    \end{minipage}\hspace{5mm}
-    \begin{minipage}{0.42\textwidth}
-        \begin{figure}[H]\centering
-        \includegraphics[width=\textwidth]{assets/1/2024-08-30_00-57-34.pdf}
-    \caption{\textbf{仿真结果2}}\label{仿真结果2}
-    \end{figure}
-    \end{minipage}
-\end{center}
-
-
-\chapter{2024.9.3 - 2024.9.9}\thispagestyle{fancy}
-
-\section{习题集 1-33}
-左半边回路有：
-\begin{gather}
-u_1 - 67i_e - (1-\alpha)i_e \cdot 150 = 0 \Longrightarrow \frac{u_2}{u_1} = \frac{\alpha i_eR_L }{70i_e} = \frac{0.98\times 1500}{70} = 21 \\ 
-p_2 = (\alpha i_e)^2R_L, \quad p_1 = u_1 i_e \Longrightarrow \frac{p_2}{p_1} = \frac{(\alpha i_e)^2R_L}{70i_e^2} = 20.58
-\end{gather}
-
-\begin{figure}[H]\centering
-\includegraphics[width=0.35\textwidth]{assets/2/image (47).jpg}
-\caption{\textbf{习题集 1-33}}
-\end{figure}
-
-
-\section{习题集 2-2}
-对图 (a)，利用串并联和 $\Delta$-Y 变换，可以得到：
-\begin{equation}
-R = \frac{20\cdot\left( \frac{180}{13} + \frac{1}{2}(\frac{30}{13} + 10)\right)}{20 + \left( \frac{180}{13} + \frac{1}{2}(\frac{30}{13} + 10)\right)} = \frac{20\cdot \frac{240}{13}}{20 + \frac{240}{13}} = 9.6 \ \Omega
-\end{equation}
-对图 (b)，注意到六个电阻都分别与 a, b 两点相连，为并联关系，因此：
-\begin{equation}
-R_{ab} = \frac{1}{6}R \ \Omega
-\end{equation}
-\begin{figure}[H]\centering
-\includegraphics[width=0.5\textwidth]{assets/2/e02c39d3f229a4b6352b828e57c3737f.jpg}
-\caption{\textbf{习题集 2-2}}
-\end{figure}
-
-\section{习题集 2-6}
-
-\begin{figure}[H]\centering
-\includegraphics[width=0.5\textwidth]{assets/2/bfc7d58924b9eaf9582656c984bd2c3b.jpg}
-\caption{\textbf{习题集 2-6}}
-\end{figure}
-
-
-\section{习题集 2-8}
-
-\begin{figure}[H]\centering
-\includegraphics[width=0.4\textwidth]{assets/2/78abd22edee32bbd38134d510246a9ab.jpg}
-\caption{\textbf{习题集 2-8}}
-\end{figure}
-
-\section{习题集 2-11}
-
-\begin{figure}[H]\centering
-\includegraphics[width=0.5\textwidth]{assets/2/1187c3e12fa1e6bd8d2019d53bd2752a.jpg}
-\caption{\textbf{习题集 2-11}}
-\end{figure}
-
-\section{习题集 2-17}
-
-\begin{figure}[H]\centering
-\includegraphics[width=0.5\textwidth]{assets/2/78473b1c403974e048249bbdbf6a152f.jpg}
-\caption{\textbf{习题集 2-17}}
-\end{figure}
-
-\section{习题集 2-22}
-
-\begin{figure}[H]\centering
-\includegraphics[width=0.5\textwidth]{assets/2/0c8d1f0fb90ef6983c0aef6451919e4b.jpg}
-\caption{\textbf{习题集 2-22}}
-\end{figure}
-
-\section{\color[rgb]{0.2,0.9,0.2}（非作业） 习题集 2-4 (b)}
-\section{\color[rgb]{0.2,0.9,0.2}（非作业） 习题集 2-5}
-\section{\color[rgb]{0.2,0.9,0.2}（非作业） 习题集 2-5}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-\chapter{2024.9.10 - 2024.9.16}\thispagestyle{fancy}
-
-
-\section{习题集 }
-\section{习题集 }
-\section{习题集 }
-\section{习题集 }
-\section{习题集 }
-\section{习题集 }
-\section{习题集 }
-
-\chapter{2024.9.17 - 2024.9.23}\thispagestyle{fancy}
-
-\section{习题集 }
-\section{习题集 }
-\section{习题集 }
-\section{习题集 }
-\section{习题集 }
-\section{习题集 }
-\section{习题集 }
-
-\chapter{2024.9.24 - 2024.9.30}\thispagestyle{fancy}
-
-\section{习题集 }
-\section{习题集 }
-\section{习题集 }
-\section{习题集 }
-\section{习题集 }
-\section{习题集 }
-\section{习题集 }
-
-\chapter{2024.10.1 - 2024.10.7}\thispagestyle{fancy}
-
-\section{习题集 }
-\section{习题集 }
-\section{习题集 }
-\section{习题集 }
-\section{习题集 }
-\section{习题集 }
-\section{习题集 }
-
-\chapter{2024.10.8 - 2024.10.14}\thispagestyle{fancy}
-
-\section{习题集 }
-\section{习题集 }
-\section{习题集 }
-\section{习题集 }
-\section{习题集 }
-\section{习题集 }
-\section{习题集 }
-
-\chapter{2024.10.15 - 2024.10.21}\thispagestyle{fancy}
-
-\section{习题集 }
-\section{习题集 }
-\section{习题集 }
-\section{习题集 }
-\section{习题集 }
-\section{习题集 }
-\section{习题集 }
-
-\chapter{2024.10.22 - 2024.10.28}\thispagestyle{fancy}
-
-\section{习题集 }
-\section{习题集 }
-\section{习题集 }
-\section{习题集 }
-\section{习题集 }
-\section{习题集 }
-\section{习题集 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-\chapter{基础知识}\thispagestyle{fancy} 
-\section{第一章第一节}
-
-
-\begin{definition}[向后加权隐式格式]
-
-将向前差分与向后差分加权组合起来，得到：
-
-\begin{equation}\label{公式5}
-    \frac{u_{j}^{k}-u_{j}^{k-1}}{h_t}=a\theta\frac{u_{j+1}^{k}-2u_{j}^{k}+u_{j-1}^{k}}{h_x^2}+a(1-\theta)\frac{u_{j+1}^{k-1}-2u_{j}^{k-1}+u_{j-1}^{k-1}}{h_x^2}
-\end{equation}
-
-其中 $\theta \in [0, 1]$ 为权重，其截断误差 $R = a\left(\frac{1}{2}-\theta\right)h_t\left[\frac{\partial^{3}u}{\partial x^{2}\partial t}\right]_{j}^{k}+O(h_t^{2}+h_x^2)$，因此当 $\theta = \frac{1}{2}$ 时，方程具有 $O(h_t^{2}+h_x^2)$ 精度，称为 Crank-Nicolson 格式（CN 格式）。
-
-
-公式 \ref{公式5} 的增长因子及稳定性条件为：
+\section{求入射到光纤的角度满足的条件}
 
 \begin{equation}
-    G(h_t,\sigma)=\frac{1-4(1-\theta)ar\sin^2\frac{\sigma h}2}{1+4\theta ar\sin^2\frac{\sigma h}2}, \ \ 
-    \begin{cases}
-        r\leqslant\frac{1}{2a(1-2\theta)}, & \theta \in [0, \frac{1}{2}) \\ 
-        \text{无条件稳定}, & \theta \in [\frac{1}{2}, 1] \\ 
-    \end{cases}
+    n_0 \sin i = n_g \sin i', \quad n_g \sin (\frac{\pi}{2} - i') = n_c \sin \frac{\pi}{2} 
+     \Longrightarrow i \leqslant \arcsin 
+\end{equation}
+    
+
+\begin{figure}[H]\centering
+\includegraphics[width=0.55\textwidth]{assets/c6c9e6ef2f6755ead534508010ad0452 (2).jpg}
+\caption{\textbf{求入射到光纤的角度满足的条件}}\label{求入射到光纤的角度满足的条件}
+\end{figure}
+
+\section{推导光线轨迹方程}
+
+在 $x$-$y$ 平面中，设 $y = y(x)$ 表示光线的轨迹方程，$n = n(y)$ 表示介质的折射率。由几何关系，我们有：
+\begin{equation}
+\frac{\mathrm{d} y }{\mathrm{d} x } = \tan \theta = \frac{1}{\tan i} = \frac{\sqrt{1-\sin^2 i}}{\sin i} 
+\end{equation}
+
+由折射定律，记 $[n(y)\sin i(y)]_{y=0} = C$ ，则我们有：
+\begin{equation}
+n(y)\sin i(y) = C \Longrightarrow \frac{\mathrm{d} y }{\mathrm{d} x } = \frac{\sqrt{n^2 - C^2}}{C^2}, \quad \left(\frac{\mathrm{d} y }{\mathrm{d} x }\right)^{2} = \frac{n^2}{C^2} - 1
+\end{equation}
+两边同时对 $x$ 求导，得到：
+\begin{equation}
+2 \left(\frac{\mathrm{d} y }{\mathrm{d} x }\right) \left(\frac{\mathrm{d}^2 y }{\mathrm{d} x^2 }\right) = \frac{1}{C^2} \left(\frac{\mathrm{d} n^2 }{\mathrm{d} y }\right) \left(\frac{\mathrm{d} y }{\mathrm{d} x }\right) \Longrightarrow \frac{\mathrm{d}^2 y }{\mathrm{d} x^2 } = \frac{1}{2C^2}\cdot \frac{\mathrm{d} n^2 }{\mathrm{d} y } 
+\end{equation}
+也即
+\begin{equation}
+    \frac{\mathrm{d}^2 y }{\mathrm{d} x^2 } = \frac{1}{2n_0^2\sin^2 i}\cdot \frac{\mathrm{d} n^2 }{\mathrm{d} y } = \frac{1}{2n_0^2\cos^2 \theta}\cdot \frac{\mathrm{d} n^2 }{\mathrm{d} y } \quad 
+\end{equation}
+证毕。$\quad \square$
+
+\begin{figure}[H]\centering
+\includegraphics[width=0.8\textwidth]{assets/88b3f41951f9d3be9e2964935ebaf0f7.jpg}
+\caption{\textbf{推导光线轨迹方程}}\label{推导光线轨迹方程}
+\end{figure}
+
+事实上，在三维坐标系中考虑上述过程，或者利用费马原理和变分法，又或考虑哈密顿光学，可以得到更一般的形式，称为光路方程：
+\begin{equation}
+    \nabla n=\frac{\mathrm{d}}{\mathrm{d}s}\left(n\frac{\mathrm{d}\vec{r}}{\mathrm{d}s}\,\right)
 \end{equation}
 
 
-\begin{LineTheorem}[这是一个 Line Theorem]\label{这是一个 Line Theorem}
-    你好你好你好
-\end{LineTheorem}
 
-\begin{BlockTheorem}[这是一个 Block Theorem]\label{这是一个 Block Theorem}
-    你好你好你好
-\end{BlockTheorem}
 
-\end{definition}
 
-表格：
 
-\begin{table}[H]
-    \centering
-    \caption{\textbf{符号含义与约定}}
-    \label{tab:waterpump}
-    \begin{tabular}{ccccc}
-    \toprule
-    符号 & 符号含义& 单位\\
-    \midrule
-    符号1& 含义1& 单位1\\
-    符号2& 含义2& 单位2\\
-    符号3& 含义3& 单位3\\
-    符号4& 含义4& 单位4\\
-    \bottomrule
-    \end{tabular}
-\end{table}
 
-\chapter{这里是第二章}\thispagestyle{fancy} 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\chapter{2024.9.2 - 2024.9.8}\thispagestyle{fancy}
+\chapter{2024.9.9 - 2024.9.15}\thispagestyle{fancy}
+\chapter{2024.9.16 - 2024.9.22}\thispagestyle{fancy}
+\chapter{2024.9.23 - 2024.9.29}\thispagestyle{fancy}
+\chapter{2024.9.30 - 2024.10.7}\thispagestyle{fancy}
+
+
+
+\newpage
 \href{https://www.latex-tables.com/}{Latex Table Editor} 示例：
 
-% \usepackage{tabularray}
 
 \begin{longtblr}[caption={\bfseries 示例表格},label=tab:example]{
     hline{1,51} = {-}{0.08em},
@@ -943,630 +657,9 @@ title('Sine Function');
 
 \end{document}
 
-
-
 % VScode 常用快捷键：
 
-% F2:                       变量重命名
-% Ctrl + Enter:             行中换行
-% Alt + up/down:            上下移行
-% 鼠标中键 + 移动:           快速多光标
-% Shift + Alt + up/down:    上下复制
-% Ctrl + left/right:        左右跳单词
-% Ctrl + Backspace/Delete:  左右删单词    
-% Shift + Delete:           删除此行
-% Ctrl + J:                 打开 VScode 下栏(输出栏)
-% Ctrl + B:                 打开 VScode 左栏(目录栏)
-% Ctrl + `:                 打开 VScode 终端栏
-% Ctrl + 0:                 定位文件
-% Ctrl + Tab:               切换已打开的文件(切标签)
-% Ctrl + Shift + P:         打开全局命令(设置)
-
-% Latex 常用快捷键
-
-% Ctrl + Alt + J:           由代码定位到PDF
-% 
-
-
-% Git提交规范：
-% update: Linear Algebra 2 notes
-% add: Linear Algebra 2 notes
-% import: Linear Algebra 2 notes
-% delete: Linear Algebra 2 notes
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-\end{document}
-
-% VScode 常用快捷键：
-
+% Ctrl + R:                 打开最近的文件夹
 % F2:                       变量重命名
 % Ctrl + Enter:             行中换行
 % Alt + up/down:            上下移行

@@ -261,35 +261,99 @@
 
 为了更好的学习光学，建议先跳转至附录
 
-\chapter{光传播的基本原理}
+\chapter{光学导言}
 
+\section{光学发展简史（略）}
+\section{费马原理}
+
+\subsection{光的几何传播规律}
+
+\begin{definition}[光传播的基本原理]
+光传播的常见基本原理：
 \begin{enumerate}
-\item 直线传播：光在均匀介质里沿直线传播 \footnote{对高功率激光，此定律不成立}
-\item 反射定律：光线入射到两种不同的均匀介质的分界面上反射线位于入射面内，反射线和入射线分居法线两侧，反射角等于入射角
-\item 折射定律（斯涅尔定律）：折射线位于入射面内，折射线与入射线分居法线两侧，入射角的正弦与折射角的正弦
-之比为一与入射角无关的常数 \footnote{折射率较大的一侧称为光密介质；较小的一侧称为光疏介质}
+    \item 直线传播：光在均匀介质里沿直线传播 \footnote{对高功率激光，此定律不成立}
+    \item 反射定律：光线入射到两种不同的均匀介质的分界面上反射线位于入射面内，反射线和入射线分居法线两侧，反射角等于入射角
+    \item 折射定律（斯涅尔定律）：折射线位于入射面内，折射线与入射线分居法线两侧，入射角的正弦与折射角的正弦
+    之比为一与入射角无关的常数 \footnote{折射率较大的一侧称为光密介质；较小的一侧称为光疏介质}
+    \begin{equation}
+    n_1\sin i_1 = n_2 \sin i_2
+    \end{equation}
+    
+    \begin{figure}[H]\centering
+    \includegraphics[width=0.4\textwidth]{assets/image (44).jpg}
+    \caption{\textbf{反射与折射}}\label{反射与折射}
+    \end{figure}
+    
+    \item 光路可逆性：光沿反方向传播时，必定沿原光路返回 \footnote{也即在几何光学中，任何光路都是可逆的}
+    \item 独立传播：光在传播过程中与其他光束相遇时，各光束都各自独立传播，不改变其传播方向
+    \item 全反射：光线从光密介质入射到光疏介质，当入射角大于某临界值时，折射光完
+    全消失，只剩下反射光。该临界角度称为全反射临界角。
+    \begin{equation}
+    i_C = \arcsin (\frac{n_1}{n_2})\quad n_1<n_2
+    \end{equation}
+\end{enumerate}
+\end{definition}
+
+
+\begin{definition}[彩虹]
+\end{definition}
+
+
+\begin{definition}[三棱镜最小偏向角]
+
+最小偏向角 $\theta_0 = (i_1 - i_1')_{\text{min}}$ 满足：
 \begin{equation}
-n_1\sin i_1 = n_2 \sin i_2
-\end{equation}
-\item 光路可逆性：光沿反方向传播时，必定沿原光路返回 \footnote{也即在几何光学中，任何光路都是可逆的}
-\item 独立传播：光在传播过程中与其他光束相遇时，各光束都各自独立传播，不改变其传播方向
-\item 全反射：光线从光密介质入射到光疏介质，当入射角大于某临界值时，折射光完
-全消失，只剩下反射光。该临界角度称为全反射临界角。
-\begin{equation}
-i_C = \arcsin (\frac{n_1}{n_2})\quad n_1<n_2
+    \theta_0 = 2i_1 - A, \quad \frac{n_2}{n_1} = \frac{\sin\frac{\theta_0+A}2}{\sin\frac A2}
 \end{equation}
 
+\begin{figure}[H]\centering
+\includegraphics[width=0.4\textwidth]{assets/image (45).jpg}
+\caption{\textbf{三棱镜最小偏向角}}\label{三棱镜最小偏向角}
+\end{figure}
+
+\end{definition}
+
+\subsection{惠更斯原理}
+
+\begin{LineTheorem}[惠更斯原理]\label{LineTheorem: 惠更斯原理}
+    由振源发出的波动在 $t$ 时刻传播到一个波面 $S$，波面上的每一个面元可认为是次波的波源。由面元发出的次波向四面八方传播。在以后的时刻 $t'$ 形成次波面。这些次波面的包络面 $S'$ 就是 $t'$ 时刻总扰动的波面。
+\end{LineTheorem}
+
+\noindent 其中：
+\begin{enumerate}
+    \item 波面：在同一振源的波场中，扰动同时到达的各点具有相同的相位，这些点的轨迹构成一个曲面（平面波是曲线），称为波面（也称为波阵面、波前）\footnote{对平面波而言，波面虽然称为“面”，但实际上是一条条曲线}
+    \item 波线：取波面被某个平面所截得到的等高线，与此等高线处处正交的曲线称为波线，其切线方向为光的传播方向
 \end{enumerate}
 
-Homework 1.1 求入射到光纤的角度满足的条件。
+\noindent 几何光学的定律需要前提条件：
+\begin{enumerate}
+\item 必须是均匀介质，即同一介质的折射率处处相等，折射率不是位置的函数。
+\item 必须是各向同性介质，即光在介质中传播时各个方向的折射率相等，折射率不是方向的函数。
+\item 光强不能太强，否则巨大的光能量会使线性叠加原理不再成立而出现非线性情况。
+\item 光学元件的线度应比光的波长大得多，否则不能把光束简化为光线。
+\end{enumerate}
 
+\begin{figure}[H]\centering
+\includegraphics[width=0.5\textwidth]{assets/image (46).jpg}
+\caption{\textbf{惠更斯原理}}\label{惠更斯原理}
+\end{figure}
+
+\subsection{费马原理}
+
+\begin{BlockTheorem}[费马原理]\label{费马原理}
+光从空间中一点传播到另一点时，总是沿光程（optical length, OPL）取极值的路径传播 \footnote{这里的“极值”可以是极小值、极大值或常数，一般情况下，实际光程大多取极小值。极大值（如凹面镜成像）、拐点（如椭球面镜、凸透镜）的例子，可以参考 \href{https://zhuanlan.zhihu.com/p/107739173}{知乎：浅谈几何光学(1)——费马原理}}，公式：
 \begin{equation}
-n_0 \sin i = n_g \sin i', \quad n_g \sin (\frac{\pi}{2} - i') = n_c \sin \frac{\pi}{2} 
- \Longrightarrow i \leqslant \arcsin 
+    \mathrm{d}\left(\int\limits_{Q}^{P}ndl\right)=0
 \end{equation}
+\end{BlockTheorem}
+由费马原理可以导出诸多推论，包括我们熟知的几条基本原理，还有物像之间的等光程性（例如凸透镜）：
+在物点Q与像点Q’之间，不管光线经何路径，凡是由Q通过同样的光学系统到达Q’的光线，都是等光程的。
 
-1.2 推导光线轨迹方程
-
+\subsection{成像}
+\subsection{薄透镜}
+\subsection{光学仪器}
+\subsection{光波的描述}
+\subsection{光度学基本概念}
 
 \chapter{}
 \chapter{}

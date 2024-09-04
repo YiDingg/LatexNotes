@@ -603,7 +603,7 @@ R_{\Delta} = 3R_Y
 
 
 \begin{definition}[独立源等效替换]
-如图 \ref{实际独立源等效示意图}，当满足下式时，两者可以等效替换。
+如图 \ref{实际独立源等效示意图}，当满足下式时，两者可以等效替换 {\color{red}（注意变换前后的电流方向！）}。
 \begin{equation}
 U_S = I_SR_S\ \  \text{或}\ \  I_S = \frac{U_S}{R_S}
 \end{equation}
@@ -621,8 +621,28 @@ U_S = I_SR_S\ \  \text{或}\ \  I_S = \frac{U_S}{R_S}
 等效变换时，如果变换只对受控量进行，则变换后仍是受控源，同时，不能将控制量所在支路变换掉
 \item 当控制量与受控制量包含在一个二端网络内部时，可将此二端网络等效为一个电阻
 \end{enumerate}
+\end{definition}
+
+
+\begin{definition}[独立电流源串联]
+如图 \ref{双独立电流源} 所示，两个独立电流源串联，可以分别将其等效为独立电压源，等效仍成立。
+\begin{figure}[H]\centering
+\includegraphics[width=0.4\textwidth]{assets/独立电流源并联.drawio.pdf}
+\caption{\textbf{独立电流源串联}}\label{双独立电流源}
+\end{figure}
+\end{definition}
+
+
+\begin{definition}[独立电压源并联]
+如图 \ref{} 所示，两个独立电压源并联，可以分别将其等效为独立电流源，处理并联关系后转换为电压源，最终得：
+\begin{equation}
+U = \frac{\frac{U_1}{R_1} + \frac{U_2}{R_2}}{\frac{1}{R_1} + \frac{1}{R_2}} = \frac{R_2U_1 + R_1U_2}{R_1+R_2}, \quad R = \frac{R_1R_2}{R_1 + R_2}
+\end{equation}
+
+（缺图：独立电压源串联）
 
 \end{definition}
+
 
 
 \begin{definition}[最大功率传输]

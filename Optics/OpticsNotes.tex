@@ -193,6 +193,7 @@
 % 文章默认字体设置
 \usepackage{fontspec}   % 宏包：字体设置
     \setmainfont{SimSun}    % 设置中文字体为宋体字体
+    \setCJKmainfont[AutoFakeBold=3]{SimSun} % 设置加粗字体为 SimSun 族，AutoFakeBold 可以调整字体粗细
     \setmainfont{Times New Roman} % 设置英文字体为Times New Roman
 
 % 各级标题自定义设置
@@ -313,7 +314,7 @@
 
 \end{definition}
 
-\subsection{惠更斯原理}
+\subsection{惠更斯原理、费马原理}
 
 \begin{LineTheorem}[惠更斯原理]\label{LineTheorem: 惠更斯原理}
     由振源发出的波动在 $t$ 时刻传播到一个波面 $S$，波面上的每一个面元可认为是次波的波源。由面元发出的次波向四面八方传播。在以后的时刻 $t'$ 形成次波面。这些次波面的包络面 $S'$ 就是 $t'$ 时刻总扰动的波面。
@@ -337,8 +338,6 @@
 \includegraphics[width=0.5\textwidth]{assets/image (46).jpg}
 \caption{\textbf{惠更斯原理}}\label{惠更斯原理}
 \end{figure}
-
-\subsection{费马原理}
 
 \begin{BlockTheorem}[费马原理]\label{费马原理}
 光从空间中一点传播到另一点时，总是沿光程（optical length, OPL）取极值的路径传播 \footnote{这里的“极值”可以是极小值、极大值或常数，一般情况下，实际光程大多取极小值。极大值（如凹面镜成像）、拐点（如椭球面镜、凸透镜）的例子，可以参考 \href{https://zhuanlan.zhihu.com/p/107739173}{知乎：浅谈几何光学(1)——费马原理}}，公式：
@@ -364,8 +363,23 @@
 \item 虚像：汇聚的同心出射光束的“心”
 \end{enumerate}
 
-物像的共轭性（可逆性）：
-若 $P$ 为 物体 $P$（可实可虚）的像点，则反之，当物点为 $P$ 时，像点必在点 $P'$。是光路可逆性的必然结果。 
+\textbf{物像的共轭性（可逆性）：}
+若 $P$ 为 物体 $P$（可实可虚）的像点，则反之，当物点为 $P$ 时，像点必在点 $P'$（实际光路可能不同）。是光路可逆性的必然结果。 
+
+计算由物到像的 OPL 时，若为实线（实物、实像）则取正，称为实光程，若为虚线（虚物、虚像）则取负，称为虚光程。
+
+\begin{figure}[H]\centering
+\includegraphics[width=0.7\textwidth]{assets/path2.pdf}
+\caption{\textbf{光程恒定的例子}}\label{光程恒定的例子}
+\end{figure}
+
+
+\begin{definition}[折射球面]
+的
+对于折射球面，存在一对恰好成像的共轭点，称为齐明点。在齐明点处，可以证明 $Q$ 到 $Q'$ 的光程（即物像间的OPL）$l_{QQ"}$
+
+\end{definition}
+
 
 \subsection{薄透镜}
 \subsection{光学仪器}

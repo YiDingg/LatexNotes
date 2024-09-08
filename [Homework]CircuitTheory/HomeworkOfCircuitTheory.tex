@@ -393,28 +393,28 @@ C （充放电倍率）表示电池充放电时电流相对电池容量的大小
 
 \section{习题集 1-33}
 左半边回路有：
-\begin{gather}
+\begin{gather*}
 u_1 - 67i_e - (1-\alpha)i_e \cdot 150 = 0 \Longrightarrow \frac{u_2}{u_1} = \frac{\alpha i_eR_L }{70i_e} = \frac{0.98\times 1500}{70} = 21 \\ 
 p_2 = (\alpha i_e)^2R_L, \quad p_1 = u_1 i_e \Longrightarrow \frac{p_2}{p_1} = \frac{(\alpha i_e)^2R_L}{70i_e^2} = 20.58
-\end{gather}
+\end{gather*}
 
 \begin{figure}[H]\centering
-\includegraphics[width=0.35\textwidth]{assets/2/image (47).jpg}
+\includegraphics[width=0.5\textwidth]{assets/2/image (47).jpg}
 \caption{\textbf{习题集 1-33}}
 \end{figure}
 
 
 \section{习题集 2-2}
-对图 (a)，利用串并联和 $\Delta$-Y 变换，可以得到：
+对图 (a)，化简并联后电桥平衡，可以得到
+\begin{equation*}
+\frac{1}{R} = \frac{1}{20 } + \frac{1}{40} +\frac{1}{40} \Longrightarrow R = 10\ \Omega
+\end{equation*}
+对图 (b)，经过多次并联化简，可以得到：
 \begin{equation}
-R = \frac{20\cdot\left( \frac{180}{13} + \frac{1}{2}(\frac{30}{13} + 10)\right)}{20 + \left( \frac{180}{13} + \frac{1}{2}(\frac{30}{13} + 10)\right)} = \frac{20\cdot \frac{240}{13}}{20 + \frac{240}{13}} = 9.6 \ \Omega
-\end{equation}
-对图 (b)，注意到六个电阻都分别与 a, b 两点相连，为并联关系，因此：
-\begin{equation}
-R_{ab} = \frac{1}{6}R 
+R = 8 + \frac{3\times 6}{3+6}=10\ \Omega
 \end{equation}
 \begin{figure}[H]\centering
-\includegraphics[width=0.5\textwidth]{assets/2/e02c39d3f229a4b6352b828e57c3737f.jpg}
+\includegraphics[width=0.85\textwidth]{assets/2/e02c39d3f229a4b6352b828e57c3737f.jpg}
 \caption{\textbf{习题集 2-2}}
 \end{figure}
 
@@ -422,15 +422,15 @@ R_{ab} = \frac{1}{6}R
 
 各电路的最简电路图如图 \ref{习题集 2-6 解答} 所示： 
 
-\noindent\begin{minipage}{0.49\textwidth}
+\noindent\begin{minipage}{0.50\textwidth}
     \begin{figure}[H]\centering
-        \includegraphics[width=\textwidth]{assets/2/bfc7d58924b9eaf9582656c984bd2c3b.jpg}
+        \includegraphics[height=190pt]{assets/2/bfc7d58924b9eaf9582656c984bd2c3b.jpg}
         \caption{\textbf{习题集 2-6}}
     \end{figure}
 \end{minipage}\hfill
-\begin{minipage}{0.45\textwidth}
+\begin{minipage}{0.50\textwidth}
     \begin{figure}[H]\centering
-        \includegraphics[width=\textwidth]{assets/DrawioFiles/2-6.drawio.pdf}
+        \includegraphics[height=190pt]{assets/2/2-6.drawio.pdf}
         \caption{\textbf{习题集 2-6 解答}}\label{习题集 2-6 解答}
     \end{figure}        
 \end{minipage}
@@ -438,50 +438,89 @@ R_{ab} = \frac{1}{6}R
 
 \section{习题集 2-8}
 
-最简电路如图所示，则有：
-\begin{equation}
+对原电路进行多次等效转换，得到最简电路如图所示，进而有：
+\begin{equation*}
 I = \frac{3}{2+3+5} = 0.3\ \mathrm{A}
-\end{equation}
+\end{equation*}
 
+\noindent\begin{minipage}{0.49\textwidth}
+    \begin{figure}[H]\centering
+        \includegraphics[height=120pt]{assets/2/78abd22edee32bbd38134d510246a9ab.jpg}
+        \caption{\textbf{习题集 2-8}}
+    \end{figure}
+\end{minipage}\hfill
+\begin{minipage}{0.49\textwidth}
 \begin{figure}[H]\centering
-\includegraphics[width=0.4\textwidth]{assets/2/78abd22edee32bbd38134d510246a9ab.jpg}
-\caption{\textbf{习题集 2-8}}
+\includegraphics[height=120pt]{assets/2/2-8.drawio.pdf}
+\caption{\textbf{习题集 2-8 等效电路}}\label{习题集 2-8 等效电路}
 \end{figure}
+\end{minipage}
 
 \section{习题集 2-11}
 
-等效电路图如图 \ref{} 所示，可以先将两个并联的实践独立电压源等效为一个，由此计算通过 $4\ \Omega$ 电阻的电流。
-\begin{equation}
-U' = \frac{12\times 8 + 4\times 25}{4 + 8} = \frac{31}{3}\ \mathrm{V}, \quad R' = \frac{4\times 8}{4 + 8} = \frac{8}{3}\ \Omega \Longrightarrow I' = \frac{\frac{31}{3}}{\frac{8}{3}+4} = \frac{31}{20}\ \mathrm{A}
-\end{equation}
-再回到图 \ref{} 中，对右侧网格有电势差：
-\begin{equation}
-25 - 4I' - 8I = 0 \Longrightarrow I = 2.35 \ \mathrm{A}
-\end{equation}
+等效电路图如图 \ref{习题集 2-11 等效电路} 所示，由 KVL 得：
+\begin{gather*}
+28 = 4I' + 4(I' - I),\quad 25 = -8I + 4(I' - I) \Longrightarrow I' = 2.95\ \mathrm{A},\ I = -1.1\ \mathrm{A}
+\end{gather*}
+
+
+\noindent\begin{minipage}{0.55\textwidth}
 \begin{figure}[H]\centering
-\includegraphics[width=0.5\textwidth]{assets/2/1187c3e12fa1e6bd8d2019d53bd2752a.jpg}
+\includegraphics[height=110pt]{assets/2/1187c3e12fa1e6bd8d2019d53bd2752a.jpg}
 \caption{\textbf{习题集 2-11}}
 \end{figure}
+\end{minipage}\hfill
+\begin{minipage}{0.43\textwidth}
+\begin{figure}[H]\centering
+\includegraphics[height=110pt]{assets/2/2-11.drawio.pdf}
+\caption{\textbf{习题集 2-11 等效电路}}\label{习题集 2-11 等效电路}
+\end{figure}
+\end{minipage}
 
 \section{习题集 2-17}
 
-将左侧受控电流源等效为电压源，可以求得电流 $I$：
-\begin{equation}
-x
-\end{equation}
+等效电路图如图 \ref{2-17} 所示，可以求得：
+\begin{equation*}
+4I - 8 = 12(I-1) \Longrightarrow I = 0.5\ \mathrm{A}\Longrightarrow U = 8 - 8I = 4\ \mathrm{V}
+\end{equation*}
 
+
+\noindent\begin{minipage}{0.49\textwidth}
 \begin{figure}[H]\centering
-\includegraphics[width=0.5\textwidth]{assets/2/78473b1c403974e048249bbdbf6a152f.jpg}
+\includegraphics[height=120pt]{assets/2/78473b1c403974e048249bbdbf6a152f.jpg}
 \caption{\textbf{习题集 2-17}}
 \end{figure}
+\end{minipage}\hfill
+\begin{minipage}{0.49\textwidth}
+\begin{figure}[H]\centering
+\includegraphics[height=120pt]{assets/2/2-17.drawio.pdf}
+\caption{\textbf{习题集 2-17 等效电路}}\label{2-17}
+\end{figure}
+\end{minipage}
+
+
 
 \section{习题集 2-22}
 
+经过电源等效和 $\Delta$-Y 变换，等效电路图如图 \ref{2-22} 所示，回路总电阻 $R = 3 + \frac{4}{9} + \frac{14}{9} = 5\ \Omega$，\ $I_1 = \frac{U}{R} = 1.2\ \mathrm{A}$，则有：
+\begin{equation*}
+U_1 = 6 - 3\times 1.2 = 2.4\ \mathrm{V},\ U_2 = 2\times \frac{I}{2} = 1.2\ \mathrm{V},\quad P = 2 U_1 = 4.8\ \mathrm{W}
+\end{equation*}
+
+\noindent\begin{minipage}{0.49\textwidth}
 \begin{figure}[H]\centering
-\includegraphics[width=0.5\textwidth]{assets/2/0c8d1f0fb90ef6983c0aef6451919e4b.jpg}
+\includegraphics[height=110pt]{assets/2/0c8d1f0fb90ef6983c0aef6451919e4b.jpg}
 \caption{\textbf{习题集 2-22}}
 \end{figure}
+\end{minipage}\hfill
+\begin{minipage}{0.49\textwidth}
+\begin{figure}[H]\centering
+\includegraphics[height=110pt]{assets/2/2-22.drawio.pdf}
+\caption{\textbf{习题集 2-22}}\label{2-22}
+\end{figure}
+\end{minipage}
 
+\newpage
 \section{\color[rgb]{0.2,0.9,0.2}（非作业） 习题集 2-4 (b)}
 \section{\color[rgb]{0.2,0.9,0.2}（非作业） 习题集 2-5}
 \section{\color[rgb]{0.2,0.9,0.2}（非作业） 习题集 2-5}
@@ -690,284 +729,6 @@ x
 
 
 
-
-\chapter{基础知识}\thispagestyle{fancy} 
-\section{第一章第一节}
-
-
-\begin{definition}[向后加权隐式格式]
-
-将向前差分与向后差分加权组合起来，得到：
-
-\begin{equation}\label{公式5}
-    \frac{u_{j}^{k}-u_{j}^{k-1}}{h_t}=a\theta\frac{u_{j+1}^{k}-2u_{j}^{k}+u_{j-1}^{k}}{h_x^2}+a(1-\theta)\frac{u_{j+1}^{k-1}-2u_{j}^{k-1}+u_{j-1}^{k-1}}{h_x^2}
-\end{equation}
-
-其中 $\theta \in [0, 1]$ 为权重，其截断误差 $R = a\left(\frac{1}{2}-\theta\right)h_t\left[\frac{\partial^{3}u}{\partial x^{2}\partial t}\right]_{j}^{k}+O(h_t^{2}+h_x^2)$，因此当 $\theta = \frac{1}{2}$ 时，方程具有 $O(h_t^{2}+h_x^2)$ 精度，称为 Crank-Nicolson 格式（CN 格式）。
-
-
-公式 \ref{公式5} 的增长因子及稳定性条件为：
-
-\begin{equation}
-    G(h_t,\sigma)=\frac{1-4(1-\theta)ar\sin^2\frac{\sigma h}2}{1+4\theta ar\sin^2\frac{\sigma h}2}, \ \ 
-    \begin{cases}
-        r\leqslant\frac{1}{2a(1-2\theta)}, & \theta \in [0, \frac{1}{2}) \\ 
-        \text{无条件稳定}, & \theta \in [\frac{1}{2}, 1] \\ 
-    \end{cases}
-\end{equation}
-
-
-\begin{LineTheorem}[这是一个 Line Theorem]\label{这是一个 Line Theorem}
-    你好你好你好
-\end{LineTheorem}
-
-\begin{BlockTheorem}[这是一个 Block Theorem]\label{这是一个 Block Theorem}
-    你好你好你好
-\end{BlockTheorem}
-
-\end{definition}
-
-表格：
-
-\begin{table}[H]
-    \centering
-    \caption{\textbf{符号含义与约定}}
-    \label{tab:waterpump}
-    \begin{tabular}{ccccc}
-    \toprule
-    符号 & 符号含义& 单位\\
-    \midrule
-    符号1& 含义1& 单位1\\
-    符号2& 含义2& 单位2\\
-    符号3& 含义3& 单位3\\
-    符号4& 含义4& 单位4\\
-    \bottomrule
-    \end{tabular}
-\end{table}
-
-\chapter{这里是第二章}\thispagestyle{fancy} 
-
-\href{https://www.latex-tables.com/}{Latex Table Editor} 示例：
-
-% \usepackage{tabularray}
-
-\begin{longtblr}[caption={\bfseries 示例表格},label=tab:example]{
-    hline{1,51} = {-}{0.08em},
-    hline{2} = {-}{},
-  }
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ 
-\end{longtblr}
-
-\href{https://www.tablesgenerator.com/latex_tables#}{Create Latex Tables Online} 示例：
-
-% Please add the following required packages to your document preamble:
-% \usepackage{booktabs}
-% \usepackage{longtable}
-% Note: It may be necessary to compile the document several times to get a multi-page table to line up properly
-\begin{longtable}[c]{ccc}
-    \caption{\bfseries Create Latex Tables Online 示例}
-    \label{tab:my-table}\\
-    \toprule
-    表头& 表头 & 表头 \\* \midrule
-    \endfirsthead
-    %
-    \multicolumn{3}{c}%
-    {{\bfseries Table \thetable :\ continued from previous page}} \\
-    \toprule
-    表头& 表头 & 表头 \\* \midrule
-    \endhead
-    %
-    \bottomrule
-    \endfoot
-    %
-    \endlastfoot
-    %
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\* \bottomrule
-\end{longtable}
-
-
-
-\nocite{*}
-\bibliography{re}
-\thispagestyle{fancy} 
-\addcontentsline{toc}{chapter}{参考文献}
-
-
-
-
-\newpage
-\appendix
-\titleformat{\chapter}[hang]{\normalfont\huge\bfseries\centering}{}{20pt}{\thechapter}
-\titleformat{\section}{\large\centering\bfseries}{\thesection}{1em}{}
-\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection}{1em}{}
-
-\chapter*{附录 A}\addcontentsline{toc}{chapter}{附录 A}
-
-\setcounter{section}{0}
-\renewcommand\thesection{A.\arabic{section}}
-
-\section{支撑材料列表} 
-
-\begin{center}
-  这里插入一张图片（类似思维导图那种）
-\end{center}
-\section{这里是我的第二节附录}
-% 注意：listing环境中手动输入的代码需要顶格写
-
-\begin{matlablisting}
-% MATLAB code here
-x = 0:0.1:2*pi;
-y = sin(x);
-plot(x, y);
-xlabel('x');
-ylabel('sin(x)');
-title('Sine Function');
-% ... (MATLAB code here，最好是插入文件)
-% MATLAB code here
-x = 0:0.1:2*pi;
-y = sin(x);
-plot(x, y);
-xlabel('x');
-ylabel('sin(x)');
-title('Sine Function');
-% ... (MATLAB code here，最好是插入文件)
-% MATLAB code here
-x = 0:0.1:2*pi;
-y = sin(x);
-plot(x, y);
-xlabel('x');
-ylabel('sin(x)');
-title('Sine Function');
-% ... (MATLAB code here，最好是插入文件)
-% MATLAB code here
-x = 0:0.1:2*pi;
-y = sin(x);
-plot(x, y);
-xlabel('x');
-ylabel('sin(x)');
-title('Sine Function');
-% ... (MATLAB code here，最好是插入文件)
-% MATLAB code here
-x = 0:0.1:2*pi;
-y = sin(x);
-plot(x, y);
-xlabel('x');
-ylabel('sin(x)');
-title('Sine Function');
-% ... (MATLAB code here，最好是插入文件)
-% MATLAB code here
-x = 0:0.1:2*pi;
-y = sin(x);
-plot(x, y);
-xlabel('x');
-ylabel('sin(x)');
-title('Sine Function');
-% ... (MATLAB code here，最好是插入文件)% ... (MATLAB code here，最好是插入文件)% ... (MATLAB code here，最好是插入文件)% ... (MATLAB code here，最好是插入文件)% ... (MATLAB code here，最好是插入文件)A
-% MATLAB code here
-x = 0:0.1:2*pi;
-y = sin(x);
-plot(x, y);
-xlabel('x');
-ylabel('sin(x)');
-title('Sine Function');
-% ... (MATLAB code here，最好是插入文件)
-\end{matlablisting}
-
-\section{这里是我的第三节附录}
-你好你好你好你好你好你好
 
 \end{document}
 

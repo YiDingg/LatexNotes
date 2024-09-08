@@ -7,6 +7,23 @@
 % 设定文章类型与编码格式
 \documentclass[UTF8]{report}		
 
+% 本 .tex 专属的宏定义
+    \def\V{\ \mathrm{V}}
+    \def\mV{\ \mathrm{mV}}
+    \def\kV{\ \mathrm{kV}}
+    \def\KV{\ \mathrm{kV}}
+    \def\MV{\ \mathrm{MV}}
+    \def\A{\ \mathrm{A}}
+    \def\mA{\ \mathrm{mA}}
+    \def\kA{\ \mathrm{kA}}
+    \def\KA{\ \mathrm{kA}}
+    \def\MA{\ \mathrm{MA}}
+    \def\O{\ \Omega}
+    \def\mO{\ \Omega}
+    \def\kO{\ \mathrm{k}\Omega}
+    \def\KO{\ \mathrm{k}\Omega}
+    \def\MO{\ \mathrm{M}\Omega}
+    \def\Hz{\ \mathrm{Hz}}
 
 % 自定义宏定义
     \def\N{\mathbb{N}}
@@ -17,7 +34,7 @@
     \def\C{\mathbb{C}}
     \def\T{\mathbb{T}}
     \def\S{\mathbb{S}}
-    \def\A{\mathbb{A}}
+    %\def\A{\mathbb{A}}
     \def\I{\mathscr{I}}
     \def\d{\mathrm{d}}
     \def\p{\partial}
@@ -150,6 +167,7 @@
             % 一定程度上修复导入后图片文字溢出几何图形的问题
             inkscapelatex = false                 
         }
+    \usepackage{subcaption} % 用于子图和小图注  
 
 % 图表进阶设置
     \usepackage{caption}    % 图注、表注
@@ -163,7 +181,10 @@
 
 % 列表设置
     \usepackage{enumitem}   % 宏包：列表环境设置
-        \setlist[enumerate]{itemsep=0pt, parsep=0pt, topsep=0pt, partopsep=0pt, leftmargin=3.5em} 
+        \setlist[enumerate]{
+            label=(\arabic*) ,   % 设置序号样式为加粗的 (1) (2) (3)
+            ref=\arabic*, % 如果需要引用列表项，这将决定引用格式（这里仍然使用数字）
+            itemsep=0pt, parsep=0pt, topsep=0pt, partopsep=0pt, leftmargin=3.5em} 
         \setlist[itemize]{itemsep=0pt, parsep=0pt, topsep=0pt, partopsep=0pt, leftmargin=3.5em}
         \newlist{circledenum}{enumerate}{1} % 创建一个新的枚举环境  
         \setlist[circledenum,1]{  
@@ -189,6 +210,7 @@
 % 文章默认字体设置
 \usepackage{fontspec}   % 宏包：字体设置
     \setmainfont{SimSun}    % 设置中文字体为宋体字体
+    \setCJKmainfont[AutoFakeBold=3]{SimSun} % 设置加粗字体为 SimSun 族，AutoFakeBold 可以调整字体粗细
     \setmainfont{Times New Roman} % 设置英文字体为Times New Roman
 
 % 各级标题自定义设置
@@ -264,7 +286,7 @@
 一般来讲，电路的研究内容分为电路分析、电路综合，分别对应电路研究的正问题（已知电路求电路的解）和逆问题（已知解求电路结构参数），本课程的重点在电路分析，对电路综合不深入探讨。
 
 \begin{figure}[H]\centering
-\includegraphics[width=0.5\textwidth]{assets/11b7879b24f71ddbf3e5316424203201.png}
+\includegraphics[width=0.5\textwidth]{assets/11b7879b24f71ddbf3e5316424203201.jpg}
 \caption{\textbf{电路原理与其他电类主要课程的联系}}\label{电路原理与其他电类主要课程的联系}
 \end{figure}
 
@@ -293,8 +315,8 @@ u_{ab} = \frac{\mathrm{d} w_{ab}}{\mathrm{d}q},\ i_{ab} = \frac{\mathrm{d} q_{ab
 部分常见的电路元件如图 \ref{部分常见电路元件} 所示：
 
 \begin{figure}[H]\centering
-\includegraphics[width=0.5\textwidth]{assets/7d3f6db847882c6447cc046186ede6ef.png}
-\includegraphics[width=0.5\textwidth]{assets/3f5d73ec5ae9909ab42cd864852b0d72.png}
+\includegraphics[width=0.5\textwidth]{assets/7d3f6db847882c6447cc046186ede6ef.jpg}
+\includegraphics[width=0.5\textwidth]{assets/3f5d73ec5ae9909ab42cd864852b0d72.jpg}
 \caption{\textbf{部分常见电路元件}}\label{部分常见电路元件}
 \end{figure}
 
@@ -333,7 +355,7 @@ $R, L, C$ 被称为电路基本模型，是电路分析的最基本模型。对�
 \end{figure}
 
 \begin{figure}[H]\centering
-\includegraphics[width=0.75\textwidth]{assets/1b9e0bed85e1f3a049de96f4c6018da8.png}
+\includegraphics[width=0.75\textwidth]{assets/1b9e0bed85e1f3a049de96f4c6018da8.jpg}
 \caption{\textbf{信号示意图}}\label{信号示意图}
 \end{figure}
 
@@ -639,7 +661,7 @@ U_S = I_SR_S\ \  \text{或}\ \  I_S = \frac{U_S}{R_S}
 U = \frac{\frac{U_1}{R_1} + \frac{U_2}{R_2}}{\frac{1}{R_1} + \frac{1}{R_2}} = \frac{R_2U_1 + R_1U_2}{R_1+R_2}, \quad R = \frac{R_1R_2}{R_1 + R_2}
 \end{equation}
 
-（缺图：独立电压源串联）
+{\color{red} （缺图：独立电压源串联）}
 
 \end{definition}
 
@@ -670,6 +692,10 @@ P_L = P_L(R_L) =  \left(\frac{U_S}{R_S + R_L}\right)^2R_L, \ P_{L,\mathrm{max}} 
 \end{definition}
 
 \section{运算放大器}
+
+\subsection{运算放大器及其电气特性}
+
+
 运算放大器（operational amplifier, Op Amp, OPA），简称运放，是一种性质特殊的多端集成电路，可视为电压放大器。借助 OPA，可实现模拟信号的各种数学运算。
 
 在图 \ref{OPA 示意图} 中，OPA 的国标电路符号如图 (a) 所示，简化符号如图 (b) 所示，过去也惯用符号图 (c)。
@@ -678,23 +704,132 @@ P_L = P_L(R_L) =  \left(\frac{U_S}{R_S + R_L}\right)^2R_L, \ P_{L,\mathrm{max}} 
 \caption{\textbf{OPA 示意图}}\label{OPA 示意图}
 \end{figure}
 
-其中，a 接线端称为反相输入端（inverting input），用 $u_-$ 表示；b 接线端称为同相输入端（noninverting input），用 $u_+$ 表示；o 接线端称为输出端（output），用 $u_o$ 表示; $V_{CC}$ supply voltage, working voltage），向 OPA 提供直流电压以保证其正常工作；接地端 ground 并非大地，而是电源 $V_{CC}$ 的公共参考零点；参数 $A$ 为开环放大倍数。
-
-需要注意，在图 \ref{OPA 示意图} (b) 中，因为省略了电源部分，所以包围 OPA 的封闭曲线不满足广义 KCL。
+其中，a 接线端称为反相输入端（inverting input），用 $u_-$ 表示；b 接线端称为同相输入端（noninverting input），用 $u_+$ 表示；o 接线端称为输出端（output），用 $u_o$ 表示; $V_{CC}$ supply voltage, working voltage），向 OPA 提供直流电压以保证其正常工作；接地端 ground 并非大地，而是电源 $V_{CC}$ 的公共参考零点；参数 $A$ 为开环放大倍数。需要注意，在图 \ref{OPA 示意图} (b) 中，因为省略了电源部分，所以包围 OPA 的封闭曲线不满足广义 KCL。
 
 OPA 的主要电气参数包括：
-
 \begin{enumerate}
-\item 供电电压（supply voltage）$V_{CC}$
-\item 开环电压增益（open-loop voltage gain）$A$：在开环情况下（无输入引回到输出）满足
-\begin{equation}
-    u_o = A(u_+-u_-) = Au_d
-\end{equation}
+\item $V_\text{CC}$ : 供电电压（supply voltage）
+\item $A$ : 开环电压增益（open-loop voltage gain），在开环情况下\footnote{（无输入引回到输出）}满足 $u_o = Au_d = A(u_+-u_-) $，$A$ 因元件和温度而变，通常在 $10^5\sim 10^8$ 之间。
+\item $R_i$ : 输入电阻（input resistance），$u_-$ 和 $u_+$ 端的等效电阻，基本上在 $\mathrm{M} \Omega$ 量级。
+\item $R_o$ : 输出电阻（output resistance），$u_o$ 和接地端的等效电阻，基本上在 $\Omega$ 量级。
+\item $U_{\text{sat}}$ : 饱和电压（saturate voltage），一般比 $V_{\text{CC}}$ 低两 $\mathrm{V}$ 左右。
 \end{enumerate}
 
+\noindent\begin{minipage}{0.67\textwidth}
+\hspace{2em}OPA 仅在线性区内满足 $u_o = Au_d$，实际与近似输入输出曲线如图 \ref{OPA 输入输出曲线} 所示，在非线性区对外相当于一个独立电压源，称为正向（负向）饱和区。事实上，线性区是一个相当小的范围，例如 $A = 10^5$，$U_\text{sat} = 13 \V$，则 $U_{\text{ds}} = 0.13 \mV$。 
+    
+\hspace{2em}影响OPA的其它电气参数还包括输入失调电压、输入失调电流、输入偏置电流、压摆率（或转换速率）、增益宽带积、共模抑制比、静态功耗等。我们会在后续的模电课程中讨论它们对 OPA 的具体影响。
+\end{minipage}\hfill
+\begin{minipage}{0.31\textwidth}
+    \begin{figure}[H]\centering
+        \includegraphics[width=\textwidth]{assets/image (49).jpg}
+        \caption{\textbf{OPA 输入输出曲线}}\label{OPA 输入输出曲线}
+        \end{figure}
+\end{minipage}
 
-\subsection{运算放大器及其电气特性}
+由此可得出低频直流情形下 OPA 的低频受控源模型，如图 \ref{OPA 的低频受控源模型} (a) 所示。特别地，当电路电阻都在 $\kO$ 量级时，从工程的角度来看，可认为 $R_i = \infty$ 而 $R_o = 0$，如图 \ref{OPA 的低频受控源模型} (b) 所示。 
 
+\begin{figure}[H]\centering
+\includegraphics[width=0.7\textwidth]{assets/image (50).png}
+\caption{\textbf{OPA 的低频受控源模型}}\label{OPA 的低频受控源模型}
+\end{figure}
+
+为了使 OPA 在多种场合可以正常使用，我们需要将一部分输出引回到输入，这种电路连接方式称为反馈（feedback）。将部分输出引到 $u_-$ 端，使得 $u_-$ 升高，进而抑制信号放大，可以构成负反馈；将部分输出引到 $u_+$ 端，使得 $u_+$ 升高，进而促进信号放大，可以构成正反馈。
+
+
+先讨论一个负反馈的例子，如图 \ref{负反馈 OPA 电路} 所示，求电压放大倍数 $\frac{u_o}{u_i}$。
+
+注意这里 $u_+ = 0$ 而 $u_- = u_i$，列出 KVL: 
+\begin{gather}
+u_i - iR_1 = u_1,\quad u_1 - iR_f = -Au_1 \Longrightarrow I =(1+A) \frac{u_1}{R_f} \\ 
+\Longrightarrow \frac{u_o}{u_i} = \frac{-Au_1}{u_i} = \frac{-Au_1}{u_1+iR_1} = \frac{-A}{1+(1+A)\frac{R_1}{R_f}} = \frac{-AR_f}{AR_1 + (R_1 + R_f)}
+\end{gather}
+当电路电阻在 $\kO$ 量级，工程上可以认为：
+\begin{equation}
+\frac{u_o}{u_i} = -\frac{AR_f}{AR_1} = -\frac{R_f}{R_1}
+\end{equation}
+这样，信号放大倍数与 $A$ 无关，只需调整电阻值，即可得到合适的放大倍数。负反馈在保证 OPA 工作在线性区至关重要，同时，负反馈也可以很好的减弱噪声对输出信号的影响。有时希望 OPA 工作于饱和区，就需要引入正反馈。不加任何反馈的 OPA 也可用作电压大小的比较器。
+
+\begin{figure}[H]\centering
+\includegraphics[width=0.75\textwidth]{assets/image (51).png}
+\caption{\textbf{负反馈 OPA 电路}}\label{负反馈 OPA 电路}
+\end{figure}
+
+
+\subsection{含负反馈的理想 OPA 电路}
+
+\begin{definition}[理想限制条件]
+一个 OPA 称为理想放大器（ideal operational amplifier, IOPA）如果它同时满足 $R_i = \infty,\ R_o = 0,\ A = \infty$\footnote{在模电课程中还会讨论 IOPA 的其它限制条件}，其输入输出曲线如图 \ref{IOPA 输入输出曲线} 所示，用数学公式表示为：
+\begin{equation}
+\begin{cases}
+    u_o \in (-U_{\text{sat}},\ +U_{\text{sat}}), &u_+ - u_i = 0 \\
+    u_o = +U_{\text{sat}}, &u_+ - u_i > 0 \\
+    u_o = -U_{\text{sat}}, &u_+ - u_i < 0 
+\end{cases}
+\end{equation}
+
+对 IOPA 而言，始终有 $i_- = i_+ = 0$，称为两条支路分别“虚断”。由于本小节讨论的 IOPA 始终处于线性区，因此有 $u_+ - u_- = 0 \Longrightarrow u_+ = u_- $，称为两点“虚短”。
+\end{definition}
+
+\begin{center}\noindent\begin{minipage}{0.4\textwidth}
+        \begin{figure}[H]\centering
+            \includegraphics[height=100pt]{assets/4323bb51980c2d4d8e127dfa2e8110d0.png}
+            \caption{\textbf{IOPA 输入输出曲线}}\label{IOPA 输入输出曲线}
+        \end{figure}
+    \end{minipage}\begin{minipage}{0.49\textwidth}
+        \begin{figure}[H]\centering
+            \includegraphics[height=100pt]{assets/电压跟随器.png}
+            \caption{\textbf{电压跟随器}}\label{电压跟随器}
+        \end{figure}
+\end{minipage}\end{center}
+
+\begin{definition}[电压跟随器]
+
+\end{definition}
+
+
+\begin{definition}[反相比例放大器]
+
+\end{definition}
+
+
+\begin{definition}[同相比例放大器]
+
+\end{definition}
+
+\begin{figure}[H]\centering
+\begin{subfigure}[t]{0.4\textwidth}\centering
+    \includegraphics[height=100pt]{assets/同相比例放大器.png}
+    \caption{\bfseries 同相比例放大器}
+\end{subfigure}\begin{subfigure}[t]{0.4\textwidth}\centering
+    \includegraphics[height=100pt]{assets/反向比例放大器.png}
+    \caption{\bfseries 反向比例放大器}
+\end{subfigure}
+\caption{\bfseries 比例放大器}
+\end{figure}
+
+
+\begin{definition}[反相加法器]
+
+\end{definition}
+
+
+\begin{definition}[减法器]
+
+\end{definition}
+
+\begin{figure}[H]\centering
+\begin{subfigure}[t]{0.42\textwidth}\centering
+    \includegraphics[height=100pt]{assets/反相加法器.png}
+    \caption{\bfseries 反相加法器}
+\end{subfigure}\begin{subfigure}[t]{0.4\textwidth}\centering
+    \includegraphics[height=100pt]{assets/减法器.png}
+    \caption{\bfseries 减法器}
+\end{subfigure}
+\caption{\bfseries 反相加法器与减法器}
+\end{figure}
+
+sbf
 
 \section{二端口网络}
 \section{数字系统}

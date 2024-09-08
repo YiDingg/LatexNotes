@@ -163,7 +163,10 @@
 
 % 列表设置
 \usepackage{enumitem}   % 宏包：列表环境设置
-    \setlist[enumerate]{itemsep=0pt, parsep=0pt, topsep=0pt, partopsep=0pt, leftmargin=3.5em} 
+    \setlist[enumerate]{
+        label=\bfseries(\arabic*) ,   % 设置序号样式为加粗的 (1) (2) (3)
+        ref=\arabic*, % 如果需要引用列表项，这将决定引用格式（这里仍然使用数字）
+        itemsep=0pt, parsep=0pt, topsep=0pt, partopsep=0pt, leftmargin=3.5em} 
     \setlist[itemize]{itemsep=0pt, parsep=0pt, topsep=0pt, partopsep=0pt, leftmargin=3.5em}
     \newlist{circledenum}{enumerate}{1} % 创建一个新的枚举环境  
     \setlist[circledenum,1]{  
@@ -236,7 +239,7 @@
 
 \thispagestyle{fancy}   % 显示页码、页眉等
 \begin{cnabstract}
-\normalsize 本文为笔者本科时的“电路原理”课程作业（Homework of Circuit Theory, 2024.9-2025.1）。由于个人学识浅陋，认识有限，文中难免有不妥甚至错误之处，望读者不吝指正，在此感谢。\par 
+\normalsize 本文为笔者本科时的“数学物理方法”课程作业（Homework of Mathematical Physics Methods, 2024.9-2025.1）。由于个人学识浅陋，认识有限，文中难免有不妥甚至错误之处，望读者不吝指正，在此感谢。\par 
 我的邮箱是 dingyi233@mails.ucas.ac.cn。
 \end{cnabstract}\addcontentsline{toc}{chapter}{序言} % 手动添加为目录
 
@@ -256,14 +259,15 @@
 
 \section{计算}
 
-\subsubsection{(1) $(\frac{1+ \mathrm{i} }{2- \mathrm{i} })^2$}
+\begin{enumerate}
+\item $(\frac{1+ \mathrm{i} }{2- \mathrm{i} })^2$
 \begin{equation*}
     \left(\frac{1+ \mathrm{i} }{2- \mathrm{i} }\right)^2 
     = \left(\frac{(1+i)(2+i)}{5}\right)^2
     = \left(\frac{1+3i}{5}\right)^2 = \frac{-8 + 6i}{25}
 \end{equation*}
 
-\subsubsection{(2) $(1+i)^n + (1-i)^n$}
+\item $(1+i)^n + (1-i)^n$
 
 首先得到：
 \begin{gather*}
@@ -282,12 +286,30 @@ I =
 \end{aligned}
 \end{cases}\ ,\ \ k \in \N
 \end{equation*}
+{\par\color{gray}\small
+习题课补：
+\begin{align*}
+I &= 
+2^{\frac{n}{2}}\left( e^{i\frac{n\pi}{4}} + e^{-i\frac{n\pi}{4}} \right)  \\ 
+&= 2^{\frac{n}{2}}  \left( \cos(\frac{n\pi}{4}) +i\sin\frac{n\pi}{4} +  \cos(-\frac{n\pi}{4}) +i\sin(-\frac{n\pi}{4}) \right)  \\ 
+&= 2^{\frac{n}{2}+1} \cos(\frac{n\pi}{4})
+\end{align*}
+\par}
 
 
-\subsubsection{(3) $\sqrt[4]{1+i}$}
+\item $\sqrt[4]{1+i}$
 \begin{equation*}
     \sqrt[4]{1+i} = \left(\sqrt{2}e^{i\frac{\pi}{4}}\right)^{\frac{1}{4}} = 2^{\frac{1}{8}}e^{i\frac{\pi}{16}}  
 \end{equation*}
+\end{enumerate}
+{\par\color{gray}\small
+习题课补：在复数域中，开根号是多值函数，这里四次根在复数域中应有四个复根，设 $x = \sqrt[4]{1+i}$，则原式等价于方程：
+\begin{equation*}
+x^4 = 1+i = \sqrt{2}e^{i\frac{\pi}{4}} \Longrightarrow | x | = 2^{\frac{1}{8}},\quad \arg x = \frac{\pi}{16} + k\frac{\pi}{2}, k = 0,1,2,3 
+\end{equation*}
+\par}
+
+
 \section{将复数化为三角或指数形式}
 
 \begin{enumerate}
@@ -306,26 +328,42 @@ I =
 \section{求极限 $\lim_{z\to i} \frac{1+z^6}{1+z^{10}}$}
 作不完全因式分解：
 
-\begin{align*}
-    1+z^6 
-    &= z^6 - i^6 
-    = (z^3 - i^3)(z^3 + i^3) \\
-    &= (z - i)(z^2 + iz +i^2)(z^3 + i^3) \\ 
-    1+z^{10} 
-    &= z^{10} - i^{10} = (z^5-i^5)(z^5+i^5) \\
-    &= (z-i)(z^4 + iz^3 + i^2z^2 + i^3z + i^4 )(z^5+i^5)
-\end{align*}
-\begin{align*}
-\Longrightarrow L 
-&= \lim_{z\to i} \frac{1+z^6}{1+z^{10}} \\
-&= \lim_{z\to i} \frac{(z - i)(z^2 + iz +i^2)(z^3 + i^3)}{(z-i)(z^4 + iz^3 + i^2z^2 + i^3z + i^4 )(z^5+i^5)} \\
-&= \lim_{z\to i} \frac{(z^2 + iz +i^2)(z^3 + i^3)}{(z^4 + iz^3 + i^2z^2 + i^3z + i^4 )(z^5+i^5)} \\
-&= \frac{(-3)\times (-2i)}{ 5 i} = \frac{3}{5}
-\end{align*}
+\begin{equation*}
+    \begin{aligned}
+        1+z^6 
+        &= z^6 - i^6 
+        = (z^3 - i^3)(z^3 + i^3) \\
+        &= (z - i)(z^2 + iz +i^2)(z^3 + i^3) \\ 
+        1+z^{10} 
+        &= z^{10} - i^{10} = (z^5-i^5)(z^5+i^5) \\
+        &= (z-i)(z^4 + iz^3 + i^2z^2 + i^3z + i^4 )(z^5+i^5)
+    \end{aligned}
+\end{equation*}
+\begin{equation*}
+    \begin{aligned}
+        \Longrightarrow L 
+        &= \lim_{z\to i} \frac{1+z^6}{1+z^{10}} \\
+        &= \lim_{z\to i} \frac{(z - i)(z^2 + iz +i^2)(z^3 + i^3)}{(z-i)(z^4 + iz^3 + i^2z^2 + i^3z + i^4 )(z^5+i^5)} \\
+        &= \lim_{z\to i} \frac{(z^2 + iz +i^2)(z^3 + i^3)}{(z^4 + iz^3 + i^2z^2 + i^3z + i^4 )(z^5+i^5)} \\
+        &= \frac{(-3)\times (-2i)}{ 5 i} = \frac{3}{5}
+        \end{aligned}
+\end{equation*}
+
+事实上，实数域上的洛必达法则（L'Hospital）可以推广到复数域的解析函数，下面给出 $\frac{0}{0}$ 型的证明。
+设复变函数 $f(z), g(z)$ 在 $z = z_0$ 解析，且 $f(z_0) = g(z_0) = 0$，则有：
+\begin{equation*}
+\lim_{z\to z_0} \frac{f(z)}{g(z)} 
+= \lim_{z\to z_0} \frac{f(z) - f(z_0)}{g(z) - g(z_0)} 
+= \lim_{z\to z_0} \frac{\frac{f(z) - f(z_0)}{z-z_0}}{\frac{g(z) - g(z_0)}{z-z_0}} 
+= \lim_{z\to z_0} \frac{f'(z)}{g'(z)}
+\end{equation*}
+
+特别地，若 $f'(z_0)$ 与 $g'(z_0)$ 存在且不为零，就有 $\lim_{z\to z_0} \frac{f(z)}{g(z)} = \frac{f'(z_0)}{g'(z_0)}$
 
 \section{讨论函数在原点的连续性}
 
-\noindent\textbf{(1)} $f(z) = \begin{cases}
+\begin{enumerate}
+\item $f(z) = \begin{cases}
     \frac{1}{2i}(\frac{z}{z^*} - \frac{z^*}{z}), & z \neq 0 \\ 
     0, & z = 0
 \end{cases}$
@@ -343,8 +381,7 @@ L = \lim_{(x,y) \to (0,0)} f(x,y)
 \end{equation*}
 显然，$L$ 随着 $k$ 的变化而变化，因此极限不存在，$f(z)$ 在 $0$ 处不连续。
 
-
-\noindent\textbf{(2)} $f(z) = \begin{cases}
+\item $f(z) = \begin{cases}
     \frac{\Im z}{1 + | z |}, & z \neq 0 \\ 
     0, & z = 0
 \end{cases}$
@@ -355,7 +392,7 @@ L = \lim_{(x,y) \to (0,0)} f(x,y)
 \end{equation*}
 因此 $f(z)$ 在 0 处连续。
 
-\noindent\textbf{(3)} $f(z) = \begin{cases}
+\item  $f(z) = \begin{cases}
     \frac{\Re z^2}{| z^2 |}, & z \neq 0 \\ 
     0, & z = 0
 \end{cases}$
@@ -366,6 +403,10 @@ f(x,y) = \frac{x^2 - y^2}{ x^2 + y^2 } = \frac{1-k^2}{1+k^2}
 \end{equation*}
 
 因此 $f(z)$ 在 0 处不连续。
+
+\end{enumerate}
+
+
 
 \section{恒等式证明（附加题）}
 
@@ -379,12 +420,227 @@ f(x,y) = \frac{x^2 - y^2}{ x^2 + y^2 } = \frac{1-k^2}{1+k^2}
 \chapter{2024.9.2 - 2024.9.8}\thispagestyle{fancy}
 
 
+\section{下列函数在何处可导，何处解析}
+\begin{enumerate}
+\item $ f(z) = z\cdot \Re z$
+
+设 $z = x + iy$，则 $f(z) = u(x,y) + iv(x,y) = x^2 + ixy$。
+$\forall\  z \in C$，$u(x,y) = x^2$ 和 $v(x,y) = xy$ 在 $\C$ 上有连续一阶偏导，因此 $f$ 在 $\C$ 上解析（解析必可导）。
+%\begin{gather*}
+%\frac{ f(z + \Delta z) - f(z)}{\Delta z} 
+%= \frac{2x\Delta x + (\Delta x)^2 + iy\Delta x + ix \Delta y + \Delta x \Delta y}{\Delta x + i \Delta y} 
+%= \frac{2x + \Delta x + iy + ikx + \Delta y}{1+ ik} \\ 
+%\Longrightarrow 
+%\lim_{\Delta z \to (0,0)} \frac{ f(z + \Delta z) - f(z)}{\Delta z} 
+%= \lim_{\Delta z \to (0,0)} \frac{2x  + iy + ikx }{1+ ik} = x + \lim_{\Delta z \to (0,0)} \frac{x+iy}{1+ik} 
+%\end{gather*}
+%显然，随着 $k = \frac{\Delta x}{\Delta y}$ 的变化，极限值也在变化，因此 $\forall\ z \in C$，$f(z)$ 不可导。
+
+\item $f(x,y) = (x-y)^2 + 2i(x+y)$
+
+$\forall\  z \in C$，$u(x,y) = (x-y)^2$ 和 $v(x,y) = 2(x+y)$ 在 $\C$ 上有连续一阶偏导，因此 $f$ 在 $\C$ 上解析（解析必可导）。
+
+%\begin{gather*}
+%\frac{ f(z + \Delta z) - f(z)}{\Delta z} 
+%= \frac{2x\Delta x + (\Delta x)^2 - 2y\Delta x -2x \Delta y - \Delta x \Delta y - 2y\Delta y - \Delta y^2 + 2i\Delta x + 2i\Delta y}{\Delta x + i \Delta y} 
+%\end{gather*}
+%\begin{align*}
+%\Longrightarrow 
+%\lim_{\Delta z \to (0,0)}\frac{ f(z + \Delta z) - f(z)}{\Delta z} 
+%&= \lim_{\Delta z \to (0,0)}\frac{  2x + \Delta x - 2y -2xk - \Delta y - 2yk - k\Delta y +2i +2ik }{1+ik} \\ 
+%&= \lim_{\Delta z \to (0,0)}   \\
+%&= \lim_{\Delta z \to (0,0)}   \\
+%\end{align*}
+\end{enumerate}
 
 
 
+\section{求下列函数的解析区域}
+\begin{enumerate}
+\item $f(z) = xy+iy$
+
+\begin{gather*}
+\frac{\partial u }{\partial x } = y, \quad \frac{\partial u }{\partial y } = x ,\quad 
+\frac{\partial v }{\partial x } = 0, \quad \frac{\partial v }{\partial y } = 1
+\end{gather*}
+欲满足 C-R 条件，则：
+\begin{equation*}
+y=1,\  x = 0 \Longrightarrow \text{$f$ 在全平面不解析}
+\end{equation*}
+不在点 $(0,1)$ 上解析是因为在某点解析是指在此点的有心领域上解析，显然这里不满足。
+
+\item  $ f(z) = \begin{cases}
+    | z | \cdot z, &| z | <1 \\ 
+    z^2,  &|z|  \geqslant 1
+\end{cases} $ 
+
+设 $z = x +iy$，则：
+\begin{gather*}
+f(z) = u(x,y) + iv(x,y) = 
+\begin{cases}
+    (x\sqrt{x^2+y^2}) + i(y\sqrt{x^2+y^2}), &\sqrt{x^2+y^2} < 1 \\ 
+    (x^2 - y^2) + i(2xy), &\sqrt{x^2+y^2} \geqslant 1
+\end{cases} \\ 
+\Longleftrightarrow 
+u(x,y) = 
+\begin{cases}
+    x\sqrt{x^2+y^2},&  \sqrt{x^2+y^2} < 1 \\ 
+    x^2 - y^2, & \sqrt{x^2+y^2} \geqslant 1
+\end{cases} ,\quad
+v(x,y) = 
+\begin{cases}
+    y\sqrt{x^2+y^2}, & \sqrt{x^2+y^2} < 1 \\ 
+    2xy, & \sqrt{x^2+y^2} \geqslant 1
+\end{cases} 
+\end{gather*}
+
+分别求偏导得到：
+\begin{gather*}
+\begin{cases}
+\frac{\partial u }{\partial x } = \frac{2x^2 + y^2}{\sqrt{x^2 + y^2}}
+,\quad \frac{\partial u }{\partial y } = \frac{xy}{\sqrt{x^2 + y^2}} \\
+\frac{\partial v }{\partial x } = \frac{xy}{\sqrt{x^2 + y^2}}
+,\quad \frac{\partial v }{\partial y } = \frac{x^2 + 2y^2}{\sqrt{x^2 + y^2}}
+\end{cases}
+,\quad \sqrt{x^2+y^2} < 1  \\
+\begin{cases}
+    \frac{\partial u }{\partial x } = 2x
+    ,\quad 
+    \frac{\partial u }{\partial y } = -2y \\
+\frac{\partial v }{\partial x } = 2y
+,\quad \frac{\partial v }{\partial y } = 2x
+\end{cases}
+,\quad \sqrt{x^2+y^2} \geqslant 1
+\end{gather*}
+
+偏导要满足 C-R 条件，代入得到：
+\begin{gather*}
+x^2 = y^2,\  2xy = 0, \quad \forall\  \sqrt{x^2+y^2} < 1  \\
+2x = 2x,\ -2y = -2y, \quad \forall\ \sqrt{x^2+y^2} \geqslant 1 \\ 
+\Longrightarrow \text{$f(z)$ 在 $\{ z\in \C \mid |z| \geqslant 1 \}$ 上解析}
+\end{gather*}
+不在点 $(0,0)$ 上解析是因为在某点解析是指在此点的有心领域上解析，显然这里不满足。
+
+\end{enumerate}
+
+
+\section{已知解析函数 $f(z)$ 的实部如下，求 $f(z)$}
+\begin{enumerate}
+\item $u(x,y) = x^2-y^2 + x$
+
+\begin{gather*}
+v_x' = -u_y' = 2y,\quad v_y' = u_x' = 2x + 1\\ 
+\Longrightarrow 
+v(x,y) = \int 2y \ \mathrm{d}x + \int \mathrm{d}y = 2xy + y + C \\ 
+\Longrightarrow f(x,y)= (x^2 + y^2 + x )+ i(2xy + y) + C 
+\end{gather*}
+\item $u(x,y) = e^y\cos x$
+
+\begin{gather*}
+v_x' = -u_y' = -e^y\cos x,\quad v_y' = u_x' = -e^y\sin x\\ 
+\Longrightarrow
+v(x,y) = \int -e^y\cos x\  \mathrm{d}x + \int 0\ \mathrm{d}y = - e^y\sin x  + C \\ 
+\Longrightarrow f(x,y) = (e^y\cos x) + i(-e^y\sin x ) + C 
+\end{gather*}
+\end{enumerate}
+
+
+\section{$f$ 解析，且 $u - v = (x-y)(x^2 + 4xy + y^2)$，求 $f(z)$}
+两边分别对 $x,\ y$ 求导，得到：
+\begin{gather*}
+\frac{\partial u }{\partial x } - \frac{\partial v }{\partial x }  = 3x^2 + 6xy -3y^2, \quad 
+\frac{\partial u }{\partial y } - \frac{\partial v }{\partial y } = 3x^2 - 6xy -3y^2
+\end{gather*}
+联立 C-R 条件，可以解出：
+\begin{gather*}
+v_x' = -3x^2 + 3y^2, \quad v_y' = 6xy \\ 
+u_x' = 6xy,\quad u_y' = 3x^2 - 3y^2 \\ 
+\Longrightarrow v(x,y) = -x^3 + 3xy^2 + C_1, \quad u(x,y) = 3x^2y - y^3 + C_2 \\ 
+\Longrightarrow f(x,y) = (3x^2y - y^3) + i(-x^3 + 3xy^2) + C
+\end{gather*}
+
+
+\section{极坐标 C-R 条件}
+证明极坐标下的 C-R 条件为：
+\begin{equation*}
+\frac{\partial u }{\partial r } = \frac{1}{r}\frac{\partial v }{\partial \theta }, \quad \frac{\partial v }{\partial r } = -\frac{1}{r}\frac{\partial u }{\partial \theta } 
+\end{equation*}
+
+极坐标变换：
+\begin{gather*}
+    x = x(r,\theta ) = r\cos \theta, \quad y = y(r,\theta ) = r\sin \theta  \\ \Longrightarrow 
+    \frac{\partial x }{\partial r } = \cos \theta,\ \frac{\partial x }{\partial \theta } = -r\sin \theta,\ \frac{\partial y }{\partial r } = \sin \theta,\ \frac{\partial y }{\partial \theta } = r\cos \theta
+\end{gather*}
+
+由复合函数的求导法则：
+\begin{gather*}
+\frac{\partial  }{\partial r }u\left(x(r, \theta),y(r, \theta)\right) 
+= \frac{\partial u(x,y) }{\partial x }\cdot\frac{\partial x}{\partial r } + \frac{\partial u(x,y) }{\partial y}\cdot\frac{\partial y}{\partial r } 
+= \frac{\partial u(x,y) }{\partial x }\cdot \cos \theta + \frac{\partial u(x,y) }{\partial y}\cdot \sin \theta 
+\\
+\frac{\partial  }{\partial \theta }v\left(x(r, \theta),y(r, \theta)\right) 
+= \frac{\partial v(x,y) }{\partial x }\cdot\frac{\partial x}{\partial \theta } + \frac{\partial v(x,y) }{\partial y}\cdot\frac{\partial y}{\partial \theta } 
+= - \frac{\partial v(x,y) }{\partial x } \cdot r\sin \theta + \frac{\partial v(x,y) }{\partial y}\cdot r \cos \theta 
+\end{gather*}
 
 
 
+联立 C-R 条件，化简得到：
+\begin{equation*}
+v_r' = -u_y'\cos \theta + u_x' \sin \theta = \frac{1}{r}u_\theta'
+\end{equation*}
+
+同理，由偏导关系：
+\begin{gather*}
+\frac{\partial  }{\partial \theta }u\left(x(r, \theta),y(r, \theta)\right) 
+= \frac{\partial u(x,y) }{\partial x }\cdot\frac{\partial x}{\partial \theta } + \frac{\partial u(x,y) }{\partial y}\cdot\frac{\partial y}{\partial \theta } 
+= - \frac{\partial u(x,y) }{\partial x } \cdot r\sin \theta + \frac{\partial u(x,y) }{\partial y}\cdot r \cos \theta 
+\\ 
+\frac{\partial  }{\partial r }v\left(x(r, \theta),y(r, \theta)\right) 
+= \frac{\partial v(x,y) }{\partial x }\cdot\frac{\partial x}{\partial r } + \frac{\partial v(x,y) }{\partial y}\cdot\frac{\partial y}{\partial r } 
+= \frac{\partial v(x,y) }{\partial x }\cdot \cos \theta + \frac{\partial v(x,y) }{\partial y}\cdot \sin \theta 
+\end{gather*}
+联立 C-R 条件，化简得到：
+\begin{equation*}
+u_r' = u_x'\cos \theta + u_y' \sin \theta = \frac{1}{r}v_\theta'
+\end{equation*}
+
+反之也可以化为原 C-R 条件，因此 C-R 条件在极坐标下的形式为：
+\begin{equation*}
+    \frac{\partial u }{\partial r } = \frac{1}{r}\cdot\frac{\partial v }{\partial \theta }, \quad \frac{\partial v }{\partial r } = -\frac{1}{r}\cdot\frac{\partial u }{\partial \theta }\quad \square
+\end{equation*}
+
+\section{证明 $f(z)$ 和 $\overline{f(\bar{z})}$ 同解析或同不解析 }
+\begin{enumerate}
+\item $f(z)$ 解析 $\Longrightarrow \overline{f(\bar{z})}$ 解析
+
+假设 $f(z)$ 在点 $z = z_0$ 解析，即 $f(z) = u(x,y) + iv(x,y)$ 在有心邻域 $U_{\delta}(z_0)$ 上解析，这等价于 $f(z)$ 有一阶导，且在邻域内满足 C-R 条件。设 $g(z) = \overline{f(\bar{z})} = u(x,-y) - iv(x,-y)$，也即：
+\begin{equation*}
+g(z) = u_g(x,y) + iv_g(x,y),\quad u_g(x,y) = u(x,-y),\ v_g(x,y) = -v(x,-y)
+\end{equation*}
+容易验证 $g(z)$ 有一阶偏导，下面验证 C-R 条件：
+\begin{gather*}
+\frac{\partial u_g }{\partial x } = \frac{\partial u}{\partial x }(x,-y) ,\quad
+\frac{\partial u_g }{\partial y } = \frac{\partial u(x,-y) }{\partial (-y) }\cdot \frac{\partial (-y) }{\partial y } = -\frac{\partial u }{\partial y }(x,-y) \\ 
+\frac{\partial v_g }{\partial x } = -\frac{\partial v}{\partial x }(x,-y) ,\quad
+\frac{\partial v_g }{\partial y } = -\frac{\partial v(x,-y) }{\partial (-y) }\cdot \frac{\partial (-y) }{\partial y } = \frac{\partial v }{\partial y }(x,-y) 
+\end{gather*}
+联立 $u$ 和 $v$ 的 C-R 条件，得到：
+\begin{gather*}
+\frac{\partial u_g }{\partial x } - \frac{\partial v_g }{\partial y } = \frac{\partial u}{\partial x }(x,-y) - \frac{\partial v }{\partial y }(x,-y) = 0 \Longrightarrow \frac{\partial u_g }{\partial x } = \frac{\partial v_g }{\partial y }
+\\ 
+\frac{\partial u_g }{\partial y } + \frac{\partial v_g }{\partial x } = -\left[ \frac{\partial u }{\partial y }(x,-y) + \frac{\partial v}{\partial x }(x,-y)\right] = 0
+\Longrightarrow 
+\frac{\partial u_g }{\partial y } = -\frac{\partial v_g }{\partial x }
+\end{gather*}
+因此 $g(z) = \overline{f(\bar{z})}$ 也解析。
+
+\item $f(z)$ 解析 $\Longleftarrow \overline{f(\bar{z})}$ 解析
+
+假设 $\overline{f(\bar{z})}$ 解析，令 $g(z) = \overline{f(\bar{z})}$，则 $f(z) = \overline{g(\bar{z})}$，由 (1) 的结论，$g(z)$ 解析 $\Longrightarrow$ $f(z) = \overline{g(\bar{z})}$ 也解析。
+
+证毕。$\square$
+\end{enumerate}
 
 
 \chapter{2024.9.9 - 2024.9.15}\thispagestyle{fancy}
@@ -467,320 +723,6 @@ f(x,y) = \frac{x^2 - y^2}{ x^2 + y^2 } = \frac{1-k^2}{1+k^2}
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-\newpage
-表格：
-
-\begin{table}[H]
-    \centering
-    \caption{\textbf{符号含义与约定}}
-    \label{tab:waterpump}
-    \begin{tabular}{ccccc}
-    \toprule
-    符号 & 符号含义& 单位\\
-    \midrule
-    符号1& 含义1& 单位1\\
-    符号2& 含义2& 单位2\\
-    符号3& 含义3& 单位3\\
-    符号4& 含义4& 单位4\\
-    \bottomrule
-    \end{tabular}
-\end{table}
-
-\chapter{这里是第二章}\thispagestyle{fancy} 
-
-\href{https://www.latex-tables.com/}{Latex Table Editor} 示例：
-
-% \usepackage{tabularray}
-
-\begin{longtblr}[caption={\bfseries 示例表格},label=tab:example]{
-    hline{1,51} = {-}{0.08em},
-    hline{2} = {-}{},
-  }
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ 
-\end{longtblr}
-
-\href{https://www.tablesgenerator.com/latex_tables#}{Create Latex Tables Online} 示例：
-
-% Please add the following required packages to your document preamble:
-% \usepackage{booktabs}
-% \usepackage{longtable}
-% Note: It may be necessary to compile the document several times to get a multi-page table to line up properly
-\begin{longtable}[c]{ccc}
-    \caption{\bfseries Create Latex Tables Online 示例}
-    \label{tab:my-table}\\
-    \toprule
-    表头& 表头 & 表头 \\* \midrule
-    \endfirsthead
-    %
-    \multicolumn{3}{c}%
-    {{\bfseries Table \thetable :\ continued from previous page}} \\
-    \toprule
-    表头& 表头 & 表头 \\* \midrule
-    \endhead
-    %
-    \bottomrule
-    \endfoot
-    %
-    \endlastfoot
-    %
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\* \bottomrule
-\end{longtable}
-
-
-
-\nocite{*}
-\bibliography{re}
-\thispagestyle{fancy} 
-\addcontentsline{toc}{chapter}{参考文献}
-
-
-
-
-\newpage
-\appendix
-\titleformat{\chapter}[hang]{\normalfont\huge\bfseries\centering}{}{20pt}{\thechapter}
-\titleformat{\section}{\large\centering\bfseries}{\thesection}{1em}{}
-\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection}{1em}{}
-
-\chapter*{附录 A}\addcontentsline{toc}{chapter}{附录 A}
-
-\setcounter{section}{0}
-\renewcommand\thesection{A.\arabic{section}}
-
-\section{支撑材料列表} 
-
-\begin{center}
-  这里插入一张图片（类似思维导图那种）
-\end{center}
-\section{这里是我的第二节附录}
-% 注意：listing环境中手动输入的代码需要顶格写
-
-\begin{matlablisting}
-% MATLAB code here
-x = 0:0.1:2*pi;
-y = sin(x);
-plot(x, y);
-xlabel('x');
-ylabel('sin(x)');
-title('Sine Function');
-% ... (MATLAB code here，最好是插入文件)
-% MATLAB code here
-x = 0:0.1:2*pi;
-y = sin(x);
-plot(x, y);
-xlabel('x');
-ylabel('sin(x)');
-title('Sine Function');
-% ... (MATLAB code here，最好是插入文件)
-% MATLAB code here
-x = 0:0.1:2*pi;
-y = sin(x);
-plot(x, y);
-xlabel('x');
-ylabel('sin(x)');
-title('Sine Function');
-% ... (MATLAB code here，最好是插入文件)
-% MATLAB code here
-x = 0:0.1:2*pi;
-y = sin(x);
-plot(x, y);
-xlabel('x');
-ylabel('sin(x)');
-title('Sine Function');
-% ... (MATLAB code here，最好是插入文件)
-% MATLAB code here
-x = 0:0.1:2*pi;
-y = sin(x);
-plot(x, y);
-xlabel('x');
-ylabel('sin(x)');
-title('Sine Function');
-% ... (MATLAB code here，最好是插入文件)
-% MATLAB code here
-x = 0:0.1:2*pi;
-y = sin(x);
-plot(x, y);
-xlabel('x');
-ylabel('sin(x)');
-title('Sine Function');
-% ... (MATLAB code here，最好是插入文件)% ... (MATLAB code here，最好是插入文件)% ... (MATLAB code here，最好是插入文件)% ... (MATLAB code here，最好是插入文件)% ... (MATLAB code here，最好是插入文件)A
-% MATLAB code here
-x = 0:0.1:2*pi;
-y = sin(x);
-plot(x, y);
-xlabel('x');
-ylabel('sin(x)');
-title('Sine Function');
-% ... (MATLAB code here，最好是插入文件)
-\end{matlablisting}
-
-\section{这里是我的第三节附录}
-你好你好你好你好你好你好
 
 \end{document}
 

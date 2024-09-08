@@ -163,7 +163,10 @@
 
 % 列表设置
 \usepackage{enumitem}   % 宏包：列表环境设置
-    \setlist[enumerate]{itemsep=0pt, parsep=0pt, topsep=0pt, partopsep=0pt, leftmargin=3.5em} 
+    \setlist[enumerate]{
+        label=\bfseries(\arabic*) ,   % 设置序号样式为加粗的 (1) (2) (3)
+        ref=\arabic*, % 如果需要引用列表项，这将决定引用格式（这里仍然使用数字）
+        itemsep=0pt, parsep=0pt, topsep=0pt, partopsep=0pt, leftmargin=3.5em} 
     \setlist[itemize]{itemsep=0pt, parsep=0pt, topsep=0pt, partopsep=0pt, leftmargin=3.5em}
     \newlist{circledenum}{enumerate}{1} % 创建一个新的枚举环境  
     \setlist[circledenum,1]{  

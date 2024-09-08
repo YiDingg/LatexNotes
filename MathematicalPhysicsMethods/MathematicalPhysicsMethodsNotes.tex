@@ -20,7 +20,9 @@
     \def\S{\mathbb{S}}
     \def\A{\mathbb{A}}
     \def\I{\mathscr{I}}
-    \def\Arg{\mathrm{Arg}}
+    \def\Re{\mathrm{Re}\,}
+    \def\Im{\mathrm{Im}\,}
+    \def\Arg{\mathrm{Arg}\,}
     \def\d{\mathrm{d}}
     \def\p{\partial}
 
@@ -284,7 +286,7 @@
 \begin{circledenum}
     \item 复数的三种表示：$z = x + iy = r(\cos \theta + i\sin \theta) =  re^{i\theta} = e^{\ln r + i\theta}$
     \item 模：$|z| = r =\sqrt{x^2+y^2}$
-    \item 幅角：$\arg z = \theta \in (-\pi, \pi]$称为幅角主值，$\Arg z = \theta + 2k\pi$称为幅角补值，$k\in\Z$。
+    \item 幅角：$\arg z = \theta \in [0, 2\pi)$ 称为幅角主值（或 $[-\pi, \pi)$），$\Arg z = \theta + 2k\pi$称为幅角补值，$k\in\Z$。
     \item 0 与 $\infty$：是两个特殊的复数，分别表示复平面中模为 0 和无穷大而幅角任意的“一个点”。在复平面的球表示中，$0$ 对应南极，$\infty$ 对应北极。
     \item 扩充复平面：称包含无穷远点 $\infty$ 的复平面 $\overline{\C} = \C \cup \{\infty\}$为扩充复平面。
     \item 共轭复数：$ z = x + iy, z^* = x - iy$
@@ -369,15 +371,12 @@
 \end{figure}
 \end{definition}
 
-\chapter{解析函数}
+\chapter{解析函数}\thispagestyle{fancy}
 
 \section{复变函数的极限和连续}
 
-
-
 \begin{definition}[极限]
-设复变函数 $f(z)$ 在 $z_0$ 的空心邻域 $U^\circ_{\delta}(z_0)$ 中有定义
-\footnote{$z_0$ 的空心邻域是指以 $z_0$ 为圆心的环域 $0 < | z - z_0 | < \varepsilon$}，
+设复变函数 $f(z)$ 在 $z_0$ 的空心邻域 $U^\circ_{\delta}(z_0)$ 中有定义\footnote{$z_0$ 的空心邻域是指以 $z_0$ 为圆心的环域 $0 < | z - z_0 | < \varepsilon$}，
 若 $\exists\ A \in \C $ 满足 $ \forall\ \varepsilon > 0,\ \exists\ \delta = \delta(\varepsilon)>0 \ \ \text{s.t.}\ \ | f(z) - A |<\varphi,\ \forall\ 0<| z - z_0 |<\delta $，则称 $z \to z_0$ 时 $f(z)$ 存在极限 $A$，记作：
 \begin{equation}
 \lim_{z \to z_0}f(z) = A
@@ -404,16 +403,19 @@
 
 
 \begin{definition}[可导]
-单值复变函数 $f(z)$ 在 $z_0$ 处可导如果 $\lim\frac{f(z + \Delta z) - f(z)}{\Delta z} = C \in \R$ 
-\footnote{这要求 $\Delta z$ 以任意方式趋于零，此极限都存在，类似二元函数的导数。}
+单值复变函数 $f(z)$ 在 $z_0$ 处可导如果 $\lim\frac{f(z + \Delta z) - f(z)}{\Delta z} = C \in \R$\footnote{这要求 $\Delta z$ 以任意方式趋于零，此极限都存在，类似二元函数的导数。}
 ，记为 $f'(z)$。
 
 容易证明，高等数学中的各种求导公式都可以直接搬用到复变函数。
 
 Cauchy-Riemann 条件是函数可导的必要条件：
-\begin{equation}
-(\frac{\partial f }{\partial x }) = \Re (\frac{\partial f }{\partial y }) \ ,\ \ \Im (\frac{\partial f }{\partial x }) = -\Im (\frac{\partial f }{\partial y })
-\end{equation}
+\begin{gather}
+\Re (\frac{\partial f }{\partial x }) = \Re (\frac{\partial f }{\partial y }),\quad 
+\Im (\frac{\partial f }{\partial x }) = -\Im (\frac{\partial f }{\partial y })\\ 
+\Longleftrightarrow 
+\frac{\partial u }{\partial x } = \frac{\partial v }{\partial u },\quad
+\frac{\partial u }{\partial y } = - \frac{\partial v }{\partial x }
+\end{gather}
 \end{definition}
 
 
@@ -428,11 +430,12 @@ Cauchy-Riemann 条件是函数可导的必要条件：
 
 函数 $f$ 称为 $G$ 上的解析函数如果 $f$ 在区域 $G$ 内每一点都可导，又称为 $f$ 在 $G$ 上解析。
 
-在 $G$ 内解析的函数必满足 Cauchy-Riemann 方程，因此只要知道其中之一，例如 $f(x,y) = u(x,y) + iv(x,y)$ 的实部 $u(z)$，就可以唯一地确定其虚部（可加减实常数），这是因为：
+在 $G$ 内解析的函数必满足 Cauchy-Riemann 方程，因此只要知道其中之一，例如 $f(x,y) = u(x,y) + iv(x,y)$ 的实部 $u(x,y)$，就可以唯一地确定其虚部（可加减实常数），这是因为：
 \begin{gather}
 \mathrm{d} v = \frac{\partial v }{\partial x }\mathrm{d}x + \frac{\partial v }{\partial y } \mathrm{d}y = - \frac{\partial u}{\partial y } \mathrm{d}x + \frac{\partial u}{\partial x } \mathrm{d}y \\ \Longrightarrow
 v(x,y) = \int \left( - \frac{\partial u}{\partial y } \mathrm{d}x + \frac{\partial u}{\partial x } \mathrm{d}y  \right)
 \end{gather}
+
 
 为求此原函数，设 $v(x,y) = g_1(x,y) + g_2(y)$，则：
 \begin{gather}
@@ -443,7 +446,11 @@ g_1(x,y) = \int \frac{\partial v }{\partial x } \mathrm{d} x = \int (- \frac{\pa
 \frac{\partial v }{\partial y } = \frac{\partial g_1 }{\partial y } + \frac{\partial g_2 }{\partial y } \Longrightarrow 
 g_2(y) = \int (\frac{\partial v }{\partial y } - \frac{\partial g_1 }{\partial y }) \mathrm{d}y = \int (\frac{\partial u }{\partial x } - \frac{\partial g_1 }{\partial y }) \mathrm{d}y 
 \end{gather}
-最后相加即得 $v(x,y)$.
+最后相加即得 $v(x,y)$。
+
+这也就是说，先考虑 $\frac{\partial v }{\partial x }$ 对 $x$ 的积分，得到 $g_1(x,y)$，然后考虑 $\frac{\partial v }{\partial y }$，{\color{red} 将其含 $x$ 的项全部舍弃}（因为它们属于 $g_1$），再对 $y$ 作积分。两积分结果相加即得 $v(x,y)$。
+
+
 
 解析函数实部与虚部之间的这种依赖关系，还可以形象地表现出来。在 $x-y$ 平面中，分别作出 $u(x,y)$ 和 $v(x,y)$ 的等高线图，在任意一点 $(x,y)$，由 Cauchy-Reimann 方程，两者方向矢量的内积为零：
 \begin{equation}
@@ -484,8 +491,7 @@ g_2(y) = \int (\frac{\partial v }{\partial y } - \frac{\partial g_1 }{\partial y
 \end{figure}
 \par}
 
-之后我们会证明，解析函数的实部 $u(x,y)$ 和虚部 $v(x,y)$ 的二阶偏导一定存在且连续，并且满足二维 Laplace 方程，这表明解析函数的实部和虚部构成一对共轭调和函数
-\footnote{共轭是因为满足 Cauchy-Riemann 方程}
+之后我们会证明，解析函数的实部 $u(x,y)$ 和虚部 $v(x,y)$ 的二阶偏导一定存在且连续，并且满足二维 Laplace 方程\footnote{这样的函数称为调和函数}，这表明解析函数的实部和虚部构成一对共轭的调和函数\footnote{共轭是因为满足 Cauchy-Riemann 方程}
 。
 \begin{equation}
     \Delta u = \Delta v = 0 \Longleftrightarrow
@@ -493,6 +499,21 @@ g_2(y) = \int (\frac{\partial v }{\partial y } - \frac{\partial g_1 }{\partial y
 \end{equation}
 
 函数的解析性总是和给点区域联系在一起，有时也称函数在 $z_0$ 点解析，也即在邻域 $U_{\delta}(z_0)$ 内解析。讨论解析函数的各种特殊性质，就是复变函数论的中心课题。
+
+可以证明，函数 $f$ 在任意一点解析的充分必要条件是：
+\begin{equation}
+\text{$f$ 在点 $z \in \C$ 解析} \Longleftrightarrow \text{$f$ 在点 $z$ 可微且满足 Cauchy-Riemann 方程}
+\end{equation}
+
+在实际的操作中，我们常用下面两条定理来判断函数的解析性：
+\begin{BlockTheorem}[解析函数判别法]\label{解析函数判别法}
+设 $f(z) = u(x,y) + iv(x,y)$ 是区域 $G$ 上的单值复变函数，则：
+\begin{gather}
+\text{$u$ 和 $v$ 在 $G$ 上可微，且处处满足 C-R 条件} \Longleftrightarrow \text{ $f$ 在 $G$ 内解析} \\ 
+\text{$u$ 和 $v$ 在 $G$ 上有连续一阶导，且处处满足 C-R 条件} \Longrightarrow \text{$f$ 在 $G$ 内解析}
+\end{gather}
+\end{BlockTheorem}
+
 
 \section{初等函数}
 
@@ -516,7 +537,7 @@ e^z = e^{x + \mathrm{i} y} = e^x(\cos y + \mathrm{i} \sin y)
 \begin{equation}
     \sin z=\frac{\mathrm{e}^{\mathrm{i}z}-\mathrm{e}^{-\mathrm{i}z}}{2\mathrm{i}},\quad\cos z=\frac{\mathrm{e}^{\mathrm{i}z}+\mathrm{e}^{-\mathrm{i}z}}{2}
 \end{equation}
-$\sin z,\ \cos z$ 在 $\C$ 内解析，唯一奇点是 $z = \infty$。可以证明，实三角函数的各种恒等式对复三角函数仍成立。
+$\sin z,\ \cos z$ 在 $\C$ 内解析，唯一奇点是 $z = \infty$。可以证明，实三角函数的各种恒等式对复三角函数仍成立（包括和差化积、万能公式等）。
 \end{definition}
 
 

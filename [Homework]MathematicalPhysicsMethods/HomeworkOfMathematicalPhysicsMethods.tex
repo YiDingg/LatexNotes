@@ -7,7 +7,15 @@
 % 设定文章类型与编码格式
 \documentclass[UTF8]{report}		
 
-% 自定义宏定义
+% 本文的特殊宏定义
+    \def\Im{\mathrm{Im\,}}
+    \def\Re{\mathrm{Re\,}}
+    \def\Ln{\mathrm{Ln\,}}
+    \def\Arccos{\mathrm{Arccos\,}}
+    \def\Arcsin{\mathrm{Arcsin\,}}
+    \def\Arctan{\mathrm{Arctan\,}}
+
+% 通用宏定义
     \def\N{\mathbb{N}}
     \def\F{\mathbb{F}}
     \def\Z{\mathbb{Z}}
@@ -18,8 +26,6 @@
     \def\S{\mathbb{S}}
     \def\A{\mathbb{A}}
     \def\I{\mathscr{I}}
-    \def\Im{\mathrm{Im\,}}
-    \def\Re{\mathrm{Re\,}}
     \def\d{\mathrm{d}}
     \def\p{\partial}
 
@@ -426,6 +432,12 @@ f(x,y) = \frac{x^2 - y^2}{ x^2 + y^2 } = \frac{1-k^2}{1+k^2}
 
 设 $z = x + iy$，则 $f(z) = u(x,y) + iv(x,y) = x^2 + ixy$。
 $\forall\  z \in C$，$u(x,y) = x^2$ 和 $v(x,y) = xy$ 在 $\C$ 上有连续一阶偏导，因此 $f$ 在 $\C$ 上解析（解析必可导）。
+
+{\par\color{gray}\small
+后补：
+\par}
+
+
 %\begin{gather*}
 %\frac{ f(z + \Delta z) - f(z)}{\Delta z} 
 %= \frac{2x\Delta x + (\Delta x)^2 + iy\Delta x + ix \Delta y + \Delta x \Delta y}{\Delta x + i \Delta y} 
@@ -439,6 +451,11 @@ $\forall\  z \in C$，$u(x,y) = x^2$ 和 $v(x,y) = xy$ 在 $\C$ 上有连续一�
 \item $f(x,y) = (x-y)^2 + 2i(x+y)$
 
 $\forall\  z \in C$，$u(x,y) = (x-y)^2$ 和 $v(x,y) = 2(x+y)$ 在 $\C$ 上有连续一阶偏导，因此 $f$ 在 $\C$ 上解析（解析必可导）。
+
+{\par\color{gray}\small
+后补：
+\par}
+
 
 %\begin{gather*}
 %\frac{ f(z + \Delta z) - f(z)}{\Delta z} 
@@ -520,6 +537,11 @@ x^2 = y^2,\  2xy = 0, \quad \forall\  \sqrt{x^2+y^2} < 1  \\
 \Longrightarrow \text{$f(z)$ 在 $\{ z\in \C \mid |z| \geqslant 1 \}$ 上解析}
 \end{gather*}
 不在点 $(0,0)$ 上解析是因为在某点解析是指在此点的有心领域上解析，显然这里不满足。
+
+{\par\color{gray}\small
+后补：
+\par}
+
 
 \end{enumerate}
 
@@ -645,12 +667,33 @@ g(z) = u_g(x,y) + iv_g(x,y),\quad u_g(x,y) = u(x,-y),\ v_g(x,y) = -v(x,-y)
 
 \chapter{2024.9.9 - 2024.9.15}\thispagestyle{fancy}
 
+\section{若 $f(z)$ 解析，$\arg f(z)$ 是否为调和函数？}
 
+\section{从已知的实虚部求出解析函数 $f(z)$}
 
+\begin{enumerate}
+\item $u(x,y) = e^x(x\cos y - y\sin y) + 2\sin x \cdot \sin hy + x^3 - 3xy^2 +y$
+\item $v = \ln (x^2 + y^2) + x -2y$
+\end{enumerate}
 
+\section{求下列函数的值}
+\begin{enumerate}
+\item $\cos(2+i)$
+\item $\Ln(w-3i)$
+\item $\Arccos (\frac{3+i}{4})$
+\item $\Arctan (1+2i)$
+\end{enumerate}
 
+\section{判断下列函数是单值还是多值函数}
+\begin{enumerate}
+\item $\sin \sqrt{z}$
+\item $\frac{\sin \sqrt{z} }{\sqrt{z} }$
+\item $\frac{\cos \sqrt{z} }{\sqrt{z} }$
+\end{enumerate}
 
+\section{解方程：$2\cos^2hz - 3\cos hz + 1 = 0$}
 
+\section{求下列多值函数的交点}
 
 \chapter{2024.9.16 - 2024.9.22}\thispagestyle{fancy}
 

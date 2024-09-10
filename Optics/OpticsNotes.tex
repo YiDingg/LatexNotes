@@ -2,7 +2,6 @@
 % 1. 需要插入的图片不存在：Ctrl + F 搜索 'figure' 将这些代码注释/删除掉即可
 % 2. 路径/文件名含中文或空格：更改路径/文件名即可
 
-
 % --------------------- 文章宏包及相关设置 --------------------- %
 % >> ------------------ 文章宏包及相关设置 ------------------ << %
 % 设定文章类型与编码格式
@@ -22,6 +21,7 @@
     \def\S{\mathbb{S}}
     \def\A{\mathbb{A}}
     \def\I{\mathscr{I}}
+    \def\Arg{\mathrm{Arg}}
     \def\d{\mathrm{d}}
     \def\p{\partial}
 
@@ -40,7 +40,7 @@
 
 % 文章页面margin设置
     \usepackage[a4paper]{geometry}
-        \geometry{top=1in}
+        \geometry{top=1in}  % 1 inch= 2.46 cm, 0.75 inch = 1.85 cm
         \geometry{bottom=1in}
         \geometry{left=0.75in}
         \geometry{right=0.75in}   % 设置上下左右页边距
@@ -150,7 +150,8 @@
     \usepackage{svg}       % 支持 svg 图片
         \svgsetup{
             % 指向 inkscape.exe 的路径
-            inkscapeexe = D:/aa_my_apps_main/Inkscape/bin/inkscape.exe, 
+            %inkscapeexe = D:/aa_my_apps_main/Inkscape/bin/inkscape.exe, 
+            inkscapeexe = D:/aa_MyApps/inkscape/bin/inkscape.exe,  
             % 一定程度上修复导入后图片文字溢出几何图形的问题
             inkscapelatex = false                 
         }
@@ -161,6 +162,7 @@
         \captionsetup[table]{name=表}
         \captionsetup{labelfont=bf, font=small}
     \usepackage{float}     % 图表位置浮动设置 
+    \usepackage{subcaption} % subfigure 子图支持
 
 % 圆圈序号自定义
     \newcommand*\circled[1]{\tikz[baseline=(char.base)]{\node[shape=circle,draw,inner sep=0.8pt, line width = 0.03em] (char) {\small \bfseries #1};}}   % TikZ solution
@@ -178,7 +180,7 @@
 
 % 其它设置
     % 脚注设置
-    \renewcommand\thefootnote{\ding{\numexpr171+\value{footnote}}}
+        \renewcommand\thefootnote{\ding{\numexpr171+\value{footnote}}}
     % 参考文献引用设置
         \bibliographystyle{unsrt}   % 设置参考文献引用格式为unsrt
         \newcommand{\upcite}[1]{\textsuperscript{\cite{#1}}}     % 自定义上角标式引用
@@ -230,31 +232,31 @@
 % 开始编辑文章
 
 \begin{document} 
-\zihao{5}           % 设置全文字号大小
+\zihao{5}             % 设置全文字号大小, -4 为小四, 5 为五号
 
 % ------------------------ 封面序言与目录 ------------------------ %
 % >> --------------------- 封面序言与目录 --------------------- << %
 % 封面
-    \maketitle\newpage  
-    \pagenumbering{Roman} % 页码为大写罗马数字
-    \thispagestyle{fancy}   % 显示页码、页眉等
+\maketitle\newpage  
+\pagenumbering{Roman} % 页码为大写罗马数字
+\thispagestyle{fancy}   % 显示页码、页眉等
 
 % 序言
-    \begin{cnabstract}\normalsize 
-        本文为笔者本科时的“光学”课程笔记（Notes of Optics, 2024.8-2025.1）。由于个人学识浅陋，认识有限，文中难免有不妥甚至错误之处，望读者不吝指正，在此感谢。\par
-        我的邮箱是 dingyi233@mails.ucas.ac.cn。
-    \end{cnabstract}
-    \addcontentsline{toc}{chapter}{序言} % 手动添加为目录
+\begin{cnabstract}\normalsize 
+    本文为笔者本科时的“光学”课程笔记（Notes of Optics, 2024.8-2025.1）。由于个人学识浅陋，认识有限，文中难免有不妥甚至错误之处，望读者不吝指正，在此感谢。\par
+    我的邮箱是 dingyi233@mails.ucas.ac.cn。
+\end{cnabstract}
+\addcontentsline{toc}{chapter}{序言} % 手动添加为目录
 
 % 目录
-    \setcounter{tocdepth}{2}                % 目录深度（为1时显示到section）
-    \tableofcontents                        % 目录页
-    \addcontentsline{toc}{chapter}{目录}    % 手动添加此页为目录
-    \thispagestyle{fancy}                   % 显示页码、页眉等 
+\setcounter{tocdepth}{2}                % 目录深度（为1时显示到section）
+\tableofcontents                        % 目录页
+\addcontentsline{toc}{chapter}{目录}    % 手动添加此页为目录
+\thispagestyle{fancy}                   % 显示页码、页眉等 
 
 % 收尾工作
-    \newpage    
-    \pagenumbering{arabic} 
+\newpage    
+\pagenumbering{arabic} 
 
 
 % >> --------------------- 封面序言与目录 --------------------- << %
@@ -342,13 +344,13 @@
 \begin{BlockTheorem}[费马原理]\label{费马原理}
 光从空间中一点传播到另一点时，总是沿光程（optical length, OPL）取极值的路径传播 \footnote{这里的“极值”可以是极小值、极大值或常数，一般情况下，实际光程大多取极小值。极大值（如凹面镜成像）、拐点（如椭球面镜、凸透镜）的例子，可以参考 \href{https://zhuanlan.zhihu.com/p/107739173}{知乎：浅谈几何光学(1)——费马原理}}，公式：
 \begin{equation}
-    \mathrm{d}\left(\int\limits_{Q}^{P}ndl\right)=0
+    \mathrm{d}\ \mathrm{OPL} =  \mathrm{d}\left(\int\limits_{Q}^{P}ndl\right)=0 \Longrightarrow \frac{\mathrm{d}\  \mathrm{OPL} }{\mathrm{d} \varphi } = \frac{\mathrm{d} OPL }{\mathrm{d} s } = 0 
 \end{equation}
 \end{BlockTheorem}
 由费马原理可以导出诸多推论，包括我们熟知的几条基本原理，还有物像之间的等光程性（例如凸透镜）：
 在物点Q与像点Q’之间，不管光线经何路径，凡是由Q通过同样的光学系统到达Q’的光线，都是等光程的。
 
-\subsection{成像}
+\section{成像}
 
 理想的像与物体在形状上一致，大小成比例。物与像之间的关系：本质上是一系列物点与像点的点点对应，推广至线线、面面对应。
 
@@ -374,17 +376,95 @@
 \end{figure}
 
 
-\begin{definition}[折射球面]
+\begin{definition}[折射球面与反射球面]
 的
-对于折射球面，存在一对恰好成像的共轭点，称为齐明点。在齐明点处，可以证明 $Q$ 到 $Q'$ 的光程（即物像间的OPL）$l_{QQ"}$
+对于折射球面，存在一对恰好成像的共轭点，称为齐明点。在齐明点处，可以证明 $Q$ 到 $Q'$ 的光程（即物像间的OPL）$l_{QQ'}$。
+
+折射球面公式：
+\begin{gather}
+\frac{n_1}{l_1} + \frac{n_2}{l_2} = \frac{1}{R\,}\left( \frac{n_{{\color{red} 2}}s_{{\color{red} 2}}}{l_{{\color{red} 2}}} - \frac{n_1s_1}{l_1} \right)
+\end{gather}
+{\color{gray}\small
+\begin{equation}
+    \frac{n'}{s'}  +  \frac{n}{s} = \frac{n'-n}{r}\quad  \text{(傍轴)}
+\end{equation}
+}
+
+反射球面公式：
+\begin{equation}
+\frac{1}{l_1} + \frac{1}{l_2} = {\color{red} -}\frac{2}{R\,}\left(\frac{s_1}{l_1} + \frac{s_2}{l_2}  \right)
+\end{equation}
+{\par\color{gray}\small
+\begin{equation}
+ \frac{1}{s_1} + \frac{1}{s_2} = -\frac{2}{R\,} \quad  \text{(傍轴)}
+\end{equation}
+\par}
+
+\begin{figure}[H]\centering
+\begin{subfigure}[t]{0.45\textwidth}\centering
+    \includegraphics[height=100pt]{assets/image.jpg}
+    \caption{\bfseries 折射球面 }
+\end{subfigure}\begin{subfigure}[t]{0.4\textwidth}\centering
+    \includegraphics[height=100pt]{assets/image (1).jpg}
+    \caption{\bfseries 反射球面 }
+\end{subfigure}
+\caption{\bfseries 折射球面与反射球面 }
+\end{figure}
 
 \end{definition}
 
 
-\subsection{薄透镜}
-\subsection{光学仪器}
-\subsection{光波的描述}
-\subsection{光度学基本概念}
+\begin{definition}[像的放大率]
+放大率公式：
+\begin{equation}
+\frac{n_1 | y_1 |}{s_1} = \frac{n_2 | y_2 |}{s_2}
+\end{equation}
+
+Lagrange-Helmholtz 恒等式：
+\begin{equation}
+n_1u_1y_1 = n_2u_2y_2
+\end{equation}
+
+上式的 $u$ 和 $y$ 是有正负的，例如折射球面中 $u_1 > 0,\ y_1 >0$ 而 $u_2 <0,\ y_2 < 0$。
+
+\end{definition}
+
+
+
+\section{薄透镜}
+
+透镜是由两个共轴折射球面构成的光具组，球面间距远远小于球面半径和物距像距的透镜称为薄透镜，也即 $d \ll | R_1 |, | R_2 |, | s |, | s' |$。此时可以认为两球面顶点重合，称为光心。
+
+薄透镜成像公式（物像距公式）：
+\begin{gather} 
+\frac{n}{s} + \frac{n'}{s'} = \frac{n_L - n}{r_1} + \frac{n' - n_L}{r_2} \label{薄透镜成像公式} \\
+s' = \infty \Longrightarrow  f = \frac{n}{\frac{n_L - n}{r_1} + \frac{n' - n_L}{r_2}}\quad \text{物方焦距} \label{物方焦距} \\ 
+s = \infty \Longrightarrow  f' = \frac{n'}{\frac{n_L - n}{r_1} + \frac{n' - n_L}{r_2}}\quad \text{像方焦距} \label{像方焦距}\\ 
+\frac{f}{n} = \frac{f'}{n'}
+\end{gather}
+
+特别地，当物像方折射率都为 1 时（真空），我们有磨镜者公式和像的横向放大率：
+\begin{equation}
+f =f' = \frac{1}{(n_L - 1)(\frac{1}{r_1} - \frac{1}{r_2})},\quad  V = -\frac{\frac{s'}{n'}}{\frac{s}{n}} = -\frac{fs'}{f's} =  - \frac{s'}{s}
+\end{equation}
+
+
+将公式 \ref{物方焦距} 和公式 \ref{像方焦距} 代入式 \ref{薄透镜成像公式} 中，可以得到 Gauss 物像公式：
+\begin{equation}
+\frac{f}{s} + \frac{f'}{s'} = 1 \overset{n = n'}{\ \ \ \Longrightarrow\ \ \  } \frac{1}{s} + \frac{1}{s'} = \frac{1}{f}
+\label{Gauss物像公式}
+\end{equation}
+
+令 $s = x + f$，$s' = x' + f'$，代入公式 \ref{Gauss物像公式}，可以得到 Newton 物像公式：
+\begin{equation}
+xx = ff'
+\end{equation}
+
+
+
+\section{光学仪器}
+\section{光波的描述}
+\section{光度学基本概念}
 
 \chapter{}
 \chapter{}
@@ -627,136 +707,8 @@
 \end{equation}
 
 
-
-\chapter*{附录 B. 标题}\addcontentsline{toc}{chapter}{附录 B. 标题}   % B 章节
-\thispagestyle{fancy} 
-\setcounter{section}{0}   
-\renewcommand\thesection{B.\arabic{section}}   
-\renewcommand{\thefigure}{B.\arabic{figure}} 
-\renewcommand{\thetable}{B.\arabic{table}}
-
-\section{支撑材料列表} 
-
-\begin{center}
-  这里插入一张图片（类似思维导图那种）
-\end{center}
-
-\begin{multicols}{2}  
-
-    \begin{table}[H]\centering
-    \caption{\textbf{中英文对照表}}
-    \begin{tabular}{cccccccc}\toprule
-        English & 中文 \\
-        \midrule
-        voltage            & 电压 \\
-        current            & 电流 \\
-        power              & 功率 \\
-        resistance         & 电阻 \\
-        conductance        & 电导 \\
-        inductance         & 电感 \\
-        capacitance        & 电容 \\
-        frequency          & 频率 \\
-        circuit            & 电路 \\
-        circuit element    & 电流元件 \\
-        signal             & 信号 \\
-        circuit analysis   & 电路分析 \\
-        circuit synthesis  & 电路综合 \\
-        circuit design     & 电路设计 \\
-        circuit topology   & 电路拓扑 \\
-        \bottomrule
-    \end{tabular}
-    \end{table}
-    
-    \begin{table}[H]\centering
-        \caption{\textbf{中英文对照表}}
-        \begin{tabular}{cccccccc}\toprule
-            English & 中文 \\
-            \midrule
-            voltage            & 电压 \\
-            current            & 电流 \\
-            power              & 功率 \\
-            resistance         & 电阻 \\
-            conductance        & 电导 \\
-            inductance         & 电感 \\
-            capacitance        & 电容 \\
-            frequency          & 频率 \\
-            circuit            & 电路 \\
-            circuit element    & 电流元件 \\
-            signal             & 信号 \\
-            circuit analysis   & 电路分析 \\
-            circuit synthesis  & 电路综合 \\
-            circuit design     & 电路设计 \\
-            circuit topology   & 电路拓扑 \\
-            \bottomrule
-        \end{tabular}
-    \end{table}
-\end{multicols} 
-    
-
-\section{这里是我的第二节附录}
-% 注意：listing环境中手动输入的代码需要顶格写
-
-\begin{matlablisting}
-% MATLAB code here
-x = 0:0.1:2*pi;
-y = sin(x);
-plot(x, y);
-xlabel('x');
-ylabel('sin(x)');
-title('Sine Function');
-% ... (MATLAB code here，最好是插入文件)
-% MATLAB code here
-x = 0:0.1:2*pi;
-y = sin(x);
-plot(x, y);
-xlabel('x');
-ylabel('sin(x)');
-title('Sine Function');
-% ... (MATLAB code here，最好是插入文件)
-% MATLAB code here
-x = 0:0.1:2*pi;
-y = sin(x);
-plot(x, y);
-xlabel('x');
-ylabel('sin(x)');
-title('Sine Function');
-% ... (MATLAB code here，最好是插入文件)
-% MATLAB code here
-x = 0:0.1:2*pi;
-y = sin(x);
-plot(x, y);
-xlabel('x');
-ylabel('sin(x)');
-title('Sine Function');
-% ... (MATLAB code here，最好是插入文件)
-% MATLAB code here
-x = 0:0.1:2*pi;
-y = sin(x);
-plot(x, y);
-xlabel('x');
-ylabel('sin(x)');
-title('Sine Function');
-% ... (MATLAB code here，最好是插入文件)
-% MATLAB code here
-x = 0:0.1:2*pi;
-y = sin(x);
-plot(x, y);
-xlabel('x');
-ylabel('sin(x)');
-title('Sine Function');
-% ... (MATLAB code here，最好是插入文件)% ... (MATLAB code here，最好是插入文件)% ... (MATLAB code here，最好是插入文件)% ... (MATLAB code here，最好是插入文件)% ... (MATLAB code here，最好是插入文件)A
-% MATLAB code here
-x = 0:0.1:2*pi;
-y = sin(x);
-plot(x, y);
-xlabel('x');
-ylabel('sin(x)');
-title('Sine Function');
-% ... (MATLAB code here，最好是插入文件)
-\end{matlablisting}
-
-\section{这里是我的第三节附录}
-你好你好你好你好你好你好
+% --------------------------- 附录 --------------------------- %
+% >> ------------------------ 附录 ------------------------ << %
 
 \end{document}
 

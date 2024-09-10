@@ -163,7 +163,10 @@
 
 % 列表设置
 \usepackage{enumitem}   % 宏包：列表环境设置
-    \setlist[enumerate]{itemsep=0pt, parsep=0pt, topsep=0pt, partopsep=0pt, leftmargin=3.5em} 
+    \setlist[enumerate]{
+        label=\bfseries(\arabic*) ,   % 设置序号样式为加粗的 (1) (2) (3)
+        ref=\arabic*, % 如果需要引用列表项，这将决定引用格式（这里仍然使用数字）
+        itemsep=0pt, parsep=0pt, topsep=0pt, partopsep=0pt, leftmargin=3.5em} 
     \setlist[itemize]{itemsep=0pt, parsep=0pt, topsep=0pt, partopsep=0pt, leftmargin=3.5em}
     \newlist{circledenum}{enumerate}{1} % 创建一个新的枚举环境  
     \setlist[circledenum,1]{  
@@ -263,7 +266,7 @@
 % >> --------------------- 封面序言与目录 --------------------- << %
 % ------------------------ 封面序言与目录 ------------------------ %
 
-\chapter{2024.9.2 - 2024.9.8}\thispagestyle{fancy}
+\chapter{第一章}\thispagestyle{fancy}
 
 \section{求入射到光纤的角度满足的条件}
 
@@ -304,25 +307,71 @@ n(y)\sin i(y) = C \Longrightarrow \frac{\mathrm{d} y }{\mathrm{d} x } = \frac{\s
 \caption{\textbf{推导光线轨迹方程}}\label{推导光线轨迹方程}
 \end{figure}
 
-事实上，在三维坐标系中考虑上述过程，或者利用费马原理和变分法，又或考虑哈密顿光学，可以得到更一般的形式，称为光路方程：
+事实上，在三维坐标系中考虑上述过程，或者利用费马原理和变分法，又或考虑哈密顿光学，可以得到更一般的形式，称为光路方程，如下：
 \begin{equation}
     \nabla n=\frac{\mathrm{d}}{\mathrm{d}s}\left(n\frac{\mathrm{d}\vec{r}}{\mathrm{d}s}\,\right)
 \end{equation}
 
-\section{}
+\section{（已被删去）}
 \section{利用费马原理给出物像关系}
 
+折射球面如图，由余弦定理可知：
+\begin{equation}
+\text{OPL} = np + n'p' 
+= n \sqrt{r^2 + (s+r)^2 \,{\color{red} -}\, 2r(s+r)\cos \phi } + n' \sqrt{r^2 + (s'-r)^2 \,{\color{red} +}\, 2r(s'-r)\cos \phi } 
+\end{equation}
+
+由费马原理，$\frac{\mathrm{d} \text{OPL}  }{\mathrm{d} \phi } = 0$，于是有：
+\begin{equation}
+\frac{-nr(s+r)\sin \phi }{p} + \frac{n'r(s'-r)\sin \phi }{p'} = 0 \Longrightarrow  \frac{n}{p} + \frac{n'}{p'} = \frac{1}{R\,}\left( \frac{n's'}{p'} - \frac{ns}{p} \right)
+\end{equation}
+
+在傍轴条件下，有 $s \approx p$，$s' \approx p'$，于是有：
+\begin{equation}
+\frac{n}{s} + \frac{n'}{s'} = \frac{n' - n}{R}
+\end{equation}
+证毕。
 \begin{figure}[H]\centering
-\includegraphics[width=0.4\textwidth]{assets/7dd67844c3c8000268c32546583de193.png}
+\includegraphics[width=0.45\textwidth]{assets/7dd67844c3c8000268c32546583de193.png}
 \caption{\textbf{折射球面物像关系}}\label{折射球面物像关系}
 \end{figure}
 
 \section{推导反射球面的物像公式}
 
+这里要注意，由于像是虚像，$l_2$ 贡献虚光程（为负），且 $s_2<0$，因此圆心到像点的距离为 $r+s_2$ 而非 $r-s_2$。同由余弦定理，写出光程 \text{OPL}，有：
+\begin{equation}
+\text{OPL} = n_1l_1 - n_2l_2 
+=
+n_1\sqrt{r^2 + (r+s_1)^2 - 2r(r+s_1)\cos \phi } \,{\color{red} -}\, n_2 \sqrt{r^2 + (r+s_2)^2 - 2r(r+s_2)\cos \phi } 
+\end{equation}
 
+由费马原理，$\frac{\mathrm{d} \text{OPL}  }{\mathrm{d} \phi } = 0$，于是有：
+\begin{equation}
+\frac{-n_1r(r+s_1)\sin \phi }{l_1} + \frac{n_2r(r+s_2)\sin \phi }{l_2} = 0 
+\Longrightarrow 
+\frac{n_2}{l_2} - \frac{n_1}{l_1} = \frac{1}{r}\left( \frac{n_1s_1}{l_1} - \frac{n_2s_2}{l_2} \right)
+\end{equation}
+傍轴时，有 $s_1 \approx l_1$，$s_2 \approx -l_2$，于是：
+\begin{equation}
+-\frac{n_2}{l_2} - \frac{n_1}{l_1} = \frac{1}{r}(n_1 + n_2)
+\end{equation}
+当反射球面两侧为相同介质时，$n_1 = n_2$，则：
+\begin{equation}
+\frac{1}{s_1} + \frac{1}{s_2} = -\frac{2}{r}
+\end{equation}
+证毕。
 
+\begin{figure}[H]\centering
+    \includegraphics[width=0.4\textwidth]{assets/16fdc5948c7dc7e2b7d9c49894df116a.jpg}
+    \caption{\bfseries 反射球面}\label{反射球面}
+    \end{figure}
 
+\section{画出图中的像点}
 
+\begin{enumerate}
+\item height
+\item hhh
+\end{enumerate}
 
 
 
@@ -434,12 +483,11 @@ n(y)\sin i(y) = C \Longrightarrow \frac{\mathrm{d} y }{\mathrm{d} x } = \frac{\s
 
 
 
-
-\chapter{2024.9.2 - 2024.9.8}\thispagestyle{fancy}
-\chapter{2024.9.9 - 2024.9.15}\thispagestyle{fancy}
-\chapter{2024.9.16 - 2024.9.22}\thispagestyle{fancy}
-\chapter{2024.9.23 - 2024.9.29}\thispagestyle{fancy}
-\chapter{2024.9.30 - 2024.10.7}\thispagestyle{fancy}
+\chapter{第二章}\thispagestyle{fancy}
+\chapter{第三章}\thispagestyle{fancy}
+\chapter{第四章}\thispagestyle{fancy}
+\chapter{第五章}\thispagestyle{fancy}
+\chapter{第六章}\thispagestyle{fancy}
 
 
 

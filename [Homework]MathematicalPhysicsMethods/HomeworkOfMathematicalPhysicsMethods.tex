@@ -8,12 +8,13 @@
 \documentclass[UTF8]{report}		
 
 % 本文的特殊宏定义
-    \def\Im{\mathrm{Im\,}}
-    \def\Re{\mathrm{Re\,}}
-    \def\Ln{\mathrm{Ln\,}}
-    \def\Arccos{\mathrm{Arccos\,}}
-    \def\Arcsin{\mathrm{Arcsin\,}}
-    \def\Arctan{\mathrm{Arctan\,}}
+    \def\Im{\mathrm{\,Im\,}}
+    \def\Re{\mathrm{\,Re\,}}
+    \def\Ln{\mathrm{\,Ln\,}}
+    \def\Arg{\mathrm{\,Arg\,}}
+    \def\Arccos{\mathrm{\,Arccos\,}}
+    \def\Arcsin{\mathrm{\,Arcsin\,}}
+    \def\Arctan{\mathrm{\,Arctan\,}}
 
 % 通用宏定义
     \def\N{\mathbb{N}}
@@ -431,10 +432,22 @@ f(x,y) = \frac{x^2 - y^2}{ x^2 + y^2 } = \frac{1-k^2}{1+k^2}
 \item $ f(z) = z\cdot \Re z$
 
 设 $z = x + iy$，则 $f(z) = u(x,y) + iv(x,y) = x^2 + ixy$。
-$\forall\  z \in C$，$u(x,y) = x^2$ 和 $v(x,y) = xy$ 在 $\C$ 上有连续一阶偏导，因此 $f$ 在 $\C$ 上解析（解析必可导）。
+$\forall\  z \in C$，$u(x,y) = x^2$ 和 $v(x,y) = xy$ 在 $\C$ 上有连续一阶偏导，下面考虑 C-R 条件：
+\begin{gather}
+\frac{\partial u }{\partial x } = 2x, \quad \frac{\partial u }{\partial y } = 0 \\ 
+\frac{\partial v }{\partial x } = y, \quad \frac{\partial v }{\partial y } = x
+\end{gather}
+
+联立 C-R 条件，得 $(x,y) = (0,0)$，因此 $f$ 在 $(0,0)$ 处可导，在 $\C$ 上不解析。
+不在点 $(0,0)$ 上解析是因为在某点解析是指在此点的有心邻域上解析，显然这里不满足，因此 $(0,0)$ 为奇点。
+
 
 {\par\color{gray}\small
 后补：
+\begin{equation*}
+u,v\ \text{有一阶连续偏导且满足 C-R 条件} \Longrightarrow  u,v\ \text{可微且满足 C-R 条件} \Longleftrightarrow f\ \text{可微} \Longleftrightarrow 
+f\ \text{可导}
+\end{equation*}
 \par}
 
 
@@ -450,11 +463,14 @@ $\forall\  z \in C$，$u(x,y) = x^2$ 和 $v(x,y) = xy$ 在 $\C$ 上有连续一�
 
 \item $f(x,y) = (x-y)^2 + 2i(x+y)$
 
-$\forall\  z \in C$，$u(x,y) = (x-y)^2$ 和 $v(x,y) = 2(x+y)$ 在 $\C$ 上有连续一阶偏导，因此 $f$ 在 $\C$ 上解析（解析必可导）。
+$\forall\  z \in C$，$u(x,y) = (x-y)^2$ 和 $v(x,y) = 2(x+y)$ 在 $\C$ 上有连续一阶偏导，下面验证 C-R 条件：
+\begin{gather}
+\frac{\partial u }{\partial x } = 2(x-y), \quad \frac{\partial u }{\partial y } = -2(x-y) \\ 
+\frac{\partial v }{\partial x } = 2, \quad \frac{\partial v }{\partial y } = 2
+\end{gather}
 
-{\par\color{gray}\small
-后补：
-\par}
+联立 C-R 条件后无解，因此 $f$ 在 $\C$ 上不可导，在 $\C$ 上不解析。
+
 
 
 %\begin{gather*}
@@ -484,7 +500,7 @@ $\forall\  z \in C$，$u(x,y) = (x-y)^2$ 和 $v(x,y) = 2(x+y)$ 在 $\C$ 上有�
 \begin{equation*}
 y=1,\  x = 0 \Longrightarrow \text{$f$ 在全平面不解析}
 \end{equation*}
-不在点 $(0,1)$ 上解析是因为在某点解析是指在此点的有心领域上解析，显然这里不满足。
+不在点 $(0,1)$ 上解析是因为在某点解析是指在此点的有心邻域上解析，显然这里不满足。
 
 \item  $ f(z) = \begin{cases}
     | z | \cdot z, &| z | <1 \\ 
@@ -532,14 +548,14 @@ v(x,y) =
 
 偏导要满足 C-R 条件，代入得到：
 \begin{gather*}
-x^2 = y^2,\  2xy = 0, \quad \forall\  \sqrt{x^2+y^2} < 1  \\
+x^2 = y^2,\  2xy = 0, \quad \forall\  \sqrt{x^2+y^2} < 1, x^2 + y^2 \ne 0  \\
 2x = 2x,\ -2y = -2y, \quad \forall\ \sqrt{x^2+y^2} \geqslant 1 \\ 
 \Longrightarrow \text{$f(z)$ 在 $\{ z\in \C \mid |z| \geqslant 1 \}$ 上解析}
 \end{gather*}
 不在点 $(0,0)$ 上解析是因为在某点解析是指在此点的有心领域上解析，显然这里不满足。
 
 {\par\color{gray}\small
-后补：
+后补：{\color{red} 解析区域必须是开集}（因为受“有心邻域”限制），$f$ 的解析区域应为 $\{ z\mid | z | {\color{red} >} 1 \}$。另外，$| z | = 1$ 代表的圆周上也不可微，这是因为 $f$ 在 $| z | =1$ 上不连续（内部是一倍幅角，外部是二倍幅角），所以可微区域也为 $\{z \mid | z | >1\}$。
 \par}
 
 
@@ -554,7 +570,7 @@ x^2 = y^2,\  2xy = 0, \quad \forall\  \sqrt{x^2+y^2} < 1  \\
 v_x' = -u_y' = 2y,\quad v_y' = u_x' = 2x + 1\\ 
 \Longrightarrow 
 v(x,y) = \int 2y \ \mathrm{d}x + \int \mathrm{d}y = 2xy + y + C \\ 
-\Longrightarrow f(x,y)= (x^2 + y^2 + x )+ i(2xy + y) + C 
+\Longrightarrow f(x,y)= (x^2 + y^2 + x )+ i(2xy + y) + C,\ C \in \R
 \end{gather*}
 \item $u(x,y) = e^y\cos x$
 
@@ -562,7 +578,7 @@ v(x,y) = \int 2y \ \mathrm{d}x + \int \mathrm{d}y = 2xy + y + C \\
 v_x' = -u_y' = -e^y\cos x,\quad v_y' = u_x' = -e^y\sin x\\ 
 \Longrightarrow
 v(x,y) = \int -e^y\cos x\  \mathrm{d}x + \int 0\ \mathrm{d}y = - e^y\sin x  + C \\ 
-\Longrightarrow f(x,y) = (e^y\cos x) + i(-e^y\sin x ) + C 
+\Longrightarrow f(x,y) = (e^y\cos x) + i(-e^y\sin x ) + C ,\ C \in \R
 \end{gather*}
 \end{enumerate}
 
@@ -577,9 +593,13 @@ v(x,y) = \int -e^y\cos x\  \mathrm{d}x + \int 0\ \mathrm{d}y = - e^y\sin x  + C 
 \begin{gather*}
 v_x' = -3x^2 + 3y^2, \quad v_y' = 6xy \\ 
 u_x' = 6xy,\quad u_y' = 3x^2 - 3y^2 \\ 
-\Longrightarrow v(x,y) = -x^3 + 3xy^2 + C_1, \quad u(x,y) = 3x^2y - y^3 + C_2 \\ 
-\Longrightarrow f(x,y) = (3x^2y - y^3) + i(-x^3 + 3xy^2) + C
+\Longrightarrow v(x,y) = -x^3 + 3xy^2 + C, \quad u(x,y) = 3x^2y - y^3 + C \\ 
+\Longrightarrow f(x,y) = (3x^2y - y^3) + i(-x^3 + 3xy^2) + C(1+i),\ C \in \R
 \end{gather*}
+
+{\par\color{gray}\small
+后补：$u$ 和 $v$ 中的实常数 $C$ 其实是同一个！这是因为题目中 $u-v$ 没有常数项，说明两者积分常数相同。
+\par}
 
 
 \section{极坐标 C-R 条件}
@@ -669,31 +689,177 @@ g(z) = u_g(x,y) + iv_g(x,y),\quad u_g(x,y) = u(x,-y),\ v_g(x,y) = -v(x,-y)
 
 \section{若 $f(z)$ 解析，$\arg f(z)$ 是否为调和函数？}
 
+\begin{enumerate}
+\item 当 $f(z) = C \in \C, \forall\ z \in G$，也即 $f(z)$ 恒为常量时：$\arg f(z)$ 也为常量，设 $\arg f(z) = a + ib$，则 $a = \arg f(z) \in R$ 而 $b=0$，自然满足 $\Delta a = \Delta b =0$，因此 $\arg f(z)$ 为调和函数。
+\item 当 $f(z)$ 是非常量函数时：
+
+由 $\ln z = \ln | z | + \arg z$，令 $f(z) = \rho\cdot e^{i\arg z}$，则有：
+\begin{equation}
+\arg f(z) = \frac{1}{i}\left(\ln f(z) - \ln \rho\right)
+\end{equation}
+函数 $\ln$ 在 $\C \setminus \{0\}$ 上解析，但对于函数 $\rho = \rho(z)$：
+\begin{gather}
+\rho = \sqrt{u^2 + v^2}\Longrightarrow u_\rho = \sqrt{u^2+v^2}, v_\rho = 0  \\ 
+\frac{\partial u_\rho }{\partial x }
+= \frac{uu_x'}{\sqrt{u^2+v^2} } + \frac{vv_x'}{\sqrt{u^2+v^2} },\quad \frac{\partial u_\rho }{\partial y } = \frac{uu_y'}{\sqrt{u^2+v^2} } + \frac{vv_y'}{\sqrt{u^2+v^2} }
+\end{gather}
+
+假设 $\rho$ 满足 C-R 条件，代入得到：
+\begin{equation}
+\begin{cases}
+    uu_x' + vv_x' = 0 \\ 
+    uu_y' + vv_y' = 0 \\ 
+    \sqrt{u^2+v^2} \ne 0
+\end{cases}
+\end{equation}
+由于 $f(z)$ 解析，满足 C-R 条件 $\frac{\partial u }{\partial x } = \frac{\partial v }{\partial y },\ \frac{\partial u }{\partial y } = - \frac{\partial v }{\partial x }$，代入后整理得到：
+\begin{equation}
+\begin{cases}
+    v(v_y'^2 - u_y'^2) = 0 \\ 
+    u(u_y'^2 + v_y'^2) = 0 \\ 
+\end{cases}
+\end{equation}
+$f(z)$ 非常量，因此 $u,v$ 非常量，因此只能有：
+\begin{equation}
+    v_y' = u_y' = 0 \Longrightarrow  u_x' = v_x' = 0 \Longrightarrow  \text{$u$ 和 $v$ 为常量函数}
+\end{equation}
+这使得 $f(z) = u +iv$ 是常量，矛盾！因此 $\arg f(z)$ 不解析（这能否推出不调和？解析是调和的充分条件，但是充要的吗？我觉得不是，没思路了）
+\end{enumerate}
+
+
 \section{从已知的实虚部求出解析函数 $f(z)$}
 
 \begin{enumerate}
-\item $u(x,y) = e^x(x\cos y - y\sin y) + 2\sin x \cdot \sin hy + x^3 - 3xy^2 +y$
+\item $u = e^x(x\cos y - y\sin y) + 2\sin x \cdot \sin hy + x^3 - 3xy^2 +y$
+
+\begin{gather}
+u_x' = e^x(x\cos y -y\sin y + \cos y) + 2\cos x \sin hy +3x^2 - 3y^2 \\ 
+u_y' = e^x(-x\sin y - \sin y - y\cos y ) + 2h \sin x \cos hy - 6xy +1
+\end{gather}
+由 C-R 条件，$v_x' = -u_y',\ v_y' = u_x'$，于是得到：
+\begin{align}
+v(x,y) 
+&= \int (-u_y')\mathrm{d}x + \int (-3y^2) \mathrm{d}y \\
+&= (x-1)e^x\sin y  + (\sin y +y \cos y) e^x + 2h \cos x \cos hy + 3x^2y - x - y^3 + C\\ 
+&= (x\sin y + y\cos y)e^x + 2h\cos x \cos hy + 3x^2y -x -y^3 + C,\ C \in \R
+\end{align}
+
+令 $(x,y) = (z,0)$，得到：
+\begin{gather}
+u(z,0) = ze^z + z^3,\quad v(z,0) = 2h\cos z - z +C,\ C \in \R
+\end{gather}
+于是得到 $f(x,y)$:
+\begin{equation}
+f(z) = \left[u(x,y) + iv(x,y)\right]_{x=z,y=0}
+= 
+(ze^z + z^3) + i(2h\cos z -z +C),\ C \in \R
+\end{equation}
+
+
 \item $v = \ln (x^2 + y^2) + x -2y$
+
+\begin{equation}
+v_x' = \frac{2x}{x^2 + y^2} + 1, \quad v_y' = \frac{2y}{x^2 + y^2} -2
+\end{equation}
+由 C-R 条件，$u_x' = v_y',\ u_y' = -v_x'$，于是得到：
+\begin{align}
+u(x,y) 
+= \int v_y' \mathrm{d}x +  \int (-1)\mathrm{d}y = \frac{2}{y}\arctan \frac{x}{y} - 2x -y + C
+\end{align}
+\begin{equation}
+f(x,y) = u + iv = (\frac{2}{y}\arctan \frac{x}{y} - 2x -y + C) + i(\ln (x^2 + y^2) + x -2y),\ C \in \R
+\end{equation}
 \end{enumerate}
 
 \section{求下列函数的值}
 \begin{enumerate}
 \item $\cos(2+i)$
-\item $\Ln(w-3i)$
+
+由 $\cos z = \frac{e^{iz} + e^{-iz}}{2}$，可得：
+\begin{align*}
+\cos(2+i) 
+&= \frac{1}{2}\left[  e^{i(2+i)} + e^{i(2-i)}  \right] = \frac{1}{2}\left[ e^{2i -1} + e^{1-2i} \right] \\
+&= \frac{1}{2}\left[ (\frac{1}{e} + e)\cos 2 + i(\frac{1}{e}-e)\sin 2\right]
+\end{align*}
+
+\item $\Ln(2-3i)$
+
+由 $\Ln z = \ln a + i\Arg z$，可得：
+\begin{align*}
+\Ln (2-3i) = \ln | 2-3i | + i\Arg (2-3i)
+= \ln 13 + i\left(\arctan (-\frac{3}{2}) + 2k\pi\right),\quad k \in \mathbb{Z}
+\end{align*}
+
 \item $\Arccos (\frac{3+i}{4})$
+
+$\arccos z = -i \ln (z + \sqrt{z^2 -1} )$，于是：
+\begin{align*}
+\Arccos (\frac{3+i}{4}) 
+&= -i \Ln\left(\frac{3+i}{4} + \sqrt{(\frac{3+i}{4})^2 -1} \right) = -i \Ln \left( \frac{3+i}{4} + \frac{\sqrt{-8 + 6i} }{4} \right) \\ 
+&= -i \Ln \left( \frac{3+i}{4} \pm \frac{1 + 3i}{4} \right) = -i \Ln(1+i)\  \text{或}\ -i \Ln(\frac{1-i}{2}) \\ 
+&= (\frac{\pi}{4} + 2k\pi) - i\frac{\ln 2}{2} \ \text{或}\ -(\frac{\pi}{4} + 2k\pi) + i\frac{\ln 2}{2}
+\end{align*}
+
 \item $\Arctan (1+2i)$
+
+由 $\Arctan z = \frac{1}{2i} \Ln \frac{1+iz}{1-iz}$，得：
+\begin{align*}
+\Arctan (1+2i) 
+&= \frac{1}{2i}\Ln \left( \frac{1+i(1+2i)}{1-i(1+2i)} \right)
+= \frac{1}{2i}\Ln \left( \frac{-1 + i}{3-i} \right) \\
+&= \frac{1}{2i}\left( \Ln (-2+i) - \ln 5 \right) 
+= \frac{1}{2i}\left[ -\frac{\ln 5}{2}  + i\left( \pi - \arctan(-\frac{1}{2})  + 2k\pi\right) \right] \\ 
+&= \frac{1}{2}\left(\pi - \arctan(-\frac{1}{2})  + 2k\pi\right) + i\frac{\ln 5}{4}
+\end{align*}
 \end{enumerate}
 
 \section{判断下列函数是单值还是多值函数}
 \begin{enumerate}
 \item $\sin \sqrt{z}$
+
+多值函数。$\sqrt{z}$ 为双值函数，$a^2 = z \Longrightarrow  \sqrt{z} = \pm a $，而 $\sin $ 为奇函数，$\sin a \ne \sin (-a)$，故为多值函数。
 \item $\frac{\sin \sqrt{z} }{\sqrt{z} }$
+
+单值函数。$\frac{\sin a}{a} = \frac{\sin (-a)}{-a}$，因此为单值函数。
 \item $\frac{\cos \sqrt{z} }{\sqrt{z} }$
+
+多值函数。$\frac{\cos a}{a} \ne \frac{\cos (-a)}{-a}$，故为多值函数。
 \end{enumerate}
 
 \section{解方程：$2\cos^2hz - 3\cos hz + 1 = 0$}
+原方程等价于：
+\begin{gather}
+(2\cos hz - 1)(\cos hz - 1) = 0 \Longrightarrow  \cos hz = \frac{1}{2},\, 1 \\ 
+\Longrightarrow  z = \frac{1}{h}(\pm\frac{\pi}{3} + 2k\pi), \frac{1}{h}(2k\pi),\ k \in \Z
+\end{gather}
 
-\section{求下列多值函数的交点}
+\section{求下列多值函数的分支点}
+
+\textbf{(1)\ } $\sqrt{1 - z^3}$ 的分支点：$1, -\frac{1}{2} + i\frac{3}{2}, -\frac{1}{2} - i\frac{3}{2}, \infty$
+
+$1 - z^3 = (1-z)[(-\frac{1}{2} + i\frac{3}{2}) -z][(-\frac{1}{2} - i\frac{3}{2})-z]$，不妨记为 $1 - z^3 = (z_1 - z)(z_2 - z)(z_3 - z)$。支点仅可能在宗量的零点、奇点处出现，下面分别考察 $z_1,z_2,z_3, \infty$ 四点。
+
+对 $z_1$，取仅包含点 $z_1$ 的简单闭合曲线，曲线上一点 $z$ 沿逆时针绕一圈回到原处，因子 $(z_1 - z)$ 的幅角增加了 $2\pi$，因子 $(z_2 - z)$ 和 $z_3 - z$ 的幅角增加了 0，因此整个宗量的幅角增加 $2\pi$，开根后，函数值幅角增加 $\pi$，前后不相等。因此点 $z_1$ 是分支点。同理可得 $z_2$ 和 $z_3 $ 是分支点。
+
+对 $\infty$，取包含点 $z_1, z_2, z_3 $ 的简单闭合曲线，曲线上一点 $z$ 沿顺时针（不是逆时针）绕一圈回到原处，整个宗量的幅角增加了 $-6\pi$，开根后函数值幅角增加 $-3\pi$，因此 $\infty$ 也是分支点。
+
+\textbf{(2)\ } $\Ln \cos z$ 的分支点：这题没思路了
+
+
+\textbf{(3)\ } $\sqrt{\frac{z}{(z-1)(z-2)}} $ 的分支点：$0, 1, 2, \infty$
+
+考虑点 $0,1,2$，取仅包含点 $0$ 的简单闭合曲线，曲线上一点 $z$ 逆时针绕一圈后，宗量整体幅角增加 $2\pi$，函数值幅角增加 $\pi$，因此点 $0$ 是分支点。同理点 $1$ 和 $2$ 也是分支点。
+
+对 $\infty$，取包含点 $0,1,2$ 的简单闭合曲线，曲线上一点 $z$ 顺时针绕一圈后，宗量整体幅角增加 $-2\pi$，函数值也不发生变化，$\infty$ 不是分支点。
+
+\textbf{(4)\ } $\Ln \frac{(z-a)(z-b)}{(z-c)}$  没有分支点。
+\begin{equation}
+    \Ln \frac{(z-a)(z-b)}{(z-c)} = \ln | \frac{(z-a)(z-b)}{(z-c)} | + i\Arg \frac{(z-a)(z-b)}{(z-c)}
+\end{equation}
+考虑点 $a,b,c$，取仅包含点 $a$ 的简单闭合曲线，曲线上一点 $z$ 逆时针绕一圈后，宗量整体幅角增加 $2\pi$，$\Arg \frac{(z-a)(z-b)}{(z-c)} = \Arg (\frac{(z-a)(z-b)}{(z-c)} + 2\pi) $，因此函数值不发生变化，点 $a$ 不是分支点。同理点 $b$ 和 $c$ 也不是分支点。
+
+对 $\infty$，取包含点 $a,b,c$ 的简单闭合曲线，曲线上一点 $z$ 顺时针绕一圈后，宗量整体幅角增加 $-2\pi$，函数值也不发生变化，$\infty$ 不是分支点。
+
 
 \chapter{2024.9.16 - 2024.9.22}\thispagestyle{fancy}
 

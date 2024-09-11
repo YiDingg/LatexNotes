@@ -7,9 +7,16 @@
 % 设定文章类型与编码格式
 \documentclass[UTF8]{report}		
 
-% 本文特殊宏包
+% 本文的特殊宏定义
+    \def\Im{\mathrm{Im\,}}
+    \def\Re{\mathrm{Re\,}}
+    \def\Arg{\mathrm{Arg}\,}
+    \def\Ln{\mathrm{Ln\,}}
+    \def\Arccos{\mathrm{Arccos\,}}
+    \def\Arcsin{\mathrm{Arcsin\,}}
+    \def\Arctan{\mathrm{Arctan\,}}
 
-% 自定义宏定义
+% 通用宏定义
     \def\N{\mathbb{N}}
     \def\F{\mathbb{F}}
     \def\Z{\mathbb{Z}}
@@ -20,11 +27,9 @@
     \def\S{\mathbb{S}}
     \def\A{\mathbb{A}}
     \def\I{\mathscr{I}}
-    \def\Re{\mathrm{Re}\,}
-    \def\Im{\mathrm{Im}\,}
-    \def\Arg{\mathrm{Arg}\,}
     \def\d{\mathrm{d}}
     \def\p{\partial}
+
 
 
 % 导入基本宏包
@@ -402,35 +407,58 @@
 \section{可导与可微}
 
 
-\begin{definition}[可导]
+
 单值复变函数 $f(z)$ 在 $z_0$ 处可导如果 $\lim\frac{f(z + \Delta z) - f(z)}{\Delta z} = C \in \R$\footnote{这要求 $\Delta z$ 以任意方式趋于零，此极限都存在，类似二元函数的导数。}
 ，记为 $f'(z)$。
 
+
 容易证明，高等数学中的各种求导公式都可以直接搬用到复变函数。
 
-Cauchy-Riemann 条件是函数可导的必要条件：
+Cauchy-Riemann 条件是函数{\color{red} 可导的必要条件}：
 \begin{gather}
-\Re (\frac{\partial f }{\partial x }) = \Re (\frac{\partial f }{\partial y }),\quad 
-\Im (\frac{\partial f }{\partial x }) = -\Im (\frac{\partial f }{\partial y })\\ 
-\Longleftrightarrow 
 \frac{\partial u }{\partial x } = \frac{\partial v }{\partial u },\quad
 \frac{\partial u }{\partial y } = - \frac{\partial v }{\partial x }
 \end{gather}
-\end{definition}
+极坐标中的 C-R 条件：
+\begin{equation}
+\frac{\partial u }{\partial r } = \frac{1}{r}\frac{\partial v }{\partial \phi },\quad \frac{\partial v }{\partial r } = - \frac{1}{r}\frac{\partial u }{\partial \phi }
+\end{equation}
 
 
-\begin{definition}[可微]
-若存在 $A = A(z) \in \C \ \ \text{s.t.}\ \ \Delta f(z) = A(z) \cdot \Delta z + O(\Delta z)$，则称 $f(z)$ 在 $z_0$ 处可微，记作 $\mathrm{d} f = A \mathrm{d}z$.
+若存在 $A = A(z) \in \C \ \ \text{s.t.}\ \ \Delta f(z) = A(z) \cdot \Delta z + O(\Delta z)$，则称 $f(z)$ 在 $z_0$ 处可微，记作 $\mathrm{d} f = A \mathrm{d}z$，或 $\mathrm{d} f = A (\mathrm{d}x + i \mathrm{d}y)$
 
-和实数一样，$\mathrm{d} f = f'(z) \mathrm{d}z$，并且 可微 $\Longrightarrow$ 可导 $\Longrightarrow$ 连续。
-\end{definition}
+注意，与实变函数不同，在复变函数中，可导与可微是完全等价的：
+\begin{equation}
+{\color{red} f\ \text{可导}  \Longleftrightarrow   f \ \text{可微} }\Longleftrightarrow u,v\ \text{可导且满足 C-R 条件}  
+\end{equation}
 
 \section{解析函数}
 
-
+\subsection{解析的概念与判定}
 函数 $f$ 称为 $G$ 上的解析函数如果 $f$ 在区域 $G$ 内每一点都可导，又称为 $f$ 在 $G$ 上解析。
 
-在 $G$ 内解析的函数必满足 Cauchy-Riemann 方程，因此只要知道其中之一，例如 $f(x,y) = u(x,y) + iv(x,y)$ 的实部 $u(x,y)$，就可以唯一地确定其虚部（可加减实常数），这是因为：
+
+可以证明，函数 $f$ 在任意一点解析的充要条件是：
+\begin{equation}
+\text{$f$ 在点 $z \in \C$ 解析} \Longleftrightarrow \text{$f$ 在点 $z$ 可微且满足 Cauchy-Riemann 方程}
+\end{equation}
+
+在实际的操作中，我们常用下面定理来判断函数的解析性：
+\begin{BlockTheorem}[解析函数判别法]\label{解析函数判别法}
+设 $f(z) = u(x,y) + iv(x,y)$ 是区域 $G$ 上的单值复变函数，则：
+\begin{gather}
+\text{$u$ 和 $v$ 在 $G$ 上可微，且处处满足 C-R 条件} \Longleftrightarrow  \text{$f$ 在 $G$ 上可导}\Longleftrightarrow \text{ $f$ 在 $G$ 内解析} \\ 
+\text{$u$ 和 $v$ 在 $G$ 上有连续一阶导，且处处满足 C-R 条件} \Longrightarrow \text{$f$ 在 $G$ 上可导}\Longleftrightarrow\text{$f$ 在 $G$ 内解析}
+\end{gather}
+\end{BlockTheorem}
+{\par\color{gray}\small
+对于第一行，$u$ 和 $v$ 在 $G$ 上可微并不能直接得到 $f$ 可微，例如 $u = 2x, v= -y$，还有加上 C-R 条件才能得到可微。对于第二行，$u$ 有一阶连续偏导 $\Longrightarrow $ $u$ 可微（多元实变函数的结论），后面同理
+\par}
+
+
+\subsection{已知实虚部求原函数}
+
+在 $G$ 内解析的函数必满足 Cauchy-Riemann 方程（因为处处可导），因此只要知道实虚部其中之一，例如 $f(x,y) = u(x,y) + iv(x,y)$ 的实部 $u(x,y)$，就可以唯一地确定其虚部（可加减实常数），这是因为：
 \begin{gather}
 \mathrm{d} v = \frac{\partial v }{\partial x }\mathrm{d}x + \frac{\partial v }{\partial y } \mathrm{d}y = - \frac{\partial u}{\partial y } \mathrm{d}x + \frac{\partial u}{\partial x } \mathrm{d}y \\ \Longrightarrow
 v(x,y) = \int \left( - \frac{\partial u}{\partial y } \mathrm{d}x + \frac{\partial u}{\partial x } \mathrm{d}y  \right)
@@ -448,79 +476,74 @@ g_2(y) = \int (\frac{\partial v }{\partial y } - \frac{\partial g_1 }{\partial y
 \end{gather}
 最后相加即得 $v(x,y)$。
 
-这也就是说，先考虑 $\frac{\partial v }{\partial x }$ 对 $x$ 的积分，得到 $g_1(x,y)$，然后考虑 $\frac{\partial v }{\partial y }$，{\color{red} 将其含 $x$ 的项全部舍弃}（因为它们属于 $g_1$），再对 $y$ 作积分。两积分结果相加即得 $v(x,y)$。
+这也就是说，先考虑 $\frac{\partial v }{\partial x }$ 对 $x$ 的积分，得到 $g_1(x,y)$，然后考虑 $\frac{\partial v }{\partial y }$，{\color{red} 将其含 $x$ 的项全部舍弃}（因为它们属于 $g_1$），再对 $y$ 作积分。{\color{red} 两积分结果相加即得 $v(x,y)$。}
 
-
-
-解析函数实部与虚部之间的这种依赖关系，还可以形象地表现出来。在 $x-y$ 平面中，分别作出 $u(x,y)$ 和 $v(x,y)$ 的等高线图，在任意一点 $(x,y)$，由 Cauchy-Reimann 方程，两者方向矢量的内积为零：
+特别地，当已知 $u(x,y)$ 和 $v(x,y)$ 时，欲求 $f(z)$ 的表达式（而不是 $f(x,y)$），只需直接令表达式 $u + iv$ 的 $(x,y) = (z,0)$，也即： 
 \begin{equation}
-\begin{bmatrix}
-    \frac{\partial u }{\partial y } & - \frac{\partial u }{\partial x }
-\end{bmatrix}
-\cdot 
-\begin{bmatrix}
-    \frac{\partial v }{\partial y } \\  -\frac{\partial v }{\partial x }
-\end{bmatrix}
-= \frac{\partial u }{\partial y }\frac{\partial v }{\partial y } + \frac{\partial u }{\partial x } \frac{\partial v }{\partial x } = 0
+{\color{red} f(z) = \left[u(x,y) + iv(x,y)\right]_{x = z, y=0} = u(z,0) + iv(z,0)}
 \end{equation}
-因此两者的等高线图处处正交（表现为曲线处处正交）。
-% {\par\color{gray}\small
-% 例如 $f(z) = z^2$，则：
-% \begin{gather*}
-%     f(z) 
-%     = \frac{1}{z^2}
-%     = \frac{1}{(x^2-y^2) + (2xy) \mathrm{i} } 
-%     = \frac{x^2-y^2}{(x^2 + y^2)^2} + \frac{-2xy}{(x^2 +y^2)^2}  % \mathrm{i} \\ 
-%     \Longrightarrow u(x,y) = \frac{x^2-y^2}{(x^2 + y^2)^2} ,\ v(x,% y) = \frac{-2xy}{(x^2 +y^2)^2}
-% \end{gather*}
-% 它们的等高线图如图 ；
-% \par}
+具体原因我们会在第五章“解析延拓”处讨论。
 
-{\par\color{gray}\small
-例如 $f(z) = z^2$，则：
-\begin{gather*}
-    f(z) 
-    = z^2
-    = (x^2-y^2) + (2xy) \mathrm{i} 
-    \Longrightarrow u(x,y) = x^2-y^2 ,\ v(x,y) = 2xy
-\end{gather*}
-它们的等高线图如图 \ref{解析函数 $f(z) = z^2$ 实虚部示意图} 所示：
-\begin{figure}[H]\centering
-\includegraphics[width=0.45\textwidth]{assets/2024-08-28_10-23-23.png}
-\caption{\textbf{解析函数 $f(z) = z^2$ 实虚部示意图}}\label{解析函数 $f(z) = z^2$ 实虚部示意图}
-\end{figure}
-\par}
+\subsection{实虚部关系可视化}
+    解析函数实部与虚部之间的这种依赖关系，还可以形象地表现出来。在 $x-y$ 平面中，分别作出 $u(x,y)$ 和 $v(x,y)$ 的等高线图，在任意一点 $(x,y)$，由 Cauchy-Reimann 方程，两者方向矢量的内积为零：
+    \begin{equation}
+    \begin{bmatrix}
+        \frac{\partial u }{\partial y } & - \frac{\partial u }{\partial x }
+    \end{bmatrix}
+    \cdot 
+    \begin{bmatrix}
+        \frac{\partial v }{\partial y } \\  -\frac{\partial v }{\partial x }
+    \end{bmatrix}
+    = \frac{\partial u }{\partial y }\frac{\partial v }{\partial y } + \frac{\partial u }{\partial x } \frac{\partial v }{\partial x } = 0
+    \end{equation}
+    因此两者的等高线图处处正交（表现为曲线处处正交）。
+    % {\par\color{gray}\small
+    % 例如 $f(z) = z^2$，则：
+    % \begin{gather*}
+    %     f(z) 
+    %     = \frac{1}{z^2}
+    %     = \frac{1}{(x^2-y^2) + (2xy) \mathrm{i} } 
+    %     = \frac{x^2-y^2}{(x^2 + y^2)^2} + \frac{-2xy}{(x^2 +y^2)^2}  % \mathrm{i} \\ 
+    %     \Longrightarrow u(x,y) = \frac{x^2-y^2}{(x^2 + y^2)^2} ,\ v(x,% y) = \frac{-2xy}{(x^2 +y^2)^2}
+    % \end{gather*}
+    % 它们的等高线图如图 ；
+    % \par}
+    
+    {\par\color{gray}\small
+    例如 $f(z) = z^2$，则：
+    \begin{gather*}
+        f(z) 
+        = z^2
+        = (x^2-y^2) + (2xy) \mathrm{i} 
+        \Longrightarrow u(x,y) = x^2-y^2 ,\ v(x,y) = 2xy
+    \end{gather*}
+    它们的等高线图如图 \ref{解析函数 $f(z) = z^2$ 实虚部示意图} 所示：
+    \begin{figure}[H]\centering
+    \includegraphics[width=0.3\textwidth]{assets/2024-08-28_10-23-23.png}
+    \caption{\textbf{解析函数 $f(z) = z^2$ 实虚部示意图}}\label{解析函数 $f(z) = z^2$ 实虚部示意图}
+    \end{figure}
+    \par}
+    
+    之后我们会证明，解析函数 $f$ 的实部 $u(x,y)$ 和虚部 $v(x,y)$ 的二阶偏导一定存在且连续，并且满足二维 Laplace 方程\footnote{这样的函数 $f$ 称为调和函数}，这表明解析函数的实部和虚部构成一对共轭的调和函数\footnote{共轭是因为满足 Cauchy-Riemann 方程}
+    。
+    \begin{equation}
+        \Delta u = \Delta v = 0 \Longleftrightarrow
+        \frac{\partial^{2}u}{\partial x^{2}}+\frac{\partial^{2}u}{\partial y^{2}}=\frac{\partial^{2}v}{\partial x^{2}}+\frac{\partial^{2}v}{\partial y^{2}}=0
+    \end{equation}
+    
+    函数的解析性总是和给点区域联系在一起，有时也称函数在 $z_0$ 点解析，也即在邻域 $U_{\delta}(z_0)$ 内解析。讨论解析函数的各种特殊性质，就是复变函数论的中心课题。
+    
 
-之后我们会证明，解析函数的实部 $u(x,y)$ 和虚部 $v(x,y)$ 的二阶偏导一定存在且连续，并且满足二维 Laplace 方程\footnote{这样的函数称为调和函数}，这表明解析函数的实部和虚部构成一对共轭的调和函数\footnote{共轭是因为满足 Cauchy-Riemann 方程}
-。
-\begin{equation}
-    \Delta u = \Delta v = 0 \Longleftrightarrow
-    \frac{\partial^{2}u}{\partial x^{2}}+\frac{\partial^{2}u}{\partial y^{2}}=0 \quad\frac{\partial^{2}v}{\partial x^{2}}+\frac{\partial^{2}v}{\partial y^{2}}=0
-\end{equation}
-
-函数的解析性总是和给点区域联系在一起，有时也称函数在 $z_0$ 点解析，也即在邻域 $U_{\delta}(z_0)$ 内解析。讨论解析函数的各种特殊性质，就是复变函数论的中心课题。
-
-可以证明，函数 $f$ 在任意一点解析的充分必要条件是：
-\begin{equation}
-\text{$f$ 在点 $z \in \C$ 解析} \Longleftrightarrow \text{$f$ 在点 $z$ 可微且满足 Cauchy-Riemann 方程}
-\end{equation}
-
-在实际的操作中，我们常用下面两条定理来判断函数的解析性：
-\begin{BlockTheorem}[解析函数判别法]\label{解析函数判别法}
-设 $f(z) = u(x,y) + iv(x,y)$ 是区域 $G$ 上的单值复变函数，则：
-\begin{gather}
-\text{$u$ 和 $v$ 在 $G$ 上可微，且处处满足 C-R 条件} \Longleftrightarrow \text{ $f$ 在 $G$ 内解析} \\ 
-\text{$u$ 和 $v$ 在 $G$ 上有连续一阶导，且处处满足 C-R 条件} \Longrightarrow \text{$f$ 在 $G$ 内解析}
-\end{gather}
-\end{BlockTheorem}
 
 
 \section{初等函数}
 
 一些实初等函数推广到复数域时会有比较的特殊性质，下面进行讨论。
 
+
+
 \begin{definition}[幂函数 $z^n$]
-当 $n \in \N$ 时，$z^n$ 在 $\C$ 内解析，并且当 $n \in \N^*$时，$z^n$ 在 $\infty$ 不解析；当 $n \in -\N^*$ 时，$z^n$ 在 $z=0$ 不解析，在 $\overline{\C}\setminus \{0\}$ 内解析。
+当 $n \in \N$ 时，$z^n$ 在 $\C$ 内解析，并且当 $n \in \N^*$时，$z^n$ 在 $\infty$ {\color{red} 不解析}；当 $n \in -\N^*$ 时，$z^n$ 在 $z=0$ {\color{red} 不解析}，在 $\overline{\C}\setminus \{0\}$ 内解析。
 \end{definition}
 
 
@@ -565,11 +588,13 @@ $\sin z,\ \cos z$ 在 $\C$ 内解析，唯一奇点是 $z = \infty$。可以证�
 \section{解析函数的保角性（略）}
 \section{多值函数}
 
+\subsection{基本概念}
+
 \begin{definition}[多值函数的概念]
 $f$ 称为区域 $G \subseteq \C$ 上的多值函数如果 $\forall\ z \in G$ 存在多个 $w \in \C$ 使得 $f(z) = w_1 = w_2 = \cdots $。许多函数的逆运算都是多值函数。
 \end{definition}
 
-\begin{definition}[开方]
+\begin{definition}[宗量、分支点]
 考虑 $z-a$ 的开方 $w =\sqrt{z-a}$，设 $w = \rho_1 e^{\alpha}$ 而 $z-a = \rho_2e^{\theta}$，代入解得：
 \begin{gather}
      w = \sqrt{| z-a |} e^{\frac{\theta}{2} + n\pi}, \quad n \in \Z \\ \Longleftrightarrow 
@@ -581,22 +606,58 @@ $\omega $ 的多值性来源于 $z-a$ 幅角的多样性，我们把这样量称
 
 对第一种情况，$z$ 沿路径 $C_1$ 逆时针旋转一圈后，由于 $a$ 在圆外，因此旋转前后的 $\arg (z-a)$ 不变，$\arg w = \frac{1}{2} \arg (z-a)$ 也不变，从而使得旋转前后 $w$ 也不变，称为 $w$ 值“还原”。对第二种情况，$z$ 沿路径 $C_2$ 逆时针旋转一圈后，由于 $a$ 在圆内，$\arg (z-a)$ 增加了 $2\pi$ 但 $\arg w = \frac{1}{2} \arg (z-a)$ 使得 $\arg w$ 仅增加 $\pi$，从而使得旋转前后 $w$ 未回到原点，称为 $w$ 值“不还原”。
 
-因此，点 $a$ 对多值函数 $w =\sqrt{z-a}$ 有特殊意义，它是否位于简单闭合路径内就决定了当 $z$ 沿这个路径行进一周回到原处时，相应的 $w$ 值是否能还原。
+因此，点 $a$ 对多值函数 $w =\sqrt{z-a}$ 有特殊意义，它是否位于简单闭合路径内就决定了当 $z$ 沿这个路径行进一周回到原处时，相应的 $w$ 值是否能还原。对于无法还原的点，我们称为\textbf{分支点}。也即，如果 $\exists\ r >0$，当 $z$ 沿圆周 $| z - z_0 | = r$ 绕一圈回到原处时，$w$ 不还原，且当 $r \mapsto 0$ 时，$w$ 始终不还原，这样的点 $z_0$ 就称为多值函数 $w(z)$ 的分支点。
+{\par\color{gray}\small
+例如，$z = a, \infty $ 是 $ f(z) = \sqrt{z - a} $ 的分支点，$z = a,b,c, \infty$ 是 $f(z) = \sqrt{(z-a)(z-b)(z-c)} $ 的分支点，$z = 0, \infty$ 是 $ f(z) = \Ln z = \ln | z | + i\Arg z$ 的分支点。
+\par}
+ 
 
 
 \begin{figure}[H]\centering
 \includegraphics[width=0.55\textwidth]{assets/image (43).jpg}
 \caption{\textbf{$z$ 沿闭合曲线一周回到原处时，$w = \sqrt{z-a}$ 值的不同变化}}\label{沿闭合曲线一周回到原处时}
 \end{figure}
-
 \end{definition}
 
+\subsection{单值分支}
+为了得到多值函数的单值分支，我们可以限制宗量的幅角范围（常通过“割线”来实现）。这样，宗量幅角范围的各个周期，给出多值函数的各个单值分支。另一种自然的方法是规定初始值和连续变化路线（移动路线）。
 
+\subsection{常见多值函数}
+最常见的多值函数是取对和开根。
+\begin{gather}
+    \ln z = \ln | z | + i\arg z,\quad
+    \Ln z = \ln | z | + i\Arg z
+    \end{gather}
 
+许多多值函数都可以通过 $\Ln z$ 和根号来定义：
+\begin{gather}
+    \arcsin z = \frac{1}{i}\Ln (iz + \sqrt{1-z^2} ),\quad
+    \arccos z = \frac{1}{i}\Ln (z + \sqrt{z^2 - 1} ) \\
+    \arctan z = \frac{1}{2i}\Ln(\frac{1+iz}{1-iz}) ,\quad
+    z^\alpha = e^{\alpha \Ln z},\  \alpha \in \C
+\end{gather}
 
+    
+\chapter{复变积分}
 
+\section{复变积分的概念}
+复变积分是 $\C$ 上的线积分，沿某条路径，由点 A 至点 B 的复变积分定义为：
+\begin{equation}
+I = \lim_{\max | \Delta z_i \to 0|}\sum_{i=1}^{n} f(\xi_i)\Delta z_i = \int_{C_{AB}} f(z) \mathrm{d}z
+\end{equation}
+如果路径是闭合的，也常称为积分围道。一个复变积分实际上是两个实变线积分的线性组合，因此，若 $C$ 是分段光滑曲线，且 $f(z)$ 在路径 $C$ 上连续，则复变积分一定存在。
+\begin{equation}
+\int_{C}f(z) \mathrm{d}z = \int_{C}(u \mathrm{d}x - v \mathrm{d}y) + i \int_{C}( v \mathrm{d}x + u \mathrm{d}y)
+\end{equation}
 
-
+\section{Cauthy 定理}
+\begin{BlockTheorem}[Cauthy 定理]\label{Cauthy 定理}
+若函数 $f(z)$ 在有界闭域 $\overline{G}$ 上解析，$\overline{G}$ 的边界为 $\partial G $，则有：
+\begin{gather}
+\oint_{\partial G} f(z) \mathrm{d}z = 0 ,\quad \text{或}\ \oint_{C} f(z)\mathrm{d}z = \int_{C'} f(z)\mathrm{d}z
+\end{gather}
+其中 $C$ 和 $C'$ 是同伦曲线。对单连通区域，$\partial G$ 即为外围边界线（沿逆时针）；对多连通区域，外围边界线沿逆时针积分，内部边界线沿顺时针积分。
+\end{BlockTheorem}
 
 
 

@@ -10,18 +10,18 @@
 % 本 .tex 专属的宏定义
     \def\V{\ \mathrm{V}}
     \def\mV{\ \mathrm{mV}}
-    \def\kV{\ \mathrm{kV}}
-    \def\KV{\ \mathrm{kV}}
+    \def\kV{\ \mathrm{KV}}
+    \def\KV{\ \mathrm{KV}}
     \def\MV{\ \mathrm{MV}}
     \def\A{\ \mathrm{A}}
     \def\mA{\ \mathrm{mA}}
-    \def\kA{\ \mathrm{kA}}
-    \def\KA{\ \mathrm{kA}}
+    \def\kA{\ \mathrm{KA}}
+    \def\KA{\ \mathrm{KA}}
     \def\MA{\ \mathrm{MA}}
     \def\O{\ \Omega}
     \def\mO{\ \Omega}
-    \def\kO{\ \mathrm{k}\Omega}
-    \def\KO{\ \mathrm{k}\Omega}
+    \def\kO{\ \mathrm{K}\Omega}
+    \def\KO{\ \mathrm{K}\Omega}
     \def\MO{\ \mathrm{M}\Omega}
     \def\Hz{\ \mathrm{Hz}}
 
@@ -235,11 +235,11 @@
         \renewcommand\headrulewidth{1pt}
         \renewcommand\footrulewidth{0pt}
         \lhead{2024.8-2025.1}
-        \chead{Notes of Circuit Theory}    
+        \chead{Notes of Principles of Electric Circuits}    
         \rhead{dingyi233@mails.ucas.ac.cn}
 
 %文档信息设置
-    \title{电路原理笔记\\ Notes of Circuit Theory}
+    \title{电路原理笔记\\ Notes of Principles of Electric Circuits}
     \author{丁毅\\ \footnotesize 中国科学院大学，北京 100049\\ Yi Ding \\ \footnotesize University of Chinese Academy of Sciences, Beijing 100049, China}
     \date{\footnotesize 2024.8 -- 2025.1}
 % ------------------------ 文章信息区 ------------------------ %
@@ -259,7 +259,7 @@
 
 % 序言
     \begin{cnabstract}\normalsize 
-        本文为笔者本科时的电路原理笔记（Notes of Circuit Theory, 2024.9-2025.1）。由于个人学识浅陋，认识有限，文中难免有不妥甚至错误之处，望读者不吝指正，在此感谢。\par
+        本文为笔者本科时的电路原理笔记（Notes of Principles of Electric Circuits, 2024.9-2025.1）。由于个人学识浅陋，认识有限，文中难免有不妥甚至错误之处，望读者不吝指正，在此感谢。\par
         我的邮箱是 dingyi233@mails.ucas.ac.cn。
     \end{cnabstract}
     \addcontentsline{toc}{chapter}{序言} % 手动添加为目录
@@ -286,7 +286,7 @@
 一般来讲，电路的研究内容分为电路分析、电路综合，分别对应电路研究的正问题（已知电路求电路的解）和逆问题（已知解求电路结构参数），本课程的重点在电路分析，对电路综合不深入探讨。
 
 \begin{figure}[H]\centering
-\includegraphics[width=0.5\textwidth]{assets/11b7879b24f71ddbf3e5316424203201.jpg}
+\includegraphics[width=0.5\textwidth]{assets/1,2/11b7879b24f71ddbf3e5316424203201.jpg}
 \caption{\textbf{电路原理与其他电类主要课程的联系}}\label{电路原理与其他电类主要课程的联系}
 \end{figure}
 
@@ -303,7 +303,7 @@
 电压与电动势参考方向有三种表示方式，分别为结点、正负和箭头，如图 \ref{电压与电动势的三种表示方法} 所示，要特别注意两者方向相反。
 
 \begin{figure}[H]\centering
-\includegraphics[width=0.45\textwidth]{assets/电动势与电压.drawio.pdf}
+\includegraphics[width=0.45\textwidth]{assets/1,2/电动势与电压.drawio.pdf}
 \caption{\textbf{电压与电动势的三种表示方法}}\label{电压与电动势的三种表示方法}
 \end{figure}
 
@@ -315,8 +315,8 @@ u_{ab} = \frac{\mathrm{d} w_{ab}}{\mathrm{d}q},\ i_{ab} = \frac{\mathrm{d} q_{ab
 部分常见的电路元件如图 \ref{部分常见电路元件} 所示：
 
 \begin{figure}[H]\centering
-\includegraphics[width=0.5\textwidth]{assets/7d3f6db847882c6447cc046186ede6ef.jpg}
-\includegraphics[width=0.5\textwidth]{assets/3f5d73ec5ae9909ab42cd864852b0d72.jpg}
+\includegraphics[width=0.5\textwidth]{assets/1,2/7d3f6db847882c6447cc046186ede6ef.jpg}
+\includegraphics[width=0.5\textwidth]{assets/1,2/3f5d73ec5ae9909ab42cd864852b0d72.jpg}
 \caption{\textbf{部分常见电路元件}}\label{部分常见电路元件}
 \end{figure}
 
@@ -325,7 +325,7 @@ u_{ab} = \frac{\mathrm{d} w_{ab}}{\mathrm{d}q},\ i_{ab} = \frac{\mathrm{d} q_{ab
 ，如图 \ref{端口示意图} 所示。
 
 \begin{figure}[H]\centering
-\includegraphics[width=0.33\textwidth]{assets/端口.drawio.png}
+\includegraphics[width=0.33\textwidth]{assets/1,2/端口.drawio.png}
 \caption{\textbf{端口示意图}}\label{端口示意图}
 \end{figure}
 
@@ -350,12 +350,12 @@ $R, L, C$ 被称为电路基本模型，是电路分析的最基本模型。对�
 电路信号可分为 图 \ref{信号分类} 中的几类，它们的示意图如 图 \ref{信号示意图} 所示： 
 
 \begin{figure}[H]\centering
-\includesvg[width=0.55\textwidth]{assets/信号分类.drawio.svg}
+\includesvg[width=0.55\textwidth]{assets/1,2/信号分类.drawio.svg}
 \caption{\textbf{信号分类}}\label{信号分类}
 \end{figure}
 
 \begin{figure}[H]\centering
-\includegraphics[width=0.75\textwidth]{assets/1b9e0bed85e1f3a049de96f4c6018da8.jpg}
+\includegraphics[width=0.75\textwidth]{assets/1,2/1b9e0bed85e1f3a049de96f4c6018da8.jpg}
 \caption{\textbf{信号示意图}}\label{信号示意图}
 \end{figure}
 
@@ -428,7 +428,7 @@ p(t) = \frac{\mathrm{d}w}{\mathrm{d}t} = \frac{\mathrm{d}w}{\mathrm{d}q}\cdot\fr
 \end{enumerate}
 
 \begin{figure}[H]\centering
-\includesvg[width=0.35\textwidth]{assets/电路基本名词.drawio.svg}
+\includesvg[width=0.35\textwidth]{assets/1,2/电路基本名词.drawio.svg}
 \caption{\textbf{电路基本名词}}\label{电路基本名词}
 \end{figure}
 
@@ -516,7 +516,7 @@ i = I_{\mathrm{S}}\left(e^{\frac{u}{U_{\mathrm{TH}}}} - 1\right)
 它们的电路符号如图 \ref{受控电源电路符号} 所示。 
 
 \begin{figure}[H]\centering
-\includegraphics[width=0.7\textwidth]{assets/受控电源电路符号.drawio.pdf}
+\includegraphics[width=0.7\textwidth]{assets/1,2/受控电源电路符号.drawio.pdf}
 \caption{\textbf{受控电源电路符号}}\label{受控电源电路符号}
 \end{figure}
 
@@ -539,7 +539,7 @@ i = I_{\mathrm{S}}\left(e^{\frac{u}{U_{\mathrm{TH}}}} - 1\right)
 \hfill % 填充空白以使两栏间无间隙  
 \begin{minipage}[t]{0.3\textwidth} % 右栏  
 \begin{figure}[H]\centering
-    \includesvg[width=\textwidth]{assets/MOS管符号.drawio.svg}
+    \includesvg[width=\textwidth]{assets/1,2/MOS管符号.drawio.svg}
     \caption{\textbf{N MOS 示意图}}\label{N MOS 示意图}
 \end{figure}
 \end{minipage}\vfill
@@ -584,7 +584,7 @@ $n$ 节点 $p$ 支路的电路含有 $p-n+1$ 个独立的回路方程（即最�
 如 图 \ref{平衡电桥}，当 $\frac{R_1}{R_2} = \frac{R_3}{R_4}$ 时，$\varphi_A = \varphi_B$，AB 段无电流通过。 
 
 \begin{figure}[H]\centering
-\includegraphics[width=0.43\textwidth]{assets/平衡电桥.drawio.pdf}
+\includegraphics[width=0.43\textwidth]{assets/1,2/平衡电桥.drawio.pdf}
 \caption{\textbf{平衡电桥}}\label{平衡电桥}
 \end{figure}
 
@@ -614,7 +614,7 @@ R_{\Delta} = 3R_Y
 \end{equation}
 
 \begin{figure}[H]\centering
-\includegraphics[width=0.7\textwidth]{assets/YDelta等效变换.drawio.pdf}
+\includegraphics[width=0.7\textwidth]{assets/1,2/YDelta等效变换.drawio.pdf}
 \caption{\textbf{Y-$\Delta$ 等效变换}}\label{Y-Delta等效变换}
 \end{figure}
 \end{definition}
@@ -631,7 +631,7 @@ U_S = I_SR_S\ \  \text{或}\ \  I_S = \frac{U_S}{R_S}
 \end{equation}
 
 \begin{figure}[H]\centering
-\includegraphics[width=0.5\textwidth]{assets/独立源等效.drawio.pdf}
+\includegraphics[width=0.5\textwidth]{assets/1,2/独立源等效.drawio.pdf}
 \caption{\textbf{实际独立源等效示意图}}\label{实际独立源等效示意图}
 \end{figure}
 
@@ -649,7 +649,7 @@ U_S = I_SR_S\ \  \text{或}\ \  I_S = \frac{U_S}{R_S}
 \begin{definition}[独立电流源串联]
 如图 \ref{双独立电流源} 所示，两个独立电流源串联，可以分别将其等效为独立电压源，等效仍成立。
 \begin{figure}[H]\centering
-\includegraphics[width=0.4\textwidth]{assets/独立电流源并联.drawio.pdf}
+\includegraphics[width=0.4\textwidth]{assets/1,2/独立电流源并联.drawio.pdf}
 \caption{\textbf{独立电流源串联}}\label{双独立电流源}
 \end{figure}
 \end{definition}
@@ -680,7 +680,7 @@ P_L = P_L(R_L) =  \left(\frac{U_S}{R_S + R_L}\right)^2R_L, \ P_{L,\mathrm{max}} 
 如图 \ref{元件与电压源并联}  所示。理想电压源两端并联一个元件或一个网络，对电压源外部仍等效为一个理想电压源，即并联的这个元件或网络对原本的外电路求解没有任何影响。\footnote{例题见习题集：例 2-6}
 
 \begin{figure}[H]\centering
-\includegraphics[width=0.5\textwidth]{assets/电阻与电源并联.drawio.pdf}
+\includegraphics[width=0.5\textwidth]{assets/1,2/电阻与电源并联.drawio.pdf}
 \caption{\textbf{元件与电压源并联}}\label{元件与电压源并联}
 \end{figure}
 
@@ -693,14 +693,14 @@ P_L = P_L(R_L) =  \left(\frac{U_S}{R_S + R_L}\right)^2R_L, \ P_{L,\mathrm{max}} 
 
 \section{运算放大器}
 
-\subsection{运算放大器及其电气特性}
+\subsection{运算放大器 OPA 及其电气特性}
 
 
 运算放大器（operational amplifier, Op Amp, OPA），简称运放，是一种性质特殊的多端集成电路，可视为电压放大器。借助 OPA，可实现模拟信号的各种数学运算。
 
 在图 \ref{OPA 示意图} 中，OPA 的国标电路符号如图 (a) 所示，简化符号如图 (b) 所示，过去也惯用符号图 (c)。
 \begin{figure}[H]\centering
-\includegraphics[width=0.8\textwidth]{assets/OPA运放.drawio.pdf}
+\includegraphics[width=0.8\textwidth]{assets/1,2/OPA运放.drawio.pdf}
 \caption{\textbf{OPA 示意图}}\label{OPA 示意图}
 \end{figure}
 
@@ -709,7 +709,7 @@ P_L = P_L(R_L) =  \left(\frac{U_S}{R_S + R_L}\right)^2R_L, \ P_{L,\mathrm{max}} 
 OPA 的主要电气参数包括：
 \begin{enumerate}
 \item $V_\text{CC}$ : 供电电压（supply voltage）
-\item $A$ : 开环电压增益（open-loop voltage gain），在开环情况下\footnote{（无输入引回到输出）}满足 $u_o = Au_d = A(u_+-u_-) $，$A$ 因元件和温度而变，通常在 $10^5\sim 10^8$ 之间。
+\item $A$ : 差模电压增益（diffrential mode voltage gain），在开环情况下\footnote{（无输入引回到输出, diffrential mode）}满足 $u_o = Au_d = A(u_+-u_-) $，$A$ 因元件和温度而变，通常在 $10^5\sim 10^8$ 之间。
 \item $R_i$ : 输入电阻（input resistance），$u_-$ 和 $u_+$ 端的等效电阻，基本上在 $\mathrm{M} \Omega$ 量级。
 \item $R_o$ : 输出电阻（output resistance），$u_o$ 和接地端的等效电阻，基本上在 $\Omega$ 量级。
 \item $U_{\text{sat}}$ : 饱和电压（saturate voltage），一般比 $V_{\text{CC}}$ 低两 $\mathrm{V}$ 左右。
@@ -722,7 +722,7 @@ OPA 的主要电气参数包括：
 \end{minipage}\hfill
 \begin{minipage}{0.31\textwidth}
     \begin{figure}[H]\centering
-        \includegraphics[width=\textwidth]{assets/image (49).jpg}
+        \includegraphics[width=\textwidth]{assets/1,2/image (49).jpg}
         \caption{\textbf{OPA 输入输出曲线}}\label{OPA 输入输出曲线}
         \end{figure}
 \end{minipage}
@@ -730,7 +730,7 @@ OPA 的主要电气参数包括：
 由此可得出低频直流情形下 OPA 的低频受控源模型，如图 \ref{OPA 的低频受控源模型} (a) 所示。特别地，当电路电阻都在 $\kO$ 量级时，从工程的角度来看，可认为 $R_i = \infty$ 而 $R_o = 0$，如图 \ref{OPA 的低频受控源模型} (b) 所示。 
 
 \begin{figure}[H]\centering
-\includegraphics[width=0.7\textwidth]{assets/image (50).png}
+\includegraphics[width=0.7\textwidth]{assets/1,2/image (50).png}
 \caption{\textbf{OPA 的低频受控源模型}}\label{OPA 的低频受控源模型}
 \end{figure}
 
@@ -751,12 +751,12 @@ u_i - iR_1 = u_1,\quad u_1 - iR_f = -Au_1 \Longrightarrow I =(1+A) \frac{u_1}{R_
 这样，信号放大倍数与 $A$ 无关，只需调整电阻值，即可得到合适的放大倍数。负反馈在保证 OPA 工作在线性区至关重要，同时，负反馈也可以很好的减弱噪声对输出信号的影响。有时希望 OPA 工作于饱和区，就需要引入正反馈。不加任何反馈的 OPA 也可用作电压大小的比较器。
 
 \begin{figure}[H]\centering
-\includegraphics[width=0.75\textwidth]{assets/image (51).png}
+\includegraphics[width=0.75\textwidth]{assets/1,2/image (51).png}
 \caption{\textbf{负反馈 OPA 电路}}\label{负反馈 OPA 电路}
 \end{figure}
 
 
-\subsection{含负反馈的理想 OPA 电路}
+\subsection{理想放大器 IOPA}
 
 \begin{definition}[理想限制条件]
 一个 OPA 称为理想放大器（ideal operational amplifier, IOPA）如果它同时满足 $R_i = \infty,\ R_o = 0,\ A = \infty$\footnote{在模电课程中还会讨论 IOPA 的其它限制条件}，其输入输出曲线如图 \ref{IOPA 输入输出曲线} 所示，用数学公式表示为：
@@ -768,70 +768,202 @@ u_i - iR_1 = u_1,\quad u_1 - iR_f = -Au_1 \Longrightarrow I =(1+A) \frac{u_1}{R_
 \end{cases}
 \end{equation}
 
-对 IOPA 而言，始终有 $i_- = i_+ = 0$，称为两条支路分别“虚断”。由于本小节讨论的 IOPA 始终处于线性区，因此有 $u_+ - u_- = 0 \Longrightarrow u_+ = u_- $，称为两点“虚短”。
+对 IOPA 而言，始终有 $i_- = i_+ = 0$（因为 $R_i = \infty$），称为两条支路分别“虚断”。由于本小节讨论的 IOPA 始终处于线性区，因此有 $u_+ - u_- = 0 \Longrightarrow u_+ = u_- $，称为两点“虚短”。
 \end{definition}
 
 \begin{center}\noindent\begin{minipage}{0.4\textwidth}
         \begin{figure}[H]\centering
-            \includegraphics[height=100pt]{assets/4323bb51980c2d4d8e127dfa2e8110d0.png}
+            \includegraphics[height=100pt]{assets/1,2/4323bb51980c2d4d8e127dfa2e8110d0.png}
             \caption{\textbf{IOPA 输入输出曲线}}\label{IOPA 输入输出曲线}
         \end{figure}
     \end{minipage}\begin{minipage}{0.49\textwidth}
         \begin{figure}[H]\centering
-            \includegraphics[height=100pt]{assets/电压跟随器.png}
+            \includegraphics[height=100pt]{assets/1,2/电压跟随器.png}
             \caption{\textbf{电压跟随器}}\label{电压跟随器}
         \end{figure}
 \end{minipage}\end{center}
 
-\begin{definition}[电压跟随器]
+\subsection{含 IOPA 的常见电路}
+下面我们给出一些含 IOPA 的电路，在应用“虚断”、“虚断”下，推导是容易的，因此我们仅给出其电气特性而不给具体推导过程，除非某个推导较为困难。需要注意，运用“虚断”的前提是 OPA 的输入电阻 $R_{i} = \infty$，运用“虚短”的前提是放大倍数 $A = \infty$。在实际应用或解题时，必须验证输出电压 $u_o$ 是否在线性区内，否则“虚短”不再成立，且输出  $u_o = \pm U_{\text{sat}}$ 。
 
+求输入电阻时，用加压求流法，也即已知输入电压 $u_i$，求输入电流 $i_{i}$，由 $u_i = i_iR_i$ 即得输入电阻。求输出电阻时，将独立源置零（这里电压源短路，成为导线），然后加流求压，由 $u = iR_o$ 得输出电阻。
+
+% \usepackage{booktabs}
+
+
+\begin{table}[H]
+    \centering
+    \caption{\textbf{常见的含 OPA 电路}}
+    \begin{tabular}{ccccc} 
+    \toprule
+    名称         & 输入电阻 $R_i$ & 输出电阻 $R_o$ & 输出电压 $u_o$ & 专门特性  \\
+    \hline
+    电压跟随器      &   $\infty$   &    0  &   $u_i$   &   保电压，隔电路    \\
+    同相比例放大器    &   $\infty$    &  0    &   $(1+\frac{R_1}{R_2})u_i$   &   放大电压    \\
+    反相比例放大器    &    $R_1$  &   0   &  $-\frac{R_f}{R_l}u_i$    &  缺点是 $R_i = R_1$     \\
+    反相加法器      &   $R_{i,k} = R_k,\ k = 1,2,3$   &   0   &   $-R_f\left( \frac{u_1}{R_1} + \frac{u_2}{R_2} + \frac{u_3}{R_3} \right)$   &    -   \\
+    减法器        &   {\small $R_{i,1} = R_1, R_{i,2} = R_2 + R_M$}   &   0   &   $-\frac{R_f}{R_1}u_1 + \frac{1+\frac{R_f}{R_1}}{ 1 + \frac{R_2}{R_M}}u_2$   &  并减串加      \\
+    电流源 VCCS &   $\infty$    &    0  &   $\left(  1+\frac{R_L}{R_1} \right)u_i$   &   $i_o = \frac{u_i}{R_1}$    \\
+    负电阻        &   $-\frac{R_1}{R_2}R$   &   -   &   $\left(  1+\frac{R_2}{R} \right)u_i$   &    阻值  $-\frac{R_1}{R_2}R$  \\
+    \bottomrule
+    \end{tabular}
+\end{table}
+
+\begin{definition}[电压跟随器]
+电压跟随器可以在保持电压的同时，有效地隔离电路，保持电路的独立性，利于电路设计。
+\begin{enumerate}
+\item 输入电阻：$R_i = \infty$
+\item 输出电阻：$R_o = 0$
+\item 电压特性：$u_o = u_i$
+\end{enumerate}
+\end{definition}
+
+
+
+\begin{definition}[同相比例放大器]
+同相比例放大器能够放大输入信号，优点是输入电阻为 $\infty$ 且输出电阻为 0.
+\begin{enumerate}
+\item 输入电阻：$R_i = \infty$
+\item 输出电阻：$R_o = 0$
+\item 电压特性：$u_o = (1+\frac{R_1}{R_2})u_i$
+\end{enumerate}
 \end{definition}
 
 
 \begin{definition}[反相比例放大器]
-
+反相比例放大器的缺点是输入电阻为 $R_1$ 非无穷。
+\begin{enumerate}
+\item 输入电阻：$R_i = R_1$
+\item 输出电阻：$R_o = 0$
+\item 电压特性：$u_o = - \frac{R_f}{R_l} u_i$
+\end{enumerate}
 \end{definition}
 
-
-\begin{definition}[同相比例放大器]
-
-\end{definition}
-
-\begin{figure}[H]\centering
-\begin{subfigure}[t]{0.4\textwidth}\centering
-    \includegraphics[height=100pt]{assets/同相比例放大器.png}
-    \caption{\bfseries 同相比例放大器}
-\end{subfigure}\begin{subfigure}[t]{0.4\textwidth}\centering
-    \includegraphics[height=100pt]{assets/反向比例放大器.png}
-    \caption{\bfseries 反向比例放大器}
-\end{subfigure}
-\caption{\bfseries 比例放大器}
-\end{figure}
 
 
 \begin{definition}[反相加法器]
-
+反相加法器的输入电阻平凡（非无穷），输出电阻为 0。
+\begin{enumerate}
+\item 输入电阻：$R_{i,1} = R_1,\ R_{i,2} = R_2,\ R_{i,3} = R_3$
+\item 输出电阻：$R_o = 0$
+\item 电压特性：$u_o = - R_f\left( \frac{u_1}{R_1} + \frac{u_2}{R_2} + \frac{u_3}{R_3} \right) $
+\end{enumerate}
 \end{definition}
 
 
 \begin{definition}[减法器]
+可以发现，减法器是在加法器的基础上，改变了 $u_+$ 端的电压而得。同理，向 $u_-$ 端并联电压源，或往 $u_+$ 端串联电压源，可得到能作任意项加减法的加减法器。但不能得到同相加法器，因为这样会存在输入电阻为 0 的端口，实际不可行。
+\begin{enumerate}
+\item 输入电阻：$R_{i,1} = R_1,\ R_{i,2} = R_2 + R_M$
+\item 输出电阻：$R_o = 0$
+\item 电压特性：$u_o = -\frac{R_f}{R_1}u_1 + \frac{1+\frac{R_f}{R_1}}{1+\frac{R_2}{R_M}}u_2 $
+\end{enumerate}
+\end{definition}
 
+
+
+\begin{definition}[压控电流源 VCCS]
+当输出电压 $u_o$ 在线性区时（受 $u_i$ 和负载 $R_L$ 影响），构成一个压控电流源。
+\begin{enumerate}
+\item 输出电流（负载电流）：$i_o = \frac{u_i}{R_1}$
+\item 输入电阻：$R_i = \infty$
+\item 输出电阻：$R_o =  0$（$R_L$ 两端是输出端）
+\item 电压特性：$u_o = (1+\frac{R_L}{R_1})u_i$
+\end{enumerate}
+\end{definition}
+
+
+\begin{definition}[负电阻]
+当输出电压 $u_o$ 在线性区时，构成一个负电阻（即输入电阻），在这里不存在输出电阻的概念。
+\begin{enumerate}
+\item 负电阻值（输入电阻）：$R_i = -\frac{R_1}{R_2}R$
+\item 电压特性：$u_o = (1+\frac{R_2}{R})u_i$
+\end{enumerate}
 \end{definition}
 
 \begin{figure}[H]\centering
+    \begin{subfigure}[t]{0.4\textwidth}\centering
+        \includegraphics[height=100pt]{assets/1,2/同相比例放大器.png}
+        \caption{\bfseries 同相比例放大器}
+    \end{subfigure}\begin{subfigure}[t]{0.4\textwidth}\centering
+        \includegraphics[height=100pt]{assets/1,2/反向比例放大器.png}
+        \caption{\bfseries 反向比例放大器}
+    \end{subfigure}
+    \caption{\bfseries 比例放大器}
+    \end{figure}
+    
+
+\begin{figure}[H]\centering
 \begin{subfigure}[t]{0.42\textwidth}\centering
-    \includegraphics[height=100pt]{assets/反相加法器.png}
+    \includegraphics[height=100pt]{assets/1,2/反相加法器.png}
     \caption{\bfseries 反相加法器}
 \end{subfigure}\begin{subfigure}[t]{0.4\textwidth}\centering
-    \includegraphics[height=100pt]{assets/减法器.png}
+    \includegraphics[height=100pt]{assets/1,2/减法器.png}
     \caption{\bfseries 减法器}
 \end{subfigure}
 \caption{\bfseries 反相加法器与减法器}
 \end{figure}
 
-sbf
+
+
+\begin{figure}[H]\centering
+\begin{subfigure}[t]{0.43\textwidth}\centering
+    \includegraphics[height=130pt]{assets/1,2/压控电流源.png}
+    \caption{\bfseries 压控电流源 VCCS}
+\end{subfigure}\begin{subfigure}[t]{0.43\textwidth}\centering
+    \includegraphics[height=130pt]{assets/1,2/负电阻.png}
+    \caption{\bfseries  负电阻}
+\end{subfigure}
+\caption{\bfseries 压控电流源 VCCS 和负电阻 }
+\end{figure}
+
 
 \section{二端口网络}
+
+本 section 拓展阅读：
+\begin{enumerate}
+\item \href{https://zhuanlan.zhihu.com/p/359677789}{从线性代数的角度理解线性二端口网络 - BaronNashIstDD的文章 - 知乎}
+\item \href{如何记住二端口ZYTH参数? - 雨过天晴的回答 - 知乎
+https://www.zhihu.com/question/357342024/answer/1477595759}{如何记住二端口ZYTH参数?}
+\item 
+\end{enumerate}
+
+\subsection{二端口的概念和参数}
+
+
+\begin{definition}[二端口网络]
+一个线性{\color{red} 无独立源}的四端网络称为二端口网络（two-port network）如果它的四个接线端构成两个端口，简称为二端口\footnote{需要注意，许多常见的含 OPA 电路都不构成端口（因为忽略了 OPA 的电源输入）。}。另外，有唯一公共端的 $n+1$ 端网络可以看作 $n$ 端口网络。
+
+大多数时候，我们仅关系二端口的 $u$-$i$ 关系，其参数定义如下：
+
+\begin{table}[H]\centering
+% \setlength{\tabcolsep}{1.5mm} % 调整列间距
+    \caption{\textbf{}}
+    \label{}
+\begin{tabular}{cccccccccc}\toprule
+    因变量& 自变量 & 参数矩阵\\
+    \midrule
+    $i_1, i_2$ & $u_1, u_2$ & 电导矩阵 $\boldsymbol{G}$ (conductance parameter)\\
+    $u_1, u_2$ & $i_1, i_2$ & 电阻矩阵 $\boldsymbol{R}$ (resistance parameter)\\
+    $u_1, i_1$& $u_2, i_2$&  传输矩阵 $\boldsymbol{T}$ (transmission parameter) \\
+    $u_1, i_2$& $u_2, i_1$&  混合矩阵 $\boldsymbol{H}$ (hybrid parameter matrix)\\
+    \bottomrule
+\end{tabular}
+\end{table}
+
+\end{definition}
+
+
+\subsection{输入电阻与输出电阻}
+\begin{LineTheorem}[戴维宁定理]\label{戴维宁定理}
+一个含独立电源、线性电阻和受控源的一端口电路，对外可以等效成一个电压源和一个电阻串联，电压等于原电路端口两端的开路电压，电阻等于全部独立源置 0 （电压源短路，电流源断路）时的等效电阻。
+\end{LineTheorem}
+
+\begin{LineTheorem}[诺顿定理]\label{诺顿定理}
+一个含独立电源、线性电阻和受控源的一端口电路，对外可以等效成一个电流源和一个电阻并联，电流大小等于原电路短路时端口流过的电流，电阻也是等于全部独立源置 0 （电压源短路，电流源断路）时的等效电阻。
+\end{LineTheorem}
+
+
 \section{数字系统}
 \section{门电路}
 

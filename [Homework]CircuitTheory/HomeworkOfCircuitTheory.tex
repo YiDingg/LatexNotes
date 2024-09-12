@@ -7,6 +7,24 @@
 % 设定文章类型与编码格式
     \documentclass[UTF8]{report}		
 
+% 本 .tex 专属的宏定义
+\def\V{\ \mathrm{V}}
+\def\mV{\ \mathrm{mV}}
+\def\kV{\ \mathrm{KV}}
+\def\KV{\ \mathrm{KV}}
+\def\MV{\ \mathrm{MV}}
+\def\A{\ \mathrm{A}}
+\def\mA{\ \mathrm{mA}}
+\def\kA{\ \mathrm{KA}}
+\def\KA{\ \mathrm{KA}}
+\def\MA{\ \mathrm{MA}}
+\def\O{\ \Omega}
+\def\mO{\ \Omega}
+\def\kO{\ \mathrm{K}\Omega}
+\def\KO{\ \mathrm{K}\Omega}
+\def\MO{\ \mathrm{M}\Omega}
+\def\Hz{\ \mathrm{Hz}}
+
 % 自定义宏定义
     \def\N{\mathbb{N}}
     \def\F{\mathbb{F}}
@@ -139,6 +157,7 @@
 % table 支持
     \usepackage{booktabs}   % 宏包：三线表
     \usepackage{tabularray} % 宏包：表格排版
+    \usepackage[longtable]{multirow} % 宏包：multi 行列
     \usepackage{longtable}  % 宏包：长表格
 
 % figure 设置
@@ -150,6 +169,7 @@
             % 一定程度上修复导入后图片文字溢出几何图形的问题
             inkscapelatex = false                 
         }
+    \usepackage{subcaption} % 支持子图
 
 % 图表进阶设置
     \usepackage{caption}    % 图注、表注
@@ -221,7 +241,7 @@
     \rhead{dingyi233@mails.ucas.ac.cn}
 
 %文档信息设置
-\title{电路原理课程作业\\ Homework of Circuit Theory}
+\title{电路原理课程作业\\ Homework of Principles of Electric Circuits }
 \author{丁毅\\ \footnotesize 中国科学院大学，北京 100049\\ Yi Ding \\ \footnotesize University of Chinese Academy of Sciences, Beijing 100049, China}
 \date{\footnotesize 2024.8 -- 2025.1}
 % >> --------------------- 文章信息区 --------------------- << %
@@ -241,7 +261,7 @@
 
 % 序言
     \begin{cnabstract}\normalsize 
-        本文为笔者本科时的“电路原理”课程作业（Homework of Circuit Theory, 2024.9-2025.1）。由于个人学识浅陋，认识有限，文中难免有不妥甚至错误之处，望读者不吝指正，在此感谢。\par 
+        本文为笔者本科时的“电路原理”课程作业（Homework of Principles of Electric Circuits, 2024.9-2025.1）。由于个人学识浅陋，认识有限，文中难免有不妥甚至错误之处，望读者不吝指正，在此感谢。\par 
         我的邮箱是 dingyi233@mails.ucas.ac.cn。
     \end{cnabstract}
     \addcontentsline{toc}{chapter}{序言} % 手动添加为目录
@@ -286,7 +306,7 @@
 \end{enumerate}
 
 \begin{figure}[H]\centering
-\includegraphics[width=0.65\textwidth]{assets/1/d3d69ecd6b1c1bc476fd4a4957fb9e56.png}
+\includegraphics[width=0.6\textwidth]{assets/1/d3d69ecd6b1c1bc476fd4a4957fb9e56.png}
 \end{figure}
 
 \section{习题集 1-10}
@@ -303,8 +323,12 @@
 \end{enumerate}
 
 \begin{figure}[H]\centering
-\includegraphics[width=0.6\textwidth]{assets/1/9dda9e5f333b8cb7f498d15c015e5fd0.png}
+\includegraphics[width=0.55\textwidth]{assets/1/9dda9e5f333b8cb7f498d15c015e5fd0.png}
 \end{figure}
+{\par\color{gray}\small
+后补：(b) 中电流源两端仍有电势差，$\varphi_c \ne 6 \ \mathrm{V}$ 而是 $ \varphi_c = -3\ \mathrm{V} $，最终得 $U_{ab} = -5 \ \mathrm{V}$。
+\par}
+
 
 \section{习题集 1-15}
 
@@ -339,6 +363,11 @@ $0.2\ \Omega$ 电阻处又有 $U_1 = 0.2 I_S$，联立解得 $I_S = 3.6 \ \mathr
 \begin{figure}[H]\centering
 \includegraphics[width=0.7\textwidth]{assets/1/94b342032a5f6622a60b3c9d99e37993.png}
 \end{figure}
+
+{\par\color{gray}\small
+后补：上面的方程列错了，错将 $I_1$ 的方向标为由左向右，应该是由右向左。最后得到 $P = 108\ \mathrm{W}$。另外，也可以直接将受控电流源看作是 2 $\Omega$ 的电阻，这样左侧三个电阻并联，也可求出正确答案 108 W.
+\par}
+
 
 \section{讲义题 1-6}
 
@@ -541,13 +570,246 @@ U_1 = 6 - 3\times 1.2 = 2.4\ \mathrm{V},\ U_2 = 2\times \frac{I}{2} = 1.2\ \math
 \chapter{2024.9.10 - 2024.9.16}\thispagestyle{fancy}
 
 
-\section{习题集 }
-\section{习题集 }
-\section{习题集 }
-\section{习题集 }
-\section{习题集 }
-\section{习题集 }
-\section{习题集 }
+\section{习题集 3-40（书上答案不正确）}
+
+由虚短和虚断，可以得到 $R_1$ 处电流为 $i_1 = \frac{u_s}{R_1}$（从上至下），于是输出电压 $u_o = 3u_s$，右侧负载由三个电阻构成，并联电阻分压 $2u_s$，最后得电流 $i(t)$:
+\begin{equation}
+i(t) = \frac{2u_s}{6 \KO} = \frac{u_s}{3} \mA
+\end{equation}
+
+\begin{figure}[H]\centering
+\includegraphics[width=0.4\textwidth]{assets/3/3-40.jpg}
+\caption{\bfseries 习题集 3-40}
+\end{figure}
+
+\section{习题集 3-45（注意题目单位是 S）}
+
+如图所示，将电导全部转换为电阻。由虚断、虚短，流经 $\frac{1}{10}\ \Omega$ 电阻的电流为 $i_1 = \frac{u_s}{0.1\ \Omega} = 10u_s$。右下角两电阻分压，再由虚短可得 $i_2 = 2U_o$，于是 $i_3 = i_1 + i_2 = 10 U_s + 2U_o$，由 KVL:
+\begin{equation}
+0 - \frac{1}{3}(10 U_s + 2U_o) = U_o \Longrightarrow  \frac{U_o}{U_s} = -2
+\end{equation}
+入端电阻 $R_i$: 
+\begin{equation}
+    i_1 = 10U_s \Longrightarrow  R_i = \frac{1}{10}\ \Omega
+\end{equation}
+
+\section{习题集 3-46}
+
+依据 KVL、KCL、虚短、虚断，标出各节点电势，如图所示。则有：
+\begin{equation}
+(u_i+u_o)-u_o = i_LR,\ i_L = \frac{u_o}{R_L} \Longrightarrow u_o = u_i,\ i_L = \frac{u_o}{R_L} = \frac{u_i}{R_L}
+\end{equation}
+
+\begin{figure}[H]\centering
+    \begin{subfigure}[t]{0.43\textwidth}\centering
+        \includegraphics[height=150pt]{assets/3/3-45.png}
+        \caption{\bfseries 习题集 3-45 }
+    \end{subfigure}\begin{subfigure}[t]{0.43\textwidth}\centering
+        \includegraphics[height=150pt]{assets/3/3-46.png}
+        \caption{\bfseries 习题集 3-46 }
+    \end{subfigure}
+    \caption{\bfseries 习题集 3-45 和习题集 3-46 }
+    \end{figure}
+    
+
+
+\section{讲义题 2-19}
+\textbf{(1)\ 反相比例放大器}
+
+对输入电阻，$i_1 = \frac{u_i}{R_1} \Longrightarrow R_i = R_1$。对输出电阻，将输入电压源短路，采用加流求压法，在输出端接入电流源，由 $u = iR$ 且 $u=0$，得 $R_o = 0$。也即：
+\begin{equation}
+R_i = R_1,\ R_o = 0
+\end{equation}
+
+\textbf{(2)\ 同相比例放大器}
+
+对输入电阻，$R_1$ 右端断路，因此 $R_i = \infty$。对输出电阻，将输入电压源短路，采用加流求压法，在输出端接入电流源，由 $u = iR$ 且 $u=0$，得 $R_o = 0$。也即：
+\begin{equation}
+R_i = \infty,\ R_o = 0
+\end{equation}
+
+从输入输出电阻特性来看，同相比例放大器电气特性更优秀。
+
+\begin{figure}[H]\centering
+\begin{subfigure}[t]{0.4\textwidth}\centering
+    \includegraphics[height=100pt]{assets/3/反向比例放大器.png}
+    \caption{\bfseries 同相比例放大器}
+\end{subfigure}\begin{subfigure}[t]{0.4\textwidth}\centering
+    \includegraphics[height=100pt]{assets/3/同相比例放大器.png}
+    \caption{\bfseries 反向比例放大器}
+\end{subfigure}
+\caption{\bfseries 比例放大器}
+\end{figure}
+
+\section{第一次仿真作业 (仿真 2-1)}
+
+\subsection{单 OPA 实现电压运算}
+
+电路如图 \ref{单 OPA 实现 电压运算} (a) 所示，接线端示意图见图 \ref{单 OPA 实现 电压运算} (b)。
+
+\begin{figure}[H]\centering
+\begin{subfigure}[t]{0.43\textwidth}\centering
+    \includegraphics[height=150pt]{assets/3/单OPA.png}
+    \caption{\bfseries 电路示意图 }
+\end{subfigure}\begin{subfigure}[t]{0.43\textwidth}\centering
+    \includegraphics[height=150pt]{assets/3/单OPA接线端.png}
+    \caption{\bfseries 接线端示意图 }
+\end{subfigure}
+\caption{\bfseries 单 OPA 实现 电压运算 }\label{单 OPA 实现 电压运算}
+\end{figure}
+
+下面分析其输出特性。由虚断，在 $u_1$ 和 $u_2$ 构成的回路中，设正向流经 $u_2$ 的电流为 $i_2$，则有：
+\begin{equation}
+i_2 = \frac{u_2 - u_1}{R_1+R_2}
+\Longrightarrow  
+u_A = u_2 - i_2R_2 = \frac{R_2u_1 + R_1u_2}{R_1 + R_2}
+\end{equation}
+由虚短，B 点的电势也为 $u_A$，于是：
+\begin{equation}
+i_3 = \frac{u_3 - u_A}{R_3},\ i_M = \frac{u_A}{R_M} \Longrightarrow  i_f = i_3 - i_M = \frac{u_3 - u_A}{R_3} - \frac{u_A}{R_M} = \frac{u_3}{R_3} - (\frac{1}{R_3} + \frac{1}{R_M})u_A
+\end{equation}
+由虚断和 KVL:
+\begin{equation}
+u_o = u_A - i_fR_f = u_A - \frac{R_f}{R_3}u_3 + (\frac{R_f}{R_3} + \frac{R_f}{R_M})u_A = \left( 1 +  \frac{R_f}{R_3} + \frac{R_f}{R_M}\right)u_A - \frac{R_f}{R_3}u_3
+\end{equation}
+将 $u_A$ 的表达式代入，最终得到：
+\begin{equation}
+\boxed{
+    u_o = \left( 1 +  \frac{R_f}{R_3} + \frac{R_f}{R_M}\right)\frac{1}{\frac{R_1}{R_2} + 1}u_1 
+    + \left( 1 +  \frac{R_f}{R_3} + \frac{R_f}{R_M}\right)\frac{\frac{R_1}{R_2}}{\frac{R_1}{R_2} + 1}u_2
+    - \frac{R_f}{R_3}u_3
+}
+\end{equation}
+我们需要 $u_1,u_2,u_3$ 前的系数分别为 3, 2, -0.5，于是有：
+\begin{equation}
+\begin{cases}
+    \left( 1 +  \frac{R_f}{R_3} + \frac{R_f}{R_M}\right)\frac{1}{\frac{R_1}{R_2} + 1} = 3 \vspace*{5pt}\\ 
+    \vspace*{5pt}
+    \left( 1 +  \frac{R_f}{R_3} + \frac{R_f}{R_M}\right)\frac{\frac{R_1}{R_2}}{\frac{R_1}{R_2} + 1} = 2 \\ 
+    -\frac{R_f}{R_3} = -0.5
+\end{cases}
+\Longrightarrow 
+\begin{cases}
+    R_1 = \frac{2}{3}R_2 &,\ R_2 > 0\\ 
+    R_3 = 2R_f,\ R_M = \frac{2}{7}R_f &,\ R_f >0\\
+\end{cases}
+\end{equation}
+为了保持 OPA 的理想性，我们应选择 $\KO$ 量级的电阻，同时，为了降低电路的整体功率，减少消耗，电阻阻值应该尽量大。综合下来，不妨选取 $R_2 = 6 \KO,\ R_f = 3.5 \KO$，此时所有电阻阻值为：
+\begin{equation}
+R_1 = 4\KO,\ R_2 = 6\KO,\ R_3 = 7\KO,\ R_M = 1\KO,\ R_f = 3.5\KO
+\end{equation}
+
+如图，在 Multisim 中进行仿真，得到的结果如下表所示：
+
+% \usepackage[longtable]{multirow}
+% \usepackage{longtable}
+
+
+\begin{longtable}{|c|c|c|c|c|c|c|c|c|c|c|c|c|} 
+    \hline
+    \multirow{3}{*}{项目} & \multicolumn{3}{c|}{1} & \multicolumn{3}{c|}{2} & \multicolumn{3}{c|}{3} & \multicolumn{3}{c|}{4}  \\* 
+    \cline{2-13}
+                      & $x,\ u_1$ & $y,\ u_2$ & $z,\ u_3$  & $x,\ u_1$ & $y,\ u_2$ & $z,\ u_3$               &  $x,\ u_1$ & $y,\ u_2$ & $z,\ u_3$             &  $x,\ u_1$ & $y,\ u_2$ & $z,\ u_3$              \\* 
+    \cline{2-13}
+                      & 1     & 1     & 1      & 1 & 3 & 2              & -2 & 2 & 0             & 3 & 3 & 2               \endfirsthead 
+    \hline
+    理论输出 $(\mathrm{V})$             & \multicolumn{3}{c|}{$3+2-0.5 = 4.5$}  & \multicolumn{3}{c|}{$3+6-1=8$}  & \multicolumn{3}{c|}{$-6+4-0 = -2$}  & \multicolumn{3}{c|}{$9+6-1=14$}   \\ 
+    \hline
+    仿真输出 $(\mathrm{V})$     & \multicolumn{3}{c|}{4.50}  & \multicolumn{3}{c|}{8.00}  & \multicolumn{3}{c|}{-2.00}  & \multicolumn{3}{c|}{10.494}   \\
+    \hline
+\end{longtable}
+由表可见，除了最后一组数据，仿真结果与理论结果完全一致。最后一组之所以不同，是因为输出电压 $u_o$ 超出了此 OPA 的饱和电压 $U_{\text{sat}}$，导致输出电压 $u_o = U_{\text{sat}} = 10.494 \mathrm{V}$。如图所示，此 OPA (LM324ADTBR2G) 的饱和电压为 $10.525 \mathrm{V}$，与解释相符。
+
+\subsection{一些失败的例子}
+注意到，减法器是在反相加法器的基础上，串联入电压源（和电阻）改变了 $u_+$ 端的电压。这样，在最终的输出电压 $u_o$ 中，$u_-$ 端的电源电压会带负号，$u_+$ 端的电源电压带正号。用类似的思想，我们可以对减法器进行改造，最终仅用一个 OPA 便实现 $3x+2y-0.5z$ 的电压运算。
+
+一种方法是向 $u_+$ 端再串联一个电压源，使得输出 $u_o$ 中两正一负，然后通过电阻值来调整系数，但是，这样不满足接线端的要求（三正一共地）。另一种方法是向 $u_-$ 端再并联一个电压源，使得输出 $u_o$ 中两负一正（$-u_1,\ -u_2,\ +u_3$），最后通过电阻值来调整系数，但是，这样得到的是两负一正而不是两正一负，虽满足了接线端要求，却不是我们需要的结果。
+
+其实，我们只需要向 $u_+$ 端的电压源（包括电阻）再并联一个电压源（包括）电阻即可，如图所示。下面分析其输出特性。
+
+\begin{figure}[H]\centering
+\begin{subfigure}[t]{0.48\textwidth}\centering
+    \includegraphics[height=150pt]{assets/3/失败的例子.png}
+    \caption{\bfseries 失败的例子 }
+\end{subfigure}\begin{subfigure}[t]{0.45\textwidth}\centering
+    \includegraphics[height=150pt]{assets/3/image (5).jpg}
+    \caption{\bfseries 仿真作业 2-1 }
+\end{subfigure}
+\caption{\bfseries 示意图 }
+\end{figure}
+
+在 $u_1, R_1, u_2, R_2 $ 和 $R_M$ 构成的局部电路中，由 KVC:
+\begin{gather}
+\begin{cases}
+    u_1 - R_1i_1 - R_M(i_1 + i_2) = 0 \\
+u_2 - R_2i_2 - R_M(i_1 + i_2) = 0
+\end{cases}
+\Longrightarrow 
+\begin{cases}
+    i_1 = \frac{(R_2+R_M)u_1 - R_Mu_2}{R_1R_2 +R_1R_M + R_2R_M} \\ 
+    i_2 = \frac{(R_1+R_M)u_2 - R_Mu_1}{R_1R_2 +R_1R_M + R_2R_M} \\ 
+\end{cases}
+\end{gather}
+由此得点 A 处的电势 $u_A$:
+\begin{equation}
+    u_A = \frac{R_2R_Mu_1 + R_1R_Mu_2}{R_1R_2 +R_1R_M + R_2R_M}
+\end{equation}
+也即点 B 和非反相输入端的电势 $u_+ = u_B = u_A$。由虚短，$u_- = u_+$，可得电流 $i_3$:
+\begin{equation}
+i_3 = \frac{u_3 - u_-}{R_3} = \frac{1}{R_3}(u_3 - \frac{R_2R_Mu_1 + R_1R_Mu_2}{R_1R_2 +R_1R_M + R_2R_M}) 
+\end{equation}
+由虚断，经过电阻 $R_f$ 求得 D 点电势，也即输出电压 $u_o$:
+\begin{align}
+u_o &= u_A - i_3R_f = (1+\frac{R_f}{R_3})u_A - \frac{R_f}{R_3}u_3 
+\\
+&= (1+\frac{R_f}{R_3})\cdot \frac{\frac{R_M}{R_1}u_1 + \frac{R_M}{R_2}u_2}{1 + \frac{R_M}{R_1} + \frac{R_M}{R_2}} - \frac{R_f}{R_3}u_3
+\\ 
+&=\frac{1+\frac{R_f}{R_3}}{1 + \frac{R_M}{R_1} + \frac{R_M}{R_2}}
+\left( \frac{R_M}{R_1}u_1 + \frac{R_M}{R_2}u_2  \right) - \frac{R_f}{R_3}u_3
+\end{align}
+
+最后调整电阻阻值。为了保持 OPA 的理想性，电阻需要在 $\KO$ 量级，令电阻比例如下：
+\begin{equation}
+\begin{cases}
+    \frac{R_f}{R_3} = 0.5 \\ 
+    \frac{1+\frac{R_f}{R_3}}{1 + \frac{R_M}{R_1} + \frac{R_M}{R_2}}\cdot \frac{R_M}{R_1} = 3 \\ 
+    \frac{1+\frac{R_f}{R_3}}{1 + \frac{R_M}{R_1} + \frac{R_M}{R_2}}\cdot \frac{R_M}{R_2} = 2
+\end{cases}\Longrightarrow 
+\begin{cases}
+    R_f = \frac{1}{2}R_3 \\ 
+    R_1 =  -2R_M\\ 
+    R_2 = -\frac{4}{3}R_M
+\end{cases}
+\end{equation}
+显然，这不可能实现，舍弃。
+
+
+
+
+
+
+
+
+
+\section{第一次仿真作业 (2)}
+
+在负电阻中，OPA 输出电压 $u_o$:
+\begin{equation}
+u_o = \left(1 + \frac{R_2}{R}\right)u_i
+\end{equation}
+我们选择的 OPA 饱和电压 $U_{\text{sat}} = 1.5\ V$，因此，当 $u_i < $ 或 $u_i >$ 时，OPA 工作在饱和区，此时 $u_o = \pm U_{\text{sat}}$ 为定值，且虚短不再成立，电流 $i_1$:
+\begin{equation}
+i_1 = \frac{u_1 - u_o}{R_1} = 
+\begin{cases}
+    \frac{u_1 - U_{\text{sat}}}{R_1} &, u_1 > \\ 
+    \frac{u_1 + U_{\text{sat}}}{R_1} &, u_1 < \\ 
+\end{cases}
+\end{equation}
+
+\begin{figure}[H]\centering
+\includegraphics[width=0.45\textwidth]{assets/3/ee57b549a02999b0856af303ac0e8510.jpg}
+\caption{\bfseries 第一次仿真作业 (2)}\label{第一次仿真作业 (2)}
+\end{figure}
 
 \chapter{2024.9.17 - 2024.9.23}\thispagestyle{fancy}
 

@@ -638,7 +638,47 @@ R_i = \infty,\ R_o = 0
     \includegraphics[height=100pt]{assets/3/同相比例放大器.png}
     \caption{\bfseries 反向比例放大器}
 \end{subfigure}
-\caption{\bfseries 比例放大器}
+\caption{\bfseries 讲义题 2-19}
+\end{figure}
+
+\section{讲义题 2-20}
+\textbf{(a)} 由 KVL 有：
+\begin{equation}
+\begin{cases}
+    u_1 = R_2(i_1 - i_2) \\
+    u_2 = R_1 i_2 
+\end{cases}\Longrightarrow  
+\begin{cases}
+    i_1 = \frac{1}{R_2}u_1 + \frac{1}{R_1}u_2 \\ 
+    i_2 = \frac{1}{R_1}u_2
+\end{cases},\ 
+\boldsymbol{G} = 
+\begin{bmatrix}
+    \frac{1}{R_2} & \frac{1}{R_1} \\ 
+    \frac{1}{R_1} & 0
+\end{bmatrix}
+\end{equation}
+
+\textbf{(b)} 由 KVL, KCL 有：
+\begin{equation}
+\begin{cases}
+    u_1 = R_1\left( i_1 - \frac{u_1 - u_2}{R_2} \right)\\
+    u_2 = R_1 \left( i_2 + \frac{u_1 - u_2}{R_2} \right)
+\end{cases}\Longrightarrow  
+\begin{cases}
+    i_1 = \left( \frac{1}{R_1} + \frac{1}{R_2} \right)u_1 - \frac{1}{R_2}u_2 \\ 
+    i_2 =  - \frac{1}{R_2}u_1  + \left( \frac{1}{R_1} + \frac{1}{R_2} \right)u_2\\ 
+\end{cases},\ 
+\boldsymbol{G} = 
+\begin{bmatrix}
+    \frac{1}{R_1} + \frac{1}{R_2} & -\frac{1}{R_2} \\ 
+    -\frac{1}{R_2} & \frac{1}{R_1} + \frac{1}{R_2}
+\end{bmatrix}
+\end{equation}
+
+\begin{figure}[H]\centering
+\includegraphics[width=0.7\textwidth]{assets/3/image (8).jpg}
+\caption{\bfseries 讲义题 2-20}\label{讲义题 2-20}
 \end{figure}
 
 \section{第一次仿真作业 (仿真 2-1)}

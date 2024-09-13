@@ -818,7 +818,16 @@ u_i - iR_1 = u_1,\quad u_1 - iR_f = -Au_1 \Longrightarrow I =(1+A) \frac{u_1}{R_
 \end{enumerate}
 \end{definition}
 
-
+\begin{figure}[H]\centering
+    \begin{subfigure}[t]{0.37\textwidth}\centering
+        \includegraphics[height=90pt]{assets/1,2/同相比例放大器.png}
+        \caption{\bfseries 同相比例放大器}
+    \end{subfigure}\begin{subfigure}[t]{0.37\textwidth}\centering
+        \includegraphics[height=90pt]{assets/1,2/反向比例放大器.png}
+        \caption{\bfseries 反向比例放大器}
+    \end{subfigure}
+    \caption{\bfseries 比例放大器}
+\end{figure}
 
 \begin{definition}[同相比例放大器]
 同相比例放大器能够放大输入信号，优点是输入电阻为 $\infty$ 且输出电阻为 0.
@@ -839,6 +848,16 @@ u_i - iR_1 = u_1,\quad u_1 - iR_f = -Au_1 \Longrightarrow I =(1+A) \frac{u_1}{R_
 \end{enumerate}
 \end{definition}
 
+\begin{figure}[H]\centering
+    \begin{subfigure}[t]{0.37\textwidth}\centering
+        \includegraphics[height=90pt]{assets/1,2/反相加法器.png}
+        \caption{\bfseries 反相加法器}
+    \end{subfigure}\begin{subfigure}[t]{0.37\textwidth}\centering
+        \includegraphics[height=90pt]{assets/1,2/减法器.png}
+        \caption{\bfseries 减法器}
+    \end{subfigure}
+    \caption{\bfseries 反相加法器与减法器}
+\end{figure}
 
 
 \begin{definition}[反相加法器]
@@ -852,7 +871,7 @@ u_i - iR_1 = u_1,\quad u_1 - iR_f = -Au_1 \Longrightarrow I =(1+A) \frac{u_1}{R_
 
 
 \begin{definition}[减法器]
-可以发现，减法器是在加法器的基础上，改变了 $u_+$ 端的电压而得。同理，向 $u_-$ 端并联电压源，或往 $u_+$ 端串联电压源，可得到能作任意项加减法的加减法器。但不能得到同相加法器，因为这样会存在输入电阻为 0 的端口，实际不可行。
+可以发现，减法器是在加法器的基础上，改变了 $u_+$ 端的电压而得。同理，向 $u_-$ 端并联电压源，或往 $u_+$ 端串联电压源，可以得到更普适的加减法器。但不能得到同相加法器，因为存在输入电阻为 0 的端口。
 \begin{enumerate}
 \item 输入电阻：$R_{i,1} = R_1,\ R_{i,2} = R_2 + R_M$
 \item 输出电阻：$R_o = 0$
@@ -860,6 +879,16 @@ u_i - iR_1 = u_1,\quad u_1 - iR_f = -Au_1 \Longrightarrow I =(1+A) \frac{u_1}{R_
 \end{enumerate}
 \end{definition}
 
+\begin{figure}[H]\centering
+\begin{subfigure}[t]{0.37\textwidth}\centering
+    \includegraphics[height=130pt]{assets/1,2/压控电流源.png}
+    \caption{\bfseries 压控电流源 VCCS}
+\end{subfigure}\begin{subfigure}[t]{0.37\textwidth}\centering
+    \includegraphics[height=130pt]{assets/1,2/负电阻.png}
+    \caption{\bfseries  负电阻}
+\end{subfigure}
+\caption{\bfseries 压控电流源 VCCS 和负电阻 }
+\end{figure}
 
 
 \begin{definition}[压控电流源 VCCS]
@@ -881,64 +910,112 @@ u_i - iR_1 = u_1,\quad u_1 - iR_f = -Au_1 \Longrightarrow I =(1+A) \frac{u_1}{R_
 \end{enumerate}
 \end{definition}
 
-\begin{figure}[H]\centering
-    \begin{subfigure}[t]{0.4\textwidth}\centering
-        \includegraphics[height=100pt]{assets/1,2/同相比例放大器.png}
-        \caption{\bfseries 同相比例放大器}
-    \end{subfigure}\begin{subfigure}[t]{0.4\textwidth}\centering
-        \includegraphics[height=100pt]{assets/1,2/反向比例放大器.png}
-        \caption{\bfseries 反向比例放大器}
-    \end{subfigure}
-    \caption{\bfseries 比例放大器}
-    \end{figure}
+
     
 
+
+
+
+
+
+\subsection{线性运算器 (自设计)}
+图 \ref{自设计线性运算器} 是在加法器、减法器的基础上，自己设计的线性运算器，它可以实现任意输入（电压）信号的任意线性运算。事实上，在此线性运算器中，电阻 $R_M$ 和电阻 $R_P$ 是关键，因为在正相信号间的比例、反相信号间的比例分别确定时，这两个电阻实现了正信号和负信号之间的比例调整，使得最终输出的正、负信号可以任意大或任意小（最小即为 0，不占任何比例）。
+
+图中，红色端是加法信号，蓝色端是减法信号，绿色端为公共地（可只保留一个）。
+
 \begin{figure}[H]\centering
-\begin{subfigure}[t]{0.42\textwidth}\centering
-    \includegraphics[height=100pt]{assets/1,2/反相加法器.png}
-    \caption{\bfseries 反相加法器}
-\end{subfigure}\begin{subfigure}[t]{0.4\textwidth}\centering
-    \includegraphics[height=100pt]{assets/1,2/减法器.png}
-    \caption{\bfseries 减法器}
+\begin{subfigure}[t]{0.49\textwidth}\centering
+    \includegraphics[height=140pt]{assets/1,2/线性运算器.png}
+    \caption{\bfseries 线性运算器电路图 }
+\end{subfigure}\begin{subfigure}[t]{0.49\textwidth}\centering
+    \includegraphics[height=140pt]{assets/1,2/线性运算器接线端.png}
+    \caption{\bfseries 接线端示意图 }
 \end{subfigure}
-\caption{\bfseries 反相加法器与减法器}
+\caption{\bfseries 自设计线性运算器 }\label{自设计线性运算器}
 \end{figure}
 
 
+我们先研究图 \ref{自设计线性运算器} (a) 的输出特性，再讨论如果没有电阻 $R_M$ 或 $R_P$，输出电压会受到什么限制。输出电压的推导是简单的，先考虑点 A 的电势 $u_A$，求得：
+\begin{equation}
+u_A = \frac{\frac{u_1}{R_1} + \frac{u_2}{R_2}}{\frac{1}{R_1} + \frac{1}{R_2} + \frac{1}{R_p}}
+\end{equation}
 
-\begin{figure}[H]\centering
-\begin{subfigure}[t]{0.43\textwidth}\centering
-    \includegraphics[height=130pt]{assets/1,2/压控电流源.png}
-    \caption{\bfseries 压控电流源 VCCS}
-\end{subfigure}\begin{subfigure}[t]{0.43\textwidth}\centering
-    \includegraphics[height=130pt]{assets/1,2/负电阻.png}
-    \caption{\bfseries  负电阻}
-\end{subfigure}
-\caption{\bfseries 压控电流源 VCCS 和负电阻 }
-\end{figure}
+{\par\color{gray}\small
+$u_A$ 的推导，除了列 KCL, KVL 硬解之外，还可以这样：先将 $R_p$ 断路，这样 $u_2, R_2, u_1, R_1$ 构成并联的两个实际电压源（自带电阻），容易求得此时点 A 的电势 $u_A$，并做数学上的形式变换：
+\begin{equation}
+u_A = \frac{R_2u_1 + R_1u_2}{R_1+R_2} =\frac{\frac{u_1}{R_1} + \frac{u_2}{R_2}}{\frac{1}{R_1} + \frac{1}{R_2} }
+\end{equation}
+于是，我们再并联一个实际电压源 P 后，由数学上直接推广，可以得到 $u_A$ 为：
+\begin{equation}
+    u_A = \frac{\frac{u_1}{R_1} + \frac{u_2}{R_2} + \frac{u_p}{R_p}}{\frac{1}{R_1} + \frac{1}{R_2} + \frac{1}{R_p}}
+\end{equation}
+再令 $u_p = 0$，即得图 \ref{自设计线性运算器} 中的原始 $u_A$。
+\par}
 
+再考虑左侧的电流组，并利用虚断：
+\begin{align}
+&\begin{cases}
+    i_3 = \frac{1}{R_3}(u_3 - u_A) \\ 
+    i_4 = \frac{1}{R_4}(u_4 - u_A) \\ 
+    i_m = \frac{1}{R_m}(0 - u_A) \\ 
+    i_f = i_3 + i_4 + i_m
+\end{cases}
+\Longrightarrow 
+u_o = u_A - R_fi_f = u_A - R_f\left( i_3 + i_4 + i_m \right) \\ 
+\Longrightarrow
+u_o &=u_A - R_f \left[ 
+\frac{u_3}{R_3} + \frac{u_4}{R_4} - u_A\left( \frac{1}{R_3} + \frac{1}{R_4} + \frac{1}{R_m} \right)
+\right] \\ 
+&=
+\left[1 + R_f \left(\frac{1}{R_3} + \frac{1}{R_4} + \frac{1}{R_m} \right)\right] u_A - R_f \left( \frac{u_3}{R_3} + \frac{u_4}{R_4} \right) 
+\end{align}
+代入 $u_A$，整理得到：
+\begin{equation}
+\boxed{
+    u_o= \frac{1 + \frac{R_f}{R_m} \left(\frac{1}{R_3} + \frac{1}{R_4}  \right)}{ \frac{1}{R_p} + \left(\frac{1}{R_1} + \frac{1}{R_2} \right)}\cdot \left( \frac{{\color{red} u_1}}{R_1} + \frac{{\color{red} u_2}}{R_2} \right) - R_f \cdot \left( \frac{{\color{red} u_3}}{R_3} + \frac{{\color{red} u_4}}{R_4} \right)
+}
+\end{equation}
+这样，对于所有加法信号，可以通过 $R_1, R_2$ 间的比例来调整它们在加法中的输出比例，类似地，减法信号通过 $R_3, R_4$ 间的比例来调整它们在减法中的输出比例。最后通过 $R_f, R_m, R_p$ 来调整加法、减法之间的输出比例。在 $R_f, R_m, R_p$ 都可变时，易证（减法占比） $R_f \in [0,\ \infty)$，（加法占比）$\frac{1 + R_f \left(\frac{1}{R_3} + \frac{1}{R_4} + \frac{1}{R_m} \right)}{\frac{1}{R_1} + \frac{1}{R_2} + \frac{1}{R_p}} \in [0,\ \infty)$，于是全部系数都具有任意性，此线性运算器能够实现任意的线性运算。
+
+上面的电路容易推广到任意输入信号个数的情形。假设有 $m$ 个加法信号 $u_{s_1}, \dots, u_{s_m}$，它们对应的串联电阻分别 $R_{s_1}, \dots, R_{s_m}$；以及$n$ 个减法信号 $u_{r_1}, \dots, u_{r_n}$，它们对应的串联阻值分别 $R_{r_1}, \dots, R_{r_n}$。直接由数学上推广出去，得到输出电压 
+$u_o$ 的表达式为：
+
+\begin{equation}
+\boxed{
+u_o = 
+\left(
+    \frac{1 + \frac{R_f}{R_m} + \displaystyle R_f\sum_{i=s_1}^{i=s_m} \frac{1}{R_i}
+    }{
+        \frac{1}{R_p} + \displaystyle \sum_{i=r_1}^{i=r_n} \frac{1}{R_i}
+    }
+\right)\cdot \displaystyle\sum_{i=s_1}^{i=s_m} \frac{{\color{red} u_i}}{R_i}  - R_f \cdot  \displaystyle\sum_{i=r_1}^{i=r_n} \frac{{\color{red} u_i}}{R_i}
+}
+\end{equation}
+
+\subsection{自设计线性运算器的两个关键电阻}
+
+回到刚刚的问题，在图 \ref{} 中，考虑没有电阻 $R_p$ 的情况，也即令 $R_p = \infty$。此时，对于给定的 $R_1, R_2, R_3, R_4$，减法总系数范围仍为 $[0,\ \infty)$，但加法的总系数范围却是 $[\frac{1}{R_1} + \frac{1}{R_2} ,\ \infty)$。
+
+考虑两个电阻都没有的情况，令 $R_p = R_m = \infty$，则减法部分总系数为 1 不可改变，加法的总系数范围 $[\frac{1}{R_1} + \frac{1}{R_2} ,\ \infty)$
 
 \section{二端口网络}
 
 本 section 拓展阅读：
 \begin{enumerate}
 \item \href{https://zhuanlan.zhihu.com/p/359677789}{从线性代数的角度理解线性二端口网络 - BaronNashIstDD的文章 - 知乎}
-\item \href{如何记住二端口ZYTH参数? - 雨过天晴的回答 - 知乎
-https://www.zhihu.com/question/357342024/answer/1477595759}{如何记住二端口ZYTH参数?}
-\item 
+\item \href{https://www.zhihu.com/question/357342024/answer/1477595759}{如何记住二端口ZYTH参数?}
+\item \href{https://zhuanlan.zhihu.com/p/574470858}{二端口网络知识总结}
 \end{enumerate}
 
-\subsection{二端口的概念和参数}
+\subsection{二端口的概念与参数矩阵}
 
 
-\begin{definition}[二端口网络]
 一个线性{\color{red} 无独立源}的四端网络称为二端口网络（two-port network）如果它的四个接线端构成两个端口，简称为二端口\footnote{需要注意，许多常见的含 OPA 电路都不构成端口（因为忽略了 OPA 的电源输入）。}。另外，有唯一公共端的 $n+1$ 端网络可以看作 $n$ 端口网络。
-
-大多数时候，我们仅关系二端口的 $u$-$i$ 关系，其参数定义如下：
+大多数时候，我们仅关心二端口的 $u$-$i$ 关系，其参数定义如下：
 
 \begin{table}[H]\centering
 % \setlength{\tabcolsep}{1.5mm} % 调整列间距
-    \caption{\textbf{}}
+    \caption{\textbf{参数矩阵代表的意义}}
     \label{}
 \begin{tabular}{cccccccccc}\toprule
     因变量& 自变量 & 参数矩阵\\
@@ -958,15 +1035,13 @@ https://www.zhihu.com/question/357342024/answer/1477595759}{如何记住二端�
     i_2\\
 \end{bmatrix}
 = 
-\begin{bmatrix}
-    G_{11}& G_{12}\\ 
-    G_{21}& G_{22}\\ 
-\end{bmatrix}
+\boldsymbol{G}
 \cdot
 \begin{bmatrix}
     u_1\\ 
     u_2\\
-\end{bmatrix} \\ 
+\end{bmatrix}
+,\quad 
 \begin{bmatrix}
     u_1\\
     u_2\\
@@ -977,7 +1052,7 @@ https://www.zhihu.com/question/357342024/answer/1477595759}{如何记住二端�
 \begin{bmatrix}
     i_1\\ 
     i_2\\
-\end{bmatrix} \\ 
+\end{bmatrix}\quad 
 \begin{bmatrix}
     u_1\\
     i_1\\
@@ -986,13 +1061,38 @@ https://www.zhihu.com/question/357342024/answer/1477595759}{如何记住二端�
 \boldsymbol{T}
 \cdot
 \begin{bmatrix}
-    \\ 
-    \\
+    u_2\\ 
+    i_2\\
+\end{bmatrix} 
+,\quad 
+\begin{bmatrix}
+    u_1\\
+    i_2\\
+\end{bmatrix}
+= 
+\boldsymbol{H}
+\cdot
+\begin{bmatrix}
+    u_2\\ 
+    i_1\\
 \end{bmatrix}
 \end{gather}
 
-\end{definition}
+互易、对称二端口的概念不提，相关总结见图 \ref{二端口相关概念}。
 
+\subsection{参数矩阵间的转换与等效电路}
+$\boldsymbol{G}$ 与 $\boldsymbol{R}$ 矩阵之间满足 $\boldsymbol{G}^{-1} = \boldsymbol{R}$（如果可逆），其它关系见图 \ref{参数矩阵间的关系与等效电路}。
+
+
+\begin{figure}[htb]\centering
+\includegraphics[width=\textwidth]{assets/1,2/二端口网络.jpg}
+\caption{\bfseries 二端口相关概念}\label{二端口相关概念}
+\end{figure}
+
+\begin{figure}[H]\centering
+\includegraphics[width=\textwidth]{assets/1,2/image (9).jpg}
+\caption{\bfseries 参数矩阵间的关系与等效电路}\label{参数矩阵间的关系与等效电路}
+\end{figure}
 
 \subsection{输入电阻与输出电阻}
 \begin{LineTheorem}[戴维宁定理]\label{戴维宁定理}
@@ -1002,6 +1102,7 @@ https://www.zhihu.com/question/357342024/answer/1477595759}{如何记住二端�
 \begin{LineTheorem}[诺顿定理]\label{诺顿定理}
 一个含独立电源、线性电阻和受控源的一端口电路，对外可以等效成一个电流源和一个电阻并联，电流大小等于原电路短路时端口流过的电流，电阻也是等于全部独立源置 0 （电压源短路，电流源断路）时的等效电阻。
 \end{LineTheorem}
+
 
 
 \section{数字系统}

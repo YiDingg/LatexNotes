@@ -154,6 +154,7 @@
 
 % figure 设置
     \usepackage{graphicx}  % 支持 jpg, png, eps, pdf 图片 
+    \usepackage{subcaption} % 支持子图
     \usepackage{svg}       % 支持 svg 图片
         \svgsetup{
             % 指向 inkscape.exe 的路径
@@ -376,6 +377,33 @@
 \caption{\textbf{Riemann 球面（复数球面）}}\label{Riemann 球面（复数球面）}
 \end{figure}
 \end{definition}
+
+\section{复变函数可视化}
+图 \ref{可视化1} (a) 是函数 $f(z) = z^2$ 的可视化，图 \ref{可视化1} (b) 是 $f(z) = z\cdot \Re z$ 的可视化。其中坐标 $(x,y)$ 对应 $z = x + iy$，箭头的长度代表 $| f(z) |$，方向代表 $\arg f(z)$。等高线表示模长相等。
+
+\begin{figure}[H]\centering
+\begin{subfigure}[t]{0.49\textwidth}\centering
+    \includegraphics[height=220pt]{assets/z^2.pdf}
+    \caption{\bfseries $f(z) = z^2$ }
+\end{subfigure}\begin{subfigure}[t]{0.49\textwidth}\centering
+    \includegraphics[height=220pt]{assets/zRez.pdf}
+    \caption{\bfseries $f(z) = z\cdot \Re z$ }
+\end{subfigure}
+\caption{\bfseries 复变函数可视化 }\label{可视化1}
+\end{figure}
+
+图 \ref{可视化2} (a) 是 $f(z) = e^{iz}$，图 \ref{可视化2} (b) 是 $f(z) = cos(z)$。
+
+\begin{figure}[H]\centering
+    \begin{subfigure}[t]{0.49\textwidth}\centering
+        \includegraphics[height=220pt]{assets/e^(iz).pdf}
+        \caption{\bfseries $f(z) = e^{iz}$ }
+    \end{subfigure}\begin{subfigure}[t]{0.49\textwidth}\centering
+        \includegraphics[height=220pt]{assets/cos(iz).pdf}
+        \caption{\bfseries $f(z) = cos(z)$ }
+    \end{subfigure}
+    \caption{\bfseries 复变函数可视化 }\label{可视化2}
+\end{figure}
 
 \chapter{解析函数}\thispagestyle{fancy}
 

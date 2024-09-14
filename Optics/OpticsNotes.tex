@@ -466,12 +466,107 @@ xx = ff'
 \section{光波的描述}
 \section{光度学基本概念}
 辐射能通量、光通量、视见函数、发光强度（光强）、亮度、照度
+
 \chapter{光的反射与折射}\thispagestyle{fancy}
 
-\section{菲涅尔反射折射公式}
+\section{菲涅尔公式}
+
+\begin{BlockTheorem}[菲涅尔公式]\label{菲涅尔公式}
+光线在通过两介质分界面时通常会同时发生折射（透射）和反射现象，设入射光（incident ray）介质折射率 $\eta_i$，入射角 $\theta_i$，透射光（transmitted ray）介质折射率 $\eta_t$，透射角（折射角）$\theta_t$，则有\footnote{对于金属材质（非绝缘材质），需要引入消光系数 $k_t$ 来修正菲涅尔公式（绝缘材质等价于 $k_t = 0$），具体参见 \href{https://zhuanlan.zhihu.com/p/480405520?utm_psn=1818236176659771392}{知乎: 菲涅尔公式}}：
+\begin{gather}
+\begin{aligned}
+    &\text{折射角：} && \cos \theta_t = \sqrt{1 - \left( \frac{\eta_i}{\eta_t} \sin \theta_i\right)^2} \\ 
+    &\text{s 波强度反射率：}   && R_s = \left| \frac{\eta_i \cos \theta_i - \eta_t \cos \theta_t}{\eta_i \cos \theta_i + \eta_t \cos \theta_t} \right|^2 \\ 
+    &\text{p 波强度反射率：}   && R_p = \left| \frac{\eta_i \cos \theta_t - \eta_t \cos \theta_i}{\eta_i \cos \theta_t + \eta_t \cos \theta_i} \right|^2 \\ 
+    & \text{总强度反射率：} && F(\theta_i) = \frac{1}{2}\left( R_s + R_p \right)
+\end{aligned}
+\end{gather}
+
+\begin{table}[H]\centering
+% \setlength{\tabcolsep}{1.5mm} % 调整列间距
+    \caption{\textbf{菲涅尔公式}}
+    \label{菲涅尔公式}
+\begin{tabular}{cccccccccc}\toprule
+    波类型 & 振幅系数 $r$ & 强度反射率 $R$\\
+    \midrule
+    s 波& $\displaystyle r_p = \frac{n_i\cos \theta_i - n_t \cos \theta_t}{n_i\cos \theta_i - n_t \cos \theta_t}$& $R_s = | r_s |^2$ \\
+    p 波& $\displaystyle r_p = \frac{n_t\cos \theta_i - n_i \cos \theta_t}{n_t\cos \theta_i - n_i \cos \theta_t}$& $R_p = | r_p |^2$ \\
+    符号3& 含义3& 单位3\\
+    \bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]\centering
+    % \setlength{\tabcolsep}{1.5mm} % 调整列间距
+        \caption{\textbf{菲涅尔公式}}
+        \label{菲涅尔公式}
+    \begin{tabular}{|c|c|c|}\hline
+        类型 & 振幅反射系数 $r$ &  振幅透射系数 $t$ \\
+        \hline
+        s 波& $\displaystyle r_p = \frac{n_i\cos \theta_i - n_t \cos \theta_t}{n_i\cos \theta_i + n_t \cos \theta_t} = - \frac{\sin (\theta_i - \theta_t) }{\sin (\theta_i + \theta_t)}$ & $\displaystyle t_s  = \frac{2n_i \cos \theta_i}{n_i\cos \theta_i + n_t \cos \theta_t} = + \frac{2 \sin \theta_t \cos \theta_i}{\sin (\theta_i + \theta_t)}$ \\ 
+        \hline
+        p 波& $\displaystyle r_p = \frac{n_t\cos \theta_i - n_i \cos \theta_t}{n_t\cos \theta_i + n_i \cos \theta_t} = + \frac{\tan (\theta_i - \theta_t)}{\tan (\theta_i + \theta_t)} $ & $\displaystyle t_p  = \frac{2n_i \cos \theta_i}{n_i\cos \theta_t + n_t \cos \theta_i} = + \frac{2 \sin \theta_t \cos \theta_i}{\sin (\theta_i + \theta_t) \cos (\theta_i - \theta_t)}$  \\
+        \hline
+    \end{tabular}
+\end{table}
+
+\begin{table}
+\centering
+\begin{tabular}{|c|c|c|c|c|} 
+\hline
+类型 & \multicolumn{2}{c|}{振幅反射系数 $r$} & \multicolumn{2}{c|}{振幅透射系数 $t$ }  \\ 
+\hline
+s 波 & $\displaystyle r_s = \frac{n_i\cos \theta_i - n_t \cos \theta_t}{n_i\cos \theta_i + n_t \cos \theta_t} $ & $\displaystyle  - \frac{\sin (\theta_i - \theta_t) }{\sin (\theta_i + \theta_t)}$ & $\displaystyle t_s  = \frac{2n_i \cos \theta_i}{n_i\cos \theta_i + n_t \cos \theta_t} $ &   $\displaystyle  + \frac{2 \sin \theta_t \cos \theta_i}{\sin (\theta_i + \theta_t)}$   \\ 
+\hline
+p 波 & $\displaystyle r_p = \frac{n_t\cos \theta_i - n_i \cos \theta_t}{n_t\cos \theta_i + n_i \cos \theta_t} $ &     $ \displaystyle  + \frac{\tan (\theta_i - \theta_t)}{\tan (\theta_i + \theta_t)} $  &  $\displaystyle t_p  = \frac{2n_i \cos \theta_i}{n_i\cos \theta_t + n_t \cos \theta_i} $ &   $\displaystyle + \frac{2 \sin \theta_t \cos \theta_i}{\sin (\theta_i + \theta_t) \cos (\theta_i - \theta_t)}$                  \\
+\hline
+\end{tabular}
+\end{table}
+
+强度反射率为：
+\begin{equation}
+    R_s = r_s^2,\ R_p = r_p^2, \quad  F(\theta_i) = \frac{1}{2}\left( R_s + R_p \right)
+\end{equation}
+
+如果 $1 - \left( \frac{\eta_i}{\eta_t} \sin \theta_i\right)^2 < 0$，则发生全反射，此时 $F(\theta_i) = 1$。
+
+另外，需要指出菲涅尔公式的适用条件，也即推导时所做的一些假设，如下：
+\begin{enumerate}
+\item 介质为绝缘介质，无表面自由电荷或传导电流
+\item 介质为各向同性介质
+\item 介质为光学线性介质（弱光强）
+\item 介质磁导率（约）等于真空磁导率\footnote{对于介质磁导率不等于真空磁导率的情况，参考 \href{https://www.writebug.com/static/uploads/2024/9/2/3ed06af7e4f074f1964feb480a541a6b.pdf}{Optics (Eugene Hecht, 尤金) Page 144}} $\mu_i = \mu_t = \mu_0$，其中 $\mu_0$ 为真空磁导率。
+\end{enumerate}
+\end{BlockTheorem}
+
+
 \section{反射率和透射率}
-\section{相位关系与半波损失}
+\section{半波损失}
+
+由菲涅尔公式，我们有如下结论：
+\begin{gather}
+r_p|_{\theta_i = 0} = (-r_s)|_{\theta_i = 0} = \frac{n_t - n_i}{n_t + n_i} \\ 
+r_p|_{\theta_i = \frac{\pi}{2}} = r_s|_{\theta_i = \frac{\pi}{2}} = -1
+\end{gather}
+这表明，即使是正射（垂直于介质分界面的入射），一般也存在反射情况。并且，对不同的入射角 $\theta_i$
+\begin{LineTheorem}[半波损失]\label{半波损失}
+
+    
+
+
+当
+https://zhuanlan.zhihu.com/p/607510257
+\end{LineTheorem}
+
+
 \section{反射、折射时的偏振}
+
+
+\begin{definition}[布鲁斯特角（起偏角）]
+
+\end{definition}
+
+
 \section{全反射时的隐失波}
 \section{近场扫描光学显微镜}
 

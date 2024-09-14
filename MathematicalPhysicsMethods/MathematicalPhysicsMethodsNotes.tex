@@ -16,6 +16,7 @@
     \def\Arcsin{\mathrm{Arcsin\,}}
     \def\Arctan{\mathrm{Arctan\,}}
 
+
 % 通用宏定义
     \def\N{\mathbb{N}}
     \def\F{\mathbb{F}}
@@ -347,7 +348,7 @@
 \footnote{连通性：集合中任意两点都可以用一条折线连接起来，且折线上的点全部属于此点集}
 \item 单连通 / 多联通区域：区域称为单连通的如果在其内作任何简单闭合围道（自身不相交的闭合曲线），围道内的点都属于该区域，否则称为多联通区域（也称复联通区域）
 {\par\color{gray}\small
-例如，图 \ref{(a) (b) 构成区域，(c) 不构成区域} 中的 (a) 区域就属于单连通区域，而图 \ref{(a) (b) 构成区域，(c) 不构成区域} 中的(b)区域则为多连通区域.
+例如，图 \ref{(a) (b) 构成区域，(c) 不构成区域} 中的 (a) 区域就属于单连通区域，而图 \ref{(a) (b) 构成区域，(c) 不构成区域} 中的(b)区域则为多连通区域。区域定义的条件之一就是仅包含内点，因此区域必是开集，$\overline{G} = G \cup \partial G$ 表示区域并上边界，称为闭域。
 \par}
 \item 边界：区域$G$ 的全体边界点构成其边界，记为 $\p G$
 \item 边界方向：沿着区域的边界前进，区域恒保持在边界的左侧，则此走向称为边界的正向 
@@ -651,23 +652,74 @@ I = \lim_{\max | \Delta z_i \to 0|}\sum_{i=1}^{n} f(\xi_i)\Delta z_i = \int_{C_{
 \end{equation}
 
 \section{Cauthy 定理}
+
+\subsection{Cauthy-Goursat 定理}
+
 \begin{BlockTheorem}[Cauthy 定理]\label{Cauthy 定理}
-若函数 $f(z)$ 在有界闭域 $\overline{G}$ 上解析，$\overline{G}$ 的边界为 $\partial G $，则有：
+若 $f(z)$ 在{\color{red} 有界}区域 $G$ 上单值解析，在 $\overline{G}$ 上连续 \footnote{如何理解在 $\overline{G}$ 上解析？$\partial G$ 上的解析性如何定义？}，则：
 \begin{gather}
-\oint_{\partial G} f(z) \mathrm{d}z = 0 ,\quad \text{或}\ \oint_{C} f(z)\mathrm{d}z = \int_{C'} f(z)\mathrm{d}z
+\oint_{\partial G} f(z) \mathrm{d}z = 0
 \end{gather}
-其中 $C$ 和 $C'$ 是同伦曲线。对单连通区域，$\partial G$ 即为外围边界线（沿逆时针）；对多连通区域，外围边界线沿逆时针积分，内部边界线沿顺时针积分。
+对单连通区域，$\partial G$ 即为外围边界线（沿逆时针）；对多连通区域，外围边界线沿逆时针积分，内部边界线沿顺时针积分\footnote{始终保持区域在自身左侧的走向称为正向。}。
 \end{BlockTheorem}
 
+\subsection{Cauthy-Goursa 的推广}
+
+\begin{BlockTheorem}[Cauthy 定理推广1]\label{Cauthy 定理推广1}
+连续函数 $f$ 在有界复连通区域 $G$ 上单值解析，则：
+\begin{equation}
+\oint_{C_0} f(z) \mathrm{d}z = \sum_{i=1}^{i=n} \oint_{C_i^{(-)}} f(z) \mathrm{d}z
+\end{equation}
+路径上的负号表示路径沿反相，在这里即沿逆时针。也就是所有路径（包括 $C_0$）都沿逆时针。
+\end{BlockTheorem}
+
+\begin{BlockTheorem}[Cauthy 定理推广2]\label{Cauthy 定理推广2}
+    连续函数 $f$ 在有界单连通区域 $G$ 上单值解析，则：
+    \begin{equation}
+    \text{$\oint_C f(z)\mathrm{d}z,\ C \subset G$ 与路径无关，也即 $f(z)$ 存在原函数}
+    \end{equation}
+\end{BlockTheorem}
+
+\begin{BlockTheorem}[Cauthy 定理推广3]\label{Cauthy 定理推广3}
+    $C$ 为 $G$ 的边界，任取简单闭合曲线 $C' \subset G$，若连续函数 $f(z)$ 在构成的新有界复连通区域上解析，则：
+    \begin{equation}
+        \oint_{C} f(z) \mathrm{d}z = \oint_{C'} f(z) \mathrm{d}z
+    \end{equation}
+\end{BlockTheorem}
+
+\section{圆弧定理}
+\begin{BlockTheorem}[小圆弧定理]\label{小圆弧定理}
+若 $f(z)$ 在 $a$ 的空心邻域 $U_{\delta}^\circ(a)$ 上连续，且在 $\arg (z - a) \in [\theta_1,\ \theta_2]$ 时，$(z-a)f(z)$ 一致收敛于 $k$（$| z -a |\to 0$），则：
+\begin{equation}
+\lim_{\delta \to 0} \int_{C_\delta} f(z)\mathrm{d}z = ik(\theta_2 - \theta_1)
+\end{equation}
+其中 $C_\delta$ 是以 $a$ 为圆心，$\delta$ 为半径，张角为 $\theta_2 - \theta_1$ 的小圆弧。
+\end{BlockTheorem}
+
+\begin{BlockTheorem}[大圆弧定理]\label{大圆弧定理}
+    若 $f(z)$ 在 $\infty$ 的空心邻域 $U_{\delta}^\circ(\infty)$ 上连续，且在 $\arg (z - a) \in [\theta_1,\ \theta_2]$ 时，$(z-a)f(z)$ 一致收敛于 $k$（$| z - a| \to \infty$），则：
+    \begin{equation}
+    \lim_{R \to \infty} \int_{C_R} f(z)\mathrm{d}z = ik(\theta_2 - \theta_1)
+    \end{equation}
+    其中 $C_R$ 是以 $a$ 为圆心，$R$ 为半径，张角为 $\theta_2 - \theta_1$ 的大圆弧。
+    \end{BlockTheorem}
+
+\section{Cauchy 积分公式}
+
+
+\section{常见积分结果汇总}
+
+\subsection{必记结论}
+
+\textbf{(1)\ }$\oint_C (z-a)^n \mathrm{d}z = 
+\begin{cases}
+    i(2\pi) &, n = -1\  \&\ \and a \in G \\ 
+    0 &, \text{else}
+\end{cases}$
 
 
 
-
-
-
-
-
-
+\subsection{选记结论}
 
 
 

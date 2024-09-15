@@ -442,10 +442,9 @@ n_1u_1y_1 = n_2u_2y_2
 \begin{gather} 
 \frac{n}{s} + \frac{n'}{s'} = \frac{n_L - n}{r_1} + \frac{n' - n_L}{r_2} \label{薄透镜成像公式} \\
 s' = \infty \Longrightarrow  f = \frac{n}{\frac{n_L - n}{r_1} + \frac{n' - n_L}{r_2}}\quad \text{物方焦距} \label{物方焦距} \\ 
-s = \infty \Longrightarrow  f' = \frac{n'}{\frac{n_L - n}{r_1} + \frac{n' - n_L}{r_2}}\quad \text{像方焦距} \label{像方焦距}\\ 
-\frac{f}{n} = \frac{f'}{n'}
+s = \infty \Longrightarrow  f' = \frac{n'}{\frac{n_L - n}{r_1} + \frac{n' - n_L}{r_2}}\quad \text{像方焦距} \label{像方焦距}
 \end{gather}
-
+故物像焦距满足 $\frac{f}{n} = \frac{f'}{n'}$。
 特别地，当物像方折射率都为 1 时（真空），我们有磨镜者公式和像的横向放大率：
 \begin{equation}
 f =f' = \frac{1}{(n_L - 1)(\frac{1}{r_1} - \frac{1}{r_2})},\quad  V = -\frac{\frac{s'}{n'}}{\frac{s}{n}} = -\frac{fs'}{f's} =  - \frac{s'}{s}
@@ -466,9 +465,51 @@ xx = ff'
 
 
 \section{光学仪器}
+
+投影仪器、照相机、眼睛、放大镜、显微镜、望远镜
+
 \section{光波的描述}
 \section{光度学基本概念}
-辐射能通量、光通量、视见函数、发光强度（光强）、亮度、照度
+
+\begin{enumerate}[label=\bfseries(\arabic*)]
+\item \textbf{光强 $I$:} 定义为单位时间穿过单位正截面的光（电磁波）能量，单位是坎德拉 cd（candela）。
+\begin{equation}
+I = \overline{S} = \frac{1}{T} \int_{0}^{T} S(t) \mathrm{d}t
+\end{equation}
+其中 $\boldsymbol{S} = \boldsymbol{E} \times \boldsymbol{H}$ 为玻印亭矢量，大小 $S = \frac{1}{\mu}EB = \frac{1}{\mu_0} \sqrt{\frac{\varepsilon}{\mu}} E^2 $。特别地，对于点光源 Q，其沿某方向的发光强度 $I$ 等于沿此方向上单位立体角内发出的光通量，也即：
+\begin{equation}
+I = \frac{\mathrm{d}\Phi}{\mathrm{d}\Omega}, \quad \Phi = K_{\text{max}} \int V(\lambda) \Psi(\lambda) \mathrm{d}\lambda
+\end{equation}
+
+\item \textbf{辐射能通量 $\Psi = \Psi(\lambda)$ :} 
+又称辐射功率，定义为单位时间内光源单位面积发出或接收的辐射能，单位瓦 $\mathrm{W}$。对于给定光波，$\Psi = \Psi(\lambda)$ 是波长的函数，描述了辐射能的频谱分布，称为辐射通量谱密度，记作 $ \Psi(\lambda) = \frac{\mathrm{d}\Psi_{\lambda}}{\mathrm{d}\lambda} $。
+\begin{equation}
+\Delta \Psi_{\lambda} = \Psi(\lambda) \Delta \lambda
+\end{equation}
+
+\item \textbf{视见函数 $V = V(\lambda)$ :} 
+波长为 555.0 nm 的光和波长为 $\lambda$ 的光产生相同亮暗感觉时，所需辐射能通量的比值（前者比后者）。因为人眼对 555.0 nm 的光最敏感，所以此函数值恒 $\leqslant 1$。
+
+\item \textbf{光通量 $\Phi = \Phi(\lambda)$ :} 
+以视见函数为权重的辐射通量平均值，单位是流明 lm（lumen）。
+\begin{equation}
+    \Phi = K_{\text{max}} \int V(\lambda) \Psi(\lambda) \mathrm{d}\lambda
+\end{equation}
+其中 $K_{\text{max}}= 683\ \mathrm{lm\cdot W^{-1}}$ 称为波长 555.0 nm 的光功当量，也称最大光功当量。
+
+\item \textbf{亮度 $B$ :}
+亮度是对面光源而言的，面光源某一方向的亮度定义为此方向上单位投影面积的发光强度。
+\begin{equation}
+B = \frac{\mathrm{d} I}{\mathrm{d} A_n} = \frac{\mathrm{d} I}{\mathrm{d} A \cos \theta},\quad \mathrm{d}I = \boldsymbol{B} \cdot \mathrm{d}\boldsymbol{A}
+\end{equation}
+
+\item  \textbf{照度 $E$ :} 
+照度是对被照射的表面而言的，定义为照射在单位面积上的光通量。
+\begin{equation}
+E = \frac{\mathrm{d} \Phi}{\mathrm{d} A}
+\end{equation}
+\end{enumerate}
+
 
 \chapter{光的反射与折射}\thispagestyle{fancy}
 
@@ -546,7 +587,7 @@ p 波 & $\displaystyle r_p = \frac{n_t\cos \theta_i - n_i \cos \theta_t}{n_t\cos
 \end{figure}
 
 \begin{figure}[H]\centering
-\includesvg[width=0.9\textwidth]{assets/反射后的方向情况.svg}
+\includesvg[width=0.92\textwidth]{assets/反射后的方向情况.svg}
 \caption{\bfseries 反射示意图}\label{反射示意图}
 \end{figure}
 
@@ -563,6 +604,13 @@ p 波 & $\displaystyle r_p = \frac{n_t\cos \theta_i - n_i \cos \theta_t}{n_t\cos
 
 
 \section{反射、折射时的偏振}
+
+
+
+
+
+
+
 
 
 

@@ -12,8 +12,10 @@
 *.bkp  
 *.drawio
 
-# 忽略插入 svg 时 inkscape 生成的中间文件
-svg-inkscape
+# 忽略 svg 文件
+*.svg  
+# 插入 svg 时， inkscape 会生成 .pdf 中间文件，最终插入的是这个 pdf。一般来讲 pdf 大小会比 svg 小很多，更为划算，因此我们保留 pdf 而不是 svg，所以忽略 .svg 文件。
+
 
 ## Core latex/pdflatex auxiliary files:
 *.aux

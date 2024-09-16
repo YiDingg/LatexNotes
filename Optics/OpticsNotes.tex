@@ -115,9 +115,10 @@
     \usepackage[most]{tcolorbox} % 引入tcolorbox包 
     \usepackage{listings} % 引入listings包
         \tcbuselibrary{listings, skins, breakable}
+        \newfontfamily\codefont{Consolas} % 定义需要的 codefont 字体
         \lstdefinestyle{matlabstyle}{
             language=Matlab,
-            basicstyle=\small,
+            basicstyle=\small\ttfamily\codefont,    % ttfamily 确保等宽 
             breakatwhitespace=false,
             breaklines=true,
             captionpos=b,
@@ -130,9 +131,9 @@
             tabsize=2
         }
         \newtcblisting{matlablisting}{
-            arc=0pt,
-            top=0pt,
-            bottom=0pt,
+            arc=2pt,        % 圆角半径
+            top=-5pt,
+            bottom=-5pt,
             left=1mm,
             listing only,
             listing style=matlabstyle,
@@ -196,17 +197,17 @@
             }{\par\vskip 2.5ex}
 
 % 文章默认字体设置
-\usepackage{fontspec}   % 宏包：字体设置
-    \setmainfont{SimSun}    % 设置中文字体为宋体字体
-    \setCJKmainfont[AutoFakeBold=3]{SimSun} % 设置加粗字体为 SimSun 族，AutoFakeBold 可以调整字体粗细
-    \setmainfont{Times New Roman} % 设置英文字体为Times New Roman
+    \usepackage{fontspec}   % 宏包：字体设置
+        \setmainfont{SimSun}    % 设置中文字体为宋体字体
+        \setCJKmainfont[AutoFakeBold=3]{SimSun} % 设置加粗字体为 SimSun 族，AutoFakeBold 可以调整字体粗细
+        \setmainfont{Times New Roman} % 设置英文字体为Times New Roman
 
 % 各级标题自定义设置
-\usepackage{titlesec}   
-\titleformat{\chapter}[hang]{\normalfont\huge\bfseries\centering}{第\,\thechapter\,章}{20pt}{}
-\titlespacing*{\chapter}{0pt}{-20pt}{20pt} % 控制上方空白的大小
-% section标题自定义设置 
-\titleformat{\section}[hang]{\normalfont\Large\bfseries}{§\,\thesection\,}{8pt}{}
+    \usepackage{titlesec}   
+        \titleformat{\chapter}[hang]{\normalfont\huge\bfseries\centering}{第\,\thechapter\,章}{20pt}{}
+        \titlespacing*{\chapter}{0pt}{-20pt}{20pt} % 控制上方空白的大小
+        % section标题自定义设置 
+        \titleformat{\section}[hang]{\normalfont\Large\bfseries}{§\,\thesection\,}{8pt}{}
 % subsubsection标题自定义设置
 %\titleformat{\subsubsection}[hang]{\normalfont\bfseries}{}{8pt}{}
 
@@ -222,7 +223,7 @@
         \cfoot{\thepage}
         \renewcommand\headrulewidth{1pt}
         \renewcommand\footrulewidth{0pt}
-        \lhead{2024.8-2025.1} 
+        \lhead{2024.8 -- 2025.1} 
         \chead{光学笔记（Optics Notes）}    
         \rhead{dingyi233@mails.ucas.ac.cn}
 %文档信息设置
@@ -246,8 +247,8 @@
 
 % 序言
 \begin{cnabstract}\normalsize 
-    本文为笔者本科时的“光学”课程笔记（Notes of Optics, 2024.8-2025.1）。由于个人学识浅陋，认识有限，文中难免有不妥甚至错误之处，望读者不吝指正，在此感谢。\par
-    我的邮箱是 dingyi233@mails.ucas.ac.cn。
+    本文为笔者本科时的“光学”课程笔记（Notes of Optics, 2024.8-2025.1）。由于个人学识浅陋，认识有限，文中难免有不妥甚至错误之处，望读者不吝指正，在此感谢。我的邮箱是 dingyi233@mails.ucas.ac.cn。\par
+    为了更好地学习光学，建议先跳转至附录部分，了解相关理论知识。\par
 \end{cnabstract}
 \addcontentsline{toc}{chapter}{序言} % 手动添加为目录
 
@@ -264,8 +265,6 @@
 
 % >> --------------------- 封面序言与目录 --------------------- << %
 % ------------------------ 封面序言与目录 ------------------------ %
-
-为了更好的学习光学，建议先跳转至附录
 
 \chapter{光学导言}\thispagestyle{fancy}
 
@@ -471,55 +470,130 @@ xx = ff'
 \section{光波的描述}
 \section{光度学基本概念}
 
-\begin{enumerate}[label=\bfseries(\arabic*)]
-\item \textbf{光强 $I$:} 定义为单位时间穿过单位正截面的光（电磁波）能量，单位是坎德拉 cd（candela）。
-\begin{equation}
-I = \overline{S} = \frac{1}{T} \int_{0}^{T} S(t) \mathrm{d}t
+在学习光度学之前，需要区分辐射度学与光度学中的基本概念。辐射度学研究的是辐射能量对实际物体的影响，而光度学研究的是辐射能量对人眼的影响，是基于人眼实验数据的学科，例如 Luminous Efficiency Function。它们的概念相互对应（可以相互转化）但并不相同，如下表所示: 
+\begin{table}[H]\centering
+    \caption{\textbf{光度学与辐射度学概念对应关系}}
+    \label{光度学与辐射度学概念对应关系}
+    \resizebox{\linewidth}{!}{   % 设置宽度为 \linewidth 等比例缩放
+    \begin{tabular}{|c|c|c|c|c|c|c|c|}
+        \hline
+        学科范围 & \multicolumn{7}{c|}{基本概念} \\
+        \hline
+        辐射度学 & 辐射能 $Q_e$  & 辐射通量 $\Phi_e$  & 辐射强度 $I_e$ & 辐射亮度 $L_e$ &  辐射照度 $E_e$ & 辐射出射度 $M_e$ & 辐射通量谱密度 $\Phi_{e,\lambda}$ \\
+        \hline
+        光度学   & 光量 $Q_v$ &  光通量 $\Phi_v$  & 光强度 $I_v$ & 光亮度 $L_v$ & 光照度 $E_v$ & 光出射度 $M_v$ & 光通量谱密度 $\Phi_{v,\lambda}$\\
+        \hline
+    \end{tabular}
+    }
+\end{table}
+
+
+
+\subsection{辐射度学基本概念}
+
+\begin{table}[H]\centering
+    \caption{\textbf{辐射度学基本概念}}
+    \label{辐射度学基本概念}
+    \renewcommand{\arraystretch}{1.1} % 调整行间距为默认值的1.5倍
+%\resizebox{0.9\linewidth}{!}{   % 设置宽度为 \linewidth 等比例缩放
+%}
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}\hline
+    名称 & 符号& 定义式 & 单位 & 概念描述\\
+    \hline
+    辐射能 & $Q_e$ & - & J & 以辐射形式传播的能量 \\
+    \hline
+    辐通量 & $\Phi_e$ & $\Phi_e = \frac{\mathrm{d}Q_e}{\mathrm{d}t}$ & W & 单位时间内流过某截面的辐射能量 \\
+    \hline
+    辐强度 & $\boldsymbol{I}_e$ & $\boldsymbol{I}_e = \frac{\mathrm{d}\Phi_e }{\mathrm{d} \boldsymbol{\Omega} } $ & $\mathrm{W\cdot sr^{-1}}$ & 点辐射源在某方向上单位立体角\footnote{立体角的定义参考 \href{https://www.zhihu.com/question/611533175/answer/3244345528}{辐亮度和辐照度是如何计算的}}内的辐射通量 \\
+    \hline
+    辐照度 & $\boldsymbol{E}_e$ & $ \boldsymbol{E}_e = \frac{\mathrm{d}\Phi_e}{\mathrm{d}\boldsymbol{A}}$ & $\mathrm{W\cdot m^{-2}}$ & 被辐射体单位面积上的辐射通量 \\
+    \hline
+    辐亮度 & $\boldsymbol{L}_e$ & $\boldsymbol{L}_e = \frac{\mathrm{d}\boldsymbol{I}_e}{\mathrm{d}A \cos \theta} $ & $\mathrm{\mathrm{W}\cdot sr^{-1}\cdot m^{-2}}$ & 单位面积的面辐射源在某方向上的辐射强度\\
+    \hline
+    辐出射度 & $M_e$ & $ M_e = \frac{\mathrm{d}\Phi_e}{\mathrm{d}A}$ & $\mathrm{W\cdot m^{-2}} $ & 辐射体单位面积向半球空间发射的辐射通量 \\
+    \hline
+    辐谱密度 & $\phi_e$ & $\phi_e = \frac{\Delta \Phi_{e,\lambda}}{ \Delta\lambda} $ & $\mathrm{W\cdot m^{-1}} $ & 辐射能（通量）在频谱中的分布 \\
+    \hline
+\end{tabular}
+\end{table}
+
+其中 $\Delta \Phi_{e,\lambda}$ 表示波长为 $\lambda$（也可认为是 $[\lambda,\ \lambda + \Delta \lambda]$）的部分所贡献的辐射通量。
+
+\subsection{明视觉曲线}
+
+人眼对不同波长的光具有不同的明亮感觉程度\footnote{参考 \href{https://www.writebug.com/static/uploads/2024/9/16/09153f4fce1d2b99e38c19ef9deeda44.pdf}{新旧明视觉光谱光视效率曲线.pdf}。}，称为明视觉光谱光视效率曲线\footnote{参考 \href{https://webstore.ansi.org/preview-pages/ESTA/preview_E1-48_2014.pdf}{ANSI E1.48 - 2014 (A Recommended Luminous Efficiency Function for Stage and Studio Luminaire Photometry)}，国际照明委员会（CIE）规定的标准光谱光视效率函数 \href{https://rdrr.io/cran/colorSpec/man/luminsivity.html}{Luminous Efficiency Functions} 或者 \href{https://www.zhihu.com/question/400643965/answer/2727547334}{知乎：光通量与光辐照度之间的换算}。}（函数），常简称为“明视觉曲线”或“视觉曲线”，记为 $V = V(\lambda)$。
+
+光谱光效能 $K$，表示在某一波长上每一瓦辐射通量可以产生多少流明的光通量。光谱光视效率 $V = V(\lambda)$，就是归一化的光谱光效能：
+\begin{equation}\label{光谱光效能}
+    K = \frac{\Delta \Phi_{v,\lambda}}{\Delta \Phi_{e,\lambda}} = \frac{\phi_v(\lambda)}{\phi_e(\lambda)}, \quad V(\lambda) = \frac{K(\lambda)}{K_{\text{max}}} = \frac{1}{K_{\text{max}}}\cdot \frac{\phi_v(\lambda)}{\phi_e(\lambda)}
 \end{equation}
-其中 $\boldsymbol{S} = \boldsymbol{E} \times \boldsymbol{H}$ 为玻印亭矢量，大小 $S = \frac{1}{\mu}EB = \frac{1}{\mu_0} \sqrt{\frac{\varepsilon}{\mu}} E^2 $。特别地，对于点光源 Q，其沿某方向的发光强度 $I$ 等于沿此方向上单位立体角内发出的光通量，也即：
+$K_{\text{max}} = 683\ \mathrm{lm \cdot W^{-1}}$ 在波长约 555.0 nm 取到，因此 $V = V(\lambda)$ 也表示在相同辐射通量下，波长为 $\lambda$ 的光与 555.0 nm 的光所产生的亮暗感觉比值。
+
+另外，公式 \ref{光谱光效能} 建立了辐射度学参量与光度学参量之间的转化关系：
 \begin{equation}
-I = \frac{\mathrm{d}\Phi}{\mathrm{d}\Omega}, \quad \Phi = K_{\text{max}} \int V(\lambda) \Psi(\lambda) \mathrm{d}\lambda
+\Phi_v(\lambda) 
+= \int \phi_v(\lambda) \mathrm{d} \lambda 
+= \int K_{\text{max}}V(\lambda)\phi_e(\lambda) \mathrm{d} \lambda  
 \end{equation}
 
-\item \textbf{辐射能通量 $\Psi = \Psi(\lambda)$ :} 
-又称辐射功率，定义为单位时间内光源单位面积发出或接收的辐射能，单位瓦 $\mathrm{W}$。对于给定光波，$\Psi = \Psi(\lambda)$ 是波长的函数，描述了辐射能的频谱分布，称为辐射通量谱密度，记作 $ \Psi(\lambda) = \frac{\mathrm{d}\Psi_{\lambda}}{\mathrm{d}\lambda} $。
-\begin{equation}
-\Delta \Psi_{\lambda} = \Psi(\lambda) \Delta \lambda
-\end{equation}
+\subsection{光度学基本概念}
 
-\item \textbf{视见函数 $V = V(\lambda)$ :} 
-波长为 555.0 nm 的光和波长为 $\lambda$ 的光产生相同亮暗感觉时，所需辐射能通量的比值（前者比后者）。因为人眼对 555.0 nm 的光最敏感，所以此函数值恒 $\leqslant 1$。
+\begin{table}[H]\centering
+    \caption{\textbf{光度学基本概念}}
+    \label{光度学基本概念}
+    \renewcommand{\arraystretch}{1.15} % 调整行间距为默认值的1.5倍
+%\resizebox{0.9\linewidth}{!}{   % 设置宽度为 \linewidth 等比例缩放
+%}
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}\hline
+    名称 & 符号& 定义式 & 单位 & 概念描述\\
+    \hline
+    光量 & $Q_v$ & $Q_v(\lambda) = V(\lambda)\cdot Q_e(\lambda)$ & $\mathrm{cd \cdot sr \cdot s}$ & 辐射能的光度量大小 \\
+    \hline
+    光通量 & $\Phi_v$ & $\Phi_v = \frac{\mathrm{d}Q_v}{\mathrm{d}t}$ & $\mathrm{lm} = \mathrm{cd \cdot sr}$ & 单位时间内流过某截面的光度学光量 \\
+    \hline
+    光强度 & $\boldsymbol{I}_v$ & $\boldsymbol{I}_v = \frac{\mathrm{d}\Phi_v }{\mathrm{d} \boldsymbol{\Omega} } $ & $\mathrm{cd}$ & 点辐射源在某方向上单位立体角内的光通量 \\
+    \hline
+    光照度 & $\boldsymbol{E}_v$ & $ \boldsymbol{E}_v = \frac{\mathrm{d}\Phi_v}{\mathrm{d}\boldsymbol{A}}$ & $\mathrm{lm \cdot m^{-2}}$ & 被辐射体单位面积上的光通量 \\
+    \hline
+    光亮度 & $\boldsymbol{L}_v$ & $\boldsymbol{L}_v = \frac{\mathrm{d}\boldsymbol{I}_v}{\mathrm{d}A \cos \theta} $ & $\mathrm{cd \cdot m^{-2}}$ & 单位面积的面辐射源在某方向上的光强度 \\
+    \hline
+    光出射度 & $M_v$ & $ M_v = \frac{\mathrm{d}\Phi_v}{\mathrm{d}A}$ & $\mathrm{lm \cdot m^{-2}} $ & 辐射体单位面积向半球空间发射的光通量 \\
+    \hline
+    光谱密度 & $\phi_v$ & $\phi_v = \frac{\Delta \Phi_{v,\lambda}}{ \Delta\lambda} $ & $\mathrm{lm \cdot m^{-1}}$ & 光量（光通量）在频谱中的分布 \\
+    \hline
+\end{tabular}
+\end{table}
 
-\item \textbf{光通量 $\Phi = \Phi(\lambda)$ :} 
-以视见函数为权重的辐射通量平均值，单位是流明 lm（lumen）。
-\begin{equation}
-    \Phi = K_{\text{max}} \int V(\lambda) \Psi(\lambda) \mathrm{d}\lambda
-\end{equation}
-其中 $K_{\text{max}}= 683\ \mathrm{lm\cdot W^{-1}}$ 称为波长 555.0 nm 的光功当量，也称最大光功当量。
+它们\footnote{参考 \href{https://www.zhihu.com/question/53080536/answer/133398317}{知乎：如何区分并记忆光度、照度、发光强度、光强、亮度等}}之间的转化关系：
+\begin{gather}
+\text{与光通量的转换：} \Phi_v = \int \boldsymbol{E}_v \mathrm{d}\boldsymbol{A} = \int \boldsymbol{I}_v \mathrm{d}\boldsymbol{\Omega} = \iint \boldsymbol{L}_v \cos \theta\, \mathrm{d}A \,\mathrm{d} \boldsymbol{\Omega} \\ 
+\text{与光强的转换：} \boldsymbol{I}_v = r^2\boldsymbol{E}_v = \int \boldsymbol{L}_v \cos \theta\, \mathrm{d}A = \int \boldsymbol{L}_v  \mathrm{d}A_{\perp}
+\end{gather}
 
-\item \textbf{亮度 $B$ :}
-亮度是对面光源而言的，面光源某一方向的亮度定义为此方向上单位投影面积的发光强度。
-\begin{equation}
-B = \frac{\mathrm{d} I}{\mathrm{d} A_n} = \frac{\mathrm{d} I}{\mathrm{d} A \cos \theta},\quad \mathrm{d}I = \boldsymbol{B} \cdot \mathrm{d}\boldsymbol{A}
-\end{equation}
+计算时的常用微分：
+\begin{gather}
+\begin{aligned}
+    & \text{直角坐标系：}&& \mathrm{d}A = \mathrm{d}x \mathrm{d}y &&,  \mathrm{d}\boldsymbol{\Omega} = \frac{\mathrm{d}\boldsymbol{A}}{r^2} \\ 
+    & \text{球坐标系：}&& \mathrm{d}A = r^2 \sin \theta \mathrm{d}\theta \mathrm{d}\phi &&,\mathrm{d}\Omega = \sin \theta \mathrm{d}\theta \mathrm{d}\phi \\ 
+\end{aligned}
+\end{gather}
 
-\item  \textbf{照度 $E$ :} 
-照度是对被照射的表面而言的，定义为照射在单位面积上的光通量。
-\begin{equation}
-E = \frac{\mathrm{d} \Phi}{\mathrm{d} A}
-\end{equation}
-\end{enumerate}
+\section{特殊发光体}
 
+\subsection{余弦发光体（朗伯发光体）}
+
+\subsection{定向发光体}
 
 \chapter{光的反射与折射}\thispagestyle{fancy}
 
 \section{菲涅尔公式}
 
-\begin{BlockTheorem}[菲涅尔公式]\label{菲涅尔公式}
+\begin{BlockTheorem}[菲涅尔公式, Fresnel Formula]\label{菲涅尔公式}
 光线在通过两介质分界面时通常会同时发生折射（透射）和反射现象，设入射光（incident ray）介质折射率 $\eta_i$，入射角 $\theta_i$，透射光（transmitted ray）介质折射率 $\eta_t$，透射角（折射角）$\theta_t$，则有\footnote{对于金属材质（非绝缘材质），需要引入消光系数 $k_t$ 来修正菲涅尔公式（绝缘材质等价于 $k_t = 0$），具体参见 \href{https://zhuanlan.zhihu.com/p/480405520?utm_psn=1818236176659771392}{知乎: 菲涅尔公式}}：
 
 \begin{table}[H]
 \centering
+\renewcommand{\arraystretch}{1.5} % 调整行间距为默认值的1.5倍 
 \begin{tabular}{|c|c|c|c|c|} 
 \hline
 类型 & \multicolumn{2}{c|}{振幅反射系数 $r$} & \multicolumn{2}{c|}{振幅透射系数 $t$ }  \\ 
@@ -531,12 +605,12 @@ p 波 & $\displaystyle r_p = \frac{n_t\cos \theta_i - n_i \cos \theta_t}{n_t\cos
 \end{tabular}
 \end{table}
 
-折射角 $\theta_t$、s 波、p 波和总强度反射率为：
+折射角 $\theta_t$、s 波通量反射率 $R_s$、p 波通量反射率 $R_p$ 和总通量反射率 $R$ 为：
 \begin{equation}
-    \cos \theta_t = \sqrt{1 - \left( \frac{\eta_i}{\eta_t} \sin \theta_i\right)^2},\quad R_s = r_s^2,\ R_p = r_p^2, \quad  F(\theta_i) = \frac{1}{2}\left( R_s + R_p \right)
+    \cos \theta_t = \sqrt{1 - \left( \frac{\eta_i}{\eta_t} \sin \theta_i\right)^2},\quad R_s = r_s^2,\ R_p = r_p^2, \quad  R = \frac{1}{2}\left( R_s + R_p \right)
 \end{equation}
 
-如果 $1 - \left( \frac{\eta_i}{\eta_t} \sin \theta_i\right)^2 < 0$，则发生全反射，此时 $F(\theta_i) = 1$。另外，需要指出菲涅尔公式的适用条件，也即推导时所做的一些假设，如下：
+总强度反射率 $R$ 的严格证明见下一节。特别地，若 $1 - \left( \frac{\eta_i}{\eta_t} \sin \theta_i\right)^2 < 0$，则发生全反射，此时 $F(\theta_i) = 1$。另外，需要指出菲涅尔公式的适用条件，也即推导时所做的一些假设，如下：
 \begin{enumerate}
 \item 介质为绝缘介质，无表面自由电荷或传导电流
 \item 介质为各向同性介质
@@ -545,9 +619,9 @@ p 波 & $\displaystyle r_p = \frac{n_t\cos \theta_i - n_i \cos \theta_t}{n_t\cos
 \end{enumerate}
 \end{BlockTheorem}
 
-\section{半波损失}
+\section{菲涅尔公式中的相位变化}
 
-菲涅尔公式的推导是以矢量分析为基础的，而公式中的系数 $r_s$ 可能正也可能负，这是具有明确物理意义的，它标识着方向。若为负，则反射后的方向与原方向相反，否则相同。各系数的正负情况见表 \ref{振幅系数的正负情况}，其中 o 表示可正可负。
+菲涅尔公式的推导以矢量分析为基础，因此公式中系数 $r_s$ 的正负具有明确物理意义，它标识着方向。若为负，则反射后的方向与原方向相反，否则相同。各系数正负情况见表 \ref{振幅系数的正负情况}，其中 o 表示可正可负。
 
 \begin{table}[H]\centering
     % \setlength{\tabcolsep}{1.5mm} % 调整列间距
@@ -562,12 +636,12 @@ p 波 & $\displaystyle r_p = \frac{n_t\cos \theta_i - n_i \cos \theta_t}{n_t\cos
     \end{tabular}
 \end{table}
 
-从波的角度，方向相反可以等价地视为相位发生了 $\pi$ 的前移（或后移），称为相位突变。$n_i < n_t$ 时，相位突变要么是 0，要么是 $\pi$，$n_i > n_t$ 时的相位变化量比较复杂，我们不追究原因。在 $\theta_i + \theta_t = \frac{\pi}{2}$ 时，$r_p$ 的正负发生变化，p 波的反射波相位也发生突变，称此时 $\theta_i$ 的角度为布鲁斯特角（Brewster angle），记为 $\theta_B$\footnote{拓展阅读 \href{https://zhuanlan.zhihu.com/p/607510257}{知乎：你一直没搞懂的半波损失【机械波、光波】}}。可以推得：
+从波的角度，方向相反可以等价地视为相位发生了 $\pi$ 的前移（或后移），称为相位突变。$n_i < n_t$ 时，相位突变要么是 0，要么是 $\pi$，$n_i > n_t$ 时的相位变化量比较复杂，我们不追究原因。在 $\theta_i + \theta_t = \frac{\pi}{2}$ 时，$r_p$ 的正负发生变化，p 波的反射波相位也发生突变，称此时 $\theta_i$ 的角度为布儒斯特角\footnote{拓展阅读 \href{https://zhuanlan.zhihu.com/p/607510257}{知乎：你一直没搞懂的半波损失（机械波、光波）}}（Brewster angle），记为 $\theta_B$，也称为偏振角或起偏角。可以推得：
 \begin{equation}
 \theta_B = \arctan \left( \frac{n_2}{n_1} \right)
 \end{equation}
 
-具体的振幅系数变化见图 \ref{振幅系数随入射角的变化} ，相位突变见图 \ref{反射时 s 波和 p 波的相位变化}，$n_i < n_t$ 时的反射示意图见图 \ref{反射示意图}。
+具体的振幅系数变化见图 \ref{振幅系数随入射角的变化}，见图 \ref{反射时 s 波和 p 波的相位变化}，$n_i < n_t$ 时的反射示意图见图 \ref{反射示意图}。
 
 \begin{figure}[H]\centering
 \begin{subfigure}[t]{0.49\textwidth}\centering
@@ -588,7 +662,7 @@ p 波 & $\displaystyle r_p = \frac{n_t\cos \theta_i - n_i \cos \theta_t}{n_t\cos
 
 \begin{figure}[H]\centering
 \includesvg[width=0.92\textwidth]{assets/反射后的方向情况.svg}
-\caption{\bfseries 反射示意图}\label{反射示意图}
+\caption{\bfseries 由空气入射玻璃的光线示意图}\label{反射示意图}
 \end{figure}
 
 
@@ -601,11 +675,117 @@ p 波 & $\displaystyle r_p = \frac{n_t\cos \theta_i - n_i \cos \theta_t}{n_t\cos
 \end{gather}
 这表明，即使是正射（垂直于介质分界面的入射，$\theta_i = 0$），一般也存在部分反射光。总之，当 $n_i < n_t$ 时，入射光的 s 分量在反射中一定会相位跃变，p 分量都有可能。
 
+另外，菲涅尔公式还可写成：
+\begin{gather}
+\boxed{
+\begin{aligned}
+    &\quad\quad \quad \quad   (-r_s) + t_s  = 1, &&\quad 
+    \quad \quad\quad   r_p + t_p = 1 
+    \\ 
+    &r_s = \frac{\cos \theta_i - \sqrt{n_{ti}^2 - \sin^2 \theta_i} }{\cos \theta_i + \sqrt{n_{ti}^2 - \sin^2 \theta_i}}, && r_p = \frac{n_{ti}^2\cos \theta_i - \sqrt{n_{ti}^2 - \sin^2 \theta_i} }{n_{ti}^2\cos \theta_i + \sqrt{n_{ti}^2 - \sin^2 \theta_i}}
+\end{aligned}
+}
+\end{gather}
+
+
+\section{菲涅尔公式中的能量关系}
+
+在 Fresnel Formula 中可以发现，$r_s^2 + t_s^2 \ne 1$，$r_p^2 + t_p^2 \ne 1$，是能量不守恒了吗？显然不是。那么，反射光和透射光的能量关系是怎样的？这需要借助辐射度学的相关概念。
+
+如图，圆形光束从空气入射到分界面上的一个面元 $\boldsymbol{A}$（界面下是玻璃），以此面元为研究对象。考虑玻印亭矢量 $\boldsymbol{S} = \boldsymbol{E} \times \boldsymbol{B}$，即单位时间内通过单位面积的电磁辐射能量（单位面积辐射功率），于是瞬时辐射照度 $\boldsymbol{E}_e$: 
+\begin{equation}
+\boldsymbol{E}_e = \boldsymbol{S} = c^2 \varepsilon_0 \boldsymbol{E} \times \boldsymbol{B},\quad  E_e = \varepsilon_0 cE^2 \cdot \sqrt{\frac{\varepsilon_r}{\mu_r}} = \frac{\varepsilon_0 c}{\mu_r}\cdot  nE^2
+\end{equation}
+其中 $\varepsilon_r$，$\mu_r$ 分别为相对介电常量、相对磁导率，对空气近似有 $\varepsilon_r = \mu_r = 1$，于是
+
+核心思想是 $\mathrm{d} Q_e = (\boldsymbol{E}_e \cdot \boldsymbol{A})\, \mathrm{d}t $。入射、反射、透射光束的截面面积分别为 $A \cos \theta_i,\ A \cos \theta_r,\ A \cos \theta_t$，设其瞬时辐射照度分别为$\boldsymbol{E}_i,\ \boldsymbol{E}_r,\ \boldsymbol{E}_t$ ，则辐射通量为：
+\begin{equation}
+\Phi_{e, k} = E_{e, k} A \cos \theta_k = \frac{\varepsilon_0 cA }{\mu_r}\cdot  n_k\cos \theta_k\,E_k^2,\quad  k = i, r, t
+\end{equation}
+
+分别写出入射、反射、透射光的辐射通量：
+\begin{align}
+\Phi_{e,i} &= \frac{\varepsilon_0 cA }{\mu_r} \cdot  n_i\cos \theta_i\,E_i^2 
+= \frac{\varepsilon_0 cA }{\mu_r} \cdot  n_i\cos \theta_i\, \left( E_{i,s}^2 + E_{i,p}^2 \right) 
+\\ 
+\Phi_{e,r} 
+&= \frac{\varepsilon_0 cA }{\mu_r} \cdot  n_i\cos \theta_i\,E_r^2 
+= \frac{\varepsilon_0 cA }{\mu_r} \cdot  n_i\cos \theta_i\, \left( r_s^2E_{i,s}^2 + r_p^2E_{i,p}^2 \right) 
+\\ 
+\Phi_{e,t} 
+&= \frac{\varepsilon_0 cA }{\mu_r} \cdot  n_t\cos \theta_t\,E_t^2 
+= \frac{\varepsilon_0 cA }{\mu_r} \cdot  n_t \cos \theta_t \, \left( t_s^2E_{i,s}^2 + t_p^2E_{i,p}^2 \right) 
+\end{align}
+
+由于入射光可分解为 s 波与 p 波，我们自然想到它们俩在入射前后应该是能量守恒的，这指导我们分别作数学上的处理。对 s 波，由菲涅尔定律（这说明已经做了近似 $\mu_r = 1$），做减法得到：
+\begin{align*}
+&n_i \cos \theta_i E_{i,s}^2 - n_i \cos \theta_i r_{i,s}^2E_{i,s}^2 -   n_t \cos \theta_t t_s^2E_{i,s}^2 \\
+&= E_{i,s}^2 \left[ n_i\cos \theta_i \left( 1 - \frac{(n_i\cos \theta_i - n_t \cos \theta_t)^2}{(n_i\cos \theta_i + n_t \cos \theta_t)^2} \right) - n_t \cos \theta_t \cdot \frac{(2n_i \cos \theta_i)^2}{(n_i\cos \theta_i + n_t \cos \theta_t)^2} \right] \\ 
+& = \frac{E_{i,s}^2}{(n_i\cos \theta_i + n_t \cos \theta_t)^2} \left[ n_i \cos \theta_i \cdot (4 n_i\cos \theta_i \cdot n_t \cos \theta_t) - 4 n_t \cos \theta_t \cdot n_i^2 \cos^2 \theta_i\right] \\ 
+& = 0
+\end{align*}
+
+同理，考虑 p 分量，作减法可得到：
+\begin{equation*}
+n_i \cos \theta_i E_{i,p}^2 - n_i \cos \theta_i r_{i,p}^2E_{i,p}^2 -   n_t \cos \theta_t t_p^2E_{i,p}^2 = 0
+\end{equation*}
+
+代入即得：
+\begin{equation}
+    \Phi_{e,i} - \Phi_{e,r} - \Phi_{e,t} = 0 \Longrightarrow  \Phi_{e,i} = \Phi_{e,r} + \Phi_{e,t}
+\end{equation}
+这便验证了入射前后的能量是守恒的。
+
+由此，我们可以定义一些能量系数：
+\begin{gather}
+\begin{aligned}
+    &\text{强度反射率 $R$: }\ &&R = \frac{1}{2}(R_s + R_p), &&R_s = r_s^2, && R_p = r_p^2 \\
+    &\text{强度透射率 $T$: }\ &&T = \frac{1}{2}(T_s + T_p), &&T_s = \left( \frac{n_t \cos \theta_t}{n_i \cos \theta_i} \right)^2 t_s^2, && T_p = \left( \frac{n_t \cos \theta_t}{n_i \cos \theta_i} \right)^2 t_p^2 \\
+\end{aligned}
+\end{gather}
+
+这样，它们具有下面的性质，方便我们计算能量关系：
+\begin{gather}
+\boxed{
+\begin{aligned}
+    &R_s + T_s = 1, &&\quad  R_p + T_p = 1,&&\ \  R + T = 1 \\ 
+    &\Phi_{e,r} = R\Phi_{e,i}, && 
+    \Phi_{e,r,s} = R_s\Phi_{e,i,s}, &&  \Phi_{e,r,p} = R_p\Phi_{e,i,s} 
+    \\ 
+    &\Phi_{e,t} = T\Phi_{e,i}, && \Phi_{e,t,s} = T_s\Phi_{e,i,s}, && \Phi_{e,t,p} = T_p\Phi_{e,i,s}
+\end{aligned}
+}
+\end{gather}
+{\color{red} 其中 $\Phi_{e,r,s} = R_s\Phi_{e,i,s}$ 和 $\Phi_{e,r,p} = R_p\Phi_{e,i,p}$ 是怎么来的？}
 
 
 \section{反射、折射时的偏振}
 
+当光波由布儒斯特角 $\theta_B$ 入射时，由 Fresnel Formula，$r_p = \frac{\tan (\theta_i - \theta_t)}{\tan (\theta_i + \theta_t)} = 0$，也即反射光的 p 分量为 0，仅存在 s 分量。这说明反射光是完全偏振光，$\boldsymbol{E}$ 的方向（称为振动方向）垂直于入射面。
+{\par\color{gray}\small
+但此时反射光能量占比 $F$ 很小\footnote{可以使用玻璃片堆得到强度较大的偏振光}，例如，空气（$n=1$）入射玻璃（$n = 1.5$）时，$\theta_B = 56.310^\circ$，$F =0.0740 $；玻璃入射空气时，$\theta_B = 33.690^\circ$，$F =0.0740 $。
+\par}
 
+\begin{matlablisting}
+n_i = 1;
+n_t = 1.5;
+
+theta_B = atan(n_t/n_i);
+theta_t = @(theta_i) asin(n_i/n_t*sin(theta_i));
+r_s = @(theta_i, theta_t) - sin(theta_i - theta_t)./sin(theta_i + theta_t);
+r_p = @(theta_i, theta_t) + tan(theta_i - theta_t)./tan(theta_i + theta_t);
+F = @(theta_i, theta_t) 0.5*( r_s(theta_i, theta_t)^2 + r_p(theta_i, theta_t)^2 );
+
+theta_i = theta_B;
+disp(['theta_B = ', num2str(rad2deg(theta_B))])
+disp(['F = ', num2str(F(theta_i, theta_t(theta_i)))])
+
+%{ 
+Output:
+theta_B = 56.3099
+F = 0.073964
+%}
+\end{matlablisting}
 
 
 
@@ -757,6 +937,27 @@ p 波 & $\displaystyle r_p = \frac{n_t\cos \theta_i - n_i \cos \theta_t}{n_t\cos
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% --------------------------- 附录 --------------------------- %
+% >> ------------------------ 附录 ------------------------ << %
+
+
 \newpage
 \appendix
 % chapter 标题自定义设置
@@ -848,6 +1049,94 @@ p 波 & $\displaystyle r_p = \frac{n_t\cos \theta_i - n_i \cos \theta_t}{n_t\cos
 \begin{equation}
     \left(\frac{\partial x }{\partial t }\right)_{\varphi} = -\frac{\left(\frac{\partial \varphi }{\partial t }\right)_{x}}{\left(\frac{\partial \varphi }{\partial x }\right)_{t}}
 \end{equation}
+
+
+\chapter*{附录 B. Matlab 代码}\addcontentsline{toc}{chapter}{附录 B. Matlab 代码}   
+\thispagestyle{fancy} 
+\setcounter{section}{0}   
+\renewcommand\thesection{B.\arabic{section}}   
+\renewcommand{\thefigure}{B.\arabic{figure}} 
+\renewcommand{\thetable}{B.\arabic{table}}
+
+\section{图 \ref{振幅系数随入射角的变化} 源码}
+\begin{matlablisting}
+%%%%%%%%%% 空气入射玻璃 %%%%%%%%%%
+global n_i n_t
+n_i = 1;
+n_t = 1.5;
+
+theta_t = @(theta_i) asin(n_i/n_t*sin(theta_i));
+r_s = @(theta_i, theta_t) - sin(theta_i - theta_t)./sin(theta_i + theta_t);
+r_p = @(theta_i, theta_t) + tan(theta_i - theta_t)./tan(theta_i + theta_t);
+t_s = @(theta_i, theta_t) 2*sin(theta_t).*cos(theta_i)./sin(theta_i + theta_t);
+t_p = @(theta_i, theta_t) 2*sin(theta_t).*cos(theta_i) ./ ( sin(theta_i + theta_t).*cos(theta_i - theta_t) );
+theta_B = atan(n_t/n_i);
+theta_C = asin(n_t/n_i);
+
+theta_array = linspace(-0.1, pi/2, 101);
+Y = [
+    r_s(theta_array, theta_t(theta_array))
+    r_p(theta_array, theta_t(theta_array))
+    t_s(theta_array, theta_t(theta_array))
+    t_p(theta_array, theta_t(theta_array))
+    ];
+stc = MyPlot(theta_array, Y);
+xline(theta_B, 'b')
+yline(0)
+xlim([0, pi/2])
+ylim([-1, 1])
+stc.leg.String = ["$r_s$"; "$r_p$"; "$t_s$"; "$t_p$"; "$\theta_i = \theta_B$"];
+stc.leg.Interpreter = "latex";
+stc.leg.FontSize = 14;
+stc.leg.Location = "southwest";
+stc.axes.Title.String = '$n_i = 1 < n_t = 1.5$';
+stc.axes.Title.Interpreter = "latex";
+stc.label.x.String = '$\theta_i$';
+stc.label.y.String = '$r$';
+stc.plot.plot_3.LineStyle = ":";
+stc.plot.plot_3.Color = 'b';
+stc.plot.plot_4.LineStyle = ":";
+stc.plot.plot_4.Color = [1 0 1];
+%MyExport_pdf
+
+%%%%%%%%%% 玻璃入射空气 %%%%%%%%%%
+n_i = 1.5;
+n_t = 1;
+
+theta_t = @(theta_i) asin(n_i/n_t*sin(theta_i));
+r_s = @(theta_i, theta_t) - sin(theta_i - theta_t)./sin(theta_i + theta_t);
+r_p = @(theta_i, theta_t) + tan(theta_i - theta_t)./tan(theta_i + theta_t);
+t_s = @(theta_i, theta_t) 2*sin(theta_t).*cos(theta_i)./sin(theta_i + theta_t);
+t_p = @(theta_i, theta_t) 2*sin(theta_t).*cos(theta_i) ./ ( sin(theta_i + theta_t).*cos(theta_i - theta_t) );
+theta_B = atan(n_t/n_i);
+theta_C = asin(n_t/n_i);
+
+
+theta_array = linspace(0, theta_C, 101);
+Y = [
+    r_s(theta_array, theta_t(theta_array))
+    r_p(theta_array, theta_t(theta_array))
+    t_s(theta_array, theta_t(theta_array))
+    t_p(theta_array, theta_t(theta_array))
+    ];
+stc = MyPlot(theta_array, Y);
+xline(theta_B, 'b')
+xline(theta_C, 'r')
+yline(0)
+xlim([0, pi/2])
+ylim([-0.5, 3])
+stc.leg.String = ["$r_s$"; "$r_p$"; "$t_s$"; "$t_p$"; "$\theta_i = \theta_B$"; "$\theta_i = \theta_C$"];
+stc.leg.Interpreter = "latex";
+stc.axes.Title.String = '$n_i = 1.5 > n_t = 1$';
+stc.axes.Title.Interpreter = "latex";
+stc.label.x.String = '$\theta_i$';
+stc.label.y.String = '$r$';
+stc.plot.plot_3.LineStyle = ":";
+stc.plot.plot_3.Color = 'b';
+stc.plot.plot_4.LineStyle = ":";
+stc.plot.plot_4.Color = [1 0 1];
+%MyExport_pdf
+\end{matlablisting}
 
 
 % --------------------------- 附录 --------------------------- %

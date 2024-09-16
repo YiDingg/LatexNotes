@@ -123,9 +123,10 @@
     \usepackage[most]{tcolorbox} % 引入tcolorbox包 
     \usepackage{listings} % 引入listings包
         \tcbuselibrary{listings, skins, breakable}
+        \newfontfamily\codefont{Consolas} % 定义需要的 codefont 字体
         \lstdefinestyle{matlabstyle}{
             language=Matlab,
-            basicstyle=\small,
+            basicstyle=\small\ttfamily\codefont,    % ttfamily 确保等宽 
             breakatwhitespace=false,
             breaklines=true,
             captionpos=b,
@@ -138,16 +139,15 @@
             tabsize=2
         }
         \newtcblisting{matlablisting}{
-            arc=0pt,
-            top=0pt,
-            bottom=0pt,
+            arc=2pt,        % 圆角半径
+            top=-5pt,
+            bottom=-5pt,
             left=1mm,
             listing only,
             listing style=matlabstyle,
             breakable,
             colback=white   % 选一个合适的颜色
         }
-
 % table 支持
     \usepackage{booktabs}   % 宏包：三线表
     \usepackage{tabularray} % 宏包：表格排版
@@ -227,7 +227,7 @@
         \cfoot{\thepage}
         \renewcommand\headrulewidth{1pt}
         \renewcommand\footrulewidth{0pt}
-        \lhead{2024.8-2025.1} 
+        \lhead{2024.8 -- 2025.1} 
         \chead{here is the header，这里是页眉}    
         \rhead{dingyi233@mails.ucas.ac.cn}
 %文档信息设置
@@ -254,8 +254,7 @@
         本文为笔者本科时的某课程笔记（Notes of Linear Algebra 2, 2024.9-2025.1）。用灰色字体或灰色方框等表示对主干内容的补充、对晦涩概念的理解、定理的具体证明过程等，采用红色字体对重点部分进行强调，同时适当配有插图。这样的颜色和结构安排既突出了知识的主要框架，也保持了笔记的深度和广度，并且不会因为颜色过多而导致难以锁定文本内容，乃是尝试了多种安排后挑选出的最佳方案。如果读者有更佳的颜色和排版方案，可以将建议发送到笔者邮箱 dingyi233@mails.ucas.ac.cn，在此感谢。\par
         由于个人学识浅陋，认识有限，书中难免有不妥甚至错误之处，望读者不吝指正，在此感谢。
 
-        本文为笔者本科时的“电路原理”课程作业（Homework of Circuit Theory, 2024.9-2025.1）。由于个人学识浅陋，认识有限，文中难免有不妥甚至错误之处，望读者不吝指正，在此感谢。\par
-        我的邮箱是 dingyi233@mails.ucas.ac.cn。
+        本文为笔者本科时的“电路原理”课程作业（Homework of Circuit Theory, 2024.9-2025.1）。由于个人学识浅陋，认识有限，文中难免有不妥甚至错误之处，望读者不吝指正，在此感谢。我的邮箱是 dingyi233@mails.ucas.ac.cn。\par
     \end{cnabstract}
     \addcontentsline{toc}{chapter}{序言} % 手动添加为目录
 
@@ -498,6 +497,20 @@
 \section{一个小节}
 \section{一个小节}
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 % ------------------------- 参考文献 ------------------------- %
 % >> ---------------------- 参考文献 ---------------------- << %
 \nocite{*}
@@ -506,6 +519,21 @@
 \addcontentsline{toc}{chapter}{参考文献}
 % ------------------------- 参考文献 ------------------------- %
 % >> ---------------------- 参考文献 ---------------------- << %
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 % --------------------------- 附录 --------------------------- %
 % >> ------------------------ 附录 ------------------------ << %

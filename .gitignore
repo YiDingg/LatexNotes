@@ -13,7 +13,8 @@
 *.drawio
 
 # 忽略 svg 文件
-*.svg  
+# svg-inkscape
+# *.svg  
 # 插入 svg 时， inkscape 会生成 .pdf 中间文件，最终插入的是这个 pdf。一般来讲 pdf 大小会比 svg 小很多，更为划算，因此我们保留 pdf 而不是 svg，所以忽略 .svg 文件。
 
 

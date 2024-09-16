@@ -8,22 +8,22 @@
     \documentclass[UTF8]{report}		
 
 % 本 .tex 专属的宏定义
-\def\V{\ \mathrm{V}}
-\def\mV{\ \mathrm{mV}}
-\def\kV{\ \mathrm{KV}}
-\def\KV{\ \mathrm{KV}}
-\def\MV{\ \mathrm{MV}}
-\def\A{\ \mathrm{A}}
-\def\mA{\ \mathrm{mA}}
-\def\kA{\ \mathrm{KA}}
-\def\KA{\ \mathrm{KA}}
-\def\MA{\ \mathrm{MA}}
-\def\O{\ \Omega}
-\def\mO{\ \Omega}
-\def\kO{\ \mathrm{K}\Omega}
-\def\KO{\ \mathrm{K}\Omega}
-\def\MO{\ \mathrm{M}\Omega}
-\def\Hz{\ \mathrm{Hz}}
+    \def\V{\ \mathrm{V}}
+    \def\mV{\ \mathrm{mV}}
+    \def\kV{\ \mathrm{KV}}
+    \def\KV{\ \mathrm{KV}}
+    \def\MV{\ \mathrm{MV}}
+    \def\A{\ \mathrm{A}}
+    \def\mA{\ \mathrm{mA}}
+    \def\kA{\ \mathrm{KA}}
+    \def\KA{\ \mathrm{KA}}
+    \def\MA{\ \mathrm{MA}}
+    \def\O{\ \Omega}
+    \def\mO{\ \Omega}
+    \def\kO{\ \mathrm{K}\Omega}
+    \def\KO{\ \mathrm{K}\Omega}
+    \def\MO{\ \mathrm{M}\Omega}
+    \def\Hz{\ \mathrm{Hz}}
 
 % 自定义宏定义
     \def\N{\mathbb{N}}
@@ -1085,9 +1085,32 @@ R_{\text{sat}} = R_1 = 10 \KO
 
 
 
+% --------------------------- 附录 --------------------------- %
+% >> ------------------------ 附录 ------------------------ << %
+
+\newpage
+\appendix
+% chapter 标题自定义设置
+\titleformat{\chapter}[hang]{\normalfont\huge\bfseries\centering}{}{20pt}{}
+\titlespacing*{\chapter}{0pt}{-25pt}{8pt} % 控制上方空白的大小
+% section 标题自定义设置 
+\titleformat{\section}[hang]{\normalfont\centering\Large\bfseries}{\thesection}{8pt}{}
+
+% 附录 A
+\chapter*{附录 A. Matlab 代码}\addcontentsline{toc}{chapter}{附录 A. Matlab 代码}   
+\thispagestyle{fancy} 
+\setcounter{section}{0}   
+\renewcommand\thesection{A.\arabic{section}}   
+\renewcommand{\thefigure}{A.\arabic{figure}} 
+\renewcommand{\thetable}{A.\arabic{table}}
+
+\section{图 \ref{振幅系数随入射角的变化} 源码}
+\begin{matlablisting}
+\end{matlablisting}
 
 
-
+% >> ------------------------ 附录 ------------------------ << %
+% --------------------------- 附录 --------------------------- %
 
 
 \end{document}

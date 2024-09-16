@@ -126,9 +126,9 @@
             tabsize=2
         }
         \newtcblisting{matlablisting}{
-            arc=0pt,
-            top=0pt,
-            bottom=0pt,
+            arc=3pt,        % 圆角半径
+            top=-5pt,
+            bottom=-5pt,
             left=1mm,
             listing only,
             listing style=matlabstyle,
@@ -177,22 +177,24 @@
     }  
     
 
+% 其它设置
+    % 脚注设置
+    \renewcommand\thefootnote{\ding{\numexpr171+\value{footnote}}}
+    % 参考文献引用设置
+        \bibliographystyle{unsrt}   % 设置参考文献引用格式为unsrt
+        \newcommand{\upcite}[1]{\textsuperscript{\cite{#1}}}     % 自定义上角标式引用
+    % 文章序言设置
+        \newcommand{\cnabstractname}{序言}
+        \newenvironment{cnabstract}{%
+            \par\Large
+            \noindent\mbox{}\hfill{\bfseries \cnabstractname}\hfill\mbox{}\par
+            \vskip 2.5ex
+            }{\par\vskip 2.5ex}
+
 % 文章默认字体设置
 \usepackage{fontspec}   % 宏包：字体设置
     \setmainfont{SimSun}    % 设置中文字体为宋体字体
     \setmainfont{Times New Roman} % 设置英文字体为Times New Roman
-
-% 文章序言设置
-    \newcommand{\cnabstractname}{序言}
-    \newenvironment{cnabstract}{%
-        \par\Large
-        \noindent\mbox{}\hfill{\bfseries \cnabstractname}\hfill\mbox{}\par
-        \vskip 2.5ex
-        }{\par\vskip 2.5ex}
-
-% 参考文献引用设置
-    \bibliographystyle{unsrt}   % 设置参考文献引用格式为unsrt
-    \newcommand{\upcite}[1]{\textsuperscript{\cite{#1}}}     % 自定义上角标式引用
 
 % 各级标题自定义设置
     \usepackage{titlesec}   
@@ -363,7 +365,7 @@ n_1\sqrt{r^2 + (r+s_1)^2 - 2r(r+s_1)\cos \phi } \,{\color{red} -}\, n_2 \sqrt{r^
 证毕。
 
 \section{画出图中的像点}
-如下图所示，其中左边为手绘图，右边为光路仿真软件效果图。
+如下图所示，左侧为手绘图，右侧为光路仿真软件 \href{https://www.optico.app/en/start-en/}{Optico} 效果图。
 
 \begin{figure}[H]\centering
 \begin{subfigure}[t]{0.47\textwidth}\centering
@@ -400,28 +402,237 @@ n_1\sqrt{r^2 + (r+s_1)^2 - 2r(r+s_1)\cos \phi } \,{\color{red} -}\, n_2 \sqrt{r^
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 \chapter{第二章}\thispagestyle{fancy}
+
+\section{对于正入射的情况，写出菲涅尔公式}
+
+菲涅尔公式如下：
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c|c|c|c|c|} 
+    \hline
+    类型 & \multicolumn{2}{c|}{振幅反射系数 $r$} & \multicolumn{2}{c|}{振幅透射系数 $t$ }  \\ 
+    \hline
+    s 波 & $\displaystyle r_s = \frac{n_i\cos \theta_i - n_t \cos \theta_t}{n_i\cos \theta_i + n_t \cos \theta_t} $ & $\displaystyle  - \frac{\sin (\theta_i - \theta_t) }{\sin (\theta_i + \theta_t)}$ & $\displaystyle t_s  = \frac{2n_i \cos \theta_i}{n_i\cos \theta_i + n_t \cos \theta_t} $ &   $\displaystyle  + \frac{2 \sin \theta_t \cos \theta_i}{\sin (\theta_i + \theta_t)}$   \\ 
+    \hline
+    p 波 & $\displaystyle r_p = \frac{n_t\cos \theta_i - n_i \cos \theta_t}{n_t\cos \theta_i + n_i \cos \theta_t} $ &     $ \displaystyle  + \frac{\tan (\theta_i - \theta_t)}{\tan (\theta_i + \theta_t)} $  &  $\displaystyle t_p  = \frac{2n_i \cos \theta_i}{n_i\cos \theta_t + n_t \cos \theta_i} $ &   $\displaystyle + \frac{2 \sin \theta_t \cos \theta_i}{\sin (\theta_i + \theta_t) \cos (\theta_i - \theta_t)}$                  \\
+    \hline
+    \end{tabular}
+\end{table}
+
+正入射时，$\theta_i = \theta_t = 0$，于是有：
+\begin{gather}
+    r_p = (-r_s)  = \frac{n_t - n_i}{n_t + n_i},\quad t_p = t_s = \frac{2n_i}{n_i + n_t} \\ 
+    F = R_s = R_p = \left( \frac{n_t - n_i}{n_t + n_i} \right)^2
+\end{gather}
+
+
+不妨作出相关的图像，图 \ref{振幅系数随入射角的变化} 是 s 波、p 波振幅系数关于入射角 $\theta_i$ 的变化情况\footnote{源码见附录 \ref{图振幅系数随入射角的变化源码}}。
+
+\begin{figure}[H]\centering
+\begin{subfigure}[t]{0.49\textwidth}\centering
+    \includegraphics[height=180pt]{assets/2/2024-09-15_10-53-31.pdf}
+    \caption{\bfseries 由空气入射玻璃（$n_i = 1,\ n_t = 1.5$） }
+\end{subfigure}
+\begin{subfigure}[t]{0.49\textwidth}\centering
+    \includegraphics[height=180pt]{assets/2/2024-09-15_10-53-27.pdf}
+    \caption{\bfseries 由玻璃入射空气（$n_i = 1.5,\ n_t = 1$） }
+\end{subfigure}
+\caption{\bfseries 振幅系数 $r$ 随入射角 $\theta_i$ 的变化 }\label{振幅系数随入射角的变化}
+\end{figure}
+
+
+\section{一自然光以 Brewster Angle 入射到空气中的一块玻璃，已知功率透射率为 0.86。}
+\begin{enumerate}
+\item \textbf{求功率的反射率：}
+
+$T = 0.86$，由能量守恒，功率反射率 $R = 0.14$。
+\item \textbf{若输入为 1000 W，求透射光 s 分量上的功率}
+
+光束为自然光，因此 s 分量和 p 分量的功率相同，都为 500 W。先求解入射角 $\theta_i$，由菲涅尔定理和能量关系：
+\begin{equation}
+R =  \frac{1}{2}(R_s + R_p),\  R_s =  \left[ \frac{ \cos \theta_i - \sqrt{n_{ti}^2 - \sin^2 \theta_i} }{\cos \theta_i + \sqrt{n_{ti}^2 - \sin^2 \theta_i}} \right]^2,\ R_p = \left[ \frac{ n_{ti}^2\cos \theta_i - \sqrt{n_{ti}^2 - \sin^2 \theta_i} }{n_{ti}^2\cos \theta_i + \sqrt{n_{ti}^2 - \sin^2 \theta_i}} \right]^2
+\end{equation}
+其中 $n_i = 1$，$n_t = 1.5$，因此 $n_{ti} = 1.5$，代入即得：
+\begin{equation}
+    \left[ \frac{ \cos \theta_i - \sqrt{1.5^2 - \sin^2 \theta_i} }{\cos \theta_i + \sqrt{1.5^2 - \sin^2 \theta_i}} \right]^2 + \left[ \frac{ 1.5^2\cos \theta_i - \sqrt{1.5^2 - \sin^2 \theta_i} }{1.5^2\cos \theta_i + \sqrt{1.5^2 - \sin^2 \theta_i}} \right]^2 = 2\times0.14
+\end{equation}
+用 Matlab 解此非线性方程组\footnote{源码见附录 \ref{公式解入射角源码}}，得到入射角 $\theta_i$ 和其它参量：
+\begin{gather}\label{解入射角}
+\begin{matrix}
+    \theta_i =  1.173220\ \ \mathrm{rad}  = 67.220559^\circ \\
+    R = 0.14,\quad   R_s = 0.256933,\    R_p = 0.023067 \\ 
+    T = 0.86,\quad   T_s = 0.743067,\    T_p = 0.976933
+\end{matrix}
+\end{gather}
+
+\end{enumerate}
+
+\section{光束垂直入射到玻璃-空气界面，玻璃折射率 1.5，求出能量反射率和透射率}
+
+$\theta_i = 0$ 时，由菲涅尔定律和能量关系，有：
+\begin{gather}
+    R =  \frac{1}{2}(R_s + R_p),\quad  T = 1 - R\\ 
+    R_s =  \left[ \frac{ \cos \theta_i - \sqrt{n_{ti}^2 - \sin^2 \theta_i} }{\cos \theta_i + \sqrt{n_{ti}^2 - \sin^2 \theta_i}} \right]^2 = \left[ \frac{1 - n_{ti}}{1 + n_{ti}} \right]^2,\ R_p = \left[ \frac{ n_{ti}^2\cos \theta_i - \sqrt{n_{ti}^2 - \sin^2 \theta_i} }{n_{ti}^2\cos \theta_i + \sqrt{n_{ti}^2 - \sin^2 \theta_i}} \right]^2 =  \left[ \frac{n_{ti}^2 - n_{ti}}{n_{ti}^2 + n_{ti}} \right]^2
+\end{gather}
+由空气入射玻璃时，$n_{ti} = 1.5$，由玻璃入射空气时，$n_{ti} = \frac{2}{3}$，代入得到：
+\begin{gather*}
+\text{空气入射玻璃: }\ R = 0.04,\quad  T = 0.96 \\ 
+\text{玻璃入射空气: }\ R = 0.04,\quad  T = 0.96 
+\end{gather*}
+也即无论从哪边入射，能量反射率和透射率分别为 0.04 和 0.96.
+
+
 \chapter{第三章}\thispagestyle{fancy}
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% --------------------------- 附录 --------------------------- %
+% >> ------------------------ 附录 ------------------------ << %
+
+\newpage
+\appendix
+% chapter 标题自定义设置
+\titleformat{\chapter}[hang]{\normalfont\huge\bfseries\centering}{}{20pt}{}
+\titlespacing*{\chapter}{0pt}{-25pt}{8pt} % 控制上方空白的大小
+% section 标题自定义设置 
+\titleformat{\section}[hang]{\normalfont\centering\Large\bfseries}{\thesection}{8pt}{}
+
+% 附录 A
+\chapter*{附录 A. Matlab 代码}\addcontentsline{toc}{chapter}{附录 A. Matlab 代码}   
+\thispagestyle{fancy} 
+\setcounter{section}{0}   
+\renewcommand\thesection{A.\arabic{section}}   
+\renewcommand{\thefigure}{A.\arabic{figure}} 
+\renewcommand{\thetable}{A.\arabic{table}}
+
+\section{图 \ref{振幅系数随入射角的变化} 源码}\label{图振幅系数随入射角的变化源码}
+\begin{matlablisting}
+%%%%%%%%%% 空气入射玻璃 %%%%%%%%%%
+global n_i n_t
+n_i = 1;
+n_t = 1.5;
+
+theta_t = @(theta_i) asin(n_i/n_t*sin(theta_i));
+r_s = @(theta_i, theta_t) - sin(theta_i - theta_t)./sin(theta_i + theta_t);
+r_p = @(theta_i, theta_t) + tan(theta_i - theta_t)./tan(theta_i + theta_t);
+t_s = @(theta_i, theta_t) 2*sin(theta_t).*cos(theta_i)./sin(theta_i + theta_t);
+t_p = @(theta_i, theta_t) 2*sin(theta_t).*cos(theta_i) ./ ( sin(theta_i + theta_t).*cos(theta_i - theta_t) );
+theta_B = atan(n_t/n_i);
+theta_C = asin(n_t/n_i);
+
+theta_array = linspace(-0.1, pi/2, 101);
+Y = [
+    r_s(theta_array, theta_t(theta_array))
+    r_p(theta_array, theta_t(theta_array))
+    t_s(theta_array, theta_t(theta_array))
+    t_p(theta_array, theta_t(theta_array))
+    ];
+stc = MyPlot(theta_array, Y);
+xline(theta_B, 'b')
+yline(0)
+xlim([0, pi/2])
+ylim([-1, 1])
+stc.leg.String = ["$r_s$"; "$r_p$"; "$t_s$"; "$t_p$"; "$\theta_i = \theta_B$"];
+stc.leg.Interpreter = "latex";
+stc.leg.FontSize = 14;
+stc.leg.Location = "southwest";
+stc.axes.Title.String = '$n_i = 1 < n_t = 1.5$';
+stc.axes.Title.Interpreter = "latex";
+stc.label.x.String = '$\theta_i$';
+stc.label.y.String = '$r$';
+stc.plot.plot_3.LineStyle = ":";
+stc.plot.plot_3.Color = 'b';
+stc.plot.plot_4.LineStyle = ":";
+stc.plot.plot_4.Color = [1 0 1];
+%MyExport_pdf
+
+%%%%%%%%%% 玻璃入射空气 %%%%%%%%%%
+n_i = 1.5;
+n_t = 1;
+
+theta_t = @(theta_i) asin(n_i/n_t*sin(theta_i));
+r_s = @(theta_i, theta_t) - sin(theta_i - theta_t)./sin(theta_i + theta_t);
+r_p = @(theta_i, theta_t) + tan(theta_i - theta_t)./tan(theta_i + theta_t);
+t_s = @(theta_i, theta_t) 2*sin(theta_t).*cos(theta_i)./sin(theta_i + theta_t);
+t_p = @(theta_i, theta_t) 2*sin(theta_t).*cos(theta_i) ./ ( sin(theta_i + theta_t).*cos(theta_i - theta_t) );
+theta_B = atan(n_t/n_i);
+theta_C = asin(n_t/n_i);
+
+
+theta_array = linspace(0, theta_C, 101);
+Y = [
+    r_s(theta_array, theta_t(theta_array))
+    r_p(theta_array, theta_t(theta_array))
+    t_s(theta_array, theta_t(theta_array))
+    t_p(theta_array, theta_t(theta_array))
+    ];
+stc = MyPlot(theta_array, Y);
+xline(theta_B, 'b')
+xline(theta_C, 'r')
+yline(0)
+xlim([0, pi/2])
+ylim([-0.5, 3])
+stc.leg.String = ["$r_s$"; "$r_p$"; "$t_s$"; "$t_p$"; "$\theta_i = \theta_B$"; "$\theta_i = \theta_C$"];
+stc.leg.Interpreter = "latex";
+stc.axes.Title.String = '$n_i = 1.5 > n_t = 1$';
+stc.axes.Title.Interpreter = "latex";
+stc.label.x.String = '$\theta_i$';
+stc.label.y.String = '$r$';
+stc.plot.plot_3.LineStyle = ":";
+stc.plot.plot_3.Color = 'b';
+stc.plot.plot_4.LineStyle = ":";
+stc.plot.plot_4.Color = [1 0 1];
+%MyExport_pdf
+\end{matlablisting}
+
+\section{公式 \ref{解入射角} 源码}\label{公式解入射角源码}
+
+\begin{matlablisting}
+R_s = @(n_ti, t) ( (cos(t) - sqrt(n_ti^2 - sin(t)^2)) / (cos(t) + sqrt(n_ti^2 - sin(t)^2)) )^2;
+R_p = @(n_ti, t) ( (n_ti^2*cos(t) - sqrt(n_ti^2 - sin(t)^2)) / (n_ti^2*cos(t) + sqrt(n_ti^2 - sin(t)^2)) )^2;
+
+theta_i = fzero(@(t) ( R_s(1.5, t) + R_p(1.5, t) - 2*0.14) , deg2rad(45));
+disp(['theta_i = ', num2str(theta_i, '%.6f'), ' rad'])
+disp(['theta_i = ', num2str(rad2deg(theta_i), '%.6f'), ' deg'])
+disp(['R_s = ', num2str(R_s(1.5, theta_i), '%.6f')])
+disp(['R_p = ', num2str(R_p(1.5, theta_i), '%.6f')])
+disp(['T_s = ', num2str(1 - R_s(1.5, theta_i), '%.6f')])
+disp(['T_p = ', num2str(1 - R_p(1.5, theta_i), '%.6f')])
+disp(['R = ', num2str( 0.5*(R_s(1.5, theta_i) + R_p(1.5, theta_i)) , '%.6f')])
+disp(['T = ', num2str( 0.5*(2 - R_s(1.5, theta_i) - R_p(1.5, theta_i)), '%.6f')])
+
+%{
+>> Output:
+theta_i = 1.173220 rad
+theta_i = 67.220559 deg
+R_s = 0.256933
+R_p = 0.023067
+T_s = 0.743067
+T_p = 0.976933
+R = 0.140000
+T = 0.860000
+%}
+\end{matlablisting}
+
+% >> ------------------------ 附录 ------------------------ << %
+% --------------------------- 附录 --------------------------- %
 
 \end{document}
 

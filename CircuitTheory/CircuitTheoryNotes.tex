@@ -314,11 +314,16 @@ u_{ab} = \frac{\mathrm{d} w_{ab}}{\mathrm{d}q},\ i_{ab} = \frac{\mathrm{d} q_{ab
 
 部分常见的电路元件如图 \ref{部分常见电路元件} 所示：
 
+
 \begin{figure}[H]\centering
-\includegraphics[width=0.5\textwidth]{assets/1,2/7d3f6db847882c6447cc046186ede6ef.jpg}
-\includegraphics[width=0.5\textwidth]{assets/1,2/3f5d73ec5ae9909ab42cd864852b0d72.jpg}
-\caption{\textbf{部分常见电路元件}}\label{部分常见电路元件}
+\begin{subfigure}[t]{0.52\textwidth}\centering
+    \includegraphics[height=160pt]{assets/1,2/7d3f6db847882c6447cc046186ede6ef.jpg}
+\end{subfigure}\begin{subfigure}[t]{0.47\textwidth}\centering
+    \includegraphics[height=160pt]{assets/1,2/3f5d73ec5ae9909ab42cd864852b0d72.jpg}
+\end{subfigure}
+\caption{\bfseries \textbf{部分常见电路元件} }\label{部分常见电路元件}
 \end{figure}
+
 
 端口：封装好的电路元件与电路其它部分的联接点称为端纽、端子或接线端（terminal）。如果从元件的两个端纽看进去满足 $i = -i'$，则这两个端子被称为一个端口（port）
 \footnote{任意二端电路元件都可以看作是一个端口}
@@ -350,7 +355,7 @@ $R, L, C$ 被称为电路基本模型，是电路分析的最基本模型。对�
 电路信号可分为 图 \ref{信号分类} 中的几类，它们的示意图如 图 \ref{信号示意图} 所示： 
 
 \begin{figure}[H]\centering
-\includesvg[width=0.55\textwidth]{assets/1,2/信号分类.drawio.svg}
+\includesvg[width=0.7\textwidth]{assets/1,2/信号分类.drawio.svg}
 \caption{\textbf{信号分类}}\label{信号分类}
 \end{figure}
 
@@ -1642,27 +1647,22 @@ $\boldsymbol{G}$ 与 $\boldsymbol{R}$ 矩阵之间满足 $\boldsymbol{G}^{-1} = 
         sinusoidal altering current & 正弦交流电流 \\
         \bottomrule
     \end{tabular}
-    \end{table}
-
-
-
+\end{table}
 
 \end{multicols} 
 
 
+% 附录 B
+\chapter*{附录 B. Matlab 代码}\addcontentsline{toc}{chapter}{附录 B. Matlab 代码}   
+\thispagestyle{fancy} 
+\setcounter{section}{0}   
+\renewcommand\thesection{B.\arabic{section}}   
+\renewcommand{\thefigure}{B.\arabic{figure}} 
+\renewcommand{\thetable}{B.\arabic{table}}
 
-
-
-
-
-
-
-
-
-
-
-
-
+\section{图 \ref{振幅系数随入射角的变化} 源码}
+\begin{matlablisting}
+\end{matlablisting}
 
 
 

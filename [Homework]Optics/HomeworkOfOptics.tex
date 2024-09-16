@@ -111,9 +111,10 @@
     \usepackage[most]{tcolorbox} % 引入tcolorbox包 
     \usepackage{listings} % 引入listings包
         \tcbuselibrary{listings, skins, breakable}
+        \newfontfamily\codefont{Consolas} % 定义需要的 codefont 字体
         \lstdefinestyle{matlabstyle}{
             language=Matlab,
-            basicstyle=\small,
+            basicstyle=\small\ttfamily\codefont,    % ttfamily 确保等宽 
             breakatwhitespace=false,
             breaklines=true,
             captionpos=b,
@@ -126,7 +127,7 @@
             tabsize=2
         }
         \newtcblisting{matlablisting}{
-            arc=3pt,        % 圆角半径
+            arc=2pt,        % 圆角半径
             top=-5pt,
             bottom=-5pt,
             left=1mm,
@@ -272,10 +273,9 @@
 \chapter{第一章}\thispagestyle{fancy}
 
 \section{求入射到光纤的角度满足的条件}
-
 \begin{equation}
     n_0 \sin i = n_g \sin i', \quad n_g \sin (\frac{\pi}{2} - i') = n_c \sin \frac{\pi}{2} 
-     \Longrightarrow i \leqslant \arcsin 
+     \Longrightarrow i \leqslant \arcsin \left( \frac{n_g}{n_0} \sqrt{1 - \frac{n_c^2}{n_g^2}}\,  \right)
 \end{equation}
     
 
@@ -301,9 +301,8 @@ n(y)\sin i(y) = C \Longrightarrow \frac{\mathrm{d} y }{\mathrm{d} x } = \frac{\s
 \end{equation}
 也即
 \begin{equation}
-    \frac{\mathrm{d}^2 y }{\mathrm{d} x^2 } = \frac{1}{2n_0^2\sin^2 i}\cdot \frac{\mathrm{d} n^2 }{\mathrm{d} y } = \frac{1}{2n_0^2\cos^2 \theta}\cdot \frac{\mathrm{d} n^2 }{\mathrm{d} y } \quad 
+    \frac{\mathrm{d}^2 y }{\mathrm{d} x^2 } = \frac{1}{2n_0^2\sin^2 i}\cdot \frac{\mathrm{d} n^2 }{\mathrm{d} y } = \frac{1}{2n_0^2\cos^2 \theta}\cdot \frac{\mathrm{d} n^2 }{\mathrm{d} y } \quad \square
 \end{equation}
-证毕。$\quad \square$
 
 \begin{figure}[H]\centering
 \includegraphics[width=0.8\textwidth]{assets/1/88b3f41951f9d3be9e2964935ebaf0f7.jpg}
@@ -324,14 +323,14 @@ n(y)\sin i(y) = C \Longrightarrow \frac{\mathrm{d} y }{\mathrm{d} x } = \frac{\s
 = n \sqrt{r^2 + (s+r)^2 \,{\color{red} -}\, 2r(s+r)\cos \phi } + n' \sqrt{r^2 + (s'-r)^2 \,{\color{red} +}\, 2r(s'-r)\cos \phi } 
 \end{equation}
 
-由费马原理，$\frac{\mathrm{d} \text{OPL}  }{\mathrm{d} \phi } = 0$，于是有：
+由费马原理，$\frac{\mathrm{d} \text{OPL}  }{\mathrm{d} \phi } = 0$，于是：
 \begin{equation}
 \frac{-nr(s+r)\sin \phi }{p} + \frac{n'r(s'-r)\sin \phi }{p'} = 0 \Longrightarrow  \frac{n}{p} + \frac{n'}{p'} = \frac{1}{R\,}\left( \frac{n's'}{p'} - \frac{ns}{p} \right)
 \end{equation}
 
-在傍轴条件下，有 $s \approx p$，$s' \approx p'$，于是有：
+在傍轴条件下，有 $s \approx p$，$s' \approx p'$，于是：
 \begin{equation}
-\frac{n}{s} + \frac{n'}{s'} = \frac{n' - n}{R}
+\frac{n}{s} + \frac{n'}{s'} = \frac{n' - n}{R}   \quad\square
 \end{equation}
 证毕。
 \begin{figure}[H]\centering
@@ -360,7 +359,7 @@ n_1\sqrt{r^2 + (r+s_1)^2 - 2r(r+s_1)\cos \phi } \,{\color{red} -}\, n_2 \sqrt{r^
 \end{equation}
 当反射球面两侧为相同介质时，$n_1 = n_2$，则：
 \begin{equation}
-\frac{1}{s_1} + \frac{1}{s_2} = -\frac{2}{r}
+\frac{1}{s_1} + \frac{1}{s_2} = -\frac{2}{r}  \quad\square
 \end{equation}
 证毕。
 
@@ -410,6 +409,7 @@ n_1\sqrt{r^2 + (r+s_1)^2 - 2r(r+s_1)\cos \phi } \,{\color{red} -}\, n_2 \sqrt{r^
 
 \begin{table}[H]
     \centering
+    \renewcommand{\arraystretch}{1.5} % 调整行间距为默认值的1.5倍 
     \begin{tabular}{|c|c|c|c|c|} 
     \hline
     类型 & \multicolumn{2}{c|}{振幅反射系数 $r$} & \multicolumn{2}{c|}{振幅透射系数 $t$ }  \\ 
@@ -444,11 +444,49 @@ n_1\sqrt{r^2 + (r+s_1)^2 - 2r(r+s_1)\cos \phi } \,{\color{red} -}\, n_2 \sqrt{r^
 
 
 \section{一自然光以 Brewster Angle 入射到空气中的一块玻璃，已知功率透射率为 0.86。}
-\begin{enumerate}
-\item \textbf{求功率的反射率：}
+
+{\color{red} $\star $ 事实上，本题题设并不合理，是不符合实际的。我们先给出解题过程，再说明为何题设不合理。}
+
+\textbf{(1)\ \ 求功率的反射率：}
 
 $T = 0.86$，由能量守恒，功率反射率 $R = 0.14$。
-\item \textbf{若输入为 1000 W，求透射光 s 分量上的功率}
+
+\textbf{(2)\ \ 若输入为 1000 W，求透射光 s 分量上的功率}
+
+光束为自然光，因此 s 分量和 p 分量的功率相同，都为 500 W，也即 $\Phi_{e,i,s} = \Phi_{e,i,p} = 500 \ \mathrm{W}$。又由 Brewster Angle 入射，因此反射光的 p 分量为 0，也即 $R_p = 0$，于是：
+\begin{gather}
+T_p = 1 - R_p = 1,\quad T_s = 2T - T_p = 0.72 
+\end{gather}
+由此可求得透射光 s 分量上的辐射通量（即辐射功率）：
+\begin{equation}
+\Phi_{e,t,s} = T_s \Phi_{e,i,s} = 0.72 \times 500 \ \mathrm{W} =  360 \ \mathrm{W}
+\end{equation}
+
+{\color{red} \textbf{(3)\ \ 不合理的原因：玻璃折射率为 0.554902}}
+
+在题设条件下，$R = 0.14$，默认空气折射率为 1，则唯一的未知量是玻璃折射率 $n_t$，这是可以求解的，方程如下：
+\begin{gather}\label{题设不合理}
+    R = \frac{1}{2}(R_s + R_p) = 0.14,\quad \theta_i = \theta_B = \arctan\left(\frac{n_t}{n_i}\right) ,\quad n_i = 1
+    \Longrightarrow \\ 
+    \left[ \frac{ \cos (\arctan n_t) - \sqrt{n_{t}^2 - \sin^2 (\arctan n_t)} }{\cos (\arctan n_t) + \sqrt{n_{t}^2 - \sin^2 (\arctan n_t)}} \right]^2 + \left[ \frac{ n_{t}^2\cos (\arctan n_t) - \sqrt{n_{t}^2 - \sin^2 (\arctan n_t)} }{n_{t}^2\cos (\arctan n_t) + \sqrt{n_{t}^2 - \sin^2 (\arctan n_t)}} \right]^2  = 2\times 0.14
+\end{gather}
+此方程有唯一未知量 $n_t$，用 Matlab 解此非线性方程组\footnote{源码见附录 \ref{题设不合理源码}}，得到玻璃折射率 $n_t$，以及其它参量：
+\begin{gather}
+\begin{matrix}
+    n_t = 0.554902 \\
+    R = 0.140000,\quad   R_s = 0.280000,\    R_p = 0.000000 \\ 
+    T = 0.860000,\quad   T_s = 0.720000,\    T_p = 1.000000
+\end{matrix}
+\end{gather}
+
+而一般玻璃的折射率在 1.5 左右，即使是特殊玻璃（例如高折射率镜片），也基本在 1.3 至 1.9 之间，0.5 的玻璃折射率显然{\color{red} 是不合理的}\footnote{查阅资料发现，此题来自于\textit{光学（尤金，第五版）Optics (Eugene Hecht)} 的 Page 152}。即使是考虑介质折射率关于波长的变化（如 X 射线或 Gamma 射线），也不会达到如此低的折射率。
+
+\section{上题修正：一自然光由空气入射玻璃，玻璃折射率为 1.5，已知功率透射率为 0.86。}
+\textbf{(1)\ \ 求功率的反射率：}
+
+$T = 0.86$，由能量守恒，功率反射率 $R = 0.14$。
+
+\textbf{(2)\ \ 若输入为 1000 W，求透射光 s 分量上的功率}
 
 光束为自然光，因此 s 分量和 p 分量的功率相同，都为 500 W。先求解入射角 $\theta_i$，由菲涅尔定理和能量关系：
 \begin{equation}
@@ -462,12 +500,16 @@ R =  \frac{1}{2}(R_s + R_p),\  R_s =  \left[ \frac{ \cos \theta_i - \sqrt{n_{ti}
 \begin{gather}\label{解入射角}
 \begin{matrix}
     \theta_i =  1.173220\ \ \mathrm{rad}  = 67.220559^\circ \\
-    R = 0.14,\quad   R_s = 0.256933,\    R_p = 0.023067 \\ 
-    T = 0.86,\quad   T_s = 0.743067,\    T_p = 0.976933
+    R = 0.140000,\quad   R_s = 0.256933,\    R_p = 0.023067 \\ 
+    T = 0.860000,\quad   T_s = 0.743067,\    T_p = 0.976933
 \end{matrix}
 \end{gather}
 
-\end{enumerate}
+于是透射光 s 分量上的辐射通量为：
+\begin{equation}
+\Phi_{e,t,s} = T_s \Phi_{e,i,s} = 0.743067 \times 500 \ \mathrm{W} =  371.5335 \ \mathrm{W}
+\end{equation}
+
 
 \section{光束垂直入射到玻璃-空气界面，玻璃折射率 1.5，求出能量反射率和透射率}
 
@@ -481,7 +523,7 @@ $\theta_i = 0$ 时，由菲涅尔定律和能量关系，有：
 \text{空气入射玻璃: }\ R = 0.04,\quad  T = 0.96 \\ 
 \text{玻璃入射空气: }\ R = 0.04,\quad  T = 0.96 
 \end{gather*}
-也即无论从哪边入射，能量反射率和透射率分别为 0.04 和 0.96.
+也即无论从哪边入射，能量反射率和透射率分别为 0.04 和 0.96。
 
 
 \chapter{第三章}\thispagestyle{fancy}
@@ -602,6 +644,34 @@ stc.plot.plot_4.Color = [1 0 1];
 %MyExport_pdf
 \end{matlablisting}
 
+\section{公式 \ref{题设不合理} 源码}\label{题设不合理源码}
+
+\begin{matlablisting}
+R_s = @(n_ti, t) ( (cos(t) - sqrt(n_ti^2 - sin(t)^2)) / (cos(t) + sqrt(n_ti^2 - sin(t)^2)) )^2;
+R_p = @(n_ti, t) ( (n_ti^2*cos(t) - sqrt(n_ti^2 - sin(t)^2)) / (n_ti^2*cos(t) + sqrt(n_ti^2 - sin(t)^2)) )^2;
+
+theta_B = @(n_ti) atan(n_ti);
+n_ti = fzero(@(n_ti) 0.5*(R_s(n_ti, theta_B(n_ti)) + R_p(n_ti, theta_B(n_ti))) - 0.14, 1);
+disp(['n_ti = ', num2str(n_ti, '%.6f')])
+disp(['R_s = ', num2str(R_s(n_ti, theta_B(n_ti)), '%.6f')])
+disp(['R_p = ', num2str(R_p(n_ti, theta_B(n_ti)), '%.6f')])
+disp(['T_s = ', num2str(1 - R_s(n_ti, theta_B(n_ti)), '%.6f')])
+disp(['T_p = ', num2str(1 - R_p(n_ti, theta_B(n_ti)), '%.6f')])
+disp(['R = ', num2str( 0.5*(R_s(n_ti, theta_B(n_ti)) + R_p(n_ti, theta_B(n_ti))) , '%.6f')])
+disp(['T = ', num2str( 0.5*(2 - R_s(n_ti, theta_B(n_ti)) - R_p(n_ti, theta_B(n_ti))), '%.6f')])
+
+%{
+>> Output:
+n_ti = 0.554902
+R_s = 0.280000
+R_p = 0.000000
+T_s = 0.720000
+T_p = 1.000000
+R = 0.140000
+T = 0.860000
+%}
+\end{matlablisting}
+
 \section{公式 \ref{解入射角} 源码}\label{公式解入射角源码}
 
 \begin{matlablisting}
@@ -630,6 +700,7 @@ R = 0.140000
 T = 0.860000
 %}
 \end{matlablisting}
+
 
 % >> ------------------------ 附录 ------------------------ << %
 % --------------------------- 附录 --------------------------- %

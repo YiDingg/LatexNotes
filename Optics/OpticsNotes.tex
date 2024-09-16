@@ -591,9 +591,10 @@ $K_{\text{max}} = 683\ \mathrm{lm \cdot W^{-1}}$ 在波长约 555.0 nm 取到，
 \begin{BlockTheorem}[菲涅尔公式, Fresnel Formula]\label{菲涅尔公式}
 光线在通过两介质分界面时通常会同时发生折射（透射）和反射现象，设入射光（incident ray）介质折射率 $\eta_i$，入射角 $\theta_i$，透射光（transmitted ray）介质折射率 $\eta_t$，透射角（折射角）$\theta_t$，则有\footnote{对于金属材质（非绝缘材质），需要引入消光系数 $k_t$ 来修正菲涅尔公式（绝缘材质等价于 $k_t = 0$），具体参见 \href{https://zhuanlan.zhihu.com/p/480405520?utm_psn=1818236176659771392}{知乎: 菲涅尔公式}}：
 
+
 \begin{table}[H]
 \centering
-\renewcommand{\arraystretch}{1.5} % 调整行间距为默认值的1.5倍 
+\renewcommand{\arraystretch}{1.6} % 调整行间距为默认值的1.5倍 
 \begin{tabular}{|c|c|c|c|c|} 
 \hline
 类型 & \multicolumn{2}{c|}{振幅反射系数 $r$} & \multicolumn{2}{c|}{振幅透射系数 $t$ }  \\ 
@@ -756,7 +757,7 @@ n_i \cos \theta_i E_{i,p}^2 - n_i \cos \theta_i r_{i,p}^2E_{i,p}^2 -   n_t \cos 
 \end{aligned}
 }
 \end{gather}
-{\color{red} 其中 $\Phi_{e,r,s} = R_s\Phi_{e,i,s}$ 和 $\Phi_{e,r,p} = R_p\Phi_{e,i,p}$ 是怎么来的？}
+{\color{red} 其中 $\Phi_{e,r} = R\Phi_{e,i}$ 和 $\Phi_{e,t} = T\Phi_{e,i}$ 是怎么来的？}
 
 
 \section{反射、折射时的偏振}
@@ -766,35 +767,32 @@ n_i \cos \theta_i E_{i,p}^2 - n_i \cos \theta_i r_{i,p}^2E_{i,p}^2 -   n_t \cos 
 但此时反射光能量占比 $F$ 很小\footnote{可以使用玻璃片堆得到强度较大的偏振光}，例如，空气（$n=1$）入射玻璃（$n = 1.5$）时，$\theta_B = 56.310^\circ$，$F =0.0740 $；玻璃入射空气时，$\theta_B = 33.690^\circ$，$F =0.0740 $。
 \par}
 
-\begin{matlablisting}
-n_i = 1;
-n_t = 1.5;
-
-theta_B = atan(n_t/n_i);
-theta_t = @(theta_i) asin(n_i/n_t*sin(theta_i));
-r_s = @(theta_i, theta_t) - sin(theta_i - theta_t)./sin(theta_i + theta_t);
-r_p = @(theta_i, theta_t) + tan(theta_i - theta_t)./tan(theta_i + theta_t);
-F = @(theta_i, theta_t) 0.5*( r_s(theta_i, theta_t)^2 + r_p(theta_i, theta_t)^2 );
-
-theta_i = theta_B;
-disp(['theta_B = ', num2str(rad2deg(theta_B))])
-disp(['F = ', num2str(F(theta_i, theta_t(theta_i)))])
-
-%{ 
-Output:
-theta_B = 56.3099
-F = 0.073964
-%}
-\end{matlablisting}
-
-
-
-
-
-
+    % \begin{matlablisting}
+    % n_i = 1;
+    % n_t = 1.5;
+    % 
+    % theta_B = atan(n_t/n_i);
+    % theta_t = @(theta_i) asin(n_i/n_t*sin(theta_i));
+    % r_s = @(theta_i, theta_t) - sin(theta_i - theta_t)./sin(theta_i + theta_t);
+    % r_p = @(theta_i, theta_t) + tan(theta_i - theta_t)./tan(theta_i + theta_t);
+    % F = @(theta_i, theta_t) 0.5*( r_s(theta_i, theta_t)^2 + r_p(theta_i, theta_t)^2 );
+    % 
+    % theta_i = theta_B;
+    % disp(['theta_B = ', num2str(rad2deg(theta_B))])
+    % disp(['F = ', num2str(F(theta_i, theta_t(theta_i)))])
+    % 
+    % %{ 
+    % Output:
+    % theta_B = 56.3099
+    % F = 0.073964
+    % %}
+    % \end{matlablisting}
 
 
 \section{全反射时的隐失波}
+
+介质的折射率是相对给定光波波长而言的，光的波长不同，对应的介质折射率也不同\footnote{可参考 \href{https://www.zhihu.com/question/517129526/answer/3000822435}{知乎：想知道为什么光的频率越大，折射率就越大}}。
+
 \section{近场扫描光学显微镜}
 
 

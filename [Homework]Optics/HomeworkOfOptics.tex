@@ -473,9 +473,16 @@ T_p = 1 - R_p = 1,\quad T_s = 2T - T_p = 0.72
 此方程有唯一未知量 $n_t$，用 Matlab 解此非线性方程组\footnote{源码见附录 \ref{题设不合理源码}}，得到玻璃折射率 $n_t$，以及其它参量：
 \begin{gather}
 \begin{matrix}
-    n_t = 0.554902 \\
+    n_t = 0.554902 
+    ,\quad 
+    \theta_i = \theta_B = 0.506599\ \ \mathrm{rad}  = 29.025970^\circ
+    \\
+    \theta_t =  1.064198\ \ \mathrm{rad}  = 60.974030^\circ
+    ,\quad 
+    \theta_C =  0.588245\ \ \mathrm{rad}  = 33.703947^\circ
+    \\
     R = 0.140000,\quad   R_s = 0.280000,\    R_p = 0.000000 \\ 
-    T = 0.860000,\quad   T_s = 0.720000,\    T_p = 1.000000
+    T = 0.860000,\quad   T_s = 0.720000,\    T_p = 1.000000 
 \end{matrix}
 \end{gather}
 
@@ -652,7 +659,15 @@ R_p = @(n_ti, t) ( (n_ti^2*cos(t) - sqrt(n_ti^2 - sin(t)^2)) / (n_ti^2*cos(t) + 
 
 theta_B = @(n_ti) atan(n_ti);
 n_ti = fzero(@(n_ti) 0.5*(R_s(n_ti, theta_B(n_ti)) + R_p(n_ti, theta_B(n_ti))) - 0.14, 1);
+
+theta_C = @(n_ti) asin(n_ti);
+theta_B = @(n_ti) atan(n_ti);
+theta_t = @(n_ti, theta_i) asin(sin(theta_i)/n_ti);
+
 disp(['n_ti = ', num2str(n_ti, '%.6f')])
+disp(['theta_i = theta_B = ', num2str(theta_B(n_ti), '%.6f') ' rad = ', num2str(rad2deg(theta_B(n_ti)), '%.6f'), ' deg'])
+disp(['theta_t = ', num2str(theta_t(n_ti, theta_B(n_ti)), '%.6f') ' rad = ', num2str(rad2deg(theta_t(n_ti, theta_B(n_ti))), '%.6f'), ' deg'])
+disp(['theta_C = ', num2str(theta_C(n_ti), '%.6f') ' rad = ', num2str(rad2deg(theta_C(n_ti)), '%.6f'), ' deg'])
 disp(['R_s = ', num2str(R_s(n_ti, theta_B(n_ti)), '%.6f')])
 disp(['R_p = ', num2str(R_p(n_ti, theta_B(n_ti)), '%.6f')])
 disp(['T_s = ', num2str(1 - R_s(n_ti, theta_B(n_ti)), '%.6f')])
@@ -660,9 +675,13 @@ disp(['T_p = ', num2str(1 - R_p(n_ti, theta_B(n_ti)), '%.6f')])
 disp(['R = ', num2str( 0.5*(R_s(n_ti, theta_B(n_ti)) + R_p(n_ti, theta_B(n_ti))) , '%.6f')])
 disp(['T = ', num2str( 0.5*(2 - R_s(n_ti, theta_B(n_ti)) - R_p(n_ti, theta_B(n_ti))), '%.6f')])
 
+
 %{
 >> Output:
 n_ti = 0.554902
+theta_i = theta_B = 0.506599 rad = 29.025970 deg
+theta_t = 1.064198 rad = 60.974030 deg
+theta_C = 0.588245 rad = 33.703947 deg
 R_s = 0.280000
 R_p = 0.000000
 T_s = 0.720000

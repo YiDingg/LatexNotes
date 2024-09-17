@@ -1,36 +1,36 @@
-% 若编译失败，且生成 .synctex(busy) 辅助文件，可能有两个原因：
-% 1. 需要插入的图片不存在：Ctrl + F 搜索 'figure' 将这些代码注释/删除掉即可
-% 2. 路径/文件名含中文或空格：更改路径/文件名即可
-
-% --------------------- 文章宏包及相关设置 --------------------- %
-% >> ------------------ 文章宏包及相关设置 ------------------ << %
-% 设定文章类型与编码格式
-    \documentclass[UTF8]{report}		
-
+% -------------------------------------------------- %
+% >> ------------------ 宏定义 ------------------ << %
 
 % 本文的特殊宏定义
-\def\Im{\mathrm{\,Im\,}}
-\def\Re{\mathrm{\,Re\,}}
-\def\Ln{\mathrm{\,Ln\,}}
-\def\Arg{\mathrm{\,Arg\,}}
-\def\Arccos{\mathrm{\,Arccos\,}}
-\def\Arcsin{\mathrm{\,Arcsin\,}}
-\def\Arctan{\mathrm{\,Arctan\,}}
 
 % 通用宏定义
-\def\N{\mathbb{N}}
-\def\F{\mathbb{F}}
-\def\Z{\mathbb{Z}}
-\def\Q{\mathbb{Q}}
-\def\R{\mathbb{R}}
-\def\C{\mathbb{C}}
-\def\T{\mathbb{T}}
-\def\S{\mathbb{S}}
-\def\A{\mathbb{A}}
-\def\I{\mathscr{I}}
-\def\d{\mathrm{d}}
-\def\p{\partial}
+    \def\N{\mathbb{N}}
+    \def\F{\mathbb{F}}
+    \def\Z{\mathbb{Z}}
+    \def\Q{\mathbb{Q}}
+    \def\R{\mathbb{R}}
+    \def\C{\mathbb{C}}
+    \def\T{\mathbb{T}}
+    \def\S{\mathbb{S}}
+    \def\A{\mathbb{A}}
+    \def\I{\mathscr{I}}
+    \def\d{\mathrm{d}}
+    \def\p{\partial}
 
+% >> ------------------ 宏定义 ------------------ << %
+% -------------------------------------------------- %
+
+
+% ------------------------------------------------------------- %
+% >> ------------------ 文章宏包及相关设置 ------------------ << %
+
+\documentclass[a4paper]{article}  % 设定文章类型与编码格式
+
+\usepackage[utf8]{inputenc}  
+\usepackage[T1]{fontenc}  % 设置文档的字体编码为 T1 以支持更多的字符
+\usepackage[english]{babel} % 如果你需要英文支持  
+\usepackage{lipsum} % 用于生成示例文本  
+\usepackage{fancyhdr} % 用于页眉页脚  
 
 % 导入基本宏包
     \usepackage[UTF8]{ctex}     % 设置文档为中文语言
@@ -41,16 +41,28 @@
     \usepackage{amssymb}    % 宏包：提供更多数学符号
     \usepackage{pifont}     % 宏包：提供了特殊符号和字体
     \usepackage{extarrows}  % 宏包：更多箭头符号
-    \usepackage{multicol}   % 宏包：支持多栏 
 
+%宏包：有色文本框（proof环境）及其设置
+\usepackage[dvipsnames,svgnames]{xcolor}    %设置插入的文本框颜色
+\usepackage[strict]{changepage}     % 提供一个 adjustwidth 环境
+\usepackage{framed}     % 实现方框效果
+    \definecolor{graybox_color}{rgb}{0.95,0.95,0.96} % 文本框颜色。修改此行中的 rgb 数值即可改变方框纹颜色，具体颜色的rgb数值可以在网站https://colordrop.io/ 中获得。（截止目前的尝试还没有成功过，感觉单位不一样）（找到喜欢的颜色，点击下方的小眼睛，找到rgb值，复制修改即可）
+    \newenvironment{graybox}{%
+    \def\FrameCommand{%
+    \hspace{1pt}%
+    {\color{gray}\small \vrule width 2pt}%
+    {\color{graybox_color}\vrule width 4pt}%
+    \colorbox{graybox_color}%
+    }%
+    \MakeFramed{\advance\hsize-\width\FrameRestore}%
+    \noindent\hspace{-4.55pt}% disable indenting first paragraph
+    \begin{adjustwidth}{}{7pt}%
+    \vspace{2pt}\vspace{2pt}%
+    }
+    {%
+    \vspace{2pt}\end{adjustwidth}\endMakeFramed%
+    }
 
-% 文章页面margin设置
-    \usepackage[a4paper, landscape]{geometry}   % 宏包：设置页面大小为A4纸，且页面为横向排版 (landscape)
-        \geometry{top=0.1in}  % 1 inch= 2.46 cm, 0.75 inch = 1.85 cm
-        \geometry{bottom=0.1in}
-        \geometry{left=0.1in}
-        \geometry{right=0.1in}   % 设置上下左右页边距
-        \geometry{marginparwidth=0.2cm}    % 设置边注距离（注释、标记等）
 
 % 配置数学环境
     \usepackage{amsthm} % 宏包：数学环境配置
@@ -91,61 +103,6 @@
         \theoremstyle{MySubsubsectionStyle} % 应用自定义的定理样式
         \newtheorem{definition}{}
 
-%宏包：有色文本框（proof环境）及其设置
-    \usepackage[dvipsnames,svgnames]{xcolor}    %设置插入的文本框颜色
-    \usepackage[strict]{changepage}     % 提供一个 adjustwidth 环境
-    \usepackage{framed}     % 实现方框效果
-        \definecolor{graybox_color}{rgb}{0.95,0.95,0.96} % 文本框颜色。修改此行中的 rgb 数值即可改变方框纹颜色，具体颜色的rgb数值可以在网站https://colordrop.io/ 中获得。（截止目前的尝试还没有成功过，感觉单位不一样）（找到喜欢的颜色，点击下方的小眼睛，找到rgb值，复制修改即可）
-        \newenvironment{graybox}{%
-        \def\FrameCommand{%
-        \hspace{1pt}%
-        {\color{gray}\small \vrule width 2pt}%
-        {\color{graybox_color}\vrule width 4pt}%
-        \colorbox{graybox_color}%
-        }%
-        \MakeFramed{\advance\hsize-\width\FrameRestore}%
-        \noindent\hspace{-4.55pt}% disable indenting first paragraph
-        \begin{adjustwidth}{}{7pt}%
-        \vspace{2pt}\vspace{2pt}%
-        }
-        {%
-        \vspace{2pt}\end{adjustwidth}\endMakeFramed%
-        }
-
-% 外源代码插入设置
-    % matlab 代码插入设置
-    \usepackage{matlab-prettifier}
-        \lstset{
-            style=Matlab-editor,  % 继承matlab代码颜色等
-        }
-    \usepackage[most]{tcolorbox} % 引入tcolorbox包 
-    \usepackage{listings} % 引入listings包
-        \tcbuselibrary{listings, skins, breakable}
-        \newfontfamily\codefont{Consolas} % 定义需要的 codefont 字体
-        \lstdefinestyle{matlabstyle}{
-            language=Matlab,
-            basicstyle=\small\ttfamily\codefont,    % ttfamily 确保等宽 
-            breakatwhitespace=false,
-            breaklines=true,
-            captionpos=b,
-            keepspaces=true,
-            numbers=left,
-            numbersep=15pt,
-            showspaces=false,
-            showstringspaces=false,
-            showtabs=false,
-            tabsize=2
-        }
-        \newtcblisting{matlablisting}{
-            arc=2pt,        % 圆角半径
-            top=-5pt,
-            bottom=-5pt,
-            left=1mm,
-            listing only,
-            listing style=matlabstyle,
-            breakable,
-            colback=white   % 选一个合适的颜色
-        }
 % table 支持
     \usepackage{booktabs}   % 宏包：三线表
     \usepackage{tabularray} % 宏包：表格排版
@@ -161,17 +118,12 @@
             % 一定程度上修复导入后图片文字溢出几何图形的问题
             inkscapelatex = false                 
         }
-    \usepackage{subcaption} % subfigure 子图支持
-
-% 图表进阶设置
+    \usepackage[skip=0.6pt]{subcaption} % subfigure 子图支持
     \usepackage{caption}    % 图注、表注
-        \captionsetup[figure]{name=图}  
-        \captionsetup[table]{name=表}
+        \captionsetup[figure]{name=图, skip=0.8pt}    % 图注名称为 '图', 并修改 skip 间距
+        \captionsetup[table]{name=表, skip=0.8pt}
         \captionsetup{labelfont=bf, font=small}
     \usepackage{float}     % 图表位置浮动设置 
-
-% 圆圈序号自定义
-    \newcommand*\circled[1]{\tikz[baseline=(char.base)]{\node[shape=circle,draw,inner sep=0.8pt, line width = 0.03em] (char) {\small \bfseries #1};}}   % TikZ solution
 
 % 列表设置
     \usepackage{enumitem}   % 宏包：列表环境设置
@@ -184,96 +136,137 @@
             itemsep=0pt, parsep=0pt, topsep=0pt, partopsep=0pt, leftmargin=3.5em
         }  
 
-% 其它设置
-    % 脚注设置
-        \renewcommand\thefootnote{\ding{\numexpr171+\value{footnote}}}
-    % 参考文献引用设置
-        \bibliographystyle{unsrt}   % 设置参考文献引用格式为unsrt
-        \newcommand{\upcite}[1]{\textsuperscript{\cite{#1}}}     % 自定义上角标式引用
-    % 文章序言设置
-        \newcommand{\cnabstractname}{序言}
-        \newenvironment{cnabstract}{%
-            \par\Large
-            \noindent\mbox{}\hfill{\bfseries \cnabstractname}\hfill\mbox{}\par
-            \vskip 2.5ex
-            }{\par\vskip 2.5ex}
+% 文章默认字体设置
+    \usepackage{fontspec}   % 宏包：字体设置
+        \setmainfont{SimSun}    % 设置中文字体为宋体字体
+        \setCJKmainfont[AutoFakeBold=3]{SimSun} % 设置加粗字体为 SimSun 族，AutoFakeBold 可以调整字体粗细
+        \setmainfont{Times New Roman} % 设置英文字体为Times New Roman
+
+% >> ------------------ 文章宏包及相关设置 ------------------ << %
+% ------------------------------------------------------------- %
+
+
+% ---------------------------------------------------------------------- %
+% >> ------------------ 页面排版、页眉页脚、字体字号 ------------------ << %
+
+% 页面设置
+    \usepackage[landscape]{geometry}   % 页面设置  
+        % 设置页面边距
+            \geometry{
+                top=4mm,
+                bottom=5mm,
+                left=3mm,
+                right=3mm,
+                headsep=1mm,        % 页眉与正文的距离
+                footskip=5mm        % 页脚与底部文字的距离
+            }
+
+% 多栏设置
+    \usepackage{multicol}                     % 用于多栏布局  
+        \setlength{\columnseprule}{0.3pt}       % 栏间分割线宽度
+        \def\columnseprulecolor{\color{gray}} % 栏间分割线颜色
 
 % 文章默认字体设置
-\usepackage{fontspec}   % 宏包：字体设置
-    \setmainfont{SimSun}    % 设置中文字体为宋体字体
-    \setCJKmainfont[AutoFakeBold=3]{SimSun} % 设置加粗字体为 SimSun 族，AutoFakeBold 可以调整字体粗细
-    \setmainfont{Times New Roman} % 设置英文字体为Times New Roman
+    \usepackage{fontspec}   % 宏包：字体设置
+        \setmainfont{SimSun}    % 设置中文字体为宋体字体
+        \setCJKmainfont[AutoFakeBold=3]{SimSun} % 设置加粗字体为 SimSun 族，AutoFakeBold 可以调整字体粗细
+        \setmainfont{Times New Roman} % 设置英文字体为Times New Roman
+
+% 字体字号
+    % \fontsize{}{} 第一项表示字号，第二项表示行距, 例如 0.7 倍行距是 \fontsize{7pt}{4.9pt}
+    \renewcommand{\Large}{\fontsize{8pt}{8pt}\selectfont}
+    \renewcommand{\large}{\fontsize{7pt}{7pt}\selectfont}
+    \renewcommand{\normalsize}{\fontsize{6pt}{4.2pt}\selectfont}
+    \renewcommand{\small}{\fontsize{5pt}{3.5pt}\selectfont}
+    \renewcommand{\footnotesize}{\fontsize{4.5pt}{3.15pt}\selectfont}
+
+% 设置页眉页脚  
+    \pagestyle{fancy}  
+    \fancyhf{}                                % 清除现有页眉页脚设置  
+    \fancyhead[L]{\normalsize 2025.1}                     % 左侧页眉  
+    \fancyhead[R]{\normalsize dingyi233@mails.ucas.ac.cn} % 右侧页眉  
+    \fancyhead[C]{\normalsize Cheat Sheet of Principles of Electornic Circuits} % 居中页眉  
+    \fancyfoot[C]{\normalsize\thepage}              % 页脚中心显示页码  
+    \renewcommand{\headrulewidth}{0.4pt} % 页眉线宽度  
+    \renewcommand{\footrulewidth}{0.4pt} % 页脚线宽度  
+
 
 % 各级标题自定义设置
-\usepackage{titlesec}   
-\titleformat{\chapter}[hang]{\normalfont\huge\bfseries\centering}{第\,\thechapter\,章}{20pt}{}
-\titlespacing*{\chapter}{0pt}{-20pt}{20pt} % 控制上方空白的大小
-% section标题自定义设置 
-\titleformat{\section}[hang]{\normalfont\Large\bfseries}{§\,\thesection\,}{8pt}{}
-% subsubsection标题自定义设置
-%\titleformat{\subsubsection}[hang]{\normalfont\bfseries}{}{8pt}{}
+    \definecolor{myblue}{HTML}{8145fa} % 定义 myblue 颜色为 #194ead #8145fa
+    \usepackage{titlesec}   
+        %\titleformat{\chapter}[hang]{\normalfont\huge\bfseries\centering}{第\,\thechapter\,章}{20pt}{}
+        %\titlespacing*{\chapter}{0pt}{-20pt}{20pt} % 控制上方空白的大小
+        % section标题自定义设置 
+        \titleformat{\section}[hang]{\color{myblue}\normalfont\Large\bfseries}{\thesection\,}{2pt}{}
+        \titlespacing*{\section}{0pt}{0pt}{0pt} % 控制上下空白的大小
+        % subsection标题自定义设置
+        \titleformat{\subsection}[hang]{\color{myblue}\normalfont\large\bfseries}{\thesubsection\,}{2pt}{}
+        \titlespacing*{\subsection}{0pt}{0pt}{0pt} % 控制上下空白的大小
 
-% --------------------- 文章宏包及相关设置 --------------------- %
-% >> ------------------ 文章宏包及相关设置 ------------------ << %
+% 数学环境字号与间距
+    \usepackage{etoolbox} % 在数学环境前加上 \small 或 \footnotesize 以调整字号
+        \AtBeginEnvironment{equation}{\footnotesize} 
+        \AtBeginEnvironment{equation*}{\footnotesize} 
+        \AtBeginEnvironment{gather}{\footnotesize}
+        \AtBeginEnvironment{gather*}{\footnotesize}
+        \AtBeginEnvironment{align}{\footnotesize} 
+        \AtBeginEnvironment{align*}{\footnotesize} 
+        \AtBeginEnvironment{cases}{\footnotesize} 
+    % 设置数学环境本身、环境与文本之间的间距
+        \setlength{\abovedisplayskip}{0.6pt}    % 与上文本的间距
+        \setlength{\belowdisplayskip}{0.6pt}    % 与下文本的间距
+        \setlength{\jot}{0.4pt}   % 数学环境中的行间距
+% 设置图、表等浮动体与文本之间的间距
+        \setlength{\intextsep}{1mm}                   % 控制表格 table 与上下文本的间距
+        \AtBeginEnvironment{table}{\vspace*{3mm}}     % 调整表格与上方间距, 为 caption 留空间
+        \captionsetup[figure]{skip=0.5mm}             % 修改 caption 与图片间距
+        \setlength{\belowcaptionskip}{-4mm}           % 调整图片 caption 与下文距离
+        \AtBeginEnvironment{figure}{\vspace*{-5mm}}   % 调整图片顶部与上方文字距离
+        \AtEndEnvironment{subfigure}{\vspace*{3.5mm}} % 调整 subfigure 底部与总 caption 间距
+% >> ------------------ 页面排版、页眉页脚、字体字号 ------------------ << %
+% ---------------------------------------------------------------------- %
 
-% ------------------------ 文章信息区 ------------------------ %
-% ------------------------ 文章信息区 ------------------------ %
-% 页眉页脚设置
-    \usepackage{fancyhdr}   %宏包：页眉页脚设置
-        \pagestyle{fancy}
-        \fancyhf{}
-        \cfoot{\thepage}
-        \renewcommand\headrulewidth{1pt}
-        \renewcommand\footrulewidth{0pt}
-        \lhead{2025.1} 
-        \chead{Cheat Sheet of Principles of Electornic Circuits}    
-        \rhead{dingyi233@mails.ucas.ac.cn}
-%文档信息设置
-    \title{这里是标题\\The Title of the Report}
-    \author{丁毅\\ \footnotesize 中国科学院大学，北京 100049\\ Yi Ding \\ \footnotesize University of Chinese Academy of Sciences, Beijing 100049, China}
-    \date{\footnotesize 2025.1}
-% ------------------------ 文章信息区 ------------------------ %
-% ------------------------ 文章信息区 ------------------------ %
 
-% 开始编辑文章
 
+
+
+
+
+
+
+% --------------------------------------------------------- %
+% --------------------------------------------------------- %
 \begin{document}
-\begin{multicols*}{3}     % 多栏排版， * 号表示排满才换列
-    %\setlength{\columnsep}{1cm}  % 设置栏间距 (好像无效)
-\zihao{7}                % 设置全文字号大小, -4 为小四, 5 为五号
-
-% ------------------------ 封面序言与目录 ------------------------ %
-% >> --------------------- 封面序言与目录 --------------------- << %
-% 封面
-    % \maketitle\newpage  
-    % \pagenumbering{Roman} % 页码为大写罗马数字
-    % \thispagestyle{fancy}   % 显示页码、页眉等
-
-% 序言
-    %\begin{cnabstract}\zihao{6} % 设置序言字号
-    %    本文为笔者本科时的某课程笔记（Notes of Linear Algebra 2, 2024.9-2025.1）。用灰色字体或灰色方框等表示对主干内容的补充、对晦涩概念的理解、定理的具体证明过程等，采用红色字体对重点部分进行强调，同时适当配有插图。这样的颜色和结构安排既突出了知识的主要框架，也保持了笔记的深度和广度，并且不会因为颜色过多而导致难以锁定文本内容，乃是尝试了多种安排后挑选出的最佳方案。如果读者有更佳的颜色和排版方案，可以将建议发送到笔者邮箱 dingyi233@mails.ucas.ac.cn，在此感谢。\par
-    %    由于个人学识浅陋，认识有限，书中难免有不妥甚至错误之处，望读者不吝指正，在此感谢。
-
-    %    本文为笔者本科时的“电路原理”课程作业（Homework of Circuit Theory, 2024.9-2025.1）。由于个人学识浅陋，认识有限，文中难免有不妥甚至错误之处，望读者不吝指正，在此感谢。我的邮箱是 dingyi233@mails.ucas.ac.cn。\par
-    %\end{cnabstract}
-    %\addcontentsline{toc}{chapter}{序言} % 手动添加为目录
-
-% 目录
-    %\setcounter{tocdepth}{2}                % 目录深度（为1时显示到section）
-    %\tableofcontents                        % 目录页
-    %\addcontentsline{toc}{chapter}{目录}    % 手动添加此页为目录
-    %\thispagestyle{fancy}                   % 显示页码、页眉等 
-
-% 收尾工作
-    %\newpage    
-    %\pagenumbering{arabic} 
+\begin{multicols*}{4} % 设置为三栏  
+% --------------------------------------------------------- %
+% --------------------------------------------------------- %
 
 
-% >> --------------------- 封面序言与目录 --------------------- << %
-% ------------------------ 封面序言与目录 ------------------------ %
 
 
-\chapter{基础知识}\thispagestyle{fancy} 
+
+
+
+
+
+
+
+
+
+
+
+
+
+% 在这里输入你的文档内容  
+\section{Introduction}  
+\lipsum[1-2] % 生成示例文本  
+
+\section{Main Part}  
+\lipsum[3-4]  
+\lipsum[4-5]  
+\lipsum[4-5]  
+% 你可以继续添加更多的内容...  
+
 \section{第一章第一节}
 
 
@@ -317,7 +310,7 @@
 
 \end{definition}
 
-表格：
+表格：表格：表格：表格：表格：表格：表格：表格：表格：表格：表格：表格：表格：表格：表格：
 
 \begin{table}[H]
     \centering
@@ -340,6 +333,10 @@
 
 图中，红色端是加法信号，蓝色端是减法信号，绿色端为公共地（可只保留一个）。
 
+\setlength{\floatsep}{12pt plus 2pt minus 2pt} % 浮动体之间的额外空间  
+\setlength{\textfloatsep}{18pt plus 2pt minus 4pt} % 文本与浮动体之间的额外空间  
+\setlength{\intextsep}{12pt plus 2pt minus 2pt} % 浮动体在文本段落中的额外空间（较少使用）
+
 \begin{figure}[H]\centering
 \begin{subfigure}[t]{0.49\columnwidth}\centering
     \includegraphics[height=60pt]{assets/线性运算器.png}
@@ -351,6 +348,11 @@
 \caption{\bfseries 自设计线性运算器 }\label{自设计线性运算器}
 \end{figure}
 
+\lipsum[3-4]    % 生成示例文本  
+\begin{figure}[H]\centering
+\includegraphics[width=0.8\columnwidth]{assets/线性运算器.png}
+\caption{\bfseries 这里是图注}\label{这里是图注}
+\end{figure}
 
 我们先研究图 \ref{自设计线性运算器} (a) 的输出特性，再讨论如果没有电阻 $R_M$ 或 $R_P$，输出电压会受到什么限制。输出电压的推导是简单的，先考虑点 A 的电势 $u_A$，求得：
 \begin{equation}
@@ -370,15 +372,17 @@ u_A = \frac{R_2u_1 + R_1u_2}{R_1+R_2} =\frac{\frac{u_1}{R_1} + \frac{u_2}{R_2}}{
 \par}
 
 再考虑左侧的电流组，并利用虚断：
+\begin{equation}
+    \begin{cases}
+        i_3 = \frac{1}{R_3}(u_3 - u_A) \\ 
+        i_4 = \frac{1}{R_4}(u_4 - u_A) \\ 
+        i_m = \frac{1}{R_m}(0 - u_A) \\ 
+        i_f = i_3 + i_4 + i_m
+    \end{cases}
+    \Longrightarrow 
+    u_o = u_A - R_fi_f = u_A - R_f\left( i_3 + i_4 + i_m \right)
+\end{equation}
 \begin{align}
-&\begin{cases}
-    i_3 = \frac{1}{R_3}(u_3 - u_A) \\ 
-    i_4 = \frac{1}{R_4}(u_4 - u_A) \\ 
-    i_m = \frac{1}{R_m}(0 - u_A) \\ 
-    i_f = i_3 + i_4 + i_m
-\end{cases}
-\Longrightarrow 
-u_o = u_A - R_fi_f = u_A - R_f\left( i_3 + i_4 + i_m \right) \\ 
 \Longrightarrow
 u_o &=u_A - R_f \left[ 
 \frac{u_3}{R_3} + \frac{u_4}{R_4} - u_A\left( \frac{1}{R_3} + \frac{1}{R_4} + \frac{1}{R_m} \right)
@@ -411,197 +415,172 @@ u_o =
 
 此线性运算器的具体仿真示例见 Homework 3.
 
-% ------------------------- 参考文献 ------------------------- %
-% >> ---------------------- 参考文献 ---------------------- << %
-%\nocite{*}
-%\bibliography{re}
-%\thispagestyle{fancy} 
-%\addcontentsline{toc}{chapter}{参考文献}
-% ------------------------- 参考文献 ------------------------- %
-% >> ---------------------- 参考文献 ---------------------- << %
+\section{对于正入射的情况，写出菲涅尔公式}
+
+菲涅尔公式如下：菲涅尔公式如下：菲涅尔公式如下：菲涅尔公式如下：菲涅尔公式如下：菲涅尔公式如下：菲涅尔公式如下：菲涅尔公式如下：菲涅尔公式如下：菲涅尔公式如下：菲涅尔公式如下：菲涅尔公式如下：
+
+\begin{table}[H]
+    \resizebox{\linewidth}{!}{   % 设置宽度为 \linewidth 等比例缩放
+    \centering
+    \renewcommand{\arraystretch}{1.5} % 调整行间距为默认值的1.5倍 
+    \begin{tabular}{|c|c|c|c|c|} 
+    \hline
+    类型 & \multicolumn{2}{c|}{振幅反射系数 $r$} & \multicolumn{2}{c|}{振幅透射系数 $t$ }  \\ 
+    \hline
+    s 波 & $\displaystyle r_s = \frac{n_i\cos \theta_i - n_t \cos \theta_t}{n_i\cos \theta_i + n_t \cos \theta_t} $ & $\displaystyle  - \frac{\sin (\theta_i - \theta_t) }{\sin (\theta_i + \theta_t)}$ & $\displaystyle t_s  = \frac{2n_i \cos \theta_i}{n_i\cos \theta_i + n_t \cos \theta_t} $ &   $\displaystyle  + \frac{2 \sin \theta_t \cos \theta_i}{\sin (\theta_i + \theta_t)}$   \\ 
+    \hline
+    p 波 & $\displaystyle r_p = \frac{n_t\cos \theta_i - n_i \cos \theta_t}{n_t\cos \theta_i + n_i \cos \theta_t} $ &     $ \displaystyle  + \frac{\tan (\theta_i - \theta_t)}{\tan (\theta_i + \theta_t)} $  &  $\displaystyle t_p  = \frac{2n_i \cos \theta_i}{n_i\cos \theta_t + n_t \cos \theta_i} $ &   $\displaystyle + \frac{2 \sin \theta_t \cos \theta_i}{\sin (\theta_i + \theta_t) \cos (\theta_i - \theta_t)}$                  \\
+    \hline
+    \end{tabular}
+}
+\end{table}
 
 
-% --------------------------- 附录 --------------------------- %
-% >> ------------------------ 附录 ------------------------ << %
+正入射时，$\theta_i = \theta_t = 0$，于是有：
 
-%% 附录设置
-%\newpage
-%\appendix
-%% chapter 标题自定义设置
-%\titleformat{\chapter}[hang]{\normalfont\huge\bfseries\centering}{}{20pt}{}
-%\titlespacing*{\chapter}{0pt}{-25pt}{8pt} % 控制上方空白的大小
-%% section 标题自定义设置 
-%\titleformat{\section}[hang]{\normalfont\centering\Large\bfseries}%{\thesection}{8pt}{}
-%
-%% 附录 A
-%\chapter*{附录 A. 中英文对照表}\addcontentsline{toc}{chapter}{附录 A. 中英文对照%表}   
-%\thispagestyle{fancy} 
-%\setcounter{section}{0}   
-%\renewcommand\thesection{A.\arabic{section}}   
-%\renewcommand{\thefigure}{A.\arabic{figure}} 
-%\renewcommand{\thetable}{A.\arabic{table}}
-%
-%\section{中英文对照表}
-%\begin{multicols}{2}  
-%
-%    \begin{table}[H]\centering
-%    \caption{\textbf{中英文对照表}}
-%    \begin{tabular}{cccccccc}\toprule
-%        English & 中文 \\
-%        \midrule
-%        voltage            & 电压 \\
-%        current            & 电流 \\
-%        power              & 功率 \\
-%        resistance         & 电阻 \\
-%        conductance        & 电导 \\
-%        inductance         & 电感 \\
-%        capacitance        & 电容 \\
-%        frequency          & 频率 \\
-%        circuit            & 电路 \\
-%        circuit element    & 电流元件 \\
-%        signal             & 信号 \\
-%        circuit analysis   & 电路分析 \\
-%        circuit synthesis  & 电路综合 \\
-%        circuit design     & 电路设计 \\
-%        circuit topology   & 电路拓扑 \\
-%        \bottomrule
-%    \end{tabular}
-%    \end{table}
-%    
-%    \begin{table}[H]\centering
-%        \caption{\textbf{中英文对照表}}
-%        \begin{tabular}{cccccccc}\toprule
-%            English & 中文 \\
-%            \midrule
-%            voltage            & 电压 \\
-%            current            & 电流 \\
-%            power              & 功率 \\
-%            resistance         & 电阻 \\
-%            conductance        & 电导 \\
-%            inductance         & 电感 \\
-%            capacitance        & 电容 \\
-%            frequency          & 频率 \\
-%            circuit            & 电路 \\
-%            circuit element    & 电流元件 \\
-%            signal             & 信号 \\
-%            circuit analysis   & 电路分析 \\
-%            circuit synthesis  & 电路综合 \\
-%            circuit design     & 电路设计 \\
-%            circuit topology   & 电路拓扑 \\
-%            \bottomrule
-%        \end{tabular}
-%    \end{table}
-%\end{multicols} 
-%    
-%\section{支撑材料列表} 
-%
-%\begin{center}
-%  这里插入一张图片（类似思维导图那种）
-%\end{center}
-%
-%
-%% 附录 B
-%\chapter*{附录 B. Matlab 代码}\addcontentsline{toc}{chapter}{附录 B. Matlab 代%码}   
-%\thispagestyle{fancy} 
-%\setcounter{section}{0}   
-%\renewcommand\thesection{B.\arabic{section}}   
-%\renewcommand{\thefigure}{B.\arabic{figure}} 
-%\renewcommand{\thetable}{B.\arabic{table}}
-%
-%% 注意：listing环境中手动输入的代码需要顶格写
-%
-%\begin{matlablisting}
-%% MATLAB code here
-%x = 0:0.1:2*pi;
-%y = sin(x);
-%plot(x, y);
-%xlabel('x');
-%ylabel('sin(x)');
-%title('Sine Function');
-%% ... (MATLAB code here，最好是插入文件)
-%% MATLAB code here
-%x = 0:0.1:2*pi;
-%y = sin(x);
-%plot(x, y);
-%xlabel('x');
-%ylabel('sin(x)');
-%title('Sine Function');
-%% ... (MATLAB code here，最好是插入文件)
-%% MATLAB code here
-%x = 0:0.1:2*pi;
-%y = sin(x);
-%plot(x, y);
-%xlabel('x');
-%ylabel('sin(x)');
-%title('Sine Function');
-%% ... (MATLAB code here，最好是插入文件)
-%% MATLAB code here
-%x = 0:0.1:2*pi;
-%y = sin(x);
-%plot(x, y);
-%xlabel('x');
-%ylabel('sin(x)');
-%title('Sine Function');
-%% ... (MATLAB code here，最好是插入文件)
-%% MATLAB code here
-%x = 0:0.1:2*pi;
-%y = sin(x);
-%plot(x, y);
-%xlabel('x');
-%ylabel('sin(x)');
-%title('Sine Function');
-%% ... (MATLAB code here，最好是插入文件)
-%% MATLAB code here
-%x = 0:0.1:2*pi;
-%y = sin(x);
-%plot(x, y);
-%xlabel('x');
-%ylabel('sin(x)');
-%title('Sine Function');
-%% ... (MATLAB code here，最好是插入文件)% ... (MATLAB code here，最好是插入文件)%% ... (MATLAB code here，最好是插入文件)% ... (MATLAB code here，最好是插入文件)%% ... (MATLAB code here，最好是插入文件)A
-%% MATLAB code here
-%x = 0:0.1:2*pi;
-%y = sin(x);
-%plot(x, y);
-%xlabel('x');
-%ylabel('sin(x)');
-%title('Sine Function');
-%% ... (MATLAB code here，最好是插入文件)
-%\end{matlablisting}
+\begin{gather}
+    r_p = (-r_s)  = \frac{n_t - n_i}{n_t + n_i},\quad t_p = t_s = \frac{2n_i}{n_i + n_t} \\ 
+    F = R_s = R_p = \left( \frac{n_t - n_i}{n_t + n_i} \right)^2
+\end{gather}
 
-% --------------------------- 附录 --------------------------- %
-% >> ------------------------ 附录 ------------------------ << %
-\end{multicols*}
+
+不妨作出相关的图像，图 \ref{振幅系数随入射角的变化} 是 s 波、p 波振幅系数关于入射角 $\theta_i$ 的变化情况。
+
+\begin{figure}[H]\centering
+\begin{subfigure}[t]{0.49\columnwidth}\centering
+    \includegraphics[height=70pt]{assets/2024-09-15_10-53-31.pdf}
+    \caption{\bfseries 由空气入射玻璃（$n_i = 1,\ n_t = 1.5$） }
+\end{subfigure}
+\begin{subfigure}[t]{0.49\columnwidth}\centering
+    \includegraphics[height=70pt]{assets/2024-09-15_10-53-27.pdf}
+    \caption{\bfseries 由玻璃入射空气（$n_i = 1.5,\ n_t = 1$） }
+\end{subfigure}
+\caption{\bfseries 振幅系数 $r$ 随入射角 $\theta_i$ 的变化 }\label{振幅系数随入射角的变化}
+\end{figure}
+
+
+\section{一自然光以 Brewster Angle 入射到空气中的一块玻璃，已知功率透射率为 0.86。}
+
+{\color{red} $\star $ 事实上，本题题设并不合理，是不符合实际的。我们先给出解题过程，再说明为何题设不合理。}
+
+\textbf{(1)\ \ 求功率的反射率：}
+
+$T = 0.86$，由能量守恒，功率反射率 $R = 0.14$。
+
+\textbf{(2)\ \ 若输入为 1000 W，求透射光 s 分量上的功率}
+
+光束为自然光，因此 s 分量和 p 分量的功率相同，都为 500 W，也即 $\Phi_{e,i,s} = \Phi_{e,i,p} = 500 \ \mathrm{W}$。又由 Brewster Angle 入射，因此反射光的 p 分量为 0，也即 $R_p = 0$，于是：
+\begin{gather}
+T_p = 1 - R_p = 1,\quad T_s = 2T - T_p = 0.72 
+\end{gather}
+由此可求得透射光 s 分量上的辐射通量（即辐射功率）：
+\begin{equation}
+\Phi_{e,t,s} = T_s \Phi_{e,i,s} = 0.72 \times 500 \ \mathrm{W} =  360 \ \mathrm{W}
+\end{equation}
+
+{\color{red} \textbf{(3)\ \ 不合理的原因：玻璃折射率为 0.554902}}
+
+在题设条件下，$R = 0.14$，默认空气折射率为 1，则唯一的未知量是玻璃折射率 $n_t$，这是可以求解的，方程如下：
+\begin{gather}\label{题设不合理}
+    R = \frac{1}{2}(R_s + R_p) = 0.14,\quad \theta_i = \theta_B = \arctan\left(\frac{n_t}{n_i}\right) ,\quad n_i = 1
+    \Longrightarrow \\ 
+    \left[ \frac{ \cos (\arctan n_t) - \sqrt{n_{t}^2 - \sin^2 (\arctan n_t)} }{\cos (\arctan n_t) + \sqrt{n_{t}^2 - \sin^2 (\arctan n_t)}} \right]^2 + \left[ \frac{ n_{t}^2\cos (\arctan n_t) - \sqrt{n_{t}^2 - \sin^2 (\arctan n_t)} }{n_{t}^2\cos (\arctan n_t) + \sqrt{n_{t}^2 - \sin^2 (\arctan n_t)}} \right]^2  = 2\times 0.14
+\end{gather}
+此方程有唯一未知量 $n_t$，用 Matlab 解此非线性方程组，得到玻璃折射率 $n_t$，以及其它参量：
+\begin{gather}
+\begin{matrix}
+    n_t = 0.554902 
+    ,\quad 
+    \theta_i = \theta_B = 0.506599\ \ \mathrm{rad}  = 29.025970^\circ
+    \\
+    \theta_t =  1.064198\ \ \mathrm{rad}  = 60.974030^\circ
+    ,\quad 
+    \theta_C =  0.588245\ \ \mathrm{rad}  = 33.703947^\circ
+    \\
+    R = 0.140000,\quad   R_s = 0.280000,\    R_p = 0.000000 \\ 
+    T = 0.860000,\quad   T_s = 0.720000,\    T_p = 1.000000 
+\end{matrix}
+\end{gather}
+
+而一般玻璃的折射率在 1.5 左右，即使是特殊玻璃（例如高折射率镜片），也基本在 1.3 至 1.9 之间，0.5 的玻璃折射率显然{\color{red} 是不合理的}。即使是考虑介质折射率关于波长的变化（如 X 射线或 Gamma 射线），也不会达到如此低的折射率。
+
+\section{上题修正：一自然光由空气入射玻璃，玻璃折射率为 1.5，已知功率透射率为 0.86。}
+\textbf{(1)\ \ 求功率的反射率：}
+
+$T = 0.86$，由能量守恒，功率反射率 $R = 0.14$。
+
+\textbf{(2)\ \ 若输入为 1000 W，求透射光 s 分量上的功率}
+
+光束为自然光，因此 s 分量和 p 分量的功率相同，都为 500 W。先求解入射角 $\theta_i$，由菲涅尔定理和能量关系：
+
+\begin{gather}
+    R =  \frac{1}{2}(R_s + R_p) \\ 
+    R_s =  \left[ \frac{ \cos \theta_i - \sqrt{n_{ti}^2 - \sin^2 \theta_i} }{\cos \theta_i + \sqrt{n_{ti}^2 - \sin^2 \theta_i}} \right]^2,\ R_p = \left[ \frac{ n_{ti}^2\cos \theta_i - \sqrt{n_{ti}^2 - \sin^2 \theta_i} }{n_{ti}^2\cos \theta_i + \sqrt{n_{ti}^2 - \sin^2 \theta_i}} \right]^2
+\end{gather}
+
+
+其中 $n_i = 1$，$n_t = 1.5$，因此 $n_{ti} = 1.5$，代入即得：
+\begin{equation}
+    \left[ \frac{ \cos \theta_i - \sqrt{1.5^2 - \sin^2 \theta_i} }{\cos \theta_i + \sqrt{1.5^2 - \sin^2 \theta_i}} \right]^2 + \left[ \frac{ 1.5^2\cos \theta_i - \sqrt{1.5^2 - \sin^2 \theta_i} }{1.5^2\cos \theta_i + \sqrt{1.5^2 - \sin^2 \theta_i}} \right]^2 = 2\times0.14
+\end{equation}
+用 Matlab 解此非线性方程组，得到入射角 $\theta_i$ 和其它参量：
+\begin{gather}\label{解入射角}
+\begin{matrix}
+    \theta_i =  1.173220\ \ \mathrm{rad}  = 67.220559^\circ \\
+    R = 0.140000,\quad   R_s = 0.256933,\    R_p = 0.023067 \\ 
+    T = 0.860000,\quad   T_s = 0.743067,\    T_p = 0.976933
+\end{matrix}
+\end{gather}
+
+于是透射光 s 分量上的辐射通量为：
+\begin{equation}
+\Phi_{e,t,s} = T_s \Phi_{e,i,s} = 0.743067 \times 500 \ \mathrm{W} =  371.5335 \ \mathrm{W}
+\end{equation}
+
+
+\section{光束垂直入射到玻璃-空气界面，玻璃折射率 1.5，求出能量反射率和透射率}
+
+$\theta_i = 0$ 时，由菲涅尔定律和能量关系，有：
+\begin{gather}
+    R =  \frac{1}{2}(R_s + R_p),\quad  T = 1 - R\\ 
+    R_s =  \left[ \frac{ \cos \theta_i - \sqrt{n_{ti}^2 - \sin^2 \theta_i} }{\cos \theta_i + \sqrt{n_{ti}^2 - \sin^2 \theta_i}} \right]^2 = \left[ \frac{1 - n_{ti}}{1 + n_{ti}} \right]^2 
+    \\ 
+    R_p = \left[ \frac{ n_{ti}^2\cos \theta_i - \sqrt{n_{ti}^2 - \sin^2 \theta_i} }{n_{ti}^2\cos \theta_i + \sqrt{n_{ti}^2 - \sin^2 \theta_i}} \right]^2 =  \left[ \frac{n_{ti}^2 - n_{ti}}{n_{ti}^2 + n_{ti}} \right]^2
+\end{gather}
+由空气入射玻璃时，$n_{ti} = 1.5$，由玻璃入射空气时，$n_{ti} = \frac{2}{3}$，代入得到：
+\begin{gather*}
+\text{空气入射玻璃: }\ R = 0.04,\quad  T = 0.96 \\ 
+\text{玻璃入射空气: }\ R = 0.04,\quad  T = 0.96 
+\end{gather*}
+也即无论从哪边入射，能量反射率和透射率分别为 0.04 和 0.96。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% --------------------------------------------------------- %
+% --------------------------------------------------------- %
+\end{multicols*}  
 \end{document}
-
-
-
-% VScode 常用快捷键：
-
-% F2:                       变量重命名
-% Ctrl + Enter:             行中换行
-% Alt + up/down:            上下移行
-% 鼠标中键 + 移动:           快速多光标
-% Shift + Alt + up/down:    上下复制
-% Ctrl + left/right:        左右跳单词
-% Ctrl + Backspace/Delete:  左右删单词    
-% Shift + Delete:           删除此行
-% Ctrl + J:                 打开 VScode 下栏(输出栏)
-% Ctrl + B:                 打开 VScode 左栏(目录栏)
-% Ctrl + `:                 打开 VScode 终端栏
-% Ctrl + 0:                 定位文件
-% Ctrl + Tab:               切换已打开的文件(切标签)
-% Ctrl + Shift + P:         打开全局命令(设置)
-
-% Latex 常用快捷键
-
-% Ctrl + Alt + J:           由代码定位到PDF
-% 
-
-
-% Git提交规范：
-% update: Linear Algebra 2 notes
-% add: Linear Algebra 2 notes
-% import: Linear Algebra 2 notes
-% delete: Linear Algebra 2 notes
-
+% --------------------------------------------------------- %
+% --------------------------------------------------------- %

@@ -512,12 +512,12 @@ i = I_{\mathrm{S}}\left(e^{\frac{u}{U_{\mathrm{TH}}}} - 1\right)
 
 流经元件的电压或电流受电路中其它部分电压或电流控制的元件称为受控电源。最常见的例子是放大器，如电子管、晶体管（又称三极管）等。
 依据控制量和受控量的不同，受控电源一般分为 4 种：
-    \begin{itemize}
+\begin{itemize}
     \item 压控电压源（voltage controlled voltage source, VCVS）
     \item 流控电压源（current controlled voltage source, CCVS）
     \item 压控电流源（voltage controlled current source, VCCS）
     \item 流控电流源（current controlled current source, CCCS）
-    \end{itemize}
+\end{itemize}
 它们的电路符号如图 \ref{受控电源电路符号} 所示。 
 
 \begin{figure}[H]\centering
@@ -584,45 +584,39 @@ $n$ 节点 $p$ 支路的电路含有 $p-n+1$ 个独立的回路方程（即最�
 
 \subsection{电阻等效变换}
 
-\begin{definition}[平衡电桥]
+\noindent\textbf{平衡电桥：}
 
-如 图 \ref{平衡电桥}，当 $\frac{R_1}{R_2} = \frac{R_3}{R_4}$ 时，$\varphi_A = \varphi_B$，AB 段无电流通过。 
+如图 \ref{平衡电桥与Y-Delta等效变换} (a)，当 $\frac{R_1}{R_2} = \frac{R_3}{R_4}$ 时，$\varphi_A = \varphi_B$，AB 段无电流通过。 
 
-\begin{figure}[H]\centering
-\includegraphics[width=0.43\textwidth]{assets/1,2/平衡电桥.drawio.pdf}
-\caption{\textbf{平衡电桥}}\label{平衡电桥}
-\end{figure}
+\noindent\textbf{Y-$\Delta$ 等效变换：}
 
-\end{definition}
-
-
-\begin{definition}[Y-$\Delta$ 等效变换]
-
-已知 Y 型，求 $\Delta$ 型：
-\begin{equation}
-    R_{12}= R_1 + R_2 + \frac{R_1R_2}{R_3}, \quad
-    R_{13}=R_1 + R_3 + \frac{R_1R_3}{R_2} , \quad
-    R_{23}=R_2 + R_3 + \frac{R_2R_3}{R_1} 
-\end{equation}
-
-已知 $\Delta$ 型，求 Y 型：、
+如图 \ref{平衡电桥与Y-Delta等效变换} (b)，一般情况见下面公式。特别地，当三个电阻都相等时，我们有 $R_{\Delta} = 3R_Y$。
 \begin{gather}
-    R_{1}=\frac{R_{12}R_{13}}{R_0}, \quad
+\boxed{
+\begin{matrix}
+    \text{由 Y 求 $\Delta$ :}\quad R_{12}= R_1 + R_2 + \frac{R_1R_2}{R_3}, \quad
+    R_{13}=R_1 + R_3 + \frac{R_1R_3}{R_2} , \quad
+    R_{23}=R_2 + R_3 + \frac{R_2R_3}{R_1} \\ 
+    \text{由 $\Delta$ 求 Y :}\quad R_{1}=\frac{R_{12}R_{13}}{R_0}, \quad
     R_{2}=\frac{R_{21}R_{23}}{R_0}, \quad
-    R_{3}=\frac{R_{31}R_{32}}{R_0}\\
+    R_{3}=\frac{R_{31}R_{32}}{R_0},\quad 
     R_0 = R_{12}+R_{13}+R_{23} 
+\end{matrix}
+}
 \end{gather}
 
-特别地，当三个电阻都相等时，我们有：
-\begin{equation}
-R_{\Delta} = 3R_Y
-\end{equation}
+
 
 \begin{figure}[H]\centering
-\includegraphics[width=0.7\textwidth]{assets/1,2/YDelta等效变换.drawio.pdf}
-\caption{\textbf{Y-$\Delta$ 等效变换}}\label{Y-Delta等效变换}
+\begin{subfigure}[t]{0.46\textwidth}\centering
+    \includegraphics[height=125pt]{assets/1,2/平衡电桥.drawio.pdf}
+    \caption{\bfseries 平衡电桥 }
+\end{subfigure}\begin{subfigure}[t]{0.54\textwidth}\centering
+    \includegraphics[height=125pt]{assets/1,2/YDelta等效变换.drawio.pdf}
+    \caption{\bfseries Y-$\Delta$ 等效变换 }
+\end{subfigure}
+\caption{\bfseries 平衡电桥与Y-Delta等效变换 }\label{平衡电桥与Y-Delta等效变换}
 \end{figure}
-\end{definition}
 
 \subsection{电源等效变换}
 
@@ -630,15 +624,10 @@ R_{\Delta} = 3R_Y
 
 
 \begin{definition}[独立源等效替换]
-如图 \ref{实际独立源等效示意图}，当满足下式时，两者可以等效替换 {\color{red}（注意变换前后的电流方向！）}。
+如图 \ref{实际独立源等效变换、独立电流源串联} (a)，当满足下式时，两者可以等效替换 {\color{red}（注意变换前后的电流方向！）}。
 \begin{equation}
 U_S = I_SR_S\ \  \text{或}\ \  I_S = \frac{U_S}{R_S}
 \end{equation}
-
-\begin{figure}[H]\centering
-\includegraphics[width=0.5\textwidth]{assets/1,2/独立源等效.drawio.pdf}
-\caption{\textbf{实际独立源等效示意图}}\label{实际独立源等效示意图}
-\end{figure}
 
 例如，将电流源等效为电压源时，保持 $R_S$ 不变，令 $U_S = I_S R_S$ 即可；将电压源等效为电流源时，保持 $R_S$ 不变，令 $I_S = \frac{U_S}{R_S}$ 即可。
 
@@ -652,12 +641,19 @@ U_S = I_SR_S\ \  \text{或}\ \  I_S = \frac{U_S}{R_S}
 
 
 \begin{definition}[独立电流源串联]
-如图 \ref{双独立电流源} 所示，两个独立电流源串联，可以分别将其等效为独立电压源，等效仍成立。
-\begin{figure}[H]\centering
-\includegraphics[width=0.4\textwidth]{assets/1,2/独立电流源并联.drawio.pdf}
-\caption{\textbf{独立电流源串联}}\label{双独立电流源}
-\end{figure}
+如图 \ref{实际独立源等效变换、独立电流源串联} (b) 所示，两个独立电流源串联，可以分别将其等效为独立电压源，等效仍成立。
 \end{definition}
+
+\begin{figure}[H]\centering
+\begin{subfigure}[t]{0.53\textwidth}\centering
+    \includegraphics[height=120pt]{assets/1,2/独立源等效.drawio.pdf}
+    \caption{\bfseries 实际独立源等效变换、独立电流源串联 }
+\end{subfigure}\begin{subfigure}[t]{0.47\textwidth}\centering
+    \includegraphics[height=120pt]{assets/1,2/独立电流源并联.drawio.pdf}
+    \caption{\bfseries 独立电流源串联 }
+\end{subfigure}
+\caption{\bfseries 实际独立源等效变换、独立电流源串联 }\label{实际独立源等效变换、独立电流源串联}
+\end{figure}
 
 
 \begin{definition}[独立电压源并联]
@@ -886,10 +882,10 @@ u_i - iR_1 = u_1,\quad u_1 - iR_f = -Au_1 \Longrightarrow I =(1+A) \frac{u_1}{R_
 
 \begin{figure}[H]\centering
 \begin{subfigure}[t]{0.37\textwidth}\centering
-    \includegraphics[height=130pt]{assets/1,2/压控电流源.png}
+    \includegraphics[height=95pt]{assets/1,2/压控电流源.png}
     \caption{\bfseries 压控电流源 VCCS}
 \end{subfigure}\begin{subfigure}[t]{0.37\textwidth}\centering
-    \includegraphics[height=130pt]{assets/1,2/负电阻.png}
+    \includegraphics[height=95pt]{assets/1,2/负电阻.png}
     \caption{\bfseries  负电阻}
 \end{subfigure}
 \caption{\bfseries 压控电流源 VCCS 和负电阻 }
@@ -1014,24 +1010,9 @@ u_o =
 
 
 一个线性{\color{red} 无独立源}的四端网络称为二端口网络（two-port network）如果它的四个接线端构成两个端口，简称为二端口\footnote{需要注意，许多常见的含 OPA 电路都不构成端口（因为忽略了 OPA 的电源输入）。}。另外，有唯一公共端的 $n+1$ 端网络可以看作 $n$ 端口网络。
-大多数时候，我们仅关心二端口的 $u$-$i$ 关系，其参数定义如下：
+大多数时候，我们仅关心二端口的 $u$-$i$ 关系，其参数定义见表 \ref{参数矩阵代表的意义}。
 
-\begin{table}[H]\centering
-% \setlength{\tabcolsep}{1.5mm} % 调整列间距
-    \caption{\textbf{参数矩阵代表的意义}}
-    \label{}
-\begin{tabular}{cccccccccc}\toprule
-    因变量& 自变量 & 参数矩阵\\
-    \midrule
-    $i_1, i_2$ & $u_1, u_2$ & 电导矩阵 $\boldsymbol{G}$ (conductance parameter)\\
-    $u_1, u_2$ & $i_1, i_2$ & 电阻矩阵 $\boldsymbol{R}$ (resistance parameter)\\
-    $u_1, i_1$& $u_2, i_2$&  传输矩阵 $\boldsymbol{T}$ (transmission parameter) \\
-    $u_1, i_2$& $u_2, i_1$&  混合矩阵 $\boldsymbol{H}$ (hybrid parameter matrix)\\
-    \bottomrule
-\end{tabular}
-\end{table}
-
-相应地，上述矩阵参数表示的关系为：
+相应地，表中矩阵参数表示的关系为：
 \begin{gather}
 \begin{bmatrix}
     i_1\\
@@ -1081,21 +1062,27 @@ u_o =
 \end{bmatrix}
 \end{gather}
 
+\begin{table}[H]\centering
+% \setlength{\tabcolsep}{1.5mm} % 调整列间距
+    \caption{\textbf{参数矩阵代表的意义}}
+    \label{参数矩阵代表的意义}
+\begin{tabular}{cccccccccc}\toprule
+    因变量& 自变量 & 参数矩阵 & 复参数名称\\
+    \midrule
+    $i_1, i_2$ & $u_1, u_2$ & 电导矩阵 $\boldsymbol{G}$ (conductance parameter) & $\boldsymbol{Y}$ 参数\\
+    $u_1, u_2$ & $i_1, i_2$ & 电阻矩阵 $\boldsymbol{R}$ (resistance parameter) & $\boldsymbol{Z}$ 参数\\
+    $u_1, i_1$& $u_2, i_2$&  传输矩阵 $\boldsymbol{T}$ (transmission parameter) & $\boldsymbol{T}$ 参数\\
+    $u_1, i_2$& $u_2, i_1$&  混合矩阵 $\boldsymbol{H}$ (hybrid parameter matrix) & $\boldsymbol{H}$ 参数\\
+    \bottomrule
+\end{tabular}
+\end{table}
+
+其中 $\boldsymbol{R}$ 参数的 $R_{11}$ 和 $R_{22}$ 分别两个端口的输入电阻。
+
 互易、对称二端口的概念不提，相关总结见图 \ref{二端口相关概念}。
 
 \subsection{参数矩阵间的转换与等效电路}
 $\boldsymbol{G}$ 与 $\boldsymbol{R}$ 矩阵之间满足 $\boldsymbol{G}^{-1} = \boldsymbol{R}$（如果可逆），其它关系见图 \ref{参数矩阵间的关系与等效电路}。
-
-
-\begin{figure}[htb]\centering
-\includegraphics[width=\textwidth]{assets/1,2/二端口网络.jpg}
-\caption{\bfseries 二端口相关概念}\label{二端口相关概念}
-\end{figure}
-
-\begin{figure}[H]\centering
-\includegraphics[width=\textwidth]{assets/1,2/image (9).jpg}
-\caption{\bfseries 参数矩阵间的关系与等效电路}\label{参数矩阵间的关系与等效电路}
-\end{figure}
 
 \subsection{输入电阻与输出电阻}
 \begin{LineTheorem}[戴维宁定理]\label{戴维宁定理}
@@ -1105,6 +1092,20 @@ $\boldsymbol{G}$ 与 $\boldsymbol{R}$ 矩阵之间满足 $\boldsymbol{G}^{-1} = 
 \begin{LineTheorem}[诺顿定理]\label{诺顿定理}
 一个含独立电源、线性电阻和受控源的一端口电路，对外可以等效成一个电流源和一个电阻并联，电流大小等于原电路短路时端口流过的电流，电阻也是等于全部独立源置 0 （电压源短路，电流源断路）时的等效电阻。
 \end{LineTheorem}
+
+对二端口网络，计算输入电阻时，将输出端断开；计算输出电阻时，将输入端置零（用一根导线替代电源，若没有电源则相连）。
+
+\newpage
+\begin{figure}[H]\centering
+\includegraphics[width=\textwidth]{assets/1,2/二端口网络.jpg}
+\caption{\bfseries 二端口相关概念}\label{二端口相关概念}
+\end{figure}
+
+\begin{figure}[H]\centering
+\includegraphics[width=\textwidth]{assets/1,2/image (9).jpg}
+\caption{\bfseries 参数矩阵间的关系与等效电路}\label{参数矩阵间的关系与等效电路}
+\end{figure}
+
 
 
 

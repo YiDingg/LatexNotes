@@ -2,7 +2,7 @@
 % 1. 需要插入的图片不存在：Ctrl + F 搜索 'figure' 将这些代码注释/删除掉即可
 % 2. 路径/文件名含中文或空格：更改路径/文件名即可
 
-% --------------------- 文章宏包及相关设置 --------------------- %
+% ------------------------------------------------------------- %
 % >> ------------------ 文章宏包及相关设置 ------------------ << %
 % 设定文章类型与编码格式
     \documentclass[UTF8]{report}		
@@ -159,7 +159,7 @@
         \svgsetup{
             % 指向 inkscape.exe 的路径
             %inkscapeexe = D:/aa_my_apps_main/Inkscape/bin/inkscape.exe, 
-            inkscapeexe = D:/aa_MyApps/inkscape/bin/inkscape.exe, 
+            inkscapeexe = C:/aa_MySame/inkscape/bin/inkscape.exe, 
             % 一定程度上修复导入后图片文字溢出几何图形的问题
             inkscapelatex = false                 
         }
@@ -201,25 +201,25 @@
             }{\par\vskip 2.5ex}
 
 % 文章默认字体设置
-\usepackage{fontspec}   % 宏包：字体设置
-    \setmainfont{SimSun}    % 设置中文字体为宋体字体
-    \setCJKmainfont[AutoFakeBold=3]{SimSun} % 设置加粗字体为 SimSun 族，AutoFakeBold 可以调整字体粗细
-    \setmainfont{Times New Roman} % 设置英文字体为Times New Roman
+    \usepackage{fontspec}   % 宏包：字体设置
+        \setmainfont{SimSun}    % 设置中文字体为宋体字体
+        \setCJKmainfont[AutoFakeBold=3]{SimSun} % 设置加粗字体为 SimSun 族，AutoFakeBold 可以调整字体粗细
+        \setmainfont{Times New Roman} % 设置英文字体为Times New Roman
 
 % 各级标题自定义设置
-\usepackage{titlesec}   
-\titleformat{\chapter}[hang]{\normalfont\huge\bfseries\centering}{第\,\thechapter\,章}{20pt}{}
-\titlespacing*{\chapter}{0pt}{-20pt}{20pt} % 控制上方空白的大小
-% section标题自定义设置 
-\titleformat{\section}[hang]{\normalfont\Large\bfseries}{§\,\thesection\,}{8pt}{}
-% subsubsection标题自定义设置
-%\titleformat{\subsubsection}[hang]{\normalfont\bfseries}{}{8pt}{}
+    \usepackage{titlesec}   
+        \titleformat{\chapter}[hang]{\normalfont\huge\bfseries\centering}{第\,\thechapter\,章}{20pt}{}
+        \titlespacing*{\chapter}{0pt}{-20pt}{20pt} % 控制上方空白的大小
+        % section标题自定义设置 
+        \titleformat{\section}[hang]{\normalfont\Large\bfseries}{§\,\thesection\,}{8pt}{}
+        % subsubsection标题自定义设置
+        %\titleformat{\subsubsection}[hang]{\normalfont\bfseries}{}{8pt}{}
 
-% --------------------- 文章宏包及相关设置 --------------------- %
 % >> ------------------ 文章宏包及相关设置 ------------------ << %
+% ------------------------------------------------------------- %
 
-% ------------------------ 文章信息区 ------------------------ %
-% ------------------------ 文章信息区 ------------------------ %
+% ----------------------------------------------------------- %
+% >> --------------------- 文章信息区 --------------------- << %
 % 页眉页脚设置
     \usepackage{fancyhdr}   %宏包：页眉页脚设置
         \pagestyle{fancy}
@@ -234,15 +234,15 @@
     \title{这里是标题\\The Title of the Report}
     \author{丁毅\\ \footnotesize 中国科学院大学，北京 100049\\ Yi Ding \\ \footnotesize University of Chinese Academy of Sciences, Beijing 100049, China}
     \date{\footnotesize 2024.8 -- 2025.1}
-% ------------------------ 文章信息区 ------------------------ %
-% ------------------------ 文章信息区 ------------------------ %
+% >> --------------------- 文章信息区 --------------------- << %
+% ----------------------------------------------------------- %
 
 % 开始编辑文章
 
 \begin{document} 
 \zihao{5}             % 设置全文字号大小, -4 为小四, 5 为五号
 
-% ------------------------ 封面序言与目录 ------------------------ %
+% --------------------------------------------------------------- %
 % >> --------------------- 封面序言与目录 --------------------- << %
 % 封面
     \maketitle\newpage  
@@ -270,7 +270,7 @@
 
 
 % >> --------------------- 封面序言与目录 --------------------- << %
-% ------------------------ 封面序言与目录 ------------------------ %
+% --------------------------------------------------------------- %
 
 
 \chapter{基础知识}\thispagestyle{fancy} 
@@ -354,148 +354,6 @@
 
 \chapter{这里是第二章}\thispagestyle{fancy} 
 
-\href{https://www.latex-tables.com/}{Latex Table Editor} 示例：
-
-% \usepackage{tabularray}
-
-\begin{longtblr}[caption={\bfseries 示例表格},label=tab:example]{
-    hline{1,51} = {-}{0.08em},
-    hline{2} = {-}{},
-  }
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ 
-\end{longtblr}
-
-\href{https://www.tablesgenerator.com/latex_tables#}{Create Latex Tables Online} 示例：
-
-% Please add the following required packages to your document preamble:
-% \usepackage{booktabs}
-% \usepackage{longtable}
-% Note: It may be necessary to compile the document several times to get a multi-page table to line up properly
-\begin{longtable}[c]{ccc}
-    \caption{\bfseries Create Latex Tables Online 示例}
-    \label{tab:my-table}\\
-    \toprule
-    表头& 表头 & 表头 \\* \midrule
-    \endfirsthead
-    %
-    \multicolumn{3}{c}%
-    {{\bfseries Table \thetable :\ continued from previous page}} \\
-    \toprule
-    表头& 表头 & 表头 \\* \midrule
-    \endhead
-    %
-    \bottomrule
-    \endfoot
-    %
-    \endlastfoot
-    %
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\* \bottomrule
-\end{longtable}
-
-
-
-\chapter{这里是第三章}\thispagestyle{fancy} 
-\section{一个小节}
-\section{一个小节}
-\section{一个小节}
-\section{一个小节}
-\chapter{这里是第四章}\thispagestyle{fancy} 
-\section{一个小节}
-\section{一个小节}
-\section{一个小节}
 
 
 
@@ -508,17 +366,14 @@
 
 
 
-
-
-
-% ------------------------- 参考文献 ------------------------- %
+% ----------------------------------------------------------- %
 % >> ---------------------- 参考文献 ---------------------- << %
 \nocite{*}
 \bibliography{re}
 \thispagestyle{fancy} 
 \addcontentsline{toc}{chapter}{参考文献}
-% ------------------------- 参考文献 ------------------------- %
 % >> ---------------------- 参考文献 ---------------------- << %
+% ----------------------------------------------------------- %
 
 
 
@@ -535,7 +390,7 @@
 
 
 
-% --------------------------- 附录 --------------------------- %
+% ------------------------------------------------------------ %
 % >> ------------------------ 附录 ------------------------ << %
 
 % 附录设置
@@ -683,8 +538,8 @@ title('Sine Function');
 % ... (MATLAB code here，最好是插入文件)
 \end{matlablisting}
 
-% --------------------------- 附录 --------------------------- %
 % >> ------------------------ 附录 ------------------------ << %
+% ------------------------------------------------------------ %
 
 \end{document}
 

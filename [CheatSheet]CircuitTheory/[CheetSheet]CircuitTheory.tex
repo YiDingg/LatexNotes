@@ -7,8 +7,6 @@
 % 设定文章类型与编码格式
     \documentclass[UTF8]{report}		
 
-% 本文特殊宏包
-    \usepackage{siunitx} % 埃米单位
 
 % 本文的特殊宏定义
 \def\Im{\mathrm{\,Im\,}}
@@ -47,12 +45,12 @@
 
 
 % 文章页面margin设置
-    \usepackage[a4paper]{geometry}
-        \geometry{top=1in}  % 1 inch= 2.46 cm, 0.75 inch = 1.85 cm
-        \geometry{bottom=1in}
-        \geometry{left=0.75in}
-        \geometry{right=0.75in}   % 设置上下左右页边距
-        \geometry{marginparwidth=1.75cm}    % 设置边注距离（注释、标记等）
+    \usepackage[a4paper, landscape]{geometry}   % 宏包：设置页面大小为A4纸，且页面为横向排版 (landscape)
+        \geometry{top=0.1in}  % 1 inch= 2.46 cm, 0.75 inch = 1.85 cm
+        \geometry{bottom=0.1in}
+        \geometry{left=0.1in}
+        \geometry{right=0.1in}   % 设置上下左右页边距
+        \geometry{marginparwidth=0.2cm}    % 设置边注距离（注释、标记等）
 
 % 配置数学环境
     \usepackage{amsthm} % 宏包：数学环境配置
@@ -227,46 +225,48 @@
         \cfoot{\thepage}
         \renewcommand\headrulewidth{1pt}
         \renewcommand\footrulewidth{0pt}
-        \lhead{2024.8 -- 2025.1} 
-        \chead{here is the header，这里是页眉}    
+        \lhead{2025.1} 
+        \chead{Cheat Sheet of Principles of Electornic Circuits}    
         \rhead{dingyi233@mails.ucas.ac.cn}
 %文档信息设置
     \title{这里是标题\\The Title of the Report}
     \author{丁毅\\ \footnotesize 中国科学院大学，北京 100049\\ Yi Ding \\ \footnotesize University of Chinese Academy of Sciences, Beijing 100049, China}
-    \date{\footnotesize 2024.8 -- 2025.1}
+    \date{\footnotesize 2025.1}
 % ------------------------ 文章信息区 ------------------------ %
 % ------------------------ 文章信息区 ------------------------ %
 
 % 开始编辑文章
 
-\begin{document} 
-\zihao{5}             % 设置全文字号大小, -4 为小四, 5 为五号
+\begin{document}
+\begin{multicols}{4}     % 多栏排版
+    \setlength{\columnsep}{1cm}  % 设置栏间距
+\zihao{7}                % 设置全文字号大小, -4 为小四, 5 为五号
 
 % ------------------------ 封面序言与目录 ------------------------ %
 % >> --------------------- 封面序言与目录 --------------------- << %
 % 封面
-    \maketitle\newpage  
-    \pagenumbering{Roman} % 页码为大写罗马数字
-    \thispagestyle{fancy}   % 显示页码、页眉等
+    % \maketitle\newpage  
+    % \pagenumbering{Roman} % 页码为大写罗马数字
+    % \thispagestyle{fancy}   % 显示页码、页眉等
 
 % 序言
-    \begin{cnabstract}\normalsize 
-        本文为笔者本科时的某课程笔记（Notes of Linear Algebra 2, 2024.9-2025.1）。用灰色字体或灰色方框等表示对主干内容的补充、对晦涩概念的理解、定理的具体证明过程等，采用红色字体对重点部分进行强调，同时适当配有插图。这样的颜色和结构安排既突出了知识的主要框架，也保持了笔记的深度和广度，并且不会因为颜色过多而导致难以锁定文本内容，乃是尝试了多种安排后挑选出的最佳方案。如果读者有更佳的颜色和排版方案，可以将建议发送到笔者邮箱 dingyi233@mails.ucas.ac.cn，在此感谢。\par
-        由于个人学识浅陋，认识有限，书中难免有不妥甚至错误之处，望读者不吝指正，在此感谢。
+    %\begin{cnabstract}\zihao{6} % 设置序言字号
+    %    本文为笔者本科时的某课程笔记（Notes of Linear Algebra 2, 2024.9-2025.1）。用灰色字体或灰色方框等表示对主干内容的补充、对晦涩概念的理解、定理的具体证明过程等，采用红色字体对重点部分进行强调，同时适当配有插图。这样的颜色和结构安排既突出了知识的主要框架，也保持了笔记的深度和广度，并且不会因为颜色过多而导致难以锁定文本内容，乃是尝试了多种安排后挑选出的最佳方案。如果读者有更佳的颜色和排版方案，可以将建议发送到笔者邮箱 dingyi233@mails.ucas.ac.cn，在此感谢。\par
+    %    由于个人学识浅陋，认识有限，书中难免有不妥甚至错误之处，望读者不吝指正，在此感谢。
 
-        本文为笔者本科时的“电路原理”课程作业（Homework of Circuit Theory, 2024.9-2025.1）。由于个人学识浅陋，认识有限，文中难免有不妥甚至错误之处，望读者不吝指正，在此感谢。我的邮箱是 dingyi233@mails.ucas.ac.cn。\par
-    \end{cnabstract}
-    \addcontentsline{toc}{chapter}{序言} % 手动添加为目录
+    %    本文为笔者本科时的“电路原理”课程作业（Homework of Circuit Theory, 2024.9-2025.1）。由于个人学识浅陋，认识有限，文中难免有不妥甚至错误之处，望读者不吝指正，在此感谢。我的邮箱是 dingyi233@mails.ucas.ac.cn。\par
+    %\end{cnabstract}
+    %\addcontentsline{toc}{chapter}{序言} % 手动添加为目录
 
 % 目录
-    \setcounter{tocdepth}{2}                % 目录深度（为1时显示到section）
-    \tableofcontents                        % 目录页
-    \addcontentsline{toc}{chapter}{目录}    % 手动添加此页为目录
-    \thispagestyle{fancy}                   % 显示页码、页眉等 
+    %\setcounter{tocdepth}{2}                % 目录深度（为1时显示到section）
+    %\tableofcontents                        % 目录页
+    %\addcontentsline{toc}{chapter}{目录}    % 手动添加此页为目录
+    %\thispagestyle{fancy}                   % 显示页码、页眉等 
 
 % 收尾工作
-    \newpage    
-    \pagenumbering{arabic} 
+    %\newpage    
+    %\pagenumbering{arabic} 
 
 
 % >> --------------------- 封面序言与目录 --------------------- << %
@@ -314,23 +314,6 @@
 你好你好你好
 \end{graybox}
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.5\textwidth]{assets/差分格式示意图.pdf}
-    \caption{\textbf{插入pdf图片}}\label{插入pdf图片}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.5\textwidth]{assets/波浪能装置示意图.jpg}
-    \caption{\textbf{插入 jpg}}\label{插入 jpg}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includesvg[width=0.5\textwidth]{assets/draw.io_test.drawio.svg}
-    \caption{\textbf{插入 svg}}\label{插入 svg}
-\end{figure}
 
 \end{definition}
 
@@ -352,340 +335,241 @@
     \end{tabular}
 \end{table}
 
-\chapter{这里是第二章}\thispagestyle{fancy} 
+\subsection{线性运算器（自设计）}
+图 \ref{自设计线性运算器} 是在加法器、减法器的基础上，自己设计的线性运算器，它可以实现任意数量的输入（电压）信号的任意线性运算。事实上，在此线性运算器中，电阻 $R_M$ 和电阻 $R_P$ 是关键，因为在正相信号间的比例、反相信号间的比例分别确定时，这两个电阻实现了正信号和负信号之间的比例调整，使得最终输出的正、负信号可以任意大或任意小（最小即为 0，不占任何比例）。
 
-\href{https://www.latex-tables.com/}{Latex Table Editor} 示例：
+图中，红色端是加法信号，蓝色端是减法信号，绿色端为公共地（可只保留一个）。
 
-% \usepackage{tabularray}
-
-\begin{longtblr}[caption={\bfseries 示例表格},label=tab:example]{
-    hline{1,51} = {-}{0.08em},
-    hline{2} = {-}{},
-  }
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ \\
-   $x$& hello & $123.456$ 
-\end{longtblr}
-
-\href{https://www.tablesgenerator.com/latex_tables#}{Create Latex Tables Online} 示例：
-
-% Please add the following required packages to your document preamble:
-% \usepackage{booktabs}
-% \usepackage{longtable}
-% Note: It may be necessary to compile the document several times to get a multi-page table to line up properly
-\begin{longtable}[c]{ccc}
-    \caption{\bfseries Create Latex Tables Online 示例}
-    \label{tab:my-table}\\
-    \toprule
-    表头& 表头 & 表头 \\* \midrule
-    \endfirsthead
-    %
-    \multicolumn{3}{c}%
-    {{\bfseries Table \thetable :\ continued from previous page}} \\
-    \toprule
-    表头& 表头 & 表头 \\* \midrule
-    \endhead
-    %
-    \bottomrule
-    \endfoot
-    %
-    \endlastfoot
-    %
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\
-     $x$ & hello  & $123.456$ \\* \bottomrule
-\end{longtable}
+\begin{figure}[H]\centering
+\begin{subfigure}[t]{0.49\columnwidth}\centering
+    \includegraphics[height=60pt]{assets/线性运算器.png}
+    \caption{\bfseries 线性运算器电路图 }
+\end{subfigure}\begin{subfigure}[t]{0.49\columnwidth}\centering
+    \includegraphics[height=60pt]{assets/线性运算器接线端.png}
+    \caption{\bfseries 接线端示意图 }
+\end{subfigure}
+\caption{\bfseries 自设计线性运算器 }\label{自设计线性运算器}
+\end{figure}
 
 
+我们先研究图 \ref{自设计线性运算器} (a) 的输出特性，再讨论如果没有电阻 $R_M$ 或 $R_P$，输出电压会受到什么限制。输出电压的推导是简单的，先考虑点 A 的电势 $u_A$，求得：
+\begin{equation}
+u_A = \frac{\frac{u_1}{R_1} + \frac{u_2}{R_2}}{\frac{1}{R_1} + \frac{1}{R_2} + \frac{1}{R_p}}
+\end{equation}
 
-\chapter{这里是第三章}\thispagestyle{fancy} 
-\section{一个小节}
-\section{一个小节}
-\section{一个小节}
-\section{一个小节}
-\chapter{这里是第四章}\thispagestyle{fancy} 
-\section{一个小节}
-\section{一个小节}
-\section{一个小节}
+$u_A$ 的推导，除了列 KCL, KVL 硬解之外，还可以这样：先将 $R_p$ 断路，这样 $u_2, R_2, u_1, R_1$ 构成并联的两个实际电压源（自带电阻），容易求得此时点 A 的电势 $u_A$，并做数学上的形式变换：
+\begin{equation}
+u_A = \frac{R_2u_1 + R_1u_2}{R_1+R_2} =\frac{\frac{u_1}{R_1} + \frac{u_2}{R_2}}{\frac{1}{R_1} + \frac{1}{R_2} }
+\end{equation}
+于是，我们再并联一个实际电压源 P 后，由数学上直接推广，可以得到 $u_A$ 为：
+\begin{equation}
+    u_A = \frac{\frac{u_1}{R_1} + \frac{u_2}{R_2} + \frac{u_p}{R_p}}{\frac{1}{R_1} + \frac{1}{R_2} + \frac{1}{R_p}}
+\end{equation}
+再令 $u_p = 0$，即得图 \ref{自设计线性运算器} 中的原始 $u_A$。
 
+再考虑左侧的电流组，并利用虚断：
+\begin{align}
+&\begin{cases}
+    i_3 = \frac{1}{R_3}(u_3 - u_A) \\ 
+    i_4 = \frac{1}{R_4}(u_4 - u_A) \\ 
+    i_m = \frac{1}{R_m}(0 - u_A) \\ 
+    i_f = i_3 + i_4 + i_m
+\end{cases}
+\Longrightarrow 
+u_o = u_A - R_fi_f = u_A - R_f\left( i_3 + i_4 + i_m \right) \\ 
+\Longrightarrow
+u_o &=u_A - R_f \left[ 
+\frac{u_3}{R_3} + \frac{u_4}{R_4} - u_A\left( \frac{1}{R_3} + \frac{1}{R_4} + \frac{1}{R_m} \right)
+\right] \\ 
+&=
+\left[1 + R_f \left(\frac{1}{R_3} + \frac{1}{R_4} + \frac{1}{R_m} \right)\right] u_A - R_f \left( \frac{u_3}{R_3} + \frac{u_4}{R_4} \right) 
+\end{align}
+代入 $u_A$，整理得到：
+\begin{equation}
+\boxed{
+    u_o= \frac{1 + \frac{R_f}{R_m} \left(\frac{1}{R_3} + \frac{1}{R_4}  \right)}{ \frac{1}{R_p} + \left(\frac{1}{R_1} + \frac{1}{R_2} \right)}\cdot \left( \frac{{\color{red} u_1}}{R_1} + \frac{{\color{red} u_2}}{R_2} \right) - R_f \cdot \left( \frac{{\color{red} u_3}}{R_3} + \frac{{\color{red} u_4}}{R_4} \right)
+}
+\end{equation}
+这样，对于所有加法信号，可以通过 $R_1, R_2$ 间的比例来调整它们在加法中的输出比例，类似地，减法信号通过 $R_3, R_4$ 间的比例来调整它们在减法中的输出比例。最后通过 $R_f, R_m, R_p$ 来调整加法、减法之间的输出比例。在 $R_f, R_m, R_p$ 都可变时，易证（减法占比） $R_f \in [0,\ \infty)$，（加法占比）$\frac{1 + R_f \left(\frac{1}{R_3} + \frac{1}{R_4} + \frac{1}{R_m} \right)}{\frac{1}{R_1} + \frac{1}{R_2} + \frac{1}{R_p}} \in [0,\ \infty)$，于是全部系数都具有任意性，此线性运算器能够实现任意的线性运算。
 
+上面的电路容易推广到任意输入信号个数的情形。假设有 $m$ 个加法信号 $u_{s_1}, \dots, u_{s_m}$，它们对应的串联电阻分别 $R_{s_1}, \dots, R_{s_m}$；以及$n$ 个减法信号 $u_{r_1}, \dots, u_{r_n}$，它们对应的串联阻值分别 $R_{r_1}, \dots, R_{r_n}$。直接由数学上推广出去，得到输出电压 
+$u_o$ 的表达式为：
 
+\begin{equation}
+\boxed{
+u_o = 
+\left(
+    \frac{1 + \frac{R_f}{R_m} + \displaystyle R_f\sum_{i=s_1}^{i=s_m} \frac{1}{R_i}
+    }{
+        \frac{1}{R_p} + \displaystyle \sum_{i=r_1}^{i=r_n} \frac{1}{R_i}
+    }
+\right)\cdot \displaystyle\sum_{i=s_1}^{i=s_m} \frac{{\color{red} u_i}}{R_i}  - R_f \cdot  \displaystyle\sum_{i=r_1}^{i=r_n} \frac{{\color{red} u_i}}{R_i}
+}
+\end{equation}
 
-
-
-
-
-
-
-
-
-
-
+此线性运算器的具体仿真示例见 Homework 3.
 
 % ------------------------- 参考文献 ------------------------- %
 % >> ---------------------- 参考文献 ---------------------- << %
-\nocite{*}
-\bibliography{re}
-\thispagestyle{fancy} 
-\addcontentsline{toc}{chapter}{参考文献}
+%\nocite{*}
+%\bibliography{re}
+%\thispagestyle{fancy} 
+%\addcontentsline{toc}{chapter}{参考文献}
 % ------------------------- 参考文献 ------------------------- %
 % >> ---------------------- 参考文献 ---------------------- << %
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 % --------------------------- 附录 --------------------------- %
 % >> ------------------------ 附录 ------------------------ << %
 
-% 附录设置
-\newpage
-\appendix
-% chapter 标题自定义设置
-\titleformat{\chapter}[hang]{\normalfont\huge\bfseries\centering}{}{20pt}{}
-\titlespacing*{\chapter}{0pt}{-25pt}{8pt} % 控制上方空白的大小
-% section 标题自定义设置 
-\titleformat{\section}[hang]{\normalfont\centering\Large\bfseries}{\thesection}{8pt}{}
-
-% 附录 A
-\chapter*{附录 A. 中英文对照表}\addcontentsline{toc}{chapter}{附录 A. 中英文对照表}   
-\thispagestyle{fancy} 
-\setcounter{section}{0}   
-\renewcommand\thesection{A.\arabic{section}}   
-\renewcommand{\thefigure}{A.\arabic{figure}} 
-\renewcommand{\thetable}{A.\arabic{table}}
-
-\section{中英文对照表}
-\begin{multicols}{2}  
-
-    \begin{table}[H]\centering
-    \caption{\textbf{中英文对照表}}
-    \begin{tabular}{cccccccc}\toprule
-        English & 中文 \\
-        \midrule
-        voltage            & 电压 \\
-        current            & 电流 \\
-        power              & 功率 \\
-        resistance         & 电阻 \\
-        conductance        & 电导 \\
-        inductance         & 电感 \\
-        capacitance        & 电容 \\
-        frequency          & 频率 \\
-        circuit            & 电路 \\
-        circuit element    & 电流元件 \\
-        signal             & 信号 \\
-        circuit analysis   & 电路分析 \\
-        circuit synthesis  & 电路综合 \\
-        circuit design     & 电路设计 \\
-        circuit topology   & 电路拓扑 \\
-        \bottomrule
-    \end{tabular}
-    \end{table}
-    
-    \begin{table}[H]\centering
-        \caption{\textbf{中英文对照表}}
-        \begin{tabular}{cccccccc}\toprule
-            English & 中文 \\
-            \midrule
-            voltage            & 电压 \\
-            current            & 电流 \\
-            power              & 功率 \\
-            resistance         & 电阻 \\
-            conductance        & 电导 \\
-            inductance         & 电感 \\
-            capacitance        & 电容 \\
-            frequency          & 频率 \\
-            circuit            & 电路 \\
-            circuit element    & 电流元件 \\
-            signal             & 信号 \\
-            circuit analysis   & 电路分析 \\
-            circuit synthesis  & 电路综合 \\
-            circuit design     & 电路设计 \\
-            circuit topology   & 电路拓扑 \\
-            \bottomrule
-        \end{tabular}
-    \end{table}
-\end{multicols} 
-    
-\section{支撑材料列表} 
-
-\begin{center}
-  这里插入一张图片（类似思维导图那种）
-\end{center}
-
-
-% 附录 B
-\chapter*{附录 B. 代码}\addcontentsline{toc}{chapter}{附录 B. 代码}   
-\thispagestyle{fancy} 
-\setcounter{section}{0}   
-\renewcommand\thesection{B.\arabic{section}}   
-\renewcommand{\thefigure}{B.\arabic{figure}} 
-\renewcommand{\thetable}{B.\arabic{table}}
-
-% 注意：listing环境中手动输入的代码需要顶格写
-
-\begin{matlablisting}
-% MATLAB code here
-x = 0:0.1:2*pi;
-y = sin(x);
-plot(x, y);
-xlabel('x');
-ylabel('sin(x)');
-title('Sine Function');
-% ... (MATLAB code here，最好是插入文件)
-% MATLAB code here
-x = 0:0.1:2*pi;
-y = sin(x);
-plot(x, y);
-xlabel('x');
-ylabel('sin(x)');
-title('Sine Function');
-% ... (MATLAB code here，最好是插入文件)
-% MATLAB code here
-x = 0:0.1:2*pi;
-y = sin(x);
-plot(x, y);
-xlabel('x');
-ylabel('sin(x)');
-title('Sine Function');
-% ... (MATLAB code here，最好是插入文件)
-% MATLAB code here
-x = 0:0.1:2*pi;
-y = sin(x);
-plot(x, y);
-xlabel('x');
-ylabel('sin(x)');
-title('Sine Function');
-% ... (MATLAB code here，最好是插入文件)
-% MATLAB code here
-x = 0:0.1:2*pi;
-y = sin(x);
-plot(x, y);
-xlabel('x');
-ylabel('sin(x)');
-title('Sine Function');
-% ... (MATLAB code here，最好是插入文件)
-% MATLAB code here
-x = 0:0.1:2*pi;
-y = sin(x);
-plot(x, y);
-xlabel('x');
-ylabel('sin(x)');
-title('Sine Function');
-% ... (MATLAB code here，最好是插入文件)% ... (MATLAB code here，最好是插入文件)% ... (MATLAB code here，最好是插入文件)% ... (MATLAB code here，最好是插入文件)% ... (MATLAB code here，最好是插入文件)A
-% MATLAB code here
-x = 0:0.1:2*pi;
-y = sin(x);
-plot(x, y);
-xlabel('x');
-ylabel('sin(x)');
-title('Sine Function');
-% ... (MATLAB code here，最好是插入文件)
-\end{matlablisting}
+%% 附录设置
+%\newpage
+%\appendix
+%% chapter 标题自定义设置
+%\titleformat{\chapter}[hang]{\normalfont\huge\bfseries\centering}{}{20pt}{}
+%\titlespacing*{\chapter}{0pt}{-25pt}{8pt} % 控制上方空白的大小
+%% section 标题自定义设置 
+%\titleformat{\section}[hang]{\normalfont\centering\Large\bfseries}%{\thesection}{8pt}{}
+%
+%% 附录 A
+%\chapter*{附录 A. 中英文对照表}\addcontentsline{toc}{chapter}{附录 A. 中英文对照%表}   
+%\thispagestyle{fancy} 
+%\setcounter{section}{0}   
+%\renewcommand\thesection{A.\arabic{section}}   
+%\renewcommand{\thefigure}{A.\arabic{figure}} 
+%\renewcommand{\thetable}{A.\arabic{table}}
+%
+%\section{中英文对照表}
+%\begin{multicols}{2}  
+%
+%    \begin{table}[H]\centering
+%    \caption{\textbf{中英文对照表}}
+%    \begin{tabular}{cccccccc}\toprule
+%        English & 中文 \\
+%        \midrule
+%        voltage            & 电压 \\
+%        current            & 电流 \\
+%        power              & 功率 \\
+%        resistance         & 电阻 \\
+%        conductance        & 电导 \\
+%        inductance         & 电感 \\
+%        capacitance        & 电容 \\
+%        frequency          & 频率 \\
+%        circuit            & 电路 \\
+%        circuit element    & 电流元件 \\
+%        signal             & 信号 \\
+%        circuit analysis   & 电路分析 \\
+%        circuit synthesis  & 电路综合 \\
+%        circuit design     & 电路设计 \\
+%        circuit topology   & 电路拓扑 \\
+%        \bottomrule
+%    \end{tabular}
+%    \end{table}
+%    
+%    \begin{table}[H]\centering
+%        \caption{\textbf{中英文对照表}}
+%        \begin{tabular}{cccccccc}\toprule
+%            English & 中文 \\
+%            \midrule
+%            voltage            & 电压 \\
+%            current            & 电流 \\
+%            power              & 功率 \\
+%            resistance         & 电阻 \\
+%            conductance        & 电导 \\
+%            inductance         & 电感 \\
+%            capacitance        & 电容 \\
+%            frequency          & 频率 \\
+%            circuit            & 电路 \\
+%            circuit element    & 电流元件 \\
+%            signal             & 信号 \\
+%            circuit analysis   & 电路分析 \\
+%            circuit synthesis  & 电路综合 \\
+%            circuit design     & 电路设计 \\
+%            circuit topology   & 电路拓扑 \\
+%            \bottomrule
+%        \end{tabular}
+%    \end{table}
+%\end{multicols} 
+%    
+%\section{支撑材料列表} 
+%
+%\begin{center}
+%  这里插入一张图片（类似思维导图那种）
+%\end{center}
+%
+%
+%% 附录 B
+%\chapter*{附录 B. Matlab 代码}\addcontentsline{toc}{chapter}{附录 B. Matlab 代%码}   
+%\thispagestyle{fancy} 
+%\setcounter{section}{0}   
+%\renewcommand\thesection{B.\arabic{section}}   
+%\renewcommand{\thefigure}{B.\arabic{figure}} 
+%\renewcommand{\thetable}{B.\arabic{table}}
+%
+%% 注意：listing环境中手动输入的代码需要顶格写
+%
+%\begin{matlablisting}
+%% MATLAB code here
+%x = 0:0.1:2*pi;
+%y = sin(x);
+%plot(x, y);
+%xlabel('x');
+%ylabel('sin(x)');
+%title('Sine Function');
+%% ... (MATLAB code here，最好是插入文件)
+%% MATLAB code here
+%x = 0:0.1:2*pi;
+%y = sin(x);
+%plot(x, y);
+%xlabel('x');
+%ylabel('sin(x)');
+%title('Sine Function');
+%% ... (MATLAB code here，最好是插入文件)
+%% MATLAB code here
+%x = 0:0.1:2*pi;
+%y = sin(x);
+%plot(x, y);
+%xlabel('x');
+%ylabel('sin(x)');
+%title('Sine Function');
+%% ... (MATLAB code here，最好是插入文件)
+%% MATLAB code here
+%x = 0:0.1:2*pi;
+%y = sin(x);
+%plot(x, y);
+%xlabel('x');
+%ylabel('sin(x)');
+%title('Sine Function');
+%% ... (MATLAB code here，最好是插入文件)
+%% MATLAB code here
+%x = 0:0.1:2*pi;
+%y = sin(x);
+%plot(x, y);
+%xlabel('x');
+%ylabel('sin(x)');
+%title('Sine Function');
+%% ... (MATLAB code here，最好是插入文件)
+%% MATLAB code here
+%x = 0:0.1:2*pi;
+%y = sin(x);
+%plot(x, y);
+%xlabel('x');
+%ylabel('sin(x)');
+%title('Sine Function');
+%% ... (MATLAB code here，最好是插入文件)% ... (MATLAB code here，最好是插入文件)%% ... (MATLAB code here，最好是插入文件)% ... (MATLAB code here，最好是插入文件)%% ... (MATLAB code here，最好是插入文件)A
+%% MATLAB code here
+%x = 0:0.1:2*pi;
+%y = sin(x);
+%plot(x, y);
+%xlabel('x');
+%ylabel('sin(x)');
+%title('Sine Function');
+%% ... (MATLAB code here，最好是插入文件)
+%\end{matlablisting}
 
 % --------------------------- 附录 --------------------------- %
 % >> ------------------------ 附录 ------------------------ << %
-
+\end{multicols}
 \end{document}
 
 

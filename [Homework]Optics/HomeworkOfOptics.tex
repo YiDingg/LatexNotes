@@ -403,7 +403,7 @@ n_1\sqrt{r^2 + (r+s_1)^2 - 2r(r+s_1)\cos \phi } \,{\color{red} -}\, n_2 \sqrt{r^
 
 
 \chapter{第二章}\thispagestyle{fancy}
-
+\vspace{-2mm}
 \section{对于正入射的情况，写出菲涅尔公式}
 
 菲涅尔公式如下：
@@ -443,12 +443,12 @@ n_1\sqrt{r^2 + (r+s_1)^2 - 2r(r+s_1)\cos \phi } \,{\color{red} -}\, n_2 \sqrt{r^
 \caption{\bfseries 振幅系数 $r$ 随入射角 $\theta_i$ 的变化 }\label{振幅系数随入射角的变化}
 \end{figure}
 
-
+\vspace{-7mm}
 \section{一自然光以 Brewster Angle 入射到空气中的一块玻璃，已知功率透射率为 0.86。}
 
-{\color{red} $\star $ 事实上，本题题设并不合理，是不符合实际的。我们先给出解题过程，再说明为何题设不合理。}
+%{\color{red} $\star $ 事实上，本题题设并不合理，是不符合实际的。我们先给出解题过程，再说明为何玻璃折射率。}
 
-\textbf{(1)\ \ 求功率的反射率：}
+\textbf{(1)\ \ 求功率的反射率}
 
 $T = 0.86$，由能量守恒，功率反射率 $R = 0.14$。
 
@@ -463,33 +463,61 @@ T_p = 1 - R_p = 1,\quad T_s = 2T - T_p = 0.72
 \Phi_{e,t,s} = T_s \Phi_{e,i,s} = 0.72 \times 500 \ \mathrm{W} =  360 \ \mathrm{W}
 \end{equation}
 
-{\color{red} \textbf{(3)\ \ 不合理的原因：玻璃折射率为 0.554902}}
+{\color{red} \textbf{(3)\ \ 求玻璃的折射率}}
 
-在题设条件下，$R = 0.14$，默认空气折射率为 1，则唯一的未知量是玻璃折射率 $n_t$，这是可以求解的，方程如下：
-\begin{gather}\label{题设不合理}
+虽然题目并未要求\footnote{查阅资料发现，此题来自于\textit{光学（尤金，第五版）Optics (Eugene Hecht)} 的 Page 152}，但我们不妨求解一下玻璃的折射率 $n_t$。在题设条件下，$R = 0.14$，默认空气折射率为 1，则唯一的未知量是玻璃折射率 $n_t$，这是可以求解的，方程如下：
+\begin{gather}\label{玻璃折射率}
     R = \frac{1}{2}(R_s + R_p) = 0.14,\quad \theta_i = \theta_B = \arctan\left(\frac{n_t}{n_i}\right) ,\quad n_i = 1
     \Longrightarrow \\ 
     \left[ \frac{ \cos (\arctan n_t) - \sqrt{n_{t}^2 - \sin^2 (\arctan n_t)} }{\cos (\arctan n_t) + \sqrt{n_{t}^2 - \sin^2 (\arctan n_t)}} \right]^2 + \left[ \frac{ n_{t}^2\cos (\arctan n_t) - \sqrt{n_{t}^2 - \sin^2 (\arctan n_t)} }{n_{t}^2\cos (\arctan n_t) + \sqrt{n_{t}^2 - \sin^2 (\arctan n_t)}} \right]^2  = 2\times 0.14
 \end{gather}
-此方程有唯一未知量 $n_t$，用 Matlab 解此非线性方程组\footnote{源码见附录 \ref{题设不合理源码}}，得到玻璃折射率 $n_t$，以及其它参量：
+此方程有唯一未知量 $n_t$，用 Matlab 解此非线性方程组\footnote{源码见附录 \ref{玻璃折射率源码}}，得到玻璃折射率 $n_t$，以及其它参量\footnote{图 \ref{方程左边的变化情况} 源码见附录 \ref{方程左边的变化情况源码}}: 
 \begin{gather}
-\begin{matrix}
+\begin{cases}
     n_t = 0.554902 
     ,\quad 
-    \theta_i = \theta_B = 0.506599\ \ \mathrm{rad}  = 29.025970^\circ
+    \theta_i = \theta_B  = 29.025970^\circ
     \\
-    \theta_t =  1.064198\ \ \mathrm{rad}  = 60.974030^\circ
+    \theta_t = 60.974030^\circ
     ,\quad 
-    \theta_C =  0.588245\ \ \mathrm{rad}  = 33.703947^\circ
+    \theta_C = 33.703947^\circ
     \\
-    R = 0.140000,\quad   R_s = 0.280000,\    R_p = 0.000000 \\ 
-    T = 0.860000,\quad   T_s = 0.720000,\    T_p = 1.000000 
-\end{matrix}
+    R = 0.1400,\quad   R_s = 0.280000,\    R_p = 0.000000 \\ 
+    T = 0.8600,\quad   T_s = 0.720000,\    T_p = 1.000000 
+\end{cases}
+\begin{cases}
+    n_t = 1.802121
+    ,\quad 
+    \theta_i = \theta_B  = 60.974030^\circ 
+    \\
+    \theta_t = 29.025970^\circ
+    ,\quad 
+    \theta_C = 90.000000^\circ
+    \\
+    R = 0.1400,\quad   R_s = 0.280000,\    R_p = 0.000000 \\ 
+    T = 0.8600,\quad   T_s = 0.720000,\    T_p = 1.000000 
+\end{cases}
 \end{gather}
 
-而一般玻璃的折射率在 1.5 左右，即使是特殊玻璃（例如高折射率镜片），也基本在 1.3 至 1.9 之间，0.5 的玻璃折射率显然{\color{red} 是不合理的}\footnote{查阅资料发现，此题来自于\textit{光学（尤金，第五版）Optics (Eugene Hecht)} 的 Page 152}。即使是考虑介质折射率关于波长的变化（如 X 射线或 Gamma 射线），也不会达到如此低的折射率。
 
-\section{上题修正：一自然光由空气入射玻璃，玻璃折射率为 1.5，已知功率透射率为 0.86。}
+
+\begin{center}\noindent\begin{minipage}{0.50\textwidth}
+\hspace*{2em} 也即上述方程有两解，考虑 $n_{ti} \in [0,\ 2]$，令方程左边为 $f(n_{ti})$，作出图像如右。图 \ref{方程左边的变化情况} 说明了我们并没有漏掉其它解。
+
+\hspace*{2em} 一般玻璃的折射率在 1.5 左右，即使是特殊玻璃（例如高折射率镜片），也基本在 1.3 至 1.9 之间，0.5 的玻璃折射率显然是不合理的，即使是考虑介质折射率关于波长的变化（如 X 射线或 Gamma 射线），也不会达到如此低的折射率。因此舍去 $n_t = 0.554902$，最终得 $n_t = 1.802121$。
+\end{minipage}\hfill\begin{minipage}{0.43\textwidth}
+    \begin{figure}[H]\centering
+        \includegraphics[width=\textwidth]{assets/2/2024-09-18_01-08-40.pdf}
+        \vspace*{-9mm}
+        \caption{\bfseries 方程 \ref{玻璃折射率} 左边函数值随 $n_{ti}$ 的变化情况}\label{方程左边的变化情况}
+        \end{figure}
+\end{minipage}\end{center}
+
+
+
+
+
+\section{上题改编：一自然光由空气入射玻璃，玻璃折射率为 1.5，已知功率透射率为 0.86。}
 \textbf{(1)\ \ 求功率的反射率：}
 
 $T = 0.86$，由能量守恒，功率反射率 $R = 0.14$。
@@ -653,7 +681,7 @@ stc.plot.plot_4.Color = [1 0 1];
 %MyExport_pdf
 \end{matlablisting}
 
-\section{公式 \ref{题设不合理} 源码}\label{题设不合理源码}
+\section{公式 \ref{玻璃折射率} 源码}\label{玻璃折射率源码}
 
 \begin{matlablisting}
 R_s = @(n_ti, t) ( (cos(t) - sqrt(n_ti^2 - sin(t)^2)) / (cos(t) + sqrt(n_ti^2 - sin(t)^2)) )^2;
@@ -722,9 +750,37 @@ T = 0.860000
 %}
 \end{matlablisting}
 
+\section{图 \ref{方程左边的变化情况} 源码}\label{方程左边的变化情况源码}
+
+\begin{matlablisting}
+R_s = @(n_ti, t) ( (cos(t) - sqrt(n_ti^2 - sin(t)^2)) / (cos(t) + sqrt(n_ti^2 - sin(t)^2)) )^2;
+R_p = @(n_ti, t) ( (n_ti^2*cos(t) - sqrt(n_ti^2 - sin(t)^2)) / (n_ti^2*cos(t) + sqrt(n_ti^2 - sin(t)^2)) )^2;
+theta_B = @(n_ti) atan(n_ti);
+
+eq_left = @(n_ti) 0.5*(R_s(n_ti, theta_B(n_ti)) + R_p(n_ti, theta_B(n_ti)))
+
+X = linspace(0, 2, 100);
+Y = zeros(size(X));
+for i = 1:length(X)
+    Y(i) = eq_left(X(i));
+end
+
+stc = MyPlot(X, Y);
+yline(0.14, 'Color', 'r', 'LineWidth', 0.4);
+xline(0.554902, 'Color', [0.1, 0.1, 0.1], 'LineWidth', 0.4)
+xline(1.802121, 'Color', [0.3, 0.3, 0.3], 'LineWidth', 0.4)
+stc.axes.Title.String = '';
+stc.label.x.String = '$n_{ti}$';
+stc.leg.Location = 'northeast';
+hold on
+scatter([0.554902, 1.802121], [0.14, 0.14], 180, '.r')
+stc.leg.String = ["$y =  0.5\left[ R_s(n_{ti}) + R_p(n_{ti}) \right]$"; "$y = 0.14$"; "$n_{ti} = 0.554902$"; "$n_{ti} = 1.802121$"];
+%MyExport_pdf
+\end{matlablisting}
 
 % >> ------------------------ 附录 ------------------------ << %
 % --------------------------- 附录 --------------------------- %
+
 
 \end{document}
 

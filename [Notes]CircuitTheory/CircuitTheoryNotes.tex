@@ -53,8 +53,8 @@
 
 % 文章页面margin设置
     \usepackage[a4paper]{geometry}
-        \geometry{top=1in}
-        \geometry{bottom=1in}
+        \geometry{top=0.75in}
+        \geometry{bottom=0.75in}
         \geometry{left=0.75in}
         \geometry{right=0.75in}   % 设置上下左右页边距
         \geometry{marginparwidth=1.75cm}    % 设置边注距离（注释、标记等）
@@ -208,17 +208,18 @@
             }{\par\vskip 2.5ex}
 
 % 文章默认字体设置
-\usepackage{fontspec}   % 宏包：字体设置
-    \setmainfont{SimSun}    % 设置中文字体为宋体字体
-    \setCJKmainfont[AutoFakeBold=3]{SimSun} % 设置加粗字体为 SimSun 族，AutoFakeBold 可以调整字体粗细
-    \setmainfont{Times New Roman} % 设置英文字体为Times New Roman
+    \usepackage{fontspec}   % 宏包：字体设置
+        \setmainfont{SimSun}    % 设置中文字体为宋体字体
+        \setCJKmainfont[AutoFakeBold=3]{SimSun} % 设置加粗字体为 SimSun 族，AutoFakeBold 可以调整字体粗细
+        \setmainfont{Times New Roman} % 设置英文字体为Times New Roman
 
 % 各级标题自定义设置
-\usepackage{titlesec}   
-\titleformat{\chapter}[hang]{\normalfont\huge\bfseries\centering}{第\,\thechapter\,章}{20pt}{}
-\titlespacing*{\chapter}{0pt}{-20pt}{20pt} % 控制上方空白的大小
-% section标题自定义设置 
-\titleformat{\section}[hang]{\normalfont\Large\bfseries}{§\,\thesection\,}{8pt}{}
+    \usepackage{titlesec}   
+        \titleformat{\chapter}[hang]{\normalfont\huge\bfseries\centering}{第\,\thechapter\,章}{20pt}{}
+        \titlespacing*{\chapter}{0pt}{-20pt}{20pt} % 控制上下间距
+        % section标题自定义设置 
+        \titleformat{\section}[hang]{\normalfont\Large\bfseries}{§\,\thesection\,}{8pt}{}
+        \titlespacing*{\subsubsection}{0pt}{3pt}{0pt} % 控制上下间距
 % subsubsection标题自定义设置
 %\titleformat{\subsubsection}[hang]{\normalfont\bfseries}{}{8pt}{}
 
@@ -285,14 +286,18 @@
 \section{电路}
 一般来讲，电路的研究内容分为电路分析、电路综合，分别对应电路研究的正问题（已知电路求电路的解）和逆问题（已知解求电路结构参数），本课程的重点在电路分析，对电路综合不深入探讨。
 
-\begin{figure}[H]\centering
-\includegraphics[width=0.5\textwidth]{assets/1,2/11b7879b24f71ddbf3e5316424203201.jpg}
-\caption{\textbf{电路原理与其他电类主要课程的联系}}\label{电路原理与其他电类主要课程的联系}
-\end{figure}
-
 有些电路原理课程习惯用大写英文字母表示不随时间变化的常量，用小写英文字母表示随时间变化的量。在本笔记中，时变量（非恒定量）、瞬时量、微元量均用小写表示，其它情况一般用大写。
 
-
+\begin{figure}[H]\centering
+\begin{subfigure}[t]{0.52\textwidth}\centering
+    \includegraphics[height=130pt]{assets/1,2/11b7879b24f71ddbf3e5316424203201.jpg}
+    \caption{\bfseries 电路原理与其他电类主要课程的联系 }
+\end{subfigure}\begin{subfigure}[t]{0.48\textwidth}\centering
+    \includegraphics[height=130pt]{assets/1,2/电动势与电压.drawio.pdf}
+    \caption{\bfseries 电压与电动势的三种表示方法 }
+\end{subfigure}
+\caption{\bfseries 电路原理与其他电类主要课程的联系、电压与电动势的三种表示方法 }\label{电路原理与其他电类主要课程的联系，电压与电动势的三种表示方法}
+\end{figure}
 
 \section{电流、电压和电势}
 
@@ -302,27 +307,11 @@
 
 电压与电动势参考方向有三种表示方式，分别为结点、正负和箭头，如图 \ref{电压与电动势的三种表示方法} 所示，要特别注意两者方向相反。
 
-\begin{figure}[H]\centering
-\includegraphics[width=0.45\textwidth]{assets/1,2/电动势与电压.drawio.pdf}
-\caption{\textbf{电压与电动势的三种表示方法}}\label{电压与电动势的三种表示方法}
-\end{figure}
-
 电压、电流定义式：
 \begin{equation}
 u_{ab} = \frac{\mathrm{d} w_{ab}}{\mathrm{d}q},\ i_{ab} = \frac{\mathrm{d} q_{ab}}{\mathrm{d}t}
 \end{equation}
 
-部分常见的电路元件如图 \ref{部分常见电路元件} 所示：
-
-
-\begin{figure}[H]\centering
-\begin{subfigure}[t]{0.52\textwidth}\centering
-    \includegraphics[height=160pt]{assets/1,2/7d3f6db847882c6447cc046186ede6ef.jpg}
-\end{subfigure}\begin{subfigure}[t]{0.47\textwidth}\centering
-    \includegraphics[height=160pt]{assets/1,2/3f5d73ec5ae9909ab42cd864852b0d72.jpg}
-\end{subfigure}
-\caption{\bfseries \textbf{部分常见电路元件} }\label{部分常见电路元件}
-\end{figure}
 
 
 端口：封装好的电路元件与电路其它部分的联接点称为端纽、端子或接线端（terminal）。如果从元件的两个端纽看进去满足 $i = -i'$，则这两个端子被称为一个端口（port）
@@ -335,6 +324,21 @@ u_{ab} = \frac{\mathrm{d} w_{ab}}{\mathrm{d}q},\ i_{ab} = \frac{\mathrm{d} q_{ab
 \end{figure}
 
 与外部电路有 $n$ 个端口相连的电路称为 $n$ 端口网络（n-port network）。
+
+部分常见的电路元件如图 \ref{部分常见电路元件} 所示（国家标准）：
+
+\begin{figure}[H]\centering
+\begin{subfigure}[t]{0.52\textwidth}\centering
+    \includegraphics[height=160pt]{assets/1,2/7d3f6db847882c6447cc046186ede6ef.jpg}
+\end{subfigure}\begin{subfigure}[t]{0.47\textwidth}\centering
+    \includegraphics[height=160pt]{assets/1,2/3f5d73ec5ae9909ab42cd864852b0d72.jpg}
+\end{subfigure}
+\caption{\bfseries \textbf{部分常见电路元件} }\label{部分常见电路元件}
+\end{figure}
+
+
+
+
 
 \section{电路分析基本观点}
 
@@ -352,24 +356,24 @@ $R, L, C$ 被称为电路基本模型，是电路分析的最基本模型。对�
 
 \section{电路信号处理}
 
-电路信号可分为 图 \ref{信号分类} 中的几类，它们的示意图如 图 \ref{信号示意图} 所示： 
+电路信号可分为图 \ref{信号分类、信号示意图} (a) 中的几类，它们的示意图如图 \ref{信号分类、信号示意图} (b) 所示： 
 
 \begin{figure}[H]\centering
-\includesvg[width=0.7\textwidth]{assets/1,2/信号分类.drawio.svg}
-\caption{\textbf{信号分类}}\label{信号分类}
-\end{figure}
-
-\begin{figure}[H]\centering
-\includegraphics[width=0.75\textwidth]{assets/1,2/1b9e0bed85e1f3a049de96f4c6018da8.jpg}
-\caption{\textbf{信号示意图}}\label{信号示意图}
+\begin{subfigure}[t]{0.52\textwidth}\centering
+    \includesvg[height=75pt]{assets/1,2/信号分类.drawio.svg}
+    \caption{\bfseries 信号分类 }
+\end{subfigure}\begin{subfigure}[t]{0.48\textwidth}\centering
+    \includegraphics[height=75pt]{assets/1,2/1b9e0bed85e1f3a049de96f4c6018da8.jpg}
+    \caption{\bfseries 信号示意图 }
+\end{subfigure}
+\caption{\bfseries 信号分类、信号示意图 }\label{信号分类、信号示意图}
 \end{figure}
 
 \section{电路能量处理}
 
-
 \begin{definition}[功率]
 
-二端元件吸收的瞬时功率（instantaneous power）为其单位时间内吸收的电能\footnote{在非关联参考方向下，吸收的瞬时功率为 $p = -ui$}：
+二端元件吸收的瞬时功率（instantaneous power）为其单位时间内吸收的电能\footnote{在非关联参考方向下，瞬时吸收功率 $p = -ui$}：
 \begin{equation*}
 p(t) = \frac{\mathrm{d}w}{\mathrm{d}t} = \frac{\mathrm{d}w}{\mathrm{d}q}\cdot\frac{\mathrm{d}q}{\mathrm{d}t} = u(t)i(t) 
 \end{equation*}
@@ -422,30 +426,37 @@ p(t) = \frac{\mathrm{d}w}{\mathrm{d}t} = \frac{\mathrm{d}w}{\mathrm{d}q}\cdot\fr
 
 \section{其它}
 
-\begin{definition}[电路的基本名词]
-以图 \ref{电路基本名词} 为例：
-\begin{enumerate}
-\item 支路：若干元件无分岔地首尾相连构成一条支路。图里有三条支路（竖向的），因此 $p = 3$。
-\item 节点（node）：3个或更多支路的连接点。图中 $n = 4$。 
-\item 路径（path）：两个节点间包含的支路个数。
-\item 回路（loop）：由支路构成的闭合路径。图中 $l = 7$
-\item 网格（mesh）：平面电路中不与其余支路相交的回路，即最小网格数。图中 $m = 3$
-\end{enumerate}
-
-\begin{figure}[H]\centering
-\includesvg[width=0.35\textwidth]{assets/1,2/电路基本名词.drawio.svg}
-\caption{\textbf{电路基本名词}}\label{电路基本名词}
-\end{figure}
-
-\end{definition}
 
 
-\chapter{简单电阻电路}
+
+\begin{center}\noindent\begin{minipage}{0.65\textwidth}
+    \begin{definition}[电路的基本名词]
+    以图 \ref{电路基本名词} 为例：
+    \begin{enumerate}
+    \item 支路：若干元件无分岔地首尾相连构成一条支路。图里有三条支路（竖向的），因此 $p = 3$。
+    \item 节点（node）: 3个或更多支路的连接点。图中 $n = 4$。 
+    \item 路径（path）: 两个节点间包含的支路个数。
+    \item 回路（loop）: 由支路构成的闭合路径。图中 $l = 7$
+    \item 网格（mesh）: 平面电路中不与其余支路相交的回路，即最小网格数。图中 $m = 3$
+    \end{enumerate}
+    \end{definition}
+\end{minipage}\hfill\begin{minipage}{0.35\textwidth}
+    \begin{figure}[H]\centering
+        \includesvg[width=\textwidth]{assets/1,2/电路基本名词.drawio.svg}
+        \caption{\textbf{电路基本名词}}\label{电路基本名词}
+    \end{figure}
+\end{minipage}\end{center}
+
+
+
+
+
+\chapter{简单电阻电路}\thispagestyle{fancy}
 \section{电阻}
 设一均匀线性电阻微元长 $\mathrm{d} l$，横截面积为 $\mathrm{d}S$，电阻率为 $\sigma$，则阻值为
 \begin{gather}
-    \mathrm{d}R = \frac{\mathrm{d} l}{\sigma\mathrm{d}S} \Longrightarrow R = \frac{L}{\sigma S} = \frac{\rho L}{S} \\
-\text{串联：}\ R = \sum_{i}R_i\ , \ \ 
+    \mathrm{d}R = \frac{\mathrm{d} l}{\sigma\mathrm{d}S} \Longrightarrow R = \frac{L}{\sigma S} = \frac{\rho L}{S},\quad 
+\text{串联：}\ R = \sum_{i}R_i,\quad 
 \text{并联：}\ \frac{1}{R} = \sum_{i}\frac{1}{R_i} 
 \end{gather}
 
@@ -490,11 +501,10 @@ p(t) = \frac{\mathrm{d}w}{\mathrm{d}t} = \frac{\mathrm{d}w}{\mathrm{d}q}\cdot\fr
 i = \sigma E\ ,\ \ q =  \sigma E^2 = \frac{1}{\sigma} i^2  
 \end{equation}
 
-二极管模型：
+二极管模型如下，其中 $I_{\mathrm{S}}$ 为反向饱和电流（硅二极管典型值为 $10^{-12}$ A），$U_{TH}$ 为常数（典型值 25 mV）。
 \begin{equation}
 i = I_{\mathrm{S}}\left(e^{\frac{u}{U_{\mathrm{TH}}}} - 1\right)
 \end{equation}
-其中 $I_{\mathrm{S}}$ 为反向饱和电流（硅二极管的典型值为 $10^{-12}$ A），$U_{TH}$ 为常数（典型值 25 mV）。
 
 伏安特性曲线（$u$-$i$ 特性曲线，voltage current relationship，VCR）的表达式为 $i = f(u)$ 或 $f(u,i) = 0$，
 到目前为止，我们讨论的电阻 $u$-$i$ 特性曲线都在平面的一三象限（正电阻），后文我们将在等效观念指导下用运算放大器来实现负电阻性质。
@@ -529,30 +539,6 @@ i = I_{\mathrm{S}}\left(e^{\frac{u}{U_{\mathrm{TH}}}} - 1\right)
 
 分析含受控源电路时需要注意，受控源性质和独立源有本质差别，不应简单等同。
 \end{definition}
-
-
-\section{MOSFET（金属氧化物半导体场效应晶体管）}
-\noindent % 避免第一栏内容产生缩进  
-\begin{minipage}[t]{0.69\textwidth} % 左栏  
-
-\hspace{2em} MOSFET standing for ``metal oxide semiconductor field effect transistor''，右图是一个 N MOSFET 的示意图，三个端纽分别称为栅极 G、源级 S 和漏级 D。
-
-\hspace{2em} 由于 MOSFET 结构上的特点，没有电流流经栅极 G，因此可以把 D-S 看作一个二端元件，研究其伏安特性曲线 VCR。栅极和源级之间的电压 $u_{GS}$ 会对 VCR 产生影响，主要表现为 D-S 开路或非开路。N MOS 管可视为一个非线性的 VCVS。
-
-\hspace{2em} 使得 D-S 之间不再开路的电压阈值称为阈值电压，记为 $U_T$（典型值为 1 V）。对一个非开路的 D-S VCR，大致可分为两段：电阻区（斜线区）和恒流区（水平线区）。
-\end{minipage}%  
-\hfill % 填充空白以使两栏间无间隙  
-\begin{minipage}[t]{0.3\textwidth} % 右栏  
-\begin{figure}[H]\centering
-    \includesvg[width=\textwidth]{assets/1,2/MOS管符号.drawio.svg}
-    \caption{\textbf{N MOS 示意图}}\label{N MOS 示意图}
-\end{figure}
-\end{minipage}\vfill
-
-可以证明，$u_{\mathrm{GS}}$ 和 $i_{\mathrm{DS}, max}$ 是非线性关系。其中 $K$ 为常数（典型值 1 $\mathrm{mA V^{-2}}$），$U_{\mathrm{T}}$ 为阈值电压。
-\begin{equation}
-    i_{\mathrm{DS}, max} = \frac{K}{2}(u_{\mathrm{GS}} - U_{\mathrm{T}})^2
-\end{equation}
 
 
 
@@ -892,7 +878,7 @@ u_i - iR_1 = u_1,\quad u_1 - iR_f = -Au_1 \Longrightarrow I =(1+A) \frac{u_1}{R_
 \end{figure}
 
 
-\begin{definition}[压控电流源 VCCS]
+\subsubsection{压控电流源 VCCS: }
 当输出电压 $u_o$ 在线性区时（受 $u_i$ 和负载 $R_L$ 影响），构成一个压控电流源。
 \begin{enumerate}
 \item 输出电流（负载电流）：$i_o = \frac{u_i}{R_1}$
@@ -900,7 +886,6 @@ u_i - iR_1 = u_1,\quad u_1 - iR_f = -Au_1 \Longrightarrow I =(1+A) \frac{u_1}{R_
 \item 输出电阻：$R_o =  0$（$R_L$ 两端是输出端）
 \item 电压特性：$u_o = (1+\frac{R_L}{R_1})u_i$
 \end{enumerate}
-\end{definition}
 
 
 \begin{definition}[负电阻]
@@ -911,11 +896,12 @@ u_i - iR_1 = u_1,\quad u_1 - iR_f = -Au_1 \Longrightarrow I =(1+A) \frac{u_1}{R_
 \end{enumerate}
 \end{definition}
 
+\subsection{其它含 OPA 的电路}
+
+电压比较器、正反馈 IOPA、滞回比较器等，详见教材 \cite[Page 66]{电路原理}。
 
 
-
-
-\subsection{线性运算器（自设计）}
+\subsection{自设计线性运算器}
 图 \ref{自设计线性运算器} 是在加法器、减法器的基础上，自己设计的线性运算器，它可以实现任意数量的输入（电压）信号的任意线性运算。事实上，在此线性运算器中，电阻 $R_M$ 和电阻 $R_P$ 是关键，因为在正相信号间的比例、反相信号间的比例分别确定时，这两个电阻实现了正信号和负信号之间的比例调整，使得最终输出的正、负信号可以任意大或任意小（最小即为 0，不占任何比例）。
 
 图中，红色端是加法信号，蓝色端是减法信号，绿色端为公共地（可只保留一个）。
@@ -993,7 +979,7 @@ u_o =
 
 \subsection{自设计线性运算器的两个关键电阻}
 
-回到刚刚的问题，在图 \ref{} 中，考虑没有电阻 $R_p$ 的情况，也即令 $R_p = \infty$。此时，对于给定的 $R_1, R_2, R_3, R_4$，减法总系数范围仍为 $[0,\ \infty)$，但加法的总系数范围却是 $[\frac{1}{R_1} + \frac{1}{R_2} ,\ \infty)$。
+回到刚刚的问题，在图 \ref{自设计线性运算器} (a) 中，考虑没有电阻 $R_p$ 的情况，也即令 $R_p = \infty$。此时，对于给定的 $R_1, R_2, R_3, R_4$，减法总系数范围仍为 $[0,\ \infty)$，但加法的总系数范围却是 $[\frac{1}{R_1} + \frac{1}{R_2} ,\ \infty)$。
 
 考虑两个电阻都没有的情况，令 $R_p = R_m = \infty$，则减法部分总系数为 1 不可改变，加法的总系数范围 $[\frac{1}{R_1} + \frac{1}{R_2} ,\ \infty)$
 
@@ -1046,7 +1032,7 @@ u_o =
 \cdot
 \begin{bmatrix}
     u_2\\ 
-    i_2\\
+    {\color{red} -i_2}\\
 \end{bmatrix} 
 ,\quad 
 \begin{bmatrix}
@@ -1078,11 +1064,7 @@ u_o =
 \end{table}
 
 其中 $\boldsymbol{R}$ 参数的 $R_{11}$ 和 $R_{22}$ 分别两个端口的输入电阻。
-
-互易、对称二端口的概念不提，相关总结见图 \ref{二端口相关概念}。
-
-\subsection{参数矩阵间的转换与等效电路}
-$\boldsymbol{G}$ 与 $\boldsymbol{R}$ 矩阵之间满足 $\boldsymbol{G}^{-1} = \boldsymbol{R}$（如果可逆），其它关系见图 \ref{参数矩阵间的关系与等效电路}。
+互易、对称二端口的概念不提，相关总结见图 \ref{二端口相关概念}。多个二端口网络级联\footnote{级联是二端口电路连接方式的一种，常见的连接方式有串联、并联、级联等，在后文会讨论}时，总参数矩阵是各网络参数矩阵的乘积。
 
 \subsection{输入电阻与输出电阻}
 \begin{LineTheorem}[戴维宁定理]\label{戴维宁定理}
@@ -1106,10 +1088,136 @@ $\boldsymbol{G}$ 与 $\boldsymbol{R}$ 矩阵之间满足 $\boldsymbol{G}^{-1} = 
 \caption{\bfseries 参数矩阵间的关系与等效电路}\label{参数矩阵间的关系与等效电路}
 \end{figure}
 
+\subsection{参数矩阵间的转换与等效电路}
+$\boldsymbol{G}$ 与 $\boldsymbol{R}$ 矩阵之间满足 $\boldsymbol{G}^{-1} = \boldsymbol{R}$（如果可逆），其它关系见图 \ref{参数矩阵间的关系与等效电路}。
+
+一个{\color{red} 不含独立源 }的二端口网络可以用一个简单的二端口来等效，满足所需的参数矩阵相同即可。具体我们不谈，详见教材。
+
+\subsection{二端口的常见连接方式}
+
+\begin{table}[H]\centering
+    %\renewcommand{\arraystretch}{1.5} % 调整行间距为 1.5 倍
+    %\setlength{\tabcolsep}{1.5mm} % 调整列间距
+    \caption{\textbf{二端口的六种常见连接方式}}
+    \label{二端口的六种常见连接方式}
+\begin{tabular}{cccccccccc}\toprule
+    连接方式 & 参数矩阵 & 连接方式 & 参数矩阵 & 连接方式 & 参数矩阵\\
+    \midrule
+    级联  &  $\boldsymbol{T} = \boldsymbol{T_1}\cdot \boldsymbol{T_2}$    &   串联 & $\boldsymbol{R} = \boldsymbol{R_1} \cdot \boldsymbol{R_2}$ & 串并联 & $\boldsymbol{H} = \boldsymbol{H_1} + \boldsymbol{H_2}$ \\ 
+    负级联 &  $\boldsymbol{T} = -\boldsymbol{T_1}\cdot \boldsymbol{T_2}$  &   并联 & $\boldsymbol{G} = \boldsymbol{G_1}\cdot \boldsymbol{G_2}$ & 并串联 & $\boldsymbol{H^{-1}} = \boldsymbol{H_1^{-1}} + \boldsymbol{H_2^{-1}}$\\ 
+    \bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[H]\centering
+\begin{subfigure}[t]{0.42\textwidth}\centering
+    \includegraphics[height=60pt]{assets/2/级联.png}
+    \caption{\bfseries 级联 }
+\end{subfigure}\begin{subfigure}[t]{0.58\textwidth}\centering
+    \includegraphics[height=60pt]{assets/2/负级联.png}
+    \caption{\bfseries 负级联 }
+\end{subfigure}
+\caption{\bfseries 二端口级联、负级联}
+\end{figure}
+
+\begin{figure}[H]\centering
+\begin{subfigure}[t]{0.46\textwidth}\centering
+    \includegraphics[height=120pt]{assets/2/串联.png}
+    \caption{\bfseries 串联 }
+\end{subfigure}\begin{subfigure}[t]{0.54\textwidth}\centering
+    \includegraphics[height=120pt]{assets/2/并联.png}
+    \caption{\bfseries 并联 }
+\end{subfigure}
+\caption{\bfseries 二端口串联、并联 }
+\end{figure}
+
+\begin{figure}[H]\centering
+\begin{subfigure}[t]{0.5\textwidth}\centering
+    \includegraphics[height=100pt]{assets/2/串并联.png}
+    \caption{\bfseries 串并联 }
+\end{subfigure}\begin{subfigure}[t]{0.5\textwidth}\centering
+    \includegraphics[height=100pt]{assets/2/并串联.png}
+    \caption{\bfseries 并串联 }
+\end{subfigure}
+\caption{\bfseries 二端口串并联、并串联 }
+\end{figure}
 
 
+\section{MOSFET（金属氧化物半导体场效应晶体管）}
+
+\subsection{MOSFET 基本概念}
+
+MOSFET standing for Metal Oxide Semiconductor Field Effect Transistor，它是数字电路的核心元素。小功率 FET 有 JFET、MOSFET，大功率 FET 有 VDMOS、IGBT 等，本课程主要面向 MOSFET。
+图 \ref{N-MOS 示意图} 是一个 N-MOS 的示意图（ANSI 标准），三个接线端分别称为栅极 G、源级 S 和漏级 D。
+
+由于 MOSFET 结构上的特点，没有电流流经栅极 G，因此可以把 D-S 看作一个二端元件，研究其伏安特性曲线 VCR。栅极和源级之间的电压 $u_{\text{GS}}$ 会对 VCR 产生影响，主要表现为 D-S 开路（称为截止区）或非开路。在非开路情况下（$u_{\text{GS}}$ 超过阈值电压），$u_{\text{DS}}$ 会影响通过的电流 $i_{\text{DS}}$。总而言之，MOS 管可视为一个非线性的 VCVS。
+
+\subsection{MOSFET 外特性}
+
+MOS 的外特性总结如下：
+\begin{enumerate}
+\item 阈值电压 $U_T$: 使得 D-S 之间不再开路的电压阈值称为阈值电压（典型值为 1 V）
+\item 绝缘性：栅极 G 与其它电极绝缘，有 $i_{\text{GS}} = i_{\text{GD}} = 0$。
+\item 最大电流 $i_{\text{DS},\text{max}}$：在非开路情况下，$i_{\text{DS},\text{max}} = \frac{K}{2}(u_{\text{GS}} - U_T)^2$，其中 $K$ 为常数（典型值 1 $\mathrm{mA\cdot V^{-2}}$）。
+\item 导通电阻 $R_{\text{ON}}$: 在线性区时，MOS 管在 D-S 端体现出的电阻大小。
+\item 电流特性 $i_{\text{DS}}$: MOS 管的电流特性可采取如下近似模型
+\begin{equation}
+i_{\text{DS}} = 
+\begin{cases}
+    0 & u_{\text{GS}} < U_T \\
+    \frac{K}{2}(u_{\text{GS}} - U_T)^2\cdot \frac{u_{\text{DS}}}{(u_{\text{DS}} - U_T)} & u_{\text{GS}} \geq U_T\ \& \ u_{\text{DS}} < u_{\text{GS}} - U_T \\ 
+    \frac{K}{2}(u_{\text{GS}} - U_T)^2 & u_{\text{GS}} \geq U_T\ \& \ u_{\text{DS}} \geqslant u_{\text{GS}} - U_T \\ 
+\end{cases}
+\end{equation}
+\end{enumerate}
+
+
+%\begin{figure}[H]\centering
+%    \includesvg[width=0.35\textwidth]{assets/1,2/MOS管符号.drawio.svg}
+%    \caption{\textbf{N-MOS 示意图}}\label{N-MOS 示意图}
+%\end{figure}
+
+举个例子，$U_T = 1$ V，$K = 1\ \mathrm{mA \cdot V^{-2}}$ 时，MOS 管的电流特性如图 \ref{MOS 管的 iDS 电流特性} 所示\footnote{Matlab 源码见附录 \ref{MOS 管的 iDS 电流特性源码}}。
+
+\begin{figure}[H]\centering
+\begin{subfigure}[t]{0.67\textwidth}\centering
+    \includegraphics[height=135pt]{assets/2/MOS管外特性.pdf}
+    \caption{\bfseries $i_{\text{DS}} = i_{\text{DS}}(u_{\text{DS}}, u_{GS})$ 的函数图像 }
+\end{subfigure}\begin{subfigure}[t]{0.33\textwidth}\centering
+    \includegraphics[height=135pt]{assets/2/MOS管外特性 (2).pdf}
+    \caption{\bfseries 在给定 $U_{GS}$ 下 $i_{\text{DS}} = i_{\text{DS}}(u_{\text{DS}})$ 的函数图像 }
+\end{subfigure}
+\caption{\bfseries MOS 管的 $i_{\text{DS}}$ 电流特性 }\label{MOS 管的 iDS 电流特性}
+\end{figure}
+
+\subsection{MOSFET 等效电路}
+
+依 MOS 管的外特性，可分为三个区，截止区、线性区和恒流区，分别对应三个等效电路，如下图所示：
+\begin{figure}[H]\centering
+\includegraphics[width=0.5\textwidth]{assets/2/MOS管等效电路.png}
+\caption{\bfseries MOS 管等效电路}\label{MOS管等效电路}
+\end{figure}
 
 \section{数字系统}
+
+\subsection{数字化的必要性}
+数字化就是离散化：时间离散化和数值离散化。离散化可视为一定形式的特征提取，将一定范围内的信号值集总为一个值。数字化后，信号处理变得丰富多彩，且极大的削弱了噪声的影响。除了无法实现放大、振荡等少数信号处理方法，滤波、变频、调制解调都可以通过数字电路实现。数据压缩、解编码等在模拟系统中难以实现的信号变化功能在数字系统中很容易实现。
+
+但也有一些场合不适合或无法数字化，例如放大器、振荡器、ADC 和 DAC 模拟端的滤波器、高频信号数字化成本高、信息处理量极大等情况。
+
+\subsection{信号的离散化}
+
+\subsubsection{多数位量化：}
+最简单的量化是离散为 1 位数字信号（1 个二进制位），即划定电压分界值，电压信号大于此值时取 1，否则取 0。一般情况下，我们将电压范围 $[u_{\text{min}},\ u_{\text{max}}]$ 离散为 $2^n$ 个数值（即划分为 $2^n$ 个区间），共 $(2^n + 1)$ 个分界值，类似 linspace($u_{\text{min}}$, $u_{\text{max}}$, $2^n+1$)，最终得到数字信号 $0, 1, 2, \cdots, 2^n - 1$。
+
+为了传递这些数字信号，最常见的方法是（n 条线）并行传输，也可以串行传输（比较少）。
+
+\subsubsection{量化单位 $\Delta$: }
+量化单位指等距离散后两相邻离散值的距离，记为 $\Delta$，$1\  \Delta = 1\  \text{LSB} =  \frac{u_{\text{max}} - u_{\text{min}}}{2^n}$。当 $u_{\text{min}} = 0$ 时，也是离散值为 1 的信号对应的电压值。量化单位越小，量化误差越小，最大量化误差为 $\frac{\Delta }{2}$。
+
+例如，将 $[0,\ 5\ \mathrm{V}]$ 的模拟信号离散为 3 位数字信号（3 个二进制位），此时 $1\  \Delta = 0.625\ \mathrm{V}$，最大量化误差为 0.3125 V。
+
+
 \section{门电路}
 
 \chapter{线性电阻电路}
@@ -1657,8 +1765,48 @@ $\boldsymbol{G}$ 与 $\boldsymbol{R}$ 矩阵之间满足 $\boldsymbol{G}^{-1} = 
 \renewcommand{\thefigure}{B.\arabic{figure}} 
 \renewcommand{\thetable}{B.\arabic{table}}
 
-\section{图 \ref{振幅系数随入射角的变化} 源码}
+\section{图 \ref{MOS 管的 iDS 电流特性} 源码}\label{MOS 管的 iDS 电流特性源码}
 \begin{matlablisting}
+% MOSFET 外特性
+
+K = 1 * 10^(-3);
+U_T = 1;
+
+i_DS = @(u_DS, u_GS, U_T, K) ... 
+    (u_GS > U_T).*(   ...
+        (u_DS < (u_GS - U_T)) .* K/2.*(u_GS - U_T).*u_DS + (~(u_DS < (u_GS - U_T))) .* K/2.*(u_GS - U_T).^2  ...
+    );
+
+u_GS_array = linspace(0, 3, 50);
+u_DS_array = linspace(0, 2*(3 - U_T), 100);
+Z = zeros(length(u_GS_array), length(u_DS_array));
+for i = 1:length(u_GS_array)
+    Z(i, :) = i_DS(u_DS_array, u_GS_array(i) , U_T, K);
+end
+
+stc = MyMesh(u_DS_array, u_GS_array, Z, 1);
+stc.axes_left.XLabel.String =  '$u_{DS}$ (V)';
+stc.axes_left.YLabel.String =  '$u_{GS}$ (V)';
+stc.axes_left.ZLabel.String =  '$i_{DS}$ (A)';
+stc.axes_right.XLabel.String =  '$u_{DS}$ (V)';
+stc.axes_right.YLabel.String =  '$u_{GS}$ (V)';
+stc.title.String = '';
+%MyExport_pdf_modal
+
+stc = MyPlot(u_DS_array, [i_DS(u_DS_array, 3 , U_T, K); i_DS(u_DS_array, 2.5 , U_T, K); i_DS(u_DS_array, 2 , U_T, K); i_DS(u_DS_array, 1.5 , U_T, K); i_DS(u_DS_array, 0 , U_T, K)]);
+stc.leg.Interpreter = 'latex';
+stc.leg.FontSize = 12;
+stc.leg.Location = 'northwest';
+stc.label.x.String = '$u_{DS}$ (V)';
+stc.label.y.String = '$i_{DS}$ (A)';
+stc.axes.Title.String = '';
+hold on 
+p = plot(linspace(0, 2, 40), K/2.*(linspace(0, 2, 40) + 1 - U_T).^2);
+p.LineStyle = '-.';
+p.LineWidth = 0.8;
+p.Color = [0.6, 0.6, 0.6];
+stc.leg.String = ["$u_{GS} = 3$ V"; "$u_{GS} = 2.5$ V"; "$u_{GS} = 2$ V"; "$u_{GS} = 1.5$ V"; "$u_{GS} = 0$ V"; "$\frac{K}{2}(U_{GS} - U_{T})^2$"];
+%MyExport_pdf
 \end{matlablisting}
 
 

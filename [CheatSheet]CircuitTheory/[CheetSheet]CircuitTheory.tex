@@ -238,8 +238,8 @@
 % 开始编辑文章
 
 \begin{document}
-\begin{multicols}{4}     % 多栏排版
-    \setlength{\columnsep}{1cm}  % 设置栏间距
+\begin{multicols*}{3}     % 多栏排版， * 号表示排满才换列
+    %\setlength{\columnsep}{1cm}  % 设置栏间距 (好像无效)
 \zihao{7}                % 设置全文字号大小, -4 为小四, 5 为五号
 
 % ------------------------ 封面序言与目录 ------------------------ %
@@ -357,6 +357,7 @@
 u_A = \frac{\frac{u_1}{R_1} + \frac{u_2}{R_2}}{\frac{1}{R_1} + \frac{1}{R_2} + \frac{1}{R_p}}
 \end{equation}
 
+{\par\color{gray}\small
 $u_A$ 的推导，除了列 KCL, KVL 硬解之外，还可以这样：先将 $R_p$ 断路，这样 $u_2, R_2, u_1, R_1$ 构成并联的两个实际电压源（自带电阻），容易求得此时点 A 的电势 $u_A$，并做数学上的形式变换：
 \begin{equation}
 u_A = \frac{R_2u_1 + R_1u_2}{R_1+R_2} =\frac{\frac{u_1}{R_1} + \frac{u_2}{R_2}}{\frac{1}{R_1} + \frac{1}{R_2} }
@@ -366,6 +367,7 @@ u_A = \frac{R_2u_1 + R_1u_2}{R_1+R_2} =\frac{\frac{u_1}{R_1} + \frac{u_2}{R_2}}{
     u_A = \frac{\frac{u_1}{R_1} + \frac{u_2}{R_2} + \frac{u_p}{R_p}}{\frac{1}{R_1} + \frac{1}{R_2} + \frac{1}{R_p}}
 \end{equation}
 再令 $u_p = 0$，即得图 \ref{自设计线性运算器} 中的原始 $u_A$。
+\par}
 
 再考虑左侧的电流组，并利用虚断：
 \begin{align}
@@ -569,7 +571,7 @@ u_o =
 
 % --------------------------- 附录 --------------------------- %
 % >> ------------------------ 附录 ------------------------ << %
-\end{multicols}
+\end{multicols*}
 \end{document}
 
 

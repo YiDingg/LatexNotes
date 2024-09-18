@@ -189,17 +189,19 @@
         \setCJKmainfont[AutoFakeBold=3]{SimSun} % 设置加粗字体为 SimSun 族，AutoFakeBold 可以调整字体粗细
         \setmainfont{Times New Roman} % 设置英文字体为Times New Roman
 
-% 文章序言设置
-    \newcommand{\cnabstractname}{序言}
-    \newenvironment{cnabstract}{%
-        \par\Large
-        \noindent\mbox{}\hfill{\bfseries \cnabstractname}\hfill\mbox{}\par
-        \vskip 2.5ex
-        }{\par\vskip 2.5ex}
-
-% 参考文献引用设置
-    \bibliographystyle{unsrt}   % 设置参考文献引用格式为unsrt
-    \newcommand{\upcite}[1]{\textsuperscript{\cite{#1}}}     % 自定义上角标式引用
+% 其它设置
+    % 脚注设置
+    \renewcommand\thefootnote{\ding{\numexpr171+\value{footnote}}}
+    % 参考文献引用设置
+        \bibliographystyle{unsrt}   % 设置参考文献引用格式为unsrt
+        \newcommand{\upcite}[1]{\textsuperscript{\cite{#1}}}     % 自定义上角标式引用
+    % 文章序言设置
+        \newcommand{\cnabstractname}{序言}
+        \newenvironment{cnabstract}{%
+            \par\Large
+            \noindent\mbox{}\hfill{\bfseries \cnabstractname}\hfill\mbox{}\par
+            \vskip 2.5ex
+            }{\par\vskip 2.5ex}
 
 % 各级标题自定义设置
     \usepackage{titlesec}   
@@ -694,10 +696,10 @@ g(z) = u_g(x,y) + iv_g(x,y),\quad u_g(x,y) = u(x,-y),\ v_g(x,y) = -v(x,-y)
 
 
 \begin{enumerate}
-\item 当 $f(z) = C \in \C, \forall\ z \in G$，也即 $f(z)$ 恒为常量时：$\arg f(z)$ 也为常量，设 $\arg f(z) = a + ib$，则 $a = \arg f(z) \in R$ 而 $b=0$，自然满足 $\Delta a = \Delta b =0$，因此 $\arg f(z)$ 为调和函数。
+\item 当 $f(z) = C \in \C, \forall\ z \in G$，也即 $f(z)$ 恒为常量时：$\arg f(z)$ 也为常量，设 $\arg f(z) = a + ib$，则 $a = \arg f(z) \in R$ 而 $b=0$，自然满足 $\Delta\, a = \Delta\, b =0$，因此 $\arg f(z)$ 为调和函数。
 \item 当 $f(z)$ 是非常量函数时：
 
-由 $\ln z = \ln | z | + \arg z$，令 $f(z) = \rho\cdot e^{i\arg z}$，则有：
+由 $\ln z = \ln | z | + i\arg z$，移项，并作映射 $z \to f(z)$，则有：
 \begin{equation*}
 \arg f(z) = \frac{1}{i}\left(\ln f(z) - \ln \rho\right)
 \end{equation*}
@@ -731,36 +733,56 @@ $f(z)$ 非常量，因此 $u,v$ 非常量，因此只能有：
 \end{enumerate}
 
 {\par\color{gray}\small
-后补：
+后补：即使仅从解析性的角度来看，上面的过程也没有抓到主要矛盾，是舍本逐末了。因为无论 $f(z)$ 的性质如何，$\arg f(z)$ 始终是 $\C \longrightarrow \R$ 的函数，这表明 $\arg f(z)$ 是实部是它本身而虚部恒为 0，因此，由 C-R 条件可知 $\arg f(z)$ 解析的必要条件是实部为常数，而这也是充分条件。 
+
+对 $\arg f(z)$ 的调和性，我们有如下推导：
+\begin{equation}
+\arg f(z) = \arctan \frac{u(x,y)}{v(x,y)} + A,\quad A \in \{ 0, \pi\}
+\end{equation}
+令 $g(z) = \arg f(z)$，则有：
+\begin{equation}
+g_x' = \frac{uv_x' - u_x'v}{u^2 + v^2},\quad g_{xx}'' = \frac{1}{(u^2 + v^2)^2}\left[
+    (u^2 + v^2)(uv_{xx}'' + u_{xx}'' v) - 2 uv(v_x^2-u_x^2) - 2(u^2- v^2)u_x'v_x' 
+\right]
+\end{equation}
+对 $y$ 求导也是同理，只需将上面的角标 $x$ 换为 $y$，于是有 $\Delta\, g$: 
+\begin{align*}
+    \Delta\, g 
+    &= g_{xx}'' + g_{yy}'' \\ 
+    &= \frac{1}{(u^2 + v^2)^2}\left[
+    (u^2 + v^2)(u(v_{xx}'' + v_{yy}'') + (u_{xx}'' + u_{yy}'') v)- 2 uv(v_x^2 + v_y^2-u_x^2-u_y^2) - 2(u^2- v^2)(u_x'v_x' + u_y'v_y')  
+\right]
+\end{align*}
+$f$ 解析意味着 $u, v$ 构成一对共轭调和函数，有 $\Delta\, u = \Delta\,  v = 0$，代入上式，再代入 C-R 条件，容易验证右边为 0，也即证明了 $\Delta\, g = 0$，因此 $\arg f(z)$ 为调和函数。对 $u^2 + v^2 = 0$ 的情况，我们不再赘述，只关心普遍结论。
 \par}
 
 
 \section{从已知的实虚部求出解析函数 $f(z)$}
 
 \begin{enumerate}
-\item $u = e^x(x\cos y - y\sin y) + 2\sin x \cdot \sin hy + x^3 - 3xy^2 +y$
+\item $u = e^x(x\cos y - y\sin y) + 2\sin x \cdot \sinh y + x^3 - 3xy^2 +y$
 
 \begin{gather}
-u_x' = e^x(x\cos y -y\sin y + \cos y) + 2\cos x \sin hy +3x^2 - 3y^2 \\ 
-u_y' = e^x(-x\sin y - \sin y - y\cos y ) + 2h \sin x \cos hy - 6xy +1
+u_x' = e^x(x\cos y -y\sin y + \cos y) + 2\cos x \sinh y +3x^2 - 3y^2 \\ 
+u_y' = e^x(-x\sin y - \sin y - y\cos y ) + 2\sin x \cosh y - 6xy +1
 \end{gather}
 由 C-R 条件，$v_x' = -u_y',\ v_y' = u_x'$，于是得到：
 \begin{align}
 v(x,y) 
 &= \int (-u_y')\mathrm{d}x + \int (-3y^2) \mathrm{d}y \\
-&= (x-1)e^x\sin y  + (\sin y +y \cos y) e^x + 2h \cos x \cos hy + 3x^2y - x - y^3 + C\\ 
-&= (x\sin y + y\cos y)e^x + 2h\cos x \cos hy + 3x^2y -x -y^3 + C,\ C \in \R
+&= (x-1)e^x\sin y  + (\sin y +y \cos y) e^x + 2\cos x \cosh y + 3x^2y - x - y^3 + C\\ 
+&= (x\sin y + y\cos y)e^x + 2\cos x \cosh y + 3x^2y -x -y^3 + C,\ C \in \R
 \end{align}
 
 令 $(x,y) = (z,0)$，得到：
 \begin{gather}
-u(z,0) = ze^z + z^3,\quad v(z,0) = 2h\cos z - z +C,\ C \in \R
+u(z,0) = ze^z + z^3,\quad v(z,0) = 2\cos z - z +C,\ C \in \R
 \end{gather}
 于是得到 $f(x,y)$:
 \begin{equation*}
 f(z) = \left[u(x,y) + iv(x,y)\right]_{x=z,y=0}
 = 
-(ze^z + z^3) + i(2h\cos z -z +C),\ C \in \R
+(ze^z + z^3) + i(2\cos z -z +C),\ C \in \R
 \end{equation*}
 
 
@@ -772,12 +794,16 @@ v_x' = \frac{2x}{x^2 + y^2} + 1, \quad v_y' = \frac{2y}{x^2 + y^2} -2
 由 C-R 条件，$u_x' = v_y',\ u_y' = -v_x'$，于是得到：
 \begin{align}
 u(x,y) 
-= \int v_y' \mathrm{d}x +  \int (-1)\mathrm{d}y = \frac{2}{y}\arctan \frac{x}{y} - 2x -y + C
+= \int v_y' \mathrm{d}x +  \int (-1)\mathrm{d}y = 2\arctan \frac{x}{y} - 2x -y + C
 \end{align}
 \begin{equation*}
-f(x,y) = u + iv = (\frac{2}{y}\arctan \frac{x}{y} - 2x -y + C) + i(\ln (x^2 + y^2) + x -2y),\ C \in \R
+f(x,y) = u + iv = (2\arctan \frac{x}{y} - 2x -y + C) + i(\ln (x^2 + y^2) + x -2y),\ C \in \R
 \end{equation*}
 \end{enumerate}
+{\par\color{gray}\small
+后补，这里之所以没有令 $(x,y) = (z,0)$ 得到 $f(z)$，是因为函数 $\arctan \frac{x}{y}$ 在实轴附近是不连续的，例如在正实轴 $x>0$ 附近，$\lim_{y \to 0^+}$ 时趋于 $+\infty$ 而 $\lim_{y \to 0^-}$ 时趋于 $-\infty$。而映射 $(x,y) = (z,0)$ 的必要条件是解析域中包含实轴，这涉及到解析延拓的内容，我们不提。只需要写到 $f(x,y)$ 的形式就这样放着即可。
+\par}
+
 
 \section{求下列函数的值}
 \begin{enumerate}
@@ -795,7 +821,7 @@ f(x,y) = u + iv = (\frac{2}{y}\arctan \frac{x}{y} - 2x -y + C) + i(\ln (x^2 + y^
 由 $\Ln z = \ln a + i\Arg z$，可得：
 \begin{align*}
 \Ln (2-3i) = \ln | 2-3i | + i\Arg (2-3i)
-= \ln 13 + i\left(\arctan (-\frac{3}{2}) + 2k\pi\right),\quad k \in \mathbb{Z}
+= \frac{1}{2}\ln 13 + i\left(\arctan (-\frac{3}{2}) + 2k\pi\right),\quad k \in \mathbb{Z}
 \end{align*}
 
 \item $\Arccos (\frac{3+i}{4})$
@@ -805,7 +831,7 @@ $\arccos z = -i \ln (z + \sqrt{z^2 -1} )$，于是：
 \Arccos (\frac{3+i}{4}) 
 &= -i \Ln\left(\frac{3+i}{4} + \sqrt{(\frac{3+i}{4})^2 -1} \right) = -i \Ln \left( \frac{3+i}{4} + \frac{\sqrt{-8 + 6i} }{4} \right) \\ 
 &= -i \Ln \left( \frac{3+i}{4} \pm \frac{1 + 3i}{4} \right) = -i \Ln(1+i)\  \text{或}\ -i \Ln(\frac{1-i}{2}) \\ 
-&= (\frac{\pi}{4} + 2k\pi) - i\frac{\ln 2}{2} \ \text{或}\ -(\frac{\pi}{4} + 2k\pi) + i\frac{\ln 2}{2}
+&= (\frac{\pi}{4} + 2k\pi) - i\frac{\ln 2}{2} \ \text{或}\ -(\frac{\pi}{4} + 2k\pi) + i\frac{\ln 2}{2},\quad k \in \mathbb{Z}
 \end{align*}
 
 \item $\Arctan (1+2i)$
@@ -817,7 +843,7 @@ $\arccos z = -i \ln (z + \sqrt{z^2 -1} )$，于是：
 = \frac{1}{2i}\Ln \left( \frac{-1 + i}{3-i} \right) \\
 &= \frac{1}{2i}\left( \Ln (-2+i) - \ln 5 \right) 
 = \frac{1}{2i}\left[ -\frac{\ln 5}{2}  + i\left( \pi - \arctan(-\frac{1}{2})  + 2k\pi\right) \right] \\ 
-&= \frac{1}{2}\left(\pi - \arctan(-\frac{1}{2})  + 2k\pi\right) + i\frac{\ln 5}{4}
+&= \frac{1}{2}\left(\pi - \arctan(-\frac{1}{2})  + 2k\pi\right) + i\frac{\ln 5}{4},\quad k \in \mathbb{Z}
 \end{align*}
 \end{enumerate}
 
@@ -826,19 +852,26 @@ $\arccos z = -i \ln (z + \sqrt{z^2 -1} )$，于是：
 \item $\sin \sqrt{z}$
 
 多值函数。$\sqrt{z}$ 为双值函数，$a^2 = z \Longrightarrow  \sqrt{z} = \pm a $，而 $\sin $ 为奇函数，$\sin a \ne \sin (-a)$，故为多值函数。
+
 \item $\frac{\sin \sqrt{z} }{\sqrt{z} }$
 
 单值函数。$\frac{\sin a}{a} = \frac{\sin (-a)}{-a}$，因此为单值函数。
-\item $\frac{\cos \sqrt{z} }{\sqrt{z} }$
 
-多值函数。$\frac{\cos a}{a} \ne \frac{\cos (-a)}{-a}$，故为多值函数。
+\item $\frac{\cos \sqrt{z} }{z }$
+
+单值函数。$\frac{\cos a}{a} =\frac{\cos (-a)}{a}$，故为单值函数。
 \end{enumerate}
 
-\section{解方程：$2\cos^2hz - 3\cos hz + 1 = 0$}
+\section{解方程：$2\cosh^2 z - 3\cosh z + 1 = 0$}
 原方程等价于：
 \begin{gather}
-(2\cos hz - 1)(\cos hz - 1) = 0 \Longrightarrow  \cos hz = \frac{1}{2},\, 1 \\ 
-\Longrightarrow  z = \frac{1}{h}(\pm\frac{\pi}{3} + 2k\pi), \frac{1}{h}(2k\pi),\ k \in \Z
+(2\cosh z - 1)(\cosh z - 1) = 0 \Longrightarrow  \cosh z = \frac{1}{2} \ \text{或}\  1 
+\\ 
+\overset{\cosh z = \frac{e^{z} + e^{-z}}{2}}{\Longrightarrow } 
+e^z = \frac{1 \pm \sqrt{3}i }{2}\  \text{或}\ 1 
+\\ 
+\Longrightarrow
+z = i(\pm \frac{\pi}{3} + 2k\pi) \ \text{或}\ i(0 + 2k\pi),\quad  k \in \Z
 \end{gather}
 
 \section{求下列多值函数的分支点}
@@ -851,8 +884,12 @@ $1 - z^3 = (1-z)[(-\frac{1}{2} + i\frac{3}{2}) -z][(-\frac{1}{2} - i\frac{3}{2})
 
 对 $\infty$，取包含点 $z_1, z_2, z_3 $ 的简单闭合曲线，曲线上一点 $z$ 沿顺时针（不是逆时针）绕一圈回到原处，整个宗量的幅角增加了 $-6\pi$，开根后函数值幅角增加 $-3\pi$，因此 $\infty$ 也是分支点。
 
-\textbf{(2)\ } $\Ln \cos z$ 的分支点：这题没思路了
+\textbf{(2)\ } $\Ln \cos z$ 的分支点：$\infty,\ \frac{\pi}{2} + k\pi,\ k \in \Z$。
 
+可以证明，$\Ln f(z)$ 的分支点等价于方程 $f(z) = 0$ 和 $f(z) = \infty$ 的解\footnote{这是助教在习题课上给出的结论，并未给出具体证明。但是我们可以证明 $\Ln z$ 的分支点为 $0$ 和 $\infty$，这是因为 $\Ln z = \ln | z | + i\Arg z$，当 $z$ 绕原点逆时针转一圈时，$\Arg z$ 增加 $2\pi$ 而不是回到原来的函数值，因此 0 为分支点；无穷点同理。}。于是分别令 $\cos z = \frac{e^{iz} + e^{-iz}}{2}$ 为 $0$ 和 $\infty$，解得：
+\begin{equation}
+z = \frac{\pi}{2} + k\pi, \quad k \in \Z \text{ 或 } z = \infty
+\end{equation}
 
 \textbf{(3)\ } $\sqrt{\frac{z}{(z-1)(z-2)}} $ 的分支点：$0, 1, 2, \infty$
 
@@ -860,15 +897,9 @@ $1 - z^3 = (1-z)[(-\frac{1}{2} + i\frac{3}{2}) -z][(-\frac{1}{2} - i\frac{3}{2})
 
 对 $\infty$，取包含点 $0,1,2$ 的简单闭合曲线，曲线上一点 $z$ 顺时针绕一圈后，宗量整体幅角增加 $-2\pi$，函数值也不发生变化，$\infty$ 不是分支点。
 
-\textbf{(4)\ } $\Ln \frac{(z-a)(z-b)}{(z-c)}$  没有分支点。
-\begin{equation*}
-    \Ln \frac{(z-a)(z-b)}{(z-c)} = \ln | \frac{(z-a)(z-b)}{(z-c)} | + i\Arg \frac{(z-a)(z-b)}{(z-c)}
-\end{equation*}
+\textbf{(4)\ } $\Ln \frac{(z-a)(z-b)}{(z-c)}$ 的分支点：$a,b,c, \infty$
 
-考虑点 $a,b,c$，取仅包含点 $a$ 的简单闭合曲线，曲线上一点 $z$ 逆时针绕一圈后，宗量整体幅角增加 $2\pi$， \\ $\Arg \frac{(z-a)(z-b)}{(z-c)}  = \Arg (\frac{(z-a)(z-b)}{(z-c)} + 2\pi) $，因此函数值不发生变化，点 $a$ 不是分支点。同理点 $b$ 和 $c$ 也不是分支点。
-
-对 $\infty$，取包含点 $a,b,c$ 的简单闭合曲线，曲线上一点 $z$ 顺时针绕一圈后，宗量整体幅角增加 $-2\pi$，函数值也不发生变化，$\infty$ 不是分支点。
-
+与 (2) 同理，考虑宗量 $\frac{(z-a)(z-b)}{(z-c)}$ 的零点和无穷点，得到 $z = a,b,c, \infty$，即为所求分支点。
 
 \chapter{2024.9.16 - 2024.9.22}\thispagestyle{fancy}
 

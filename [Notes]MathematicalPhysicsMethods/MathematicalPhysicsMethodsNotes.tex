@@ -635,7 +635,7 @@ $\omega $ 的多值性来源于 $z-a$ 幅角的多样性，我们把这样量称
 
 对第一种情况，$z$ 沿路径 $C_1$ 逆时针旋转一圈后，由于 $a$ 在圆外，因此旋转前后的 $\arg (z-a)$ 不变，$\arg w = \frac{1}{2} \arg (z-a)$ 也不变，从而使得旋转前后 $w$ 也不变，称为 $w$ 值“还原”。对第二种情况，$z$ 沿路径 $C_2$ 逆时针旋转一圈后，由于 $a$ 在圆内，$\arg (z-a)$ 增加了 $2\pi$ 但 $\arg w = \frac{1}{2} \arg (z-a)$ 使得 $\arg w$ 仅增加 $\pi$，从而使得旋转前后 $w$ 未回到原点，称为 $w$ 值“不还原”。
 
-因此，点 $a$ 对多值函数 $w =\sqrt{z-a}$ 有特殊意义，它是否位于简单闭合路径内就决定了当 $z$ 沿这个路径行进一周回到原处时，相应的 $w$ 值是否能还原。对于无法还原的点，我们称为\textbf{分支点}。也即，如果 $\exists\ r >0$，当 $z$ 沿圆周 $| z - z_0 | = r$ 绕一圈回到原处时，$w$ 不还原，且当 $r \mapsto 0$ 时，$w$ 始终不还原，这样的点 $z_0$ 就称为多值函数 $w(z)$ 的分支点。
+因此，点 $a$ 对多值函数 $w =\sqrt{z-a}$ 有特殊意义，它是否位于简单闭合路径内就决定了当 $z$ 沿这个路径行进一周回到原处时，相应的 $w$ 值是否能还原。对于无法还原的点，我们称为\textbf{分支点}\footnote{分支点描述的是函数的多值性质，与函数的解析性无关}。也即，如果 $\exists\ r >0$，当 $z$ 沿圆周 $| z - z_0 | = r$ 绕一圈回到原处时，$w$ 不还原，且当 $r \mapsto 0$ 时，$w$ 始终不还原，这样的点 $z_0$ 就称为多值函数 $w(z)$ 的分支点。
 {\par\color{gray}\small
 例如，$z = a, \infty $ 是 $ f(z) = \sqrt{z - a} $ 的分支点，$z = a,b,c, \infty$ 是 $f(z) = \sqrt{(z-a)(z-b)(z-c)} $ 的分支点，$z = 0, \infty$ 是 $ f(z) = \Ln z = \ln | z | + i\Arg z$ 的分支点。
 \par}
@@ -647,6 +647,23 @@ $\omega $ 的多值性来源于 $z-a$ 幅角的多样性，我们把这样量称
 \caption{\textbf{$z$ 沿闭合曲线一周回到原处时，$w = \sqrt{z-a}$ 值的不同变化}}\label{沿闭合曲线一周回到原处时}
 \end{figure}
 \end{definition}
+
+\subsection{“有理”函数的分支点}
+“有理”函数 $f(z)$: 
+\begin{equation}
+f(z) = \sqrt[k]{
+    \frac{
+        (z - z_{i_1})^{r_1}(z - z_{i_2})^{r_2} \cdot (z - z_{i_m})^{r_m}
+    }{
+        (z - z_{j_1})^{s_1}(z - z_{j_2})^{s_2} \cdot (z - z_{j_n})^{s_n}
+    }
+}
+\end{equation}
+
+\begin{enumerate}
+\item 对 $a$: 若因式 $(z - a)^b$ 的幂指数 $b$ {\color{red} 不能}被根指数 $k$ 整除，即 $ b \ne 0\ (\text{mod}\  k) $，则 $a$ 为分支点，否则不是分支点。
+\item 对 $\infty$: 若 $(\sum r_i - \sum s_i) \ne 0\ (\text{mod}\  k)$，则 $\infty$ 为分支点，否则不是分支点。
+\end{enumerate}
 
 \subsection{单值分支}
 为了得到多值函数的单值分支，我们可以限制宗量的幅角范围（常通过“割线”来实现）。这样，宗量幅角范围的各个周期，给出多值函数的各个单值分支。另一种自然的方法是规定初始值和连续变化路线（移动路线）。
@@ -733,6 +750,32 @@ I = \lim_{\max | \Delta z_i \to 0|}\sum_{i=1}^{n} f(\xi_i)\Delta z_i = \int_{C_{
     \end{BlockTheorem}
 
 \section{Cauchy 积分公式}
+
+\begin{BlockTheorem}[n 阶导数 Cauchy 积分公式]\label{n 阶导数 Cauchy 积分公式}
+若 $f(z)$ 在 $\overline{G} $ 中解析\footnote{解析区域必为开集，因此不可能是闭域，这里的意思是 $f$ 在开集 $\overline{G}$ 上解析，且在 $\partial$ 上连续。在后文，不引起歧义的情况下，我们都说在闭域 $\overline{G} $ 上解析。} ，则 $f(z)$ 在 $G$ 上有任意阶导数，且它们都是 $\overline{G} $ 上的解析函数。
+\begin{equation}
+f^{(n)}(z) = \frac{n !}{2\pi i}\oint_{\partial G} \frac{f(\zeta)}{(\zeta - z)^{n+1}} \mathrm{d} \zeta
+\end{equation} 
+特别地，当 $n = 0$ 时，得到 Cauchy 积分公式\footnote{事实上是由 $n = 0$ 和归纳法证明的 n 阶导数 Cauchy 积分公式}: 
+\begin{equation}
+    f(z) = \frac{1}{2\pi i}\oint_{\partial G} \frac{f(\zeta)}{(\zeta - z)} \mathrm{d} \zeta
+\end{equation}
+\end{BlockTheorem}
+
+\begin{BlockTheorem}[Cauchy 定理的推广]\label{Cauchy 定理的推广}
+在计算回路积分时，Theorem.\ref{n 阶导数 Cauchy 积分公式} 使用起来不太方便，由小圆弧定理和 Cauchy 定理，我们可以证明下面命题，它更方便且结论更强。
+
+若 $f(z)$ 在 $\overline{G}$ 上解析，在 $\overline{G} $ 内共有 $n$ 个分支点 $a_1, a_2, \cdots, a_n$，则：
+\begin{equation}
+I  = \oint_{\partial G} f(z) \mathrm{d}z =  \sum_{k = 1}^{n}  \left[ 2 \pi i \lim_{z \to a_k} (z - a_k) f(z) \right] =  \sum \left[ \frac{2 \pi i}{n!}\lim_{z \to a} (z - a)^{n+1} f^{(n)} (z) \right]
+\end{equation}
+特别地，当 $n = 0$，也即没有分支点时，得到 Cauchy 定理。
+\end{BlockTheorem}
+
+若 $f(z)$ 在 $\overline{G} $ 中解析，$f(z)$ 在 $G$ 上有任意阶导数，且：
+\begin{equation}
+\oint_{\partial G} f(z) = 
+\end{equation}
 
 
 \section{常见积分结果汇总}

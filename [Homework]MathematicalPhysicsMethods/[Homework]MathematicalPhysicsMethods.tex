@@ -688,6 +688,11 @@ g(z) = u_g(x,y) + iv_g(x,y),\quad u_g(x,y) = u(x,-y),\ v_g(x,y) = -v(x,-y)
 
 \section{若 $f(z)$ 解析，$\arg f(z)$ 是否为调和函数？}
 
+{\par\color{gray}\small
+注：下面的过程仅讨论了 $\arg f(z)$ 的解析性，未能揭示其调和性，正确的解答见后文补充的灰色小字。
+\par}
+
+
 \begin{enumerate}
 \item 当 $f(z) = C \in \C, \forall\ z \in G$，也即 $f(z)$ 恒为常量时：$\arg f(z)$ 也为常量，设 $\arg f(z) = a + ib$，则 $a = \arg f(z) \in R$ 而 $b=0$，自然满足 $\Delta a = \Delta b =0$，因此 $\arg f(z)$ 为调和函数。
 \item 当 $f(z)$ 是非常量函数时：
@@ -722,8 +727,12 @@ $f(z)$ 非常量，因此 $u,v$ 非常量，因此只能有：
 \begin{equation*}
     v_y' = u_y' = 0 \Longrightarrow  u_x' = v_x' = 0 \Longrightarrow  \text{$u$ 和 $v$ 为常量函数}
 \end{equation*}
-这使得 $f(z) = u +iv$ 是常量，矛盾！因此 $\arg f(z)$ 不解析（这能否推出不调和？解析是调和的充分条件，但是充要的吗？我觉得不是，没思路了）
+这使得 $f(z) = u +iv$ 是常量，矛盾！因此 $\arg f(z)$ 不解析（这能否推出不调和？解析是调和的充分条件，但是充要的吗？事实上并不是，因此并不能揭示调和性）。
 \end{enumerate}
+
+{\par\color{gray}\small
+后补：
+\par}
 
 
 \section{从已知的实虚部求出解析函数 $f(z)$}

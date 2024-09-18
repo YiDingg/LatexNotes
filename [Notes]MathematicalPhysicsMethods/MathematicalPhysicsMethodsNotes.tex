@@ -751,8 +751,8 @@ I = \lim_{\max | \Delta z_i \to 0|}\sum_{i=1}^{n} f(\xi_i)\Delta z_i = \int_{C_{
 
 \section{Cauchy 积分公式}
 
-\begin{BlockTheorem}[n 阶导数 Cauchy 积分公式]\label{n 阶导数 Cauchy 积分公式}
-若 $f(z)$ 在 $\overline{G} $ 中解析\footnote{解析区域必为开集，因此不可能是闭域，这里的意思是 $f$ 在开集 $\overline{G}$ 上解析，且在 $\partial$ 上连续。在后文，不引起歧义的情况下，我们都说在闭域 $\overline{G} $ 上解析。} ，则 $f(z)$ 在 $G$ 上有任意阶导数，且它们都是 $\overline{G} $ 上的解析函数。
+\begin{BlockTheorem}[Cauchy 积分公式]\label{n 阶导数 Cauchy 积分公式}
+若 $f(z)$ 在 $\overline{G} $ 中解析\footnote{解析域闭为开集，至于为什么说在闭域上解析，详见附录 \ref{在闭域上解析}} ，则 $f(z)$ 在 $G$ 上有任意阶导数，且它们都是 $\overline{G} $ 上的解析函数。
 \begin{equation}
 f^{(n)}(z) = \frac{n !}{2\pi i}\oint_{\partial G} \frac{f(\zeta)}{(\zeta - z)^{n+1}} \mathrm{d} \zeta
 \end{equation} 
@@ -810,178 +810,94 @@ I  = \oint_{\partial G} f(z) \mathrm{d}z =  \sum_{k = 1}^{n}  \left[ 2 \pi i \li
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 \nocite{*}
 \bibliography{re}
 \thispagestyle{fancy} 
 \addcontentsline{toc}{chapter}{参考文献}
+
+
+% --------------------------- 附录 --------------------------- %
+% >> ------------------------ 附录 ------------------------ << %
+
+
+\newpage
+\appendix
+% chapter 标题自定义设置
+\titleformat{\chapter}[hang]{\normalfont\huge\bfseries\centering}{}{20pt}{}
+\titlespacing*{\chapter}{0pt}{-25pt}{8pt} % 控制上方空白的大小
+% section 标题自定义设置 
+\titleformat{\section}[hang]{\normalfont\centering\Large\bfseries}{\thesection}{8pt}{}
+
+% 附录 A
+\chapter*{附录 A. 数物方法 Q \& A}\addcontentsline{toc}{chapter}{附录 A. 数物方法 Q \& A}   
+\thispagestyle{fancy} 
+\setcounter{section}{0}   
+\renewcommand\thesection{A.\arabic{section}}   
+\renewcommand{\thefigure}{A.\arabic{figure}} 
+\renewcommand{\thetable}{A.\arabic{table}}
+
+\section{第一章}
+
+\subsection{问题1}
+
+
+
+\subsection{问题2}
+
+\section{第二章}
+
+
+\subsection{如何快速而大致准确地判断一个函数是否解析？}
+
+判断一个函数（在某个开集 $G$ 上）是否解析，相当于判断它的可导性。如果一个复变函数是由初等函数构成的，不包括多值函数（包括 $\sqrt{z},\ \Ln z,\ \text{Arctan\,} z$ 等）或 $\Re z,\ \Im z$ 等特殊函数，那么在除去奇点（包括无定义点、不连续点和无穷点等）的开集上，一般都是解析的。例如，函数 $f(z) = \frac{z - 1}{z - i}$ 在 $\C \setminus \{i\}$ 上解析，函数 $f(z) = \frac{e^z}{\cos z}$ 在 $\C \setminus \{\frac{\pi}{2} + k\pi \mid k \in \Z \}$ 上解析。
+
+在第三章及之后的章节中，若无特别声明，我们所说的函数都是指单值函数。
+
+\subsection{解析域一定是开集，为什么会说“在有界闭域 $\overline{G} $ 上解析” ？}\label{在闭域上解析}
+
+这个说法是许多教材中的惯用说法 \footnote{例如教材 \cite{数学物理方法}}，且并没有给出具体细节。我的理解是：解析区域必为开集，因此不可能是闭域，这里的意思是 $f$ 在开集 $\overline{G}$ 上解析，且在 $\partial$ 上连续。
+
+在本书中，不引起歧义的情况下，我们都说在闭域 $\overline{G} $ 上解析。
+
+\subsection{分支点一定不解析吗？}
+首先需要区分，“解析”是单值函数的概念，而“分支点”是多值函数的概念。在讨论一个函数是否（在某点）解析时，要么这个函数本就是单值函数，要么是多值函数的某个单值分支。对于一个多值函数，分支点仅可能出现在奇点，包括无定义点、不连续点、不解析点和无穷点 $\infty$。因此，当约定好多值函数的单值分支时，对前三种情况（也即 $\C$ 内的情况），分支点一定是不解析的。无穷点的情况可以做变换 $z \to \frac{1}{z}$ 转变为零点来讨论。
+
+例如，函数 $f(z) = \sqrt{z}$ 的分支点为 ${0,\ \infty}$，同时也是唯二的不解析点，无穷点不解析是因为函数 $\frac{1}{\sqrt{z}}$ 在 $z = 0$ 无定义，零点不解析是因为 $f'(z) = \frac{1}{2\sqrt{z}}$ 在 $z = 0$ 无定义。
+
+\section{第三章}
+
+\subsection{为什么解析函数的积分与路径无关？}
+
+这是由 Cauchy 定理所保证的。只要函数在所讨论的区域上是解析的，那么 Cauchy 定理都成立，也就必定有“解析函数的积分与路径无关”。也就是说，积分的结果仅取决于起点和终点，这便自然而然地引出了“原函数”的概念。
+
+回想力学中，重力场中的做功量与路径无关，也就是积分 $\oint \boldsymbol{F}\cdot \ \mathrm{d}\boldsymbol{x}$ 的结果仅取决于起点和终点，而与路径无关，这也自然地引出了重力势能的概念。更严谨地说，在一个无旋的矢量场 A 中，矢量 $\boldsymbol{A}$ 与位矢的积分值与路径无关，仅取决于起点和终点，这是由矢量分析中的 Stokes Theorem（斯托克斯定理）所保证的，也即: 
+\begin{equation}
+\oint_{\partial S} \boldsymbol{A} \ \mathrm{d}\boldsymbol{r} = \iint_S (\nabla \times \boldsymbol{A}) \cdot \ \mathrm{d}\boldsymbol{S}
+\end{equation}
+当矢量场无旋时，上式右端恒为零。
+
+\subsection{如何理解（$n$ 阶）Cauchy 积分公式？}
+
+($n$ 阶) Cauchy 积分公式（Theorem.\ref{n 阶导数 Cauchy 积分公式}）为：若函数 $f(z)$ 在 $\overline{G}$ 上解析，则 $f(z)$ 在 $G$ 上有任意 $n$ 阶导数，且它们都是 $\overline{G}$ 上的解析函数。
+\begin{equation}
+f^{(n)}(z) = \frac{n !}{2\pi i} \oint_{\partial G} \frac{f(\zeta)}{(\zeta - z )^{n+1}} \ \mathrm{\zeta},\quad \forall\ n \in \N = \{0, 1, 2, \cdots\}
+\end{equation}
+
+在计算（含奇点的）回路积分时，我们常常会用到上述公式，有时取 $n = 0$，有时又取 $n =1$ 或其它数。事实上，上述公式的本质是：在计算含有唯一奇点的回路积分时，将奇点“挖出来”，借助 Cauchy Theorem（Theorem.\ref{Cauthy 定理}）转为绕小圆的回路积分，然后利用小圆弧定理（Theorem.\ref{小圆弧定理}）得到最终结果。这里面的关键就是“唯一奇点”。
+
+在 $f(z)$ 解析的情况下，$g(z) = \frac{f(z)}{(z - a)}$ 有唯一奇点 $a$，且 $(z - a)\cdot g(z) $ 在 $\overline{G}$ 上解析，此时的 Cauchy 积分公式便可以写成：
+\begin{equation}
+\oint_{\partial G} g(z) = {\color{red} 2\pi i }\cdot \left[ (z - a)\cdot g(z) \right]_{z = a}
+\end{equation}
+
+类似地，若 $g(z)$ 有唯一奇点 $a$，且 $(z - a)^n\cdot g(z) $ 在 $\overline{G}$ 上解析，便可以得到 $n$ 阶 Cauchy 积分公式的等价形式：
+\begin{equation}
+    \oint_{\partial G} g(z) = {\color{red} \frac{2\pi i}{n!}} \cdot \left[ (z - a)^{n+1}\cdot g(z) \right]^{(n)}_{z = a}
+\end{equation}
+
+% --------------------------- 附录 --------------------------- %
+% >> ------------------------ 附录 ------------------------ << %
+
 \end{document}
 
 % VScode 常用快捷键：

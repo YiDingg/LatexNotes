@@ -184,9 +184,10 @@
         
 
 % 文章默认字体设置
-\usepackage{fontspec}   % 宏包：字体设置
-    \setmainfont{SimSun}    % 设置中文字体为宋体字体
-    \setmainfont{Times New Roman} % 设置英文字体为Times New Roman
+    \usepackage{fontspec}   % 宏包：字体设置
+        \setmainfont{SimSun}    % 设置中文字体为宋体字体
+        \setCJKmainfont[AutoFakeBold=3]{SimSun} % 设置加粗字体为 SimSun 族，AutoFakeBold 可以调整字体粗细
+        \setmainfont{Times New Roman} % 设置英文字体为Times New Roman
 
 % 文章序言设置
     \newcommand{\cnabstractname}{序言}
@@ -336,20 +337,18 @@ x^4 = 1+i = \sqrt{2}e^{i\frac{\pi}{4}} \Longrightarrow | x | = 2^{\frac{1}{8}},\
 作不完全因式分解：
 
 \begin{equation*}
-    \begin{aligned}
-        1+z^6 
-        &= z^6 - i^6 
-        = (z^3 - i^3)(z^3 + i^3) \\
-        &= (z - i)(z^2 + iz +i^2)(z^3 + i^3) \\ 
-        1+z^{10} 
-        &= z^{10} - i^{10} = (z^5-i^5)(z^5+i^5) \\
-        &= (z-i)(z^4 + iz^3 + i^2z^2 + i^3z + i^4 )(z^5+i^5)
-    \end{aligned}
+    1+z^6 = z^6 - i^6 
+    = (z^3 - i^3)(z^3 + i^3) = (z - i)(z^2 + iz +i^2)(z^3 + i^3)
+\end{equation*}
+\begin{equation*}
+    1+z^{10} 
+    = z^{10} - i^{10} = (z^5-i^5)(z^5+i^5) 
+    = (z-i)(z^4 + iz^3 + i^2z^2 + i^3z + i^4 )(z^5+i^5)
 \end{equation*}
 \begin{equation*}
     \begin{aligned}
         \Longrightarrow L 
-        &= \lim_{z\to i} \frac{1+z^6}{1+z^{10}} \\
+        = \lim_{z\to i} \frac{1+z^6}{1+z^{10}} 
         &= \lim_{z\to i} \frac{(z - i)(z^2 + iz +i^2)(z^3 + i^3)}{(z-i)(z^4 + iz^3 + i^2z^2 + i^3z + i^4 )(z^5+i^5)} \\
         &= \lim_{z\to i} \frac{(z^2 + iz +i^2)(z^3 + i^3)}{(z^4 + iz^3 + i^2z^2 + i^3z + i^4 )(z^5+i^5)} \\
         &= \frac{(-3)\times (-2i)}{ 5 i} = \frac{3}{5}
@@ -528,14 +527,15 @@ v(x,y) =
 \end{gather*}
 
 分别求偏导得到：
+\begin{gather}
+    \begin{cases}
+        \frac{\partial u }{\partial x } = \frac{2x^2 + y^2}{\sqrt{x^2 + y^2}}
+        ,\quad \frac{\partial u }{\partial y } = \frac{xy}{\sqrt{x^2 + y^2}} \\
+        \frac{\partial v }{\partial x } = \frac{xy}{\sqrt{x^2 + y^2}}
+        ,\quad \frac{\partial v }{\partial y } = \frac{x^2 + 2y^2}{\sqrt{x^2 + y^2}}
+    \end{cases},\quad \sqrt{x^2+y^2} < 1  
+\end{gather}
 \begin{gather*}
-\begin{cases}
-\frac{\partial u }{\partial x } = \frac{2x^2 + y^2}{\sqrt{x^2 + y^2}}
-,\quad \frac{\partial u }{\partial y } = \frac{xy}{\sqrt{x^2 + y^2}} \\
-\frac{\partial v }{\partial x } = \frac{xy}{\sqrt{x^2 + y^2}}
-,\quad \frac{\partial v }{\partial y } = \frac{x^2 + 2y^2}{\sqrt{x^2 + y^2}}
-\end{cases}
-,\quad \sqrt{x^2+y^2} < 1  \\
 \begin{cases}
     \frac{\partial u }{\partial x } = 2x
     ,\quad 
@@ -565,15 +565,14 @@ x^2 = y^2,\  2xy = 0, \quad \forall\  \sqrt{x^2+y^2} < 1, x^2 + y^2 \ne 0  \\
 \section{已知解析函数 $f(z)$ 的实部如下，求 $f(z)$}
 \begin{enumerate}
 \item $u(x,y) = x^2-y^2 + x$
-
 \begin{gather*}
 v_x' = -u_y' = 2y,\quad v_y' = u_x' = 2x + 1\\ 
 \Longrightarrow 
 v(x,y) = \int 2y \ \mathrm{d}x + \int \mathrm{d}y = 2xy + y + C \\ 
 \Longrightarrow f(x,y)= (x^2 + y^2 + x )+ i(2xy + y) + C,\ C \in \R
 \end{gather*}
-\item $u(x,y) = e^y\cos x$
 
+\item $u(x,y) = e^y\cos x$
 \begin{gather*}
 v_x' = -u_y' = -e^y\cos x,\quad v_y' = u_x' = -e^y\sin x\\ 
 \Longrightarrow
@@ -694,9 +693,9 @@ g(z) = u_g(x,y) + iv_g(x,y),\quad u_g(x,y) = u(x,-y),\ v_g(x,y) = -v(x,-y)
 \item 当 $f(z)$ 是非常量函数时：
 
 由 $\ln z = \ln | z | + \arg z$，令 $f(z) = \rho\cdot e^{i\arg z}$，则有：
-\begin{equation}
+\begin{equation*}
 \arg f(z) = \frac{1}{i}\left(\ln f(z) - \ln \rho\right)
-\end{equation}
+\end{equation*}
 函数 $\ln$ 在 $\C \setminus \{0\}$ 上解析，但对于函数 $\rho = \rho(z)$：
 \begin{gather}
 \rho = \sqrt{u^2 + v^2}\Longrightarrow u_\rho = \sqrt{u^2+v^2}, v_\rho = 0  \\ 
@@ -705,24 +704,24 @@ g(z) = u_g(x,y) + iv_g(x,y),\quad u_g(x,y) = u(x,-y),\ v_g(x,y) = -v(x,-y)
 \end{gather}
 
 假设 $\rho$ 满足 C-R 条件，代入得到：
-\begin{equation}
+\begin{equation*}
 \begin{cases}
     uu_x' + vv_x' = 0 \\ 
     uu_y' + vv_y' = 0 \\ 
     \sqrt{u^2+v^2} \ne 0
 \end{cases}
-\end{equation}
+\end{equation*}
 由于 $f(z)$ 解析，满足 C-R 条件 $\frac{\partial u }{\partial x } = \frac{\partial v }{\partial y },\ \frac{\partial u }{\partial y } = - \frac{\partial v }{\partial x }$，代入后整理得到：
-\begin{equation}
+\begin{equation*}
 \begin{cases}
     v(v_y'^2 - u_y'^2) = 0 \\ 
     u(u_y'^2 + v_y'^2) = 0 \\ 
 \end{cases}
-\end{equation}
+\end{equation*}
 $f(z)$ 非常量，因此 $u,v$ 非常量，因此只能有：
-\begin{equation}
+\begin{equation*}
     v_y' = u_y' = 0 \Longrightarrow  u_x' = v_x' = 0 \Longrightarrow  \text{$u$ 和 $v$ 为常量函数}
-\end{equation}
+\end{equation*}
 这使得 $f(z) = u +iv$ 是常量，矛盾！因此 $\arg f(z)$ 不解析（这能否推出不调和？解析是调和的充分条件，但是充要的吗？我觉得不是，没思路了）
 \end{enumerate}
 
@@ -749,26 +748,26 @@ v(x,y)
 u(z,0) = ze^z + z^3,\quad v(z,0) = 2h\cos z - z +C,\ C \in \R
 \end{gather}
 于是得到 $f(x,y)$:
-\begin{equation}
+\begin{equation*}
 f(z) = \left[u(x,y) + iv(x,y)\right]_{x=z,y=0}
 = 
 (ze^z + z^3) + i(2h\cos z -z +C),\ C \in \R
-\end{equation}
+\end{equation*}
 
 
 \item $v = \ln (x^2 + y^2) + x -2y$
 
-\begin{equation}
+\begin{equation*}
 v_x' = \frac{2x}{x^2 + y^2} + 1, \quad v_y' = \frac{2y}{x^2 + y^2} -2
-\end{equation}
+\end{equation*}
 由 C-R 条件，$u_x' = v_y',\ u_y' = -v_x'$，于是得到：
 \begin{align}
 u(x,y) 
 = \int v_y' \mathrm{d}x +  \int (-1)\mathrm{d}y = \frac{2}{y}\arctan \frac{x}{y} - 2x -y + C
 \end{align}
-\begin{equation}
+\begin{equation*}
 f(x,y) = u + iv = (\frac{2}{y}\arctan \frac{x}{y} - 2x -y + C) + i(\ln (x^2 + y^2) + x -2y),\ C \in \R
-\end{equation}
+\end{equation*}
 \end{enumerate}
 
 \section{求下列函数的值}
@@ -853,30 +852,119 @@ $1 - z^3 = (1-z)[(-\frac{1}{2} + i\frac{3}{2}) -z][(-\frac{1}{2} - i\frac{3}{2})
 对 $\infty$，取包含点 $0,1,2$ 的简单闭合曲线，曲线上一点 $z$ 顺时针绕一圈后，宗量整体幅角增加 $-2\pi$，函数值也不发生变化，$\infty$ 不是分支点。
 
 \textbf{(4)\ } $\Ln \frac{(z-a)(z-b)}{(z-c)}$  没有分支点。
-\begin{equation}
+\begin{equation*}
     \Ln \frac{(z-a)(z-b)}{(z-c)} = \ln | \frac{(z-a)(z-b)}{(z-c)} | + i\Arg \frac{(z-a)(z-b)}{(z-c)}
-\end{equation}
-考虑点 $a,b,c$，取仅包含点 $a$ 的简单闭合曲线，曲线上一点 $z$ 逆时针绕一圈后，宗量整体幅角增加 $2\pi$，$\Arg \frac{(z-a)(z-b)}{(z-c)} = \Arg (\frac{(z-a)(z-b)}{(z-c)} + 2\pi) $，因此函数值不发生变化，点 $a$ 不是分支点。同理点 $b$ 和 $c$ 也不是分支点。
+\end{equation*}
+
+考虑点 $a,b,c$，取仅包含点 $a$ 的简单闭合曲线，曲线上一点 $z$ 逆时针绕一圈后，宗量整体幅角增加 $2\pi$， \\ $\Arg \frac{(z-a)(z-b)}{(z-c)}  = \Arg (\frac{(z-a)(z-b)}{(z-c)} + 2\pi) $，因此函数值不发生变化，点 $a$ 不是分支点。同理点 $b$ 和 $c$ 也不是分支点。
 
 对 $\infty$，取包含点 $a,b,c$ 的简单闭合曲线，曲线上一点 $z$ 顺时针绕一圈后，宗量整体幅角增加 $-2\pi$，函数值也不发生变化，$\infty$ 不是分支点。
 
 
 \chapter{2024.9.16 - 2024.9.22}\thispagestyle{fancy}
 
+\section{计算下列积分}
+
+\textbf{(1)\ \ } $\displaystyle \oint_{| z + i | = 1} \frac{\rho z}{1 + z^2} \ \mathrm{d} z$
+
+没思路了。。。
+
+\textbf{(2)\ \ } $\displaystyle \oint_{| z -a | = a} \frac{ z}{z^4 - 1} \ \mathrm{d} z,\ a > 1$
+
+被积函数 $\frac{z}{z^4 - 1}$ 在圆周 $| z - a | = a$ 内有且仅有 $z = 1$ 一个奇点，由 Cauthy 定理和 Cauthy 积分公式：
+\begin{equation*}
+I = \oint_{| z - 1 | = \delta } \frac{z}{z^4 - 1} \ \mathrm{d}z = 2 \pi i \cdot \left[ \frac{z}{z^3 + z^2 +z +1} \right]_{z = 1} = \frac{\pi i }{2}
+\end{equation*}
+
+\textbf{(3)\ \ } $\displaystyle \oint_{| z | = 2} \frac{z^2 - 1}{z^2 + 1} \ \mathrm{d} z$
+
+被积函数在圆周 $| z | =2$ 内有且仅有 $z = \pm i$ 两个奇点，由 Cauthy 定理和 Cauthy 积分公式：
+\begin{equation*}
+    I = \oint_{| z  + i| = \delta_1} \frac{z^2 - 1}{z^2 + 1} \ \mathrm{d} z + \oint_{| z  - i | = \delta_2} \frac{z^2 - 1}{z^2 + 1} \ \mathrm{d} z =  2 \pi i \cdot \left[ \frac{z^2 - 1}{z - i} \right]_{z = -i} + 2 \pi i \cdot \left[ \frac{z^2 - 1}{z + i} \right]_{z = i} 
+    = 0
+\end{equation*}
+
+\textbf{(4)\ \ } $\displaystyle \oint_{| z | = 2} \frac{1}{z^2(z^2 + 16)} \ \mathrm{d} z$
+
+被积函数在圆周 $| z | =2$ 内有且仅有 $z = 0$ 一个奇点，由 Cauthy 定理和 Cauthy 积分公式：
+\begin{equation*}
+    I 
+    = \oint_{| z | = \delta} \frac{1}{z^2(z^2 + 16)} \ \mathrm{d} z 
+    = 2 \pi i \cdot \left[ \frac{1}{z^2 + 16} \right]^{(1)}_{z = 0} 
+    = 2 \pi i \cdot \left[ -\frac{1}{(z^2 + 16)^2} \right]_{z = 0} 
+    = - \frac{\pi i}{128} 
+\end{equation*}
+
+\section{计算下列积分}
+
+\textbf{(1)\ \ }  $\displaystyle \oint_{| z - 1 | = 1 } \frac{\sin \frac{\pi z}{4}}{z^2 - 1}  \ \mathrm{d} z$
+
+被积函数在圆周 $| z | = R$ 内有且仅有 $z = 1$ 一个奇点，则：
+\begin{equation*}
+I 
+=  2 \pi i \cdot \left[ \frac{\sin \frac{\pi z}{4}}{z + 1}  \right]_{z = 1} = \frac{\sqrt{2} \pi i }{2}
+\end{equation*}
+
+\textbf{(2)\ \ } $\displaystyle \lim_{R \to +\infty}\oint_{| z | = R } \frac{\sin \frac{\pi z}{4}}{z^2 - 1}  \ \mathrm{d} z$
+
+被积函数在圆周 $| z | = R$ 内有且仅有 $z = \pm 1$ 两个奇点，则：
+\begin{equation*}
+I 
+= 2 \pi i \cdot \left[ \frac{\sin \frac{\pi z}{4}}{z - 1}  \right]_{z = -1} +  2 \pi i \cdot \left[ \frac{\sin \frac{\pi z}{4}}{z + 1}  \right]_{z = 1} = \sqrt{2} \pi i 
+\end{equation*}
+
+\textbf{(3)\ \ }$\displaystyle \oint_{| z + 1 | = \frac{1}{2} } \frac{\sin \frac{\pi z}{4}}{z^2 - 1}  \ \mathrm{d} z$
+
+被积函数在圆周 $| z | = R$ 内有且仅有 $z = -1$ 一个奇点，则：
+\begin{equation*}
+I 
+= 2 \pi i \cdot \left[ \frac{\sin \frac{\pi z}{4}}{z - 1}  \right]_{z = -1}
+= \frac{\sqrt{2} \pi i }{2}
+\end{equation*}
 
 
 
+\section{计算积分 $\displaystyle \int_{L} \frac{1}{(z - a)^n} \ \mathrm{d}z $，其中 $L$ 为以 $a$ 为圆心，$r$ 为半径的上半圆周}
 
+作变换 $z \to z + a$，则原积分化为 $\int_{L'} \frac{1}{z^n} \ \mathrm{d}z$，其中 $L'$ 是以 0 为圆心，$r$ 为半径的上半圆周。当 $n = 1$，时，$\frac{1}{z}$ 在 $\C \setminus \{ 0 \} $ 内解析，$I(n) = \left[ \ln z \right]_{z = r}^{z = -r} = \ln(-1) = i \pi$；当 $n \in \Z \setminus \{ 1 \}$ 时，$\frac{1}{z^n}$ 在 $\C \setminus \{ 0 \} $ 内解析，$I(n) = \left[ \frac{z^{1-n}}{1-n} \right]_{z = r}^{z = -r}  =  \frac{1}{1 - n}\left[  (-r)^{1-n} - r^{1-n} \right]$。综上，我们有：
+\begin{equation*}
+I(n) = \int_{L} \frac{1}{(z - a)^n} \ \mathrm{d}z
+= 
+\begin{cases}
+    i\pi, & n = 1 \\
+    \left[ (-1)^{1-n} -1 \right]\cdot\frac{r^{1-n}}{1-n}, & n \in \Z \setminus \{ 1 \}
+\end{cases}
+\end{equation*}
 
+\section{计算积分 $\displaystyle \oint_{| z | = R} \frac{1}{(z-a)^n(z-b)}  \ \mathrm{d}z $，其中 $a, b$ 不在圆周 $| z | = R$ 上，$n$ 为正整数}
 
+令 $G = \{ z \mid | z | = R\}$，共有四种情况，总结如下：
+\begin{equation*}
+I = \oint_{| z | = R} \frac{1}{(z-a)^n(z-b)}  \ \mathrm{d}z
+= 
+\begin{cases}
+    0, & a, b \notin G \\ 
+    \frac{(-1)^{n-1}2 \pi i }{(a-b)^n}, & a \in G, b \notin G \\ 
+    \frac{2 \pi i}{(b-a)^n}, & b \in G, a \notin G \\ 
+    0, & a, b \in G
+\end{cases}
+\end{equation*}
 
+\section{（附加题）$f(z)$ 在 $| z | < R$ 内解析，求证 $\displaystyle I(r) = \int_{0}^{2\pi} f(r\cdot e^{i \theta}) \ \mathrm{d}\theta$ 与 $r$ 无关，$\forall\  r \in (0, R)$}
 
-
-
-
-
-
-
+设 $f(z)$ 在 $G$ 内解析，由 Cauthy 积分公式：
+\begin{equation*}
+f(a) = \frac{1}{2\pi i} \oint_{\partial G} \frac{f(z)}{z - a}\ \mathrm{d}z
+\end{equation*}
+在上式中，取 $G = \{ z \mid |z - a| = r,\ r \in (0, R)\}$，也即以 $a$ 为圆心，$r$ 为半径的圆周，则有 $z - a = r\cdot e^{i \theta},\ \mathrm{d}z = ire^{i \theta}\ \mathrm{d}\theta $，代入即得：
+\begin{gather*}
+f(a) 
+= \frac{1}{2\pi i} \oint_{\partial G} \frac{f(z)}{r\cdot e^{i \theta}}\ ire^{i \theta}\ \mathrm{d}\theta 
+= \frac{1}{2 \pi} \oint_{0}^{2\pi}  f(z)\ \mathrm{d}\theta
+= \frac{1}{2 \pi} \oint_{0}^{2\pi}  f(r\cdot e^{i \theta})\ \mathrm{d}\theta \\ 
+\Longrightarrow  
+\oint_{0}^{2\pi} f(r\cdot e^{i \theta})\ \mathrm{d}\theta = 2 \pi f(a),\quad \forall\ r \in (0, R)   \quad\square
+\end{gather*}
 
 
 \chapter{2024.9.23 - 2024.9.29}\thispagestyle{fancy}
@@ -936,626 +1024,6 @@ $1 - z^3 = (1-z)[(-\frac{1}{2} + i\frac{3}{2}) -z][(-\frac{1}{2} - i\frac{3}{2})
 \end{document}
 
 
-
-% VScode 常用快捷键：
-
-% F2:                       变量重命名
-% Ctrl + Enter:             行中换行
-% Alt + up/down:            上下移行
-% 鼠标中键 + 移动:           快速多光标
-% Shift + Alt + up/down:    上下复制
-% Ctrl + left/right:        左右跳单词
-% Ctrl + Backspace/Delete:  左右删单词    
-% Shift + Delete:           删除此行
-% Ctrl + J:                 打开 VScode 下栏(输出栏)
-% Ctrl + B:                 打开 VScode 左栏(目录栏)
-% Ctrl + `:                 打开 VScode 终端栏
-% Ctrl + 0:                 定位文件
-% Ctrl + Tab:               切换已打开的文件(切标签)
-% Ctrl + Shift + P:         打开全局命令(设置)
-
-% Latex 常用快捷键
-
-% Ctrl + Alt + J:           由代码定位到PDF
-% 
-
-
-% Git提交规范：
-% update: Linear Algebra 2 notes
-% add: Linear Algebra 2 notes
-% import: Linear Algebra 2 notes
-% delete: Linear Algebra 2 notes
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-\end{document}
 
 % VScode 常用快捷键：
 

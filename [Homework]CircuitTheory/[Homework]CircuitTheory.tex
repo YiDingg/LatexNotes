@@ -559,7 +559,7 @@ U_1 = 6 - 3\times 1.2 = 2.4\ \mathrm{V},\ U_2 = 2\times \frac{I}{2} = 1.2\ \math
 
 
 
-\chapter{2024.9.10 - 2024.9.19}\thispagestyle{fancy}
+\chapter{2024.9.10 - 2024.9.18}\thispagestyle{fancy}
 
 
 \section{习题集 3-40（书上答案不正确）}
@@ -901,7 +901,74 @@ R_{\text{sat}} = R_1 = 10 \KO
 %\caption{\bfseries 第一次仿真作业 (2)}\label{第一次仿真作业 (2)}
 %\end{figure}
 
-\chapter{}\thispagestyle{fancy}
+\chapter*{第二次习题课课前练习}
+
+\begin{figure}[H]\centering
+\includegraphics[width=0.95\columnwidth]{assets/4/16b6858d371dc967c7673595957d383b_720.jpg}
+\caption{\bfseries 第二次习题课课前练习}\label{第二次习题课课前练习}
+\end{figure}
+
+\section{求图示二端口的 $\boldsymbol{G}$ 参数}\thispagestyle{fancy}
+
+由 KVL 和广义 KCL，得到: 
+\begin{equation}
+\begin{cases}
+    (i_1 - 0.5u_1) + (i_2 - 0.5u_2) = 5(0.5u_1) \\ 
+    3u_1 + 0.5u_2 = 2i_1 + 2i_2
+\end{cases}
+\Longrightarrow 
+\begin{cases}
+    i_1 = \frac{9}{8}u_1 + \frac{5}{8}u_2 \\ 
+    i_2 = \frac{15}{8}u_1 - \frac{1}{8}u_2
+\end{cases}
+,\quad \boldsymbol{G} = 
+\begin{bmatrix}
+    \frac{8}{9} & \frac{8}{5} \\ 
+    \frac{8}{15} & - 8
+\end{bmatrix}
+\mathrm{S}
+\end{equation}
+
+\section{设计一个用于直流信号下的最简二端口（略）}
+
+\section{求图示电路的电压增益与入端电阻}
+
+容易得到：
+\begin{equation}
+u_o = 2u_i,\quad i = (\frac{1}{R_1} - \frac{1}{R_2})u_i \Longrightarrow A = 2,\quad R_{i} = \frac{1}{\frac{1}{R_1} - \frac{1}{R_2}} = \frac{R_1R_2}{R_2-R_1}
+\end{equation}
+
+\section{根据图示电路回答问题}
+
+\begin{enumerate}[label=(\arabic*)]
+\item 这是一个（反相）对数运算电路，$u_o = - U_{\text{TH}} \ln \left( \frac{u_i}{I_S R} \right)$
+\item 将二极管与电阻 $R$ 的位置互换
+\item 依次复合对数运算、线性运算和指数运算，或者依次复合指数运算、线性运算和对数运算
+\end{enumerate}
+
+\section{分析下图所示电路的功能}
+图示电路是一个简易的 DAC（Digital-Anolog Converter），将数字信号转为模拟信号。考虑到无论输入的数字信号是多少，中间三条支路中的电阻都是接地的，因此各三条支路的电流值是不变的，MOS 管的作用仅是调节电流是否输入到运放，也即是否通过运放上侧的电阻 $R_f = R$，依次调节输出电压 $u_o = -i_fR_f$。
+
+列出方程如下：
+\begin{gather}
+\begin{cases}
+    2i_2R = u_s \\ 
+    2i_2R - (i + i_0 + i_1)R = 2i_1R \\ 
+    2i_1R - (i + i_0 )R = 2i_0R \\ 
+    2i_0R - i(2R) = 0
+\end{cases}
+\Longrightarrow 
+\begin{cases}
+    i_2 = \frac{1}{8R} 4u_s \\ 
+    i_1 = \frac{1}{8R} 2u_s \\ 
+    i_0 = i = \frac{1}{8R} u_s
+\end{cases} \\ 
+\Longrightarrow 
+u_o = - (d_0i_0 + d_1i_1 + d_2i_2)R = -\frac{u_s}{8}\left( d_2\cdot 2^2 + d_1\cdot 2^1 + d_0\cdot 2^0 \right)
+\end{gather}
+
+\chapter{2024.9.19 - 2024.9.24}\thispagestyle{fancy}
+
 
 \section{习题集 }
 \section{习题集 }

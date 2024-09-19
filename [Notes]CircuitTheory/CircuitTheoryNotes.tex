@@ -1073,6 +1073,11 @@ u_o =
 其中 $\boldsymbol{R}$ 参数的 $R_{11}$ 和 $R_{22}$ 分别两个端口的输入电阻。
 互易、对称二端口的概念不提，相关总结见图 \ref{二端口相关概念}。多个二端口网络级联\footnote{级联是二端口电路连接方式的一种，常见的连接方式有串联、并联、级联等，在后文会讨论}时，总参数矩阵是各网络参数矩阵的乘积。
 
+二端口吸收的功率 $p$ :
+\begin{equation}
+    p = u_1i_1 + u_2i_2
+\end{equation}
+
 \subsection{输入电阻与输出电阻}
 \begin{LineTheorem}[戴维宁定理]\label{戴维宁定理}
 一个含独立电源、线性电阻和受控源的一端口电路，对外可以等效成一个电压源和一个电阻串联，电压等于原电路端口两端的开路电压，电阻等于全部独立源置 0 （电压源短路，电流源断路）时的等效电阻。
@@ -1098,11 +1103,38 @@ u_o =
 \subsection{参数矩阵间的转换与等效电路}
 $\boldsymbol{G}$ 与 $\boldsymbol{R}$ 矩阵之间满足 $\boldsymbol{G}^{-1} = \boldsymbol{R}$（如果可逆），其它关系见图 \ref{参数矩阵间的关系与等效电路}。
 
-一个{\color{red} 不含独立源 }的二端口网络可以用一个简单的二端口来等效，满足所需的参数矩阵相同即可。具体我们不谈，详见教材。
-
+{\color{red} 不含独立源}的二端口网络一定可以被等效，满足所需的参数矩阵相同即可。普遍的等效需要受控源，详见参考文献 \cite{电路原理} Page 79，这里不再赘述。特别地，若二端口满足互易条件，则可以等效为一个三电阻电路: 
+\begin{equation}
+\begin{matrix}
+    \text{$\boldsymbol{R}$ 互易, T 型等效} \\ 
+    \begin{cases}
+        R_T = R_{12} = R_{21} \\ 
+        R_1 = R_{11} - R_T \\ 
+        R_2 = R_{22} - R_T 
+    \end{cases}
+\end{matrix},\quad 
+\begin{matrix}
+    \text{$\boldsymbol{G}$ 互易, $\pi $ 型等效} \\ 
+    \begin{cases}
+        G_{\pi} = -G_{12} = -G_{21} \\ 
+        G_1 = G_{11} - G_{\pi} \\ 
+        G_2 = G_{22} - G_{\pi} \\ 
+    \end{cases}
+\end{matrix}\quad 
+\begin{matrix}
+    \text{$\boldsymbol{T}$ 互易, T 型等效} \\
+    \begin{cases}
+        R_T = \frac{1}{R_{12}} = \frac{1}{R_{21}} \\ 
+        R_1 = R_T(T_{11} -1) \\ 
+        R_2 = R_T(T_{22} -1) \\ 
+    \end{cases}
+\end{matrix}
+\end{equation}
 \subsection{二端口的常见联接方式}
 
 必须指出的是，在二端口进行联接时，子二端口的端口条件可能被破坏，称为非正规联接，此时不能应用下面的结论计算电路参数。级联一定是正规联接，但其它联接方法是否正规，需要进行判断。若为白箱，可通过推导判断，若为黑箱，需通过实验验证端口条件，具体的验证方法见参考文献 \cite{电路原理导学导教及习题解答} 的 Page 23，我们不多赘述。
+
+另外，在计算各参数矩阵的值时（尤其是 $\boldsymbol{T}$、$\boldsymbol{H}$ 参数），一定不要忘记在最终数值结果中写上单位。
 
 \begin{table}[H]\centering
     %\renewcommand{\arraystretch}{1.5} % 调整行间距为 1.5 倍
@@ -1156,10 +1188,18 @@ $\boldsymbol{G}$ 与 $\boldsymbol{R}$ 矩阵之间满足 $\boldsymbol{G}^{-1} = 
 
 \subsection{MOSFET 基本概念}
 
-MOSFET standing for Metal Oxide Semiconductor Field Effect Transistor，它是数字电路的核心元素。小功率 FET 有 JFET、MOSFET，大功率 FET 有 VDMOS、IGBT 等，本课程主要面向 MOSFET。
-图 \ref{N-MOS 示意图} 是一个 N-MOS 的示意图（ANSI 标准），三个接线端分别称为栅极 G、源级 S 和漏级 D。
+MOSFET standing for Metal Oxide Semiconductor Field Effect Transistor，它是数字电路的核心元素。小功率 FET 有 JFET、MOSFET，大功率 FET 有 VDMOS、IGBT 等，本课程主要面向 MOSFET\footnote{后文所说的 MOS 一般指 N 沟道增强型 MOSFET（N Channel Power MOSFET），名称应拆解为 N 沟道、增强型、MOS、FET，与 N 沟道对应的有 P 沟道，与增强型对应的有耗尽型，与 MOS 对应的有结型，与 FET 对应的是有 BJT（双极型晶体管）}。
 
-由于 MOSFET 结构上的特点，没有电流流经栅极 G，因此可以把 D-S 看作一个二端元件，研究其伏安特性曲线 VCR。栅极和源级之间的电压 $u_{\text{GS}}$ 会对 VCR 产生影响，主要表现为 D-S 开路（称为截止区）或非开路。在非开路情况下（$u_{\text{GS}}$ 超过阈值电压），$u_{\text{DS}}$ 会影响通过的电流 $i_{\text{DS}}$。总而言之，MOS 管可视为一个非线性的 VCVS。
+\begin{center}\noindent\begin{minipage}{0.7\columnwidth}
+    图 \ref{N-MOS 示意图} 是一个 N-MOS 的示意图（ANSI 标准），三个接线端分别称为栅极 G、源级 S 和漏级 D。
+    由于 MOSFET 结构上的特点，没有电流流经栅极 G，因此可以把 D-S 看作一个二端元件，研究其伏安特性曲线 VCR。栅极和源级之间的电压 $u_{\text{GS}}$ 会对 VCR 产生影响，主要表现为 D-S 开路（称为截止区）或非开路。在非开路情况下（$u_{\text{GS}}$ 超过阈值电压），$u_{\text{DS}}$ 会影响通过的电流 $i_{\text{DS}}$。总而言之，MOS 管可视为一个非线性的 VCVS。
+\end{minipage}\hfill\begin{minipage}{0.24\columnwidth}
+    \begin{figure}[H]\centering
+        \includesvg[width=\textwidth]{assets/1,2/MOS管符号.drawio.svg}
+        \caption{\textbf{N-MOS 示意图}}\label{N-MOS 示意图}
+    \end{figure}
+\end{minipage}\end{center}
+
 
 \subsection{MOSFET 外特性}
 
@@ -1181,12 +1221,9 @@ i_{\text{DS}} =
 \end{enumerate}
 
 
-%\begin{figure}[H]\centering
-%    \includesvg[width=0.35\textwidth]{assets/1,2/MOS管符号.drawio.svg}
-%    \caption{\textbf{N-MOS 示意图}}\label{N-MOS 示意图}
-%\end{figure}
 
-举个例子，$U_T = 1$ V，$K = 1\ \mathrm{mA \cdot V^{-2}}$ 时，MOS 管的电流特性如图 \ref{MOS 管的 iDS 电流特性} 所示\footnote{Matlab 源码见附录 \ref{MOS 管的 iDS 电流特性源码}}。
+
+例如，$U_T = 1$ V，$K = 1\ \mathrm{mA \cdot V^{-2}}$ 时，N 沟道增强型 MOSFET 的电流特性如图 \ref{MOS 管的 iDS 电流特性} 所示\footnote{Matlab 源码见附录 \ref{MOS 管的 iDS 电流特性源码}}。
 
 \begin{figure}[H]\centering
 \begin{subfigure}[t]{0.67\textwidth}\centering
@@ -1196,14 +1233,14 @@ i_{\text{DS}} =
     \includegraphics[height=135pt]{assets/2/MOS管外特性 (2).pdf}
     \caption{\bfseries 在给定 $U_{GS}$ 下 $i_{\text{DS}} = i_{\text{DS}}(u_{\text{DS}})$ 的函数图像 }
 \end{subfigure}
-\caption{\bfseries MOS 管的 $i_{\text{DS}}$ 电流特性 }\label{MOS 管的 iDS 电流特性}
+\caption{\bfseries N 沟道增强型 MOSFET 的 $i_{\text{DS}}$ 电流特性 }\label{MOS 管的 iDS 电流特性}
 \end{figure}
 
 \subsection{MOSFET 等效电路}
 
 依 MOS 管的外特性，可分为三个区，截止区、线性区和恒流区，分别对应三个等效电路，如下图所示：
 \begin{figure}[H]\centering
-\includegraphics[width=0.5\textwidth]{assets/2/MOS管等效电路.png}
+\includegraphics[width=0.55\textwidth]{assets/2/MOS管等效电路.png}
 \caption{\bfseries MOS 管等效电路}\label{MOS管等效电路}
 \end{figure}
 
@@ -1779,6 +1816,12 @@ i_{\text{DS}} =
 \section{第二章}
 
 \subsection{二端口互易或对称的意义是什么？}
+
+无论是什么参数，互易代表此电路可以被简单的电阻电路所等效，对称则代表交换端口两边的激励，所得输出也会相应交换。
+
+例如，对 $\boldsymbol{R}$、$\boldsymbol{G}$ 和 $\boldsymbol{T}$ 参数而言，若满足互易，则原电路可以等效为由三个电阻构成的新电路（分别是 T、$\pi$、T 型），这降低了电路分析和设计的难度。
+
+例如，若某二端口的 $\boldsymbol{R}$ 参数满足互易，则它可以等效为一个 T 型电阻电路。假设现在激励 $i_1$ 加在左侧，$i_2$ 加在右侧，左右侧电压分别为 $u_1, u_2$，那么我们交换两端的激励，也即 $i_2$ 加在左侧，$i_1$ 加在右侧，相应地，左侧便得到电压 $u_2$，右侧得到电压 $u_1$。
 
 \subsection{具有公共端的三端元件可视为二端口吗？}
 

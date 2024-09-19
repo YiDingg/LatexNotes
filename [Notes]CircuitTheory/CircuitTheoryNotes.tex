@@ -128,9 +128,10 @@
     \usepackage[most]{tcolorbox} % 引入tcolorbox包 
     \usepackage{listings} % 引入listings包
         \tcbuselibrary{listings, skins, breakable}
+        \newfontfamily\codefont{Consolas} % 定义需要的 codefont 字体
         \lstdefinestyle{matlabstyle}{
             language=Matlab,
-            basicstyle=\small,
+            basicstyle=\small\ttfamily\codefont,    % ttfamily 确保等宽 
             breakatwhitespace=false,
             breaklines=true,
             captionpos=b,
@@ -143,9 +144,9 @@
             tabsize=2
         }
         \newtcblisting{matlablisting}{
-            arc=0pt,
-            top=0pt,
-            bottom=0pt,
+            arc=2pt,        % 圆角半径
+            top=-5pt,
+            bottom=-5pt,
             left=1mm,
             listing only,
             listing style=matlabstyle,
@@ -983,13 +984,19 @@ u_o =
 
 考虑两个电阻都没有的情况，令 $R_p = R_m = \infty$，则减法部分总系数为 1 不可改变，加法的总系数范围 $[\frac{1}{R_1} + \frac{1}{R_2} ,\ \infty)$
 
+\subsection{OPA 实现指数对数乘法除法积分微分运算}
+
+利用二极管可以实现指数和对数运算，乘法和除法由对数运算、线性运算、指数运算依次复合而成，引入电容可以实现积分、微分运算，详见 \href{https://zhuanlan.zhihu.com/p/628064125}{知乎：运算放大器的典型应用 (https://zhuanlan.zhihu.com/p/628064125)}，这里不再赘述。特别地，引入电感还可以实现信号的相位移动。
+
+关于 OPA 在 Multisim 中的仿真，可以参考 \href{https://space.bilibili.com/82683828}{Bilibili: 工程师看海 (https://space.bilibili.com/82683828)} 的视频，以及仿真时的一些细节，我们不多赘述。
+
 \section{二端口网络}
 
 本 section 拓展阅读：
 \begin{enumerate}
-\item \href{https://zhuanlan.zhihu.com/p/359677789}{从线性代数的角度理解线性二端口网络 - BaronNashIstDD的文章 - 知乎}
-\item \href{https://www.zhihu.com/question/357342024/answer/1477595759}{如何记住二端口ZYTH参数?}
-\item \href{https://zhuanlan.zhihu.com/p/574470858}{二端口网络知识总结}
+    \item \href{https://zhuanlan.zhihu.com/p/574470858}{知乎：二端口网络知识总结 (https://zhuanlan.zhihu.com/p/574470858)}
+\item \href{https://zhuanlan.zhihu.com/p/359677789}{知乎：从线性代数的角度理解线性二端口网络 (https://zhuanlan.zhihu.com/p/359677789)}
+\item \href{https://www.zhihu.com/question/357342024/answer/1477595759}{知乎：如何记住二端口ZYTH参数？(https://www.zhihu.com/question/357342024/answer/1477595759)}
 \end{enumerate}
 
 \subsection{二端口的概念与参数矩阵}
@@ -1093,7 +1100,9 @@ $\boldsymbol{G}$ 与 $\boldsymbol{R}$ 矩阵之间满足 $\boldsymbol{G}^{-1} = 
 
 一个{\color{red} 不含独立源 }的二端口网络可以用一个简单的二端口来等效，满足所需的参数矩阵相同即可。具体我们不谈，详见教材。
 
-\subsection{二端口的常见连接方式}
+\subsection{二端口的常见联接方式}
+
+必须指出的是，在二端口进行联接时，子二端口的端口条件可能被破坏，称为非正规联接，此时不能应用下面的结论计算电路参数。级联一定是正规联接，但其它联接方法是否正规，需要进行判断。若为白箱，可通过推导判断，若为黑箱，需通过实验验证端口条件，具体的验证方法见参考文献 \cite{电路原理导学导教及习题解答} 的 Page 23，我们不多赘述。
 
 \begin{table}[H]\centering
     %\renewcommand{\arraystretch}{1.5} % 调整行间距为 1.5 倍
@@ -1165,7 +1174,7 @@ MOS 的外特性总结如下：
 i_{\text{DS}} = 
 \begin{cases}
     0 & u_{\text{GS}} < U_T \\
-    \frac{K}{2}(u_{\text{GS}} - U_T)^2\cdot \frac{u_{\text{DS}}}{(u_{\text{DS}} - U_T)} & u_{\text{GS}} \geq U_T\ \& \ u_{\text{DS}} < u_{\text{GS}} - U_T \\ 
+    \frac{K}{2}(u_{\text{GS}} - U_T)^2\cdot \frac{u_{\text{DS}}}{(u_{\text{GS}} - U_T)} & u_{\text{GS}} \geq U_T\ \& \ u_{\text{DS}} < u_{\text{GS}} - U_T \\ 
     \frac{K}{2}(u_{\text{GS}} - U_T)^2 & u_{\text{GS}} \geq U_T\ \& \ u_{\text{DS}} \geqslant u_{\text{GS}} - U_T \\ 
 \end{cases}
 \end{equation}
@@ -1210,7 +1219,8 @@ i_{\text{DS}} =
 \subsubsection{多数位量化：}
 最简单的量化是离散为 1 位数字信号（1 个二进制位），即划定电压分界值，电压信号大于此值时取 1，否则取 0。一般情况下，我们将电压范围 $[u_{\text{min}},\ u_{\text{max}}]$ 离散为 $2^n$ 个数值（即划分为 $2^n$ 个区间），共 $(2^n + 1)$ 个分界值，类似 linspace($u_{\text{min}}$, $u_{\text{max}}$, $2^n+1$)，最终得到数字信号 $0, 1, 2, \cdots, 2^n - 1$。
 
-为了传递这些数字信号，最常见的方法是（n 条线）并行传输，也可以串行传输（比较少）。
+\subsubsection{并行传输与串行传输：}
+为了传递 $n$ 位的数字信号，最常见的方法是 $n$ 条线并行传输，每一个时钟周期传输 $n$ 个二进制位，等价于一个模拟信号的离散值；也可以使用串行传输，每 $n$ 个时钟周期传输 $n$ 个二进制位，等价于一个模拟信号的离散值。并行传输的通信速率远远大于串行传输，但在高频系统中，并行信号线之间的串扰问题比较严重。
 
 \subsubsection{量化单位 $\Delta$: }
 量化单位指等距离散后两相邻离散值的距离，记为 $\Delta$，$1\  \Delta = 1\  \text{LSB} =  \frac{u_{\text{max}} - u_{\text{min}}}{2^n}$。当 $u_{\text{min}} = 0$ 时，也是离散值为 1 的信号对应的电压值。量化单位越小，量化误差越小，最大量化误差为 $\frac{\Delta }{2}$。
@@ -1756,14 +1766,50 @@ i_{\text{DS}} =
 
 \end{multicols} 
 
-
 % 附录 B
-\chapter*{附录 B. Matlab 代码}\addcontentsline{toc}{chapter}{附录 B. Matlab 代码}   
+\chapter*{附录 B. 电路原理 Q \& A}\addcontentsline{toc}{chapter}{附录 B. 电路原理 Q \& A}   
 \thispagestyle{fancy} 
 \setcounter{section}{0}   
 \renewcommand\thesection{B.\arabic{section}}   
 \renewcommand{\thefigure}{B.\arabic{figure}} 
 \renewcommand{\thetable}{B.\arabic{table}}
+
+\section{第一章}
+
+\section{第二章}
+
+\subsection{二端口互易或对称的意义是什么？}
+
+\subsection{具有公共端的三端元件可视为二端口吗？}
+
+具有（唯一）公共端的 $n+1$ 端元件可视为 $n$ 端口网络，因此有公共端的三端元件可以视为一个二端口。并且，两个具有公共端的二端口，将公共端并联在一起不会破坏端口条件，将公共端串联在一起也不会破坏端口条件。
+
+\subsection{}
+
+\section{第三章}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% 附录 C
+\chapter*{附录 C. Matlab 代码}\addcontentsline{toc}{chapter}{附录 C. Matlab 代码}   
+\thispagestyle{fancy} 
+\setcounter{section}{0}   
+\renewcommand\thesection{C.\arabic{section}}   
+\renewcommand{\thefigure}{C.\arabic{figure}} 
+\renewcommand{\thetable}{C.\arabic{table}}
 
 \section{图 \ref{MOS 管的 iDS 电流特性} 源码}\label{MOS 管的 iDS 电流特性源码}
 \begin{matlablisting}

@@ -1073,6 +1073,8 @@ u_o =
 其中 $\boldsymbol{R}$ 参数的 $R_{11}$ 和 $R_{22}$ 分别两个端口的输入电阻。
 互易、对称二端口的概念不提，相关总结见图 \ref{二端口相关概念}。多个二端口网络级联\footnote{级联是二端口电路连接方式的一种，常见的连接方式有串联、并联、级联等，在后文会讨论}时，总参数矩阵是各网络参数矩阵的乘积。
 
+需要特别注意的是，$\boldsymbol{T}$ 的互易条件是 $\det T = 1$ 而 $\boldsymbol{H}$ 的互易条件是 $H_{12} + H_{21} = 0$。
+
 二端口吸收的功率 $p$ :
 \begin{equation}
     p = u_1i_1 + u_2i_2
@@ -1100,36 +1102,6 @@ u_o =
 \caption{\bfseries 参数矩阵间的关系与等效电路}\label{参数矩阵间的关系与等效电路}
 \end{figure}
 
-\subsection{参数矩阵间的转换与等效电路}
-$\boldsymbol{G}$ 与 $\boldsymbol{R}$ 矩阵之间满足 $\boldsymbol{G}^{-1} = \boldsymbol{R}$（如果可逆），其它关系见图 \ref{参数矩阵间的关系与等效电路}。
-
-{\color{red} 不含独立源}的二端口网络一定可以被等效，满足所需的参数矩阵相同即可。普遍的等效需要受控源，详见参考文献 \cite{电路原理} Page 79，这里不再赘述。特别地，若二端口满足互易条件，则可以等效为一个三电阻电路: 
-\begin{equation}
-\begin{matrix}
-    \text{$\boldsymbol{R}$ 互易, T 型等效} \\ 
-    \begin{cases}
-        R_T = R_{12} = R_{21} \\ 
-        R_1 = R_{11} - R_T \\ 
-        R_2 = R_{22} - R_T 
-    \end{cases}
-\end{matrix},\quad 
-\begin{matrix}
-    \text{$\boldsymbol{G}$ 互易, $\pi $ 型等效} \\ 
-    \begin{cases}
-        G_{\pi} = -G_{12} = -G_{21} \\ 
-        G_1 = G_{11} - G_{\pi} \\ 
-        G_2 = G_{22} - G_{\pi} \\ 
-    \end{cases}
-\end{matrix}\quad 
-\begin{matrix}
-    \text{$\boldsymbol{T}$ 互易, T 型等效} \\
-    \begin{cases}
-        R_T = \frac{1}{R_{12}} = \frac{1}{R_{21}} \\ 
-        R_1 = R_T(T_{11} -1) \\ 
-        R_2 = R_T(T_{22} -1) \\ 
-    \end{cases}
-\end{matrix}
-\end{equation}
 \subsection{二端口的常见联接方式}
 
 必须指出的是，在二端口进行联接时，子二端口的端口条件可能被破坏，称为非正规联接，此时不能应用下面的结论计算电路参数。级联一定是正规联接，但其它联接方法是否正规，需要进行判断。若为白箱，可通过推导判断，若为黑箱，需通过实验验证端口条件，具体的验证方法见参考文献 \cite{电路原理导学导教及习题解答} 的 Page 23，我们不多赘述。
@@ -1182,6 +1154,51 @@ $\boldsymbol{G}$ 与 $\boldsymbol{R}$ 矩阵之间满足 $\boldsymbol{G}^{-1} = 
 \end{subfigure}
 \caption{\bfseries 二端口串并联、并串联 }
 \end{figure}
+
+\subsection{参数矩阵间的转换与等效电路}
+$\boldsymbol{G}$ 与 $\boldsymbol{R}$ 矩阵之间满足 $\boldsymbol{G}^{-1} = \boldsymbol{R}$（如果可逆），其它关系见图 \ref{参数矩阵间的关系与等效电路}。
+
+{\color{red} 不含独立源}的二端口网络一定可以被等效，满足所需的参数矩阵相同即可。特别地，若二端口满足互易条件，则可以等效为一个三电阻电路。特别注意，$\boldsymbol{T}$ 参数等效时 ${\color{red} R_T = \frac{1}{T_{21}} \ne}  \frac{1}{T_{21}}$。
+\begin{equation}
+\begin{matrix}
+    \text{$\boldsymbol{R}$ 互易, T 型等效} \\ 
+    \begin{cases}
+        R_T = R_{12} = R_{21} \\ 
+        R_1 = R_{11} - R_T \\ 
+        R_2 = R_{22} - R_T 
+    \end{cases}
+\end{matrix},\quad 
+\begin{matrix}
+    \text{$\boldsymbol{G}$ 互易, $\pi $ 型等效} \\ 
+    \begin{cases}
+        G_{\pi} = -G_{12} = -G_{21} \\ 
+        G_1 = G_{11} - G_{\pi} \\ 
+        G_2 = G_{22} - G_{\pi} \\ 
+    \end{cases}
+\end{matrix}\quad 
+\begin{matrix}
+    \text{$\boldsymbol{T}$ 互易, T 型等效} \\
+    \begin{cases}
+        {\color{red} R_T = \frac{1}{T_{21}}}\\ 
+        R_1 = R_T(T_{11} -1) \\ 
+        R_2 = R_T(T_{22} -1) \\ 
+    \end{cases}
+\end{matrix}
+\end{equation}
+
+
+
+\begin{center}\noindent\begin{minipage}{0.58\columnwidth}
+    \hspace*{2em} 普遍的等效需要受控源，参数 $\boldsymbol{G}$ 和 $\boldsymbol{S}$ 的等效详见参考文献 \cite{电路原理} Page 79，这里只提 $\boldsymbol{T}$ 和 $\boldsymbol{H}$ 如何等效。等效的思路是相同的，都是得到两个因变量的表达式，一个端口各一个（例如 ($u_1, u_2$) 或者 $(u_1, i_2)$），这样便将电路分为了两部分，分别用受控源和电阻进行等效即可。
+
+    \hspace*{2em} 已知 $\boldsymbol{T}$ 参数时，依据参数转换关系求出 $\boldsymbol{H}$ 参数，以得到表达式 $u_1 = u_1(u_2,i_1), i_2 = i_2(u_2,i_1)$，此时可以等效为右图电路。
+\end{minipage}\hfill\begin{minipage}{0.39\columnwidth}
+    \begin{figure}[H]\centering
+        \includesvg[width=\columnwidth]{assets/2/H参数等效.svg}
+        \caption{\textbf{$\boldsymbol{H}$ 参数等效电路}}\label{H参数等效电路}
+    \end{figure}
+\end{minipage}\end{center}
+
 
 
 \section{MOSFET（金属氧化物半导体场效应晶体管）}

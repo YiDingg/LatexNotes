@@ -969,25 +969,107 @@ u_o = - (d_0i_0 + d_1i_1 + d_2i_2)R = -\frac{u_s}{8}\left( d_2\cdot 2^2 + d_1\cd
 
 \chapter{2024.9.19 - 2024.9.24}\thispagestyle{fancy}
 
+\section{讲义题 2-20}
 
-\section{习题集 }
-\section{习题集 }
-\section{习题集 }
-\section{习题集 }
-\section{习题集 }
-\section{习题集 }
-\section{习题集 }
-
-
-
-
-
-
-
-
-
+如图，(a) 电路和 (b) 电路的 $\boldsymbol{R}$ 参数分别为：
+\begin{equation}
+\boldsymbol{R}_a = 
+\begin{bmatrix}
+    0 & 0 \\ 
+    0 & R_1
+\end{bmatrix},\quad 
+\boldsymbol{R}_b =
+\begin{bmatrix}
+    \frac{R_1}{R_1+R_2} & 1 \\ 
+    1 &  \frac{R_1}{R_1+R_2}
+\end{bmatrix}
+\end{equation}
 
 
+
+\section{讲义题 2-21}
+
+\noindent \textbf{(1)\ \ 此二端口网络的 $\boldsymbol{T}$ 参数：}
+
+$i_1 = \frac{u_2}{R_2} + (-i_2),\quad u_1 = u_2 - R_1(i_2 - \frac{u_2}{R_2})$，得到此二端口的 $\boldsymbol{T}$ 参数：
+\begin{equation}
+\boldsymbol{T} = 
+\begin{bmatrix}
+    1 + \frac{R_1}{R_2} & R_1 \\ 
+    \frac{1}{R_2} & 1
+\end{bmatrix}
+=
+\begin{bmatrix}
+    \frac{5}{4} & 10\  \Omega \\ 
+    \frac{1}{40} \ \mathrm{S} & 1
+\end{bmatrix}
+\end{equation}
+
+\noindent \textbf{(1)\ \ 求 $U_{S1}$ 和 $I_1$}
+
+$(-i_2) = I_2 = 2\ \mathrm{A},\quad u_2 = I_2R_3 = 40\ \mathrm{V}$，代入即得：
+\begin{equation}
+\begin{bmatrix}
+    U_{S1} \\ 
+    I_1
+\end{bmatrix}
+= 
+\boldsymbol{T}\cdot 
+\begin{bmatrix}
+    40\ \mathrm{V} \\ 
+    2 \ \mathrm{A}
+\end{bmatrix}
+= 
+\begin{bmatrix}
+    70\ \mathrm{V} \\ 
+    3 \ \mathrm{A}
+\end{bmatrix}
+\end{equation}
+
+\begin{figure}[H]\centering
+\begin{subfigure}[t]{0.5\columnwidth}\centering
+    \includegraphics[height=92pt]{assets/4/ffe92b96174b737b0ba9725eef3dd53e.png}
+    \caption{\bfseries 讲义题 2-20 图 }
+\end{subfigure}\begin{subfigure}[t]{0.5\columnwidth}\centering
+    \includegraphics[height=92pt]{assets/4/a3822dcee8e6253ad95a943b6b83e06e.png}
+    \caption{\bfseries 讲义题 2-21 图 }
+\end{subfigure}
+\caption{\bfseries 讲义题 2-20、讲义题 2-21 }
+\end{figure}
+
+\section{讲义题 2-22}
+
+\noindent \textbf{(1)\ \ 求此二端口的等效电路}
+
+$\boldsymbol{T}$ 参数满足 $\det \boldsymbol{T} = 5 - 4 = 1$，也即满足互易条件，因此可以等效为 T 型三电阻电路，如图 \ref{} 所示。此时的电阻阻值为：
+\begin{equation}
+R_T = \frac{1}{T_{21}} = 2 \ \Omega,\quad R_a = R_T(T_{11} - 1) = 2\ \Omega,\quad R_b = R_T(T_{22} - 1) = 3\ \Omega
+\end{equation}
+
+\noindent \textbf{(1)\ \ $R_2$ 为何值时其获得最大功率}
+
+$R_2$ 吸收的功率为 $p = \frac{u_2^2}{R_2}$，回路总电阻为 $2 + 2 + 2 \parallel (3 + R_2) = 4 + \frac{2(3+R_2)}{5+R_2}$，由分压原理得到 $u_2$:
+\begin{equation}
+u_2 = 6\cdot \frac{\frac{2(3+R_2)}{5+R_2}}{4 + \frac{2(3+R_2)}{5+R_2}} \cdot \frac{R_2}{ 3 + R_2} = \frac{6}{3+\frac{13}{R_2}}
+\end{equation}
+于是 $R_2$ 上的功率 $p$ 为：
+\begin{equation}
+p = \frac{u_2^2}{R_2} = \frac{36}{\frac{13^2}{R_2} + 78 + 9R_2} \leqslant \frac{36}{2\cdot 13 \cdot 3 + 78} \ \mathrm{W} = \frac{9}{39}\ \mathrm{W} = 0.2308 \ \mathrm{W}
+\end{equation}
+当且仅当 $\frac{13^2}{R_2} = 9R_2$ 取等，此时 $R_2 = \frac{13}{3}\ \Omega$。
+
+事实上，视 $R_2$ 为负载，视电路的剩余部分为电源，可求得电源的内阻（也即输出电阻）为 $R_s = \frac{13}{3}\ \Omega$，因此当 $R_2 = R_s =  \frac{13}{3}\ \Omega$ 时，外部电路（也即负载 $R_2$）有最大功率。 
+
+\begin{figure}[H]\centering
+\begin{subfigure}[t]{0.5\columnwidth}\centering
+    \includegraphics[height=120pt]{assets/4/199279d29390a5449f7ef5c5dc7f8a3d.png}
+    \caption{\bfseries 讲义题 2-22 图 }
+\end{subfigure}\begin{subfigure}[t]{0.5\columnwidth}\centering
+    \includegraphics[height=120pt]{assets/4/bd23c61fd9d5ec13d9ce56376fe64d2c.png}
+    \caption{\bfseries 讲义题 2-20 等效电路 }
+\end{subfigure}
+\caption{\bfseries 讲义题 2-22 }
+\end{figure}
 
 
 

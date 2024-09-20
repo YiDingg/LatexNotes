@@ -586,6 +586,8 @@ $K_{\text{max}} = 683\ \mathrm{lm \cdot W^{-1}}$ 在波长约 555.0 nm 取到，
 
 \chapter{光的反射与折射}\thispagestyle{fancy}
 
+在本章，我们先以一定的顺序，依次对反射折射过程中所出现的现象或相关物理量进行讨论，最后给出所有现象的总结。
+
 \section{菲涅尔公式}
 
 \begin{BlockTheorem}[菲涅尔公式, Fresnel Formula]\label{菲涅尔公式}
@@ -599,70 +601,76 @@ $K_{\text{max}} = 683\ \mathrm{lm \cdot W^{-1}}$ 在波长约 555.0 nm 取到，
 \hline
 类型 & \multicolumn{2}{c|}{振幅反射系数 $r$} & \multicolumn{2}{c|}{振幅透射系数 $t$ }  \\ 
 \hline
-s 波 & $\displaystyle r_s = \frac{n_i\cos \theta_i - n_t \cos \theta_t}{n_i\cos \theta_i + n_t \cos \theta_t} $ & $\displaystyle  - \frac{\sin (\theta_i - \theta_t) }{\sin (\theta_i + \theta_t)}$ & $\displaystyle t_s  = \frac{2n_i \cos \theta_i}{n_i\cos \theta_i + n_t \cos \theta_t} $ &   $\displaystyle  + \frac{2 \sin \theta_t \cos \theta_i}{\sin (\theta_i + \theta_t)}$   \\ 
+$s$ 波 & $\displaystyle r_s = \frac{n_i\cos \theta_i - n_t \cos \theta_t}{n_i\cos \theta_i + n_t \cos \theta_t} $ & $\displaystyle  - \frac{\sin (\theta_i - \theta_t) }{\sin (\theta_i + \theta_t)}$ & $\displaystyle t_s  = \frac{2n_i \cos \theta_i}{n_i\cos \theta_i + n_t \cos \theta_t} $ &   $\displaystyle  + \frac{2 \sin \theta_t \cos \theta_i}{\sin (\theta_i + \theta_t)}$   \\ 
 \hline
-p 波 & $\displaystyle r_p = \frac{n_t\cos \theta_i - n_i \cos \theta_t}{n_t\cos \theta_i + n_i \cos \theta_t} $ &     $ \displaystyle  + \frac{\tan (\theta_i - \theta_t)}{\tan (\theta_i + \theta_t)} $  &  $\displaystyle t_p  = \frac{2n_i \cos \theta_i}{n_i\cos \theta_t + n_t \cos \theta_i} $ &   $\displaystyle + \frac{2 \sin \theta_t \cos \theta_i}{\sin (\theta_i + \theta_t) \cos (\theta_i - \theta_t)}$                  \\
+$p$ 波 & $\displaystyle r_p = \frac{n_t\cos \theta_i - n_i \cos \theta_t}{n_t\cos \theta_i + n_i \cos \theta_t} $ &     $ \displaystyle  + \frac{\tan (\theta_i - \theta_t)}{\tan (\theta_i + \theta_t)} $  &  $\displaystyle t_p  = \frac{2n_i \cos \theta_i}{n_i\cos \theta_t + n_t \cos \theta_i} $ &   $\displaystyle + \frac{2 \sin \theta_t \cos \theta_i}{\sin (\theta_i + \theta_t) \cos (\theta_i - \theta_t)}$                  \\
 \hline
 \end{tabular}
 \end{table}
 
-折射角 $\theta_t$、s 波通量反射率 $R_s$、p 波通量反射率 $R_p$ 和总通量反射率 $R$ 为：
+折射角 $\theta_t$、$s$ 波通量反射率 $R_s$、$p$ 波通量反射率 $R_p$ 和总通量反射率 $R$ 为：
 \begin{equation}
     \cos \theta_t = \sqrt{1 - \left( \frac{\eta_i}{\eta_t} \sin \theta_i\right)^2},\quad R_s = r_s^2,\ R_p = r_p^2, \quad  R = \frac{1}{2}\left( R_s + R_p \right)
 \end{equation}
 
-总强度反射率 $R$ 的严格证明见下一节。特别地，若 $1 - \left( \frac{\eta_i}{\eta_t} \sin \theta_i\right)^2 < 0$，则发生全反射，此时 $F(\theta_i) = 1$。另外，需要指出菲涅尔公式的适用条件，也即推导时所做的一些假设，如下：
+总强度反射率 $R$ 的严格证明见下一节。特别地，若 $1 - \left( \frac{\eta_i}{\eta_t} \sin \theta_i\right)^2 < 0$，则发生全反射，此时 $R = 1$。另外，需要指出菲涅尔公式的适用条件，也即推导时所做的一些假设，如下：
 \begin{enumerate}
 \item 介质为绝缘介质，无表面自由电荷或传导电流
-\item 介质为各向同性介质
-\item 介质为光学线性介质（弱光强）
+\item 介质为各向同性的光学线性介质（弱光强）
 \item 介质磁导率（约）等于真空磁导率\footnote{对于介质磁导率不等于真空磁导率的情况，参考 \href{https://www.writebug.com/static/uploads/2024/9/2/3ed06af7e4f074f1964feb480a541a6b.pdf}{Optics (Eugene Hecht, 尤金) Page 144}} $\mu_i = \mu_t = \mu_0$，其中 $\mu_0$ 为真空磁导率。
 \end{enumerate}
 \end{BlockTheorem}
 
-\section{菲涅尔公式中的相位变化}
+\section{反射时的相位变化}
 
 菲涅尔公式的推导以矢量分析为基础，因此公式中系数 $r_s$ 的正负具有明确物理意义，它标识着方向。若为负，则反射后的方向与原方向相反，否则相同。各系数正负情况见表 \ref{振幅系数的正负情况}，其中 o 表示可正可负。
 
-\begin{table}[H]\centering
-    % \setlength{\tabcolsep}{1.5mm} % 调整列间距
-        \caption{\textbf{振幅系数的正负情况}}
-        \label{振幅系数的正负情况}
-    \begin{tabular}{cccccccccc}\toprule
-        折射率 & $r_s$& $r_p$ & $t_s$ & $t_p$\\
-        \midrule                        
-        $n_i < n_t$ & $-$ & o & $+$ & $+$\\
-        $n_i > n_t$ & o & o & $+$ & $+$\\
-        \bottomrule
-    \end{tabular}
-\end{table}
+%\footnote{拓展阅读 \href{https://zhuanlan.zhihu.com/p/607510257}{知乎：你一直没搞懂的半波损失（机械波、光波）}}
 
-从波的角度，方向相反可以等价地视为相位发生了 $\pi$ 的前移（或后移），称为相位突变。$n_i < n_t$ 时，相位突变要么是 0，要么是 $\pi$，$n_i > n_t$ 时的相位变化量比较复杂，我们不追究原因。在 $\theta_i + \theta_t = \frac{\pi}{2}$ 时，$r_p$ 的正负发生变化，p 波的反射波相位也发生突变，称此时 $\theta_i$ 的角度为布儒斯特角\footnote{拓展阅读 \href{https://zhuanlan.zhihu.com/p/607510257}{知乎：你一直没搞懂的半波损失（机械波、光波）}}（Brewster angle），记为 $\theta_B$，也称为偏振角或起偏角。可以推得：
+\begin{center}\noindent\begin{minipage}{0.65\columnwidth}
+    \hspace*{2em} 从波的角度，方向相反可以等价地视为相位发生了 $\pi$ 的前移（或后移），称为相位突变。$n_i < n_t$ 时，相位突变要么是 0，要么是 $\pi$，$n_i > n_t$ 时的相位变化比较复杂，我们不深究。在 $\theta_i + \theta_t = \frac{\pi}{2}$ 时，$r_p$ 的正负发生变化，$p$ 波的反射波相位也发生突变，称此时 $\theta_i$ 的角度为布儒斯特角（Brewster angle），记为 $\theta_B$，也称为偏振角或起偏角。
+\end{minipage}\hfill\begin{minipage}{0.3\columnwidth}
+    \begin{table}[H]\centering
+        % \setlength{\tabcolsep}{1.5mm} % 调整列间距
+            \caption{\textbf{振幅系数的正负情况}}
+            \label{振幅系数的正负情况}
+        \begin{tabular}{cccccccccc}\toprule
+            折射率 & $r_s$& $r_p$ & $t_s$ & $t_p$\\
+            \midrule                        
+            $n_i < n_t$ & $-$ & o & $+$ & $+$\\
+            $n_i > n_t$ & o & o & $+$ & $+$\\
+            \bottomrule
+        \end{tabular}
+    \end{table}
+\end{minipage}\end{center}
+可以推得 Brewster angle 的值为：
 \begin{equation}
-\theta_B = \arctan \left( \frac{n_2}{n_1} \right)
+    \theta_B = \arctan \left( \frac{n_2}{n_1} \right)
 \end{equation}
+
+
 
 具体的振幅系数变化见图 \ref{振幅系数随入射角的变化}，见图 \ref{反射时 s 波和 p 波的相位变化}，$n_i < n_t$ 时的反射示意图见图 \ref{反射示意图}。
 
 \begin{figure}[H]\centering
 \begin{subfigure}[t]{0.49\textwidth}\centering
-    \includegraphics[height=180pt]{assets/2024-09-15_10-53-31.pdf}
+    \includegraphics[height=190pt]{assets/2024-09-15_10-53-31.pdf}
     \caption{\bfseries 由空气入射玻璃（$n_i = 1,\ n_t = 1.5$） }
 \end{subfigure}
 \begin{subfigure}[t]{0.49\textwidth}\centering
-    \includegraphics[height=180pt]{assets/2024-09-15_10-53-27.pdf}
+    \includegraphics[height=190pt]{assets/2024-09-15_10-53-27.pdf}
     \caption{\bfseries 由玻璃入射空气（$n_i = 1.5,\ n_t = 1$） }
 \end{subfigure}
 \caption{\bfseries 振幅系数 $r$ 随入射角 $\theta_i$ 的变化 }\label{振幅系数随入射角的变化}
 \end{figure}
 
 \begin{figure}[ht]\centering
-    \includesvg[width=0.9\textwidth]{assets/相位突变.svg}
-    \caption{\bfseries s 波和 p 波在反射时的相位变化}\label{反射时 s 波和 p 波的相位变化}
+    \includesvg[width=0.93\textwidth]{assets/相位突变.svg}
+    \caption{\bfseries $s$ 波和 $p$ 波在反射时的相位变化}\label{反射时 s 波和 p 波的相位变化}
 \end{figure}
 
 \begin{figure}[H]\centering
-\includesvg[width=0.92\textwidth]{assets/反射后的方向情况.svg}
+\includesvg[width=0.95\textwidth]{assets/反射后的方向情况.svg}
 \caption{\bfseries 由空气入射玻璃的光线示意图}\label{反射示意图}
 \end{figure}
 
@@ -688,8 +696,7 @@ p 波 & $\displaystyle r_p = \frac{n_t\cos \theta_i - n_i \cos \theta_t}{n_t\cos
 }
 \end{gather}
 
-
-\section{菲涅尔公式中的能量关系}
+\section{反射折射时的能量关系}
 
 在 Fresnel Formula 中可以发现，$r_s^2 + t_s^2 \ne 1$，$r_p^2 + t_p^2 \ne 1$，是能量不守恒了吗？显然不是。那么，反射光和透射光的能量关系是怎样的？这需要借助辐射度学的相关概念。
 
@@ -718,7 +725,7 @@ p 波 & $\displaystyle r_p = \frac{n_t\cos \theta_i - n_i \cos \theta_t}{n_t\cos
 = \frac{\varepsilon_0 cA }{\mu_r} \cdot  n_t \cos \theta_t \, \left( t_s^2E_{i,s}^2 + t_p^2E_{i,p}^2 \right) 
 \end{align}
 
-由于入射光可分解为 s 波与 p 波，我们自然想到它们俩在入射前后应该是能量守恒的，这指导我们分别作数学上的处理。对 s 波，由菲涅尔定律（这说明已经做了近似 $\mu_r = 1$），做减法得到：
+由于入射光可分解为 $s$ 波与 $p$ 波，我们自然想到它们俩在入射前后应该是能量守恒的，这指导我们分别作数学上的处理。对 $s$ 波，由菲涅尔定律（这说明已经做了近似 $\mu_r = 1$），做减法得到：
 \begin{align*}
 &n_i \cos \theta_i E_{i,s}^2 - n_i \cos \theta_i r_{i,s}^2E_{i,s}^2 -   n_t \cos \theta_t t_s^2E_{i,s}^2 \\
 &= E_{i,s}^2 \left[ n_i\cos \theta_i \left( 1 - \frac{(n_i\cos \theta_i - n_t \cos \theta_t)^2}{(n_i\cos \theta_i + n_t \cos \theta_t)^2} \right) - n_t \cos \theta_t \cdot \frac{(2n_i \cos \theta_i)^2}{(n_i\cos \theta_i + n_t \cos \theta_t)^2} \right] \\ 
@@ -760,7 +767,7 @@ n_i \cos \theta_i E_{i,p}^2 - n_i \cos \theta_i r_{i,p}^2E_{i,p}^2 -   n_t \cos 
 {\color{red} 其中 $\Phi_{e,r} = R\Phi_{e,i}$ 和 $\Phi_{e,t} = T\Phi_{e,i}$ 是怎么来的？}
 
 
-\section{反射、折射时的偏振}
+\section{完全偏振反射光}
 
 当光波由布儒斯特角 $\theta_B$ 入射时，由 Fresnel Formula，$r_p = \frac{\tan (\theta_i - \theta_t)}{\tan (\theta_i + \theta_t)} = 0$，也即反射光的 p 分量为 0，仅存在 s 分量。这说明反射光是完全偏振光，$\boldsymbol{E}$ 的方向（称为振动方向）垂直于入射面。
 {\par\color{gray}\small
@@ -791,12 +798,70 @@ n_i \cos \theta_i E_{i,p}^2 - n_i \cos \theta_i r_{i,p}^2E_{i,p}^2 -   n_t \cos 
 
 \section{全反射时的隐失波}
 
-介质的折射率是相对给定光波波长而言的，光的波长不同，对应的介质折射率也不同\footnote{可参考 \href{https://www.zhihu.com/question/517129526/answer/3000822435}{知乎：想知道为什么光的频率越大，折射率就越大}}。
+假设现在由光密介质射向光疏介质，即 $n_i > n_t$，则有临界角 $\theta_C = \arcsin n_{ti}$。当 $\theta_i > \theta_C$ 时，发生全反射，$R = 1,\ T = 0$，若简单地认为没有任何透射光，是不满足电磁场边界条件的。具体来讲，$\boldsymbol{E}$ 的切向分量连续告诉我们，在透射介质中一定存在振荡场，它在平行于界面上的分量具有时间频率 $\omega$（与入射光相同）。
 
-\section{近场扫描光学显微镜}
+进一步的推导表明\footnote{详见参考文献 \cite{} 的 Page 158}，在透射介质中存在一种波（称为隐失波），其波函数如下：
+\begin{equation}
+\boldsymbol{E} = \left( e^{-\beta y} \boldsymbol{E_{t,0}}\right)\cdot e^{i\left( \frac{\sin \theta_i}{n_{ti}}  k_t x - \omega t \right)},\quad \text{衰减系数}\  \beta = k_t \sqrt{\frac{\sin^2 \theta_i}{n_{ti}^2} - 1} ,\ \text{空间频率}\  k_t = \frac{2 \pi }{\lambda_t}
+\end{equation}
+
+这是一个不均匀波，其振幅在 $y$ 方向上极速衰减，只在几个波长的距离上就可以忽略不计。且它同时有纵波成分和横波成分，不是简单的简谐横波。
+
+我们将振幅下降到 $\frac{1}{e}$ 的深度称为\textbf{穿透深度}，记为 $\delta = \frac{1}{\beta} $，它通常在一个波长以内。
+
+对于此过程的能量守恒问题，更详尽广泛的讨论表明（利用波印廷矢量 $\boldsymbol{S}$），能量实际上是跨过界面往复循环，最终使透向第二介质的净流量为零。就现阶段，可以理解为能量从入射波流到隐失波再回到反射波，或者说隐失波沿入射波又绕回了反射波。
+
+\section{古斯-亨欣位移（Goos-Hanchen ）}
+
+\section{全反射时的相位变化}
 
 
+发生全内反射时\footnote{全内反射是指，由光疏介质射向光密介质且入射角大于临界角时发生的全反射现象}，入射波 s 分量、p 分量的相位变化并非简单的 0 或 $\pi$，下面作推导。
 
+对入射光的波函数 $\boldsymbol{E_i} = \boldsymbol{E_{i,0}} \cdot e^{i \theta} =\boldsymbol{E_{i,0}} \cdot e^{i(k x - \omega t)}$，若反射光满足 $\boldsymbol{E_{r}} = \boldsymbol{E_i}\cdot \lambda e^{i \delta}$，则表明相对于入射光，反射光的振幅变为了原来的 $\lambda$倍，且相位增加了 $\delta$。特别地，$\lambda < 0$ 时，可以等价于 $\lambda > 0$ 且相位增加 $\delta + \pi$ 或 $\delta - \pi$。
+
+由菲涅尔定律，我们有 $\boldsymbol{E_{r,s}} = r_s \boldsymbol{E_{i,s}},\quad \boldsymbol{E_{r,p}} = r_p \boldsymbol{E_{i,p}}$。可以发现，在全反射时，$r_s, r_p \in \C \setminus \R$，并且 $| r_s | = | r_p | = 1$，振幅不变，于是可以令 $r = e^{i \delta }$。为了反解相位增量 $\delta $，一种自然的想法是考虑 
+\begin{equation}
+    e^{i \delta} = \cos \delta + i \lambda \sin \delta = a + ib \Longrightarrow  \delta =  \arctan \left( \frac{b}{a} \right)
+\end{equation}
+
+这样做虽然可行，但由于 $\arctan $ 函数的局限性，其值域范围在 $[-\frac{\pi}{2}, \frac{\pi}{2}]$，而 $\delta $ 的取值范围在 $[0, \pi]$ 或者 $[-\pi, 0]$。因此，最终得到的 $\delta$ 仅在部分区域上正确，对另一部分需做数学上的平移修正。因此，我们考虑另一种方法。在全反射时，注意到 $r_s$ 和 $r_p$ 的形式为 $r = \frac{a - bi}{a +bi}$，其中 $a, b \in \R$，有如下过程：
+\begin{equation}
+\frac{a - bi}{a + bi} = e^{i \theta} \Longrightarrow e^{i \frac{\theta}{2}} = \pm \frac{a - bi}{\sqrt{a^2 + b^2} },\ \tan \frac{\delta}{2} = - \frac{b}{a},\ \frac{\delta}{2} = \arctan \left( - \frac{b}{a} \right)
+\end{equation}
+这样得到的 $\frac{\delta}{2}$ 便是全范围正确的，无需修正。分别令 $r = r_s, r_p$，代入即得：
+\begin{gather}
+\delta_s = - 2 \arctan \left( \frac{\sqrt{\sin^2 \theta_i - n_{ti}^2} }{\cos \theta} \right) 
+,\quad 
+\delta_p = - 2 \arctan \left( \frac{\sqrt{\sin^2 \theta_i - n_{ti}^2} }{n_{21}^2 \cos \theta} \right)
+\end{gather}
+
+\section{折射时的相位变化}
+
+入射光不发生全反射时，由菲涅尔定律，$t_s, t_p \in (0, \frac{2n_i}{n_i + n_t}) \subset \R$，恒为正实数，因此相位不发生任何变化。当入射光发生全反射时，折射光（透射光）以隐失波的形式存在，我们前面已经提过，隐失波同时含有横波纵波成分，它与入射光不再是同一种波，此时谈论相位变化自然没有意义。
+
+\section{}
+
+\section{反射折射总结}
+
+到此，我们已经讨论了目前可能接触到的所有情况，包括光疏射向光密、光密射向光疏、小于或大于临界角时的折射反射振幅、相位以及能量关系，终于可以给出反射折射的总结。
+
+整个结论由菲涅尔定律推导而来，基于电磁场的边界条件和麦克斯韦方程组，从波的角度揭示了光在反射折射时发生的变化，包括振幅、相位、能量、位移等关系。
+
+\begin{align}
+&\quad \boldsymbol{E_r} = \boldsymbol{E_{r,s}} + \boldsymbol{E_{r,p}} = r_s \boldsymbol{E_{i,s}} + r_p \boldsymbol{E_{i,p}},\quad  r \in \C \\ 
+&\quad \boldsymbol{E_t} = \boldsymbol{E_{t,s}} + \boldsymbol{E_{t,p}} = t_s \boldsymbol{E_{i,s}} + t_p \boldsymbol{E_{i,p}},\quad  t \in  (0, \frac{2n_i}{n_i + n_t}) \subset \R \\ 
+&\boxed{
+\begin{aligned}
+    &r_s = \frac{\cos \theta_i - \sqrt{n_{ti}^2 - \sin^2 \theta_i} }{\cos \theta_i + \sqrt{n_{ti}^2 - \sin^2 \theta_i}}, && r_p = \frac{n_{ti}^2\cos \theta_i - \sqrt{n_{ti}^2 - \sin^2 \theta_i} }{n_{ti}^2\cos \theta_i + \sqrt{n_{ti}^2 - \sin^2 \theta_i}}\\ 
+    &\quad\quad \quad \quad   (-r_s) + t_s  = 1, &&\quad 
+    \quad \quad\quad   r_p + t_p = 1 
+\end{aligned}
+}
+\end{align}
+\begin{align}
+\delta_s = 
+\end{align}
 
 
 

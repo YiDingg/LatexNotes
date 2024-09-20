@@ -971,19 +971,49 @@ u_o = - (d_0i_0 + d_1i_1 + d_2i_2)R = -\frac{u_s}{8}\left( d_2\cdot 2^2 + d_1\cd
 
 \section{讲义题 2-20}
 
-如图，(a) 电路和 (b) 电路的 $\boldsymbol{R}$ 参数分别为：
+
+如图 \ref{求G参数} (a)，对 (a) 电路有：
 \begin{equation}
-\boldsymbol{R}_a = 
+\begin{cases}
+    u_1 + u_2 = i_2R_1 \\ 
+    u_1 = (i_1 - i_2)R_2 \\ 
+\end{cases}
+\Longrightarrow 
+\begin{cases}
+    u_1 = R_2 i_1 + (-R_2)i_2 \\ 
+    u_2 = (-R_1)i_1 + (R_1+R_2)i_2
+\end{cases},\ 
+\boldsymbol{R} = 
 \begin{bmatrix}
-    0 & 0 \\ 
-    0 & R_1
-\end{bmatrix},\quad 
-\boldsymbol{R}_b =
-\begin{bmatrix}
-    \frac{R_1}{R_1+R_2} & 1 \\ 
-    1 &  \frac{R_1}{R_1+R_2}
+    R_2 & -R_2 \\ 
+    -R_1 & R_1+R_2
 \end{bmatrix}
 \end{equation}
+
+对 (b) 电路，设 2 号端口的低电位为 $u$，也即 $u_{2,-} = u$，由 KCL: 
+\begin{gather}
+\begin{cases}
+    i_1 + \frac{u+u_2 - u_1}{R_2} = \frac{u_1 - u}{R_1} \\ 
+    \frac{u_1 - u}{R_1} = i_2 + \frac{u}{R_2} \\ 
+    \frac{u+u_2}{R_1} + \frac{u}{R_2} = i_1
+\end{cases}
+\Longrightarrow
+\begin{cases}
+    u_1 + u_2 = R_1i_1 + R_1i_2 \\ 
+    u_1 - u_2 = R_2i_1 - R_2i_2
+\end{cases} 
+\\
+\Longrightarrow 
+\begin{cases}
+    u_1 = \frac{R_1+R_2}{2}i_1 + \frac{R_1-R_2}{2}i_2 \\
+    u_2 = \frac{R_1-R_2}{2}i_1 + \frac{R_1+R_2}{2}i_2
+\end{cases},\ 
+\boldsymbol{R} = 
+\begin{bmatrix}
+    \frac{R_1+R_2}{2} & \frac{R_1-R_2}{2} \\ 
+    \frac{R_1-R_2}{2} & \frac{R_1+R_2}{2}
+\end{bmatrix}
+\end{gather}
 
 
 
@@ -1034,7 +1064,7 @@ $(-i_2) = I_2 = 2\ \mathrm{A},\quad u_2 = I_2R_3 = 40\ \mathrm{V}$，代入即�
     \includegraphics[height=92pt]{assets/4/a3822dcee8e6253ad95a943b6b83e06e.png}
     \caption{\bfseries 讲义题 2-21 图 }
 \end{subfigure}
-\caption{\bfseries 讲义题 2-20、讲义题 2-21 }
+\caption{\bfseries 讲义题 2-20、讲义题 2-21 }\label{求G参数}
 \end{figure}
 
 \section{讲义题 2-22}

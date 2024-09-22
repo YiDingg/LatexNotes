@@ -10,6 +10,10 @@
 % 本文特殊宏包
     \usepackage{siunitx} % 埃米单位
 
+% 本文特殊宏定义
+    \def\Re{\mathrm{Re}\,}
+    \def\Im{\mathrm{Im}\,}
+
 % 自定义宏定义
     \def\N{\mathbb{N}}
     \def\F{\mathbb{F}}
@@ -21,14 +25,21 @@
     \def\S{\mathbb{S}}
     \def\A{\mathbb{A}}
     \def\I{\mathscr{I}}
-    \def\Arg{\mathrm{Arg}}
+    \def\Arg{\mathrm{Arg}\,}
     \def\d{\mathrm{d}}
     \def\p{\partial}
 
 
 % 导入基本宏包
     \usepackage[UTF8]{ctex}     % 设置文档为中文语言
-    \usepackage[colorlinks, linkcolor=blue, anchorcolor=blue, citecolor=blue, urlcolor=blue]{hyperref}  % 宏包：自动生成超链接 (此宏包与标题中的数学环境冲突)
+    \usepackage{hyperref}  % 宏包：自动生成超链接 (此宏包与标题中的数学环境冲突)
+    \hypersetup{
+        colorlinks=true,    % false:边框链接 ; true:彩色链接
+        linkcolor={blue},   % 目录，公式，图表，脚注等内部链接颜色
+        citecolor={blue},   % 文献引用颜色
+        urlcolor={blue}     % 网页 URL 链接颜色，包括 \href 中的 text
+    }
+    
     % \usepackage{docmute}    % 宏包：子文件导入时自动去除导言区，用于主/子文件的写作方式，\include{./51单片机笔记}即可。注：启用此宏包会导致.tex文件capacity受限。
     \usepackage{amsmath}    % 宏包：数学公式
     \usepackage{mathrsfs}   % 宏包：提供更多数学符号
@@ -253,7 +264,7 @@
 \addcontentsline{toc}{chapter}{序言} % 手动添加为目录
 
 % 目录
-\setcounter{tocdepth}{2}                % 目录深度（为1时显示到section）
+\setcounter{tocdepth}{1}                % 目录深度（为1时显示到section）
 \tableofcontents                        % 目录页
 \addcontentsline{toc}{chapter}{目录}    % 手动添加此页为目录
 \thispagestyle{fancy}                   % 显示页码、页眉等 
@@ -269,9 +280,9 @@
 \chapter{光学导言}\thispagestyle{fancy}
 
 \section{光学发展简史（略）}
-\section{费马原理}
 
-\subsection{光的几何传播规律}
+
+\section{光的几何传播规律}
 
 \begin{definition}[光传播的基本原理]
 光传播的常见基本原理：
@@ -285,7 +296,7 @@
     \end{equation}
     
     \begin{figure}[H]\centering
-    \includegraphics[width=0.4\textwidth]{assets/image (44).jpg}
+    \includegraphics[width=0.4\textwidth]{assets/1,2/image (44).jpg}
     \caption{\textbf{反射与折射}}\label{反射与折射}
     \end{figure}
     
@@ -312,13 +323,13 @@
 \end{equation}
 
 \begin{figure}[H]\centering
-\includegraphics[width=0.4\textwidth]{assets/image (45).jpg}
+\includegraphics[width=0.4\textwidth]{assets/1,2/image (45).jpg}
 \caption{\textbf{三棱镜最小偏向角}}\label{三棱镜最小偏向角}
 \end{figure}
 
 \end{definition}
 
-\subsection{惠更斯原理、费马原理}
+\section{惠更斯原理与费马原理}
 
 \begin{LineTheorem}[惠更斯原理]\label{LineTheorem: 惠更斯原理}
     由振源发出的波动在 $t$ 时刻传播到一个波面 $S$，波面上的每一个面元可认为是次波的波源。由面元发出的次波向四面八方传播。在以后的时刻 $t'$ 形成次波面。这些次波面的包络面 $S'$ 就是 $t'$ 时刻总扰动的波面。
@@ -326,8 +337,8 @@
 
 \noindent 其中：
 \begin{enumerate}
-    \item 波面：在同一振源的波场中，扰动同时到达的各点具有相同的相位，这些点的轨迹构成一个曲面（平面波是曲线），称为波面（也称为波阵面、波前）\footnote{对平面波而言，波面虽然称为“面”，但实际上是一条条曲线}
-    \item 波线：取波面被某个平面所截得到的等高线，与此等高线处处正交的曲线称为波线，其切线方向为光的传播方向
+    \item 波面：在同一振源的波场中，扰动同时到达的各点具有相同的相位，这些点的轨迹构成一个曲面，称为波面（也称为等相位面）。
+    \item 波线：与波面处处正交的曲线称为波线，其切线方向为光的传播方向
 \end{enumerate}
 
 \noindent 几何光学的定律需要前提条件：
@@ -339,7 +350,7 @@
 \end{enumerate}
 
 \begin{figure}[H]\centering
-\includegraphics[width=0.5\textwidth]{assets/image (46).jpg}
+\includegraphics[width=0.5\textwidth]{assets/1,2/image (46).jpg}
 \caption{\textbf{惠更斯原理}}\label{惠更斯原理}
 \end{figure}
 
@@ -373,7 +384,7 @@
 计算由物到像的 OPL 时，若为实线（实物、实像）则取正，称为实光程，若为虚线（虚物、虚像）则取负，称为虚光程。
 
 \begin{figure}[H]\centering
-\includegraphics[width=0.7\textwidth]{assets/path2.pdf}
+\includegraphics[width=0.7\textwidth]{assets/1,2/path2.pdf}
 \caption{\textbf{光程恒定的例子}}\label{光程恒定的例子}
 \end{figure}
 
@@ -404,10 +415,10 @@
 
 \begin{figure}[H]\centering
 \begin{subfigure}[t]{0.45\textwidth}\centering
-    \includegraphics[height=100pt]{assets/image.jpg}
+    \includegraphics[height=100pt]{assets/1,2/image.jpg}
     \caption{\bfseries 折射球面 }
 \end{subfigure}\begin{subfigure}[t]{0.4\textwidth}\centering
-    \includegraphics[height=100pt]{assets/image (1).jpg}
+    \includegraphics[height=100pt]{assets/1,2/image (1).jpg}
     \caption{\bfseries 反射球面 }
 \end{subfigure}
 \caption{\bfseries 折射球面与反射球面 }
@@ -433,7 +444,12 @@ n_1u_1y_1 = n_2u_2y_2
 
 
 
-\section{薄透镜}
+
+
+\section{光学仪器}
+
+
+\subsection{薄透镜}
 
 透镜是由两个共轴折射球面构成的光具组，球面间距远远小于球面半径和物距像距的透镜称为薄透镜，也即 $d \ll | R_1 |, | R_2 |, | s |, | s' |$。此时可以认为两球面顶点重合，称为光心。
 
@@ -462,9 +478,7 @@ xx = ff'
 \end{equation}
 
 
-
-\section{光学仪器}
-
+\subsection{其它仪器}
 投影仪器、照相机、眼睛、放大镜、显微镜、望远镜
 
 \section{光波的描述}
@@ -654,23 +668,23 @@ $p$ 波 & $\displaystyle r_p = \frac{n_t\cos \theta_i - n_i \cos \theta_t}{n_t\c
 
 \begin{figure}[H]\centering
 \begin{subfigure}[t]{0.49\textwidth}\centering
-    \includegraphics[height=190pt]{assets/2024-09-15_10-53-31.pdf}
+    \includegraphics[height=190pt]{assets/1,2/2024-09-15_10-53-31.pdf}
     \caption{\bfseries 由空气入射玻璃（$n_i = 1,\ n_t = 1.5$） }
 \end{subfigure}
 \begin{subfigure}[t]{0.49\textwidth}\centering
-    \includegraphics[height=190pt]{assets/2024-09-15_10-53-27.pdf}
+    \includegraphics[height=190pt]{assets/1,2/2024-09-15_10-53-27.pdf}
     \caption{\bfseries 由玻璃入射空气（$n_i = 1.5,\ n_t = 1$） }
 \end{subfigure}
 \caption{\bfseries 振幅系数 $r$ 随入射角 $\theta_i$ 的变化 }\label{振幅系数随入射角的变化}
 \end{figure}
 
 \begin{figure}[ht]\centering
-    \includesvg[width=0.93\textwidth]{assets/相位突变.svg}
+    \includesvg[width=0.93\textwidth]{assets/1,2/相位突变.svg}
     \caption{\bfseries $s$ 波和 $p$ 波在反射时的相位变化}\label{反射时 s 波和 p 波的相位变化}
 \end{figure}
 
 \begin{figure}[H]\centering
-\includesvg[width=0.95\textwidth]{assets/反射后的方向情况.svg}
+\includesvg[width=0.95\textwidth]{assets/1,2/反射后的方向情况.svg}
 \caption{\bfseries 由空气入射玻璃的光线示意图}\label{反射示意图}
 \end{figure}
 
@@ -695,6 +709,35 @@ $p$ 波 & $\displaystyle r_p = \frac{n_t\cos \theta_i - n_i \cos \theta_t}{n_t\c
 \end{aligned}
 }
 \end{gather}
+
+\section{完全偏振反射光}
+
+当光波由布儒斯特角 $\theta_B$ 入射时，由 Fresnel Formula，$r_p = \frac{\tan (\theta_i - \theta_t)}{\tan (\theta_i + \theta_t)} = 0$，也即反射光的 p 分量为 0，仅存在 s 分量。这说明反射光是完全偏振光，$\boldsymbol{E}$ 的方向（称为振动方向）垂直于入射面。
+{\par\color{gray}\small
+但此时反射光能量占比 $F$ 很小\footnote{可以使用玻璃片堆得到强度较大的偏振光}，例如，空气（$n=1$）入射玻璃（$n = 1.5$）时，$\theta_B = 56.310^\circ$，$F =0.0740 $；玻璃入射空气时，$\theta_B = 33.690^\circ$，$F =0.0740 $。
+\par}
+
+    % \begin{matlablisting}
+    % n_i = 1;
+    % n_t = 1.5;
+    % 
+    % theta_B = atan(n_t/n_i);
+    % theta_t = @(theta_i) asin(n_i/n_t*sin(theta_i));
+    % r_s = @(theta_i, theta_t) - sin(theta_i - theta_t)./sin(theta_i + theta_t);
+    % r_p = @(theta_i, theta_t) + tan(theta_i - theta_t)./tan(theta_i + theta_t);
+    % F = @(theta_i, theta_t) 0.5*( r_s(theta_i, theta_t)^2 + r_p(theta_i, theta_t)^2 );
+    % 
+    % theta_i = theta_B;
+    % disp(['theta_B = ', num2str(rad2deg(theta_B))])
+    % disp(['F = ', num2str(F(theta_i, theta_t(theta_i)))])
+    % 
+    % %{ 
+    % Output:
+    % theta_B = 56.3099
+    % F = 0.073964
+    % %}
+    % \end{matlablisting}
+
 
 \section{反射折射时的能量关系}
 
@@ -767,42 +810,15 @@ n_i \cos \theta_i E_{i,p}^2 - n_i \cos \theta_i r_{i,p}^2E_{i,p}^2 -   n_t \cos 
 {\color{red} 其中 $\Phi_{e,r} = R\Phi_{e,i}$ 和 $\Phi_{e,t} = T\Phi_{e,i}$ 是怎么来的？}
 
 
-\section{完全偏振反射光}
-
-当光波由布儒斯特角 $\theta_B$ 入射时，由 Fresnel Formula，$r_p = \frac{\tan (\theta_i - \theta_t)}{\tan (\theta_i + \theta_t)} = 0$，也即反射光的 p 分量为 0，仅存在 s 分量。这说明反射光是完全偏振光，$\boldsymbol{E}$ 的方向（称为振动方向）垂直于入射面。
-{\par\color{gray}\small
-但此时反射光能量占比 $F$ 很小\footnote{可以使用玻璃片堆得到强度较大的偏振光}，例如，空气（$n=1$）入射玻璃（$n = 1.5$）时，$\theta_B = 56.310^\circ$，$F =0.0740 $；玻璃入射空气时，$\theta_B = 33.690^\circ$，$F =0.0740 $。
-\par}
-
-    % \begin{matlablisting}
-    % n_i = 1;
-    % n_t = 1.5;
-    % 
-    % theta_B = atan(n_t/n_i);
-    % theta_t = @(theta_i) asin(n_i/n_t*sin(theta_i));
-    % r_s = @(theta_i, theta_t) - sin(theta_i - theta_t)./sin(theta_i + theta_t);
-    % r_p = @(theta_i, theta_t) + tan(theta_i - theta_t)./tan(theta_i + theta_t);
-    % F = @(theta_i, theta_t) 0.5*( r_s(theta_i, theta_t)^2 + r_p(theta_i, theta_t)^2 );
-    % 
-    % theta_i = theta_B;
-    % disp(['theta_B = ', num2str(rad2deg(theta_B))])
-    % disp(['F = ', num2str(F(theta_i, theta_t(theta_i)))])
-    % 
-    % %{ 
-    % Output:
-    % theta_B = 56.3099
-    % F = 0.073964
-    % %}
-    % \end{matlablisting}
 
 
-\section{全反射时的隐失波}
+\section{全反射时的隐失波与穿透深度}
 
 假设现在由光密介质射向光疏介质，即 $n_i > n_t$，则有临界角 $\theta_C = \arcsin n_{ti}$。当 $\theta_i > \theta_C$ 时，发生全反射，$R = 1,\ T = 0$，若简单地认为没有任何透射光，是不满足电磁场边界条件的。具体来讲，$\boldsymbol{E}$ 的切向分量连续告诉我们，在透射介质中一定存在振荡场，它在平行于界面上的分量具有时间频率 $\omega$（与入射光相同）。
 
-进一步的推导表明\footnote{详见参考文献 \cite{} 的 Page 158}，在透射介质中存在一种波（称为隐失波），其波函数如下：
+进一步的推导表明\footnote{详见参考文献 \cite{Optics} 的 Page 158}，在透射介质中存在一种波（称为隐失波），其波函数如下：
 \begin{equation}
-\boldsymbol{E} = \left( e^{-\beta y} \boldsymbol{E_{t,0}}\right)\cdot e^{i\left( \frac{\sin \theta_i}{n_{ti}}  k_t x - \omega t \right)},\quad \text{衰减系数}\  \beta = k_t \sqrt{\frac{\sin^2 \theta_i}{n_{ti}^2} - 1} ,\ \text{空间频率}\  k_t = \frac{2 \pi }{\lambda_t}
+\boldsymbol{E} = \left( e^{-\beta y} \boldsymbol{E_{t,0}}\right)\cdot e^{i\left( \frac{\sin \theta_i}{n_{ti}}  k_t x - \omega t \right)},\quad \text{衰减系数}\  \beta = k_t \sqrt{\frac{\sin^2 \theta_i}{n_{ti}^2} - 1} = k_i\sqrt{\sin^2 \theta_i - n_{ti}^2} 
 \end{equation}
 
 这是一个不均匀波，其振幅在 $y$ 方向上极速衰减，只在几个波长的距离上就可以忽略不计。且它同时有纵波成分和横波成分，不是简单的简谐横波。
@@ -811,9 +827,19 @@ n_i \cos \theta_i E_{i,p}^2 - n_i \cos \theta_i r_{i,p}^2E_{i,p}^2 -   n_t \cos 
 
 对于此过程的能量守恒问题，更详尽广泛的讨论表明（利用波印廷矢量 $\boldsymbol{S}$），能量实际上是跨过界面往复循环，最终使透向第二介质的净流量为零。就现阶段，可以理解为能量从入射波流到隐失波再回到反射波，或者说隐失波沿入射波又绕回了反射波。
 
-\section{古斯-亨欣位移（Goos-Hanchen ）}
+\section{古斯-亨欣位移（Goos-Hanchen Shift）}
 
-\section{全反射时的相位变化}
+一束被全反射的光，入射点会与（反射后的）出射点存在微小偏移（事实上既有平行偏移也有垂直偏移），称为 Goos-Hanchen Shift。较为严谨的推导表明\footnote{详见参考文献 \cite{GHShift}，或者 \href{https://www.zhihu.com/question/446676895/answer/3407740051}{知乎：古斯汉欣位移产生的原因 (https://www.zhihu.com/question/446676895/answer/3407740051)}，以及 \href{https://www.zhihu.com/question/620522351/answer/3209865128}{知乎：古斯汉森位移的原理是什么 (https://www.zhihu.com/question/620522351/answer/3209865128)}}，沿入射方向、与分界线平行的偏移量如下（又称为侧向偏移）：
+\begin{equation}
+\delta_{\perp} = \frac{\lambda_i \sin \theta_i}{\pi \sqrt{\sin^2 \theta_i - n_{ti}^2} },\quad \Delta x =  \frac{\lambda_i \tan \theta_i}{\pi \sqrt{\sin^2 \theta_i - n_{ti}^2} } = 2 \delta \tan \theta_i 
+\end{equation}
+
+\begin{figure}[H]\centering
+\includegraphics[width=0.8\columnwidth]{assets/1,2/GHShift.pdf}
+\caption{\bfseries Goos-Hanchen Shift}\label{Goos-Hanchen Shift}
+\end{figure}
+
+\section{全反射时的相位变化}\label{全反射时的相位变化}
 
 
 发生全内反射时\footnote{全内反射是指，由光疏介质射向光密介质且入射角大于临界角时发生的全反射现象}，入射波 s 分量、p 分量的相位变化并非简单的 0 或 $\pi$，下面作推导。
@@ -831,37 +857,117 @@ n_i \cos \theta_i E_{i,p}^2 - n_i \cos \theta_i r_{i,p}^2E_{i,p}^2 -   n_t \cos 
 \end{equation}
 这样得到的 $\frac{\delta}{2}$ 便是全范围正确的，无需修正。分别令 $r = r_s, r_p$，代入即得：
 \begin{gather}
-\delta_s = - 2 \arctan \left( \frac{\sqrt{\sin^2 \theta_i - n_{ti}^2} }{\cos \theta} \right) 
+\delta_{r,s} = - 2 \arctan \left( \frac{\sqrt{\sin^2 \theta_i - n_{ti}^2} }{\cos \theta_i} \right) 
 ,\quad 
-\delta_p = - 2 \arctan \left( \frac{\sqrt{\sin^2 \theta_i - n_{ti}^2} }{n_{21}^2 \cos \theta} \right)
+\delta_{r,p} = - 2 \arctan \left( \frac{\sqrt{\sin^2 \theta_i - n_{ti}^2} }{n_{21}^2 \cos \theta_i} \right)
 \end{gather}
 
 \section{折射时的相位变化}
 
 入射光不发生全反射时，由菲涅尔定律，$t_s, t_p \in (0, \frac{2n_i}{n_i + n_t}) \subset \R$，恒为正实数，因此相位不发生任何变化。当入射光发生全反射时，折射光（透射光）以隐失波的形式存在，我们前面已经提过，隐失波同时含有横波纵波成分，它与入射光不再是同一种波，此时谈论相位变化自然没有意义。
 
-\section{}
 
 \section{反射折射总结}
 
-到此，我们已经讨论了目前可能接触到的所有情况，包括光疏射向光密、光密射向光疏、小于或大于临界角时的折射反射振幅、相位以及能量关系，终于可以给出反射折射的总结。
+到此，我们已经讨论了目前可能接触到的所有情况，包括光疏射向光密、光密射向光疏、小于或大于临界角时的折射反射振幅、相位以及能量关系等，终于可以给出反射折射的总结。
 
 整个结论由菲涅尔定律推导而来，基于电磁场的边界条件和麦克斯韦方程组，从波的角度揭示了光在反射折射时发生的变化，包括振幅、相位、能量、位移等关系。
-
 \begin{align}
-&\quad \boldsymbol{E_r} = \boldsymbol{E_{r,s}} + \boldsymbol{E_{r,p}} = r_s \boldsymbol{E_{i,s}} + r_p \boldsymbol{E_{i,p}},\quad  r \in \C \\ 
-&\quad \boldsymbol{E_t} = \boldsymbol{E_{t,s}} + \boldsymbol{E_{t,p}} = t_s \boldsymbol{E_{i,s}} + t_p \boldsymbol{E_{i,p}},\quad  t \in  (0, \frac{2n_i}{n_i + n_t}) \subset \R \\ 
-&\boxed{
-\begin{aligned}
-    &r_s = \frac{\cos \theta_i - \sqrt{n_{ti}^2 - \sin^2 \theta_i} }{\cos \theta_i + \sqrt{n_{ti}^2 - \sin^2 \theta_i}}, && r_p = \frac{n_{ti}^2\cos \theta_i - \sqrt{n_{ti}^2 - \sin^2 \theta_i} }{n_{ti}^2\cos \theta_i + \sqrt{n_{ti}^2 - \sin^2 \theta_i}}\\ 
-    &\quad\quad \quad \quad   (-r_s) + t_s  = 1, &&\quad 
-    \quad \quad\quad   r_p + t_p = 1 
-\end{aligned}
-}
+&\text{反射波：} \quad \boldsymbol{E_r} = \boldsymbol{E_{r,s}} + \boldsymbol{E_{r,p}} = r_s \boldsymbol{E_{i,s}} + r_p \boldsymbol{E_{i,p}},\quad  r \in \C 
+\\ 
+&\text{透射波：}\quad \boldsymbol{E_t} = \boldsymbol{E_{t,s}} + \boldsymbol{E_{t,p}} = t_s \boldsymbol{E_{i,s}} + t_p \boldsymbol{E_{i,p}},\quad  t \in \R,\ \theta_i < \theta_C
+\\ 
+& \text{反射系数：}
+    r_s = \frac{\cos \theta_i - \sqrt{n_{ti}^2 - \sin^2 \theta_i} }{\cos \theta_i + \sqrt{n_{ti}^2 - \sin^2 \theta_i}},\quad  r_p = \frac{n_{ti}^2\cos \theta_i - \sqrt{n_{ti}^2 - \sin^2 \theta_i} }{n_{ti}^2\cos \theta_i + \sqrt{n_{ti}^2 - \sin^2 \theta_i}}
+\\ 
+& \text{透射系数：}(-r_s) + t_s  = 1,\quad r_p + t_p = 1 
+\\
+& \text{能量关系：}
+\begin{cases}
+    R = \frac{1}{2}(R_s + R_p)\quad R_s = | r_s |^2,\ R_p = | r_p |^2 \\ 
+    T = \frac{1}{2}(T_s + T_p),\quad 
+    T_s = \left( \frac{n_t \cos \theta_t}{n_i \cos \theta_i} \right)^2 t_s^2, T_p = \left( \frac{n_t \cos \theta_t}{n_i \cos \theta_i} \right)^2 t_p^2 \\
+    R + T = 1 ,\ R_s + T_s = 1,\ R_p + T_p = 1 \\ 
+    \Phi_{e,r} = R\Phi_{e,i},\ \Phi_{e,t} = T\Phi_{e,i}
+\end{cases}
+\\
+& \text{$s$ 波反射相位增量：} 
+\delta_{r,s} = 
+\left\{\begin{matrix}
+    -\pi, & n_i < n_t \\ 
+    \begin{Bmatrix}
+        0, & \theta_i \in (0, \theta_C)\\
+        - 2 \arctan \left( \frac{\sqrt{\sin^2 \theta_i - n_{ti}^2} }{\cos \theta_i} \right), & \theta_i > \theta_C
+    \end{Bmatrix}, & n_i > n_t
+\end{matrix}\right.
+\\
+& \text{$p$ 波反射相位增量：} 
+\delta_{r,p} = 
+\left\{\begin{matrix}
+    \begin{Bmatrix}
+        0, & \theta_i \in (0, \theta_B) \\
+        - \pi & \theta_i \in (\theta_B, \frac{\pi}{2})
+    \end{Bmatrix}, & n_i < n_t 
+    \\ 
+    \begin{Bmatrix}
+        -\pi, & \theta_i \in (0, \theta_B) \\
+        0, & \theta_i \in (\theta_B, \theta_C) \\
+        - 2 \arctan \left( \frac{\sqrt{\sin^2 \theta_i - n_{ti}^2} }{n_{ti}^2 \cos \theta_i} \right), & \theta_i \in (\theta_C, \frac{\pi}{2})
+    \end{Bmatrix}, & n_i > n_t
+\end{matrix}\right.
+\\
+&\text{隐失波：} \boldsymbol{E_{t}} = \left( e^{-\beta y} \boldsymbol{E_{t,0}}\right)\cdot e^{i\left( \frac{\sin \theta_i}{n_{ti}}  k_t x - \omega t \right)},\quad \beta  = k_i\sqrt{\sin^2 \theta_i - n_{ti}^2} = \frac{2 \pi}{\lambda_i} \sqrt{\sin^2 \theta_i - n_{ti}^2},\quad \delta = \frac{1}{\beta}
+\\ 
+& \text{Goos-Hanchen Shift: \ } \Delta x = 2 \delta \tan \theta_i = \frac{2 \tan \theta_i}{k_i\sqrt{\sin^2 \theta_i - n_{ti}^2}}
+= \frac{\lambda_i \tan \theta_i }{\pi \sqrt{\sin^2 \theta_i - n_{ti}^2} }
 \end{align}
-\begin{align}
-\delta_s = 
-\end{align}
+
+\newpage
+\begin{figure}[H]\centering
+\begin{subfigure}[t]{0.44\columnwidth}\centering
+    \includegraphics[height=170pt]{assets/1,2/2024-09-21_12-26-37.pdf}
+    \caption{\bfseries 由空气入射玻璃 }
+\end{subfigure}
+\subcaptionsetup{
+    margin={2cm,0cm}, % 右边距不变，左边距为 2cm
+    %labelsep=period % 标签与标题内容之间的分隔符为点号
+    }
+\begin{subfigure}[t]{0.54\columnwidth}\centering
+    \includegraphics[height=170pt]{assets/1,2/2024-09-21_12-31-00.pdf}
+    \caption{\bfseries 由玻璃入射空气 }
+\end{subfigure}
+\caption{\bfseries 反射折射光的振幅与能量变化 }
+\label{反射折射光的振幅与能量变化}
+\end{figure}
+
+\begin{figure}[H]\centering
+\begin{subfigure}[t]{0.5\columnwidth}\centering
+    \includegraphics[height=175pt]{assets/1,2/2024-09-21_13-19-43.pdf}
+    \caption{\bfseries 由空气入射玻璃 }
+\end{subfigure}\begin{subfigure}[t]{0.5\columnwidth}\centering
+    \includegraphics[height=175pt]{assets/1,2/2024-09-21_13-19-45.pdf}
+    \caption{\bfseries 由玻璃入射空气 }
+\end{subfigure}
+\caption{\bfseries 反射光 s 分量与 p 分量的相位增量 }
+\label{反射光 s 分量与 p 分量的相位增量}
+\end{figure}
+
+\begin{figure}[H]\centering
+\includegraphics[width=0.70\columnwidth]{assets/1,2/2024-09-21_13-29-49.pdf}
+\caption{\bfseries 隐失波穿透深度与 GH Shift（玻璃入射空气）}\label{隐失波穿透深度与 GH Shift 玻璃入射空气}
+\end{figure}
+
+图 \ref{反射折射光的振幅与能量变化} 展示了反射折射光的振幅 $r_s, r_p, t_s, t_p$、能量 $R_s, R_p, R$ 随入射角 $\tan \theta_i$ 的变化\footnote{源码见附录 \ref{反射折射光的振幅与能量变化 源码}}，其中 (a) 图为空气入射玻璃（$n_i = 1, n_t = 1.5$），(b) 图为玻璃入射空气（$n_i = 1.5, n_t = 1$）。
+
+图 \ref{反射光 s 分量与 p 分量的相位增量} 展示了反射光的 s 分量与 p 分量的相位增量 $\delta_{r,s}, \delta_{r,p}$ 随入射角 $\theta_i$ 的变化\footnote{源码见附录 \ref{反射光 s 分量与 p 分量的相位增量 源码}}，其中 (a) 图为空气入射玻璃（$n_i = 1, n_t = 1.5$），(b) 图为玻璃入射空气（$n_i = 1.5, n_t = 1$）。特别地，当 (b) 图中 $\theta_i > \theta_C$ 时，发生全（内）反射，此时 $r_s, r_p, t_s, t_p \in \C \setminus \R$ ，图中展示的是它们的模长，即 $|r_s|, |r_p|, |t_s|, |t_p|$。
+
+图 \ref{隐失波穿透深度与 GH Shift 玻璃入射空气} 展示了隐失波穿透深度 $\delta$ 和 GH SHift $\Delta x$ 随入射角 $\theta_i$ 的变化\footnote{源码见附录 \ref{隐失波穿透深度与 GH Shift 玻璃入射空气 源码}}。
+
+\chapter{光的干涉}\thispagestyle{fancy}
+
+\section{光波的叠加和干涉}
+
+平面波与球面波\footnote{也即平面电磁波与球面电磁波，两者概念详见 \href{https://www.zhihu.com/question/267133640/answer/319531458}{知乎：球面光波与平面光波 (https://www.zhihu.com/question/267133640/answer/319531458)} 和 \href{https://www.zhihu.com/question/534511391/answer/2501271591}{知乎：高斯光束，平面波，球面波三者间有什么关系 (https://www.zhihu.com/question/534511391/answer/2501271591)}}是光波的的基元，当两个光源（或两束光波）间存在某种关联，波的叠加会引起强度的重新分布，这种现象称为光的干涉。
 
 
 
@@ -874,21 +980,13 @@ n_i \cos \theta_i E_{i,p}^2 - n_i \cos \theta_i r_{i,p}^2E_{i,p}^2 -   n_t \cos 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+\section{分波前干涉}
+\section{分振幅干涉}
+\section{等倾干涉与等厚干涉}
+\section{迈克尔逊干涉与}
+\section{光场的空间相干性与时间相干性}
+\section{多光束干涉}
+\section{激光}
 
 
 
@@ -1030,7 +1128,7 @@ n_i \cos \theta_i E_{i,p}^2 - n_i \cos \theta_i r_{i,p}^2E_{i,p}^2 -   n_t \cos 
 \titleformat{\section}[hang]{\normalfont\centering\Large\bfseries}{\thesection}{8pt}{}
 
 % 附录 A
-\chapter*{附录 A. 波理论}\addcontentsline{toc}{chapter}{附录 A. 波理论}   
+\chapter*{附录 A\hspace*{20pt} 波理论}\addcontentsline{toc}{chapter}{附录 A\hspace*{6pt} 波理论}   
 \thispagestyle{fancy} 
 \setcounter{section}{0}   
 \renewcommand\thesection{A.\arabic{section}}   
@@ -1045,76 +1143,134 @@ n_i \cos \theta_i E_{i,p}^2 - n_i \cos \theta_i r_{i,p}^2E_{i,p}^2 -   n_t \cos 
 
 \section{一维波}
 
+\subsection{$n$ 维波的概念}
 
-\begin{definition}[一维波的形式]
+一维波指的是在一维空间中传播的波，或者可以看作在一维空间中传播的波。例如一束光在空间中传播，沿其传播方向建立 $x$ 轴，则有 $E = E_0 e^{kx - \omega t}$（具有正负），这束光便可视为一维波。
+
 一维波函数的最一般的形式：
 \begin{equation}
-\psi(x,t) = f(x-vt) = g(t - \frac{x}{v})
+\psi(x,t) = f(x-vt) = g(kx - \omega t)
 \end{equation}
 
-具体而言，对于给定的波形（波的形状），我们只需令 $t=0$，拍一张“照片”（例如 $\psi(x) = \frac{3}{10x^2+1}$），得到 $\psi(x,0) = f(x)$，然后将 $f(x)$ 中的 $x$ 换为 $x-vt$，即可得到一个以速度 $v$（可为负） 向 $x$ 轴正方向运动的波 $\psi(x,t) = f(x - vt) = g(t - \frac{x}{v})$。
+具体而言，对于给定的波形（波的形状），我们只需令 $t=0$，拍一张“照片”（例如 $\psi(x) = \frac{3}{10x^2+1}$），得到 $\psi(x,0) = f(x)$，然后将 $f(x)$ 中的 $x$ 换为 $x-vt$，即可得到一个以速度 $v$（可为负） 向 $x$ 轴正方向运动的波 $\psi(x,t) = f(x - vt) = g(kx - \omega t)$。
 {\par\color{gray}\small
 绳索的上下振动是在第二个维度上的，但振动导出的波仍是一维波。
 \par}
-\end{definition}
 
 
-\begin{definition}[微分波动方程]
-无损耗介质中的波动方程（无阻尼系统\footnote{无阻尼系统考虑的区域中不包含源}的波动方程，阻尼效应可以添加一个 $\frac{\partial \psi }{\partial t }$ 项来描述，后文会进行讨论）：
+\subsection{波动方程}
+
+线性、各向同性、无损耗介质中的波动方程（也称波动微分方程）为：
 \begin{equation}
-    \frac{\partial^{2}\psi}{\partial t^{2}}  = v^2\frac{\partial^{2}\psi}{\partial x^{2}}\Longleftrightarrow \frac{\partial^{2}\psi}{\partial x^{2}}=\frac{1}{v^{2}}\frac{\partial^{2}\psi}{\partial t^{2}} 
+    \frac{\partial^{2}\psi}{\partial x^{2}}=\frac{1}{v^{2}}\frac{\partial^{2}\psi}{\partial t^{2}} 
 \end{equation}
-如果代表一个波的函数 $\psi$ 是这个方程的解， 它将同时是 $(x-vt)$ 的函数（即 $t - \frac{x}{v}$ 的函数），它还是一个可以同时对 $x$ 和 $t$ 以非平庸方式求二次微商的函数。\par
-特别地，我们有结论：$\psi$ 是一维波函数 $\Longleftrightarrow$ $\psi$ 是 $(x-vt)$ 的二次可微函数。
-\end{definition}
+
+如果代表一个波的函数 $\psi$ 是这个方程的解， 它将同时是 $(x-vt)$ 的函数（即 $kx - \omega t$ 的函数），它还是一个可以同时对 $x$ 和 $t$ 以非平庸方式求二次微商的函数。特别地，我们有结论：$\psi$ 是一维波函数 $\Longleftrightarrow$ $\psi$ 是 $(x-vt)$ 的二次可微函数 $\Longleftrightarrow$ $\psi$ 是 $(kx - \omega t)$ 的二次可微函数。
+
+三维空间中的波动方程可以写为：
+\begin{equation}
+    \Delta \boldsymbol{\psi} =\frac{1}{v^{2}}\frac{\partial^{2}\boldsymbol{\psi}}{\partial t^{2}}
+\end{equation}
+其中拉普拉斯算子 $\Delta$ 和矢量微分定义为：
+\begin{equation}
+    \Delta = \frac{\partial^2  }{\partial x^2 } +\frac{\partial^2  }{\partial y^2 } + \frac{\partial^2  }{\partial z^2 },\quad 
+    \frac{\partial \boldsymbol{A} }{\partial x } =\left( \frac{\partial A_x }{\partial x }, \frac{\partial A_y }{\partial x }, \frac{\partial A_z }{\partial x } \right)  ,\quad 
+    \frac{\partial^2 \boldsymbol{A} }{\partial x^2 } = \left( \frac{\partial^2 A_x }{\partial x^2 }, \frac{\partial^2 A_y }{\partial x^2 }, \frac{\partial^2 A_z }{\partial x^2 } \right)
+\end{equation}
+
 
 \section{谐波}
 
-\begin{definition}[谐波的概念]
-谐波，指简谐波、正弦波，其轮廓图是正弦曲线，是最简单的波形。在后续的傅里叶变换一节我们可以看到，任何波形都可以由谐波叠加合成，因此谐波具有特殊的意义。
+\subsection{相位和相速度}
+考虑任何一个一维波函数 $\psi(x,t) = A \cos(\phi(x,t)) = A \cos (kx - \omega t + \phi_0) $，其中 $\phi = kx+vt + \phi_0$ 称为相位，$\phi_0$ 称为初相（也常用 $\varepsilon$ 表示）。只要相位中的 $kx$ 与 $\omega t$ 符号相反，即 $(kx - \omega t)$ 或 $(\omega t - kx)$，则波沿 $x$ 轴正方向传播，否则沿 $x$ 轴负方向。
 
+
+\subsection{谐波的概念} 
+谐波，指简谐波、正弦波，其轮廓图是正弦曲线，是最简单的波形。在后续的傅里叶变换一节我们可以看到，任何波形都可以由谐波叠加合成，因此谐波具有特殊的意义。
 考虑如下波形：
 \begin{equation}
     \psi(x,\:t)\big|_{t=0}=\psi(x)=A\:\sin kx=f(x)
 \end{equation}
-其中 $k>0$ 是一个常数，称为传播数（空间角频率），且 $k = \frac{2\pi}{\lambda} \cdot \mathrm{m}$（$\lambda$ 为波长），也即数值上等于频率 $\nu$ 但是量纲为 1 的常数；$A$ 称为振幅。\par
-光学中常用的长度单位是纳米 $\mathrm{nm}$、微米 $\mathrm{\mu m}$ 和埃米 $1\ \si{\angstrom}$ $ = 10^{-10}\ \mathrm{m}$。本文规定，若无特殊情况，一般用 $\lambda$ 表示波长，$\tau $ 表示周期，$\nu = \frac{1}{\tau}$ 表示时间频率，$\omega = 2\pi\nu$ 表示时间角频率，波数（空间频率）$\kappa = \frac{1}{\lambda}$，传播数（空间角频率）$k = 2\pi \kappa$。
+其中 $k>0$ 是一个常数，称为传播数（空间角频率），且 $k = \frac{2\pi}{\lambda} $（$\lambda$ 为波长），$A$ 称为波的振幅。\par
 
-谐波最常见的形式是：
+谐波函数有多种等价形式，其中最常见的是：
 \begin{equation}
-    \psi(x,t)=A\sin k(x\mp vt) \Longleftrightarrow \psi=A\sin(kx\mp\omega t)
+    \psi(x,t)=A\sin(kx\mp\omega t) ,\quad \psi(x,t)=A\sin \left(  \kappa (x\mp vt) \right)
 \end{equation}
-\end{definition}
-
-
-\begin{definition}[空间频率]
-光学信息可以以一种周期性方式散布在空间里，很像一个波的截图，我们可以将其视作（$v=0$）的波，并用空间频率 $\kappa$ 来描述它们。
-
-
-\noindent\begin{minipage}{0.63\textwidth}
-    \begin{figure}[H]\centering
-    \includegraphics[height=120pt]{assets/image (41).jpg}
-    \caption{\textbf{空间频率较低的正弦亮度分布}}\label{空间频率较低的正弦亮度分布}
-    \end{figure}
-    \end{minipage}
-    \begin{minipage}{0.35\textwidth}
-    \begin{figure}[H]\centering
-    \includegraphics[height=120pt]{assets/image (42).jpg}
-    \caption{\textbf{空间频率较高的正弦亮度分布}}\label{空间频率较高的正弦亮度分布}
-    \end{figure}
-\end{minipage}
-\end{definition}
-
-\section{相位和相速度}
-考虑任何一个一维波函数 $\psi(x,t) = A \sin(kx-vt + \varphi_0)$，$\varphi = kx+vt$ 称为相位，$\varphi_0$ 称为初相。
-
-由热力学中的偏微分关系，我们定义相速度：
+在本书中，如无特殊需求，我们都采用前者，也即 $\psi = A\sin(kx\mp\omega t)$，有时也采用 $\psi = A\cos(kx\mp\omega t)$。当然，三维谐波（在三维空间中传播的谐波）可写为：
 \begin{equation}
-    \left(\frac{\partial x }{\partial t }\right)_{\varphi} = -\frac{\left(\frac{\partial \varphi }{\partial t }\right)_{x}}{\left(\frac{\partial \varphi }{\partial x }\right)_{t}}
+    \boldsymbol{\psi}=\boldsymbol{\psi_0}\sin(\boldsymbol{k}\cdot \boldsymbol{x} \mp \omega t)
 \end{equation}
 
+\subsection{空间频率 $\kappa$ 与空间角频率 $k$}
 
-\chapter*{附录 B. Matlab 代码}\addcontentsline{toc}{chapter}{附录 B. Matlab 代码}   
+光学中常用的长度单位是纳米 $\mathrm{nm}$、微米 $\mathrm{\mu m}$ 和埃米 $1\ \si{\angstrom}$ $ = 10^{-10}\ \mathrm{m}$。本文规定，若无特殊情况，一般用 $\lambda$ 表示波长，$\tau $ 或 $T$ 表示周期，$\nu = \frac{1}{\tau}$ 表示时间频率，$\omega = 2\pi\nu$ 表示时间角频率，空间频率（波数）$\kappa = \frac{1}{\lambda}$，空间角频率（传播数）$k = 2\pi \kappa$。
+
+光学信息可以以一种周期性方式散布在空间里，很像一个波的截图，我们可以将其视作静止（$v=0$）的波，并用空间频率 $\kappa$ 来描述它们。
+
+\begin{figure}[H]\centering
+\begin{subfigure}[t]{0.62\columnwidth}\centering
+    \includegraphics[height=120pt]{assets/1,2/image (41).jpg}
+    \caption{\bfseries 空间频率较低的正弦亮度分布 }
+\end{subfigure}\begin{subfigure}[t]{0.37\columnwidth}\centering
+    \includegraphics[height=120pt]{assets/1,2/image (42).jpg}
+    \caption{\bfseries 空间频率较高的正弦亮度分布 }
+\end{subfigure}
+\caption{\bfseries 正弦亮度分布 }
+\end{figure}
+
+\section{复数表示}
+在之后的学习会看到，用余弦或正弦函数描述波函数会带来很多不便，而复数表示在大多时候显得尤为有效，因此引入复数表示是极有必要的。在本书中，为表示某个变量（物理量）是复数，我们在其上加一波浪号，例如 $\tilde{z}$ 或 $\tilde{E}$。
+
+习惯上，我们用复数的实部来描述谐波，例如将 $\psi = A \cos(kx - wt + \varepsilon)$ 写为 $\psi = \Re [A e^{i (kx - wt + \varepsilon)}]$。
+为了方便，常常把 $\Re$ 省略不写，即：
+\begin{equation}
+    \psi(x,t) = A e^{i \theta} = A e^{i (kx - wt + \varepsilon)}
+\end{equation}
+在后文，我们也采用此简写。需要时刻谨记，真实的波是实部，虚部没有物理意义。
+
+另外，虽然复数表示在物理中十分常见，但应用它时需要时刻小心，只有运算限于加法、减法、乘除实数、对实变量进行微分和积分时，才能恢复实部。乘法运算（包括数乘、点乘和叉乘）必须仅与实数进行，否则会得到错误结论\footnote{这里有一个疑问，在 \ref{全反射时的相位变化} 节（全反射时的相位变化），推导反射光相位变化时，我们利用了 $\boldsymbol{E_r} = \boldsymbol{E_i}\cdot \lambda e^{i \delta} $ 所带来的相位变化，如何保证或说明这样做能得到正确的结果？}。例如 $\Re \tilde{z}_1 \cdot \Re \tilde{z}_2 \ne \Re (\tilde{z}_1\cdot \tilde{z}_2)$，$\Re \boldsymbol{\tilde{A}_1 }\cdot \Re \boldsymbol{\tilde{A}_2 }\ne \Re (\boldsymbol{\tilde{A}_1} \cdot \boldsymbol{\tilde{A}_2})$。
+
+\section{相矢量和波的相加}
+
+相矢量（也称复振幅、旋转矢量）是将谐波 $\psi = A e^{i (kx - wt + \varepsilon)}$ 中的位置变量 $x$ 或时间变量 $t$ 分离出来，以得到复平面上的矢量，常用于计算振幅\footnote{我们将在 3.1 节讨论波的叠加时使用相矢量，并讨论相矢量相加时所代表的意义}等。
+
+\subsection{分离 $x$ 并随 $t$ 旋转}
+
+考虑谐波 $\psi = \psi_0 e^{i(kx - \omega t + \varepsilon)}$，对于任意给定的 $x$，令 $\alpha = kx + \varepsilon$，谐波可写为 $\psi = \psi_0 e^{i(- wt + \alpha)} = (\psi_0 e^{i \alpha})\cdot e^{i(- wt)} $ 是 $t$ 的函数，则此时的相矢量定义为 $ \psi_0 \measuredangle \alpha = \psi_0 e^{i \alpha}$，也常记为 $\psi_0 \angle \alpha$。
+
+相矢量是复平面中的一个矢量（即一个复数），$\psi_0$ 表示其模长，$\alpha$ 表示其幅角，真实的波是它在实轴上的投影。对于 $\psi = \psi_0 e^{i(- wt + \alpha)} $，随着 $t$ 增大，波的相位减小，代表相矢量在复平面中顺时针旋转，$\omega t$ 即为沿顺时针旋转的角度。对于 $\psi = \psi_0 e^{i( wt + \alpha)}$（也即沿 $x$ 轴负方向传播的波），相矢量在复平面中逆时针旋转，$\omega t$ 即为沿逆时针转过的角度。也就是说，将 $x$（以及初相 $\varepsilon$）分离为相矢量后，我们可以方便的研究 $x$ 这一点上，波关于时间 $t$ 的变化情况。
+
+当然，对于波的正弦表示 $\psi = A \sin (kx - wt + \varepsilon)$，也可令  $\alpha = kx + \varepsilon$，得到相矢量 $\psi_0 \measuredangle \alpha = \psi_0 e^{i \alpha}$，只不过此时真实的波是它在虚轴上的投影。
+
+例如，振动 $E_1 = 5 \cos (-\omega t)$，$E_2 = 10 \sin (\omega t + \frac{\pi}{3} )$ 的相矢量分别为 $5 \measuredangle 0$，$10 \measuredangle \frac{\pi}{3} $，前者顺时针旋转，向实轴投影，后者逆时针旋转，向虚轴投影。
+
+\subsection{分离 $t$ 并随 $x$ 旋转}
+
+类似地，考虑谐波 $\psi = \psi_0 e^{i(kx \pm \omega t + \varepsilon)}$。对于任意给定的 $t$，令 $\alpha = \pm \omega t + \varepsilon$，谐波可写为 $\psi = \psi_0 e^{i(kx + \alpha)} = (\psi_0 e^{i \alpha})\cdot e^{i(kx)} $ 是 $x$ 的函数，则此时的相矢量定义为 $ \psi_0 \measuredangle \alpha = \psi_0 e^{i \alpha}$。将 $t$ 分离为相矢量后，我们可以方便的研究 $t$ 这一时刻，波关于位置 $x$ 的变化情况。
+
+习惯上，我们只考虑 $\psi_0 e^{i(kx + \alpha)}$，而不考虑 $\psi_0 e^{i(-kx + \alpha)}$ 的情况，后者可以通过三角变换，等价的改变初相 $\phi_0$ 的值转化为前者。 
+
+例如，对振动 $E_3 = 5 \cos (kx)$，$E_4 = 10 \sin (kx + \frac{\pi}{2} )$，其相矢量分别为 $5 \measuredangle 0$，$10 \measuredangle \frac{\pi}{2} $，两者都逆时针旋转，前者向实轴投影，后者向虚轴投影。
+
+
+\section{平面波}
+
+我们常用 \footnote{平面波概念的引入详见参考文献 \cite{Optics} 的 Page 30，这里不再赘述}
+
+
+
+
+
+
+
+
+
+
+
+
+
+\chapter*{附录 B\hspace*{20pt}  Matlab 代码}\addcontentsline{toc}{chapter}{附录 B\hspace*{6pt}  Matlab 代码}   
 \thispagestyle{fancy} 
 \setcounter{section}{0}   
 \renewcommand\thesection{B.\arabic{section}}   
@@ -1200,6 +1356,263 @@ stc.plot.plot_4.LineStyle = ":";
 stc.plot.plot_4.Color = [1 0 1];
 %MyExport_pdf
 \end{matlablisting}
+
+\section{图 \ref{反射折射光的振幅与能量变化} 源码}
+\label{反射折射光的振幅与能量变化 源码}
+\begin{matlablisting}
+global n_i n_t
+%%%%%%%%%% 反射折射光振幅与能量变化 (空气入射玻璃) %%%%%%%%%%
+MyColor = num2cell( ...
+    [
+"#ff8080" "#ff0000" "#990000" "#190000"
+"#80ff80" "#00ff00" "#009900" "#001900"
+"#8080ff" "#0000ff" "#000099" "#000019"
+"#ff80ff" "#ff00ff" "#990099" "#190019"
+"#ffff80" "#ffff00" "#999900" "#191900"
+"#80ffff" "#00ffff" "#009999" "#001919"
+"#ffffff" "#bbbbbb" "#999999" "#191919"
+    ]...
+);
+n_i = 1;
+n_t = 1.5;
+
+theta_t = @(theta_i) asin(n_i/n_t*sin(theta_i));
+r_s = @(theta_i, theta_t) - sin(theta_i - theta_t)./sin(theta_i + theta_t);
+r_p = @(theta_i, theta_t) + tan(theta_i - theta_t)./tan(theta_i + theta_t);
+t_s = @(theta_i, theta_t) 2*sin(theta_t).*cos(theta_i)./sin(theta_i + theta_t);
+t_p = @(theta_i, theta_t) 2*sin(theta_t).*cos(theta_i) ./ ( sin(theta_i + theta_t).*cos(theta_i - theta_t) );
+theta_B = atan(n_t/n_i);
+theta_C = asin(n_t/n_i);
+
+theta_array_2 = linspace(-0.1, pi/2, 101);
+Y = [
+    r_s(theta_array_2, theta_t(theta_array_2))
+    r_p(theta_array_2, theta_t(theta_array_2))
+    t_s(theta_array_2, theta_t(theta_array_2))
+    t_p(theta_array_2, theta_t(theta_array_2))
+    r_s(theta_array_2, theta_t(theta_array_2)).^2
+    r_p(theta_array_2, theta_t(theta_array_2)).^2
+    0.5 * ( r_s(theta_array_2, theta_t(theta_array_2)).^2 + r_p(theta_array_2, theta_t(theta_array_2)).^2 )
+    ];
+
+stc = MyPlot(theta_array_2, Y);
+yline(0, 'black', 'Alpha', 1, 'LineWidth', 1)
+xline(theta_B,'Color', [0 1 1], 'Alpha', 1, 'LineWidth', 0.7)
+xlim([0, pi/2])
+ylim([-1, 1])
+    stc.leg.Interpreter = 'latex';
+    stc.leg.FontSize = 15;
+    stc.leg.Location = 'southwest';
+    stc.axes.Title.String = '$n_i = 1 < n_t = 1.5$';
+    stc.axes.Title.Interpreter = 'latex';
+    stc.label.x.String = '$\theta_i$';
+    stc.label.y.String = '$y$';
+    %stc.leg.String = ["$y=r_s$"; "$y=r_p$"; "$y=t_s$"; "$y=t_p$"; "$y=R_s$"; "$y=R_p$"; "$y=R$"; "$y=0$";  "$\theta_i = \theta_B$";];
+    stc.leg.Visible = 'off';
+
+    stc.plot.plot_2.LineStyle = "-";
+    stc.plot.plot_3.LineStyle = ":";
+    stc.plot.plot_4.LineStyle = ":";
+    stc.plot.plot_5.LineStyle = "--";
+    %stc.plot.plot_5.LineWidth = 0.7;
+    stc.plot.plot_6.LineStyle = "--";
+    %stc.plot.plot_6.LineWidth = 0.7;
+    stc.plot.plot_7.LineStyle = "-";
+
+    stc.plot.plot_1.Color = MyColor{4, 2};
+    stc.plot.plot_3.Color = MyColor{4, 1};
+    stc.plot.plot_5.Color = MyColor{4, 3};
+    stc.plot.plot_2.Color = MyColor{3, 2};
+    stc.plot.plot_4.Color = MyColor{3, 1};
+    stc.plot.plot_6.Color = MyColor{3, 3}; 
+    stc.plot.plot_7.Color = [1 0 0];   
+%MyExport_pdf
+%MyExport_pdf_docked
+%MyExport_svg_docked
+
+
+%%%%%%%%%% 反射折射光振幅与能量变化 (玻璃入射空气) %%%%%%%%%%
+n_i = 1.5;
+n_t = 1;
+
+theta_t = @(theta_i) asin(n_i/n_t*sin(theta_i));
+r_s = @(theta_i, theta_t) - sin(theta_i - theta_t)./sin(theta_i + theta_t);
+r_p = @(theta_i, theta_t) + tan(theta_i - theta_t)./tan(theta_i + theta_t);
+t_s = @(theta_i, theta_t) 2*sin(theta_t).*cos(theta_i)./sin(theta_i + theta_t);
+t_p = @(theta_i, theta_t) 2*sin(theta_t).*cos(theta_i) ./ ( sin(theta_i + theta_t).*cos(theta_i - theta_t) );
+theta_B = atan(n_t/n_i);
+theta_C = asin(n_t/n_i);
+
+theta_array_2 = linspace(-0.1, theta_C, 250);
+theta_array_all = [linspace(-0.1, 0.65, 100), linspace(0.65, 0.74, 50), linspace(0.74, pi/2, 100)];
+
+X = [
+    theta_array_all
+    theta_array_all
+    theta_array_all
+    theta_array_all
+    theta_array_all
+    theta_array_all
+    theta_array_all
+];
+
+Y = [
+    (theta_array_all < theta_C).*r_s(theta_array_all, theta_t(theta_array_all)) + (theta_array_all > theta_C).*abs(r_s(theta_array_all, theta_t(theta_array_all)))
+    (theta_array_all < theta_C).*r_p(theta_array_all, theta_t(theta_array_all)) + (theta_array_all > theta_C).*abs(r_p(theta_array_all, theta_t(theta_array_all)))
+    abs( t_s(theta_array_all, theta_t(theta_array_all)) )
+    abs( t_p(theta_array_all, theta_t(theta_array_all)) )
+    abs(r_s(theta_array_all, theta_t(theta_array_all))).^2
+    abs(r_p(theta_array_all, theta_t(theta_array_all))).^2
+    0.5 * (  abs(r_s(theta_array_all, theta_t(theta_array_all))).^2 + abs(r_p(theta_array_all, theta_t(theta_array_all))).^2   )
+    ];
+
+stc = MyPlot(X, Y);
+yline(0, 'black', 'Alpha', 1, 'LineWidth', 1)
+xline(theta_B,'Color', [0 1 1], 'Alpha', 1, 'LineWidth', 0.7)
+xline(theta_C,'Color', [0 1 0], 'Alpha', 1, 'LineWidth', 0.7)
+xlim([0, pi/2])
+ylim([-0.5, 3])
+    stc.leg.Interpreter = 'latex';
+    stc.leg.FontSize = 14;
+    stc.leg.Location = 'northwestoutside';
+    stc.axes.Title.String = '$n_i = 1 < n_t = 1.5$';
+    stc.axes.Title.Interpreter = "latex";
+    stc.label.x.String = '$\theta_i$';
+    stc.label.y.String = '$y$';
+    stc.leg.String = ["$y=r_s$"; "$y=r_p$"; "$y=t_s$"; "$y=t_p$"; "$y=R_s$"; "$y=R_p$"; "$y=R$"; "$y=0$";  "$\theta_i = \theta_B$"; "$\theta_i = \theta_C$";];
+    
+    stc.plot.plot_2.LineStyle = "-";
+    stc.plot.plot_3.LineStyle = ":";
+    stc.plot.plot_4.LineStyle = ":";
+    stc.plot.plot_5.LineStyle = "--";
+    %stc.plot.plot_5.LineWidth = 0.7;
+    stc.plot.plot_6.LineStyle = "--";
+    %stc.plot.plot_6.LineWidth = 0.7;
+    stc.plot.plot_7.LineStyle = "-";
+
+    stc.plot.plot_1.Color = MyColor{4, 2};
+    stc.plot.plot_3.Color = MyColor{4, 1};
+    stc.plot.plot_5.Color = MyColor{4, 3};
+    stc.plot.plot_2.Color = MyColor{3, 2};
+    stc.plot.plot_4.Color = MyColor{3, 1};
+    stc.plot.plot_6.Color = MyColor{3, 3}; 
+    stc.plot.plot_7.Color = [1 0 0];   
+%MyExport_pdf
+%MyExport_pdf_docked
+%MyExport_svg_docked
+\end{matlablisting}
+
+\section{图 \ref{反射光 s 分量与 p 分量的相位增量} 源码}
+\label{反射光 s 分量与 p 分量的相位增量 源码}
+\begin{matlablisting}
+global n_i n_t n_ti theta_B theta_C 
+
+%%%%%%%%%% 反射光相位增量 (空气入射玻璃) %%%%%%%%%%
+n_i = 1;
+n_t = 1.5;
+n_ti = n_t/n_i;
+theta_B = atan(n_ti);
+
+theta_array_2 = linspace(0, pi/2-0.001, 200);
+
+delta_r_s = @(t) -pi ;
+delta_r_p = @(t) (-pi).*(t > theta_B).*( t <pi/2);
+
+delta_r_s_kongqi = delta_r_s(theta_array_2);
+delta_r_p_kongqi = delta_r_p(theta_array_2);
+
+Y = [
+    zeros(size(theta_array_2)) - pi;
+    delta_r_p_kongqi;    
+];
+
+stc1 = MyPlot(theta_array_2, Y([1 2], :));
+xlim([0, pi/2])
+yline(0, 'black', 'Alpha', 1, 'LineWidth', 0.5)
+xline(theta_B,'Color', [0 1 1], 'Alpha', 1, 'LineWidth', 0.5)
+xline(pi/2, '--');
+stc1.plot.plot_2.LineStyle = '--';
+stc1.leg.String = ["$\delta = \delta_{r,s}$"; "$\delta = \delta_{r,p}$"; "$\delta = 0$"; "$\theta_i = \theta_B$";];
+stc1.label.x.String = '$\theta_i$';
+stc1.label.y.String = '$\delta$';
+stc1.axes.Title.Interpreter = 'latex';
+stc1.axes.Title.String = '$n_i = 1 < n_t = 1.5$';
+%MyExport_pdf
+
+%%%%%%%%%% 反射光相位增量 (玻璃入射空气) %%%%%%%%%%
+n_i = 1.5;
+n_t = 1;
+n_ti = n_t/n_i;
+theta_B = atan(n_ti);
+theta_C = asin(n_ti);
+
+
+delta_r_s = @(t) (t>theta_C).*2.*atan( -(sqrt(sin(t).^2 - n_ti^2))./cos(t) ) ;
+delta_r_p = @(t) ...
+     (t<theta_B).*(-pi) ... 
+   + (theta_B<t).*(t<theta_C).*0 ... 
+   + (theta_C<t).*( -2*atan( (sqrt(sin(t).^2 - n_ti^2))./(n_ti^2.*cos(t)) ) );
+
+Y = [
+    zeros(size(theta_array_2)) - pi;
+    delta_r_p_kongqi;
+    delta_r_s(theta_array_2);
+    delta_r_p(theta_array_2);
+];
+
+
+stc2 = MyPlot(theta_array_2, Y([3 4], :));
+xlim([0, pi/2])
+yline(0, 'black', 'Alpha', 1, 'LineWidth', 0.5)
+xline(theta_B,'Color', [0 1 1], 'Alpha', 1, 'LineWidth', 0.5)
+xline(theta_C,'Color', [0 1 0], 'Alpha', 1, 'LineWidth', 0.5)
+xline(pi/2, '--');
+stc2.plot.plot_2.LineStyle = '--';
+stc2.leg.String = ["$\delta = \delta_{r,s}$"; "$\delta = \delta_{r,p}$"; "$\delta = 0$"; "$\theta_i = \theta_B$"; "$\theta_i = \theta_C$";];
+stc2.leg.Location = 'northeast';
+stc2.label.x.String = '$\theta_i$';
+stc2.label.y.String = '$\delta$';
+stc2.axes.Title.Interpreter = 'latex';
+stc2.axes.Title.String = '$n_i = 1.5 > n_t = 1$';
+%MyExport_pdf
+\end{matlablisting}
+
+\section{图 \ref{隐失波穿透深度与 GH Shift 玻璃入射空气} 源码}
+\label{隐失波穿透深度与 GH Shift 玻璃入射空气 源码}
+\begin{matlablisting}
+%%%%%%%%%% 隐失波的穿透深度和 GH Shift (玻璃入射空气) %%%%%%%%%%
+global lambda n_i n_t
+n_i = 1.5;
+n_t = 1;
+lambda = 550 * 10^(-9);     % 550.0 nm 的绿色光
+delta = @(t) 1 ./ ( 2*pi*sqrt( sin(t).^2 - n_ti^2 )/lambda );
+Delta_x = @(t) 2*delta(t).*tan(t);
+
+theta_array_1 = linspace(theta_C, pi/2, 200);
+theta_array_2 = linspace(theta_C, pi/2-0.05, 200);
+
+
+X = [
+    theta_array_1
+    theta_array_2
+];
+Y = [
+    delta(theta_array_1)/lambda
+    Delta_x(theta_array_2)/lambda
+];
+
+stc = MyPlot(X, Y);
+xlim([theta_C - 0.05, pi/2+0.02])
+yline(1, 'black', 'Alpha', 1, 'LineWidth', 0.5)
+xline(theta_C,'Color', [0 1 0], 'Alpha', 1, 'LineWidth', 0.5)
+stc.leg.String = ["$y = \delta / \lambda$"; "$y = \Delta x / \lambda$"; "$y = 1$"; "$\theta_i = \theta_C$"; "$\theta_i = \frac{\pi}{2}$"];
+stc.label.x.String = '$\theta_i$';
+stc.label.y.String = '$y$';
+xlim([theta_C - 0.05, pi/2])
+
+%MyExport_pdf_docked
+\end{matlablisting}
+
 
 
 % --------------------------- 附录 --------------------------- %

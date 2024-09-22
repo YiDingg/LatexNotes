@@ -6,7 +6,8 @@
 % >> ------------------ 文章宏包及相关设置 ------------------ << %
 % 设定文章类型与编码格式
     \documentclass[UTF8]{report}		
-
+    \usepackage{media9}
+    %\usepackage{multimedia}
 % 本文特殊宏包
     \usepackage{siunitx} % 埃米单位
 
@@ -777,9 +778,9 @@ $p$ 波 & $\displaystyle r_p = \frac{n_t\cos \theta_i - n_i \cos \theta_t}{n_t\c
 \end{align*}
 
 同理，考虑 p 分量，作减法可得到：
-\begin{equation*}
+\begin{equation}
 n_i \cos \theta_i E_{i,p}^2 - n_i \cos \theta_i r_{i,p}^2E_{i,p}^2 -   n_t \cos \theta_t t_p^2E_{i,p}^2 = 0
-\end{equation*}
+\end{equation}
 
 代入即得：
 \begin{equation}
@@ -965,19 +966,134 @@ n_i \cos \theta_i E_{i,p}^2 - n_i \cos \theta_i r_{i,p}^2E_{i,p}^2 -   n_t \cos 
 
 \chapter{光的干涉}\thispagestyle{fancy}
 
-\section{光波的叠加和干涉}
 
-平面波与球面波\footnote{也即平面电磁波与球面电磁波，两者概念详见 \href{https://www.zhihu.com/question/267133640/answer/319531458}{知乎：球面光波与平面光波 (https://www.zhihu.com/question/267133640/answer/319531458)} 和 \href{https://www.zhihu.com/question/534511391/answer/2501271591}{知乎：高斯光束，平面波，球面波三者间有什么关系 (https://www.zhihu.com/question/534511391/answer/2501271591)}}是光波的的基元，当两个光源（或两束光波）间存在某种关联，波的叠加会引起强度的重新分布，这种现象称为光的干涉。
+通常将平面波与球面波\footnote{即平面电磁波与球面电磁波，详见附录 \ref{平面波、柱面波与球面波}，也可参考 \href{https://www.zhihu.com/question/267133640/answer/319531458}{知乎：球面光波与平面光波 (https://www.zhihu.com/question/267133640/answer/319531458)} 和 \href{https://www.zhihu.com/question/534511391/answer/2501271591}{知乎：高斯光束，平面波，球面波三者间有什么关系 (https://www.zhihu.com/question/534511391/answer/2501271591)}}是光波的的基元，当两个光源（或两束光波）间存在某种关联，波的叠加会引起强度的重新分布，若相互叠加的波满足某些特定条件，使得叠加后产生了稳定的强度分布，则称发生了光的干涉。
 
-
-
+换句话说，研究干涉现象，就是讨论当两个或多个（光）波在空间中的某区域相遇时，它们如何相互叠加，会产生怎样的新波动现象，了解各个波的特性（振幅、频率、相位、波的类型等）如何影响叠加后的波的性质。
 
 
 
+\section{叠加原理}
+只要波在空间中某点相遇，就会发生叠加，但不一定会产生干涉。也就是说，叠加是无条件的，干涉则要求形成稳定的、新的强度分布。
+
+回想波动方程\footnote{详见 \ref{波动方程}}，它的一个重要特性是：方程是线性的。因此，如果 $\boldsymbol{\psi_1},\ \boldsymbol{\psi_2},\ ...,\ \boldsymbol{\psi_n}$ 各自是波动方程的解，那么它们的任意线性组合也是方程的解，即：
+\begin{equation}
+\boldsymbol{\psi} = \sum a_i \boldsymbol{\psi_i}
+\end{equation}
+
+这个性质称为叠加原理，它表面：介质中任何一点的合扰动是各个单独波组分的代数和。另外，需要注意，叠加原理仅在均匀、线性、各向同性的介质中成立，有极大振幅的波（能量极大），无论是纵波（声波）或横波（电磁波），都可以产生非线性的效应，此时叠加原理不再适用。
+
+在许多情况下，无需考虑光波的矢量性，例如多个光波的电场方向都始终在一条直线上时，可以将电场 $\boldsymbol{E}$ 处理为具有正负的标量 $E$。本章我们研究的都是基于上述处理的光波，这表明它们的传播方向都在同一平面内，这样即降低了讨论的难度，又具有相当高的普适性和推广性（利用旋转对称性或平移对称性）。
 
 
+\section{同频率光波的干涉}
+
+\subsection{两个同频波源的干涉}
+
+\subsubsection{两源干涉原理：}
+
+现在，我们讨论均匀介质的两个波源（频率相同）的干涉情况，为了提高普适性，我们并不事先假设波源的类似，它可以是平面波、球面波或柱面波。设两波源分别为 $S_A, S_B$，波函数分别为 $\psi_A, \psi_B$，不妨假设它们都沿各自的正向传播，借助相矢量的思想\footnote{详见附录 \ref{相矢量}}，将位矢 $\boldsymbol{x}$ （和初相位 $\varepsilon$）分离后，它们的波函数可写为：
+\begin{equation}
+    E_A = E_{A,0}\cdot e^{i(-\omega t + \alpha_A)},\quad E_B = E_{B,0}\cdot e^{i(-\omega t + \alpha_B)}
+\end{equation}
+其中 $\alpha_A = \alpha_A(\boldsymbol{x})$，$\alpha_B = \alpha_B(\boldsymbol{x})$ 是位矢的函数，$E_{A,0}, E_{B,0}$ 可能是位矢的函数。对于平面中任意一点 $P$，合扰动为：
+\begin{equation}
+E = E_A + E_B = E_{A,0}\cdot e^{i(-\omega t + \alpha_A)} + E_{B,0}\cdot e^{i(-\omega t + \alpha_B)}
+\end{equation}
+作数学上的处理，得到合扰动：
+\begin{gather}
+    E = E_0 \cos \left(-\omega t + \alpha \right) = E_0 \cdot e^{i(-\omega t + \alpha)}\\ 
+    E_0 = \sqrt{E_{A,0}^2 + E_{B,0}^2 + 2E_{A,0}E_{B,0}\cos(\alpha_A - \alpha_B)},\quad 
+    \begin{cases}
+        \sin \alpha = \frac{1}{E_0}\left( E_{A,0}\sin \alpha_A + E_{B,0}\sin \alpha_B \right) \\
+        \cos \alpha = \frac{1}{E_0}\left( E_{A,0}\cos \alpha_A + E_{B,0}\cos \alpha_B \right) 
+    \end{cases} \\ 
+    \alpha = 
+    \begin{cases}
+        \arcsin \left[ \frac{1}{E_0}\left( E_{A,0}\sin \alpha_A + E_{B,0}\cos \alpha_B \right)  \right] &, \sin \alpha \geqslant 0 \\
+        \pi - \arcsin \left[ \frac{1}{E_0}\left( E_{A,0}\sin \alpha_A + E_{B,0}\sin \alpha_B \right)  \right] &,  \cos \alpha < 0
+    \end{cases}
+\end{gather}
+$E_0$ 与 $\alpha$ 的取值可以由相矢量相加来理解。在给定的位置 $P$，$A$ 波的相矢量为 $E_{A,0}\measuredangle \alpha_A$，$B$ 波的相矢量为 $E_{B,0}\measuredangle \alpha_B$，在复平面中将它们相加（平行四边形法则），即得到合扰动的相矢量  $E_0\measuredangle \alpha$，这样，$E_0$ 的大小就是合相矢量的模长，$\alpha$ 是合相矢量与 $x$ 轴的夹角。
+
+\subsubsection{示例一：两球面波}
+
+如图 \ref{两个同频波源的干涉} (a)，考虑两个球面波源在 $x$-$y$ 平面上的干涉情况。两波源位置分别为 $\boldsymbol{x_{OA}}$，$\boldsymbol{x_{OB}}$，波函数为：
+\begin{gather}
+E_A = \frac{A}{\left| \boldsymbol{x}_{AP}  \right| } \cdot e^{i(-\omega t + k |\boldsymbol{x}_{AP}| + \varepsilon_A)},\quad E_{A,0} = \frac{A}{\left| \boldsymbol{x}_{AP}  \right| },\ \alpha_A = k |\boldsymbol{x}_{AP}| + \varepsilon_A
+\\
+E_B = \frac{B}{| \boldsymbol{x}_{BP} |} \cdot e^{i(-\omega t + k |\boldsymbol{x}_{BP}| + \varepsilon_B)}\quad E_{B,0} = \frac{B}{| \boldsymbol{x}_{BP} |},\ \alpha_B = k |\boldsymbol{x}_{BP}| + \varepsilon_B
+\end{gather}
+方便起见，不妨令 $\varepsilon_A = \varepsilon_B$，则合扰动为：
+\begin{gather}
+E = E_0 \cos \left(-\omega t + \alpha \right) = E_0 \cdot e^{i(-\omega t + \alpha)},\quad E_0 = \sqrt{\frac{A^2}{r_1^2} + \frac{B^2}{r_2^2} + \frac{2AB}{r_1r_2}\cos\left( k \left( | \boldsymbol{x}_{AP} -\boldsymbol{x}_{BP} | \right)\right)} \\ 
+\sin \alpha = \frac{1}{E_0} \left( \frac{A}{| \boldsymbol{x}_{AP} |}\sin \alpha_A + \frac{B}{| \boldsymbol{x}_{BP} |} \sin \alpha_B\right),\quad \cos \alpha = \frac{1}{E_0} \left( \frac{A}{| \boldsymbol{x}_{AP} |}\cos \alpha_A + \frac{B}{| \boldsymbol{x}_{BP} |} \cos \alpha_B\right)\\ 
+\alpha = 
+\begin{cases}
+    \arccos \left[ \frac{1}{E_0} \left( \frac{A}{| \boldsymbol{x}_{AP} |}\cos \alpha_A + \frac{B}{| \boldsymbol{x}_{BP} |} \cos \alpha_B\right) \right] &, \cos \alpha \geqslant 0 \\
+    \pi - \arccos \left[ \frac{1}{E_0} \left( \frac{A}{| \boldsymbol{x}_{AP} |}\cos \alpha_A + \frac{B}{| \boldsymbol{x}_{BP} |} \cos \alpha_B\right) \right] &,  \cos \alpha < 0
+\end{cases}
+\end{gather}
 
 
+\subsubsection{示例二：两平面波}
+
+
+\begin{figure}[H]\centering
+\begin{subfigure}[t]{0.5\columnwidth}\centering
+    \includegraphics[height=120pt]{assets/3/crop_pdf_66eff444a80a6_f690229642a2b8bc66e9fbb05793266b_66eff43590e16.pdf}
+    \caption{\bfseries 两球面波源或两柱面波源 }
+\end{subfigure}\begin{subfigure}[t]{0.5\columnwidth}\centering
+    \includegraphics[height=120pt]{assets/3/crop_pdf_66eff444a80a6_f690229642a2b8bc66e9fbb05793266b_66eff43590e16.pdf}
+    \caption{\bfseries 两平面波源 }
+\end{subfigure}
+\caption{\bfseries 两个同频波源的干涉 }\label{两个同频波源的干涉}
+\end{figure}
+
+\subsection{多个同频波源的干涉}
+
+上面的结论容易推广到任意 $n$ 个扰动叠加，即：
+\begin{gather}
+    E = E_0 \cos \left(-\omega t + \alpha \right) = E_0 \cdot e^{i(-\omega t + \alpha)}
+    \\ 
+    E_0 = \sqrt{\left( \sum_{i=1}^n E_{i,0}\sin \alpha_i \right)^2 + \left( \sum_{i=1}^n E_{i,0}\cos \alpha_i \right)^2 }  =  \sqrt{\sum_{i=1}^n E_{i,0}^2 + \sum_{1 <= i < j <= n} 2E_{i,0}E_{j,0}\cos(\alpha_i - \alpha_j)},\quad
+    \\ 
+    \sin \alpha = \frac{1}{E_0}\sum_{i=1}^n E_{i,0}\sin \alpha_i ,\quad 
+    \cos \alpha = \frac{1}{E_0}\sum_{i=1}^n E_{i,0}\cos \alpha_i
+\end{gather}
+
+\section{不同频率光的干涉}
+
+%\includemedia[
+%  width=10cm,
+%  height=5cm,
+%  activate=pageopen,
+%  addresource=test.mp4,
+%  flashvars={source=test.mp4}
+%]{}{VPlayer.swf}
+
+\includemedia[
+  label=some_dice,
+  width=1.0\linewidth,height=0.675\linewidth, % 16:9
+  addresource=test.mp4, 
+  transparent,
+  activate=pageopen,
+  passcontext,
+  flashvars={
+    source=test.mp4
+   &autoPlay=true % start playing on activation
+   &loop=true
+  }
+]{}{VPlayer.swf}
+% loop video
+\mediabutton[
+  mediacommand=some_dice:playPause,
+  overface=\color{blue}{\fbox{\strut Play/Pause}},
+  downface=\color{red}{\fbox{\strut Play/Pause}}
+]{\fbox{\strut Play/Pause}}
+\mediabutton[
+  mediacommand=some_dice:setSource [(test.mp4)]
+]{\fbox{\strut Media Caption}}
 
 
 \section{分波前干涉}
@@ -1167,18 +1283,6 @@ n_i \cos \theta_i E_{i,p}^2 - n_i \cos \theta_i r_{i,p}^2E_{i,p}^2 -   n_t \cos 
 
 如果代表一个波的函数 $\psi$ 是这个方程的解， 它将同时是 $(x-vt)$ 的函数（即 $kx - \omega t$ 的函数），它还是一个可以同时对 $x$ 和 $t$ 以非平庸方式求二次微商的函数。特别地，我们有结论：$\psi$ 是一维波函数 $\Longleftrightarrow$ $\psi$ 是 $(x-vt)$ 的二次可微函数 $\Longleftrightarrow$ $\psi$ 是 $(kx - \omega t)$ 的二次可微函数。
 
-三维空间中的波动方程可以写为：
-\begin{equation}
-    \Delta \boldsymbol{\psi} =\frac{1}{v^{2}}\frac{\partial^{2}\boldsymbol{\psi}}{\partial t^{2}}
-\end{equation}
-其中拉普拉斯算子 $\Delta$ 和矢量微分定义为：
-\begin{equation}
-    \Delta = \frac{\partial^2  }{\partial x^2 } +\frac{\partial^2  }{\partial y^2 } + \frac{\partial^2  }{\partial z^2 },\quad 
-    \frac{\partial \boldsymbol{A} }{\partial x } =\left( \frac{\partial A_x }{\partial x }, \frac{\partial A_y }{\partial x }, \frac{\partial A_z }{\partial x } \right)  ,\quad 
-    \frac{\partial^2 \boldsymbol{A} }{\partial x^2 } = \left( \frac{\partial^2 A_x }{\partial x^2 }, \frac{\partial^2 A_y }{\partial x^2 }, \frac{\partial^2 A_z }{\partial x^2 } \right)
-\end{equation}
-
-
 \section{谐波}
 
 \subsection{相位和相速度}
@@ -1231,7 +1335,7 @@ n_i \cos \theta_i E_{i,p}^2 - n_i \cos \theta_i r_{i,p}^2E_{i,p}^2 -   n_t \cos 
 
 另外，虽然复数表示在物理中十分常见，但应用它时需要时刻小心，只有运算限于加法、减法、乘除实数、对实变量进行微分和积分时，才能恢复实部。乘法运算（包括数乘、点乘和叉乘）必须仅与实数进行，否则会得到错误结论\footnote{这里有一个疑问，在 \ref{全反射时的相位变化} 节（全反射时的相位变化），推导反射光相位变化时，我们利用了 $\boldsymbol{E_r} = \boldsymbol{E_i}\cdot \lambda e^{i \delta} $ 所带来的相位变化，如何保证或说明这样做能得到正确的结果？}。例如 $\Re \tilde{z}_1 \cdot \Re \tilde{z}_2 \ne \Re (\tilde{z}_1\cdot \tilde{z}_2)$，$\Re \boldsymbol{\tilde{A}_1 }\cdot \Re \boldsymbol{\tilde{A}_2 }\ne \Re (\boldsymbol{\tilde{A}_1} \cdot \boldsymbol{\tilde{A}_2})$。
 
-\section{相矢量和波的相加}
+\section{相矢量}\label{相矢量}
 
 相矢量（也称复振幅、旋转矢量）是将谐波 $\psi = A e^{i (kx - wt + \varepsilon)}$ 中的位置变量 $x$ 或时间变量 $t$ 分离出来，以得到复平面上的矢量，常用于计算振幅\footnote{我们将在 3.1 节讨论波的叠加时使用相矢量，并讨论相矢量相加时所代表的意义}等。
 
@@ -1254,16 +1358,302 @@ n_i \cos \theta_i E_{i,p}^2 - n_i \cos \theta_i r_{i,p}^2E_{i,p}^2 -   n_t \cos 
 例如，对振动 $E_3 = 5 \cos (kx)$，$E_4 = 10 \sin (kx + \frac{\pi}{2} )$，其相矢量分别为 $5 \measuredangle 0$，$10 \measuredangle \frac{\pi}{2} $，两者都逆时针旋转，前者向实轴投影，后者向虚轴投影。
 
 
-\section{平面波}
 
-我们常用 \footnote{平面波概念的引入详见参考文献 \cite{Optics} 的 Page 30，这里不再赘述}
+\section{三维波动方程}\label{波动方程}
+
+在介绍波动方程之前，先给出本文默认的一些符号规定，以及一些运算符的定义。
+
+\subsection{内积、叉乘与矩阵乘法}
+
+在本文，一切矢量运算皆使用矩阵运算。并且，若无特殊说明，矢量都等价于列向量，也即下面两种写法等价：
+\begin{equation}
+    \boldsymbol{A} = (A_x, A_y, A_z),\quad \boldsymbol{A} = \begin{bmatrix} A_x \\ A_y \\ A_z \end{bmatrix}
+\end{equation}
+
+用点乘符号 `$\cdot$' 表示两向量的内积，例如 $\boldsymbol{A_1} = (A_{1,x}, A_{2,x}, A_{3,x})$，$\boldsymbol{A_2} = (A_{1,y}, A_{2,y}, A_{3,y})$，则：
+\begin{equation}
+    \boldsymbol{A_1} \cdot \boldsymbol{A_2} = (A_{1,x}, A_{2,x}, A_{3,x})\cdot (A_{1,y}, A_{2,y}, A_{3,y}) = 
+    \begin{bmatrix}
+        A_{1,x} \\ A_{2,x} \\ A_{3,x}
+    \end{bmatrix}\cdot
+    \begin{bmatrix}
+        A_{1,y} \\ A_{2,y} \\ A_{3,y}
+    \end{bmatrix} =
+    A_{1,x}A_{1,y} + A_{2,x}A_{2,y} + A_{3,x}A_{3,y}
+\end{equation}
+在后文，点乘符号 `$\cdot$' 皆表示内积，叉乘符号 `$\times$' 表示外积，矩阵乘法不用特殊符号，如有必要会使用 `$\odot $' 来表示矩阵乘法。
 
 
+\subsection{微分算子}
+
+下面依次给出微分算子 $\nabla$、拉普拉斯算子 $\Delta$ 和矢量微分的定义。
+
+假设 $f = f(\boldsymbol{x})$ 是三维空间中的标量函数，$\boldsymbol{A} = \boldsymbol{A}(\boldsymbol{x}) = \left( A_x(\boldsymbol{x}), A_y(\boldsymbol{x}), A_z(\boldsymbol{x}) \right)$ 是三维空间中的矢量（数学上称为自变量为 3 维的 3 维向量值函数），设 $\boldsymbol{B} = \boldsymbol{B}(\boldsymbol{x}) \left( \boldsymbol{B_1}(x,y,z), \boldsymbol{B_1}(x,y,z), \boldsymbol{B_1}(x,y,z) \right)$ 是三个矢量构成的张量（可视为 $3 \times 3$ 矩阵），如下：
+\begin{align}
+    f &= f(\boldsymbol{x}) = f(x,y,z) 
+    \\ 
+    \boldsymbol{A} &= \boldsymbol{A}(\boldsymbol{x})  = 
+    \begin{bmatrix}
+        A_x(\boldsymbol{x}) \\ A_y(\boldsymbol{x}) \\ A_z(\boldsymbol{x})
+    \end{bmatrix}=
+    \begin{bmatrix}
+        A_x(x,y,z) \\ A_y(x,y,z) \\ A_z(x,y,z)
+    \end{bmatrix}
+    \\ 
+    \boldsymbol{B} &= \boldsymbol{B}(\boldsymbol{x}) = 
+    \begin{bmatrix}
+        \boldsymbol{B_1}(\boldsymbol{x}) \\ \boldsymbol{B_2}(\boldsymbol{x}) \\ \boldsymbol{B_3}(\boldsymbol{x})
+    \end{bmatrix} = 
+    \begin{bmatrix}
+        B_{1,x}(\boldsymbol{x}) & B_{1,y}(\boldsymbol{x}) & B_{1,z}(\boldsymbol{x})\\ 
+        B_{2,x}(\boldsymbol{x}) & B_{2,y}(\boldsymbol{x}) & B_{2,z}(\boldsymbol{x})\\
+        B_{3,x}(\boldsymbol{x}) & B_{3,y}(\boldsymbol{x}) & B_{3,z}(\boldsymbol{x})
+    \end{bmatrix}
+\end{align}
+
+定义微分算子 $\nabla$: 
+\begin{equation}
+    \begin{aligned}
+        &\text{微分算子：} 
+        &&\nabla = 
+        \begin{bmatrix}
+            \frac{\partial  }{\partial x }, \frac{\partial  }{\partial y }, \frac{\partial  }{\partial z }
+        \end{bmatrix}
+        \\ 
+        &\text{梯度：} &&\nabla f = 
+        \begin{bmatrix}
+            \frac{\partial f }{\partial x }, \frac{\partial f }{\partial y }, \frac{\partial f }{\partial z }
+        \end{bmatrix}\\ 
+        &\text{广义梯度：}
+        &&\nabla \boldsymbol{A} = 
+        \begin{bmatrix}
+            \nabla A_x \\ \nabla A_y \\ \nabla A_z
+        \end{bmatrix} = 
+        \begin{bmatrix}
+            \frac{\partial A_x }{\partial x } & \frac{\partial A_x }{\partial y } & \frac{\partial A_x }{\partial z } \\
+            \frac{\partial A_y }{\partial x } & \frac{\partial A_y }{\partial y } & \frac{\partial A_y }{\partial z } \\
+            \frac{\partial A_z }{\partial x } & \frac{\partial A_z }{\partial y } & \frac{\partial A_z }{\partial z }
+        \end{bmatrix}_{3 \times 3}
+    \end{aligned}    
+\end{equation}
+\begin{equation}
+\begin{aligned}
+    &\text{旋度：}
+    &&\nabla \cdot \boldsymbol{A} 
+    =
+    \begin{bmatrix}
+        \frac{\partial  }{\partial x }, \frac{\partial  }{\partial y }, \frac{\partial  }{\partial z }
+    \end{bmatrix}
+    \cdot 
+    \begin{bmatrix}
+        A_x \\ A_y \\ A_z
+    \end{bmatrix} 
+    = 
+    \frac{\partial A_x }{\partial x } +\frac{\partial A_y }{\partial y } + \frac{\partial A_z }{\partial z }
+    \\ 
+    &\text{广义旋度：}
+    &&\nabla \cdot \boldsymbol{B} = 
+    \nabla \cdot 
+    \begin{bmatrix}
+        \boldsymbol{B_1} \\ \boldsymbol{B_2} \\ \boldsymbol{B_3}
+    \end{bmatrix} = 
+    \begin{bmatrix}
+        \nabla \cdot \boldsymbol{B_1} \\ \nabla \cdot \boldsymbol{B_2} \\ \nabla \cdot \boldsymbol{B_3}
+    \end{bmatrix} = 
+    \begin{bmatrix}
+        \frac{\partial B_{1,x} }{\partial x } +\frac{\partial B_{1,y} }{\partial y } + \frac{\partial B_{1,z} }{\partial z } \\
+        \frac{\partial B_{2,x} }{\partial x } +\frac{\partial B_{2,y} }{\partial y } + \frac{\partial B_{2,z} }{\partial z } \\
+        \frac{\partial B_{3,x} }{\partial x } +\frac{\partial B_{3,y} }{\partial y } + \frac{\partial B_{3,z} }{\partial z }
+    \end{bmatrix}_{3\times 1}
+\end{aligned}
+\end{equation}
+
+\subsection{拉普拉斯算子}
+
+并以此定义拉普拉斯算子 $\Delta$: 
+\begin{gather}
+\begin{aligned}
+    &\text{拉普拉斯算子：}
+    &&\Delta = \nabla \cdot (\nabla \ \ \ ) 
+    =  
+    \begin{bmatrix}
+        \frac{\partial  }{\partial x }, \frac{\partial  }{\partial y }, \frac{\partial  }{\partial z }
+    \end{bmatrix} \cdot 
+    \begin{bmatrix}
+        \frac{\partial  }{\partial x }, \frac{\partial  }{\partial y }, \frac{\partial  }{\partial z }
+    \end{bmatrix}
+    = 
+    \frac{\partial^2 }{\partial x^2 } +\frac{\partial^2 }{\partial y^2 } + \frac{\partial^2 }{\partial z^2 } \\ 
+    &\text{拉普拉斯运算：} &&\Delta f = \nabla^2 f = \nabla \cdot (\nabla f ) 
+    = 
+    \begin{bmatrix}
+        \frac{\partial  }{\partial x }, \frac{\partial  }{\partial y }, \frac{\partial  }{\partial z }
+    \end{bmatrix} 
+    \cdot 
+    \begin{bmatrix}
+        \frac{\partial f }{\partial x }, \frac{\partial f }{\partial y }, \frac{\partial f }{\partial z }
+    \end{bmatrix}
+    =
+    \frac{\partial^2 f }{\partial x^2 } +\frac{\partial^2 f }{\partial y^2 } + \frac{\partial^2 f }{\partial z^2 } 
+\end{aligned}
+\end{gather}
+\begin{gather}
+\begin{aligned}
+    &\text{广义拉普运算：}
+    &&\Delta \boldsymbol{A}  = \nabla \cdot (\nabla \boldsymbol{A} ) 
+    =
+    \nabla \cdot 
+    \begin{bmatrix}
+        \nabla A_x \\ \nabla A_y \\ \nabla A_z
+    \end{bmatrix} 
+    = 
+    \begin{bmatrix}
+        \nabla \cdot (\nabla A_x) \\ \nabla \cdot (\nabla A_y) \\ \nabla \cdot (\nabla A_z)
+    \end{bmatrix} 
+    =
+    \begin{bmatrix}
+        \frac{\partial^2 A_x }{\partial x^2 } +\frac{\partial^2 A_x }{\partial y^2 } + \frac{\partial^2 A_x }{\partial z^2 } \\
+        \frac{\partial^2 A_y }{\partial x^2 } +\frac{\partial^2 A_y }{\partial y^2 } + \frac{\partial^2 A_y }{\partial z^2 } \\
+        \frac{\partial^2 A_z }{\partial x^2 } +\frac{\partial^2 A_z }{\partial y^2 } + \frac{\partial^2 A_z }{\partial z^2 }
+    \end{bmatrix}_{3\times 1} \\ 
+    & \text{也可理解为：} &&
+    \Delta \boldsymbol{A} = 
+    \Delta \begin{bmatrix}
+        A_x \\ A_y \\ A_z
+    \end{bmatrix} = 
+    \begin{bmatrix}
+        \Delta A_x \\ \Delta A_y \\ \Delta A_z
+    \end{bmatrix}
+    = 
+    \begin{bmatrix}
+        \frac{\partial^2 A_x }{\partial x^2 } +\frac{\partial^2 A_x }{\partial y^2 } + \frac{\partial^2 A_x }{\partial z^2 } \\
+        \frac{\partial^2 A_y }{\partial x^2 } +\frac{\partial^2 A_y }{\partial y^2 } + \frac{\partial^2 A_y }{\partial z^2 } \\
+        \frac{\partial^2 A_z }{\partial x^2 } +\frac{\partial^2 A_z }{\partial y^2 } + \frac{\partial^2 A_z }{\partial z^2 }
+    \end{bmatrix}_{3\times 1}
+\end{aligned}
+\end{gather}
+
+例如，对于三维空间中的矢量 $\boldsymbol{E} = \boldsymbol{E}(\boldsymbol{x}) = \left( E_x(\boldsymbol{x}), E_y(\boldsymbol{x}), E_z(\boldsymbol{x})  \right)$，我们有：
+\begin{equation}
+    \Delta \boldsymbol{E}  = \nabla \cdot (\nabla \boldsymbol{E} ) 
+    =
+    \nabla \cdot 
+    \begin{bmatrix}
+        \nabla E_x \\ \nabla E_y \\ \nabla E_z
+    \end{bmatrix} 
+    = 
+    \begin{bmatrix}
+        \nabla \cdot (\nabla E_x) \\ \nabla \cdot (\nabla E_y) \\ \nabla \cdot (\nabla E_z)
+    \end{bmatrix} 
+    =
+    \begin{bmatrix}
+        \frac{\partial^2 E_x }{\partial x^2 } +\frac{\partial^2 E_x }{\partial y^2 } + \frac{\partial^2 E_x }{\partial z^2 } \\
+        \frac{\partial^2 E_y }{\partial x^2 } +\frac{\partial^2 E_y }{\partial y^2 } + \frac{\partial^2 E_y }{\partial z^2 } \\
+        \frac{\partial^2 E_z }{\partial x^2 } +\frac{\partial^2 E_z }{\partial y^2 } + \frac{\partial^2 E_z }{\partial z^2 }
+    \end{bmatrix}_{3\times 1}
+\end{equation}
+
+\subsection{矢量微分}
+
+\begin{gather}
+    \frac{\partial \boldsymbol{A} }{\partial x } = \frac{\partial  }{\partial x }\boldsymbol{A} = 
+    \frac{\partial  }{\partial x } 
+    \begin{bmatrix}
+        A_x \\ A_y \\ A_z
+    \end{bmatrix} = 
+    \begin{bmatrix}
+        \frac{\partial A_x }{\partial x } \\ \frac{\partial A_y }{\partial x } \\ \frac{\partial A_z }{\partial x }
+    \end{bmatrix} 
+    ,\quad 
+    \frac{\partial^2 \boldsymbol{A} }{\partial x^2 } = 
+    \frac{\partial^2  }{\partial x^2 } \boldsymbol{A} = 
+    \frac{\partial^2  }{\partial x^2 } 
+    \begin{bmatrix}
+        A_x \\ A_y \\ A_z
+    \end{bmatrix} = 
+    \begin{bmatrix}
+        \frac{\partial^2 A_x }{\partial x^2 } \\ \frac{\partial^2 A_y }{\partial x^2 } \\ \frac{\partial^2 A_z }{\partial x^2 }
+    \end{bmatrix}
+\end{gather}
+
+\subsection{波动方程}
+
+定义好上述工具后，可以给出三维空间中的波动方程：
+\begin{equation}
+    \Delta \boldsymbol{\psi} =\frac{1}{v^{2}}\frac{\partial^{2}\boldsymbol{\psi}}{\partial t^{2}}
+\end{equation}
+例如，对矢量 $\boldsymbol{E}$，上面方程表示：
+\begin{equation}
+    \Delta \boldsymbol{E} =\frac{1}{v^{2}}\frac{\partial^{2}\boldsymbol{E}}{\partial t^{2}} 
+    \Longleftrightarrow 
+    \begin{bmatrix}
+        \Delta E_x \\ 
+        \Delta E_y \\
+        \Delta E_z
+    \end{bmatrix} = 
+    \frac{1}{v^{2}}
+    \begin{bmatrix}
+        \frac{\partial^{2}E_x}{\partial t^{2}} \\ 
+        \frac{\partial^{2}E_y}{\partial t^{2}} \\
+        \frac{\partial^{2}E_z}{\partial t^{2}}
+    \end{bmatrix} 
+    \Longleftrightarrow
+    \begin{cases}
+        \Delta E_x =\frac{1}{v^{2}}\frac{\partial^{2}E_x}{\partial t^{2}}\\
+        \Delta E_y =\frac{1}{v^{2}}\frac{\partial^{2}E_y}{\partial t^{2}}\\
+        \Delta E_z =\frac{1}{v^{2}}\frac{\partial^{2}E_z}{\partial t^{2}}
+    \end{cases}
+\end{equation}
+上面几种表示是等价的。
 
 
+\section{平面波、柱面波与球面波}\label{平面波、柱面波与球面波}
 
+平面波、柱面波与球面波是最具有实际意义的波形，因为它们在现实中最容易实现\footnote{其推导详见参考文献 \cite{Optics} 的 Page 47-56，以及 \href{https://zhuanlan.zhihu.com/p/693746762}{知乎：电磁波的平面波、柱面波和球面波的表达式与推导 (https://zhuanlan.zhihu.com/p/693746762)}，这里不多赘述}。
 
+\subsection{平面波}
 
+三维空间中的平面波\footnote{平面波概念的引入详见参考文献 \cite{Optics} 的 Page 30，这里不再赘述}：
+\begin{equation}
+\boldsymbol{\psi}(\boldsymbol{x}, t) = \boldsymbol{A}\cdot e^{i(\boldsymbol{k}\cdot \boldsymbol{x} \mp \omega t + \varepsilon)}
+\end{equation}
+
+每个等相面由下式给出：
+\begin{equation}
+    \boldsymbol{k} \cdot \boldsymbol{x} = \text{const}
+\end{equation}
+
+此扰动的每个等相面（也称波阵面）都是一个平面，且波矢 $\boldsymbol{k}$ 垂直于等相面，$(\boldsymbol{k}\cdot \boldsymbol{x} - \omega t)$ 时沿 $\boldsymbol{k}$ 传播，$(\boldsymbol{k}\cdot \boldsymbol{x} + \omega t)$ 时沿 $\boldsymbol{k}$ 的反方向传播。在一切三维波中，只有平面波（可以是谐波也可以是非谐波）穿过空间传播时其截面轮廓（等相面）保持不变。
+
+有时，$\boldsymbol{A}$ 是 $\boldsymbol{x}$ 的函数，称为非均匀波（例如 2.5 节介绍的隐失波）。
+
+\subsection{球面波}
+
+在球坐标系 $(r, \phi, \theta)$ 下，可以解得球面波方程：
+\begin{equation}
+\boldsymbol{\psi} = \boldsymbol{\psi}(\boldsymbol{r}, t) = \boldsymbol{\psi_{0}}(r) \cdot e^{i\left( k r \mp  \omega t + \varepsilon \right)} =  \frac{\boldsymbol{A}}{r}\cdot e^{i\left( k r \mp  \omega t + \varepsilon \right)}
+\end{equation}
+
+每个波阵面（等相面）由下式给出：
+\begin{equation}
+kr = \text{const}
+\end{equation}
+
+注意，任何球面波的振幅 $\boldsymbol{\psi_0}$ 都是 $r$ 的函数，因为球面波的振幅随着距离的增加而减小（能量守恒的必然结果）。当它从原点向外传播时，波阵面是逐渐扩张为更大的圆。
+
+\subsection{柱面波}
+
+在柱坐标系 $(r, \theta, z)$ 下，可以解得柱面波方程：
+\begin{equation}
+\boldsymbol{\psi} = \boldsymbol{\psi}(\boldsymbol{r}, t) = \boldsymbol{\psi_{0}}(r) \cdot e^{i\left( k r \mp  \omega t + \varepsilon \right)} = \frac{\boldsymbol{A}}{\sqrt{r}}\cdot e^{i\left( kr \mp  \omega t + \varepsilon \right)}
+\end{equation}
+
+每个等相面由下式给出：
+\begin{equation}
+    kr = \text{const}
+\end{equation}
+
+平面波投射到具有细长狭缝的不透明屏幕上，就会通过此狭缝发出与柱面波相似的扰动，目前大多采用此方法产生柱面光波。
 
 
 

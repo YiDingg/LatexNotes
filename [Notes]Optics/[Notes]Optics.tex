@@ -985,7 +985,6 @@ n_i \cos \theta_i E_{i,p}^2 - n_i \cos \theta_i r_{i,p}^2E_{i,p}^2 -   n_t \cos 
 
 在许多情况下，无需考虑光波的矢量性，例如多个光波的电场方向都始终在一条直线上时，可以将电场 $\boldsymbol{E}$ 处理为具有正负的标量 $E$。本章我们研究的都是基于上述处理的光波，这表明它们的传播方向都在同一平面内，这样即降低了讨论的难度，又具有相当高的普适性和推广性（利用旋转对称性或平移对称性）。
 
-
 \section{同频率光波的干涉}
 
 \subsection{两个同频波源的干涉}
@@ -1010,11 +1009,21 @@ E = E_A + E_B = E_{A,0}\cdot e^{i(-\omega t + \alpha_A)} + E_{B,0}\cdot e^{i(-\o
     \end{cases} \\ 
     \alpha = 
     \begin{cases}
-        \arcsin \left[ \frac{1}{E_0}\left( E_{A,0}\sin \alpha_A + E_{B,0}\cos \alpha_B \right)  \right] &, \sin \alpha \geqslant 0 \\
+        \arcsin \left[ \frac{1}{E_0}\left( E_{A,0}\sin \alpha_A + E_{B,0}\sin \alpha_B \right)  \right] &, \sin \alpha \geqslant 0 \\
         \pi - \arcsin \left[ \frac{1}{E_0}\left( E_{A,0}\sin \alpha_A + E_{B,0}\sin \alpha_B \right)  \right] &,  \cos \alpha < 0
     \end{cases}
 \end{gather}
 $E_0$ 与 $\alpha$ 的取值可以由相矢量相加来理解。在给定的位置 $P$，$A$ 波的相矢量为 $E_{A,0}\measuredangle \alpha_A$，$B$ 波的相矢量为 $E_{B,0}\measuredangle \alpha_B$，在复平面中将它们相加（平行四边形法则），即得到合扰动的相矢量  $E_0\measuredangle \alpha$，这样，$E_0$ 的大小就是合相矢量的模长，$\alpha$ 是合相矢量与 $x$ 轴的夹角。
+
+在光学中，常用干涉条纹对比度 $\gamma$ 来描述干涉情况是否明显，它定义为：
+\begin{equation}
+    \gamma = \frac{I_{\text{max}} - I_{\text{min}}}{I_{\text{max}} + I_{\text{min}}} = \frac{ E_{0,\text{max}}^2 -  E_{0,\text{min}}^2 }{E_{0,\text{max}}^2 +  E_{0,\text{min}}^2}
+\end{equation}
+其中 $I$ 表示光强，也即光通量密度。在两波源产生的干涉中，$I_{\text{max}} = I_1 + I_2 - 2\sqrt{I_1I_2}$，$I_{\text{min}} =  I_1 + I_2 + 2\sqrt{I_1I_2}$，对比度为：
+\begin{equation}
+\gamma = \frac{2  }{ \sqrt{\frac{I_1}{I_2}}  + \sqrt{\frac{I_2}{I_1}}} = \frac{ 2  }{  \sqrt{\frac{E_{A,0,\text{max}}^2}{E_{B,0,\text{max}}^2}} + \sqrt{\frac{E_{B,0,\text{max}}^2}{E_{A,0,\text{max}}^2}}}
+\end{equation}
+因此，两波源电场的振幅越接近，干涉对比度越高，也就越明显。
 
 \subsubsection{示例一：两球面波}
 
@@ -1030,10 +1039,13 @@ E = E_0 \cos \left(-\omega t + \alpha \right) = E_0 \cdot e^{i(-\omega t + \alph
 \sin \alpha = \frac{1}{E_0} \left( \frac{A}{ r_1 }\sin \alpha_A + \frac{B}{ r_2 } \sin \alpha_B\right),\quad \cos \alpha = \frac{1}{E_0} \left( \frac{A}{ r_1 }\cos \alpha_A + \frac{B}{ r_2 } \cos \alpha_B\right)\\ 
 \alpha = 
 \begin{cases}
-    \arccos \left[ \frac{1}{E_0} \left( \frac{A}{ r_1 }\cos \alpha_A + \frac{B}{ r_2 } \cos \alpha_B\right) \right] &, \cos \alpha \geqslant 0 \\
-    \pi - \arccos \left[ \frac{1}{E_0} \left( \frac{A}{ r_1 }\cos \alpha_A + \frac{B}{ r_2 } \cos \alpha_B\right) \right] &,  \cos \alpha < 0
+    \arcsin \left[ \frac{1}{E_0} \left( \frac{A}{ r_1 }\sin \alpha_A + \frac{B}{ r_2 } \sin \alpha_B\right) \right] &, \cos \alpha \geqslant 0 \\
+    \pi - \arcsin \left[ \frac{1}{E_0} \left( \frac{A}{ r_1 }\sin \alpha_A + \frac{B}{ r_2 } \sin \alpha_B\right) \right] &,  \cos \alpha < 0
 \end{cases}
 \end{gather}
+
+
+对可见光而言，其波长在 nm 级别，空间频率 $k = \frac{2\pi}{\lambda}$ 极高。为了方便可视化，我们取波长 $\lambda = 0.4 \pi \ \mathrm{m}$，即 $k = 5$ 的微波（也可归为无线电波），并令振幅系数 $A = 50$，$B = 50$，作出图像。图 \ref{单个球面波源在平面上的振荡情况} 展示了单个波源在平面上的振荡情况（$t = 0$），随时间的振动详见动图链接 (here)。对两波源的干涉，我们令两波源位置分别为 $(-2, 0)$，$(2, 0)$，作出图像，图 \ref{两个球面波源在平面上的干涉情况} 展示了它们的干涉情况（$t = 0$），随时间的振动详见动图链接 (here)。
 
 \begin{figure}[H]\centering
     \begin{subfigure}[t]{0.5\columnwidth}\centering
@@ -1045,8 +1057,6 @@ E = E_0 \cos \left(-\omega t + \alpha \right) = E_0 \cdot e^{i(-\omega t + \alph
     \end{subfigure}
     \caption{\bfseries 两个同频波源的干涉 }\label{两个同频波源的干涉}
 \end{figure}
-
-对可见光而言，其波长在 nm 级别，空间频率 $k = \frac{2\pi}{\lambda}$ 极高。为了方便可视化，我们取波长 $\lambda = 0.4 \pi \ \mathrm{m}$，即 $k = 5$ 的微波（也可归为无线电波），并令振幅系数 $A = 50$，$B = 50$，作出图像。图 \ref{单个球面波源在平面上的振荡情况} 展示了单个波源在平面上的振荡情况（$t = 0$），随时间的振动详见动图链接 (here)。对两波源的干涉，我们令两波源位置分别为 $(-2, 0)$，$(2, 0)$，作出图像，图 \ref{两个球面波源在平面上的干涉情况} 展示了它们的干涉情况（$t = 0$），随时间的振动详见动图链接 (here)。
 
 \begin{figure}[H]\centering
 \includegraphics[width=0.95\columnwidth]{assets/3/单个球面波源.pdf}
@@ -1065,9 +1075,8 @@ E = E_0 \cos \left(-\omega t + \alpha \right) = E_0 \cdot e^{i(-\omega t + \alph
 
 对每个给定的 $n$，上述方程表示一条双曲线（焦点为两波源），因此上述方程构成一个双曲线族（空间中构成旋转双曲面族），如图 \ref{两个同频波源的干涉} (a) 中的灰色曲线所示。特别地，令 $\theta = 0$ 可以得到最大振幅对应的双曲线族，令 $\theta = \pi$，得到最小振幅对应的双曲线族。
 
-振幅的位置分布是较为重要的内容，在后文的干涉实验部分，我们将再次讨论这个问题。
+由于球面波的旋转对称性，只需绕 $x$ 轴旋转一圈，即可得到整个空间上的振幅分布情况，也即两波源干涉情况。振幅的位置分布是较为重要的内容，在后文的干涉实验部分，我们将再次讨论这个问题。
 
-由于球面波的旋转对称性，只需绕 $x$ 轴旋转一圈，即可得到整个空间上的干涉情况。
 
 \subsubsection{示例二：两柱面波}
 
@@ -1078,8 +1087,8 @@ E = E_0 \cos \left(-\omega t + \alpha \right) = E_0 \cdot e^{i(-\omega t + \alph
     \sin \alpha = \frac{1}{E_0} \left( \frac{A}{ \sqrt{r_1} }\sin \alpha_A + \frac{B}{ \sqrt{r_2} } \sin \alpha_B\right),\quad \cos \alpha = \frac{1}{E_0} \left( \frac{A}{ \sqrt{r_1} }\cos \alpha_A + \frac{B}{ \sqrt{r_2} } \cos \alpha_B\right)\\ 
     \alpha = 
     \begin{cases}
-        \arccos \left[ \frac{1}{E_0} \left( \frac{A}{ \sqrt{r_1} }\cos \alpha_A + \frac{B}{ \sqrt{r_2} } \cos \alpha_B\right) \right] &, \cos \alpha \geqslant 0 \\
-        \pi - \arccos \left[ \frac{1}{E_0} \left( \frac{A}{ \sqrt{r_1} }\cos \alpha_A + \frac{B}{ \sqrt{r_2} } \cos \alpha_B\right) \right] &,  \cos \alpha < 0
+        \arcsin \left[ \frac{1}{E_0} \left( \frac{A}{ \sqrt{r_1} }\sin \alpha_A + \frac{B}{ \sqrt{r_2} } \sin \alpha_B\right) \right] &, \cos \alpha \geqslant 0 \\
+        \pi - \arcsin \left[ \frac{1}{E_0} \left( \frac{A}{ \sqrt{r_1} }\sin \alpha_A + \frac{B}{ \sqrt{r_2} } \sin \alpha_B\right) \right] &,  \cos \alpha < 0
     \end{cases}
 \end{gather}
 由于柱面波的平移对称性，只需沿 $z$ 轴进行平移，即可得到整个空间上的干涉情况。在平面内的其它性质与球面波类似。
@@ -1088,11 +1097,26 @@ E = E_0 \cos \left(-\omega t + \alpha \right) = E_0 \cdot e^{i(-\omega t + \alph
 
 考虑两平面波的干涉情况，如图 \ref{两个同频波源的干涉} (b)，平面波函数为：
 \begin{gather}
-    E_A = \frac{A}{r_1 } \cdot e^{i(-\omega t + k r_1 + \varepsilon_A)},\quad E_{A,0} = \frac{A}{r_1 },\ \alpha_A = k r_1 + \varepsilon_A
+    E_A = E_{A,0}\cdot e^{i(-\omega t + k r_1 + \varepsilon_A)},\quad \ \alpha_A = \boldsymbol{k_1}  \cdot  \boldsymbol{x}_{AP} + \varepsilon_A
     \\
-    E_B = \frac{B}{ r_2 } \cdot e^{i(-\omega t + k r_2  + \varepsilon_B)}\quad E_{B,0} = \frac{B}{ r_2 },\ \alpha_B = k r_2  + \varepsilon_B
+    E_B = E_{B,0} \cdot e^{i(-\omega t + k r_2  + \varepsilon_B)}\quad  \alpha_B = \boldsymbol{k_2} \cdot \boldsymbol{x}_{BP}  + \varepsilon_B
+\end{gather}
+令 $\varepsilon_1 = \varepsilon_2$，得到合扰动：
+\begin{gather}
+    E = E_0 \cos \left(-\omega t + \alpha \right) = E_0 \cdot e^{i(-\omega t + \alpha)} \\ 
+    E_0 = \sqrt{E_{A,0}^2 + E_{B,0}^2 + 2 \cos \left( \Delta \alpha \right)} ,\quad \Delta \alpha =  (\boldsymbol{k_1} -\boldsymbol{k_2})\cdot \boldsymbol{x} + (\boldsymbol{k_2}\cdot \boldsymbol{x}_B - \boldsymbol{k_1} \cdot \boldsymbol{x}_A)\\ 
+        \sin \alpha = \frac{1}{E_0}\left[ E_{A,0}\sin ( \boldsymbol{k_1}  \cdot  \boldsymbol{x}_{AP}) + E_{B,0}\sin (\boldsymbol{k_2} \cdot \boldsymbol{x}_{BP}) \right] \\ 
+        \cos \alpha = \frac{1}{E_0}\left[ E_{A,0}\cos ( \boldsymbol{k_1}  \cdot  \boldsymbol{x}_{AP}) + E_{B,0}\cos (\boldsymbol{k_2} \cdot \boldsymbol{x}_{BP}) \right] \\ 
+    \alpha = 
+    \begin{cases}
+        \arcsin \left[ \frac{1}{E_0}\left( E_{A,0}\sin \alpha_A + E_{B,0}\sin \alpha_B \right)  \right] &, \cos \alpha \geqslant 0 \\
+        \pi - \arcsin \left[ \frac{1}{E_0}\left( E_{A,0}\sin \alpha_A + E_{B,0}\sin \alpha_B \right)  \right] &,  \cos \alpha < 0
+    \end{cases}
 \end{gather}
 
+由于 $\boldsymbol{k_1} \cdot \boldsymbol{x}_A$ 和 $\boldsymbol{k_2} \cdot \boldsymbol{x}_B$ 是定值，而 $\boldsymbol{k} = \boldsymbol{k_1} - \boldsymbol{k_2}$ 构成一个新的传播矢量，因此合成后的波仍是平面波（但不均匀，振幅是位置的函数），或者说每个等相面仍构成一个平面。
+
+类似地，由平面波的平移对称性，沿 $z$ 轴平移即可得全空间的合成情况。
 
 \subsection{多个同频波源的干涉}
 
@@ -1100,13 +1124,36 @@ E = E_0 \cos \left(-\omega t + \alpha \right) = E_0 \cdot e^{i(-\omega t + \alph
 \begin{gather}
     E = E_0 \cos \left(-\omega t + \alpha \right) = E_0 \cdot e^{i(-\omega t + \alpha)}
     \\ 
-    E_0 = \sqrt{\left( \sum_{i=1}^n E_{i,0}\sin \alpha_i \right)^2 + \left( \sum_{i=1}^n E_{i,0}\cos \alpha_i \right)^2 }  =  \sqrt{\sum_{i=1}^n E_{i,0}^2 + \sum_{1 <= i < j <= n} 2E_{i,0}E_{j,0}\cos(\alpha_i - \alpha_j)},\quad
+    E_0 = \sqrt{\left( \sum_{i=1}^n E_{i,0}\sin \alpha_i \right)^2 + \left( \sum_{i=1}^n E_{i,0}\cos \alpha_i \right)^2 }   \\ 
+    =  \sqrt{\sum_{i=1}^n E_{i,0}^2 + \sum_{1 <= i < j <= n} 2E_{i,0}E_{j,0}\cos(\alpha_i - \alpha_j)},\quad
     \\ 
     \sin \alpha = \frac{1}{E_0}\sum_{i=1}^n E_{i,0}\sin \alpha_i ,\quad 
-    \cos \alpha = \frac{1}{E_0}\sum_{i=1}^n E_{i,0}\cos \alpha_i
+    \cos \alpha = \frac{1}{E_0}\sum_{i=1}^n E_{i,0}\cos \alpha_i \\ 
+    \alpha = 
+    \begin{cases}
+        \arcsin \left( \frac{1}{E_0}\sum_{i=1}^n E_{i,0}\sin \alpha_i  \right) &, \cos \alpha \geqslant 0 \\
+        \pi - \arcsin \left( \frac{1}{E_0}\sum_{i=1}^n E_{i,0}\cos \alpha_i  \right) &,  \cos \alpha < 0
+    \end{cases}
 \end{gather}
 
 \section{不同频率光的干涉}
+
+\section{产生干涉的实际条件}
+
+前面我们已经提到，在叠加（或干涉）问题中，电场的振幅通常只是位置的函数，而与时间无关，其实这也是观察到干涉图样的必要条件。观察干涉图样，无非是用照片（视频等同于照片）、人眼、辐射计以及类似的传感器，它们都有一定的“曝光时间”，我们只能观察到在曝光时间内，光强或辐射强度的平均值，即：
+
+\begin{equation}
+I = I_1 + I_2 + 2 \sqrt{I_1 I_2} \frac{1}{\tau} \int_{0}^{\tau}  \cos(\Delta \alpha) \mathrm{d} t
+\end{equation}
+其中 $\tau$ 为仪器的曝光时间。对可见光而言，其振荡周期 $T = \frac{\lambda}{v}$ 在 $10^{-15}$ s 级别，因此 $\tau$ 通常远大于 $T$，这样，我们只能观察到平均光强，而无法观察到光强的瞬时变化。如果 $\Delta \alpha$ 与时间无关，或者在曝光时间内几乎保持不变，那么就能得到（观察到）稳定的干涉图样。否则恒有 $I = I_1 + I_2$，是平凡的叠加，观察不到干涉现象。
+
+另外，若两波源的振动方向垂直，电场也仅是平凡的叠加，而不会产生干涉。因此，干涉现象要求两波源振动方向不能垂直。
+
+还有一种情况是，实际中的波源（光源）大多不能产生理想的、初相位不变的单频波。
+
+例如，对普通光源（如白炽灯），光是由光源中的原子、分子发生能级跃迁时发出的，跃迁时发出的波列都是有限长的，且初相位随机，持续时间通常短于 10 ns，在此时段内，光场振荡约百万次。对于外界的探测设备来讲，10 ns 仍是一个极短的时间，通常远远小于曝光时间。因此，即使每个波列的初相位都相同，在曝光时间内的上万个波列的平均下，积分项 $\int_{0}^{\tau}  \cos(\Delta \alpha) \mathrm{d} t$ 为 0，$I = I_1 + I_2$，导致观察到的强度分布仅为平凡的叠加，无法观察到干涉。
+
+上面光源发出的光的初相位是时间的函数，随着时间快速变化，无法产生干涉，称其为不相干光源。在实际中，还有一些光源，并不能达到完美的点光源，而是有一定的光源宽度，当宽度较大时，不同位置上光的叠加，会导致条纹的对比度降低（甚至为 0），称为空间不相干。另外有一些光源，发出的光具有多个波长（或者频谱较均匀），不同波长相互叠加导致相干性降低，称为时间不相干。
 
 %\includemedia[
 %  width=10cm,
@@ -1146,9 +1193,50 @@ E = E_0 \cos \left(-\omega t + \alpha \right) = E_0 \cdot e^{i(-\omega t + \alph
 
 \subsection{杨氏双缝干涉实验}
 
-https://zhuanlan.zhihu.com/p/335815195 双缝干涉实验
+杨氏双缝干涉装置如图 \ref{}，$S$ 为一狭缝，$S_1$ 和 $S_2$ 为一对狭缝，最右侧的屏为观察屏。由惠更斯原理，一平面波（可借助激光器和透镜产生）传播到狭缝 $S$ 时，以柱面波形式出射，在遇到双缝屏时，分化为两个柱面波继续前进，从而产生干涉，并在观察屏上显现出来。装置中各参量的典型值是：
+\begin{equation}
+d = 100 \ \mathrm{\mu m},\  R = 5\ \mathrm{cm},\ D = 1\ \mathrm{m},\quad D \gg L \gg d
+\end{equation}
+
+记通过双缝屏后，两柱面波的振幅系数分别为 $A$ 和 $B$，光强度分别为 $I_1$、$I_2$，则接受屏上的振幅和强度分布为：
+\begin{equation}
+    E_0 = \sqrt{\frac{A^2}{r_1} + \frac{B^2}{r_2} + \frac{2AB}{\sqrt{r_1r_2} }\cos\left( k \left( r_1  - r_2 \right)\right)} 
+    I_0 = I_1 + I_2 + 2I_1I_2\cdot \cos (k(r_1 - r_2))
+\end{equation}
+装置参数在典型值附近时，且两柱面波源对称分布时，可以有近似：
+\begin{equation}
+\frac{r_1}{r} = \frac{r_2}{r} = 1,\quad r_1 - r_2 = \frac{d}{\sin \theta} = \frac{d}{\sin \theta} = \frac{x d}{ D },\quad A = B,\quad I_1 = I_2
+\end{equation}
+得到近似后的振幅和强度分布：
+\begin{equation}
+   E_0 = \frac{\sqrt{2}A}{\sqrt{r}} \cdot \sqrt{1 + \cos \left( \frac{xkd}{D} \right)} = \frac{\sqrt{2}A}{\sqrt{r}} \cdot \sqrt{1 + \cos \left( \frac{2 \pi xd}{\lambda D} \right)},\quad I = 2 I_1 \left[ 1 + \cos \left( \frac{2 \pi x d}{\lambda D } \right) \right]
+\end{equation}
+
+图 \ref{} 展示了未近似时，振幅在接受屏上的分布情况，以及近似后的振幅分布情况，其中装置参数采取典型值。可以看到，近似效果较好。
+
+在近似模型中，相邻明（暗）条纹间距 $\Delta x$: 
+\begin{equation}
+\Delta x = \frac{D \lambda}{d}
+\end{equation}
+取 $\lambda = 700.0\ \mathrm{nm}$ 的红光，有 $\Delta x = 7 \ \mathrm{mm}$，可以被人眼分辨。通常将 $\frac{\Delta x}{2}$ 称为条纹宽度，则此时条纹宽度为 $3.5\ \mathrm{mm}$。
+
+
+杨氏双缝干涉的特点：
+\begin{enumerate}
+\item 非定域干涉：在干涉场中离双孔不太近也不太远的区域处处有干涉
+\item 自相干：相干光波来自同一波源
+\item 定态干涉：振幅（或强度）在干涉场中的分布仅与位置有关，与时间无关
+\end{enumerate}
+
+
+白光光源与其他补充内容详见 \href{https://produckthieves.home.blog/2020/02/10/phy-c15-double-slit-interference/}{PHY C15: Double Slit Interference}、\href{https://www.physics.louisville.edu/cldavis/phys299/notes/lo_interference.html}{University of Louisville: Double Slit Interference} 以及 \href{https://zhuanlan.zhihu.com/p/335815195}{知乎：双缝干涉实验}。我们不多赘述。
+
+
 
 \section{分振幅干涉}
+
+https://zhuanlan.zhihu.com/p/145785676 薄膜干涉
+
 \section{等倾干涉与等厚干涉}
 \section{迈克尔逊干涉与}
 \section{光场的空间相干性与时间相干性}

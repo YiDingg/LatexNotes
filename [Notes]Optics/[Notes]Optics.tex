@@ -1018,37 +1018,67 @@ $E_0$ 与 $\alpha$ 的取值可以由相矢量相加来理解。在给定的位�
 
 \subsubsection{示例一：两球面波}
 
-如图 \ref{两个同频波源的干涉} (a)，考虑两个球面波源在 $x$-$y$ 平面上的干涉情况。两波源位置分别为 $\boldsymbol{x_{OA}}$，$\boldsymbol{x_{OB}}$，波函数为：
+如图 \ref{两个同频波源的干涉} (a)，考虑两个相同的球面波源在 $x$-$y$ 平面上的干涉情况，相同的波源（理想单频波源）保证了两束波的物理参数相同，如波长、频率和振幅等。设两波源位置分别为 $\boldsymbol{x_{OA}}$，$\boldsymbol{x_{OB}}$，简记 $ r_1 = | \boldsymbol{x}_{AP} |$ 和 $ r_2 = | \boldsymbol{x}_{BP} |$，则波函数可写为：
 \begin{gather}
-E_A = \frac{A}{\left| \boldsymbol{x}_{AP}  \right| } \cdot e^{i(-\omega t + k |\boldsymbol{x}_{AP}| + \varepsilon_A)},\quad E_{A,0} = \frac{A}{\left| \boldsymbol{x}_{AP}  \right| },\ \alpha_A = k |\boldsymbol{x}_{AP}| + \varepsilon_A
+E_A = \frac{A}{r_1 } \cdot e^{i(-\omega t + k r_1 + \varepsilon_A)},\quad E_{A,0} = \frac{A}{r_1 },\ \alpha_A = k r_1 + \varepsilon_A
 \\
-E_B = \frac{B}{| \boldsymbol{x}_{BP} |} \cdot e^{i(-\omega t + k |\boldsymbol{x}_{BP}| + \varepsilon_B)}\quad E_{B,0} = \frac{B}{| \boldsymbol{x}_{BP} |},\ \alpha_B = k |\boldsymbol{x}_{BP}| + \varepsilon_B
+E_B = \frac{B}{ r_2 } \cdot e^{i(-\omega t + k r_2  + \varepsilon_B)}\quad E_{B,0} = \frac{B}{ r_2 },\ \alpha_B = k r_2  + \varepsilon_B
 \end{gather}
 方便起见，不妨令 $\varepsilon_A = \varepsilon_B$，则合扰动为：
 \begin{gather}
-E = E_0 \cos \left(-\omega t + \alpha \right) = E_0 \cdot e^{i(-\omega t + \alpha)},\quad E_0 = \sqrt{\frac{A^2}{r_1^2} + \frac{B^2}{r_2^2} + \frac{2AB}{r_1r_2}\cos\left( k \left( | \boldsymbol{x}_{AP} -\boldsymbol{x}_{BP} | \right)\right)} \\ 
-\sin \alpha = \frac{1}{E_0} \left( \frac{A}{| \boldsymbol{x}_{AP} |}\sin \alpha_A + \frac{B}{| \boldsymbol{x}_{BP} |} \sin \alpha_B\right),\quad \cos \alpha = \frac{1}{E_0} \left( \frac{A}{| \boldsymbol{x}_{AP} |}\cos \alpha_A + \frac{B}{| \boldsymbol{x}_{BP} |} \cos \alpha_B\right)\\ 
+E = E_0 \cos \left(-\omega t + \alpha \right) = E_0 \cdot e^{i(-\omega t + \alpha)},\quad E_0 = \sqrt{\frac{A^2}{r_1^2} + \frac{B^2}{r_2^2} + \frac{2AB}{r_1r_2}\cos\left( k \left( r_1  - r_2 \right)\right)} \\ 
+\sin \alpha = \frac{1}{E_0} \left( \frac{A}{ r_1 }\sin \alpha_A + \frac{B}{ r_2 } \sin \alpha_B\right),\quad \cos \alpha = \frac{1}{E_0} \left( \frac{A}{ r_1 }\cos \alpha_A + \frac{B}{ r_2 } \cos \alpha_B\right)\\ 
 \alpha = 
 \begin{cases}
-    \arccos \left[ \frac{1}{E_0} \left( \frac{A}{| \boldsymbol{x}_{AP} |}\cos \alpha_A + \frac{B}{| \boldsymbol{x}_{BP} |} \cos \alpha_B\right) \right] &, \cos \alpha \geqslant 0 \\
-    \pi - \arccos \left[ \frac{1}{E_0} \left( \frac{A}{| \boldsymbol{x}_{AP} |}\cos \alpha_A + \frac{B}{| \boldsymbol{x}_{BP} |} \cos \alpha_B\right) \right] &,  \cos \alpha < 0
+    \arccos \left[ \frac{1}{E_0} \left( \frac{A}{ r_1 }\cos \alpha_A + \frac{B}{ r_2 } \cos \alpha_B\right) \right] &, \cos \alpha \geqslant 0 \\
+    \pi - \arccos \left[ \frac{1}{E_0} \left( \frac{A}{ r_1 }\cos \alpha_A + \frac{B}{ r_2 } \cos \alpha_B\right) \right] &,  \cos \alpha < 0
 \end{cases}
 \end{gather}
 
-
-\subsubsection{示例二：两平面波}
-
-
 \begin{figure}[H]\centering
-\begin{subfigure}[t]{0.5\columnwidth}\centering
-    \includegraphics[height=120pt]{assets/3/crop_pdf_66eff444a80a6_f690229642a2b8bc66e9fbb05793266b_66eff43590e16.pdf}
-    \caption{\bfseries 两球面波源或两柱面波源 }
-\end{subfigure}\begin{subfigure}[t]{0.5\columnwidth}\centering
-    \includegraphics[height=120pt]{assets/3/crop_pdf_66eff444a80a6_f690229642a2b8bc66e9fbb05793266b_66eff43590e16.pdf}
-    \caption{\bfseries 两平面波源 }
-\end{subfigure}
-\caption{\bfseries 两个同频波源的干涉 }\label{两个同频波源的干涉}
+    \begin{subfigure}[t]{0.5\columnwidth}\centering
+        \includegraphics[height=120pt]{assets/3/crop_pdf_66eff444a80a6_f690229642a2b8bc66e9fbb05793266b_66eff43590e16.pdf}
+        \caption{\bfseries 两球面波源或两柱面波源 }
+    \end{subfigure}\begin{subfigure}[t]{0.5\columnwidth}\centering
+        \includegraphics[height=120pt]{assets/3/crop_pdf_66eff444a80a6_f690229642a2b8bc66e9fbb05793266b_66eff43590e16.pdf}
+        \caption{\bfseries 两平面波源 }
+    \end{subfigure}
+    \caption{\bfseries 两个同频波源的干涉 }\label{两个同频波源的干涉}
 \end{figure}
+
+$x$-$y$ 平面上的干涉情况可视化详见视频 (here)，其中 $z$ 轴代表电场强度标量 $E$（具有正负）。由于球面波的旋转对称性，只需绕 $x$ 轴旋转一圈，即可得到整个空间上的干涉情况。
+
+当点 $P$ 离波源极远时，近似有 $\frac{r_1}{r_2} = 1$（这与近似有 $r_1 - r_2 = 0$ 不同），将距离记为 $r$，则振幅的位置分布为 $E_0 = \frac{1}{r} \sqrt{ A^2 + B^2 + 2AB \cos (k(r_1 - r_2))} $。此时，具有相同振幅大小的点，等价于 $\cos (k(r_1 - r_2))$ 具有相同的值，也即：
+\begin{equation}
+    | r_1 -  r_2| =  \frac{1}{k} (\theta + 2\pi n),\quad \theta \in [0, 2\pi),\  n = 0,1,2,\cdots
+\end{equation}
+
+对每个给定的 $n$，上述方程表示一条双曲线（焦点为两波源），因此上述方程构成一个双曲线族（空间中构成旋转双曲面族），如图 \ref{两个同频波源的干涉} (a) 中的灰色曲线所示。特别地，令 $\theta = 0$ 可以得到最大振幅对应的双曲线族，令 $\theta = \pi$，得到最小振幅对应的双曲线族。振幅的位置分布是较为重要的内容，在后文的干涉实验部分，我们将再次讨论这个问题。
+
+\subsubsection{示例二：两柱面波}
+
+考虑两柱面波的干涉情况，其中柱体的高与 $x$-$y$ 平面垂直。容易发现，这与球面波在 $x$-$y$ 平面的行为是相同的，仅需修改波源的振幅衰减系数。同样地，不妨令初相位 $\varepsilon_1 = \varepsilon_2$，得到合扰动：
+
+\begin{gather}
+    E = E_0 \cos \left(-\omega t + \alpha \right) = E_0 \cdot e^{i(-\omega t + \alpha)},\quad E_0 = \sqrt{\frac{A^2}{r_1} + \frac{B^2}{r_2} + \frac{2AB}{\sqrt{r_1r_2} }\cos\left( k \left( r_1  - r_2 \right)\right)} \\ 
+    \sin \alpha = \frac{1}{E_0} \left( \frac{A}{ \sqrt{r_1} }\sin \alpha_A + \frac{B}{ \sqrt{r_2} } \sin \alpha_B\right),\quad \cos \alpha = \frac{1}{E_0} \left( \frac{A}{ \sqrt{r_1} }\cos \alpha_A + \frac{B}{ \sqrt{r_2} } \cos \alpha_B\right)\\ 
+    \alpha = 
+    \begin{cases}
+        \arccos \left[ \frac{1}{E_0} \left( \frac{A}{ \sqrt{r_1} }\cos \alpha_A + \frac{B}{ \sqrt{r_2} } \cos \alpha_B\right) \right] &, \cos \alpha \geqslant 0 \\
+        \pi - \arccos \left[ \frac{1}{E_0} \left( \frac{A}{ \sqrt{r_1} }\cos \alpha_A + \frac{B}{ \sqrt{r_2} } \cos \alpha_B\right) \right] &,  \cos \alpha < 0
+    \end{cases}
+\end{gather}
+由于柱面波的平移对称性，只需沿 $z$ 轴进行平移，即可得到整个空间上的干涉情况。在平面内的其它性质与球面波类似。
+
+\subsubsection{示例三：两平面波}
+
+考虑两平面波的干涉情况，如图 \ref{两个同频波源的干涉} (b)，平面波函数为：
+\begin{gather}
+    E_A = \frac{A}{r_1 } \cdot e^{i(-\omega t + k r_1 + \varepsilon_A)},\quad E_{A,0} = \frac{A}{r_1 },\ \alpha_A = k r_1 + \varepsilon_A
+    \\
+    E_B = \frac{B}{ r_2 } \cdot e^{i(-\omega t + k r_2  + \varepsilon_B)}\quad E_{B,0} = \frac{B}{ r_2 },\ \alpha_B = k r_2  + \varepsilon_B
+\end{gather}
+
 
 \subsection{多个同频波源的干涉}
 
@@ -1072,28 +1102,28 @@ E = E_0 \cos \left(-\omega t + \alpha \right) = E_0 \cdot e^{i(-\omega t + \alph
 %  flashvars={source=test.mp4}
 %]{}{VPlayer.swf}
 
-\includemedia[
-  label=some_dice,
-  width=1.0\linewidth,height=0.675\linewidth, % 16:9
-  addresource=test.mp4, 
-  transparent,
-  activate=pageopen,
-  passcontext,
-  flashvars={
-    source=test.mp4
-   &autoPlay=true % start playing on activation
-   &loop=true
-  }
-]{}{VPlayer.swf}
-% loop video
-\mediabutton[
-  mediacommand=some_dice:playPause,
-  overface=\color{blue}{\fbox{\strut Play/Pause}},
-  downface=\color{red}{\fbox{\strut Play/Pause}}
-]{\fbox{\strut Play/Pause}}
-\mediabutton[
-  mediacommand=some_dice:setSource [(test.mp4)]
-]{\fbox{\strut Media Caption}}
+%\includemedia[
+%  label=some_dice,
+%  width=1.0\linewidth,height=0.675\linewidth, % 16:9
+%  addresource=test.mp4, 
+%  transparent,
+%  activate=pageopen,
+%  passcontext,
+%  flashvars={
+%    source=test.mp4
+%   &autoPlay=true % start playing on activation
+%   &loop=true
+%  }
+%]{}{VPlayer.swf}
+%% loop video
+%\mediabutton[
+%  mediacommand=some_dice:playPause,
+%  overface=\color{blue}{\fbox{\strut Play/Pause}},
+%  downface=\color{red}{\fbox{\strut Play/Pause}}
+%]{\fbox{\strut Play/Pause}}
+%\mediabutton[
+%  mediacommand=some_dice:setSource [(test.mp4)]
+%]{\fbox{\strut Media Caption}}
 
 
 \section{分波前干涉}

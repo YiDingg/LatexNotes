@@ -445,7 +445,7 @@
 
 Cauchy-Riemann 条件是函数{\color{red} 可导的必要条件}：
 \begin{gather}
-\frac{\partial u }{\partial x } = \frac{\partial v }{\partial u },\quad
+\frac{\partial u }{\partial x } = \frac{\partial v }{\partial y },\quad
 \frac{\partial u }{\partial y } = - \frac{\partial v }{\partial x }
 \end{gather}
 极坐标中的 C-R 条件：
@@ -752,35 +752,119 @@ I = \lim_{\max | \Delta z_i \to 0|}\sum_{i=1}^{n} f(\xi_i)\Delta z_i = \int_{C_{
 \section{Cauchy 积分公式}
 
 \begin{BlockTheorem}[Cauchy 积分公式]\label{n 阶导数 Cauchy 积分公式}
+
+
 若 $f(z)$ 在 $\overline{G} $ 中解析\footnote{解析域闭为开集，至于为什么说在闭域上解析，详见附录 \ref{在闭域上解析}} ，则 $f(z)$ 在 $G$ 上有任意阶导数，且它们都是 $\overline{G} $ 上的解析函数。
 \begin{equation}
-f^{(n)}(z) = \frac{n !}{2\pi i}\oint_{\partial G} \frac{f(\zeta)}{(\zeta - z)^{n+1}} \mathrm{d} \zeta
+f^{(n)}(z) = \frac{n !}{2\pi i}\oint_{\partial G} \frac{f(\zeta)}{(\zeta - z)^{n+1}} \mathrm{d} \zeta,\quad \forall\ z \in G
 \end{equation} 
 特别地，当 $n = 0$ 时，得到 Cauchy 积分公式\footnote{事实上是由 $n = 0$ 和归纳法证明的 n 阶导数 Cauchy 积分公式}: 
 \begin{equation}
-    f(z) = \frac{1}{2\pi i}\oint_{\partial G} \frac{f(\zeta)}{(\zeta - z)} \mathrm{d} \zeta
+    f(z) = \frac{1}{2\pi i}\oint_{\partial G} \frac{f(\zeta)}{(\zeta - z)} \mathrm{d} \zeta,\quad \forall\ z \in G
 \end{equation}
+
 \end{BlockTheorem}
 
 \begin{BlockTheorem}[Cauchy 定理的推广]\label{Cauchy 定理的推广}
-在计算回路积分时，Theorem.\ref{n 阶导数 Cauchy 积分公式} 使用起来不太方便，由小圆弧定理和 Cauchy 定理，我们可以证明下面命题，它更方便且结论更强。
+在计算回路积分时，Theorem.\ref{n 阶导数 Cauchy 积分公式} 使用起来不太方便，由小圆弧定理和 Cauchy 定理，我们可以证明下面命题，方便我们使用。
 
-若 $f(z)$ 在 $\overline{G}$ 上解析，在 $\overline{G} $ 内共有 $n$ 个分支点 $a_1, a_2, \cdots, a_n$，则：
+若 $f(z)$ 在 $\overline{G}$ 上有唯一奇点 $z = a$，且 $(z - a)^n f(z)$ 在  $\overline{G}$ 上解析，则：
 \begin{equation}
-I  = \oint_{\partial G} f(z) \mathrm{d}z =  \sum_{k = 1}^{n}  \left[ 2 \pi i \lim_{z \to a_k} (z - a_k) f(z) \right] =  \sum \left[ \frac{2 \pi i}{n!}\lim_{z \to a} (z - a)^{n+1} f^{(n)} (z) \right]
+I  = \oint_{\partial G} f(z) \mathrm{d}z = \frac{2 \pi i}{({\color{red} n-1})!}\lim_{z \to a} (z - a)^{n} f^{({\color{red} n-1})} (z) = \frac{2 \pi i}{({\color{red} n-1})!} \left[  (z - a)^{n} f^{({\color{red} n-1})} (z) \right]_{z = a}
 \end{equation}
-特别地，当 $n = 0$，也即没有分支点时，得到 Cauchy 定理。
+特别地，当 $n = 1$ 时，得到 Cauchy 积分公式。
 \end{BlockTheorem}
 
-若 $f(z)$ 在 $\overline{G} $ 中解析，$f(z)$ 在 $G$ 上有任意阶导数，且：
+\begin{BlockTheorem}[无界区域上的 Cauchy 积分公式]\label{无界区域上的 Cauchy 积分公式}
+
+若 $f(z)$ 在 $ \C \setminus \overline{G} $ 中解析，则 $f(z)$ 在 $\C \setminus \overline{G}$ 上有任意阶导数，且它们都是 $\C \setminus \overline{G} $ 上的解析函数。
 \begin{equation}
-\oint_{\partial G} f(z) = 
+f^{(n)}(z) = \frac{n !}{2\pi i}\oint_{\partial G} \frac{f(\zeta)}{(\zeta - z)^{n+1}} \mathrm{d} \zeta,\quad \forall\ z \in\C \setminus \overline{G},\ n = 0,1,2,...
+\end{equation} 
+
+\end{BlockTheorem}
+
+\section{Cauthy 型积分与含参量积分的解析性}
+
+\begin{BlockTheorem}[Cauchy 型积分]\label{Cauchy 型积分}
+
+设函数 $\phi$ 在分段光滑曲线 $L \in \C$ 上连续（$L$ 可闭合或不闭合），则下面函数在 $\C \setminus L$ 上解析，在全平面上连续：
+\begin{equation}
+f (z) = 
+\begin{cases}
+    \phi(z) &, z \in L \\
+    \displaystyle \frac{1}{2\pi i}\oint_{L} \frac{\phi(\zeta)}{\zeta - z} \mathrm{d} \zeta &, z \in \C \setminus L \\ 
+\end{cases}
 \end{equation}
+且它在 $\C \setminus L$ 上的导数可由 Cauchy 积分公式得到：
+\begin{equation}
+f^{(n)}(z) = \frac{n !}{2\pi i}\oint_{L} \frac{\phi(\zeta)}{(\zeta - z)^{n+1}} \mathrm{d} \zeta,\quad \forall\ z \in \C \setminus L, n = 1,2,3,...
+\end{equation}
+
+%且 $f$ 在 $ G \subseteq \C \setminus L$ 上解析，则 $f$ 在 $G$ 内的值及其导数值被唯一确定：
+%\begin{gather}
+%f(z) = \frac{1}{2\pi i}\oint_{L} \frac{f(\zeta)}{\zeta - z} \mathrm{d} \zeta,\quad \forall\ z \in G \\ 
+%f^{(n)}(z) = \frac{n !}{2\pi i}\oint_{L} \frac{f(\zeta)}{(\zeta - z)^{n+1}} \mathrm{d} \zeta,\quad \forall\ z \in G, n = 1,2,3,...
+%\end{gather}
+%{\par\color{gray}\small
+%注：上面的定理事实上是 Cauchy 型积分 + 补充定义得来。为保持定理的易用性，我们直接将其称为 Cauchy 积分公式。定理的推广过程是: Cauchy 积分公式，解析函数的高阶导数，无界区域上的 Cauthy 积分公式，无界区域上的解析函数高阶导数，Cauchy 型积分。详见参考文献 \cite{数学物理方法} 的 Page 40-42.
+%\par}
+\end{BlockTheorem}
+
+\begin{BlockTheorem}[含参量积分的解析性]\label{含参量积分的解析性}
+设 $f = f(t,z)$ 是定义在 $L \times \overline{G} $ 上的连续函数（对两个变量都连续），其中 $\overline{G} $ 是有界闭域。且 $\forall\ t \in L$，$f(t,z)$ 是 $\overline{G}$ 上的单值解析函数，则函数 $\displaystyle F(z) = \int_{L} f(t,z) \mathrm{d}t$
+在 $G$ 内解析，且 $\displaystyle F'(z) =  \int_{L} \frac{\partial f(t,z) }{\partial z } \mathrm{d}t$。
+\end{BlockTheorem}
+
+\section{Poisson 公式}
+
+Cauchy 积分公式告诉我们，对于在 $\overline{G} $ 上解析的函数 $f(z)$，函数在 $\overline{G} $ 内任意一条曲线上的值（可以是边界 $\partial G$）就完全唯一地决定了 $f$ 在 $G$ 内任意一点的值。特别地，当 $ G = \C$ 时，若已知 $f$ 在 $\C$ 内任意一条（分段光滑）曲线 $L$ 上的值，都可求出 $f$ 在全平面的值。
+
+\begin{BlockTheorem}[上半平面 Poisson 公式]\label{上半平面 Poisson 公式}
+如果 $f(z)$ 在上半平面解析，且 $\lim_{z \to \infty} f(z) = 0$，则可依据它（或者它的实部或虚部）在实轴上的值，求出它在整个上半平面的值：
+\begin{gather}
+    \begin{aligned}
+        \text{已知}\ f(z),& z \in \R\ \text{:}  \quad \quad \quad 
+        && f(z) 
+        = \frac{1}{2 \pi i} \int_{-\infty}^{+ \infty} \frac{f(\xi)}{\xi - z} \mathrm{d}\xi \\ 
+        &= \frac{y}{\pi} \int_{-\infty}^{+ \infty} \frac{f(\xi)}{(\xi - x)^2 + y^2} \mathrm{d}\xi 
+        &&=  \frac{1}{\pi i} \int_{-\infty}^{+ \infty} \frac{ (\xi - x)f(\xi)}{(\xi - x)^2 + y^2} \mathrm{d}\xi &&,\quad \forall\ z \in \C \setminus \R
+        \\
+        \text{已知 $u$ 或 $v$: }& \\
+        f(z) 
+        &= \frac{1}{\pi i} \int_{-\infty}^{+ \infty} \frac{ u(\xi, 0) }{\xi - (x + iy)} \mathrm{d}\xi
+        &&= \frac{1}{\pi} \int_{-\infty}^{+ \infty} \frac{ v(\xi, 0) }{\xi - (x + iy)} \mathrm{d}\xi  &&,\quad \forall\ z \in \C \setminus \R
+        \\ 
+        u(x,y) 
+        &= \frac{1}{\pi} \int_{-\infty}^{+ \infty} \frac{ yu(\xi, 0)}{(\xi - x)^2 + y^2} \mathrm{d}\xi 
+        &&= \frac{1}{\pi} \int_{-\infty}^{+ \infty} \frac{ (\xi - x)v(\xi, 0)}{(\xi - x)^2 + y^2} \mathrm{d}\xi  &&,\quad \forall\ z \in \C \setminus \R
+        \\ 
+        v(x,y) 
+        &= - \frac{1}{\pi} \int_{-\infty}^{+ \infty} \frac{ (\xi - x)u(\xi, 0)}{(\xi - x)^2 + y^2} \mathrm{d}\xi 
+        &&= \frac{1}{\pi} \int_{-\infty}^{+ \infty} \frac{ yv(\xi, 0)}{(\xi - x)^2 + y^2} \mathrm{d}\xi  &&,\quad \forall\ z \in \C \setminus \R
+    \end{aligned}
+    \end{gather}
+
+\end{BlockTheorem}
+
+\begin{BlockTheorem}[圆内 Poisson 公式]\label{圆内 Poisson 公式}
+取 $G$ 为半径是 $a$ 的圆，可以得到圆内 Poisson 公式：
+\begin{align}
+f(r, \phi)  &= \frac{a^2 - r^2}{2 \pi} \int_{0}^{2 \pi} \frac{f(ae^{i \theta})}{a^2 + r^2 - 2ar\cos(\phi - \theta)} \mathrm{d} \theta 
+,\quad \forall\ r \leqslant a,\ \phi \in [0, 2\pi)
+\\ 
+u(r, \phi) &= \frac{a^2 - r^2}{2 \pi} \int_{0}^{2 \pi} \frac{ u(a, \theta) }{a^2 + r^2 - 2ar\cos(\phi - \theta)} \mathrm{d} \theta   
+,\quad \forall\ r \leqslant a,\ \phi \in [0, 2\pi)
+\\ 
+v(r, \phi) &= \frac{a^2 - r^2}{2 \pi} \int_{0}^{2 \pi} \frac{ v(a, \theta) }{a^2 + r^2 - 2ar\cos(\phi - \theta)} \mathrm{d} \theta   
+,\quad \forall\ r \leqslant a,\ \phi \in [0, 2\pi)
+\end{align}
+
+\end{BlockTheorem}
 
 
 \section{常见积分结果汇总}
 
-\subsection{必记结论}
 
 \textbf{(1)\ }$\oint_C (z-a)^n \mathrm{d}z = 
 \begin{cases}
@@ -788,9 +872,6 @@ I  = \oint_{\partial G} f(z) \mathrm{d}z =  \sum_{k = 1}^{n}  \left[ 2 \pi i \li
     0 &, \text{else}
 \end{cases}$
 
-
-
-\subsection{选记结论}
 
 
 
@@ -876,7 +957,7 @@ I  = \oint_{\partial G} f(z) \mathrm{d}z =  \sum_{k = 1}^{n}  \left[ 2 \pi i \li
 \end{equation}
 当矢量场无旋时，上式右端恒为零。
 
-\subsection{如何理解（$n$ 阶）Cauchy 积分公式？}
+\subsection{如何使用（$n$ 阶）Cauchy 积分公式？}
 
 ($n$ 阶) Cauchy 积分公式（Theorem.\ref{n 阶导数 Cauchy 积分公式}）为：若函数 $f(z)$ 在 $\overline{G}$ 上解析，则 $f(z)$ 在 $G$ 上有任意 $n$ 阶导数，且它们都是 $\overline{G}$ 上的解析函数。
 \begin{equation}
@@ -894,6 +975,10 @@ f^{(n)}(z) = \frac{n !}{2\pi i} \oint_{\partial G} \frac{f(\zeta)}{(\zeta - z )^
 \begin{equation}
     \oint_{\partial G} g(z) = {\color{red} \frac{2\pi i}{n!}} \cdot \left[ (z - a)^{n+1}\cdot g(z) \right]^{(n)}_{z = a}
 \end{equation}
+
+\subsection{如何理解 Cauchy 型积分揭示的“解析函数在（分段）光滑曲线上的值决定了它 在整个复平面上的值”}
+
+
 
 % --------------------------- 附录 --------------------------- %
 % >> ------------------------ 附录 ------------------------ << %

@@ -899,7 +899,7 @@ u_i - iR_1 = u_1,\quad u_1 - iR_f = -Au_1 \Longrightarrow I =(1+A) \frac{u_1}{R_
 
 \subsection{其它含 OPA 的电路}
 
-电压比较器、正反馈 IOPA、滞回比较器等，详见教材 \cite[Page 66]{电路原理}。
+电压比较器、正反馈 IOPA、滞回比较器等，详见参考文献 \cite{电路原理} 的 Page 66。
 
 
 \subsection{自设计线性运算器}
@@ -1080,6 +1080,8 @@ u_o =
     p = u_1i_1 + u_2i_2
 \end{equation}
 
+另外，注意二端口两端输入电压的负极不一定等电势，也即 $u_1 = u_{1,+} - u_{1,-}$，$u_2 = u_{2,+} - u_{2,-}$，但不一定有 $u_{1,-} = u_{2,-}$。
+
 \subsection{输入电阻与输出电阻}
 \begin{LineTheorem}[戴维宁定理]\label{戴维宁定理}
 一个含独立电源、线性电阻和受控源的一端口电路，对外可以等效成一个电压源和一个电阻串联，电压等于原电路端口两端的开路电压，电阻等于全部独立源置 0 （电压源短路，电流源断路）时的等效电阻。
@@ -1257,7 +1259,7 @@ i_{\text{DS}} =
 
 依 MOS 管的外特性，可分为三个区，截止区、线性区和恒流区，分别对应三个等效电路，如下图所示：
 \begin{figure}[H]\centering
-\includegraphics[width=0.55\textwidth]{assets/2/MOS管等效电路.png}
+\includegraphics[width=0.63\textwidth]{assets/2/MOS管等效电路.png}
 \caption{\bfseries MOS 管等效电路}\label{MOS管等效电路}
 \end{figure}
 
@@ -1284,10 +1286,90 @@ i_{\text{DS}} =
 
 \section{门电路}
 
-\chapter{线性电阻电路}
+将模拟信号转为数字信号，并对数字信号进行传递、分析、处理，最后进行输出（可能还需要将数字信号转回模拟信号），是现代信号处理的基本流程。
+
+逻辑门是上述过程的基本元件。最常用的逻辑门如图 \ref{逻辑门} (a) 所示，其中反相器、与非门、或非门是基本门，可由 MOS 管（二极管）直接构成，其它门则由基本门组合而成。它们之间的关系如图 \ref{逻辑门} (b) 所示
+
+\begin{figure}[H]\centering
+\begin{subfigure}[t]{0.7\columnwidth}\centering
+    \includegraphics[height=90pt]{assets/2/逻辑门.png}
+    \caption{\bfseries 几种常见的逻辑门 }
+\end{subfigure}\hfill
+\begin{subfigure}[t]{0.3\columnwidth}\centering
+    \includesvg[height=90pt]{assets/2/逻辑门关系.drawio.svg}
+    \caption{\bfseries 逻辑门之间的关系 }
+\end{subfigure}
+\caption{\bfseries 逻辑门 }\label{逻辑门}
+\end{figure}
+
+
+\subsection{基本逻辑门}
+
+最简单的反相器见参考文献 \cite{电路原理} 的 Page 88，它由 NMOS、电源和限流电阻构成。但是，这种反相器在输入为 1 时静态功率不为 0，实际中我们常用的反相器称为 CMOS (Complementary Metal-Oxide-Semiconductor Transistor)，如图 \ref{基本逻辑门} (a) 所示。它由一个 NMOS 和一个 PMOS 构成，无论输入是 0 或 1，都是一个 MOS 管导通，另一个截止，且静态功率为 0。实际生产中，CMOS 是单独的一个元件，内部已经集成了 NMOS 和 PMOS。
+
+最简与非门由两个 NMOS 构成，如图 \ref{基本逻辑门} (b)，其静态功率非 0，增加二极管的串联数量，可以实现任意 $n$ 输入的与非门；最简或非门由两个 NMOS 构成，如图 \ref{基本逻辑门} (c)，其静态功率非 0，类似地，增加二极管的并联数量，可以实现任意 $n$ 输入的或非门。
+
+\begin{figure}[H]\centering
+\begin{subfigure}[t]{0.33\columnwidth}\centering
+    \includegraphics[height=125pt]{assets/2/反相器.pdf}
+    \caption{\bfseries 反相器（CMOS） }
+\end{subfigure}\hfill
+\begin{subfigure}[t]{0.33\columnwidth}\centering
+    \includegraphics[height=125pt]{assets/2/与非门.pdf}
+    \caption{\bfseries 与非门 }
+\end{subfigure}
+\begin{subfigure}[t]{0.33\columnwidth}\centering
+    \includegraphics[height=125pt]{assets/2/或非门.pdf}
+    \caption{\bfseries 或非门 }
+\end{subfigure}
+\caption{\bfseries 基本逻辑门 }\label{基本逻辑门}
+\end{figure}
+
+\subsection{ADC 与 DAC}
+
+
+简单的 ADC、DAC 可由二极管、电阻、运算放大器构成，后者详见“第二次习题课课前练习”。
+
+\chapter{线性电阻电路分析方法}
+线性电阻电路，是指仅含独立源、受控源和线性电阻的电路。$2b$ 法是利用 KCL 和 KVL 的最基本方法，对具有 $b$ 条支路 $n$ 个节点的电路，列出 $(n -1)$ 个 KCL 方程和 $(b - n +1)$ 个 KVL 方程进行求解，较为繁琐。本章将介绍多种线性电阻电路分析方法，其中几种非常重要，不仅是一种方法，更应当作一种思想，要能够熟练而灵活地运用，例如节点电压法等。
+
+
 \section{支路电流法}
+
+列出节点处的 KCL 和所有网格的 KVL 进行求解，略。
+
 \section{节点电压法}
+
+直接给出总结：对含有 $n+1$ 节点，$p$ 无伴电压源，$q$ 受控源的电路，在选定合适的参考点后，列出 $(n-p)$ 个节点 KCL 方程（可能含超节点），$p$ 个超节点电压方程，$q$ 个受控限制方程，求解得到 $ n $ 个电压变量和 $q$ 个受控源变量。
+
+\subsection{没有无伴电压源}
+
+$p = 0$ 时，没有无伴电压源，可列出节点电压法的标准方程：
+\begin{equation}
+    \boldsymbol{G}\cdot \boldsymbol{U} = \boldsymbol{I},\quad 
+    \begin{bmatrix}
+        G_{11}&G_{12}&\cdots&G_{1k}&\cdots&G_{1n}\\G_{21}&G_{22}&\cdots&G_{2k}&\cdots&G_{2n}\\\vdots&\vdots&&\vdots&&\vdots\\G_{k1}&G_{k2}&\cdots&G_{kk}&\cdots&G_{kn}\\\vdots&\vdots&&\vdots&&\vdots\\G_{n1}&G_{n2}&\cdots&G_{nk}&\cdots&G_{nn}\end{bmatrix}\begin{bmatrix}U_{1}\\U_{2}\\\vdots\\U_{k}\\\vdots\\U_{n}\end{bmatrix}=\begin{bmatrix}I_{\mathrm{Sn, 1}}\\I_{\mathrm{Sn, 2}}\\\vdots\\I_{\mathrm{Sn, k}}\\\vdots\\I_{\mathrm{Sn, n}}
+    \end{bmatrix}
+\end{equation}
+其中，$G_{kk}$ 是第 $k$ 个独立节点的自电导，也即节点 $k$ 所有支路上的电导之和；$G_{ij}\ (i \ne j)$ 是节点 $i$ 和节点 $j$ 之间的互电导，数值上等于节点 $i$ 与节点 $j$ 间的所有电导之和并 {\color{red} 冠以负号}。特别地，节点之间仅有电流源的支路互电导为 0。$I_{\ \text{Sn,k}}$ 是流入节点 $k$ 所有电流源电流的代数和（包括由有伴电压源等效而来的电流），{\color{red} 流入节点的电流取正}。
+
+在仅含电阻、有伴电压源和电流源的电路中，因为互电导 $G_{ij} = G_{ji}$，因此
+
+注意，在列节点电压法的方程时，我们记流入节点的电流为正，这是在 KCL 中假设了流出节点的电流取正得到的结果。
+
+\subsection{有一个无伴电压源}
+
+对于仅有一个无伴电压源的情况，将参考节点选在无伴电压源的负极，仍可以列出节点电压法的标准方程，此后同上。
+
+\subsection{有多个无伴电压源}
+
+有 $p$ 个无伴电压源时（$p>1$），将参考点选在其中一个的负极（其实也可以不选），然后将剩余的无伴电压源看作超节点。列出各节点的 KCL 方程（共 $(n-p)$ 个），其中，超节点的自电导由超节点中的子节点贡献（不止一项），与其它节点的互电导是整个大节点与另一节点之间的互电导。具体的例子见参考文献 \cite{电路原理} Page 108 的例 3.2.5，这里不再赘述。
+
+
 \section{回路电流法}
+
+
+
 \section{叠加定理与齐性定理}
 \section{替代定理}
 \section{戴维南定理和诺顿定理}
@@ -1844,7 +1926,7 @@ i_{\text{DS}} =
 
 具有（唯一）公共端的 $n+1$ 端元件可视为 $n$ 端口网络，因此有公共端的三端元件可以视为一个二端口。并且，两个具有公共端的二端口，将公共端并联在一起不会破坏端口条件，将公共端串联在一起也不会破坏端口条件。
 
-\subsection{}
+\subsection{将具有公共端的三端元件看作二端口时，如何理解公共端一边流出 $i_1$，另一边流出 $i_2$？}
 
 \section{第三章}
 

@@ -35,7 +35,32 @@
 
 % 导入基本宏包
     \usepackage[UTF8]{ctex}     % 设置文档为中文语言
-    \usepackage[colorlinks, linkcolor=blue, anchorcolor=blue, citecolor=blue, urlcolor=blue]{hyperref}  % 宏包：自动生成超链接 (此宏包与标题中的数学环境冲突)
+    \usepackage{hyperref}  % 宏包：自动生成超链接 (此宏包与标题中的数学环境冲突)
+    \hypersetup{
+        colorlinks=true,    % false:边框链接 ; true:彩色链接
+        citecolor={red},    % 文献引用颜色
+        linkcolor={blue},   % 目录，公式，图表，脚注等内部链接颜色
+        urlcolor={cyan},    % 网页 URL 链接颜色，包括 \href 中的 text
+        % cyan 浅蓝色 
+        % magenta 洋红色
+        % yellow 黄色
+        % black 黑色
+        % white 白色
+        % red 红色
+        % green 绿色
+        % blue 蓝色
+        % gray 灰色
+        % darkgray 深灰色
+        % lightgray 浅灰色
+        % brown 棕色
+        % lime 石灰色
+        % olive 橄榄色
+        % orange 橙色
+        % pink 粉红色
+        % purple 紫色
+        % teal 蓝绿色
+        % violet 紫罗兰色
+    }
     % \usepackage{docmute}    % 宏包：子文件导入时自动去除导言区，用于主/子文件的写作方式，\include{./51单片机笔记}即可。注：启用此宏包会导致.tex文件capacity受限。
     \usepackage{amsmath}    % 宏包：数学公式
     \usepackage{mathrsfs}   % 宏包：提供更多数学符号
@@ -249,8 +274,9 @@
 
 % 序言
     \begin{cnabstract}\normalsize 
-        本文为笔者本科时的数学物理方法笔记笔记,总结了数学物理方法中的主要知识，也有适当的拓展延伸。同时，对一些晦涩的概念或公式，给出了笔者的个人理解，以帮助阅读。\par
-        由于个人精力及知识水平有限，书中难免有不妥、错误之处，望不吝指正，在此感谢。我的邮箱是 dingyi233@mails.ucas.ac.cn 。
+        本文为笔者本科时的“数学物理方法”课程笔记（Notes of Mathematical Physics Methods, 2024.9 -- 2025.1）。课程信息、作业与相关资料可以在笔者的个人网站上找到: \href{https://yidingg.github.io/YiDingg/\#/Notes/Math/MathematicalPhysicsMathods}{Notes > Math > Mathematical Physics Mathods (https://yidingg.github.io/YiDingg/\#/Notes/Math/MathematicalPhysicsMathods)}，参考文献会在课程结束后统一上传到网址 {\color{red}（待更新）}。
+    
+        由于个人学识浅陋，认识有限，文中难免有不妥甚至错误之处，望读者不吝指正。可以将错误发送到我的邮箱 {\color{cyan}\ dingyi233@mails.ucas.ac.cn}，也可以到笔者的 \href{https://github.com/YiDingg/LatexNotes}{GitHub 笔记库 (https://github.com/YiDingg/LatexNotes)} 提 issue，衷心感谢。
     \end{cnabstract}
     \addcontentsline{toc}{chapter}{序言} % 手动添加为目录
 

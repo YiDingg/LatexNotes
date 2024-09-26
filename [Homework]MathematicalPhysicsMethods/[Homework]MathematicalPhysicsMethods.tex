@@ -905,9 +905,13 @@ z = \frac{\pi}{2} + k\pi, \quad k \in \Z \text{ 或 } z = \infty
 
 \section{计算下列积分}
 
-\textbf{(1)\ \ } $\displaystyle \oint_{| z + i | = 1} \frac{\rho z}{1 + z^2} \ \mathrm{d} z$
+\textbf{(1)\ \ } $\displaystyle \oint_{| z + i | = 1} \frac{e^z}{1 + z^2} \ \mathrm{d} z$
 
-没思路了。。。
+被积函数 $\frac{e^z}{1 + z^2}$ 在圆周 $| z + i | = 1$ 内有且仅有 $z = -i$ 一个奇点，由 Cauthy 定理和 Cauthy 积分公式：
+\begin{equation}
+I =  \oint_{| z + i | = 1} \frac{e^z}{1 + z^2} \ \mathrm{d} z = 2 \pi i\left[\frac{ e^z}{z - i} \right]_{z = -i} = - \pi e^{-i}
+\end{equation}
+结果化简到上面一步即可。
 
 \textbf{(2)\ \ } $\displaystyle \oint_{| z -a | = a} \frac{ z}{z^4 - 1} \ \mathrm{d} z,\ a > 1$
 
@@ -931,8 +935,8 @@ I = \oint_{| z - 1 | = \delta } \frac{z}{z^4 - 1} \ \mathrm{d}z = 2 \pi i \cdot 
     I 
     = \oint_{| z | = \delta} \frac{1}{z^2(z^2 + 16)} \ \mathrm{d} z 
     = 2 \pi i \cdot \left[ \frac{1}{z^2 + 16} \right]^{(1)}_{z = 0} 
-    = 2 \pi i \cdot \left[ -\frac{1}{(z^2 + 16)^2} \right]_{z = 0} 
-    = - \frac{\pi i}{128} 
+    = 2 \pi i \cdot \left[ -\frac{2z}{(z^2 + 16)^2} \right]_{z = 0} 
+    = 0
 \end{equation*}
 
 \section{计算下列积分}

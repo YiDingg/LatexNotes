@@ -36,9 +36,28 @@
     \usepackage{hyperref}  % 宏包：自动生成超链接 (此宏包与标题中的数学环境冲突)
     \hypersetup{
         colorlinks=true,    % false:边框链接 ; true:彩色链接
-        citecolor={blue},   % 文献引用颜色
+        citecolor={red},    % 文献引用颜色
         linkcolor={blue},   % 目录，公式，图表，脚注等内部链接颜色
-        %urlcolor={blue}     % 网页 URL 链接颜色，包括 \href 中的 text
+        urlcolor={cyan},    % 网页 URL 链接颜色，包括 \href 中的 text
+        % cyan 浅蓝色 
+        % magenta 洋红色
+        % yellow 黄色
+        % black 黑色
+        % white 白色
+        % red 红色
+        % green 绿色
+        % blue 蓝色
+        % gray 灰色
+        % darkgray 深灰色
+        % lightgray 浅灰色
+        % brown 棕色
+        % lime 石灰色
+        % olive 橄榄色
+        % orange 橙色
+        % pink 粉红色
+        % purple 紫色
+        % teal 蓝绿色
+        % violet 紫罗兰色
     }
     
     % \usepackage{docmute}    % 宏包：子文件导入时自动去除导言区，用于主/子文件的写作方式，\include{./51单片机笔记}即可。注：启用此宏包会导致.tex文件capacity受限。
@@ -260,13 +279,15 @@
 
 % 序言
 \begin{cnabstract}\normalsize 
-    本文为笔者本科时的“光学”课程笔记（Notes of Optics, 2024.8-2025.1）。由于个人学识浅陋，认识有限，文中难免有不妥甚至错误之处，望读者不吝指正，在此感谢。我的邮箱是 dingyi233@mails.ucas.ac.cn。\par
-    为了更好地学习光学，建议先跳转至附录部分，了解相关理论知识。\par
+本文为笔者本科时的“光学”课程笔记（Optics Notes, 2024.8-2025.1）。课程信息、作业与资料可以在笔者的个人网站上找到: \href{https://yidingg.github.io/YiDingg/\#/Notes/Phisics/OpticsNotes}{Notes > Phisics > Optics (https://yidingg.github.io/YiDingg/\#/Notes/Phisics/OpticsNotes)}，参考文献会在课程结束后上传到网址 {\color{red}（待更新）}。
+由于个人学识浅陋，认识有限，文中难免有不妥甚至错误之处，望读者不吝指正，读者可以到笔者的 \href{https://github.com/YiDingg/LatexNotes}{GitHub 笔记库 (https://github.com/YiDingg/LatexNotes)} 上提 issue，也可以将错误发送到我的邮箱 {\color{blue}\ dingyi233@mails.ucas.ac.cn}，衷心感谢。
+
+在正式学习之前，建议先跳转至附录一“波理论”部分，学习必要的前置知识（否则可能难以理解）。
 \end{cnabstract}
 \addcontentsline{toc}{chapter}{序言} % 手动添加为目录
 
 % 目录
-\setcounter{tocdepth}{1}                % 目录深度（为1时显示到section）
+\setcounter{tocdepth}{2}                % 目录深度（chapter 下 为 1 时显示到section）
 \tableofcontents                        % 目录页
 \addcontentsline{toc}{chapter}{目录}    % 手动添加此页为目录
 \thispagestyle{fancy}                   % 显示页码、页眉等 
@@ -1368,7 +1389,7 @@ I(x, b) = \frac{I_{\text{max}}}{2b} \int_{-\frac{b}{2}}^{\frac{b}{2}} \left[ 1 +
 
 \section{分振幅干涉}
 
-\subsection{薄膜干涉}
+\subsection{多光束薄膜干涉}
 
 %\begin{table}[H]\centering
 %    %\renewcommand{\arraystretch}{1.5} % 调整行间距为 1.5 倍
@@ -1386,55 +1407,128 @@ I(x, b) = \frac{I_{\text{max}}}{2b} \int_{-\frac{b}{2}}^{\frac{b}{2}} \left[ 1 +
 %\end{tabular}
 %\end{table}
 
-\begin{center}\noindent\begin{minipage}{0.5\columnwidth}
-    \hspace*{2em} 如图 \ref{薄膜干涉} (a) 所示，一入射光接近垂直入射到一薄膜时，发生多次反射、透射，下面讨论其能量与干涉情况。不妨设入射光相位为 0，强度为 1，依据公式 \ref{对称前后的振幅与能量系数变化}，在图中标出各光线的强度，它们的相位如表 \ref{薄膜干涉光线的相位} 所示，其中“$A$ $s$” 指 $A$ 光 $s$ 分量的相位。需要注意，$A_1$ 与 $A_n,\ k \geqslant 2$ 的相位相差 $\pi$，因而叠加后强度应相减。由公式 \ref{斯托克斯倒逆关系}（斯托克斯倒逆关系），$r + r' = 1,\ tt' + rr' =1$，令 $n \to \infty$，由等比数列极限可得：
-\end{minipage}\hfill\begin{minipage}{0.5\columnwidth}
-    \noindent\begin{table}[H]\centering
-        %\renewcommand{\arraystretch}{1.5} % 调整行间距为 1.5 倍
-        %\setlength{\tabcolsep}{1.5mm} % 调整列间距
-        \caption{\textbf{薄膜干涉光线的相位}}
-        \label{薄膜干涉光线的相位}
-    \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}\hline
-        序号 & $A$ $s$ & $A$ $p$  & $B$ $s$& $B$ $p$ \\
-        \hline
-        0 & 0      & 0       & - &   -      \\
-        1 & $-\pi$ & 0       & 0 &   0      \\
-        2 & 0      & $-\pi$  & 0 & $-2\pi$  \\
-        3 & 0      & $-3\pi$ & 0 & $-4\pi$  \\
-        4 & 0      & $-5\pi$ & 0 & $-6\pi$  \\
-        \hline
-    \end{tabular}
-    \end{table}
-\end{minipage}\end{center}
 
-\begin{align}
-    \text{反射光 $A$ 的振幅系数：}& r_A = r + (1 - r^2)\left( r + r^3 + r^5 + \cdots \right) = r + (1 - r^2)\cdot \frac{r}{1 -r} = r^2 + 2r \\ 
-    \text{透射光 $B$ 的振幅系数：}& t_B = (1 - r^2) \left( 1 + r^2 + r^4 + \cdots \right) = \frac{1 - r^2}{1 - r} = 1 + r 
-\end{align}
+
+如图 \ref{薄膜干涉} (a) 所示，一入射光接近垂直入射到一薄膜时（$\theta_i < \theta_B$），发生多次反射、透射，下面讨论其能量与干涉情况。
 
 \begin{figure}[H]\centering
-\begin{subfigure}[t]{0.6\columnwidth}\centering
-    \includegraphics[height=145pt]{assets/3/薄膜干涉.pdf}
-    \caption{\bfseries 薄膜多光束干涉 }
-\end{subfigure}\hfill
-\begin{subfigure}[t]{0.4\columnwidth}\centering
-    \includegraphics[height=145pt]{assets/3/薄膜双光束干涉.pdf}
-    \caption{\bfseries 薄膜双光束干涉 }
-\end{subfigure}
-\caption{\bfseries 薄膜干涉 }\label{薄膜干涉}
+    \begin{subfigure}[t]{0.6\columnwidth}\centering
+        \includegraphics[height=145pt]{assets/3/薄膜干涉.pdf}
+        \caption{\bfseries 薄膜多光束干涉 }
+    \end{subfigure}\hfill
+    \begin{subfigure}[t]{0.4\columnwidth}\centering
+        \includegraphics[height=145pt]{assets/3/薄膜双光束干涉.pdf}
+        \caption{\bfseries 薄膜双光束干涉 }
+    \end{subfigure}
+    \caption{\bfseries 薄膜干涉 }\label{薄膜干涉}
 \end{figure}
 
-同理，上式对 $s$ 波 $p$ 波都成立。
+由于没有发生全反射，相位变化是平凡的（透射无相变，反射只能是 $-\pi$ 或零），而反射光的相位变化已经包含在振幅反射系数 $r$ 中了（由其正负表示）。因此，在分析多光束干涉时，只需考虑各光（有正负）的振幅以及光程差，处理波函数的表达式的叠加即可。
+
+记相邻两束反射（透射）光的光程差为 $\Delta L$，光程差带来的相位差为 $\delta$（{\color{red} 无需考虑反射相位突变，因为它涵盖在了振幅的正负中}），由图 \ref{薄膜干涉} (b) 所示，可求得：
+\begin{gather}
+    \Delta L = l_2 - l_1 = 2 n_f\cdot  \overline{O_1B_1} - n_i\cdot  \overline{O_1 C} = \frac{2 n_f d}{\cos \theta_t} - 2 n_i \sin \theta_i \tan \theta_t d = 2 n_f d \cos \theta_f \\ 
+    \delta = \frac{2 \pi}{\lambda_i} \Delta L = \frac{4 \pi n_f d \cos \theta_f}{\lambda_i}
+\end{gather}
+由公式 \ref{斯托克斯倒逆关系}（斯托克斯倒逆关系），$r + r' = 1,\ tt' + rr' =1$，结合等比数列极限（$n \to \infty$），可得反射波的总振幅系数 $r_A$、透射波的总振幅系数 $t_B$:
+\begin{gather}
+    r_A 
+    = r + tt'r' e^{i \delta}\left( 1 + r'^2e^{i \delta} +  r'^4e^{2 i \delta} + \cdots\right) 
+    = r +  \frac{tt'r'e^{i \delta}}{1 - r'^2e^{i \delta}} 
+    = r \left( \frac{1 - e^{i \delta}}{1 - r^2 e^{i \delta}} \right)
+    \\ 
+    t_B 
+    =  tt' \left( 1 + r'^2e^{i \delta} +  r'^4e^{2 i \delta} + \cdots \right) = \frac{tt'}{1 - r'^2e^{i \delta}} = \frac{1 - r^2}{1 - r^2 e^{i \delta}}
+\end{gather}
+
+由于上述推导与角标 $s$ 或 $p$ 无关，因此对 $s$ 波和 $p$ 波都成立。
+
+也即得到：
+\begin{gather}
+    r_{A,s}= \frac{\boldsymbol{E_{r,s}}}{\boldsymbol{E_{i,s}}} = r_s \left( \frac{1 - e^{i \delta}}{1 - r_s^2 e^{i \delta}} \right),\quad 
+    r_{B,p} = \frac{\boldsymbol{E_{r,p}}}{\boldsymbol{E_{i,p}}} = r_p \left( \frac{1 - e^{i \delta}}{1 - r_p^2 e^{i \delta}} \right) \\
+    t_{B,s} = \frac{\boldsymbol{E_{t,s}}}{\boldsymbol{E_{i,s}}} = \frac{1 - r_s^2}{1 - r_s^2 e^{i \delta}} ,\quad
+    t_{B,p} = \frac{\boldsymbol{E_{t,p}}}{\boldsymbol{E_{i,p}}} = \frac{1 - r_p^2}{1 - r_p^2 e^{i \delta}}
+\end{gather}
+据此，可以定义光学经过薄膜时的能量系数 $R_{F-P,s},\ R_{F-P,p},\  T_{F-P,s},\  T_{F-P,p}$（与菲涅尔公式中的能量系数类似，但物理意义不同）：
+\begin{gather}
+    R_{F-P,s} = |r_{A,s}|^2 = \frac{4 R_s \sin^2 \frac{\delta}{2}}{(1 - R_s)^2}, \quad 
+    R_{F-P,p} = |r_{A,p}|^2 = \frac{4 R_p \sin^2 \frac{\delta}{2}}{(1 - R_p)^2} \\ 
+    T_{F-P,s}= \frac{n_1 \cos \theta_1}{n_3 \cos \theta_3} |t_{B,s}|^2 = \frac{(1 - R_s)^2}{ (1 - R_s\cos \delta)^2 + R_s^2 \sin^2 \delta} \\
+    T_{F-P,p} = \frac{n_1 \cos \theta_1}{n_3 \cos \theta_3} |t_{B,p}|^2 = \frac{(1 - R_p)^2}{ (1 - R_p\cos \delta)^2 + R_p^2 \sin^2 \delta}
+\end{gather}
+其中 $\theta_1 = \theta_3 = \theta_i,\ n_1 = n_3 = n_i$。角标 $F-P$ 指 Fabry-Perot Interferometer（法布里-珀罗干涉仪），是一种利用薄膜产生干涉现象的仪器。定义 $F_s = \frac{4R_s}{(1 - R_s)^2},\ F_p = \frac{4R_p}{(1 - R_p)^2}$，称为精细度，则上式可简写为：
+\begin{gather}
+    R_{F-P, s} = \frac{F_s \sin^2 \frac{\delta}{2}}{1 + F_s \sin^2 \frac{\delta}{2}},\quad R_{F-P, p} = \frac{F_p \sin^2 \frac{\delta}{2}}{1 + F_p \sin^2 \frac{\delta}{2}} \\
+    T_{F-P, s} = \frac{1}{1 + F_s \sin^2 \frac{\delta}{2}},\quad T_{F-P, p} = \frac{1}{1 + F_p \sin^2 \frac{\delta}{2}}\\ 
+    \delta = \frac{4 \pi n_f d \cos \theta_f}{\lambda_i},\quad F_s = \frac{4R_s}{(1 - R_s)^2},\quad F_p = \frac{4R_p}{(1 - R_p)^2}
+\end{gather}
+其中 $n_f$ 是薄膜的折射率，容易验证上式满足能量守恒。在实际操作中，基本都会选取接近垂直的入射光，此时 $s$ 波 $p$ 波（近似）具有相同的能量系数 $R = R_s = R_p$，因此又常写为下面的式子：
+\begin{equation}
+    R_{F-P} = \frac{F \sin^2 \frac{\delta}{2}}{1 + F \sin^2 \frac{\delta}{2}},\quad T_{F-P} = \frac{1}{1 + F \sin^2 \frac{\delta}{2}},\quad F = \frac{4R}{(1 - R)^2},\quad \delta = \frac{4 \pi n_f d \cos \theta_f}{\lambda_i}
+\end{equation}
+
+$T_{F-P} = T_{F-P}(F, \delta)$ 的图像如下所示\footnote{源码见 \ref{精细度对透射率的影响 源码}}，$F$ 越大，透射光的对比度越高，在干涉现象中形成的条纹越明显，且 $F$ 增大时，透射峰的宽度减小，亮条纹变细变锐利。
+
+\begin{figure}[H]\centering
+\includegraphics[width=\columnwidth]{assets/3/精细度对透射率的影响.pdf}
+\caption{\bfseries 精细度对透射率的影响}\label{精细度对透射率的影响}
+\end{figure}
+
+实际中常基于上面理论，设计出增透膜、增反膜等薄膜，实现光的选择性透射、反射。如果遇到，直接利用反射相位突变进行分析即可。
+
+更多有关多光束薄膜干涉（法布里-珀罗干涉仪 Fabry-Perot Interferometer）的内容见 \href{https://zhuanlan.zhihu.com/p/579184206}{Fabry-Perot Interferometer (https://zhuanlan.zhihu.com/p/579184206)}，以及 \href{https://zhuanlan.zhihu.com/p/453978087}{F-P干涉仪 (https://zhuanlan.zhihu.com/p/453978087)}。
+
+%不妨设入射光相位为 0，强度为 1，依据公式 \ref{对称前后的振幅与能量系数%变化}，在图中标出各光线的强度。$n_i < n_f$ 时，它们的相位如表 \ref{薄%膜干涉光线的相位1} 所示，$n_i > n_f$ 时，各光线相位如表 \ref{薄膜干涉%光线的相位2} 所示，其中“$A$ $s$” 指 $A$ 光 $s$ 分量的相位。
+
+%\begin{center}\noindent\begin{minipage}{0.5\columnwidth}
+%    \noindent\begin{table}[H]\centering
+%        %\renewcommand{\arraystretch}{1.5} % 调整行间距为 1.5 倍
+%        %\setlength{\tabcolsep}{1.5mm} % 调整列间距
+%        \caption{\textbf{薄膜干涉光线的相位 $(n_i < n_f)$}}
+%        \label{薄膜干涉光线的相位1}
+%    \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}\hline
+%        序号 & $A$ $s$ & $A$ $p$  & $B$ $s$& $B$ $p$ \\
+%        \hline
+%        0 & 0       & 0      &   -     & -  \\
+%        1 & 0       & $-\pi$ &   0     & 0  \\
+%        2 & $-\pi$  & 0      & $-2\pi$ & 0  \\
+%        3 & $-3\pi$ & 0      & $-4\pi$ & 0  \\
+%        4 & $-5\pi$ & 0      & $-6\pi$ & 0  \\
+%        \hline
+%    \end{tabular}
+%    \end{table}
+%\end{minipage}\hfill\begin{minipage}{0.5\columnwidth}
+%    \noindent\begin{table}[H]\centering
+%        %\renewcommand{\arraystretch}{1.5} % 调整行间距为 1.5 倍
+%        %\setlength{\tabcolsep}{1.5mm} % 调整列间距
+%        \caption{\textbf{薄膜干涉光线的相位 $(n_i > n_f)$}}
+%        \label{薄膜干涉光线的相位2}
+%    \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}\hline
+%        序号 & $A$ $s$ & $A$ $p$  & $B$ $s$& $B$ $p$ \\
+%        \hline
+%        0 & 0      & 0       & - &   -      \\
+%        1 & $-\pi$ & 0       & 0 &   0      \\
+%        2 & 0      & $-\pi$  & 0 & $-2\pi$  \\
+%        3 & 0      & $-3\pi$ & 0 & $-4\pi$  \\
+%        4 & 0      & $-5\pi$ & 0 & $-6\pi$  \\
+%        \hline
+%    \end{tabular}
+%    \end{table}
+%\end{minipage}\end{center}
+
+\subsection{双光束薄膜干涉}
 
 当振幅反射率 $r$ 较小时，$A$ 光的振幅衰减很快，可以仅考虑双光束干涉（$A_1$ 与 $A_2$），而忽略剩余反射光带来的影响，如图 \ref{薄膜干涉} (b)。实际操作中，也常用薄透镜将两束出射光汇聚于一点，而不会引起附加的相位差。反射后光线 $O_1A_1$ 与 $O_2A_2$ 的光程差 $\Delta L$ 为：
 \begin{equation}
-    \Delta L = l_2 - l_1 = 2 n_t\cdot  \overline{O_1B_1} - n_i\cdot  \overline{O_1 C} = \frac{2 n_t d}{\cos \theta_t} - 2 n_i \sin \theta_i \tan \theta_t d = 2 n_t d \cos \theta_t
+    \Delta L = l_2 - l_1 = 2 n_f\cdot  \overline{O_1B_1} - n_i\cdot  \overline{O_1 C} = \frac{2 n_f d}{\cos \theta_t} - 2 n_i \sin \theta_i \tan \theta_t d = 2 n_f d \cos \theta_f
 \end{equation}
-即 $A_2$ 比 $A_1$ 多走了 $\Delta L$ 的光程，相当于相位增量 $ - \omega \frac{\Delta L}{c}$，算上反射时 $A_2$ 与 $A_1$ 之间的相位增量 $-\pi$（事实上 $s$ 波是 $-\pi$ 而 $p$ 波是 $\pi$），总光程差 OPD (Optical Path Difference)（$A_2$ 的减去 $A_1$ D ）和总相位增量 $\Delta \alpha$ 为：
+即 $A_2$ 比 $A_1$ 多走了 $\Delta L$ 的光程，相当于相位增量 $ - \omega \frac{\Delta L}{c}$，算上反射时 $A_2$ 与 $A_1$ 之间的相位增量 $-\pi$（事实上 $s$ 波是 $-\pi$ 而 $p$ 波是 $\pi$），总光程差 OPD (Optical Path Difference)（$A_2$ 的减去 $A_1$）和总相位增量 $\Delta \alpha$ 为：
 \begin{equation}
-\text{OPD\ } = 2 n_t d \cos \theta_t + \frac{\lambda}{2} ,\quad \Delta \alpha 
-= - \left(1 + \frac{4 n_t  \cos \theta_t}{\lambda} \cdot d \right) \pi
-= - \left[ 1 + \frac{4 n_t \sqrt{ 1 - \left(\frac{\sin \theta_i}{n_{ti}} \right)^2 }  }{\lambda} \cdot d \right] \pi\end{equation}
+    \text{OPD\ } = 2 n_f d \cos \theta_f + \frac{\lambda}{2} ,\quad \Delta \alpha 
+    = - \left(1 + \frac{4 n_f  \cos \theta_t}{\lambda} \cdot d \right) \pi
+    = - \left[ 1 + \frac{4 n_f \sqrt{ 1 - \left(\frac{\sin \theta_i}{n_{ti}} \right)^2 }  }{\lambda} \cdot d \right] \pi
+\end{equation}
 
 随参数 $\theta_i$、$d$ 的改变，不同位置上可以得到不同相位，从而产生干涉条纹。
 
@@ -1442,13 +1536,13 @@ I(x, b) = \frac{I_{\text{max}}}{2b} \int_{-\frac{b}{2}}^{\frac{b}{2}} \left[ 1 +
 
 \noindent 等倾干涉实验装置如图 \ref{等倾干涉实验装置} 所示，其干涉条纹特征为：
 \begin{enumerate}
-\item 亮条纹：$\Delta L = k \lambda \Longrightarrow \cos \theta_t = \frac{\lambda}{2 n_t d} \cdot (k - \frac{1}{2}),\quad k = 1, 2, 3, ... $
-\item 暗条纹：$\Delta L = (k + \frac{1}{2}) \lambda \Longrightarrow \cos \theta_t = \frac{\lambda}{2 n_t d} \cdot k,\quad k = 0, 1, 2, 3, ... $
+\item 亮条纹：$\Delta L = k \lambda \Longrightarrow \cos \theta_t = \frac{\lambda}{2 n_f d} \cdot (k - \frac{1}{2}),\quad k = 1, 2, 3, ... $
+\item 暗条纹：$\Delta L = (k + \frac{1}{2}) \lambda \Longrightarrow \cos \theta_t = \frac{\lambda}{2 n_f d} \cdot k,\quad k = 0, 1, 2, 3, ... $
 \item $r$ 较小时，等倾双光束强度近似相等，干涉条纹对比度接近 1
 \item 称中心暗条纹为 0 级暗纹，往外依次是 1 级亮纹、1 级暗纹、2 级亮纹、2 级暗纹…… 
 \item 等倾条纹{\color{red} 内疏外密}。这是因为（简记 $\theta_t$ 为 $\theta$）：
 \begin{gather}
-\cos \theta_{n + 1} - \cos \theta_{n} = \frac{\lambda}{2 n_t d},\quad \frac{\cos \theta_{n + 1} - \cos \theta_{n} }{\theta_{n + 1} - \theta_{n}}\approx \frac{\mathrm{d} \cos \theta }{\mathrm{d} \theta } = - \sin \theta_n \\ 
+\cos \theta_{n + 1} - \cos \theta_{n} = \frac{\lambda}{2 n_f d},\quad \frac{\cos \theta_{n + 1} - \cos \theta_{n} }{\theta_{n + 1} - \theta_{n}}\approx \frac{\mathrm{d} \cos \theta }{\mathrm{d} \theta } = - \sin \theta_n \\ 
 \Longrightarrow \Delta r = r_{n +1} - r_n \propto \theta_{n+1} - \theta_n = - \frac{\lambda}{2d \sin \theta_{t,n}}
 \end{gather}
 随着 $n$ 的增大，入射光指在薄膜（半反射镜）上的点由中心向外移动，$\theta$ 增大，于是 $| \Delta r |$ 减小，条纹逐渐变密。
@@ -1467,6 +1561,28 @@ I(x, b) = \frac{I_{\text{max}}}{2b} \int_{-\frac{b}{2}}^{\frac{b}{2}} \left[ 1 +
 \subsection{等厚干涉} 
 
 等厚干涉，也称等厚条纹干涉，是指由薄膜厚度不均匀而引起的干涉现象，产生的条纹是等厚位置的条纹，例如劈尖干涉、牛顿环等。
+
+\subsubsection{劈尖干涉：}
+
+两块（几乎）平行的玻璃板，夹角为 $\theta$ 极小，中间是空气层，即薄膜是空气，观察反射光的干涉现象。由 $R_{F-P} = \frac{ F \sin^2 (\frac{\delta}{2}) }{1 + F \sin^2 (\frac{\delta}{2})}$，明条纹对应 $\frac{\delta}{2} = (k + \frac{1}{2}) \pi$，暗条纹对应 $\frac{\delta}{2} = k \pi$，作近似 $n_f = 1$，$\cos \theta_f = 1$，得到：
+\begin{gather}
+    \text{明条纹：} d = \left( 1 + 2k \right)\cdot \frac{\lambda}{4},\quad \text{暗条纹：} d = \left( 2k \right)\cdot \frac{\lambda}{4},\quad k = 0, 1, 2, ... \\ 
+    \text{相邻亮（暗）纹：}\Delta d = \frac{\lambda}{2},\quad \Delta x = \frac{\lambda}{2\sin \theta}
+\end{gather}
+
+
+可借此求出夹在玻璃板之间引起 $\theta$ 角的细小物体的直径。
+
+\subsubsection{牛顿环：}
+
+把一个曲率半径很大的凸透镜至于平面玻璃片上，两者接触的地方形成厚度不均匀的空气薄膜，得到的干涉条纹是一系列同心圆环。设凸透镜的半径为 $R$，以接触点为圆心 $O$，类似劈尖干涉中的近似，得到：
+\begin{equation}
+\text{明条纹：} r = \sqrt{\left(k + \frac{1}{2}\right)R\lambda} 
+,\quad 
+\text{暗条纹：} r = \sqrt{kR\lambda},\quad k = 0, 1, 2, ...
+\end{equation}
+
+中心为 0 级暗纹，往外级数增大，干涉条纹逐渐变密。
 
 \section{迈克尔逊干涉与曾德尔干涉}
 \section{光场的空间相干性与时间相干性}
@@ -2611,6 +2727,69 @@ function stc_error = MyErrorAnalyzer_func(f, f_hat, X_range)
    disp(['AE_standard = ', num2str(stc_error.AE_standard, '%.10f')]);
 end
 \end{matlablisting}
+
+\section{图 \ref{光源宽度} 源码}\label{光源宽度 源码}
+
+\begin{matlablisting}
+%%%%%%%%%% 光源宽度影响对比度位置分布 %%%%%%%%%%
+global I_max d lambda R D Delta_x u
+
+d = 100 * 10^(-6);
+R = 5 * 10^(-2);
+D = 1;
+lambda = 700 * 10^(-9); % 700.0 nm 的红光
+Delta_x = D*lambda/d;
+I_max = 2;
+
+I = @(x, b) I_max/2 .* (  1 + sin( pi*d/(lambda*R)*b ) ./ ( pi*d/(lambda*R)*b ) .* cos(2*pi*x/Delta_x) );
+u = @(b) pi*d/(lambda*R) * b;
+gamma = @(b) abs( sin(u(b))./u(b) );
+
+% I = I(x, b)
+x_array = linspace(-0.02, 0.02, 300);
+b_array = transpose(linspace(0, 5*lambda*R/d, 50));
+stc1 = MyMesh(x_array, b_array, I(x_array, b_array));
+stc1.label_left.y.String = '$b$';
+stc1.label_left.z.String = '$I(x, b)$';
+stc1.label_right.y.String = '$b$';
+stc1.label_right.z.String = '$I(x, b)$';
+  %MyExport_pdf_modal
+
+% 干涉条纹对比度
+b_array = transpose(linspace(0, 5*lambda*R/d, 200));
+stc2 = MyPlot(b_array', gamma(b_array)');
+xline(lambda*R/d, 'LineWidth', 0.5, 'Color', [1 0 0]);
+ylim([0, 1])
+stc2.label.x.String = '$b$';
+stc2.label.y.String = '$\gamma = \gamma(b)$';
+stc2.leg.String = ["$\gamma = \gamma(b)$"; "$b = \lambda R / d$"];
+  %MyExport_pdf_modal
+\end{matlablisting}
+
+\section{图\ref{精细度对透射率的影响} 源码}\label{精细度对透射率的影响 源码}
+
+\begin{matlablisting}
+%%%%%%%%%% 精细度对透射率的影响 %%%%%%%%%%
+clc, clear, close all;
+F = @(R) 4*R ./ (1-R).^2;
+T_FP = @(delta, F) 1 ./ ( 1 + sin(delta/2).^2 .* F  );
+F_array = linspace(0, 40, 50);
+delta_array = linspace(0, 10*pi, 200);
+
+MyPlot(linspace(0, 0.9,100), F(linspace(0, 0.9,100)));
+stc = MySurf(delta_array, F_array, T_FP(delta_array, F_array'));
+stc.label_left.x.String = '$\delta$';
+stc.label_left.y.String = '$F$';
+stc.label_left.z.String = '$T_{F-P} = T_{F-P}(\delta, F)$';
+stc.label_right.x.String = '$\delta$';
+stc.label_right.y.String = '$F$';
+  %MyExport_pdf_docked
+
+MyPlot(delta_array, T_FP(delta_array, 2));
+MyPlot(delta_array, T_FP(delta_array, 10));
+MyPlot(linspace(0, 10*pi, 1000), T_FP(linspace(0, 10*pi, 1000), 400));
+\end{matlablisting}
+
 
 % --------------------------- 附录 --------------------------- %
 % >> ------------------------ 附录 ------------------------ << %

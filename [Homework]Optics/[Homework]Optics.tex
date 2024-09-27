@@ -25,7 +25,32 @@
 
 % 导入基本宏包
     \usepackage[UTF8]{ctex}     % 设置文档为中文语言
-    \usepackage[colorlinks, linkcolor=blue, anchorcolor=blue, citecolor=blue, urlcolor=blue]{hyperref}  % 宏包：自动生成超链接 (此宏包与标题中的数学环境冲突)
+        \usepackage{hyperref}  % 宏包：自动生成超链接 (此宏包与标题中的数学环境冲突)
+    \hypersetup{
+        colorlinks=true,    % false:边框链接 ; true:彩色链接
+        citecolor={blue},    % 文献引用颜色
+        linkcolor={blue},   % 目录 (我们在目录处单独设置)，公式，图表，脚注等内部链接颜色
+        urlcolor={orange},    % 网页 URL 链接颜色，包括 \href 中的 text
+        % cyan 浅蓝色 
+        % magenta 洋红色
+        % yellow 黄色
+        % black 黑色
+        % white 白色
+        % red 红色
+        % green 绿色
+        % blue 蓝色
+        % gray 灰色
+        % darkgray 深灰色
+        % lightgray 浅灰色
+        % brown 棕色
+        % lime 石灰色
+        % olive 橄榄色
+        % orange 橙色
+        % pink 粉红色
+        % purple 紫色
+        % teal 蓝绿色
+        % violet 紫罗兰色
+    }
     % \usepackage{docmute}    % 宏包：子文件导入时自动去除导言区，用于主/子文件的写作方式，\include{./51单片机笔记}即可。注：启用此宏包会导致.tex文件capacity受限。
     \usepackage{amsmath}    % 宏包：数学公式
     \usepackage{mathrsfs}   % 宏包：提供更多数学符号
@@ -565,12 +590,35 @@ $\theta_i = 0$ 时，由菲涅尔定律和能量关系，有：
 
 \chapter{第三章}\thispagestyle{fancy}
 
+\section{在杨氏双缝实验中，设两缝之间的距离为 0.2 mm，在距双缝 1 m 远的屏上观察干涉
+条纹，若入射光是波长为 400 nm 至 760 nm 的白光，问屏上距零级明纹 20 mm 处，哪些波
+长的光最大限度地加强？}
 
+也即求哪些波长的光在 20 mm 处是亮条纹。杨氏干涉中，两相邻亮（暗）条纹的间距 $\Delta x = \frac{D \lambda}{d}$，其中 $D$ 是双缝屏与屏幕的距离，$d$ 是双缝间距，$\lambda$ 是波长。因此有：
+\begin{gather}
+k \Delta x = 20 \ \mathrm{mm} \Longrightarrow \lambda = \frac{d\cdot 20 \ \mathrm{mm}}{D} \cdot \frac{1 }{k} = \frac{4}{k}\times 10^{-6},\quad k = 1,2,3,\cdots
+\end{gather}
+而波长范围 $\lambda \in [400 \ \mathrm{nm} ,\ 760 \ \mathrm{nm}]$，于是：
+\begin{equation}
+k \in [5.2632,\ 10] \Longrightarrow k = 6,7,8,9,10 ,\quad \lambda = 400.0 \ \mathrm{nm},\ 444.4 \ \mathrm{nm},\ 500.0 \ \mathrm{nm},\ 571.4 \ \mathrm{nm},\ 666.7 \ \mathrm{nm}
+\end{equation}
 
+\section{在空气中用某单色光进行双缝干涉实验时，观察到干涉条纹相邻明条纹的间距为
+1.33 mm，当把实验装置放在水中时（水的折射率为 1.33），则相邻明条纹的间距变为多
+少？}
 
+空气折射率近似为 1，设光在空气中的波长为 $\lambda$，则在水中的波长为 $\frac{\lambda}{n}$，其中 $n$ 为水的折射率。而双缝干涉中相邻亮条纹间距为：
+\begin{equation}
+\Delta x = \frac{D \lambda}{d} \Longrightarrow \Delta x' = \frac{\Delta x}{n} = 1\ \mathrm{mm}
+\end{equation}
 
+\section{用波长为 589.3 nm 的钠黄光垂直照射长 $\boldsymbol{L = 20 \ \mathrm{mm}}$  的空气尖劈，测得条纹间距为 $\boldsymbol{1.18}$ $\boldsymbol{ \times 10^{-4}\ \mathrm{m}}$，求钢球直径 $\boldsymbol{d}$。}
 
-
+构成劈尖干涉，相邻亮条纹间距为 $\Delta x = \frac{\lambda}{2 \sin \theta} \approx  \frac{\lambda}{2 \theta} $，设劈尖长为 $L$，倾角为 $\theta$，则有：
+\begin{equation}
+\tan \frac{\theta}{2} = \frac{R}{L} \Longrightarrow 2R = 2\tan \frac{\theta}{2} L  \approx \theta L  = \frac{\lambda L}{2 \Delta x} = 4.9941 \times 10^{-5}\ \mathrm{m}
+\end{equation}
+即为所求直径。
 
 
 

@@ -42,7 +42,32 @@
 
 % 导入基本宏包
     \usepackage[UTF8]{ctex}     % 设置文档为中文语言
-    \usepackage[colorlinks, linkcolor=blue, anchorcolor=blue, citecolor=blue, urlcolor=blue]{hyperref}  % 宏包：自动生成超链接 (此宏包与标题中的数学环境冲突)
+    \usepackage{hyperref}  % 宏包：自动生成超链接 (此宏包与标题中的数学环境冲突)
+    \hypersetup{
+        colorlinks=true,    % false:边框链接 ; true:彩色链接
+        citecolor={blue},    % 文献引用颜色
+        linkcolor={blue},   % 目录 (我们在目录处单独设置)，公式，图表，脚注等内部链接颜色
+        urlcolor={orange},    % 网页 URL 链接颜色，包括 \href 中的 text
+        % cyan 浅蓝色 
+        % magenta 洋红色
+        % yellow 黄色
+        % black 黑色
+        % white 白色
+        % red 红色
+        % green 绿色
+        % blue 蓝色
+        % gray 灰色
+        % darkgray 深灰色
+        % lightgray 浅灰色
+        % brown 棕色
+        % lime 石灰色
+        % olive 橄榄色
+        % orange 橙色
+        % pink 粉红色
+        % purple 紫色
+        % teal 蓝绿色
+        % violet 紫罗兰色
+    }
     % \usepackage{docmute}    % 宏包：子文件导入时自动去除导言区，用于主/子文件的写作方式，\include{./51单片机笔记}即可。注：启用此宏包会导致.tex文件capacity受限。
     \usepackage{amsmath}    % 宏包：数学公式
     \usepackage{mathrsfs}   % 宏包：提供更多数学符号
@@ -320,7 +345,7 @@ u_{ab} = \frac{\mathrm{d} w_{ab}}{\mathrm{d}q},\ i_{ab} = \frac{\mathrm{d} q_{ab
 ，如图 \ref{端口示意图} 所示。
 
 \begin{figure}[H]\centering
-\includegraphics[width=0.33\textwidth]{assets/1,2/端口.drawio.png}
+\includegraphics[width=0.35\textwidth]{assets/1,2/端口.drawio.pdf}
 \caption{\textbf{端口示意图}}\label{端口示意图}
 \end{figure}
 
@@ -986,17 +1011,17 @@ u_o =
 
 \subsection{OPA 实现指数对数乘法除法积分微分运算}
 
-利用二极管可以实现指数和对数运算，乘法和除法由对数运算、线性运算、指数运算依次复合而成，引入电容可以实现积分、微分运算，详见 \href{https://zhuanlan.zhihu.com/p/628064125}{知乎：运算放大器的典型应用 (https://zhuanlan.zhihu.com/p/628064125)}，这里不再赘述。特别地，引入电感还可以实现信号的相位移动。
+利用二极管可以实现指数和对数运算，乘法和除法由对数运算、线性运算、指数运算依次复合而成，引入电容可以实现积分、微分运算，详见 \href{https://zhuanlan.zhihu.com/p/628064125}{知乎：运算放大器的典型应用}，这里不再赘述。特别地，引入电感还可以实现信号的相位移动。
 
-关于 OPA 在 Multisim 中的仿真，可以参考 \href{https://space.bilibili.com/82683828}{Bilibili: 工程师看海 (https://space.bilibili.com/82683828)} 的视频，以及仿真时的一些细节，我们不多赘述。
+关于 OPA 在 Multisim 中的仿真，可以参考 \href{https://space.bilibili.com/82683828}{Bilibili: 工程师看海} 的视频，以及仿真时的一些细节，我们不多赘述。
 
 \section{二端口网络}
 
 本 section 拓展阅读：
 \begin{enumerate}
-    \item \href{https://zhuanlan.zhihu.com/p/574470858}{知乎：二端口网络知识总结 (https://zhuanlan.zhihu.com/p/574470858)}
-\item \href{https://zhuanlan.zhihu.com/p/359677789}{知乎：从线性代数的角度理解线性二端口网络 (https://zhuanlan.zhihu.com/p/359677789)}
-\item \href{https://www.zhihu.com/question/357342024/answer/1477595759}{知乎：如何记住二端口ZYTH参数？(https://www.zhihu.com/question/357342024/answer/1477595759)}
+    \item \href{https://zhuanlan.zhihu.com/p/574470858}{知乎：二端口网络知识总结}
+    \item \href{https://zhuanlan.zhihu.com/p/359677789}{知乎：从线性代数的角度理解线性二端口网络}
+    \item \href{https://www.zhihu.com/question/357342024/answer/1477595759}{知乎：如何记住二端口ZYTH参数？}
 \end{enumerate}
 
 \subsection{二端口的概念与参数矩阵}
@@ -1106,7 +1131,7 @@ u_o =
 
 \subsection{二端口的常见联接方式}
 
-必须指出的是，在二端口进行联接时，子二端口的端口条件可能被破坏，称为非正规联接，此时不能应用下面的结论计算电路参数。级联一定是正规联接，但其它联接方法是否正规，需要进行判断。若为白箱，可通过推导判断，若为黑箱，需通过实验验证端口条件，具体的验证方法见参考文献 \cite{电路原理导学导教及习题解答} 的 Page 23，我们不多赘述。
+必须指出的是，在二端口进行联接时，子二端口的端口条件可能被破坏，称为非正规联接，此时不能应用下面的结论计算电路参数。级联一定是正规联接，但其它联接方法是否正规，需要进行判断。若为白箱，可通过推导判断，若为黑箱，需通过实验验证端口条件，具体的验证方法见参考文献 \cite{电路原理导学导教} 的 Page 23，我们不多赘述。
 
 另外，在计算各参数矩阵的值时（尤其是 $\boldsymbol{T}$、$\boldsymbol{H}$ 参数），一定不要忘记在最终数值结果中写上单位。
 
@@ -1207,34 +1232,55 @@ $\boldsymbol{G}$ 与 $\boldsymbol{R}$ 矩阵之间满足 $\boldsymbol{G}^{-1} = 
 
 \subsection{MOSFET 基本概念}
 
-MOSFET standing for Metal Oxide Semiconductor Field Effect Transistor，它是数字电路的核心元素。小功率 FET 有 JFET、MOSFET，大功率 FET 有 VDMOS、IGBT 等，本课程主要面向 MOSFET\footnote{后文所说的 MOS 一般指 N 沟道增强型 MOSFET（N Channel Power MOSFET），名称应拆解为 N 沟道、增强型、MOS、FET，与 N 沟道对应的有 P 沟道，与增强型对应的有耗尽型，与 MOS 对应的有结型，与 FET 对应的是有 BJT（双极型晶体管）}。
+MOSFET，是指 Metal Oxide Semiconductor Field Effect Transistor，它是数字电路的核心元素。小功率 FET 有 JFET、MOSFET，大功率 FET 有 VDMOS、IGBT 等，本课程主要面向 MOSFET。
 
-\begin{center}\noindent\begin{minipage}{0.7\columnwidth}
-    图 \ref{N-MOS 示意图} 是一个 N-MOS 的示意图（ANSI 标准），三个接线端分别称为栅极 G、源级 S 和漏级 D。
-    由于 MOSFET 结构上的特点，没有电流流经栅极 G，因此可以把 D-S 看作一个二端元件，研究其伏安特性曲线 VCR。栅极和源级之间的电压 $u_{\text{GS}}$ 会对 VCR 产生影响，主要表现为 D-S 开路（称为截止区）或非开路。在非开路情况下（$u_{\text{GS}}$ 超过阈值电压），$u_{\text{DS}}$ 会影响通过的电流 $i_{\text{DS}}$。总而言之，MOS 管可视为一个非线性的 VCVS。
-\end{minipage}\hfill\begin{minipage}{0.24\columnwidth}
+%后文所说的 MOS，除非特别说明，一般都指 N 沟道增强型 MOS 管（N-Channel Enhancement-Type MOSFET），名称应拆解为 N 沟道、增强型、MOS、FET，与 N 沟道对应的有 P 沟道（P-Channel），与增强型对应的有耗尽型（Depletion-Type），与 MOS 对应的有结型，与 FET 对应的是有 BJT（双极型三极管）。
+%\begin{center}\noindent\begin{minipage}{0.6\columnwidth}
+%    \hspace*{2em} 图 \ref{N-MOS 示意图} 是一个 N-MOS 的示意图（ANSI 标准），
+%    
+%    \hspace*{2em} 栅极 G 和源级 S 之间的电压 $u_{\text{GS}}$ 会对 VCR 产生影响，主要表现为 D-S 开路（称为截止区）或非开路。在非开路情况下（$u_{\text{GS}}$ 超过阈值电压），$u_{\text{DS}}$ 会影响通过的电流 $i_{\text{DS}}$。总而言之，MOS 管可视为一个非线性的 VCVS。
+%\end{minipage}\hfill\begin{minipage}{0.30\columnwidth}
+%    \begin{figure}[H]\centering
+%        \includesvg[width=\textwidth]{assets/1,2/MOS管符号.drawio.svg}
+%        \caption{\textbf{N-MOS 示意图}}\label{N-MOS 示意图}
+%    \end{figure}
+%\end{minipage}\end{center}
+
+
+\begin{center}\noindent\begin{minipage}{0.41\columnwidth}
+    \hspace*{2em} 图 \ref{} 是 N-MOS 和 P-MOS 的符号（ANSI 标准），其中 N MOS 的箭头朝内（因为 Negative）电流方向是 D > S；P MOS 的箭头朝外（因为 Positive），电流方向是 S > D。
+
+    \hspace*{2em} 需要特别强调的是，部分教材中会采用图 \ref{} 中的简化版 MOS 符号（例如参考文献 \cite{电路原理} \cite{电路原理导学导教}），一定注意这种符号的 {\color{red} 箭头朝向与简化前相反}！除非特殊情况，本文一律使用 ANSI 标准的符号。
+\end{minipage}\hfill\begin{minipage}{0.53\columnwidth}
     \begin{figure}[H]\centering
-        \includesvg[width=\textwidth]{assets/1,2/MOS管符号.drawio.svg}
-        \caption{\textbf{N-MOS 示意图}}\label{N-MOS 示意图}
+        \includegraphics[width=\columnwidth]{assets/2/MOS管大全.pdf}
+        \caption{\bfseries MOSFET 电路符号（ANSI 标准）与简化符号 }\label{}
     \end{figure}
 \end{minipage}\end{center}
 
 
-\subsection{MOSFET 外特性}
 
-MOS 的外特性总结如下：
+MOS 管的三个接线端分别称为栅极 G、源级 S 和漏级 D。由于 MOSFET 结构上的特点，没有电流流经栅极 G，因此可以把 D-S 看作一个二端元件，研究其伏安特性曲线 VCR。
+
+在 N-MOS 中，栅极 G 和源级 S 之间的电压 $u_{\text{GS}}$ 会对 VCR 产生影响，主要表现为 D-S 开路（称为截止区）或非开路。在非开路情况下（$u_{\text{GS}}$ 超过阈值电压），$u_{\text{DS}}$ 会影响通过的电流 $i_{\text{DS}}$。而 P-MOS 则相反，栅极 G 和漏级 D 之间的电压 $u_{\text{GD}}$ 会对 VCR 产生影响，在非开路情况下（$u_{\text{GD}} > U_T$），$u_{\text{SD}}$ 会影响通过的电流 $i_{\text{SD}}$。
+
+总而言之，无论是 N-MOS 还是 P-MOS，它们都可视为一个非线性的 VCVS。
+
+\subsection{N-E MOSFET 外特性}
+
+N-Channel Enhancement-Type MOSFET 的外特性总结如下：
 \begin{enumerate}
-\item 阈值电压 $U_T$: 使得 D-S 之间不再开路的电压阈值称为阈值电压（典型值为 1 V）
+\item 阈值电压 $U_T$: 使得 D-S 之间不再开路的电压阈值称为阈值电压（典型值为 1 V），需要注意 
 \item 绝缘性：栅极 G 与其它电极绝缘，有 $i_{\text{GS}} = i_{\text{GD}} = 0$。
 \item 最大电流 $i_{\text{DS},\text{max}}$：在非开路情况下，$i_{\text{DS},\text{max}} = \frac{K}{2}(u_{\text{GS}} - U_T)^2$，其中 $K$ 为常数（典型值 1 $\mathrm{mA\cdot V^{-2}}$）。
 \item 导通电阻 $R_{\text{ON}}$: 在线性区时，MOS 管在 D-S 端体现出的电阻大小。
-\item 电流特性 $i_{\text{DS}}$: MOS 管的电流特性可采取如下近似模型
+\item 电流特性 $i_{\text{DS}}$: MOS 管的电流特性可采取如下近似模型\footnote{更精确的模型详见参考文献 \cite{电路原理导学导教} Page 30.}
 \begin{equation}
 i_{\text{DS}} = 
 \begin{cases}
-    0 & u_{\text{GS}} < U_T \\
-    \frac{K}{2}(u_{\text{GS}} - U_T)^2\cdot \frac{u_{\text{DS}}}{(u_{\text{GS}} - U_T)} & u_{\text{GS}} \geq U_T\ \& \ u_{\text{DS}} < u_{\text{GS}} - U_T \\ 
-    \frac{K}{2}(u_{\text{GS}} - U_T)^2 & u_{\text{GS}} \geq U_T\ \& \ u_{\text{DS}} \geqslant u_{\text{GS}} - U_T \\ 
+    0 &, u_{\text{GS}} < U_T \\
+    \frac{K}{2}(u_{\text{GS}} - U_T)^2\cdot \frac{u_{\text{DS}}}{(u_{\text{GS}} - U_T)} &, u_{\text{GS}} \geq U_T\ \& \ u_{\text{DS}} < u_{\text{GS}} - U_T \\ 
+    \frac{K}{2}(u_{\text{GS}} - U_T)^2 &, u_{\text{GS}} \geq U_T\ \& \ u_{\text{DS}} \geqslant u_{\text{GS}} - U_T \\ 
 \end{cases}
 \end{equation}
 \end{enumerate}
@@ -1263,6 +1309,8 @@ i_{\text{DS}} =
 \caption{\bfseries MOS 管等效电路}\label{MOS管等效电路}
 \end{figure}
 
+事实上，MOS 管上下端连接负载（例如灯泡）时，在上方连接和在下方连接会有不同的效果，具体例子详见 \href{https://www.zhihu.com/question/34634572/answer/3421289786}{知乎: 为什么一般用 P-MOS 做上管，N-MOS 做下管}。
+
 \section{数字系统}
 
 \subsection{数字化的必要性}
@@ -1288,7 +1336,7 @@ i_{\text{DS}} =
 
 将模拟信号转为数字信号，并对数字信号进行传递、分析、处理，最后进行输出（可能还需要将数字信号转回模拟信号），是现代信号处理的基本流程。
 
-逻辑门是上述过程的基本元件。最常用的逻辑门如图 \ref{逻辑门} (a) 所示，其中反相器、与非门、或非门是基本门，可由 MOS 管（二极管）直接构成，其它门则由基本门组合而成。它们之间的关系如图 \ref{逻辑门} (b) 所示
+逻辑门是上述过程的基本元件。最常用的逻辑门如图 \ref{逻辑门} (a) 所示，其中反相器、与非门、或非门是基本门，可由 MOS 管直接构成，其它门则由基本门组合而成。它们之间的关系如图 \ref{逻辑门} (b) 所示。
 
 \begin{figure}[H]\centering
 \begin{subfigure}[t]{0.7\columnwidth}\centering
@@ -1302,33 +1350,146 @@ i_{\text{DS}} =
 \caption{\bfseries 逻辑门 }\label{逻辑门}
 \end{figure}
 
+反相器、与门、或门、与非门、或非门、异或门、同或门的英文简写分别为 NOT、AND、OR、NAND、NOR、XOR、XNOR。
+
+\subsection{数字信号的运算}
+
+数字信号是在有限域 $\Z_2$ 上进行运算的，有两种基本二元运算，一种基本一元运算，分别是与 “$+$”、或 “$\cdot$”、非 “$-$”。两种基本二元运算具有以下性质：
+
+\begin{enumerate}
+\item 交换律：$A + B = B + A$，$A \cdot B = B \cdot A$
+\item 结合律：$(A + B) + C = A + (B + C)$，$(A \cdot B) \cdot C = A \cdot (B \cdot C)$
+\item 分配律：$A \cdot (B + C) = A \cdot B + A \cdot C$，${\color{red} A + B \cdot C = (A + B) \cdot (A + C)}$
+\item 吸收律：$A + A \cdot B = A$
+\end{enumerate}
+
+运算非“$-$” 的性质如下：
+\begin{equation}
+\begin{aligned}
+    &\overline{(A + B)} = \overline{A} \cdot \overline{B} ,\quad &&\overline{(A \cdot B)} = \overline{A} + \overline{B} \\
+    &A + B = \overline{(\overline{A} \cdot \overline{B})},\quad && A \cdot B = \overline{(\overline{A} + \overline{B})}
+\end{aligned}
+\end{equation}
+
+在基本运算的基础上，还定义了二元运算异或“$\oplus$”、同或“$\odot$”，其定义如下：
+\begin{equation}
+\begin{aligned}
+    A \oplus B &= A \cdot \overline{B} + \overline{A} \cdot B = (A + B) \cdot (\overline{A} + \overline{B})\\
+    A \odot B &= A \cdot B  + \overline{A} \cdot \overline{B} = (A + \overline{B}) \cdot (\overline{A} + B)
+\end{aligned}
+\end{equation}
+
 
 \subsection{基本逻辑门}
 
-最简单的反相器见参考文献 \cite{电路原理} 的 Page 88，它由 NMOS、电源和限流电阻构成。但是，这种反相器在输入为 1 时静态功率不为 0，实际中我们常用的反相器称为 CMOS (Complementary Metal-Oxide-Semiconductor Transistor)，如图 \ref{基本逻辑门} (a) 所示。它由一个 NMOS 和一个 PMOS 构成，无论输入是 0 或 1，都是一个 MOS 管导通，另一个截止，且静态功率为 0。实际生产中，CMOS 是单独的一个元件，内部已经集成了 NMOS 和 PMOS。
+可以用 N-E-MOS（N 沟道增强型 MOS 管，N-Channel Enhancement-Type MOSFET）、电源、电阻构成三种基本逻辑门，如图 \ref{由 N-MOS 构成三种基本逻辑门}，但是它们的静态功率不为零。现实中广泛应用的是由 CMOS (Complementary Metal-Oxide-Semiconductor Transistor) 构成的基本逻辑门，如图 \ref{由 C-MOS 构成三种基本逻辑门} 所示，其中蓝色指 N-MOS，红色指 P-MOS。在这些基本门的结构上，相应地增加 MOS 管串联、并联的数量，可以实现 $n$ 输入的基本逻辑门。
 
-最简与非门由两个 NMOS 构成，如图 \ref{基本逻辑门} (b)，其静态功率非 0，增加二极管的串联数量，可以实现任意 $n$ 输入的与非门；最简或非门由两个 NMOS 构成，如图 \ref{基本逻辑门} (c)，其静态功率非 0，类似地，增加二极管的并联数量，可以实现任意 $n$ 输入的或非门。
+CMOS 由一个 NMOS 和一个 PMOS 构成，无论输入是 0 或 1，都是一个 MOS 管导通，另一个截止（断开），因此静态功率为 0。实际生产中，CMOS 是单独的一个元件，内部已经集成了 NMOS 和 PMOS。
+
+%\begin{figure}[H]\centering
+%\begin{subfigure}[t]{0.33\columnwidth}\centering
+%    \includegraphics[height=125pt]{assets/2/反相器.pdf}
+%    \caption{\bfseries 反相器（CMOS） }
+%\end{subfigure}\hfill
+%\begin{subfigure}[t]{0.33\columnwidth}\centering
+%    \includegraphics[height=125pt]{assets/2/与非门.pdf}
+%    \caption{\bfseries 与非门 }
+%\end{subfigure}
+%\begin{subfigure}[t]{0.33\columnwidth}\centering
+%    \includegraphics[height=125pt]{assets/2/或非门.pdf}
+%    \caption{\bfseries 或非门 }
+%\end{subfigure}
+%\caption{\bfseries 基本逻辑门 }\label{基本逻辑门}
+%\end{figure}
 
 \begin{figure}[H]\centering
 \begin{subfigure}[t]{0.33\columnwidth}\centering
-    \includegraphics[height=125pt]{assets/2/反相器.pdf}
-    \caption{\bfseries 反相器（CMOS） }
+    \includegraphics[height=120pt]{assets/2/NMOS NOT.pdf}
+    \caption{\bfseries N-MOS NOT }
 \end{subfigure}\hfill
 \begin{subfigure}[t]{0.33\columnwidth}\centering
-    \includegraphics[height=125pt]{assets/2/与非门.pdf}
-    \caption{\bfseries 与非门 }
+    \includegraphics[height=120pt]{assets/2/NMOS NOR.pdf}
+    \caption{\bfseries N-MOS NOR }
 \end{subfigure}
 \begin{subfigure}[t]{0.33\columnwidth}\centering
-    \includegraphics[height=125pt]{assets/2/或非门.pdf}
-    \caption{\bfseries 或非门 }
+    \includegraphics[height=120pt]{assets/2/NMOS NAND.pdf}
+    \caption{\bfseries N-MOS NAND }
 \end{subfigure}
-\caption{\bfseries 基本逻辑门 }\label{基本逻辑门}
+\caption{\bfseries 由 N-MOS 构成三种基本逻辑门 }\label{由 N-MOS 构成三种基本逻辑门}
 \end{figure}
+
+\begin{figure}[H]\centering
+    \begin{subfigure}[t]{0.33\columnwidth}\centering
+        \includegraphics[height=120pt]{assets/2/CMOS NOT.pdf}
+        \caption{\bfseries C-MOS NOT }
+    \end{subfigure}\hfill
+    \begin{subfigure}[t]{0.33\columnwidth}\centering
+        \includegraphics[height=120pt]{assets/2/CMOS NOR.pdf}
+        \caption{\bfseries C-MOS NOR }
+    \end{subfigure}
+    \begin{subfigure}[t]{0.33\columnwidth}\centering
+        \includegraphics[height=120pt]{assets/2/CMOS NAND.pdf}
+        \caption{\bfseries C-MOS NAND }
+    \end{subfigure}
+    \caption{\bfseries 由 C-MOS 构成三种基本逻辑门 }\label{由 C-MOS 构成三种基本逻辑门}
+    \end{figure}
+
+为了方便查阅，我们再给出 CMOS XOR 的电路图，如图 \ref{CMOS XOR} 所示，其静态功率为 0。
+
+\begin{figure}[H]\centering
+\includegraphics[width=0.42\columnwidth]{assets/2/CMOS XOR.pdf}
+\caption{\bfseries CMOS XOR }\label{CMOS XOR}
+\end{figure}
+
+需要指出，上面的门电路只是几个例子，现实中实际使用的门电路可能比它们复杂得多，有时也用二极管和三极管来构成门电路，具体的例子见 \href{https://www.zhihu.com/question/36577129/answer/68096454}{知乎：怎样用电路符号表示异或门}。NOT 的功耗与其它特性可参考 \href{https://blog.csdn.net/vivid117/article/details/100083567}{数字电路基础知识：反相器（噪声容限、VTC、转换时间、速度的影响因素、传播延时等）}
 
 \subsection{ADC 与 DAC}
 
 
 简单的 ADC、DAC 可由二极管、电阻、运算放大器构成，后者详见“第二次习题课课前练习”。
+
+\subsection{半加器}
+
+半加器是一种基本的逻辑电路，用于将两个二进制数相加，输出“和位”与“进位”，记为 $S$，$C$，分别代表二进制输出的低位和高位。设输入为 $A$ 和 $B$，则有：
+\begin{equation}
+C = A \cdot B,\quad S = (A + B)\cdot \overline{C} = (A + B)\cdot \overline{(A \cdot B)} = (A + B)\cdot (\overline{A} + \overline{B})  = A\cdot \overline{B}  + \overline{A}\cdot B =  A \oplus B
+\end{equation}
+
+因此构造半加器最直接的方法是用一个异或门  XOR  和 一个与门 AND（3 N+ 3 P + 3 N 共 9 个 MOS）。如果要求使用的 MOS 尽量少（仅使用 N-MOS），对逻辑表达式作处理，利用下面式子可得最简半加器电路（7 个 N-MOS。
+
+\begin{equation}
+    C = \overline{(\overline{A\cdot B})},\quad S = \overline{\left[(A \cdot B) + \overline{(A + B)}\right]}
+\end{equation}
+
+它们的具体原理见图 \ref{两种半加器的原理}，实际电路如图 \ref{C-MOS 半加器} 和图 \ref{N-MOS 半加器} 所示。
+
+\subsection{全加器}
+
+由半加器可以进一步构造全加器，全加器是一种能够处理三个二进制数相加的逻辑电路，输出“和位”与“进位”，记为 $S$，$C$，分别代表二进制输出的低位和高位。设输入为 $A$、$B$ 和 $C_{\text{in}}$，则有：
+\begin{equation}
+\begin{aligned}
+    C &= A \cdot B + A \cdot C_{\text{in}} + B \cdot C_{\text{in}}\\
+    S &= A \oplus B \oplus C_{\text{in}}
+\end{aligned}
+\end{equation}
+
+全加器的原理见图 \ref{全加器原理}，实际电路如图 \ref{C-MOS 全加器} 所示。
+
+\newpage
+\begin{figure}[H]\centering
+\includegraphics[width=0.85\columnwidth]{assets/2/半加器原理.pdf}
+\caption{\bfseries 两种半加器的原理}\label{两种半加器的原理}
+\end{figure}
+
+\begin{figure}[H]\centering
+\includegraphics[width=0.85\columnwidth]{assets/2/CMOS 半加器.pdf}
+\caption{\bfseries C-MOS 半加器}\label{C-MOS 半加器}
+\end{figure}
+
+\begin{figure}[H]\centering
+\includegraphics[width=0.75\columnwidth]{assets/2/NMOS 半加器.pdf}
+\caption{\bfseries N-MOS 半加器}\label{N-MOS 半加器}
+\end{figure}
 
 \chapter{线性电阻电路分析方法}
 线性电阻电路，是指仅含独立源、受控源和线性电阻的电路。$2b$ 法是利用 KCL 和 KVL 的最基本方法，对具有 $b$ 条支路 $n$ 个节点的电路，列出 $(n -1)$ 个 KCL 方程和 $(b - n +1)$ 个 KVL 方程进行求解，较为繁琐。本章将介绍多种线性电阻电路分析方法，其中几种非常重要，不仅是一种方法，更应当作一种思想，要能够熟练而灵活地运用，例如节点电压法等。

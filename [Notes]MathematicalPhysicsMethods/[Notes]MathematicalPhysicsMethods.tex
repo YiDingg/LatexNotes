@@ -200,7 +200,10 @@
 
 % 列表设置
     \usepackage{enumitem}   % 宏包：列表环境设置
-        \setlist[enumerate]{itemsep=0pt, parsep=0pt, topsep=0pt, partopsep=0pt, leftmargin=3.5em} 
+        \setlist[enumerate]{
+            label=(\arabic*) ,   % 设置序号样式为加粗的 (1) (2) (3)
+            ref=\arabic*, % 如果需要引用列表项，这将决定引用格式（这里仍然使用数字）
+            itemsep=0pt, parsep=0pt, topsep=0pt, partopsep=0pt, leftmargin=3.5em} 
         \setlist[itemize]{itemsep=0pt, parsep=0pt, topsep=0pt, partopsep=0pt, leftmargin=3.5em}
         \newlist{circledenum}{enumerate}{1} % 创建一个新的枚举环境  
         \setlist[circledenum,1]{  
@@ -224,18 +227,19 @@
             }{\par\vskip 2.5ex}
 
 % 文章默认字体设置
-\usepackage{fontspec}   % 宏包：字体设置
-    \setmainfont{SimSun}    % 设置中文字体为宋体字体
-    \setCJKmainfont[AutoFakeBold=3]{SimSun} % 设置加粗字体为 SimSun 族，AutoFakeBold 可以调整字体粗细
-    \setmainfont{Times New Roman} % 设置英文字体为Times New Roman
+    \usepackage{fontspec}   % 宏包：字体设置
+        \setmainfont{SimSun}    % 设置中文字体为宋体字体
+        \setCJKmainfont[AutoFakeBold=3]{SimSun} % 设置加粗字体为 SimSun 族，AutoFakeBold 可以调整字体粗细
+        \setmainfont{Times New Roman} % 设置英文字体为Times New Roman
 
 % 各级标题自定义设置
-\usepackage{titlesec}   
-\titleformat{\chapter}[hang]{\normalfont\huge\bfseries\centering}{第\,\thechapter\,章}{20pt}{}
-\titlespacing*{\chapter}{0pt}{-20pt}{20pt} % 控制上方空白的大小
-% section标题自定义设置 
-\titleformat{\section}[hang]{\normalfont\Large\bfseries}{§\,\thesection\,}{8pt}{}
-% subsubsection标题自定义设置
+    \usepackage{titlesec}   
+        \titleformat{\chapter}[hang]{\normalfont\huge\bfseries\centering}{第\,\thechapter\,章}{20pt}{}
+        \titlespacing*{\chapter}{0pt}{-20pt}{20pt} % 控制上方空白的大小
+        % section标题自定义设置 
+        \titleformat{\section}[hang]{\normalfont\Large\bfseries}{§\,\thesection\,}{8pt}{}
+        % subsubsection标题自定义设置
+        \titlespacing*{\subsubsection}{0pt}{0pt}{0pt} % 控制上方空白的大小
 %\titleformat{\subsubsection}[hang]{\normalfont\bfseries}{}{8pt}{}
 
 % --------------------- 文章宏包及相关设置 --------------------- %
@@ -254,9 +258,9 @@
         \chead{Notes of Mathematical Physics Methods}     
         \rhead{dingyi233@mails.ucas.ac.cn}
 %文档信息设置
-\title{数学物理方法笔记\\Notes of Mathematical Physics Methods}
-\author{丁毅\\ \footnotesize 中国科学院大学，北京 100049\\ Yi Ding \\ \footnotesize University of Chinese Academy of Sciences, Beijing 100049, China}
-\date{\footnotesize 2024.8 -- 2025.1}
+    \title{数学物理方法笔记\\Notes of Mathematical Physics Methods}
+    \author{丁毅\\ \footnotesize 中国科学院大学，北京 100049\\ Yi Ding \\ \footnotesize University of Chinese Academy of Sciences, Beijing 100049, China}
+    \date{\footnotesize 2024.8 -- 2025.1}
 % ------------------------ 文章信息区 ------------------------ %
 % ------------------------ 文章信息区 ------------------------ %
 
@@ -471,12 +475,16 @@
 
 Cauchy-Riemann 条件是函数{\color{red} 可导的必要条件}：
 \begin{gather}
-\frac{\partial u }{\partial x } = \frac{\partial v }{\partial y },\quad
-\frac{\partial u }{\partial y } = - \frac{\partial v }{\partial x }
+\boxed{
+    \frac{\partial u }{\partial x } = \frac{\partial v }{\partial y },\quad
+    \frac{\partial u }{\partial y } = - \frac{\partial v }{\partial x }
+}
 \end{gather}
 极坐标中的 C-R 条件：
 \begin{equation}
-\frac{\partial u }{\partial r } = \frac{1}{r}\frac{\partial v }{\partial \phi },\quad \frac{\partial v }{\partial r } = - \frac{1}{r}\frac{\partial u }{\partial \phi }
+\boxed{
+    \frac{\partial u }{\partial r } = \frac{1}{r}\frac{\partial v }{\partial \phi },\quad \frac{\partial v }{\partial r } = - \frac{1}{r}\frac{\partial u }{\partial \phi }
+}
 \end{equation}
 
 
@@ -535,7 +543,9 @@ g_2(y) = \int (\frac{\partial v }{\partial y } - \frac{\partial g_1 }{\partial y
 
 特别地，当已知 $u(x,y)$ 和 $v(x,y)$ 时，欲求 $f(z)$ 的表达式（而不是 $f(x,y)$），只需直接令表达式 $u + iv$ 的 $(x,y) = (z,0)$，也即： 
 \begin{equation}
-{\color{red} f(z) = \left[u(x,y) + iv(x,y)\right]_{x = z, y=0} = u(z,0) + iv(z,0)}
+\boxed{
+    {f(z) = \left[u(x,y) + iv(x,y)\right]_{x = z, y=0} = u(z,0) + iv(z,0)}
+}
 \end{equation}
 具体原因我们会在第五章“解析延拓”处讨论。
 
@@ -612,9 +622,19 @@ e^z = e^{x + \mathrm{i} y} = e^x(\cos y + \mathrm{i} \sin y)
 
 \begin{definition}[三角函数 $\sin z,\ \cos z,\ ...$]
 复三角函数是用复指数函数定义的，如下：
-\begin{equation}
-    \sin z=\frac{\mathrm{e}^{\mathrm{i}z}-\mathrm{e}^{-\mathrm{i}z}}{2\mathrm{i}},\quad\cos z=\frac{\mathrm{e}^{\mathrm{i}z}+\mathrm{e}^{-\mathrm{i}z}}{2}
-\end{equation}
+\begin{gather}
+\boxed{
+    \begin{aligned}
+        \cos z
+        =\frac{\mathrm{e}^{\mathrm{i}z}+\mathrm{e}^{-\mathrm{i}z}}{2}
+        = {\color{red} \frac{1}{2}}\cdot \left[ \left( \frac{1}{e^y} + e^y \right)\cos x - \left( \frac{1}{e^y} - e^y \right)\sin x \right]
+        \\
+        \sin z
+        =\frac{\mathrm{e}^{\mathrm{i}z}-\mathrm{e}^{-\mathrm{i}z}}{2\mathrm{i}} 
+        = {\color{red} \frac{1}{2i}}\cdot \left[ \left( \frac{1}{e^y} - e^y \right)\cos x + \left( \frac{1}{e^y} + e^y \right)\sin x \right]
+    \end{aligned}
+}
+\end{gather}
 $\sin z,\ \cos z$ 在 $\C$ 内解析，唯一奇点是 $z = \infty$。可以证明，实三角函数的各种恒等式对复三角函数仍成立（包括和差化积、万能公式等）。
 \end{definition}
 
@@ -652,10 +672,10 @@ $f$ 称为区域 $G \subseteq \C$ 上的多值函数如果 $\forall\ z \in G$ �
 \begin{definition}[宗量、分支点]
 考虑 $z-a$ 的开方 $w =\sqrt{z-a}$，设 $w = \rho_1 e^{\alpha}$ 而 $z-a = \rho_2e^{\theta}$，代入解得：
 \begin{gather}
-     w = \sqrt{| z-a |} e^{\frac{\theta}{2} + n\pi}, \quad n \in \Z \\ \Longleftrightarrow 
+     w = \sqrt{| z-a |} e^{\frac{\theta}{2} + n\pi}, \quad n \in \Z \Longleftrightarrow 
      | w | = \sqrt{| z-a |},\quad \arg w = \frac{1}{2} \arg (z-a)
 \end{gather}
-$\omega $ 的多值性来源于 $z-a$ 幅角的多样性，我们把这样量称为\textbf{宗量}\footnote{宗量通常不同于自变量.例如，多值函数 $\sqrt{z-a}$ 的宗量就是 $z-a$，多值函数号 $\sqrt[3]{(z - a)(z - b)}$ 的宗量就是$(z-a)(z-b)$。当然，也有宗量就是自变量的情形.例如多值函数 $\sqrt{z}$ 的宗量就是自变量 $z$。}（而不是自变量）。
+$\omega $ 的多值性来源于 $z-a$ 幅角的多样性，我们把这样的量称为宗量\footnote{宗量通常不同于自变量.例如，多值函数 $\sqrt{z-a}$ 的宗量就是 $z-a$，多值函数号 $\sqrt[3]{(z - a)(z - b)}$ 的宗量就是$(z-a)(z-b)$。当然，也有宗量就是自变量的情形.例如多值函数 $\sqrt{z}$ 的宗量就是自变量 $z$。}（而不是自变量）。
 
 为了进一步揭示多值函数 $w = \sqrt{z-a}$ 的性质，我们讨论“还原”与“不还原”。在 $z$ 复平面上依次画两个圆，如图 \ref{沿闭合曲线一周回到原处时} 左侧，第一个圆在点 $a$ 外，第二个圆包含了点 $a$。
 
@@ -695,21 +715,28 @@ f(z) = \sqrt[k]{
 为了得到多值函数的单值分支，我们可以限制宗量的幅角范围（常通过“割线”来实现）。这样，宗量幅角范围的各个周期，给出多值函数的各个单值分支。另一种自然的方法是规定初始值和连续变化路线（移动路线）。
 
 \subsection{常见多值函数}
-最常见的多值函数是取对和开根。
+最常见的多值函数是开根，在实际做题中，如果遇到开根 $\sqrt[n]{z} $，便是默认取 $z \in [0, 2\pi]$ 的单值分支。这里之所以取闭区间，是因为 $2\pi$ 可以取到，并且其值与 $0$ 不同。特别地，令 $z = x + iy = re^{i \theta},\ \theta \in [0, 2\pi]$，则 $\sqrt{z}$ 可以写为：
+\begin{equation}
+\boxed{
+    \sqrt{z} =  \frac{1}{\sqrt{2}} \left( {\color{red} \text{sgn\,}(\pi -\theta)} \sqrt{| z | + x} + i \sqrt{| z | - x}  \right)
+}
+\end{equation}
+
+对数函数也是一种常见的多值函数：
 \begin{gather}
     \ln z = \ln | z | + i\arg z,\quad
     \Ln z = \ln | z | + i\Arg z
-    \end{gather}
+\end{gather}
 
-许多多值函数都可以通过 $\Ln z$ 和根号来定义：
+很多常见的多值函数都可以通过 $\Ln z$ 和根号来定义：
 \begin{gather}
-    \arcsin z = \frac{1}{i}\Ln (iz + \sqrt{1-z^2} ),\quad
-    \arccos z = \frac{1}{i}\Ln (z + \sqrt{z^2 - 1} ) \\
-    \arctan z = \frac{1}{2i}\Ln(\frac{1+iz}{1-iz}) ,\quad
+    \Arcsin z = \frac{1}{i}\Ln (iz + \sqrt{1-z^2} ),\quad
+    \Arccos z = \frac{1}{i}\Ln (z + \sqrt{z^2 - 1} ) \\
+    \Arctan z = \frac{1}{2i}\Ln(\frac{1+iz}{1-iz}) ,\quad
     z^\alpha = e^{\alpha \Ln z},\  \alpha \in \C
 \end{gather}
 
-    
+
 \chapter{复变积分}
 
 \section{复变积分的概念}
@@ -734,7 +761,7 @@ I = \lim_{\max | \Delta z_i \to 0|}\sum_{i=1}^{n} f(\xi_i)\Delta z_i = \int_{C_{
 对单连通区域，$\partial G$ 即为外围边界线（沿逆时针）；对多连通区域，外围边界线沿逆时针积分，内部边界线沿顺时针积分\footnote{始终保持区域在自身左侧的走向称为正向。}。
 \end{BlockTheorem}
 
-\subsection{Cauthy-Goursa 的推广}
+\subsection{Cauthy 定理的推广}
 
 \begin{BlockTheorem}[Cauthy 定理推广1]\label{Cauthy 定理推广1}
 连续函数 $f$ 在有界复连通区域 $G$ 上单值解析，则：
@@ -757,6 +784,51 @@ I = \lim_{\max | \Delta z_i \to 0|}\sum_{i=1}^{n} f(\xi_i)\Delta z_i = \int_{C_{
         \oint_{C} f(z) \mathrm{d}z = \oint_{C'} f(z) \mathrm{d}z
     \end{equation}
 \end{BlockTheorem}
+
+\subsection{Cauthy 定理推论}
+
+\begin{BlockTheorem}[Morera 定理]\label{Morera 定理}
+设 $f$ 在闭域 $\overline{G} $ 中连续，且对 $G$ 中任意闭合围道 $C$，都有 $\oint_{C} f(z) \mathrm{d}z = 0$，则 $f$ 在 $G$ 中解析。结合 Cauthy 定理的正表述，也即：
+\begin{equation}
+f(z) \ \text{在 $\overline{G} $ 内解析} \Longleftrightarrow  \oint_{C} f(z) \mathrm{d}z = 0,\ \forall\ C \subset \overline{G}  \Longleftrightarrow  \ \text{积分} \int_{z_1}^{z_2} f(z) \mathrm{d}z \ \text{与路径无关},\ z_1, z_2 \in \overline{G} 
+\end{equation}
+
+Morera 定理可以理解为 Cauthy 定理的逆定理，用于判别函数在某区域上的解析性。
+\end{BlockTheorem}
+
+\begin{LineTheorem}[最大模原理]\label{最大模原理}
+    设 $f(z)$ 在 $\overline{G}$ 中解析，则模 $| f(z) |$ 的最大值一定在边界 $\partial G$ 上。
+\end{LineTheorem}
+
+
+\begin{BlockTheorem}[Cauthy 不等式]\label{Cauthy 不等式}
+设函数 $f$ 在 $\overline{G}$ 中解析，则有不等式：
+\begin{equation}
+\left| f^{(n)}(z) \right| \leqslant \frac{n!}{2 \pi d^{n+1}}\cdot Ml ,\quad n = 0, 1, 2, ...
+\end{equation}
+
+其中 $M = \sup \{ | f(z) |,\ z \in \partial G \}$ 是 $| f(z) |$ 在边界上的上界，$l = \int_{\partial G} \mathrm{d}s$ 是边界 $\partial G$ 的长度，$d = \inf \{ \rho(z, \partial G) \}$ 是 $z$ 点到边界 $\partial G$ 的距离下界。事实上，由于 $\overline{G}$ 是闭域，这里的上界、下界均可取到，因此分别是最大值、最小值。
+
+特别地，当边界是以 $z$ 为圆心，$R$ 为半径的圆时，不等式变为：
+\begin{equation}
+\left| f^{(n)}(z) \right| \leqslant \frac{n! M}{ R^{n}} ,\quad n = 0, 1, 2, ...
+\end{equation}
+\end{BlockTheorem}
+
+\begin{LineTheorem}[Liouville 定理]\label{Liouville 定理}
+若 $f(z)$ 在全平面上解析，且 $\displaystyle \lim_{z \to \infty} | f(z) | < \infty$，则 $f(z)$ 是常数函数。
+\end{LineTheorem}
+
+\begin{BlockTheorem}[均值定理]\label{均值定理}
+设 $f(z)$ 在 $\overline{G}$ 内解析，则 $f$ 在 $G$ 内任意一点 $z_0$ 的函数值为：
+\begin{equation}
+f(z_0) = \frac{1}{2\pi i} \int_{0}^{2\pi} f(z_0 + R e^{i\theta}) \mathrm{d}\theta
+\end{equation} 
+其中 $R$ 是以 $z_0$ 为圆心，位于 $\overline{G}$ 内的任一圆周的半径。
+\end{BlockTheorem}
+
+
+
 
 \section{圆弧定理}
 \begin{BlockTheorem}[小圆弧定理]\label{小圆弧定理}
@@ -889,20 +961,134 @@ v(r, \phi) &= \frac{a^2 - r^2}{2 \pi} \int_{0}^{2 \pi} \frac{ v(a, \theta) }{a^2
 \end{BlockTheorem}
 
 
-\section{常见积分结果汇总}
+%\section{常见积分结果汇总}
+%\textbf{(1)\ }$\oint_C (z-a)^n \mathrm{d}z = 
+%\begin{cases}
+%    i(2\pi) &, n = -1\  \&\ \and a \in G \\ 
+%    0 &, \text{else}
+%\end{cases}$
+
+\chapter{无穷级数}\thispagestyle{fancy}
+
+\section{复变函数项级数}
 
 
-\textbf{(1)\ }$\oint_C (z-a)^n \mathrm{d}z = 
-\begin{cases}
-    i(2\pi) &, n = -1\  \&\ \and a \in G \\ 
-    0 &, \text{else}
-\end{cases}$
+\subsection{复数项级数}
+
+\subsubsection{收敛：}
+
+复数级数 $\displaystyle S = \sum_{n = 1}^{\infty} u_n$ 称为收敛的如果它的部分和 $\displaystyle S_n = \sum_{k=1}^{n} u_k$ 是收敛的，否则称其发散。特别地，由于 $\sum u_n = \sum a_n + i\sum b_n$（不涉及交换求和次序），因此，一个复数级数完全等价于两个实数级数的有序组合。
+
+收敛的级数满足加法结合律，即可以任意添加括号（但不能随意去掉括号）
+
+\begin{BlockTheorem}[Cauchy 判别法]\label{Cauchy 判别法}
+    级数 $S = \sum_{n =1}^{\infty} u_n$ 收敛的等价条件是：
+    \begin{gather}
+    \forall\ \varepsilon > 0,\ \exists\ N = N(\varepsilon)\ \ \text{s.t.}\ \ \forall\ n > m > N,\ | S_{n} - S_m | =  \left| \sum_{k=m+1}^{n} u_k \right| < \varepsilon \\ 
+    \forall\ \varepsilon > 0,\ \exists\ N = N(\varepsilon)\ \ \text{s.t.}\ \ \forall\ n > N,\ p \in N^*,\ | S_{n + p} - S_n | =  \left| \sum_{k=n+1}^{n+p} u_k \right| < \varepsilon
+\end{gather}
+\end{BlockTheorem}
+
+\subsubsection{绝对收敛：}
+复数级数 $\displaystyle S = \sum_{n = 1}^{\infty} u_n$ 称为绝对收敛的如果级数 $\displaystyle \sum_{n = 1}^{\infty} | u_n |$ 收敛。绝对收敛 $\Longrightarrow $ 收敛，反之不然。
+
+绝对收敛的级数具有下列性质：
+\begin{enumerate}
+\item 结合律：可以任意加括号（只要收敛即可），组成新的求和项
+\item 交换律：可以任意改换求和次序
+\item 子级数收敛：把绝对收敛级数拆成多个子级数，每个子级数都收敛
+\item 积收敛：两个绝对收敛级数之积（是一个二重级数）仍然绝对收敛
+\end{enumerate}
+
+判断复数级数是否绝对收敛，由于取模后皆为正实数，因此与正项级数的收敛判别完全等价，常见的方法有比较判别法、比式判别法、根式判别法和 Gauss 判别法。
+
+\begin{BlockTheorem}[比较判别法]\label{比较判别法}
+比较判别法有常规形式、极限形式和上下极限形式，这里只介绍极限形式。后续的几种判别法也只给出极限形式。
+
+设正向数列 $v_n$ 满足 $\displaystyle \lim_{n \to \infty} \frac{| u_n |}{v_n} = \rho \in \overline{R}$。若$\rho \in (0, +\infty)$，则 $\sum | u_n |$ 与 $\sum v_n$ 同敛散；若 $\rho = 0$ 且 $\sum v_n$ 收敛，则 $\sum | u_n |$ 收敛；若 $\rho = +\infty$ 且 $ \sum v_n$ 发散，则 $\sum | u_n |$ 发散。
+\end{BlockTheorem}
 
 
+\begin{LineTheorem}[比式判别法]\label{比式判别法}
+    设 $\displaystyle \lim_{n \to \infty} \left| \frac{u_{n+1}}{u_n} \right|  = \rho$。若 $\rho \in [0,\ 1)$ 则 $\sum | u_n |$ 收敛；若 $\rho > 1$ 则 $\sum | u_n |$ 发散。
+\end{LineTheorem}
+
+\begin{LineTheorem}[根式判别法]\label{根式判别法}
+    设 $\displaystyle \lim_{n \to \infty} \sqrt[n]{| u_n |}  = \rho$。若 $\rho \in [0,\ 1)$ 则 $\sum | u_n |$ 收敛；若 $\rho > 1$ 则 $\sum | u_n |$ 发散。
+\end{LineTheorem}
+
+\begin{LineTheorem}[Gauss 判别法]\label{Gauss 判别法}
+假设存在 $\zeta \in \C, \ p > 1$ 使得序列 $u_n$ 满足：
+\begin{equation}
+    \frac{u_n}{u_{n+1}} = 1 + \frac{\zeta}{n} + O\left( \frac{1}{n^p} \right),\quad \zeta \in \C, \ p > 1
+\end{equation}
+若 $\Re \zeta > 1$，则 $\sum | u_n |$ 收敛；若 $\Re \zeta \leqslant 1$，则 $\sum | u_n |$ 发散。
+\end{LineTheorem}
+
+\subsection{复变函数项级数}
 
 
+\subsubsection{收敛与一致收敛：}
+复变函数项级数的（逐点）收敛、发散与实变函数项级数完全一致，这里不提。
+
+一致收敛定义为：若存在函数 $S(z)$ 使得复变函数项 $S_n(z)$ 满足 $\forall\ \varepsilon > 0,\ \exists\ N = N(\varepsilon)\ \ \text{s.t.}\ \ \forall\ n > N,\ {\color{red} z \in G},\ | S_n(z) - S(z) | < \varepsilon$，则称其在 $G$ 上一致收敛于 $S(z)$，记作 $S_n(z) \rightrightarrows S(z) $。
+
+在 $G$ 上逐点收敛与在 $G$ 上一致收敛的区别如下：
+\begin{align}
+\ \text{逐点收敛：}& \forall\ z \in G,\ \lim_{n \to \infty} \left| S(z) -  S_n(z)\right| = 0
+\\
+\ \text{一致收敛：}& \lim_{n \to \infty} \sup_{z \in G} \left| S(z) -  S_n(z)\right| = 0
+\end{align}
+
+\subsubsection{一致收敛的性质：}
+
+一致收敛函数列具有很好的性质（只需内闭一致收敛即可）：
+\begin{enumerate}
+\item 极限换序定理：
+设 $f_n(z)$ 在 $z_0$ 的空心邻域 $U^\circ_\delta(z_0)$ 上内闭一致收敛，则有：
+\begin{equation}
+\lim_{n \to \infty}\lim_{z \to z_0} f_n(z) =\lim_{z \to z_0}  \lim_{n \to \infty} f_n(z)
+\end{equation}
 
 
+\item 极限微分换序 I : 设 $\forall\ n \in \N^*$，$f_n(z)$ 是单值解析函数，且 $f_n$ 在 $G$ 上一致收敛，则：
+\begin{equation}
+\lim_{n \to \infty} \left(\frac{\mathrm{d}}{\mathrm{d} z}  f_n(z)\right) = \frac{\mathrm{d}}{\mathrm{d} z} \left( \lim_{n \to \infty} f_n(z) \right)
+\end{equation}
+
+\item 极限微分换序 II : 设函数列 $\{f_n(z)\}$ 在 $G$ 上单值解析，且 $f_n'$ 在 $G$ 上内闭一致收敛，则 $f_n(z)$ 在 $G$ 上内闭一致收敛，且：
+\begin{equation}
+    \lim_{n \to \infty} \left(\frac{\mathrm{d}}{\mathrm{d} z}  f_n(z)\right) = \frac{\mathrm{d}}{\mathrm{d} z} \left( \lim_{n \to \infty} f_n(z) \right)
+    \end{equation}
+
+\item 极限积分换序:
+
+若函数列 $\{f_n\}$ 在 $G$ 上内闭一致收敛，则：
+\begin{equation}
+\lim_{n \to \infty} \int_{L} f_n(z) \mathrm{d}z = \int_{L} \lim_{n \to \infty} f_n(z) \mathrm{d}z
+\end{equation}
+
+\end{enumerate}
+
+将极限换序定理运用到级数上，即得到逐项求极限；将极限微分换序 I、II 运用到级数上，即得到逐项微分；将极限积分换序运用到级数上，即得到逐项积分。
+
+\section{二重级数}
+
+二重级数，指的是排列成下面形式的方阵：
+\begin{equation}
+    \begin{aligned}
+        &a_{11}\:+\:a_{12}\:+\:a_{13}\:+\:a_{14}\:+\:\cdots\:+\:a_{1n}\:+\:\cdots  \\
+        +&\:a_{21}\:+\:a_{22}\:+\:a_{23}\:+\:a_{24}\:+\:\cdots\:+\:a_{2n}\:+\:\cdots  \\
+        +&\cdots  \\
+        +&\:a_{m1}\:+\:a_{m2}\:+\:a_{m3}\:+\:a_{m4}\:+\:\cdots\:+\:a_{mn}\:+\:\cdots  \\
+        +&\cdots 
+    \end{aligned}
+\end{equation}
+方阵的右端和下端都是无限的，记 $S_{mn}$ 为 $m\times n$ 方阵的和，称为部分和序列，并定义二重级数收敛的条件：
+\begin{equation}
+    S_{m n} = \sum_{\begin{subarray}{c} 1 \leqslant k \leqslant m \\ 1 \leqslant l \leqslant n \end{subarray}} a_{k l},\quad S = \lim_{\begin{subarray}{c} n \to \infty \\ m \to \infty \end{subarray}} S_{m n}
+\end{equation}
+上式中并没有规定求和顺序，常见的求和顺序有次对角线求和、累次求和（先行后列或先列后行）。需要注意，即使二重级数收敛，某些行或列的和也不一定存在，因此累次求和的结果也不一定存在。二重积分的和是否依赖于求和方式，原则上与级数是否绝对收敛有关，若绝对收敛，则所有求和方式结果相同。
 
 
 

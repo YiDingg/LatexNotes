@@ -36,9 +36,9 @@
     \usepackage{hyperref}  % 宏包：自动生成超链接 (此宏包与标题中的数学环境冲突)
     \hypersetup{
         colorlinks=true,    % false:边框链接 ; true:彩色链接
-        citecolor={red},    % 文献引用颜色
-        linkcolor={blue},   % 目录，公式，图表，脚注等内部链接颜色
-        urlcolor={cyan},    % 网页 URL 链接颜色，包括 \href 中的 text
+        citecolor={blue},    % 文献引用颜色
+        linkcolor={blue},   % 目录 (我们在目录处单独设置)，公式，图表，脚注等内部链接颜色
+        urlcolor={orange},    % 网页 URL 链接颜色，包括 \href 中的 text
         % cyan 浅蓝色 
         % magenta 洋红色
         % yellow 黄色
@@ -279,10 +279,10 @@
 
 % 序言
 \begin{cnabstract}\normalsize 
-本文为笔者本科时的“光学”课程笔记（Optics Notes, 2024.8-2025.1）。课程信息、作业与资料可以在笔者的个人网站上找到: \href{https://yidingg.github.io/YiDingg/\#/Notes/Phisics/OpticsNotes}{Notes > Phisics > Optics (https://yidingg.github.io/YiDingg/\#/Notes/Phisics/OpticsNotes)}，参考文献会在课程结束后上传到网址 {\color{red}（待更新）}。
-由于个人学识浅陋，认识有限，文中难免有不妥甚至错误之处，望读者不吝指正，读者可以到笔者的 \href{https://github.com/YiDingg/LatexNotes}{GitHub 笔记库 (https://github.com/YiDingg/LatexNotes)} 上提 issue，也可以将错误发送到我的邮箱 {\color{blue}\ dingyi233@mails.ucas.ac.cn}，衷心感谢。
+本文为笔者本科时的“光学”课程笔记（Optics Notes, 2024.8-2025.1）。作业与相关资料可以在笔者的个人网站上找到: \href{https://yidingg.github.io/YiDingg/\#/Notes/Phisics/OpticsNotes}{Notes > Phisics > Optics (https://yidingg.github.io/YiDingg/\#/Notes/Phisics/OpticsNotes)}，参考文献会在课程结束后上传到网址 {\color{red}（待更新）}。
+由于个人学识浅陋，认识有限，文中难免有不妥甚至错误之处，望读者不吝指正。读者可以到笔者的 \href{https://github.com/YiDingg/LatexNotes}{GitHub 笔记库 (https://github.com/YiDingg/LatexNotes)} 上提 issue，也可以将错误发送到我的邮箱 {\color{blue}\ dingyi233@mails.ucas.ac.cn}，衷心感谢。
 
-在正式学习之前，建议先跳转至附录一“波理论”部分，学习必要的前置知识（否则可能难以理解）。
+在正式学习之前，建议先跳转至附录 A “波理论”部分，学习必要的前置知识（否则可能难以理解）。
 \end{cnabstract}
 \addcontentsline{toc}{chapter}{序言} % 手动添加为目录
 
@@ -295,7 +295,6 @@
 % 收尾工作
 \newpage    
 \pagenumbering{arabic} 
-
 
 % >> --------------------- 封面序言与目录 --------------------- << %
 % ------------------------ 封面序言与目录 ------------------------ %
@@ -1064,7 +1063,7 @@ E = E_A + E_B = E_{A,0}\cdot e^{i(-\omega t + \alpha_A)} + E_{B,0}\cdot e^{i(-\o
     \end{cases} \\ 
     \alpha = 
     \begin{cases}
-        \arcsin \left[ \frac{1}{E_0}\left( E_{A,0}\sin \alpha_A + E_{B,0}\sin \alpha_B \right)  \right] &, \sin \alpha \geqslant 0 \\
+        \arcsin \left[ \frac{1}{E_0}\left( E_{A,0}\sin \alpha_A + E_{B,0}\sin \alpha_B \right)  \right] &, \cos \alpha \geqslant 0 \\
         \pi - \arcsin \left[ \frac{1}{E_0}\left( E_{A,0}\sin \alpha_A + E_{B,0}\sin \alpha_B \right)  \right] &,  \cos \alpha < 0
     \end{cases}
 \end{gather}
@@ -1330,7 +1329,7 @@ d = 100 \ \mathrm{\mu m},\  R = 5\ \mathrm{cm},\ D = 1\ \mathrm{m},\ L = 4 \ \ma
 \end{enumerate}
 
 
-白光光源与其他补充内容详见 \href{https://produckthieves.home.blog/2020/02/10/phy-c15-double-slit-interference/}{PHY C15: Double Slit Interference}、\href{https://www.physics.louisville.edu/cldavis/phys299/notes/lo_interference.html}{University of Louisville: Double Slit Interference} 以及 \href{https://zhuanlan.zhihu.com/p/335815195}{知乎：双缝干涉实验}。我们不多赘述。
+白光光源与其他补充内容详见 \href{https://produckthieves.home.blog/2020/02/10/phy-c15-double-slit-interference/}{PHY C15: Double Slit Interference}、\href{https://www.physics.louisville.edu/cldavis/phys299/notes/lo_interference.html}{University of Louisville: Double Slit Interference} 以及 \href{https://zhuanlan.zhihu.com/p/335815195}{知乎：双缝干涉实验}，我们不多赘述。从另一个角度，也可以利用双曲线的定义杨氏干涉的精确模型 + 近似模型，详见 \href{https://www.zhihu.com/question/382600481/answer/2565939868}{知乎：杨氏干涉的条纹间距}。
 
 \subsection{杨氏实验中干涉条纹的移动}
 
@@ -1468,7 +1467,7 @@ I(x, b) = \frac{I_{\text{max}}}{2b} \int_{-\frac{b}{2}}^{\frac{b}{2}} \left[ 1 +
     R_{F-P} = \frac{F \sin^2 \frac{\delta}{2}}{1 + F \sin^2 \frac{\delta}{2}},\quad T_{F-P} = \frac{1}{1 + F \sin^2 \frac{\delta}{2}},\quad F = \frac{4R}{(1 - R)^2},\quad \delta = \frac{4 \pi n_f d \cos \theta_f}{\lambda_i}
 \end{equation}
 
-$T_{F-P} = T_{F-P}(F, \delta)$ 的图像如下所示\footnote{源码见 \ref{精细度对透射率的影响 源码}}，$F$ 越大，透射光的对比度越高，在干涉现象中形成的条纹越明显，且 $F$ 增大时，透射峰的宽度减小，亮条纹变细变锐利。
+$T_{F-P} = T_{F-P}(F, \delta)$ 的图像如下所示\footnote{源码见附录 \ref{精细度对透射率的影响 源码}}，$F$ 越大，透射光的对比度越高，在干涉现象中形成的条纹越明显，且 $F$ 增大时，透射峰的宽度减小，亮条纹变细变锐利。
 
 \begin{figure}[H]\centering
 \includegraphics[width=\columnwidth]{assets/3/精细度对透射率的影响.pdf}
@@ -1584,7 +1583,14 @@ $T_{F-P} = T_{F-P}(F, \delta)$ 的图像如下所示\footnote{源码见 \ref{精
 
 中心为 0 级暗纹，往外级数增大，干涉条纹逐渐变密。
 
-\section{迈克尔逊干涉与曾德尔干涉}
+\subsection{迈克尔逊干涉}
+
+
+
+\section{迈克尔逊干涉与马赫曾德尔干涉}
+
+
+
 \section{光场的空间相干性与时间相干性}
 \section{多光束干涉}
 \section{激光}

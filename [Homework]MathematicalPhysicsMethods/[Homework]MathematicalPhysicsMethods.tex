@@ -32,7 +32,32 @@
 
 % 导入基本宏包
     \usepackage[UTF8]{ctex}     % 设置文档为中文语言
-    \usepackage[colorlinks, linkcolor=blue, anchorcolor=blue, citecolor=blue, urlcolor=blue]{hyperref}  % 宏包：自动生成超链接 (此宏包与标题中的数学环境冲突)
+        \usepackage{hyperref}  % 宏包：自动生成超链接 (此宏包与标题中的数学环境冲突)
+    \hypersetup{
+        colorlinks=true,    % false:边框链接 ; true:彩色链接
+        citecolor={blue},    % 文献引用颜色
+        linkcolor={blue},   % 目录 (我们在目录处单独设置)，公式，图表，脚注等内部链接颜色
+        urlcolor={orange},    % 网页 URL 链接颜色，包括 \href 中的 text
+        % cyan 浅蓝色 
+        % magenta 洋红色
+        % yellow 黄色
+        % black 黑色
+        % white 白色
+        % red 红色
+        % green 绿色
+        % blue 蓝色
+        % gray 灰色
+        % darkgray 深灰色
+        % lightgray 浅灰色
+        % brown 棕色
+        % lime 石灰色
+        % olive 橄榄色
+        % orange 橙色
+        % pink 粉红色
+        % purple 紫色
+        % teal 蓝绿色
+        % violet 紫罗兰色
+    }
     % \usepackage{docmute}    % 宏包：子文件导入时自动去除导言区，用于主/子文件的写作方式，\include{./51单片机笔记}即可。注：启用此宏包会导致.tex文件capacity受限。
     \usepackage{amsmath}    % 宏包：数学公式
     \usepackage{mathrsfs}   % 宏包：提供更多数学符号
@@ -1013,20 +1038,136 @@ f(a)
 
 \chapter{2024.9.23 - 2024.9.29}\thispagestyle{fancy}
 
+{\color{red}\large ！！！不要忘了 $2 \pi i$ ！！！}
+
+\section{求积分 $\displaystyle \oint_C \frac{\sin \frac{\pi z}{4}}{z^2 - 1} \mathrm{d} z$，$C:\ x^2 + y^2 -2x = 0$}
+
+$C:\  (x - 1)^2 + y^2 =1$，因此：
+\begin{gather}
+I 
+= 2 \pi i \left[ \frac{\sin \frac{\pi z}{4}}{z + 1} \right]_{z = 1} = \frac{\sqrt{2}}{2} \pi i
+\end{gather}
+
+\section{求下列积分的值，积分路径均沿直线}
+
+\begin{enumerate}
+\item $\displaystyle \int_{0}^{i} \frac{z}{z + 1} \  \mathrm{d} z$
+\begin{gather}
+I 
+= \int_{0}^{i} \left( 1 - \frac{1}{z+1} \right) \  \mathrm{d} z = \left[ z - \ln (z+1) \right]_{0}^{i} = i - \ln (1+i) = - \frac{\ln 2}{2} + i\left( 1 - \frac{\pi}{4} \right)
+\end{gather}
+
+\item $\displaystyle \int_{0}^{1+i} z^2 \sin z \ \mathrm{d} z$
+\begin{align*}
+I &= \left[ - z^2 \cos z + 2z \sin z + 2 \cos z \right]_{0}^{1+i} 
+\\ 
+&= (2 - 2i)\cdot \frac{1}{2} \cdot \left[ \left(\frac{1}{e} + e \right)\cos 1 + \left(\frac{1}{e} - e \right)\sin 1 \right] + 2( 1 + i)\cdot\frac{1}{2i}\cdot  \left[ \left(\frac{1}{e} - e \right)\cos 1 + \left(\frac{1}{e} + e \right)\sin 1 \right] - 2
+\\ 
+&= \frac{2 (1 - i)}{e}(\cos 1 + i \sin 1) - 2
+\end{align*}
 
 
 
+\item $\displaystyle \int_{-1}^{i} \frac{1}{z^2 + z-2} \ \mathrm{d}z$
 
+\begin{align}
+I 
+= \frac{1}{3} \int_{-1}^{i} \left( \frac{1}{z - 1} - \frac{1}{ z + 2} \right) \ \mathrm{d}z 
+= \frac{1}{3} \left[ \ln (z - 1) - \ln (z + 2) \right]_{-1}^{i} 
+= -\frac{1}{3}\left[  \frac{\ln 10}{2} + i\left( \arctan \frac{1}{2} + \frac{\pi}{4} \right) \right]
+\end{align}
 
+\end{enumerate}
 
+\section{讨论下列各积分的值，其中积分路径是圆周 $| z | = r$}
 
+\begin{enumerate}
+\item $\displaystyle \oint_{| z | = r} \frac{z^3}{(z - 1)(z^2 + 2z +3)} \ \mathrm{d}z $
 
+记 $z^2 + 2z + 3 = 0$ 的两个根分别为 $z_1 = -1 + i\sqrt{2} ,\ z_2 = -1 - i\sqrt{2} $，先考虑 $r \in (\sqrt{3},\ +\infty)$，此时积分围道内有三个奇点 $1,\ z_1,\ z_2$。由 Cauthy 定理，可得：
+\begin{gather}
+I = 2 \pi i \left\{ \left[\frac{z^3}{(z - z_1)(z - z_2)}\right]_{z = 1} + \left[\frac{z^3}{(z - 1)(z - z_2)}\right]_{z = z_1} + \left[\frac{z^3}{(z - 1)(z - z_1)}\right]_{z = z_2}  \right\} \\ 
+= 2 \pi i \left[ \frac{1}{6} + \left( -\frac{1}{4}\cdot \frac{7 - i4 \sqrt{2} }{3} \right) + \left( -\frac{1}{4}\cdot \frac{7 + i4 \sqrt{2} }{3} \right)  \right] = - 2\pi i
+\end{gather}
 
+当 $r \in (0, 1)$ 时，无奇点，$I = 0$；当 $r \in (1 \sqrt{3} )$ 时，有唯一奇点 $z =1$，$I = 2 \pi i \cdot \frac{1}{6} = \frac{\pi}{3}i$。综上有：
+\begin{equation}
+I = I(r) = 
+\begin{cases}
+    0 &, r \in (0, 1) \\ 
+    \displaystyle \frac{\pi}{3}i &, r \in (1, \sqrt{3}) \\ 
+    -2\pi i &, r \in (\sqrt{3}, +\infty)
+\end{cases}
+\end{equation}
 
+\item $\displaystyle \oint_{| z | = r} \frac{1}{z^3(z + 1)(z + 2)}  \ \mathrm{d}z $
 
+先考虑 $r \in (2 , +\infty)$ 的情况，此时围道内有三个奇点 $0, -1, -2$，但我们不需要具体求解，直接由大圆弧定理：
+\begin{equation}
+\lim_{z \to \infty}  \left(z \cdot  \frac{1}{z^3(z + 1)(z + 2)} \right) = 0  \Longrightarrow I = 2 \pi i \cdot 0 = 0
+\end{equation}
 
+$r \in (1 ,2)$ 时，有两奇点 $0,\ -1$，于是：
+\begin{equation}
+I = 2 \pi i \left\{ \frac{1}{2!}\cdot \left[ \frac{1}{(z + 1)(z + 2)} \right]^{(2)}_{z = 0} + \left[ \frac{1}{z^3(z + 2)} \right]_{z = -1}\right\} = 2 \pi i \left[ \frac{7}{16} + (-1) \right] = -\frac{9}{8} \pi i
+\end{equation}
 
+再考虑上 $r \in (0, 1)$，综上有：
+\begin{equation}
+I = I(r) = 
+\begin{cases}
+    \displaystyle \frac{7 \pi }{8} i &, r \in (0, 1) \\ 
+    \displaystyle -\frac{9}{8} \pi i &, r \in (1, 2) \\ 
+    0 &, r \in (2, +\infty)
+\end{cases}
+\end{equation}
 
+\end{enumerate}
+
+\section{设 $\displaystyle f(z) = \oint_{| \zeta  |= 2} \frac{3 \zeta^2 + 7 \zeta + 1}{\zeta - z} \ \mathrm{d}\zeta $，求 $f''(1+i)$}
+
+由 Cauthy 积分公式：
+\begin{equation}
+f(z) = 2 \pi i \left[ 3z^2 + 7z + 1 \right],\quad \Longrightarrow  f''(1+i) = 2 \pi i \cdot 6 = 12 \pi i
+\end{equation}
+
+\section{计算积分 $\displaystyle f(z) = \oint_{| \zeta | = 1} \frac{\overline{\zeta}}{\zeta - z} \ \mathrm{d}\zeta$，其中 $| z | \ne 1$}
+
+$| \zeta | = 1$ 时有 $\overline{\zeta} = \frac{1}{\zeta}$，于是：
+\begin{equation}
+f(z) = \oint_{| \zeta | = 1} \frac{1}{\zeta(\zeta - z)} \ \mathrm{d}\zeta =
+\begin{cases}
+    0, & | z | < 1 \\ 
+    -\frac{1}{z}, & | z | > 1
+\end{cases}
+\end{equation}
+
+\section{计算积分 $\displaystyle f(z) = \oint_{| \zeta | = 2} \frac{\overline{\zeta}^2 e^\zeta}{\zeta - z} \ \mathrm{d}\zeta $，其中 $| z | \ne 2$}
+
+$| \zeta |  = 2$ 时 $\overline{\zeta} = \frac{4}{\zeta}$，于是：
+\begin{align}
+I 
+&= 16 \oint_{| \zeta | = 2} \frac{e^\zeta}{\zeta^2(\zeta - z)} \ \mathrm{d}\zeta 
+= 16 \cdot 2 \pi i \left\{ \left[\frac{e^\zeta}{\zeta - z}\right]^{(1)}_{\zeta = 0} + \left[\frac{e^\zeta}{\zeta^2}\right]_{\zeta = z}\right\} \\
+&= 32 \pi i \left[ \left(-\frac{z+1}{z^2}\right) + \frac{e^z}{z^2}  \right] = 32 \pi i \cdot \frac{e^z - z - 1}{z^2} 
+\end{align}
+
+\section{计算积分 $\displaystyle \oint_{| z | = 1} \frac{e^z }{z^3} \ \mathrm{d}z$}
+由高阶导数公式：
+\begin{equation}
+I = 2 \pi i \cdot \frac{1}{2!} \cdot\left[e^z \right]^{(2)}_{z = 0} =  \pi i
+\end{equation}
+
+\section{求 $a$ 的值使得函数 $\displaystyle F(z) = \int_{z_0}^z e^z \left( \frac{1}{z} + \frac{a}{z^3}\right) \ \mathrm{d}z$ 是单值的}
+
+$F(z)$ 是单值的，也即积分与路径无关，这等价于被积函数是解析函数，由于没有限制 $z$ 的范围，也即 $z \in \C$，因此：
+\begin{equation}
+\oint_{\partial G} \left( \frac{e^z}{z} + a\frac{e^z}{z^3} \right) \ \mathrm{d}z = 0,\quad \forall\ G \subset \C 
+\end{equation}
+计算左边的积分：
+\begin{equation}
+I =  2 \pi i \left\{ \left[e^z\right]_{z=0} + \frac{a}{2!}\cdot\left[e^z\right]^{(2)}_{z=0} \right\} = 2 \pi i \left( 1 + \frac{a}{2} \right) = 0 \Longrightarrow a = -2
+\end{equation}
 
 
 

@@ -83,7 +83,7 @@
         \newtheoremstyle{MyLineTheoremStyle}% <name>
             {11pt}% <space above>
             {11pt}% <space below>
-            {}% <body font> 使用默认正文字体
+            {\kaishu}% <body font> 使用默认正文字体
             {}% <indent amount>
             {\bfseries}% <theorem head font> 设置标题项为加粗
             {：}% <punctuation after theorem head>
@@ -140,14 +140,12 @@
 % 外源代码插入设置
     % matlab 代码插入设置
     \usepackage{matlab-prettifier}
-        \lstset{
-            style=Matlab-editor,  % 继承matlab代码颜色等
-        }
+        \lstset{style=Matlab-editor}    % 继承 matlab 代码高亮 , 此行不能删去
     \usepackage[most]{tcolorbox} % 引入tcolorbox包 
     \usepackage{listings} % 引入listings包
         \tcbuselibrary{listings, skins, breakable}
         \newfontfamily\codefont{Consolas} % 定义需要的 codefont 字体
-        \lstdefinestyle{matlabstyle}{
+        \lstdefinestyle{MatlabStyle_inc}{   % 插入代码的样式
             language=Matlab,
             basicstyle=\small\ttfamily\codefont,    % ttfamily 确保等宽 
             breakatwhitespace=false,
@@ -159,17 +157,48 @@
             showspaces=false,
             showstringspaces=false,
             showtabs=false,
-            tabsize=2
+            tabsize=2,
+            xleftmargin=15pt,   % 左边距
+            %frame=single, % single 为包围式单线框
+            frame=shadowbox,    % shadowbox 为带阴影包围式单线框效果
+            %escapeinside=``,   % 允许在代码块中使用 LaTeX 命令 (此行无用)
+            %frameround=tttt,    % tttt 表示四个角都是圆角
+            framextopmargin=0pt,    % 边框上边距
+            framexbottommargin=0pt, % 边框下边距
+            framexleftmargin=5pt,   % 边框左边距
+            framexrightmargin=5pt,  % 边框右边距
+            rulesepcolor=\color{red!20!green!20!blue!20}, % 阴影框颜色设置
+            %backgroundcolor=\color{blue!10}, % 背景颜色
+        }
+        \lstdefinestyle{MatlabStyle_src}{   % 插入代码的样式
+            language=Matlab,
+            basicstyle=\small\ttfamily\codefont,    % ttfamily 确保等宽 
+            breakatwhitespace=false,
+            breaklines=true,
+            captionpos=b,
+            keepspaces=true,
+            numbers=left,
+            numbersep=15pt,
+            showspaces=false,
+            showstringspaces=false,
+            showtabs=false,
+            tabsize=2,
         }
         \newtcblisting{matlablisting}{
-            arc=2pt,        % 圆角半径
-            top=-5pt,
-            bottom=-5pt,
-            left=1mm,
-            listing only,
-            listing style=matlabstyle,
+            %arc=2pt,        % 圆角半径
+            % 调整代码在 listing 中的位置以和引入文件时的格式相同
+            top=0pt,
+            bottom=0pt,
+            left=-5pt,
+            right=-5pt,
+            listing only,   % 此句不能删去
+            listing style=MatlabStyle_src,
             breakable,
-            colback=white   % 选一个合适的颜色
+            colback=white,   % 选一个合适的颜色
+            colframe=black!0,   % 感叹号后跟不透明度 (为 0 时完全透明)
+        }
+        \lstset{
+            style=MatlabStyle_inc,
         }
 
 % table 支持
@@ -232,15 +261,16 @@
     \usepackage{fontspec}   % 宏包：字体设置
         \setmainfont{SimSun}    % 设置中文字体为宋体字体
         \setCJKmainfont[AutoFakeBold=3]{SimSun} % 设置加粗字体为 SimSun 族，AutoFakeBold 可以调整字体粗细
-        \setmainfont{Times New Roman} % 设置英文字体为Times New Roman
+        \setmainfont{Times New Roman} % 设置英文字体为 Times New Roman
 
 % 各级标题自定义设置
     \usepackage{titlesec}   
+        % chapter 标题自定义设置
         \titleformat{\chapter}[hang]{\normalfont\huge\bfseries\centering}{第\,\thechapter\,章}{20pt}{}
         \titlespacing*{\chapter}{0pt}{-20pt}{20pt} % 控制上方空白的大小
-        % section标题自定义设置 
+        % section 标题自定义设置 
         \titleformat{\section}[hang]{\normalfont\Large\bfseries}{§\,\thesection\,}{8pt}{}
-% subsubsection标题自定义设置
+% subsubsection 标题自定义设置
 %\titleformat{\subsubsection}[hang]{\normalfont\bfseries}{}{8pt}{}
 
 % --------------------- 文章宏包及相关设置 --------------------- %
@@ -279,7 +309,8 @@
 
 % 序言
 \begin{cnabstract}\normalsize 
-本文为笔者本科时的“光学”课程笔记（Optics Notes, 2024.8-2025.1）。作业与相关资料可以在笔者的个人网站上找到: \href{https://yidingg.github.io/YiDingg/\#/Notes/Phisics/OpticsNotes}{Notes > Phisics > Optics (https://yidingg.github.io/YiDingg/\#/Notes/Phisics/OpticsNotes)}，参考文献会在课程结束后上传到网址 {\color{red}（待更新）}。
+本文为笔者本科时的“光学”课程笔记（Optics Notes, 2024.8-2025.1）。
+课程信息、作业和相关资料可在笔者的个人网站上找到: \href{https://yidingg.github.io/YiDingg/\#/Notes/Phisics/OpticsNotes}{Notes > Phisics > Optics (https://yidingg.github.io/YiDingg/\#/Notes/Phisics/OpticsNotes)}，也可以到网址 {\color{red}（课程结束后更新）} 下载全部相关资料。
 由于个人学识浅陋，认识有限，文中难免有不妥甚至错误之处，望读者不吝指正。读者可以到笔者的 \href{https://github.com/YiDingg/LatexNotes}{GitHub 笔记库 (https://github.com/YiDingg/LatexNotes)} 上提 issue，也可以将错误发送到我的邮箱 {\color{blue}\ dingyi233@mails.ucas.ac.cn}，衷心感谢。
 
 在正式学习之前，建议先跳转至附录 A “波理论”部分，学习必要的前置知识（否则可能难以理解）。
@@ -287,7 +318,7 @@
 \addcontentsline{toc}{chapter}{序言} % 手动添加为目录
 
 % 目录
-\setcounter{tocdepth}{2}                % 目录深度（chapter 下 为 1 时显示到section）
+\setcounter{tocdepth}{1}                % 目录深度（chapter 下 为 1 时显示到section）
 \tableofcontents                        % 目录页
 \addcontentsline{toc}{chapter}{目录}    % 手动添加此页为目录
 \thispagestyle{fancy}                   % 显示页码、页眉等 
@@ -629,6 +660,12 @@ $K_{\text{max}} = 683\ \mathrm{lm \cdot W^{-1}}$ 在波长约 555.0 nm 取到，
 \begin{BlockTheorem}[菲涅尔公式, Fresnel Formula]\label{菲涅尔公式}
 光线在通过两介质分界面时通常会同时发生折射（透射）和反射现象，设入射光（incident ray）介质折射率 $\eta_i$，入射角 $\theta_i$，透射光（transmitted ray）介质折射率 $\eta_t$，透射角（折射角）$\theta_t$，则有\footnote{对于金属材质（非绝缘材质），需要引入消光系数 $k_t$ 来修正菲涅尔公式（绝缘材质等价于 $k_t = 0$），具体参见 \href{https://zhuanlan.zhihu.com/p/480405520?utm_psn=1818236176659771392}{知乎: 菲涅尔公式}}：
 
+%\lstinputlisting[language=matlab]{D:/a_RemoteRepo/GH.MatlabCodes/本科课程代码/光学/a3.m}
+
+%\begin{matlablisting}
+%    disp(['Y_bar = ', num2str(stc_error.Y_bar, '%.8f')]); disp(['Y_bar = ', num2str(stc_error.Y_bar, '%.8f')]); disp(['Y_bar = ', num2str(stc_error.Y_bar, '%.8f')]); disp(['Y_bar = ', num2str(stc_error.Y_bar, '%.8f')]); 
+%\end{matlablisting}
+
 
 \begin{table}[H]
 \centering
@@ -653,7 +690,7 @@ $p$ 波 & $\displaystyle r_p = \frac{n_t\cos \theta_i - n_i \cos \theta_t}{n_t\c
 \begin{enumerate}
 \item 介质为绝缘介质，无表面自由电荷或传导电流
 \item 介质为各向同性的光学线性介质（弱光强）
-\item 介质磁导率（约）等于真空磁导率\footnote{对于介质磁导率不等于真空磁导率的情况，参考 \href{https://www.writebug.com/static/uploads/2024/9/2/3ed06af7e4f074f1964feb480a541a6b.pdf}{Optics (Eugene Hecht, 尤金) Page 144}} $\mu_i = \mu_t = \mu_0$，其中 $\mu_0$ 为真空磁导率。
+\item 介质磁导率（约）等于真空磁导率\footnote{对于介质磁导率不等于真空磁导率的情况，详见参考文献 \cite{Optics} Page 144} $\mu_i = \mu_t = \mu_0$，其中 $\mu_0$ 为真空磁导率。
 \end{enumerate}
 \end{BlockTheorem}
 
@@ -686,7 +723,7 @@ $p$ 波 & $\displaystyle r_p = \frac{n_t\cos \theta_i - n_i \cos \theta_t}{n_t\c
 
 
 
-具体的振幅系数变化见图 \ref{振幅系数随入射角的变化}，见图 \ref{反射时 s 波和 p 波的相位变化}，$n_i < n_t$ 时的反射示意图见图 \ref{反射示意图}。
+具体的振幅系数变化见图 \ref{振幅系数随入射角的变化}\footnote{源码见附录 \ref{振幅系数随入射角的变化 源码}}，相位增量见图 \ref{反射时 s 波和 p 波的相位变化}，反射示意图见图 \ref{反射示意图}。
 
 \begin{figure}[H]\centering
 \begin{subfigure}[t]{0.49\textwidth}\centering
@@ -851,7 +888,7 @@ n_i \cos \theta_i E_{i,p}^2 - n_i \cos \theta_i r_{i,p}^2E_{i,p}^2 -   n_t \cos 
 
 \section{古斯-亨欣位移（Goos-Hanchen Shift）}
 
-一束被全反射的光，入射点会与（反射后的）出射点存在微小偏移（事实上既有平行偏移也有垂直偏移），称为 Goos-Hanchen Shift。较为严谨的推导表明\footnote{详见参考文献 \cite{GHShift}，或者 \href{https://www.zhihu.com/question/446676895/answer/3407740051}{知乎：古斯汉欣位移产生的原因 (https://www.zhihu.com/question/446676895/answer/3407740051)}，以及 \href{https://www.zhihu.com/question/620522351/answer/3209865128}{知乎：古斯汉森位移的原理是什么 (https://www.zhihu.com/question/620522351/answer/3209865128)}}，沿入射方向、与分界线平行的偏移量如下（又称为侧向偏移）：
+一束被全反射的光，入射点会与（反射后的）出射点存在微小偏移（事实上既有平行偏移也有垂直偏移），称为 Goos-Hanchen Shift。较为严谨的推导表明\footnote{详见参考文献 \cite{GHShift}，或者 \href{https://www.zhihu.com/question/446676895/answer/3407740051}{知乎：古斯汉欣位移产生的原因}，以及 \href{https://www.zhihu.com/question/620522351/answer/3209865128}{知乎：古斯汉森位移的原理是什么}}，沿入射方向、与分界线平行的偏移量如下（又称为侧向偏移）：
 \begin{equation}
 \delta_{\perp} = \frac{\lambda_i \sin \theta_i}{\pi \sqrt{\sin^2 \theta_i - n_{ti}^2} },\quad \Delta x =  \frac{\lambda_i \tan \theta_i}{\pi \sqrt{\sin^2 \theta_i - n_{ti}^2} } = 2 \delta \tan \theta_i 
 \end{equation}
@@ -975,11 +1012,11 @@ r' + r = 1,\quad tt' + rr' = 1
 \caption{\bfseries 光路可逆性下的振幅与能量系数}\label{光路可逆性下的振幅与能量系数}
 \end{figure}
 
-图 \ref{反射折射光的振幅与能量变化} 展示了反射折射光的振幅 $r_s, r_p, t_s, t_p$、能量 $R_s, R_p, R$ 随入射角 $\tan \theta_i$ 的变化\footnote{源码见附录 \ref{反射折射光的振幅与能量变化 源码}}，其中 (a) 图为空气入射玻璃（$n_i = 1, n_t = 1.5$），(b) 图为玻璃入射空气（$n_i = 1.5, n_t = 1$）。
+图 \ref{反射折射光的振幅与能量变化}\footnote{源码见附录 \ref{反射折射光的振幅与能量变化 源码}} 展示了反射折射光的振幅 $r_s, r_p, t_s, t_p$、能量 $R_s, R_p, R$ 随入射角 $\tan \theta_i$ 的变化，其中 (a) 图为空气入射玻璃（$n_i = 1, n_t = 1.5$），(b) 图为玻璃入射空气（$n_i = 1.5, n_t = 1$）。
 
-图 \ref{反射光 s 分量与 p 分量的相位增量} 展示了反射光的 s 分量与 p 分量的相位增量 $\delta_{r,s}, \delta_{r,p}$ 随入射角 $\theta_i$ 的变化\footnote{源码见附录 \ref{反射光 s 分量与 p 分量的相位增量 源码}}，其中 (a) 图为空气入射玻璃（$n_i = 1, n_t = 1.5$），(b) 图为玻璃入射空气（$n_i = 1.5, n_t = 1$）。特别地，当 (b) 图中 $\theta_i > \theta_C$ 时，发生全（内）反射，此时 $r_s, r_p, t_s, t_p \in \C \setminus \R$ ，图中展示的是它们的模长，即 $|r_s|, |r_p|, |t_s|, |t_p|$。
+图 \ref{反射光 s 分量与 p 分量的相位增量}\footnote{源码见附录 \ref{反射光 s 分量与 p 分量的相位增量 源码}} 展示了反射光的 s 分量与 p 分量的相位增量 $\delta_{r,s}, \delta_{r,p}$ 随入射角 $\theta_i$ 的变化，其中 (a) 图为空气入射玻璃（$n_i = 1, n_t = 1.5$），(b) 图为玻璃入射空气（$n_i = 1.5, n_t = 1$）。特别地，当 (b) 图中 $\theta_i > \theta_C$ 时，发生全（内）反射，此时 $r_s, r_p, t_s, t_p \in \C \setminus \R$ ，图中展示的是它们的模长，即 $|r_s|, |r_p|, |t_s|, |t_p|$。
 
-图 \ref{隐失波穿透深度与 GH Shift 玻璃入射空气} 展示了隐失波穿透深度 $\delta$ 和 GH SHift $\Delta x$ 随入射角 $\theta_i$ 的变化\footnote{源码见附录 \ref{隐失波穿透深度与 GH Shift 玻璃入射空气 源码}}。
+图 \ref{隐失波穿透深度与 GH Shift 玻璃入射空气}\footnote{源码见附录 \ref{隐失波穿透深度与 GH Shift 玻璃入射空气 源码}} 展示了隐失波穿透深度 $\delta$ 和 GH SHift $\Delta x$ 随入射角 $\theta_i$ 的变化。
 
 
 \newpage
@@ -1206,17 +1243,22 @@ E = E_0 \cos \left(-\omega t + \alpha \right) = E_0 \cdot e^{i(-\omega t + \alph
 前面我们已经提到，在叠加（或干涉）问题中，电场的振幅通常只是位置的函数，而与时间无关，其实这也是观察到干涉图样的必要条件。观察干涉图样，无非是用照片（视频等同于照片）、人眼、辐射计以及类似的传感器，它们都有一定的“曝光时间”，我们只能观察到在曝光时间内，光强或辐射强度的平均值，即：
 
 \begin{equation}
-I = I_1 + I_2 + 2 \sqrt{I_1 I_2} \frac{1}{\tau} \int_{0}^{\tau}  \cos(\Delta \alpha) \mathrm{d} t
+I = I_1 + I_2 + 2 \sqrt{I_1 I_2} \cdot \frac{1}{\tau} \int_{0}^{\tau}  \cos(\Delta \alpha) \mathrm{d} t
 \end{equation}
-其中 $\tau$ 为仪器的曝光时间。对可见光而言，其振荡周期 $T = \frac{\lambda}{v}$ 在 $10^{-15}$ s 级别，因此 $\tau$ 通常远大于 $T$，这样，我们只能观察到平均光强，而无法观察到光强的瞬时变化。如果 $\Delta \alpha$ 与时间无关，或者在曝光时间内几乎保持不变，那么就能得到（观察到）稳定的干涉图样。否则恒有 $I = I_1 + I_2$，是平凡的叠加，观察不到干涉现象。
+其中 $\tau$ 为仪器的曝光时间。对可见光而言，其振荡周期 $T = \frac{\lambda}{v}$ 在 $10^{-15}$ s 级别，因此 $\tau$ 通常远大于 $T$，这样，我们只能观察到平均光强，而无法观察到光强的瞬时变化。如果 $\Delta \alpha$ 与时间无关，或者在曝光时间内几乎保持不变，那么就能得到（观察到）稳定的干涉图样。否则恒有 $I = I_1 + I_2$，是平凡的叠加，称为非相干叠加。
 
 另外，若两波源的振动方向垂直，电场也仅是平凡的叠加，而不会产生干涉。因此，干涉现象要求两波源振动方向不能垂直。
+\\
 
-还有一种情况是，实际中的波源（光源）大多不能产生理想的、初相位不变的单频波。
 
-例如，对普通光源（如白炽灯），光是由光源中的原子、分子发生能级跃迁时发出的，跃迁时发出的波列都是有限长的，且初相位随机，持续时间通常短于 10 ns，在此时段内，光场振荡约百万次。对于外界的探测设备来讲，10 ns 仍是一个极短的时间，通常远远小于曝光时间。因此，即使每个波列的初相位都相同，在曝光时间内的上万个波列的平均下，积分项 $\int_{0}^{\tau}  \cos(\Delta \alpha) \mathrm{d} t$ 为 0，$I = I_1 + I_2$，导致观察到的强度分布仅为平凡的叠加，无法观察到干涉。
+以能发射单频波的普通光源为例，光是由光源中的原子、分子发生能级跃迁时发出的，跃迁时发出的波列都是有限长的，且初相位随机，持续时间 $\tau_0$ 通常短于 10 ns，在此时段内，光场振荡约百万次。对于外界的探测设备来讲，10 ns 仍是一个极短的时间，通常远远小于曝光时间。因此，即使每个波列的初相位都相同，在曝光时间内的上万个波列的平均下，积分项 $\frac{1}{\tau}\int_{0}^{\tau}  \cos(\Delta \alpha) \mathrm{d} t$ 为 0，$I = I_1 + I_2$，导致观察到的强度分布仅为平凡的叠加，无法观察到干涉。
+上面的单频普通光源，不断发出初相位随机的波列，并且波列持续时间极短（相对于曝光时间），由这样的光源不能得到任何干涉图样，称为 {\color{red} 时间不相干}。
 
-上面光源发出的光的初相位是时间的函数，随着时间快速变化，无法产生干涉，称其为不相干光源。在实际中，还有一些光源，并不能达到完美的点光源，而是有一定的光源宽度，当宽度较大时，不同位置上光的叠加，会导致条纹的对比度降低（甚至为 0），称为空间不相干。另外有一些光源，发出的光具有多个波长（或者频谱较均匀），不同波长相互叠加导致相干性降低，称为时间不相干。
+有一些光源，它们具有一定的发光宽度，不能看作理想的点光源。当光源宽度较大时，光源不同部分发出的光的叠加，会导致条纹的对比度降低（甚至为 0），称为 {\color{red} 空间不相干}。
+
+还有一些光源是多频光源（或具有一定宽度的光谱），波长差别极小时（通常是 $10^{-2}$ nm 级），不同波长相互叠加导致条纹对比度降低，波长差别较大时，$\cos(\Delta \alpha)$ 的周期远小于 $\tau$，积分项为零，也只能发生非相干叠加。以两频光源为例，发出时间角频率为 $\omega_1$ 和 $\omega_2$ 的光，则在同一位置，相位差 $\Delta \alpha = (k_2 - k_1)x - (\omega_2 - \omega_1)t$ 是 $t$ 的函数，当曝光时间 $\tau$ 远大于调制周期 $T = \frac{2 \pi}{\omega_1 - \omega_2}$ 时，积分项 $\frac{1}{\tau}\int_{0}^{\tau}  \cos(\Delta \alpha) \mathrm{d} t$ 趋于 0，得到 $I = I_1 + I_2$，也是非相干叠加。
+
+总而言之，影响相干性的条件大致有三个方面：波列持续时间 $\tau_0$、光源宽度 $d$ 和发光光谱 $i = i(\lambda)$。现实中没有任何一种光源在上面三个方面都做到极好，因此，在设计干涉实验时，需要依据选定光源的特性，选择合适的实验方案，或者依据实验弱化了哪些因素的影响，选择合适的光源。
 
 %\includemedia[
 %  width=10cm,
@@ -1263,6 +1305,18 @@ I = I_1 + I_2 + 2 \sqrt{I_1 I_2} \frac{1}{\tau} \int_{0}^{\tau}  \cos(\Delta \al
 d = 100 \ \mathrm{\mu m},\  R = 5\ \mathrm{cm},\ D = 1\ \mathrm{m},\ L = 4 \ \mathrm{cm},\quad D \gg L \gg d
 \end{equation}
 
+\begin{figure}[H]\centering
+    \begin{subfigure}[t]{0.52\columnwidth}\centering
+        \includegraphics[height=165pt]{assets/3/杨双.pdf}
+        \caption{\bfseries 杨氏双缝干涉装置 }
+    \end{subfigure}\begin{subfigure}[t]{0.48\columnwidth}\centering
+        \includegraphics[height=165pt]{assets/3/杨残差.pdf}
+        \caption{\bfseries 近似模型残差分布 }
+    \end{subfigure}
+    \caption{\bfseries 杨氏双缝干涉装置与近似模型残差分布 }\label{杨氏双缝干涉装置}
+\end{figure}
+
+
 设通过双缝屏后，两柱面波的振幅系数相同，都为 $A$，真空介电常量 $\varepsilon_0 = 8.854187817 \times 10^{-12}\ \mathrm{F\cdot m^{-1}}$，真空磁导率 $\mu_0 = 4\pi \times 10^{-7}\ \mathrm{N\cdot A^{-2}}$，则两波的光强度分别为
 \begin{equation}
     I_1 = \frac{1}{2}\sqrt{\frac{\varepsilon_0}{\mu_0}}E_{1,0}^2 = \frac{1}{2}\sqrt{\frac{\varepsilon_0}{\mu_0}} \cdot \frac{A^2}{r_1},\quad
@@ -1283,31 +1337,33 @@ d = 100 \ \mathrm{\mu m},\  R = 5\ \mathrm{cm},\ D = 1\ \mathrm{m},\ L = 4 \ \ma
     I(x) = \sqrt{\frac{\varepsilon_0}{\mu_0}} \cdot \frac{A^2}{D} \left[ 1 + \cos \left( \frac{2 \pi  d}{\lambda D }x \right) \right] = \sqrt{\frac{\varepsilon_0}{\mu_0}} \cdot \frac{A^2}{D} \left[ 1 + \cos \left( \frac{2 \pi x}{\Delta x} \right) \right]
 \end{gather}
 
-\begin{figure}[H]\centering
-    \begin{subfigure}[t]{0.52\columnwidth}\centering
-        \includegraphics[height=165pt]{assets/3/杨双.pdf}
-        \caption{\bfseries 杨氏双缝干涉装置 }
-    \end{subfigure}\begin{subfigure}[t]{0.48\columnwidth}\centering
-        \includegraphics[height=165pt]{assets/3/杨残差.pdf}
-        \caption{\bfseries 近似模型残差分布 }
-    \end{subfigure}
-    \caption{\bfseries 杨氏双缝干涉装置与近似模型残差分布 }\label{杨氏双缝干涉装置}
-\end{figure}
 
-图 \ref{近似模型与非近似模型的比较} 展示了未近似和近似时，振幅、光强在接受屏上的分布情况，图 \ref{杨氏双缝干涉装置} (b) 是近似与未近似模型的残差分布\footnote{图 \ref{杨氏双缝干涉装置} (b) 与图 \ref{近似模型与非近似模型的比较} 源码见附录 \ref{杨氏双缝干涉装置 源码}}，其中装置参数采取典型值。计算得到一些误差参数（对横坐标均匀离散 1000 个点）如下\footnote{这些误差参数的定义见附录 \ref{} 或网址 (here)}: 
+图 \ref{近似模型与非近似模型的比较}\footnote{图 \ref{杨氏双缝干涉装置} (b) 与图 \ref{近似模型与非近似模型的比较} 源码见附录 \ref{杨氏双缝干涉装置 源码}} 展示了未近似和近似时，振幅、光强在接受屏上的分布情况，图 \ref{杨氏双缝干涉装置} (b) 是近似与未近似模型的残差分布，其中装置参数采取典型值。计算得到一些误差参数（对横坐标均匀离散 1000 个点）如下\footnote{这些误差参数的定义详见 \href{https://yidingg.github.io/YiDingg/\#/Notes/Else/GoodnessOfFit}{YiDingg > Notes > Else > Goodness of Fit}}: 
 \begin{gather}
-\begin{matrix}
-    \text{相对平均值误差：} \text{RME}_{E_0} =  0.0001336621,\quad \text{RME}_{I} = 0.0002192205 \\
-    \text{决定系数：} \text{R}^2_{E_0} =  0.9999969495,\quad \text{R}^2_{I} = 0.9999975710 \\
-    \text{调整决定系数：} \text{R}^2_{\text{adj}, E_0} = 0.9999969464,\quad \text{R}^2_{\text{adj}, I} = 0.9999975686 \\
-    \text{平均标准绝对残差：} \text{RS}_{E_0} = 0.0005191648,\quad \text{RS}_{I} = 0.0006515739\\
-    \text{平均标准平方残差：} \text{RSS}_{E_0} = 0.0000007426 ,\quad \text{RSS}_{I} = 0.0000012850  \\ 
-    \text{标准面积误差：} \text{SAE}_{E_0} = 0.0005185186 ,\quad \text{SAE}_{I} = 0.0006493885
-\end{matrix}
+\begin{aligned}
+    &1 - R^2_{E_0} = 0.0000030505,              && 1 - R^2_{I} = 0.0000024290 \\
+    &1 - R^2_{\text{adj}, E_0} = 0.0000030536,  && 1 - R^2_{\text{adj}, I} = 0.0000024314 \\
+    & MAPE_{E_0}  = 0.0020522069, && MAPE_{I}  = 0.00415721554 \\
+    & MyMAPE_{E_0}  = 0.0017294036, && MyMAPE_{I}  = 0.0010723717 \\
+    & RMSE_{E_0}  = 0.0534542000, && RMSE_{I}  = 0.0071984799 \\
+    & fitness_{\text{adj}, E_0}  = 0.0534543632, && fitness_{\text{adj}, I}  = 0.0071984975 \\
+    & SAAE_{E_0}  = 0.0005185186, && SAAE_{I}  = 0.0006493885
+\end{aligned}
 \end{gather}
 
+%\begin{gather}
+%\begin{matrix}
+%    \text{相对平均值误差：} \text{RME}_{E_0} =  0.0001336621,\quad \text{RME}_{I} = 0.0002192205 \\
+%    \text{决定系数：} \text{R}^2_{E_0} =  0.9999969495,\quad \text{R}^2_{I} = 0.9999975710 \\
+%    \text{调整决定系数：} \text{R}^2_{\text{adj}, E_0} = 0.9999969464,\quad \text{R}^2_{\text{adj}, I} = 0.9999975686 \\
+%    \text{平均标准绝对残差：} \text{RS}_{E_0} = 0.0005191648,\quad \text{RS}_{I} = 0.0006515739\\
+%    \text{平均标准平方残差：} \text{RSS}_{E_0} = 0.0000007426 ,\quad \text{RSS}_{I} = 0.0000012850  \\ 
+%    \text{标准面积误差：} \text{SAE}_{E_0} = 0.0005185186 ,\quad \text{SAE}_{I} = 0.0006493885
+%\end{matrix}
+%\end{gather}
 
-由图 \ref{杨氏双缝干涉装置} (b)，图 \ref{近似模型与非近似模型的比较} 和几个误差参数可以看到，近似效果较好。
+
+由图 \ref{杨氏双缝干涉装置} (b)，图 \ref{近似模型与非近似模型的比较} 和列出的误差参数可以看到，近似效果很好。
 
 \begin{figure}[H]\centering
 \begin{subfigure}[t]{0.5\columnwidth}\centering
@@ -1331,7 +1387,7 @@ d = 100 \ \mathrm{\mu m},\  R = 5\ \mathrm{cm},\ D = 1\ \mathrm{m},\ L = 4 \ \ma
 
 白光光源与其他补充内容详见 \href{https://produckthieves.home.blog/2020/02/10/phy-c15-double-slit-interference/}{PHY C15: Double Slit Interference}、\href{https://www.physics.louisville.edu/cldavis/phys299/notes/lo_interference.html}{University of Louisville: Double Slit Interference} 以及 \href{https://zhuanlan.zhihu.com/p/335815195}{知乎：双缝干涉实验}，我们不多赘述。从另一个角度，也可以利用双曲线的定义杨氏干涉的精确模型 + 近似模型，详见 \href{https://www.zhihu.com/question/382600481/answer/2565939868}{知乎：杨氏干涉的条纹间距}。
 
-\subsection{杨氏实验中干涉条纹的移动}
+\subsection{杨氏实验中光源位置和宽度对干涉条纹的影响}\label{杨氏实验中光源位置和宽度对干涉条纹的影响}
 
 为提高分析效率，此节的推导都采用近似模型。接受屏上相邻明（暗）条纹的间距 $\Delta x$ 为：
 \begin{equation}
@@ -1339,11 +1395,10 @@ d = 100 \ \mathrm{\mu m},\  R = 5\ \mathrm{cm},\ D = 1\ \mathrm{m},\ L = 4 \ \ma
 \end{equation}
 取 $\lambda = 700.0\ \mathrm{nm}$ 的红光，$\Delta x = 7 \ \mathrm{mm}$，可被人眼分辨。称 $\frac{\Delta x}{2}$ 为条纹宽度，此时条纹宽度为 $3.5\ \mathrm{mm}$。
 
-下面依次讨论光源位置、光源宽度对干涉条纹的影响。先考虑理想点光源的微小移动引起的干涉条纹移动。当点光源位于中轴线上时，0 级明纹也在轴上，假设光源 S 向下移动距离 $| \delta_s |$，也即向上移动 $(-\delta_s)$，在近似条件 \ref{杨氏双缝干涉近似} 下，以及 $R \gg d$ 时近似有 $R_1 - R_2 = \frac{d(-\delta_s)}{R}$，得到 0 级明纹向上移动的距离 $\delta_x$: 
+下面依次讨论光源位置、光源宽度对干涉条纹的影响。先考虑理想点光源的微小移动引起的干涉条纹移动。当点光源位于中轴线上时，0 级明纹也在轴上，假设光源 S 向下移动距离 $| \delta_s |$，也即向上移动 $(-\delta_s)$，在近似条件 \ref{杨氏双缝干涉近似} 下，以及 $R \gg d$ 时近似有 $R_1 - R_2 = \frac{d(-\delta_s)}{R}$，得到 0 级明纹向上移动的距离 $\delta_x$ 如下，其中负号表示两者移动方向相反。
 \begin{equation}
 \delta_x = - \frac{D}{R}\delta_s
 \end{equation}
-负号表示两者移动方向相反。
 
 实际光源并非是理想的点光源，而是有一定的光源宽度，虽然对干涉条纹位置影响不大，但会对条纹对比度产生明显的影响。理想点光源不在中央时，屏幕上的强度分布大小可以近似不变，仅是发生上下平移。记点光源位置为 $\delta_s$，在公式 \ref{杨氏双缝干涉近似结果} 中作映射 $x \longrightarrow x - \delta_x$，并简记接受屏上的最大光强为 $I_{\text{max}} = 2 \frac{\varepsilon_0}{\mu_0} \cdot \frac{A^2}{r}$，简记 $x$ 前的系数为 $\eta = \frac{2 \pi}{\Delta x}$，得到新的强度分布：
 \begin{align}
@@ -1361,18 +1416,14 @@ I(x) &= \frac{I_{\text{max}}}{2}\left[
 
 
 
-设光源在中央且宽度为 $b$（即发光区域在 $[-\frac{2}{b},\ \frac{2}{b}]$），光源均匀发光（事实上这个条件比较苛刻，现实中的激光器无法做到，需要对光线进行处理），屏幕上的强度分布 $I(x, b)$ 为：
+设光源在中央且宽度为 $b$（即发光区域在 $[-\frac{2}{b},\ \frac{2}{b}]$），光源均匀发光（事实上这个条件比较苛刻，现实中的激光器无法做到，需要对光线进行处理），屏幕上的强度分布 $I(x, b)$ 和条纹对比度为：
 \begin{gather}
 I(x, b) = \frac{I_{\text{max}}}{2b} \int_{-\frac{b}{2}}^{\frac{b}{2}} \left[ 1 + \cos \left( \eta x \right)\cos \left( \eta\frac{D}{R}\delta_s \right) - \sin \left( \eta x \right)\sin \left( \eta\frac{D}{R}\delta_s \right) \right] \mathrm{d} \delta_s \\ 
-= \frac{I_{\text{max}}}{2} \left[ 1 + \frac{\sin \left( \frac{\eta D}{2 R} b \right)}{\frac{\eta D}{2 R} b}\cdot \cos \left( \eta x \right) \right] = \frac{I_{\text{max}}}{2} \left[ 1 + \frac{\sin \left( \frac{\pi d}{\lambda R} b \right)}{\frac{\pi d}{\lambda R} b}\cdot \cos \left( \frac{2 \pi x}{\Delta x}  \right) \right]
+= \frac{I_{\text{max}}}{2} \left[ 1 + \frac{\sin \left( \frac{\eta D}{2 R} b \right)}{\frac{\eta D}{2 R} b}\cdot \cos \left( \eta x \right) \right] = \frac{I_{\text{max}}}{2} \left[ 1 + \frac{\sin \left( \frac{\pi d}{\lambda R} b \right)}{\frac{\pi d}{\lambda R} b}\cdot \cos \left( \frac{2 \pi x}{\Delta x}  \right) \right] \\ 
+\gamma = \gamma(b) = \left| \frac{\sin u}{u} \right| = \left| \frac{\sin \left( \frac{\pi d}{\lambda R} b \right)}{\frac{\pi d}{\lambda R} b} \right|
 \end{gather}
 
-对任意给定的光源宽度 $b$，光强的最大最小值为 $1 \pm \left|  \frac{\sin u}{u} \right|$ ，其中 $u = \frac{\pi d}{\lambda R} b$，于是干涉条纹对比度 $\gamma$:
-\begin{equation}
-    \gamma = \gamma(b) = \left| \frac{\sin u}{u} \right| = \left| \frac{\sin \left( \frac{\pi d}{\lambda R} b \right)}{\frac{\pi d}{\lambda R} b} \right|
-\end{equation}
-
-强度分布 $I(x, b)$ 与干涉条纹对比度 $\gamma(b)$ 如图 \ref{光源宽度} 所示\footnote{源码见附录 \ref{光源宽度 源码}}，当 $b = \frac{\lambda R}{d}$ 时，对比度为 0，完全看不到干涉条纹，将其称为光源极限宽度，此时认为光源完全不相干。
+其中 $u = \frac{\pi d}{\lambda R} b$。强度分布 $I(x, b)$ 与干涉条纹对比度 $\gamma(b)$ 如图 \ref{光源宽度} 所示\footnote{源码见附录 \ref{光源宽度 源码}}，当 $b = \frac{\lambda R}{d}$ 时，对比度为 0，完全看不到干涉条纹，将其称为光源极限宽度，此时认为光源完全不相干。
 
 \begin{figure}[H]\centering
 \begin{subfigure}[t]{0.5\columnwidth}\centering
@@ -1385,6 +1436,7 @@ I(x, b) = \frac{I_{\text{max}}}{2b} \int_{-\frac{b}{2}}^{\frac{b}{2}} \left[ 1 +
 \end{subfigure}
 \caption{\bfseries 光源宽度对干涉条纹的影响 }\label{光源宽度}
 \end{figure}
+
 
 \section{分振幅干涉}
 
@@ -1424,10 +1476,10 @@ I(x, b) = \frac{I_{\text{max}}}{2b} \int_{-\frac{b}{2}}^{\frac{b}{2}} \left[ 1 +
 
 由于没有发生全反射，相位变化是平凡的（透射无相变，反射只能是 $-\pi$ 或零），而反射光的相位变化已经包含在振幅反射系数 $r$ 中了（由其正负表示）。因此，在分析多光束干涉时，只需考虑各光（有正负）的振幅以及光程差，处理波函数的表达式的叠加即可。
 
-记相邻两束反射（透射）光的光程差为 $\Delta L$，光程差带来的相位差为 $\delta$（{\color{red} 无需考虑反射相位突变，因为它涵盖在了振幅的正负中}），由图 \ref{薄膜干涉} (b) 所示，可求得：
+记相邻两束反射（透射）光的光程差为 $\Delta l$，光程差带来的相位差为 $\delta$（{\color{red} 无需考虑反射相位突变，因为它涵盖在了振幅的正负中}），由图 \ref{薄膜干涉} (b) 所示，可求得：
 \begin{gather}
-    \Delta L = l_2 - l_1 = 2 n_f\cdot  \overline{O_1B_1} - n_i\cdot  \overline{O_1 C} = \frac{2 n_f d}{\cos \theta_t} - 2 n_i \sin \theta_i \tan \theta_t d = 2 n_f d \cos \theta_f \\ 
-    \delta = \frac{2 \pi}{\lambda_i} \Delta L = \frac{4 \pi n_f d \cos \theta_f}{\lambda_i}
+    \Delta l = l_2 - l_1 = 2 n_f\cdot  \overline{O_1B_1} - n_i\cdot  \overline{O_1 C} = \frac{2 n_f d}{\cos \theta_t} - 2 n_i \sin \theta_i \tan \theta_t d = 2 n_f d \cos \theta_f \\ 
+    \delta = \frac{2 \pi}{\lambda_i} \Delta l = \frac{4 \pi n_f d \cos \theta_f}{\lambda_i}
 \end{gather}
 由公式 \ref{斯托克斯倒逆关系}（斯托克斯倒逆关系），$r + r' = 1,\ tt' + rr' =1$，结合等比数列极限（$n \to \infty$），可得反射波的总振幅系数 $r_A$、透射波的总振幅系数 $t_B$:
 \begin{gather}
@@ -1463,9 +1515,9 @@ I(x, b) = \frac{I_{\text{max}}}{2b} \int_{-\frac{b}{2}}^{\frac{b}{2}} \left[ 1 +
     \delta = \frac{4 \pi n_f d \cos \theta_f}{\lambda_i},\quad F_s = \frac{4R_s}{(1 - R_s)^2},\quad F_p = \frac{4R_p}{(1 - R_p)^2}
 \end{gather}
 其中 $n_f$ 是薄膜的折射率，容易验证上式满足能量守恒。在实际操作中，基本都会选取接近垂直的入射光，此时 $s$ 波 $p$ 波（近似）具有相同的能量系数 $R = R_s = R_p$，因此又常写为下面的式子：
-\begin{equation}
+\begin{gather}
     R_{F-P} = \frac{F \sin^2 \frac{\delta}{2}}{1 + F \sin^2 \frac{\delta}{2}},\quad T_{F-P} = \frac{1}{1 + F \sin^2 \frac{\delta}{2}},\quad F = \frac{4R}{(1 - R)^2},\quad \delta = \frac{4 \pi n_f d \cos \theta_f}{\lambda_i}
-\end{equation}
+\end{gather}
 
 $T_{F-P} = T_{F-P}(F, \delta)$ 的图像如下所示\footnote{源码见附录 \ref{精细度对透射率的影响 源码}}，$F$ 越大，透射光的对比度越高，在干涉现象中形成的条纹越明显，且 $F$ 增大时，透射峰的宽度减小，亮条纹变细变锐利。
 
@@ -1518,18 +1570,20 @@ $T_{F-P} = T_{F-P}(F, \delta)$ 的图像如下所示\footnote{源码见附录 \r
 
 \subsection{双光束薄膜干涉}
 
-当振幅反射率 $r$ 较小时，$A$ 光的振幅衰减很快，可以仅考虑双光束干涉（$A_1$ 与 $A_2$），而忽略剩余反射光带来的影响，如图 \ref{薄膜干涉} (b)。实际操作中，也常用薄透镜将两束出射光汇聚于一点，而不会引起附加的相位差。反射后光线 $O_1A_1$ 与 $O_2A_2$ 的光程差 $\Delta L$ 为：
+当振幅反射率 $r$ 较小时，$A$ 光的振幅衰减很快，可以仅考虑双光束干涉（$A_1$ 与 $A_2$），而忽略剩余反射光带来的影响，如图 \ref{薄膜干涉} (b)。实际操作中，也常用薄透镜将两束出射光汇聚于一点，而不会引起附加的相位差。反射后光线 $O_1A_1$ 与 $O_2A_2$ 的光程差 $\Delta l$ 为：
 \begin{equation}
-    \Delta L = l_2 - l_1 = 2 n_f\cdot  \overline{O_1B_1} - n_i\cdot  \overline{O_1 C} = \frac{2 n_f d}{\cos \theta_t} - 2 n_i \sin \theta_i \tan \theta_t d = 2 n_f d \cos \theta_f
+    \Delta l = l_2 - l_1 = 2 n_f\cdot  \overline{O_1B_1} - n_i\cdot  \overline{O_1 C} = \frac{2 n_f d}{\cos \theta_t} - 2 n_i \sin \theta_i \tan \theta_t d = 2 n_f d \cos \theta_f
 \end{equation}
-即 $A_2$ 比 $A_1$ 多走了 $\Delta L$ 的光程，相当于相位增量 $ - \omega \frac{\Delta L}{c}$，算上反射时 $A_2$ 与 $A_1$ 之间的相位增量 $-\pi$（事实上 $s$ 波是 $-\pi$ 而 $p$ 波是 $\pi$），总光程差 OPD (Optical Path Difference)（$A_2$ 的减去 $A_1$）和总相位增量 $\Delta \alpha$ 为：
+即 $A_2$ 比 $A_1$ 多走了 $\Delta l$ 的光程，相当于相位增量 $ - \omega \frac{\Delta l}{c}$，算上反射时 $A_2$ 与 $A_1$ 之间的相位增量 $-\pi$（事实上 $s$ 波是 $-\pi$ 而 $p$ 波是 $\pi$），总光程差 OPD (Optical Path Difference, 常记为 $\Delta L$)（$A_2$ 的减去 $A_1$）和总相位增量 $\Delta \alpha$ 为：
 \begin{equation}
-    \text{OPD\ } = 2 n_f d \cos \theta_f + \frac{\lambda}{2} ,\quad \Delta \alpha 
+    \boxed{
+        \Delta L = 2 n_f d \cos \theta_f + \frac{\lambda}{2}
+    } ,\quad \Delta \alpha 
     = - \left(1 + \frac{4 n_f  \cos \theta_t}{\lambda} \cdot d \right) \pi
     = - \left[ 1 + \frac{4 n_f \sqrt{ 1 - \left(\frac{\sin \theta_i}{n_{ti}} \right)^2 }  }{\lambda} \cdot d \right] \pi
 \end{equation}
 
-随参数 $\theta_i$、$d$ 的改变，不同位置上可以得到不同相位，从而产生干涉条纹。
+随参数 $\theta_i$、$d$ 的改变，不同位置上会有不同的 $\Delta L$，得到不同的振幅大小，从而产生干涉条纹。
 
 \subsection{等倾干涉}
 
@@ -1539,12 +1593,12 @@ $T_{F-P} = T_{F-P}(F, \delta)$ 的图像如下所示\footnote{源码见附录 \r
 \item 暗条纹：$\Delta L = (k + \frac{1}{2}) \lambda \Longrightarrow \cos \theta_t = \frac{\lambda}{2 n_f d} \cdot k,\quad k = 0, 1, 2, 3, ... $
 \item $r$ 较小时，等倾双光束强度近似相等，干涉条纹对比度接近 1
 \item 称中心暗条纹为 0 级暗纹，往外依次是 1 级亮纹、1 级暗纹、2 级亮纹、2 级暗纹…… 
-\item 等倾条纹{\color{red} 内疏外密}。这是因为（简记 $\theta_t$ 为 $\theta$）：
+\item 等倾条纹{\color{red} 内疏外密}。这是因为：
 \begin{gather}
-\cos \theta_{n + 1} - \cos \theta_{n} = \frac{\lambda}{2 n_f d},\quad \frac{\cos \theta_{n + 1} - \cos \theta_{n} }{\theta_{n + 1} - \theta_{n}}\approx \frac{\mathrm{d} \cos \theta }{\mathrm{d} \theta } = - \sin \theta_n \\ 
-\Longrightarrow \Delta r = r_{n +1} - r_n \propto \theta_{n+1} - \theta_n = - \frac{\lambda}{2d \sin \theta_{t,n}}
+\cos \theta_{t, n + 1} - \cos \theta_{t, n} = \frac{\lambda}{2 n_f d},\quad \frac{\cos \theta_{t, n + 1} - \cos \theta_{t, n} }{\theta_{t, n + 1} - \theta_{t, n}}\approx \frac{\mathrm{d} \cos \theta }{\mathrm{d} \theta } = - \sin \theta_n \\ 
+\Longrightarrow \Delta r = (r_{n +1} - r_n) \propto (\theta_{t, n+1} - \theta_n) = - \frac{\lambda}{2d \sin \theta_{t, n}}
 \end{gather}
-随着 $n$ 的增大，入射光指在薄膜（半反射镜）上的点由中心向外移动，$\theta$ 增大，于是 $| \Delta r |$ 减小，条纹逐渐变密。
+随着 $r$ 的增大，入射光指在薄膜（半反射镜）上的点由中心向外移动，$\theta_i$ 增大，$\theta_t$增大，于是 $| \Delta r |$ 减小，条纹逐渐变密。
 \item 增加薄膜厚度，条纹向外移动。薄膜厚度连续增大时，中心位置强度周期性变化，且不断生出新条纹向外移动，可以利用这一特点精确测量薄膜厚度的改变量。
 \end{enumerate}
 
@@ -1559,11 +1613,11 @@ $T_{F-P} = T_{F-P}(F, \delta)$ 的图像如下所示\footnote{源码见附录 \r
 
 \subsection{等厚干涉} 
 
-等厚干涉，也称等厚条纹干涉，是指由薄膜厚度不均匀而引起的干涉现象，产生的条纹是等厚位置的条纹，例如劈尖干涉、牛顿环等。
+等厚干涉，也称等厚条纹干涉，是指由薄膜厚度不均匀而引起的干涉现象，它的主要变量（参数）是光学厚度 $n_f d$ 而不是 $\theta_i$（即 $\theta_t$）。等厚干涉产生的条纹一般是等厚位置的条纹，例如劈尖干涉、牛顿环等。
 
 \subsubsection{劈尖干涉：}
 
-两块（几乎）平行的玻璃板，夹角为 $\theta$ 极小，中间是空气层，即薄膜是空气，观察反射光的干涉现象。由 $R_{F-P} = \frac{ F \sin^2 (\frac{\delta}{2}) }{1 + F \sin^2 (\frac{\delta}{2})}$，明条纹对应 $\frac{\delta}{2} = (k + \frac{1}{2}) \pi$，暗条纹对应 $\frac{\delta}{2} = k \pi$，作近似 $n_f = 1$，$\cos \theta_f = 1$，得到：
+两块（几乎）平行的玻璃板，夹角为 $\theta$ 极小，中间是空气层，即薄膜是空气，观察反射光的干涉现象。由 $R_{F-P} = \frac{ F \sin^2 (\frac{\delta}{2}) }{1 + F \sin^2 (\frac{\delta}{2})}$ 可知，明条纹对应 $\frac{\delta}{2} = (k + \frac{1}{2}) \pi$，这等价于 $2 n_f d\cos \theta_f + \frac{\lambda}{2} = k\lambda$，而暗条纹对应 $\frac{\delta}{2} = k \pi$。作近似 $n_f = 1$，$\cos \theta_f = 1$，得到：
 \begin{gather}
     \text{明条纹：} d = \left( 1 + 2k \right)\cdot \frac{\lambda}{4},\quad \text{暗条纹：} d = \left( 2k \right)\cdot \frac{\lambda}{4},\quad k = 0, 1, 2, ... \\ 
     \text{相邻亮（暗）纹：}\Delta d = \frac{\lambda}{2},\quad \Delta x = \frac{\lambda}{2\sin \theta}
@@ -1583,13 +1637,74 @@ $T_{F-P} = T_{F-P}(F, \delta)$ 的图像如下所示\footnote{源码见附录 \r
 
 中心为 0 级暗纹，往外级数增大，干涉条纹逐渐变密。
 
-\subsection{迈克尔逊干涉}
+
+\section{迈克尔逊干涉}
+
+我们需要认识到，绝大多数的干涉现象，本质都是空间上两个（甚至多个）不同位置的球面波源（或其他类型的波）在某点的叠加。随着目标位置点 $P$ 的移动，发生叠加的两波（两束光）的 OPD（即 $\Delta L$）不断改变，得到不同的振幅大小，从而产生干涉图样。本节所介绍的几种干涉，其本质也是如此，只是具体实现方式不同。
+
+\subsection{单色光源迈克尔逊干涉：}
+
+迈克尔逊干涉仪如图 \ref{迈克尔逊干涉仪} 所示，图中反射镜 $M_1$ 与 $M_2'$（虚镜）水平，下方是接收屏或接受仪，图中的虚线光路表示出射向无穷远处（不被观察屏接收），或振幅较小而可以忽略的光线。此时的干涉现象类似等倾干涉。
+
+可以证明，从出射开始，分束所得到的两束光的空间光程差为 $\Delta l = 2 d \cos \theta$，其中 $\theta$ 是光束射向反射镜 $M$ 的入射角（光源平行出射时，$\theta = 0$）。再考虑上在分束镜 $G$ 处发生的相位突变（半波损失），与等倾干涉的结论类似，此时的条纹内疏外密，类似等倾干涉时的图 \ref{等倾干涉实验装置}。
+\begin{align}
+\begin{matrix}
+\displaystyle \text{OPD: }& \Delta L = 2 d \cos \theta + \frac{\lambda}{2} \\ 
+\displaystyle \text{亮条纹：}&\Delta L = k \lambda \Longrightarrow \cos \theta_k = \frac{\lambda}{2 n_f d} \cdot (k - \frac{1}{2}),\quad k = 1, 2, 3, ... \\ 
+\displaystyle \text{暗条纹：}&\Delta L = (k + \frac{1}{2}) \lambda \Longrightarrow \cos \theta_k = \frac{\lambda}{2 n_f d} \cdot k,\quad k = 0, 1, 2, 3, ...\\ 
+\displaystyle \text{条纹间距：}& | \Delta r | \propto  \frac{\lambda}{2d \sin \theta_k}
+\end{matrix}
+\end{align}
 
 
+\begin{figure}[H]\centering
+    \includegraphics[width=0.8\columnwidth]{assets/3/迈克尔逊干涉仪.pdf}
+    \caption{\bfseries 迈克尔逊干涉仪}\label{迈克尔逊干涉仪}
+\end{figure}
 
-\section{迈克尔逊干涉与马赫曾德尔干涉}
+对给定的第 $k$ 条亮纹，在图 \ref{迈克尔逊干涉仪} 的情况下（$M_1$ 在 $M_2'$ 下方），将 $M_1$ 向上移动，$d$ 减小，$\cos \theta_k$ 增加，$\theta_k$ 减小，条纹向中心移动，直至完全收缩并消失。并且，随着 $d$ 越来越小，条纹间距 $| \Delta r |$ 越来越大，直至 $d \to 0$ 时 $| \Delta r | \to \infty$，中心条纹布满整个观察屏。继续向上移动 $M_1$，“穿过” $M_2'$ 后，干涉条纹重新出现。
 
+记中心点（$\theta_0 = 0$）处的条纹为中心（零号）条纹（它可能既不是极大值也不是极小值），对于给定的 $d$，得到与中心条纹相差 $\lambda$ 的第 $k$ 号条纹：
+\begin{equation}
+2d (1 - \cos \theta_k) = k \lambda \Longrightarrow \theta_k = \sqrt{\frac{k\lambda}{d}},\quad k = 0, 1, 2, 3, ... 
+\end{equation}
 
+关于如何将迈克尔逊干涉仪看作是具有两个不同位置波源的仪器，详见参考文献 \cite{Optics} Page 516，了解这一部分有助于我们理解干涉仪器的内涵。当 $M_1$ 与 $M_2'$ 不平行时，会发生类似等厚干涉的现象，出现平行直条纹。并且，从数学上可以证明，调整 $M_1$ 和 $M_2'$ 的方向，可以产生直线、圆、椭圆、抛物线或双曲线形的干涉条纹，这一部分我们不深究。
+
+移动反射镜 $M_1$、$M_2$，或者在光路中插入其它介质，可以改变光程差，从而使干涉条纹发生移动。当光程差 $OPD$ 的改变量达到 $\lambda$ 时，每条干涉条纹都会移动一个条纹间距，移动到原先的相邻条纹处，这种方法可以用来测量镜面的微小移动距离，也可以测量插入介质的折射率。设镜面移动的距离或插入介质的厚度为 $\Delta d$，则有：
+\begin{equation}
+2n\Delta d = N\lambda_0
+\end{equation}
+其中 $n$ 是插入介质的折射率（移动镜面时相当于 $n=1$），$\lambda_0$ 是光源发出的光在空气中的波长，$N$ 是移动的条纹数。
+
+\subsection{多色光源迈克尔逊干涉：}
+
+假设光源是双色光源，且两色的强度相同，对任意给定的 $\Delta L$（相当于给定位置 $P$），我们有：
+\begin{gather}
+I_1(\Delta L) = 2I_0 \left[1 + \cos \left(k_1 \Delta L\right)\right],\quad I_2(\Delta L) = 2I_0 \left[1 + \cos \left(k_2 \Delta L\right)\right] \\ 
+\Longrightarrow I(\Delta L) = 4 I_0 \left[ 1 + \cos \left(\frac{\Delta k}{2}\Delta L\right)\cos(\overline{k} \Delta L) \right],\quad \Delta k = k_1 - k_2,\ \overline{k} = \frac{k_1 + k_2}{2}
+\end{gather}
+其中 $\Delta k$ 称为调制（空间角）频率，$\overline{k}$ 为平均（空间角）频率，$\Delta k \ll \overline{k}$ 时，可以观察到条纹对比度 $\gamma$ 随 $\Delta L$ 周期性变化。例如，$\lambda_1 = 550.0\ \mathrm{nm}$，$\lambda_2 = 555.0\ \mathrm{nm}$ 时的情况如图 \ref{双色光源的对比度分布情况} 所示。
+
+\begin{figure}[H]\centering
+\includegraphics[width=0.85\columnwidth]{assets/3/迈克尔逊干涉_双色光源.pdf}
+\caption{\bfseries 双色光源的对比度分布情况}\label{双色光源的对比度分布情况}
+\end{figure}
+
+上面考虑的是线光谱，对于连续光谱，有光谱密度 $i = i(\lambda)$，总光强 $I = \int i(\lambda)\ \mathrm{d}\lambda$。当然，也可以用空间角频率 $k$ 作变量。考虑以 $k_0$ 为中心，宽为 $\Delta k$ 的均匀光谱 $i(k)$，我们有：
+\begin{gather}
+i (k) = 
+\begin{cases}
+    \frac{I_0}{\Delta k}, & |k - k_0| < \frac{\Delta k}{2} \\
+    0, & |k - k_0| > \frac{\Delta k}{2}
+\end{cases} ,\quad \gamma = \gamma(\Delta L) = \left| \frac{\sin \left(\frac{\Delta k \Delta L}{2}\right)}{\frac{\Delta k \Delta L}{2}} \right| 
+\\
+I = \int i(k)\left[1 + \cos (k \Delta L)\right] \ \mathrm{d}k = I_0 \left[ 1 + \frac{\sin \left(\frac{\Delta k \Delta L}{2}\right)}{\frac{\Delta k \Delta L}{2}}\cdot \cos (k_0 \Delta L)\right]
+\end{gather}
+
+上面的结果与 \ref{杨氏实验中光源位置和宽度对干涉条纹的影响} 节 “杨氏实验中光源位置和宽度对干涉条纹的影响” 中光源宽度对干涉条纹的影响完全同构，图像也是同构的。在讨论光源宽度时，我们定义了光源极限宽度 $b_{\max} = \frac{\lambda R}{d}$，类似地，在这里我们定义最大光程差 $\Delta L_{\max} = \frac{2 \pi}{\Delta k} \approx \frac{\lambda^2}{\Delta \lambda}$，这是条纹对比度第一次下降到 0 时对应的光程差。
+
+\subsection{马赫-曾德尔干涉}
 
 \section{光场的空间相干性与时间相干性}
 \section{多光束干涉}
@@ -1735,7 +1850,9 @@ $T_{F-P} = T_{F-P}(F, \delta)$ 的图像如下所示\footnote{源码见附录 \r
 \titleformat{\section}[hang]{\normalfont\centering\Large\bfseries}{\thesection}{8pt}{}
 
 % 附录 A
-\chapter*{附录 A\hspace*{20pt} 波理论}\addcontentsline{toc}{chapter}{附录 A\hspace*{6pt} 波理论}   
+\chapter*{附录 A\hspace*{20pt} 波理论}
+\setcounter{chapter}{20}   % 20-A, 21-B, 用于避免超链接跳转冲突
+\addcontentsline{toc}{chapter}{附录 A\hspace*{6pt} 波理论}   
 \thispagestyle{fancy} 
 \setcounter{section}{0}   
 \renewcommand\thesection{A.\arabic{section}}   
@@ -1850,7 +1967,7 @@ $T_{F-P} = T_{F-P}(F, \delta)$ 的图像如下所示\footnote{源码见附录 \r
 
 
 
-\section{三维波动方程}\label{波动方程}
+\section{多元微分与三维波动方程}\label{波动方程}
 
 在介绍波动方程之前，先给出本文默认的一些符号规定，以及一些运算符的定义。
 
@@ -2148,654 +2265,52 @@ kr = \text{const}
 
 
 
-
-
-
-\chapter*{附录 B\hspace*{20pt}  Matlab 代码}\addcontentsline{toc}{chapter}{附录 B\hspace*{6pt}  Matlab 代码}   
-\thispagestyle{fancy} 
+\chapter*{附录 B\hspace*{20pt}  Matlab 代码}\addcontentsline{toc}{chapter}{附录 B\hspace*{6pt}  Matlab 代码}
+\thispagestyle{fancy}
+\setcounter{chapter}{21}   % 20-A, 21-B, 用于避免超链接跳转冲突
 \setcounter{section}{0}   
 \renewcommand\thesection{B.\arabic{section}}   
 \renewcommand{\thefigure}{B.\arabic{figure}} 
 \renewcommand{\thetable}{B.\arabic{table}}
 
 \section{图 \ref{振幅系数随入射角的变化} 源码}
-\begin{matlablisting}
-%%%%%%%%%% 空气入射玻璃 %%%%%%%%%%
-global n_i n_t
-n_i = 1;
-n_t = 1.5;
-
-theta_t = @(theta_i) asin(n_i/n_t*sin(theta_i));
-r_s = @(theta_i, theta_t) - sin(theta_i - theta_t)./sin(theta_i + theta_t);
-r_p = @(theta_i, theta_t) + tan(theta_i - theta_t)./tan(theta_i + theta_t);
-t_s = @(theta_i, theta_t) 2*sin(theta_t).*cos(theta_i)./sin(theta_i + theta_t);
-t_p = @(theta_i, theta_t) 2*sin(theta_t).*cos(theta_i) ./ ( sin(theta_i + theta_t).*cos(theta_i - theta_t) );
-theta_B = atan(n_t/n_i);
-theta_C = asin(n_t/n_i);
-
-theta_array = linspace(-0.1, pi/2, 101);
-Y = [
-    r_s(theta_array, theta_t(theta_array))
-    r_p(theta_array, theta_t(theta_array))
-    t_s(theta_array, theta_t(theta_array))
-    t_p(theta_array, theta_t(theta_array))
-    ];
-stc = MyPlot(theta_array, Y);
-xline(theta_B, 'b')
-yline(0)
-xlim([0, pi/2])
-ylim([-1, 1])
-stc.leg.String = ["$r_s$"; "$r_p$"; "$t_s$"; "$t_p$"; "$\theta_i = \theta_B$"];
-stc.leg.Interpreter = "latex";
-stc.leg.FontSize = 14;
-stc.leg.Location = "southwest";
-stc.axes.Title.String = '$n_i = 1 < n_t = 1.5$';
-stc.axes.Title.Interpreter = "latex";
-stc.label.x.String = '$\theta_i$';
-stc.label.y.String = '$r$';
-stc.plot.plot_3.LineStyle = ":";
-stc.plot.plot_3.Color = 'b';
-stc.plot.plot_4.LineStyle = ":";
-stc.plot.plot_4.Color = [1 0 1];
-%MyExport_pdf
-
-%%%%%%%%%% 玻璃入射空气 %%%%%%%%%%
-n_i = 1.5;
-n_t = 1;
-
-theta_t = @(theta_i) asin(n_i/n_t*sin(theta_i));
-r_s = @(theta_i, theta_t) - sin(theta_i - theta_t)./sin(theta_i + theta_t);
-r_p = @(theta_i, theta_t) + tan(theta_i - theta_t)./tan(theta_i + theta_t);
-t_s = @(theta_i, theta_t) 2*sin(theta_t).*cos(theta_i)./sin(theta_i + theta_t);
-t_p = @(theta_i, theta_t) 2*sin(theta_t).*cos(theta_i) ./ ( sin(theta_i + theta_t).*cos(theta_i - theta_t) );
-theta_B = atan(n_t/n_i);
-theta_C = asin(n_t/n_i);
-
-
-theta_array = linspace(0, theta_C, 101);
-Y = [
-    r_s(theta_array, theta_t(theta_array))
-    r_p(theta_array, theta_t(theta_array))
-    t_s(theta_array, theta_t(theta_array))
-    t_p(theta_array, theta_t(theta_array))
-    ];
-stc = MyPlot(theta_array, Y);
-xline(theta_B, 'b')
-xline(theta_C, 'r')
-yline(0)
-xlim([0, pi/2])
-ylim([-0.5, 3])
-stc.leg.String = ["$r_s$"; "$r_p$"; "$t_s$"; "$t_p$"; "$\theta_i = \theta_B$"; "$\theta_i = \theta_C$"];
-stc.leg.Interpreter = "latex";
-stc.axes.Title.String = '$n_i = 1.5 > n_t = 1$';
-stc.axes.Title.Interpreter = "latex";
-stc.label.x.String = '$\theta_i$';
-stc.label.y.String = '$r$';
-stc.plot.plot_3.LineStyle = ":";
-stc.plot.plot_3.Color = 'b';
-stc.plot.plot_4.LineStyle = ":";
-stc.plot.plot_4.Color = [1 0 1];
-%MyExport_pdf
-\end{matlablisting}
+\label{振幅系数随入射角的变化 源码}
+\lstinputlisting{D:/a_RemoteRepo/GH.MatlabCodes/本科课程代码/光学/FresnelFormula.m}
 
 \section{图 \ref{反射折射光的振幅与能量变化} 源码}
 \label{反射折射光的振幅与能量变化 源码}
-\begin{matlablisting}
-global n_i n_t
-%%%%%%%%%% 反射折射光振幅与能量变化 (空气入射玻璃) %%%%%%%%%%
-MyColor = num2cell( ...
-    [
-"#ff8080" "#ff0000" "#990000" "#190000"
-"#80ff80" "#00ff00" "#009900" "#001900"
-"#8080ff" "#0000ff" "#000099" "#000019"
-"#ff80ff" "#ff00ff" "#990099" "#190019"
-"#ffff80" "#ffff00" "#999900" "#191900"
-"#80ffff" "#00ffff" "#009999" "#001919"
-"#ffffff" "#bbbbbb" "#999999" "#191919"
-    ]...
-);
-n_i = 1;
-n_t = 1.5;
+\lstinputlisting{D:/a_RemoteRepo/GH.MatlabCodes/本科课程代码/光学/FresnelFormula_AmplitudeAndEnergy.m}
 
-theta_t = @(theta_i) asin(n_i/n_t*sin(theta_i));
-r_s = @(theta_i, theta_t) - sin(theta_i - theta_t)./sin(theta_i + theta_t);
-r_p = @(theta_i, theta_t) + tan(theta_i - theta_t)./tan(theta_i + theta_t);
-t_s = @(theta_i, theta_t) 2*sin(theta_t).*cos(theta_i)./sin(theta_i + theta_t);
-t_p = @(theta_i, theta_t) 2*sin(theta_t).*cos(theta_i) ./ ( sin(theta_i + theta_t).*cos(theta_i - theta_t) );
-theta_B = atan(n_t/n_i);
-theta_C = asin(n_t/n_i);
-
-theta_array_2 = linspace(-0.1, pi/2, 101);
-Y = [
-    r_s(theta_array_2, theta_t(theta_array_2))
-    r_p(theta_array_2, theta_t(theta_array_2))
-    t_s(theta_array_2, theta_t(theta_array_2))
-    t_p(theta_array_2, theta_t(theta_array_2))
-    r_s(theta_array_2, theta_t(theta_array_2)).^2
-    r_p(theta_array_2, theta_t(theta_array_2)).^2
-    0.5 * ( r_s(theta_array_2, theta_t(theta_array_2)).^2 + r_p(theta_array_2, theta_t(theta_array_2)).^2 )
-    ];
-
-stc = MyPlot(theta_array_2, Y);
-yline(0, 'black', 'Alpha', 1, 'LineWidth', 1)
-xline(theta_B,'Color', [0 1 1], 'Alpha', 1, 'LineWidth', 0.7)
-xlim([0, pi/2])
-ylim([-1, 1])
-    stc.leg.Interpreter = 'latex';
-    stc.leg.FontSize = 15;
-    stc.leg.Location = 'southwest';
-    stc.axes.Title.String = '$n_i = 1 < n_t = 1.5$';
-    stc.axes.Title.Interpreter = 'latex';
-    stc.label.x.String = '$\theta_i$';
-    stc.label.y.String = '$y$';
-    %stc.leg.String = ["$y=r_s$"; "$y=r_p$"; "$y=t_s$"; "$y=t_p$"; "$y=R_s$"; "$y=R_p$"; "$y=R$"; "$y=0$";  "$\theta_i = \theta_B$";];
-    stc.leg.Visible = 'off';
-
-    stc.plot.plot_2.LineStyle = "-";
-    stc.plot.plot_3.LineStyle = ":";
-    stc.plot.plot_4.LineStyle = ":";
-    stc.plot.plot_5.LineStyle = "--";
-    %stc.plot.plot_5.LineWidth = 0.7;
-    stc.plot.plot_6.LineStyle = "--";
-    %stc.plot.plot_6.LineWidth = 0.7;
-    stc.plot.plot_7.LineStyle = "-";
-
-    stc.plot.plot_1.Color = MyColor{4, 2};
-    stc.plot.plot_3.Color = MyColor{4, 1};
-    stc.plot.plot_5.Color = MyColor{4, 3};
-    stc.plot.plot_2.Color = MyColor{3, 2};
-    stc.plot.plot_4.Color = MyColor{3, 1};
-    stc.plot.plot_6.Color = MyColor{3, 3}; 
-    stc.plot.plot_7.Color = [1 0 0];   
-%MyExport_pdf
-%MyExport_pdf_docked
-%MyExport_svg_docked
-
-
-%%%%%%%%%% 反射折射光振幅与能量变化 (玻璃入射空气) %%%%%%%%%%
-n_i = 1.5;
-n_t = 1;
-
-theta_t = @(theta_i) asin(n_i/n_t*sin(theta_i));
-r_s = @(theta_i, theta_t) - sin(theta_i - theta_t)./sin(theta_i + theta_t);
-r_p = @(theta_i, theta_t) + tan(theta_i - theta_t)./tan(theta_i + theta_t);
-t_s = @(theta_i, theta_t) 2*sin(theta_t).*cos(theta_i)./sin(theta_i + theta_t);
-t_p = @(theta_i, theta_t) 2*sin(theta_t).*cos(theta_i) ./ ( sin(theta_i + theta_t).*cos(theta_i - theta_t) );
-theta_B = atan(n_t/n_i);
-theta_C = asin(n_t/n_i);
-
-theta_array_2 = linspace(-0.1, theta_C, 250);
-theta_array_all = [linspace(-0.1, 0.65, 100), linspace(0.65, 0.74, 50), linspace(0.74, pi/2, 100)];
-
-X = [
-    theta_array_all
-    theta_array_all
-    theta_array_all
-    theta_array_all
-    theta_array_all
-    theta_array_all
-    theta_array_all
-];
-
-Y = [
-    (theta_array_all < theta_C).*r_s(theta_array_all, theta_t(theta_array_all)) + (theta_array_all > theta_C).*abs(r_s(theta_array_all, theta_t(theta_array_all)))
-    (theta_array_all < theta_C).*r_p(theta_array_all, theta_t(theta_array_all)) + (theta_array_all > theta_C).*abs(r_p(theta_array_all, theta_t(theta_array_all)))
-    abs( t_s(theta_array_all, theta_t(theta_array_all)) )
-    abs( t_p(theta_array_all, theta_t(theta_array_all)) )
-    abs(r_s(theta_array_all, theta_t(theta_array_all))).^2
-    abs(r_p(theta_array_all, theta_t(theta_array_all))).^2
-    0.5 * (  abs(r_s(theta_array_all, theta_t(theta_array_all))).^2 + abs(r_p(theta_array_all, theta_t(theta_array_all))).^2   )
-    ];
-
-stc = MyPlot(X, Y);
-yline(0, 'black', 'Alpha', 1, 'LineWidth', 1)
-xline(theta_B,'Color', [0 1 1], 'Alpha', 1, 'LineWidth', 0.7)
-xline(theta_C,'Color', [0 1 0], 'Alpha', 1, 'LineWidth', 0.7)
-xlim([0, pi/2])
-ylim([-0.5, 3])
-    stc.leg.Interpreter = 'latex';
-    stc.leg.FontSize = 14;
-    stc.leg.Location = 'northwestoutside';
-    stc.axes.Title.String = '$n_i = 1 < n_t = 1.5$';
-    stc.axes.Title.Interpreter = "latex";
-    stc.label.x.String = '$\theta_i$';
-    stc.label.y.String = '$y$';
-    stc.leg.String = ["$y=r_s$"; "$y=r_p$"; "$y=t_s$"; "$y=t_p$"; "$y=R_s$"; "$y=R_p$"; "$y=R$"; "$y=0$";  "$\theta_i = \theta_B$"; "$\theta_i = \theta_C$";];
-    
-    stc.plot.plot_2.LineStyle = "-";
-    stc.plot.plot_3.LineStyle = ":";
-    stc.plot.plot_4.LineStyle = ":";
-    stc.plot.plot_5.LineStyle = "--";
-    %stc.plot.plot_5.LineWidth = 0.7;
-    stc.plot.plot_6.LineStyle = "--";
-    %stc.plot.plot_6.LineWidth = 0.7;
-    stc.plot.plot_7.LineStyle = "-";
-
-    stc.plot.plot_1.Color = MyColor{4, 2};
-    stc.plot.plot_3.Color = MyColor{4, 1};
-    stc.plot.plot_5.Color = MyColor{4, 3};
-    stc.plot.plot_2.Color = MyColor{3, 2};
-    stc.plot.plot_4.Color = MyColor{3, 1};
-    stc.plot.plot_6.Color = MyColor{3, 3}; 
-    stc.plot.plot_7.Color = [1 0 0];   
-%MyExport_pdf
-%MyExport_pdf_docked
-%MyExport_svg_docked
-\end{matlablisting}
 
 \section{图 \ref{反射光 s 分量与 p 分量的相位增量} 源码}
 \label{反射光 s 分量与 p 分量的相位增量 源码}
-\begin{matlablisting}
-global n_i n_t n_ti theta_B theta_C 
+\lstinputlisting{D:/a_RemoteRepo/GH.MatlabCodes/本科课程代码/光学/FresnelFormula_PhaseChange.m}
 
-%%%%%%%%%% 反射光相位增量 (空气入射玻璃) %%%%%%%%%%
-n_i = 1;
-n_t = 1.5;
-n_ti = n_t/n_i;
-theta_B = atan(n_ti);
-
-theta_array_2 = linspace(0, pi/2-0.001, 200);
-
-delta_r_s = @(t) -pi ;
-delta_r_p = @(t) (-pi).*(t > theta_B).*( t <pi/2);
-
-delta_r_s_kongqi = delta_r_s(theta_array_2);
-delta_r_p_kongqi = delta_r_p(theta_array_2);
-
-Y = [
-    zeros(size(theta_array_2)) - pi;
-    delta_r_p_kongqi;    
-];
-
-stc1 = MyPlot(theta_array_2, Y([1 2], :));
-xlim([0, pi/2])
-yline(0, 'black', 'Alpha', 1, 'LineWidth', 0.5)
-xline(theta_B,'Color', [0 1 1], 'Alpha', 1, 'LineWidth', 0.5)
-xline(pi/2, '--');
-stc1.plot.plot_2.LineStyle = '--';
-stc1.leg.String = ["$\delta = \delta_{r,s}$"; "$\delta = \delta_{r,p}$"; "$\delta = 0$"; "$\theta_i = \theta_B$";];
-stc1.label.x.String = '$\theta_i$';
-stc1.label.y.String = '$\delta$';
-stc1.axes.Title.Interpreter = 'latex';
-stc1.axes.Title.String = '$n_i = 1 < n_t = 1.5$';
-%MyExport_pdf
-
-%%%%%%%%%% 反射光相位增量 (玻璃入射空气) %%%%%%%%%%
-n_i = 1.5;
-n_t = 1;
-n_ti = n_t/n_i;
-theta_B = atan(n_ti);
-theta_C = asin(n_ti);
-
-
-delta_r_s = @(t) (t>theta_C).*2.*atan( -(sqrt(sin(t).^2 - n_ti^2))./cos(t) ) ;
-delta_r_p = @(t) ...
-     (t<theta_B).*(-pi) ... 
-   + (theta_B<t).*(t<theta_C).*0 ... 
-   + (theta_C<t).*( -2*atan( (sqrt(sin(t).^2 - n_ti^2))./(n_ti^2.*cos(t)) ) );
-
-Y = [
-    zeros(size(theta_array_2)) - pi;
-    delta_r_p_kongqi;
-    delta_r_s(theta_array_2);
-    delta_r_p(theta_array_2);
-];
-
-
-stc2 = MyPlot(theta_array_2, Y([3 4], :));
-xlim([0, pi/2])
-yline(0, 'black', 'Alpha', 1, 'LineWidth', 0.5)
-xline(theta_B,'Color', [0 1 1], 'Alpha', 1, 'LineWidth', 0.5)
-xline(theta_C,'Color', [0 1 0], 'Alpha', 1, 'LineWidth', 0.5)
-xline(pi/2, '--');
-stc2.plot.plot_2.LineStyle = '--';
-stc2.leg.String = ["$\delta = \delta_{r,s}$"; "$\delta = \delta_{r,p}$"; "$\delta = 0$"; "$\theta_i = \theta_B$"; "$\theta_i = \theta_C$";];
-stc2.leg.Location = 'northeast';
-stc2.label.x.String = '$\theta_i$';
-stc2.label.y.String = '$\delta$';
-stc2.axes.Title.Interpreter = 'latex';
-stc2.axes.Title.String = '$n_i = 1.5 > n_t = 1$';
-%MyExport_pdf
-\end{matlablisting}
 
 \section{图 \ref{隐失波穿透深度与 GH Shift 玻璃入射空气} 源码}
 \label{隐失波穿透深度与 GH Shift 玻璃入射空气 源码}
-\begin{matlablisting}
-%%%%%%%%%% 隐失波的穿透深度和 GH Shift (玻璃入射空气) %%%%%%%%%%
-global lambda n_i n_t
-n_i = 1.5;
-n_t = 1;
-lambda = 550 * 10^(-9);     % 550.0 nm 的绿色光
-delta = @(t) 1 ./ ( 2*pi*sqrt( sin(t).^2 - n_ti^2 )/lambda );
-Delta_x = @(t) 2*delta(t).*tan(t);
+\lstinputlisting{D:/a_RemoteRepo/GH.MatlabCodes/本科课程代码/光学/EvanescentWaveAndGHShift.m}
 
-theta_array_1 = linspace(theta_C, pi/2, 200);
-theta_array_2 = linspace(theta_C, pi/2-0.05, 200);
-
-
-X = [
-    theta_array_1
-    theta_array_2
-];
-Y = [
-    delta(theta_array_1)/lambda
-    Delta_x(theta_array_2)/lambda
-];
-
-stc = MyPlot(X, Y);
-xlim([theta_C - 0.05, pi/2+0.02])
-yline(1, 'black', 'Alpha', 1, 'LineWidth', 0.5)
-xline(theta_C,'Color', [0 1 0], 'Alpha', 1, 'LineWidth', 0.5)
-stc.leg.String = ["$y = \delta / \lambda$"; "$y = \Delta x / \lambda$"; "$y = 1$"; "$\theta_i = \theta_C$"; "$\theta_i = \frac{\pi}{2}$"];
-stc.label.x.String = '$\theta_i$';
-stc.label.y.String = '$y$';
-xlim([theta_C - 0.05, pi/2])
-
-%MyExport_pdf_docked
-\end{matlablisting}
 
 \section{图 \ref{单个球面波源在平面上的振荡情况} 源码}
 \label{单个球面波源在平面上的振荡情况 源码}
-
-\begin{matlablisting}
-%%%%%%%%%% 单个球面波源在平面上的振荡 (导出为 gif) %%%%%%%%%%
-clc,clear,close all;
-global lambda k omega X_OA A
-
-lambda = 550.0 * 10^(-9); % 单位: m
-k = 5;      % k 取决于光的波长，但在可视化中不妨令为 1
-omega = 1;  % omega 取决于光的波长，但在可视化中不妨令为 1
-X_OA = [ 0, 0];  % 球面波源 A 的位置
-A = 50; % r = 1 时的振幅
-E_A0 = @(x, y) A./sqrt( (x - X_OA(1)).^2 + (y - X_OA(2)).^2 ); % X 位置的振幅, 输入的 X_array 为一列行向量
-alpha_A = @(x, y) k*sqrt( (x - X_OA(1)).^2 + (y - X_OA(2)).^2 );
-vib = @(E_0, t, alpha) E_0.*cos(-omega*t + alpha); % 振荡函数
-
-R_array = linspace(2, 10, 100);
-theta_array = transpose(linspace(0, 2*pi, 50));
-x_matrix = R_array .* cos(theta_array) + X_OA(1);
-y_matrix = R_array .* sin(theta_array) + X_OA(2);
-E_A0_matrix = E_A0(x_matrix, y_matrix);
-alpha_A_matrix = alpha_A(x_matrix, y_matrix);
-
-stc = MyMesh(x_matrix, y_matrix, vib(E_A0_matrix, 0, alpha_A_matrix), 1);
-stc.label_left.z.String = '$E$';
-
-
-figure 
-h1 = surf(x_matrix, y_matrix, E_A0_matrix, 'EdgeColor', 'interp', FaceColor='interp');
-hold on
-surf([X_OA(1) X_OA(1)], [X_OA(2) X_OA(2)], [30 -30; 30 -30])
-colormap(redblue);
-zlim([-35 35]);
-xlim([X_OA(1) - R_array(end), X_OA(1) + R_array(end)])
-ylim([X_OA(2) - R_array(end), X_OA(2) + R_array(end)])
-drawnow
-
-t_array = linspace(0, 20, 200);
-for i = 1:length(t_array)
-    h1.ZData = vib(E_A0_matrix, t_array(i), alpha_A_matrix);
-    f(i) = getframe(gcf);
-end
-
-numFrames = length(t_array);
-animated(1,1,1,numFrames) = 0;
-for i = 1:numFrames
-    if i == 1
-        [animated,cmap] = rgb2ind(f(i).cdata,256,'nodither');
-    else
-        animated(:,:,1,i) = rgb2ind(f(i).cdata,cmap,'nodither');
-    end
-end
-filename = '单个球面波源在平面上的振荡.gif';
-imwrite(animated,cmap,filename,'DelayTime',1/30,'LoopCount',inf);
-web(filename)
-\end{matlablisting}
+\lstinputlisting{D:/a_RemoteRepo/GH.MatlabCodes/本科课程代码/光学/OscillationsOfOneSingleSphericalWaveSource_ExportGIF.m}
 
 \section{图 \ref{两个球面波源在平面上的干涉情况} 源码}
 \label{两个球面波源在平面上的干涉情况 源码}
+\lstinputlisting{D:/a_RemoteRepo/GH.MatlabCodes/本科课程代码/光学/OscillationsOfTwoSphericalWaveSource_ExportGIF.m}
 
-\begin{matlablisting}
-%%%%%%%%%% 两个球面波源在平面上的干涉情况 (导出为 gif) %%%%%%%%%%
-
-clc, clear, close all;
-global lambda k omega X_OA X_OB A B
-
-lambda = 550.0 * 10^(-9); % 单位: m
-k = 5;      % k 取决于光的波长，但在可视化中不妨令为 1
-omega = 1;  % omega 取决于光的波长，但在可视化中不妨令为 1
-X_OA = [-2, 0];  % 球面波源 A 的位置
-X_OB = [ 2, 0];  % 球面波源 B 的位置
-A = 50; % r = 1 时 A 的振幅
-B = 50; % r = 1 时 B 的振幅
-
-E_A0 = @(x, y) A./sqrt( (x - X_OA(1)).^2 + (y - X_OA(2)).^2 ); % X 位置的振幅, 输入的 X_array 为一列行向量
-E_B0 = @(x, y) B./sqrt( (x - X_OB(1)).^2 + (y - X_OB(2)).^2 ); % X 位置的振幅, 输入的 X_array 为一列行向量
-alpha_A = @(x, y) k*sqrt( (x - X_OA(1)).^2 + (y - X_OA(2)).^2 );
-alpha_B = @(x, y) k*sqrt( (x - X_OB(1)).^2 + (y - X_OB(2)).^2 );
-E_0 = @(E_A0, alpha_A, E_B0, alpha_B) sqrt( E_A0.^2 + E_B0.^2 + 2*E_A0.*E_B0.*cos(alpha_A - alpha_B) );
-vib = @(E_0, t, alpha) E_0.*cos(-omega*t + alpha); % 振荡函数
-
-R_array = linspace(4, 20, 80);
-theta_array = transpose(linspace(0, 2*pi, 30));
-x_matrix = R_array .* cos(theta_array);
-y_matrix = R_array .* sin(theta_array);
-%E_0_matrix = E_A0(x_matrix, y_matrix);
-
-E_A0_matrix = E_A0(x_matrix, y_matrix);
-E_B0_matrix = E_B0(x_matrix, y_matrix);
-alpha_A_matrix = alpha_A(x_matrix, y_matrix);
-alpha_B_matrix = alpha_B(x_matrix, y_matrix);
-E_0_matrix = E_0(E_A0_matrix, alpha_A_matrix, E_B0_matrix, alpha_B_matrix);
-alpha_matrix = GetAlpha(E_0_matrix, E_A0_matrix, alpha_A_matrix, E_B0_matrix, alpha_B_matrix);
-
-MyMesh(x_matrix, y_matrix, vib(E_A0_matrix, 0, alpha_A_matrix), 1);
-MyMesh(x_matrix, y_matrix, vib(E_B0_matrix, 0, alpha_B_matrix), 1);
-MyMesh(x_matrix, y_matrix, vib(E_0_matrix, 0, alpha_matrix), 1);
-
-
-figure 
-set(gca,'NextPlot','replaceChildren','box','on','color','w');
- 
-    h = mesh(x_matrix, y_matrix, E_0_matrix, 'EdgeColor', 'interp', FaceColor='interp');
-    hold on
-    surf([X_OA(1) X_OA(1)], [X_OA(2) X_OA(2)], [40 -40; 40 -40])
-    surf([X_OB(1) X_OB(1)], [X_OB(2) X_OB(2)], [40 -40; 40 -40])
-    hold off
-    view([45, 30])
-    colormap(redblue);
-    zlim([-35 35]);
-    xlim([-R_array(end), R_array(end)])
-    ylim([-R_array(end), R_array(end)])
-    drawnow
-
-t_array = linspace(0, 20, 200);
-numFrames = length(t_array);
-for i = 1:numFrames
-    h.ZData = vib(E_0_matrix, t_array(i), alpha_matrix);
-    f(i) = getframe(gcf);
-end
- 
-animated(1,1,1,numFrames) = 0;
-for i = 1:numFrames
-    if i == 1
-        [animated,cmap] = rgb2ind(f(i).cdata,256,'nodither');
-    else
-        animated(:,:,1,i) = rgb2ind(f(i).cdata,cmap,'nodither');
-    end
-end
-filename = '两个球面波源在平面上的干涉情况.gif';
-imwrite(animated,cmap,filename,'DelayTime',1/20,'LoopCount',inf);
-web(filename)
-\end{matlablisting}
 
 \section{图 \ref{杨氏双缝干涉装置} (b) 与图 \ref{近似模型与非近似模型的比较} 源码}\label{杨氏双缝干涉装置 源码}
+\lstinputlisting{D:/a_RemoteRepo/GH.MatlabCodes/本科课程代码/光学/YoungDoubleSlitInterference.m}
 
-\begin{matlablisting}
-%%%%%%%%%% 杨氏双缝振幅分布即近似模型误差分析 %%%%%%%%%%
-clc,clear,close all
+\section{图 \ref{光源宽度} 源码}
+\label{光源宽度 源码}
+\lstinputlisting{D:/a_RemoteRepo/GH.MatlabCodes/本科课程代码/光学/WidthOfLightSourceAffectsContrast.m}
 
-global vare_0 mu_0 lambda I_1 d D R A k E_0 E_0_appro r r_1 r_2
-
-
-vare_0 = 8.854187817 * 10^(-12);
-mu_0 = 4*pi * 10^(-7);
-A = 50;
-I_1 = 50;
-d = 100 * 10^(-6);
-R = 5 * 10^(-2);
-D = 1;
-lambda = 700 * 10^(-9); % 700.0 nm 的红光
-k = 2*pi/lambda;
-
-r = @(x) sqrt( x.^2 + D^2 );
-r_1 = @(x) sqrt( (x - d/2).^2 + D^2 );
-r_2 = @(x) sqrt( (x + d/2).^2 + D^2 );
-E_0 = @(r_1, r_2)  A * sqrt(  1./r_1 + 1./r_2 + 2./sqrt(r_1.*r_2).*cos( k.*(r_1 - r_2) )  );
-E_0_appro = @(x) sqrt(2./r(x))*A .* sqrt(  1 + cos(k*x*d/D)  );
-%I = @(r_1, r_2) A^2 * sqrt(vare_0/mu_0) * (  0.5*(1./r_1 + 1./r_2) + cos(k*(r_1 - r_2))/sqrt(r_1.*r_2));
-I = @(r_1, r_2) 0.5 * sqrt(vare_0/mu_0) * E_0(r_1, r_2).^2;
-I_appro = @(x) 0.5 * sqrt(vare_0/mu_0) * E_0_appro(x).^2;
-
-x_array = linspace(-0.02, 0.02, 1000);
-r_array = r(x_array);
-r_1_array = r_1(x_array);
-r_2_array = r_2(x_array);
-E_0_array = E_0(r_1_array, r_2_array);
-E_0_appro_array = E_0_appro(x_array);
-I_array = I(r_1_array, r_2_array);
-I_appro_array = I_appro(x_array);
-
-plot_E = MyPlot(x_array, [E_0_array; E_0_appro_array]);
-plot_E.label.y.String = '$E_0$';
-plot_E.leg.Location = 'northeast';
-plot_E.leg.String = ["$E_{0,\mathrm{exact}}$"; "$E_{0,\mathrm{appro}}$"];
-  %MyExport_pdf
-plot_I = MyPlot(x_array, [I_array; I_appro_array]);
-plot_I.label.y.String = '$I$';
-plot_I.leg.Location = 'northeast';
-plot_I.leg.String = ["$I_{\mathrm{exact}}$"; "$I_{\mathrm{appro}}$"];
-  %MyExport_pdf
-stc_E = MyErrorAnalyzer(E_0_array, E_0_appro_array, 1);
-stc_I = MyErrorAnalyzer(I_array, I_appro_array, 1);
-
-stc_funcerror_E = MyErrorAnalyzer_func(@(x) E_0(r_1(x), r_2(x)), @(x) E_0_appro(x), [-0.02, 0.02]);
-stc_funcerror_I = MyErrorAnalyzer_func(@(x) I(r_1(x), r_2(x)), @(x) I_appro(x), [-0.02, 0.02]);
-
-stc_yy = MyYYPlot(x_array, stc_E.ResidualError, x_array, stc_I.ResidualError);
-stc_yy.label.y_left.String = '$\hat{\theta}_E$';
-stc_yy.label.y_right.String = '$\hat{\theta}_I$';
-
-stc_yy.leg.String = ["$\theta_E = E_0 - \hat{E}_0$"; "$\theta_I = I - \hat{I}$"];
-stc_yy.p_left.LineStyle = 'none';
-stc_yy.p_left.Marker = '.';
-stc_yy.p_left.MarkerSize = 3;
-stc_yy.p_right.LineStyle = 'none';
-stc_yy.p_right.Marker = '.';
-stc_yy.p_right.MarkerSize = 3;
-  %MyExport_pdf_modal
-
-  function stc_error = MyErrorAnalyzer(Y, Y_hat, num_var)
-
-  stc_error.size_Y = size(Y);
-  length_Y = length(Y); stc_error.length_Y = length_Y;
-
-  % 数据准备
-  Y_bar = mean(Y); stc_error.Y_bar = mean(Y); 
-  stc_error.Y_hat_bar = mean(Y_hat);
-
-
-  % 残差分布
-  ResidualError = Y - Y_hat; stc_error.ResidualError = Y - Y_hat;
-  stc_error.ResidualScatter = scatter(1:length(Y), ResidualError, 30, 'blue.');
-
-  % 决定系数 R^2
-  stc_error.R2 = 1 - sum( (Y - Y_hat).^2 ) ./ sum( (Y - Y_bar).^2 );
-  % 调整决定系数 R^2_{adjust}
-  stc_error.R2_adj = 1 - (1 - stc_error.R2)*( length_Y - 1 )/(length_Y - num_var - 1); 
-  % 平均标准绝对残差
-  stc_error.RS_standard = 1 /(length_Y * abs(Y_bar)) * sum( abs(ResidualError) );
-  % 平均标准平方残差
-  stc_error.RSS_standard =  1 /(length_Y * Y_bar^2) * sum( ResidualError.^2 );
-
-  disp(['Data size: ', num2str(stc_error.size_Y(1)), ' * ',  num2str(stc_error.size_Y(2))])
-  disp(['Y_bar     = ', num2str(stc_error.Y_bar, '%.8f')])
-  disp(['Y_hat_bar = ', num2str(stc_error.Y_hat_bar, '%.8f')])
-  disp(['R2 = ', num2str(stc_error.R2, '%.10f')]);
-  disp(['R2_adj = ', num2str(stc_error.R2_adj, '%.10f')]);
-  disp(['RS_standard = ', num2str(stc_error.RS_standard, '%.10f')]);
-  disp(['RSS_standard = ', num2str(stc_error.RSS_standard, '%.10f')]);
-end
-
-function stc_error = MyErrorAnalyzer_func(f, f_hat, X_range)
-  % 标准面积误差 
-  stc_error.AE_standard = integral( @(x) abs(f(x) - f_hat(x)), X_range(1), X_range(2) ) / integral( @(x) abs(f(x)), X_range(1), X_range(2) );
-   disp(['AE_standard = ', num2str(stc_error.AE_standard, '%.10f')]);
-end
-\end{matlablisting}
-
-\section{图 \ref{光源宽度} 源码}\label{光源宽度 源码}
-
-\begin{matlablisting}
-%%%%%%%%%% 光源宽度影响对比度位置分布 %%%%%%%%%%
-global I_max d lambda R D Delta_x u
-
-d = 100 * 10^(-6);
-R = 5 * 10^(-2);
-D = 1;
-lambda = 700 * 10^(-9); % 700.0 nm 的红光
-Delta_x = D*lambda/d;
-I_max = 2;
-
-I = @(x, b) I_max/2 .* (  1 + sin( pi*d/(lambda*R)*b ) ./ ( pi*d/(lambda*R)*b ) .* cos(2*pi*x/Delta_x) );
-u = @(b) pi*d/(lambda*R) * b;
-gamma = @(b) abs( sin(u(b))./u(b) );
-
-% I = I(x, b)
-x_array = linspace(-0.02, 0.02, 300);
-b_array = transpose(linspace(0, 5*lambda*R/d, 50));
-stc1 = MyMesh(x_array, b_array, I(x_array, b_array));
-stc1.label_left.y.String = '$b$';
-stc1.label_left.z.String = '$I(x, b)$';
-stc1.label_right.y.String = '$b$';
-stc1.label_right.z.String = '$I(x, b)$';
-  %MyExport_pdf_modal
-
-% 干涉条纹对比度
-b_array = transpose(linspace(0, 5*lambda*R/d, 200));
-stc2 = MyPlot(b_array', gamma(b_array)');
-xline(lambda*R/d, 'LineWidth', 0.5, 'Color', [1 0 0]);
-ylim([0, 1])
-stc2.label.x.String = '$b$';
-stc2.label.y.String = '$\gamma = \gamma(b)$';
-stc2.leg.String = ["$\gamma = \gamma(b)$"; "$b = \lambda R / d$"];
-  %MyExport_pdf_modal
-\end{matlablisting}
-
-\section{图\ref{精细度对透射率的影响} 源码}\label{精细度对透射率的影响 源码}
-
-\begin{matlablisting}
-%%%%%%%%%% 精细度对透射率的影响 %%%%%%%%%%
-clc, clear, close all;
-F = @(R) 4*R ./ (1-R).^2;
-T_FP = @(delta, F) 1 ./ ( 1 + sin(delta/2).^2 .* F  );
-F_array = linspace(0, 40, 50);
-delta_array = linspace(0, 10*pi, 200);
-
-MyPlot(linspace(0, 0.9,100), F(linspace(0, 0.9,100)));
-stc = MySurf(delta_array, F_array, T_FP(delta_array, F_array'));
-stc.label_left.x.String = '$\delta$';
-stc.label_left.y.String = '$F$';
-stc.label_left.z.String = '$T_{F-P} = T_{F-P}(\delta, F)$';
-stc.label_right.x.String = '$\delta$';
-stc.label_right.y.String = '$F$';
-  %MyExport_pdf_docked
-
-MyPlot(delta_array, T_FP(delta_array, 2));
-MyPlot(delta_array, T_FP(delta_array, 10));
-MyPlot(linspace(0, 10*pi, 1000), T_FP(linspace(0, 10*pi, 1000), 400));
-\end{matlablisting}
-
+\section{图\ref{精细度对透射率的影响} 源码}
+\label{精细度对透射率的影响 源码}
+\lstinputlisting{D:/a_RemoteRepo/GH.MatlabCodes/本科课程代码/光学/EffectOfFinenessOnTransmittance.m}
 
 % --------------------------- 附录 --------------------------- %
 % >> ------------------------ 附录 ------------------------ << %

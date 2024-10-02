@@ -87,11 +87,12 @@
 
 % 配置数学环境
     \usepackage{amsthm} % 宏包：数学环境配置
+    %\everymath{\displaystyle}   % 设置全文数学公式都为展示样式
     % theorem-line 环境自定义
         \newtheoremstyle{MyLineTheoremStyle}% <name>
             {11pt}% <space above>
             {11pt}% <space below>
-            {}% <body font> 使用默认正文字体
+            {\kaishu}% <body font> 使用默认正文字体
             {}% <indent amount>
             {\bfseries}% <theorem head font> 设置标题项为加粗
             {：}% <punctuation after theorem head>
@@ -148,15 +149,14 @@
 % 外源代码插入设置
     % matlab 代码插入设置
     \usepackage{matlab-prettifier}
-        \lstset{
-            style=Matlab-editor,  % 继承matlab代码颜色等
-        }
+        \lstset{style=Matlab-editor}    % 继承 matlab 代码高亮 , 此行不能删去
     \usepackage[most]{tcolorbox} % 引入tcolorbox包 
     \usepackage{listings} % 引入listings包
         \tcbuselibrary{listings, skins, breakable}
-        \lstdefinestyle{matlabstyle}{
+        \newfontfamily\codefont{Consolas} % 定义需要的 codefont 字体
+        \lstdefinestyle{MatlabStyle_inc}{   % 插入代码的样式
             language=Matlab,
-            basicstyle=\small,
+            basicstyle=\small\ttfamily\codefont,    % ttfamily 确保等宽 
             breakatwhitespace=false,
             breaklines=true,
             captionpos=b,
@@ -166,17 +166,48 @@
             showspaces=false,
             showstringspaces=false,
             showtabs=false,
-            tabsize=2
+            tabsize=2,
+            xleftmargin=15pt,   % 左边距
+            %frame=single, % single 为包围式单线框
+            frame=shadowbox,    % shadowbox 为带阴影包围式单线框效果
+            %escapeinside=``,   % 允许在代码块中使用 LaTeX 命令 (此行无用)
+            %frameround=tttt,    % tttt 表示四个角都是圆角
+            framextopmargin=0pt,    % 边框上边距
+            framexbottommargin=0pt, % 边框下边距
+            framexleftmargin=5pt,   % 边框左边距
+            framexrightmargin=5pt,  % 边框右边距
+            rulesepcolor=\color{red!20!green!20!blue!20}, % 阴影框颜色设置
+            %backgroundcolor=\color{blue!10}, % 背景颜色
+        }
+        \lstdefinestyle{MatlabStyle_src}{   % 插入代码的样式
+            language=Matlab,
+            basicstyle=\small\ttfamily\codefont,    % ttfamily 确保等宽 
+            breakatwhitespace=false,
+            breaklines=true,
+            captionpos=b,
+            keepspaces=true,
+            numbers=left,
+            numbersep=15pt,
+            showspaces=false,
+            showstringspaces=false,
+            showtabs=false,
+            tabsize=2,
         }
         \newtcblisting{matlablisting}{
-            arc=0pt,
+            %arc=2pt,        % 圆角半径
+            % 调整代码在 listing 中的位置以和引入文件时的格式相同
             top=0pt,
             bottom=0pt,
-            left=1mm,
-            listing only,
-            listing style=matlabstyle,
+            left=-5pt,
+            right=-5pt,
+            listing only,   % 此句不能删去
+            listing style=MatlabStyle_src,
             breakable,
-            colback=white   % 选一个合适的颜色
+            colback=white,   % 选一个合适的颜色
+            colframe=black!0,   % 感叹号后跟不透明度 (为 0 时完全透明)
+        }
+        \lstset{
+            style=MatlabStyle_inc,
         }
 
 % table 支持
@@ -245,9 +276,10 @@
     % section
         \titleformat{\section}[hang]{\normalfont\large\bfseries}{\thesection}{8pt}{}
     % subsection
-        %\titleformat{\subsubsection}[hang]{\normalfont\bfseries}{}{8pt}{}
-    % subsubsection
-        %\titleformat{\subsubsection}[hang]{\normalfont\bfseries}{}{8pt}{}
+        % 设置 subsection 样式为 (1) (2) (3)
+        \renewcommand{\thesubsection}{(\arabic{subsection})}    
+        \titleformat{\subsection}[hang]{\normalfont\bfseries}{\thesubsection}{8pt}{}    
+
 
 % --------------------- 文章宏包及相关设置 --------------------- %
 % >> ------------------ 文章宏包及相关设置 ------------------ << %
@@ -311,7 +343,7 @@
 
 \chapter{2024.8.27 - 2024.9.2}\thispagestyle{fancy}
 
-\section{习题集 1-2}
+\section{习题集 1-2: 求题图各电路中的电压 $U$ 和电流 $I$}
 
 \begin{enumerate}
 \item[(a)] 短路，因此 $U = 0,\  I = \frac{U_S}{R_i}$
@@ -321,9 +353,10 @@
 
 \begin{figure}[H]\centering
 \includegraphics[width=0.6\textwidth]{assets/1/ae1cfc03fad5c98bfff08a663714a004.png}
+\caption{\bfseries 1.1 习题集 1-2}
 \end{figure}
 
-\section{习题集 1-9}
+\section{习题集 1-9: 求题图 (a) 中的电压 $U_{ab}$，图 (b) 中的电阻 $R$，图 (c) 中的电压 $U_S$ 和图 (d) 中的电流 $I$}
 
 \begin{enumerate}
     \item[(a)]  $ \varphi_a - 3\ \mathrm{V} + 2\ \mathrm{V} = \varphi_b \Longrightarrow U_{ab} = 1\ \mathrm{V} $ 
@@ -333,10 +366,11 @@
 \end{enumerate}
 
 \begin{figure}[H]\centering
-\includegraphics[width=0.6\textwidth]{assets/1/d3d69ecd6b1c1bc476fd4a4957fb9e56.png}
+    \includegraphics[width=0.6\textwidth]{assets/1/d3d69ecd6b1c1bc476fd4a4957fb9e56.png}
+\caption{\bfseries 1.2 习题集 1-9}
 \end{figure}
 
-\section{习题集 1-10}
+\section{习题集 1-10: 求题图电路中的电压 $U_{ab}$}
 
 
 
@@ -351,13 +385,14 @@
 
 \begin{figure}[H]\centering
 \includegraphics[width=0.55\textwidth]{assets/1/9dda9e5f333b8cb7f498d15c015e5fd0.png}
+\caption{\bfseries 1.3 习题集 1-10}
 \end{figure}
 {\par\color{gray}\small
 后补：(b) 中电流源两端仍有电势差，$\varphi_c \ne 6 \ \mathrm{V}$ 而是 $ \varphi_c = -3\ \mathrm{V} $，最终得 $U_{ab} = -5 \ \mathrm{V}$。
 \par}
 
 
-\section{习题集 1-15}
+\section{习题集 1-15: 求题图各电路汇总所标出的电压和电流}
 
 \begin{enumerate}
     \item[(a)] $I = -\frac{U}{R} + 4\ \mathrm{A} = -2 \ \mathrm{A}$
@@ -368,9 +403,10 @@
 
 \begin{figure}[H]\centering
 \includegraphics[width=0.7\textwidth]{assets/1/b82ef4f3b4efd9d0ee903e5f19353345.png}
+\caption{\bfseries 1.4 习题集 1-15}
 \end{figure}
 
-\section{习题集 1-29}
+\section{习题集 1-29: 题图电路中流过 $40\ \Omega$ 电阻的电流为 $2$ A，求电流源的电流值 $I_S$}
 
 取点 $a$ 为参考点 $\varphi_a = 0$，可得 $\varphi_b = 100U_1 - 80$，于是在结点 $a$ 有电流：
 \begin{equation*}
@@ -379,7 +415,7 @@ I_S + \frac{100U_1 - 80}{5} = 2
 
 $0.2\ \Omega$ 电阻处又有 $U_1 = 0.2 I_S$，联立解得 $I_S = 3.6 \ \mathrm{A}, U_1 = 7.2 \ \mathrm{V}$。
 
-\section{习题集 1-30}
+\section{习题集 1-30: 求题图电路中独立电源的功率}
 
 这里要注意左二元器件是受控电流源，因此 $0.5U$ 是指电流大小而非电压。$I_1$ 处可列出方程：
 
@@ -389,6 +425,7 @@ $0.2\ \Omega$ 电阻处又有 $U_1 = 0.2 I_S$，联立解得 $I_S = 3.6 \ \mathr
 
 \begin{figure}[H]\centering
 \includegraphics[width=0.7\textwidth]{assets/1/94b342032a5f6622a60b3c9d99e37993.png}
+\caption{\bfseries 1.4 习题集 1-29 和 1.5 习题集 1-30}
 \end{figure}
 
 {\par\color{gray}\small
@@ -396,11 +433,11 @@ $0.2\ \Omega$ 电阻处又有 $U_1 = 0.2 I_S$，联立解得 $I_S = 3.6 \ \mathr
 \par}
 
 
-\section{讲义题 1-6}
+\section{讲义题 1-6: 关联参考方向下，电阻的 $\alpha > 90^\circ$ 代表什么物理意义}
 
 $\alpha > 90 \text{\textdegree}$ 时，电阻为“负电阻”。
 
-\section{讲义题 1-7}
+\section{讲义题 1-7: 充电电池的 1 C 是什么意思，涓流充电是多少 C，快速充电是多少 C}
 
 
 \begin{definition}[充放电倍率 C 的含义]
@@ -419,7 +456,7 @@ C （充放电倍率）表示电池充放电时电流相对电池容量的大小
 \end{definition}
 
 
-\section{讲义题 1-8（Multisim 仿真）}
+\section{讲义题 1-8（Multisim 仿真）: 用 Multisim 实现课堂仿真中的 MOSFET。画出 $U_{GS}$ 固定为 5 V，$U_{DS}$（横轴）从 0 V 到 12 V 变化时 $I_{DS}$（纵轴）的曲线；以及 $U_{DS}$ 固定为 10 V，$U_{GS}$（横轴）从 0 至 10 V 变化时 $I_{DS}$（纵轴）的曲线}
 
 仿真电路如图 \ref{仿真电路图} 所示，
 
@@ -448,7 +485,7 @@ C （充放电倍率）表示电池充放电时电流相对电池容量的大小
 
 \chapter{2024.9.3 - 2024.9.9}\thispagestyle{fancy}
 
-\section{习题集 1-33}
+\section{习题集 1-33: 题图电路中 $R_1 = 40$，$R_e = 27$，$R_b = 150$，$R_L = 1500$，单位都为 $\Omega$，$\alpha = 0.98$，求电压增益 $\frac{u_2}{u_1}$ 和功率增益 $\frac{p_2}{p_1}$，其中 $p_1$ 是 $u_1$ 输出的功率，$p_2$ 是 $R_L$ 吸收的功率}
 左半边回路有：
 \begin{gather*}
 u_1 - 67i_e - (1-\alpha)i_e \cdot 150 = 0 \Longrightarrow \frac{u_2}{u_1} = \frac{\alpha i_eR_L }{70i_e} = \frac{0.98\times 1500}{70} = 21 \\ 
@@ -461,7 +498,7 @@ p_2 = (\alpha i_e)^2R_L, \quad p_1 = u_1 i_e \Longrightarrow \frac{p_2}{p_1} = \
 \end{figure}
 
 
-\section{习题集 2-2}
+\section{习题集 2-2: 求题图各电路的入端电阻 $R$}
 对图 (a)，化简并联后电桥平衡，可以得到
 \begin{equation*}
 \frac{1}{R} = \frac{1}{20 } + \frac{1}{40} +\frac{1}{40} \Longrightarrow R = 10\ \Omega
@@ -475,25 +512,25 @@ R = 8 + \frac{3\times 6}{3+6}=10\ \Omega
 \caption{\textbf{习题集 2-2}}
 \end{figure}
 
-\section{习题集 2-6}
+\section{习题集 2-6: 将题图中各电路化为最简电路}
 
 各电路的最简电路图如图 \ref{习题集 2-6 解答} 所示： 
 
 \noindent\begin{minipage}{0.50\textwidth}
     \begin{figure}[H]\centering
-        \includegraphics[height=190pt]{assets/2/bfc7d58924b9eaf9582656c984bd2c3b.jpg}
+        \includegraphics[height=185pt]{assets/2/bfc7d58924b9eaf9582656c984bd2c3b.jpg}
         \caption{\textbf{习题集 2-6}}
     \end{figure}
 \end{minipage}\hfill
 \begin{minipage}{0.50\textwidth}
     \begin{figure}[H]\centering
-        \includegraphics[height=190pt]{assets/2/2-6.drawio.pdf}
+        \includegraphics[height=185pt]{assets/2/2-6.drawio.pdf}
         \caption{\textbf{习题集 2-6 解答}}\label{习题集 2-6 解答}
     \end{figure}        
 \end{minipage}
 
 
-\section{习题集 2-8}
+\section{习题集 2-8: 用电源等效方法求题图中的电流 $i$}
 
 对原电路进行多次等效转换，得到最简电路如图所示，进而有：
 \begin{equation*}
@@ -502,18 +539,18 @@ I = \frac{3}{2+3+5} = 0.3\ \mathrm{A}
 
 \noindent\begin{minipage}{0.49\textwidth}
     \begin{figure}[H]\centering
-        \includegraphics[height=120pt]{assets/2/78abd22edee32bbd38134d510246a9ab.jpg}
+        \includegraphics[height=110pt]{assets/2/78abd22edee32bbd38134d510246a9ab.jpg}
         \caption{\textbf{习题集 2-8}}
     \end{figure}
 \end{minipage}\hfill
 \begin{minipage}{0.49\textwidth}
 \begin{figure}[H]\centering
-\includegraphics[height=120pt]{assets/2/2-8.drawio.pdf}
+\includegraphics[height=110pt]{assets/2/2-8.drawio.pdf}
 \caption{\textbf{习题集 2-8 等效电路}}\label{习题集 2-8 等效电路}
 \end{figure}
 \end{minipage}
 
-\section{习题集 2-11}
+\section{习题集 2-11: 求题图中的电流 $I$}
 
 等效电路图如图 \ref{习题集 2-11 等效电路} 所示，由 KVL 得：
 \begin{gather*}
@@ -523,22 +560,22 @@ I = \frac{3}{2+3+5} = 0.3\ \mathrm{A}
 
 \noindent\begin{minipage}{0.55\textwidth}
 \begin{figure}[H]\centering
-\includegraphics[height=110pt]{assets/2/1187c3e12fa1e6bd8d2019d53bd2752a.jpg}
+\includegraphics[height=105pt]{assets/2/1187c3e12fa1e6bd8d2019d53bd2752a.jpg}
 \caption{\textbf{习题集 2-11}}
 \end{figure}
 \end{minipage}\hfill
 \begin{minipage}{0.43\textwidth}
 \begin{figure}[H]\centering
-\includegraphics[height=110pt]{assets/2/2-11.drawio.pdf}
+\includegraphics[height=105pt]{assets/2/2-11.drawio.pdf}
 \caption{\textbf{习题集 2-11 等效电路}}\label{习题集 2-11 等效电路}
 \end{figure}
 \end{minipage}
 
-\section{习题集 2-17}
+\section{习题集 2-17: 求题图中的电压 $U_{ab}$}
 
 等效电路图如图 \ref{2-17} 所示，可以求得：
 \begin{equation*}
-4I - 8 = 12(I-1) \Longrightarrow I = 0.5\ \mathrm{A}\Longrightarrow U = 8 - 8I = 4\ \mathrm{V}
+4I - 8 = 12(I-1) \Longrightarrow I = 0.5\ \mathrm{A}\Longrightarrow U_{ab} = 8 - 8I = 4\ \mathrm{V}
 \end{equation*}
 
 
@@ -557,7 +594,7 @@ I = \frac{3}{2+3+5} = 0.3\ \mathrm{A}
 
 
 
-\section{习题集 2-22}
+\section{习题集 2-22: 求题图中的电压 $U_1$，$U_2$ 和电流源发出的功率}
 
 经过电源等效和 $\Delta$-Y 变换，等效电路图如图 \ref{2-22} 所示，回路总电阻 $R = 3 + \frac{4}{9} + \frac{14}{9} = 5\ \Omega$，\ $I_1 = \frac{U}{R} = 1.2\ \mathrm{A}$，则有：
 \begin{equation*}
@@ -587,7 +624,7 @@ U_1 = 6 - 3\times 1.2 = 2.4\ \mathrm{V},\ U_2 = 2\times \frac{I}{2} = 1.2\ \math
 \chapter{2024.9.10 - 2024.9.18}\thispagestyle{fancy}
 
 
-\section{习题集 3-40（书上答案不正确）}
+\section{习题集 3-40（书上答案不正确）: 题图电路中，$u_s(t) = \sin 4t\ \mathrm{V} $，电阻 $R_2 = 2R_1 = 1 \kO$，求电流 $i(t)$}
 
 由虚短和虚断，可以得到 $R_1$ 处电流为 $i_1 = \frac{u_s}{R_1}$（从上至下），于是输出电压 $u_o = 3u_s$，右侧负载由三个电阻构成，并联电阻分压 $2u_s$，最后得电流 $i(t)$:
 \begin{equation}
@@ -595,11 +632,11 @@ i(t) = \frac{2u_s}{6 \KO} = \frac{u_s}{3} \mA
 \end{equation}
 
 \begin{figure}[H]\centering
-\includegraphics[width=0.4\textwidth]{assets/3/3-40.jpg}
+\includegraphics[width=0.35\textwidth]{assets/3/3-40.jpg}
 \caption{\bfseries 习题集 3-40}
 \end{figure}
 
-\section{习题集 3-45（注意题目单位是 S）}
+\section{习题集 3-45（注意题目单位是 S）: 对题图电路，求电压增益 $\frac{U_o}{U_i}$ 和入端电阻 $R_i$}
 
 如图所示，将电导全部转换为电阻。由虚断、虚短，流经 $\frac{1}{10}\ \Omega$ 电阻的电流为 $i_1 = \frac{u_s}{0.1\ \Omega} = 10u_s$。右下角两电阻分压，再由虚短可得 $i_2 = 2U_o$，于是 $i_3 = i_1 + i_2 = 10 U_s + 2U_o$，由 KVL:
 \begin{equation}
@@ -610,7 +647,7 @@ i(t) = \frac{2u_s}{6 \KO} = \frac{u_s}{3} \mA
     i_1 = 10U_s \Longrightarrow  R_i = \frac{1}{10}\ \Omega
 \end{equation}
 
-\section{习题集 3-46}
+\section{习题集 3-46: 题图电路中，$R_1 = R_2 = R_3 = R_4 = R_o = R_L$，求在输入电压 $u_i$ 作用下的负载电流 $i_L$}
 
 依据 KVL、KCL、虚短、虚断，标出各节点电势，如图所示。则有：
 \begin{equation}
@@ -619,10 +656,10 @@ i(t) = \frac{2u_s}{6 \KO} = \frac{u_s}{3} \mA
 
 \begin{figure}[H]\centering
     \begin{subfigure}[t]{0.43\textwidth}\centering
-        \includegraphics[height=150pt]{assets/3/3-45.png}
+        \includegraphics[height=130pt]{assets/3/3-45.png}
         \caption{\bfseries 习题集 3-45 }
     \end{subfigure}\begin{subfigure}[t]{0.43\textwidth}\centering
-        \includegraphics[height=150pt]{assets/3/3-46.png}
+        \includegraphics[height=130pt]{assets/3/3-46.png}
         \caption{\bfseries 习题集 3-46 }
     \end{subfigure}
     \caption{\bfseries 习题集 3-45 和习题集 3-46 }
@@ -630,7 +667,7 @@ i(t) = \frac{2u_s}{6 \KO} = \frac{u_s}{3} \mA
     
 
 
-\section{讲义题 2-19}
+\section{讲义题 2-19: 求同相比例放大器和反向比例放大器的输入电阻和输出电阻，放大器均理想，根据求解结果讨论两种放大器的优劣}
 \textbf{(1)\ 反相比例放大器}
 
 对输入电阻，$i_1 = \frac{u_i}{R_1} \Longrightarrow R_i = R_1$。对输出电阻，将输入电压源短路，采用加流求压法，在输出端接入电流源，由 $u = iR$ 且 $u=0$，得 $R_o = 0$。也即：
@@ -658,7 +695,7 @@ R_i = \infty,\ R_o = 0
 \caption{\bfseries 讲义题 2-19}
 \end{figure}
 
-\section{讲义题 2-20}
+\section{讲义题 2-20: 求题图各网络的 $\boldsymbol{G}$ 参数}
 \textbf{(a)} 由 KVL 有：
 \begin{equation}
 \begin{cases}
@@ -667,7 +704,7 @@ R_i = \infty,\ R_o = 0
 \end{cases}\Longrightarrow  
 \begin{cases}
     i_1 = \frac{1}{R_2}u_1 + \frac{1}{R_1}u_2 \\ 
-    i_2 = \frac{1}{R_1}u_2
+    i_2 = \frac{1}{R_1}u_2 
 \end{cases},\ 
 \boldsymbol{G} = 
 \begin{bmatrix}
@@ -694,11 +731,11 @@ R_i = \infty,\ R_o = 0
 \end{equation}
 
 \begin{figure}[H]\centering
-\includegraphics[width=0.7\textwidth]{assets/3/image (8).jpg}
+\includegraphics[width=0.55\textwidth]{assets/3/image (8).jpg}
 \caption{\bfseries 讲义题 2-20}\label{讲义题 2-20}
 \end{figure}
 
-\section{仿真 2-1}
+\section{仿真 2-1: 题目详见图 \ref{示意图} (b)}
 
 \subsection{单 OPA 实现电压运算}
 
@@ -823,7 +860,7 @@ R_1 = 4\KO,\ R_2 = 6\KO,\ R_3 = 7\KO,\ R_M = 1\KO,\ R_f = 3.5\KO
     \includegraphics[height=120pt]{assets/3/image (5).jpg}
     \caption{\bfseries 仿真作业 2-1 }
 \end{subfigure}
-\caption{\bfseries 示意图 }
+\caption{\bfseries 示意图 }\label{示意图}
 \end{figure}
 
 在 $u_1, R_1, u_2, R_2 $ 和 $R_M$ 构成的局部电路中，由 KVC:
@@ -994,7 +1031,7 @@ u_o = - (d_0i_0 + d_1i_1 + d_2i_2)R = -\frac{u_s}{8}\left( d_2\cdot 2^2 + d_1\cd
 
 \chapter{2024.9.19 - 2024.9.24}\thispagestyle{fancy}
 
-\section{讲义题 2-20}
+\section{讲义题 2-20: 求图示各网络的 和 $\boldsymbol{R}$ 参数}
 
 
 如图 \ref{求G参数} (a)，对 (a) 电路有：
@@ -1042,7 +1079,7 @@ u_o = - (d_0i_0 + d_1i_1 + d_2i_2)R = -\frac{u_s}{8}\left( d_2\cdot 2^2 + d_1\cd
 
 
 
-\section{讲义题 2-21}
+\section{讲义题 2-21: 图示电路中 $R_1 = 10\ \Omega$，$R_2 = 40\ \Omega$，求}
 
 \noindent \textbf{(1)\ \ 此二端口网络的 $\boldsymbol{T}$ 参数：}
 
@@ -1092,7 +1129,7 @@ $(-i_2) = I_2 = 2\ \mathrm{A},\quad u_2 = I_2R_3 = 40\ \mathrm{V}$，代入即�
 \caption{\bfseries 讲义题 2-20、讲义题 2-21 }\label{求G参数}
 \end{figure}
 
-\section{讲义题 2-22}
+\section{讲义题 2-22: 图示电路中二端口网络的 $\boldsymbol{T}$ 参数为 $\boldsymbol{T} = \begin{bmatrix} 2 & 8\  \Omega \\ 0.5\ \mathrm{S} & 2.5 \end{bmatrix} $}
 
 \noindent \textbf{(1)\ \ 求此二端口的等效电路}
 
@@ -1126,29 +1163,311 @@ p = \frac{u_2^2}{R_2} = \frac{36}{\frac{13^2}{R_2} + 78 + 9R_2} \leqslant \frac{
 \caption{\bfseries 讲义题 2-22 }
 \end{figure}
 
+\chapter{2024.9.25 - 2024.10.8}\thispagestyle{fancy}
+
+\section{教材 2-41: 求由 N-E MOS 构成的两输入 NAND 和两输入 NOR 的最大功率，并指出何时有最大功率}
+
+对于 NAND，仅当两输入都为 1 时有静态功率，也即最大功率，设 N-E MOS 的导通电阻为 $R_{\text{ON}}$，外接电阻 $R_L$，电源电压 $U_S$，则功率为：
+\begin{equation}
+    P_{\,\text{NAND, max}} = \frac{U_S^2}{R_L + 2R_{\text{ON}}}
+\end{equation}
+
+对于 NOR，任一输入为 1 时都具有静态功率，两输入都为 1 时有最大功率：
+\begin{equation}
+    P_{\,\text{NOR, max}} = \frac{U_S^2}{R_L + \frac{R_{\text{ON}}}{2}}
+\end{equation}
+
+\section{用两个 N-E MOS、两个 P-E MOS 和电源构成静态功率为零的 NAND}
+
+题意也即 C-MOS NAND，我们不妨直接用 C-MOS 构成三种基本逻辑门（反相器 NOT、或非门 NOR、与非门 NAND），如图 \ref{由 C-MOS 构成三种基本逻辑门} 所示，其中红色表示 P-MOS，蓝色表 N-MOS。
+
+\begin{figure}[H]\centering
+    \begin{subfigure}[t]{0.33\columnwidth}\centering
+        \includegraphics[height=120pt]{assets/5/CMOS NOT.pdf}
+        \caption{\bfseries C-MOS NOT }
+    \end{subfigure}\hfill
+    \begin{subfigure}[t]{0.33\columnwidth}\centering
+        \includegraphics[height=120pt]{assets/5/CMOS NOR.pdf}
+        \caption{\bfseries C-MOS NOR }
+    \end{subfigure}
+    \begin{subfigure}[t]{0.33\columnwidth}\centering
+        \includegraphics[height=120pt]{assets/5/CMOS NAND.pdf}
+        \caption{\bfseries C-MOS NAND }
+    \end{subfigure}
+    \caption{\bfseries 由 C-MOS 构成三种基本逻辑门 }\label{由 C-MOS 构成三种基本逻辑门}
+\end{figure}
+
+
+\section{半加器、全加器、四位加法器}
+
+\subsection{教材 2-40: 用电源、N-E MOS (最多九个) 和电阻器构成一个半加器 HA}
+
+半加器是一种基本的逻辑电路，用于将两个二进制数相加，输出一个两位的二进制数，表示相加的结果。输出的高位和低位分别称为“进位$C$”、“和位$S$”。也就是说，半加器实际上是“一位加法器”，能够处理两个一位二进制数的相加，并输出一个两位二进制结果。设输入为 $A$ 和 $B$，则有：
+\begin{gather}
+    Y = (C S)_{(2)} = A_{(2)} + B_{(2)}
+    \\
+    C = A \cdot B,\quad S = A \oplus B
+\end{gather}
+
+由于要求使用的 MOS 尽量少（仅使用 N-MOS），对半加器的逻辑表达式作处理，利用下面式子可得最简半加器（7 个 N-MOS），其数字电路见图 \ref{半加器 HA 数字电路} (a)，实际电路见图 \ref{半加器 HA 实际电路} (a)。
+\begin{equation}
+    C = \overline{(\overline{A\cdot B})},\quad S = \overline{\left[(A \cdot B) + \overline{(A + B)}\right]}
+\end{equation}
+
+当然，考虑到半加器的逻辑表达式，也可以用异或门 XOR 和与门 AND 直接构成半加器，我们采用经过优化的 6 MOS 异或门 XOR（三个 N-MOS 和三个 P-MOS），它的静态功率为 0。由此构成的半加器数字电路见图 \ref{半加器 HA 数字电路} (b)，实际电路见图 \ref{半加器 HA 实际电路} (b)。
+
+\begin{figure}[H]\centering
+\begin{subfigure}[t]{0.5\columnwidth}\centering
+    \includegraphics[height=80pt]{assets/5/NMOS 半加器数字电路.pdf}
+    \caption{\bfseries N-MOS HA 数字电路}
+\end{subfigure}\hfill
+\begin{subfigure}[t]{0.5\columnwidth}\centering
+    \includegraphics[height=80pt]{assets/5/CMOS 半加器数字电路.pdf}
+    \caption{\bfseries C-MOS HA 数字电路 }
+\end{subfigure}
+\caption{\bfseries 半加器 HA 数字电路 }\label{半加器 HA 数字电路}
+\end{figure}
+
+\begin{figure}[H]\centering
+\begin{subfigure}[t]{0.42\columnwidth}\centering
+    \includegraphics[height=165pt]{assets/5/NMOS 半加器实际电路.pdf}
+    \caption{\bfseries N-MOS HA 实际电路 }
+\end{subfigure}\hfill
+\begin{subfigure}[t]{0.58\columnwidth}\centering
+    \includegraphics[height=160pt]{assets/5/CMOS 半加器实际电路.pdf}
+    \caption{\bfseries C-MOS HA 实际电路 }
+\end{subfigure}
+\caption{\bfseries 半加器 HA 实际电路 }\label{半加器 HA 实际电路}
+\end{figure}
+
+\subsection{用两个半加器 HA 和一个逻辑门构成一个全加器 FA}
+
+由半加器可以进一步构造全加器，全加器是一种能够处理{\color{red} 三个一位二进制数}相加的逻辑电路，输出一个两位的二进制数 $Y= (C_o S)_{(2)}$，表示相加的结果。输出的高位称为进位 $C_o$，低位称为和位 $S$。也就是说，全加器可以理解为“三输入一位加法器”。记全加器的三个输入为 $A$，$B$，$C$，它们都是一位的二进制数，则全加器可写为：
+\begin{gather}
+Y= (C_oS)_{(2)} = A_{(2)} + B_{(2)} + C_{(2)} 
+\\ 
+C = A \cdot B + A \cdot C + B \cdot C,\quad 
+S = A \oplus B \oplus C
+\end{gather}
+
+
+角标 $(2)$ 表示上式为二进制运算。由两个 HA 和一个 OR 即可构成全加器，数字电路如图 \ref{全加器 FA}。
+
+\begin{figure}[H]\centering
+\includegraphics[width=0.65\columnwidth]{assets/5/全加器.pdf}
+\caption{\bfseries 全加器 FA}\label{全加器 FA}
+\end{figure}
 
 
 
+\subsection{用四个全加器 FA 构成一个四位加法器}
+
+四位加法器，输入两个四位二进制数 $X$ 和 $Y$，分别记作 $ X= (X_3 X_2 X_1 X_0)_{(2)}$，$ Y=  (Y_3 Y_2 Y_1 Y_0)_{(2)}$，输出一个五位二进制数 $Z = (C S_3 S_2 S_1 S_0)_{(2)}$，代表两数相加的结果。原理及数字电路如图 \ref{四位加法器} 所示。
+
+\begin{figure}[H]\centering
+\includegraphics[width=0.9\columnwidth]{assets/5/四位加法器.pdf}
+\caption{\bfseries 四位加法器}\label{四位加法器}
+\end{figure}
+
+
+\section{习题集 3-20: 用节点法求图中电路的电流 $I$ 和电流源两端电压 $U$}
 
 
 
+对电路作等效处理，得到等效电路如图 \ref{5.4 习题集 3-20} (b) 所示，则有节点电压方程组如下式左半边。再任意选取一个节点作为参考节点，这里选择节点 3，即 $U_3 = 0$，可以解得：
+\begin{align}
+\begin{cases}
+    \text{节点 1: } &  \left(\frac{5}{8} + 1\right)U_1 -  \frac{5}{8} U_2 -  U_3 = - 10.75
+    \\
+    \text{节点 2: } & - \frac{5}{8} U_1 + \left( \frac{5}{8} + \frac{3}{5}\right)U_2 - \frac{3}{5} U_3 = +10.75 
+    \\
+    \text{节点 3: } & - U_1 - \frac{3}{5} U_2 + \left(1 + \frac{3}{5}\right)U_3 = 0
+\end{cases}
+\Longrightarrow 
+\begin{bmatrix}
+    U_1 \\ 
+    U_2 \\
+    U_3
+\end{bmatrix} 
+= 
+\begin{bmatrix}
+    -\frac{129}{32} \ \mathrm{V}\\
+    \frac{215}{32} \ \mathrm{V}\\
+    0
+\end{bmatrix}
+\end{align}
+
+返回到原电路，可得电流 $I$ 和电流源两端电压 $U$: 
+\begin{equation}
+I = \frac{U_2 - 8 - U_3}{2} = -\frac{41}{64} \ \mathrm{A} = -0.640625 \ \mathrm{A},\quad U = U_2 - U_1 + 6 = \frac{67}{4} \ \mathrm{V} = 16.75 \ \mathrm{V}
+\end{equation}
+
+\begin{figure}[H]\centering
+\begin{subfigure}[t]{0.5\columnwidth}\centering
+    \includegraphics[height=120pt]{assets/5/5.4 (1).png}
+    \caption{\bfseries 题目原电路图 }
+\end{subfigure}\hfill
+\begin{subfigure}[t]{0.5\columnwidth}\centering
+    \includegraphics[height=120pt]{assets/5/5.4 (2).png}
+    \caption{\bfseries 等效后的最简电路图 }
+\end{subfigure}
+\caption{\bfseries 5.4 习题集 3-20 }\label{5.4 习题集 3-20}
+\end{figure}
 
 
+\section{习题集 3-21: 用节点法求电流源两端电压 $U$ 和各支路电流 }
+
+还是对电路作等效处理，得到等效电路如图 \ref{5.5 习题集 3-21} (b) 所示。这次先选取参考节点再列方程，以节点 0 为参考点，得到：
+\begin{equation}
+\left(\frac{1}{13.7} + \frac{1}{17.2} + \frac{1}{11.9}\right) U_1 = \frac{5}{13.7} + \frac{15}{17.2} + \frac{10}{11.9} + 1\Longrightarrow U_1 = 14.3024 \ \mathrm{V}
+\end{equation}
+% \Longrightarrow  0.21517U_1 = 3.07739
+于是得到电压 $U$ 和各支路电流：
+\begin{align}
+U = U_1 + 5.5 = 19.8024 \ \mathrm{V} ,\quad  
+I_1 = \frac{U_1 - 5}{13.7} =  0.6790 \ \mathrm{A}\\ 
+I_2 = \frac{U_1 - 15}{17.2} = -0.0406 \ \mathrm{A}, \quad 
+I_3 = \frac{U_1 - 10}{11.9} = 0.3615 \ \mathrm{A}
+\end{align}
 
 
+\begin{figure}[H]\centering
+\begin{subfigure}[t]{0.5\columnwidth}\centering
+    \includegraphics[height=120pt]{assets/5/5.5 (1).png}
+    \caption{\bfseries 题目原电路图 }
+\end{subfigure}\hfill
+\begin{subfigure}[t]{0.5\columnwidth}\centering
+    \includegraphics[height=120pt]{assets/5/5.5 (2).png}
+    \caption{\bfseries 等效后的最简电路图 }
+\end{subfigure}
+\caption{\bfseries 5.5 习题集 3-21 }\label{5.5 习题集 3-21}
+\end{figure}
 
 
+\section{（选做）讲义题 3-4: 按指定的参考节点，列出电路的节点电压方程}
 
+原题图和等效电路如图 \ref{5.6 讲义题 3-4} 所示，电路中有 4 个节点（不含无伴电压源）和 2 个受控源控制变量，需要列出 3 个节点方程和 2 个控制方程，如下：
+\begin{align}
+\begin{matrix}
+    \text{节点 1: } & (1 + 1)U_1 - U_2 - 0 = 2u-1\\
+    \text{节点 2: } & -U_1 + \left(1 + \frac{1}{4}\right)U_2 - \frac{1}{4}U_3 = 3 i  \\
+    \text{节点 3: } &  0-\frac{1}{4}U_2 + \left(1 + \frac{1}{4}\right)U_3 = 1 \\
+    \text{控制方程: } & i = U_1 - U_2,\quad u = U_3
+\end{matrix}
+\end{align}
+代入化简并求解：
+\begin{equation}
+\begin{cases}
+    2U_1 - U_2 -2 U_3 = -1\\ 
+    -16U_1 + 17U_2 - U_3 = 0 \\ 
+    0 - U_2 + 5U_3 = 1
+\end{cases}\Longrightarrow 
+U_1 = U_2 = U_3 = 1 \ \mathrm{V},\quad i = 0,\quad u = 1 \ \mathrm{V}
+\end{equation}
 
+\begin{figure}[H]\centering
+\includegraphics[width=0.8\columnwidth]{assets/5/5.6.png}
+\caption{\bfseries 5.6 讲义题 3-4}\label{5.6 讲义题 3-4}
+\end{figure}
 
+\section{习题集 3-15: 用回路电流法求图中电路的独立电流源功率}
 
+原电路已无法继续化简，电路中有 3 个网格（含 2 个无伴电流源），1 个受控源变量，共需列出 $3 + 1 = 2$ 个方程。如图 \ref{5.7 习题集 3-15} (a)，先列出三个网格电流方程，如下：
+\begin{align}
+    \text{网格 1: } & 100 i_1 - 20i_2 - 30i_3 = 0 \\ 
+    \text{网格 2: } & i_2 = 1 \\ 
+    \text{网格 3: } & i_3 = -0.02 U
+\end{align}
+又有控制变量 $U$: 
+\begin{equation}
+0 + U - 20(i_2 - i_1) - 0.4 U = 0 \Longrightarrow U = \frac{100}{3}(i_2 - i_1)
+\end{equation}
+联立上面四个方程，可以得到：
+\begin{equation}
+\begin{cases}
+    \text{网格 1: } & 100 i_1 - 20i_2 - 30i_3 = 0 \\ 
+    \text{网格 2: } & i_2 = 1 \\ 
+    \text{网格 3: } & -2 i_1 + 2i_2 +3 i_3 = 0
+\end{cases}
+\Longrightarrow 
+\begin{cases}
+    i_1 = 0 \ \mathrm{A} \\ 
+    i_2 = 1 \ \mathrm{A} \\ 
+    i_3 = -\frac{2}{3} \ \mathrm{A}
+\end{cases}
+\end{equation}
+得到功率 $P$:
+\begin{equation}
+    P = 1 \ \mathrm{A}\cdot U = \frac{100}{3}(i_2 - i_1) = \frac{100}{3} \ \mathrm{W} = 33.3333 \ \mathrm{W}
+\end{equation}
 
+\begin{figure}[H]\centering
+\begin{subfigure}[t]{0.5\columnwidth}\centering
+    \includegraphics[height=120pt]{assets/5/5.7 (1).png}
+    \caption{\bfseries 回路电流法 }
+\end{subfigure}\hfill
+\begin{subfigure}[t]{0.5\columnwidth}\centering
+    \includegraphics[height=120pt]{assets/5/5.7 (2).png}
+    \caption{\bfseries 节点电压法 }
+\end{subfigure}
+\caption{\bfseries 5.7 习题集 3-15 }\label{5.7 习题集 3-15}
+\end{figure}
 
+不妨也用节点电压法求解一下此题。如图 \ref{5.7 习题集 3-15} (b)，电路中有 4 个节点（含 1 个无伴电压源）和 1 个（受控源）控制变量，取节点 0 为参考节点，共需列出 $ (4 - 1 - 1) + 0 + 2 = 4$ 个方程，如下：
+\begin{align}
+\text{节点 1: } & \left(\frac{1}{50} + \frac{1}{20}\right) U_1 - \frac{1}{20}U_2 - \frac{1}{50}U_3 = 1 \\ 
+\text{节点 2: } & U_2 = 0.4 U \\
+\text{节点 3: } & - \frac{1}{50}U_1 - \frac{1}{30}U_2 + \left(\frac{1}{50} + \frac{1}{30}\right)U_3 = 0.02 U \\ 
+\text{控制方程: } & U = U_1
+\end{align}
+联立上述四个方程，可以得到：
+\begin{equation}
+\begin{cases}
+    \text{节点 1: } & \left(\frac{1}{50} + \frac{1}{20}\right) U_1 - \frac{1}{20}U_2 - \frac{1}{50}U_3 = 1 \\ 
+    \text{节点 2: } & -0.4 U_1 + U_2 = 0 \\
+    \text{节点 3: } & - \frac{2}{50}U_1 - \frac{1}{30}U_2 + \left(\frac{1}{50} + \frac{1}{30}\right)U_3 = 0
+\end{cases}
+\Longrightarrow 
+\begin{cases}
+    U_1 = \frac{100}{3} \ \mathrm{V}\\ 
+    U_2 = \frac{40}{3} \ \mathrm{V}\\ 
+    U_3 = \frac{100}{3} \ \mathrm{V}
+\end{cases}
+\Longrightarrow P = 1 \ \mathrm{A}\cdot U = \frac{100}{3} \ \mathrm{W}
+\end{equation}
 
+\section{（选做）讲义题 3-8: 列出图中电路的网孔电流方程，并计算受控源的吸收功率}
 
+如图，电路共有 3 个网格（内含 2 个无伴电流源）和 1 个控制变量，将 $i_2$ 和 $i_3$ 合并为超网格后，共需要列出 2 个网格方程、1 个超网格内部方程和 1 个控制方程，如下：
+\begin{equation}
+\begin{cases}
+    \text{网格 1: } & i_1 = 2\\ 
+    \text{网格 2,3: } & -3i_1 + (2i_2 + 4i_3) = 4\\ 
+    \text{网格 2,3 内部: } & 2i = i_2 - i_3\\ 
+    \text{控制方程: } & i = i_3 - i_1
+\end{cases}\Longrightarrow 
+\begin{cases}
+    i_1 = 2 \\ 
+    -3i_1 + 2i_2 + 4i_3 = 4 \\
+    2i_1 + i_2 - 3i_3 = 0
+\end{cases}
+\Longrightarrow 
+\begin{cases}
+    i_1 = 2 \ \mathrm{A}\\ 
+    i_2 = 1.4 \ \mathrm{A}\\ 
+    i_3 = 1.8 \ \mathrm{A} \\ 
+    i = -0.2 \ \mathrm{A}
+\end{cases}
+\end{equation}
+于是得到吸收功率：
+\begin{equation}
+    P = 2i \cdot \left[ 0 - \left(4 - 2(i_2 - i_1)\right) \right] = 2.8 \ \mathrm{W}
+\end{equation}
 
-
-
+\begin{figure}[H]\centering
+\includegraphics[width=0.5\columnwidth]{assets/5/5.8.png}
+\caption{\bfseries 5.8 讲义题 3-8}\label{5.8 讲义题 3-8}
+\end{figure}
 
 
 
@@ -1244,7 +1563,8 @@ p = \frac{u_2^2}{R_2} = \frac{36}{\frac{13^2}{R_2} + 78 + 9R_2} \leqslant \frac{
 \titleformat{\section}[hang]{\normalfont\centering\Large\bfseries}{\thesection}{8pt}{}
 
 % 附录 A
-\chapter*{附录 A\hspace*{20pt}  Matlab 代码}\addcontentsline{toc}{chapter}{附录 A\hspace*{6pt}  Matlab 代码}   
+\chapter*{附录 A\hspace*{20pt}  Matlab 代码}\setcounter{chapter}{20}   % 20-A, 21-B, 用于避免超链接跳转冲突
+\addcontentsline{toc}{chapter}{附录 A\hspace*{6pt}  Matlab 代码}   
 \thispagestyle{fancy} 
 \setcounter{section}{0}   
 \renewcommand\thesection{A.\arabic{section}}   

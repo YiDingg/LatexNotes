@@ -84,7 +84,7 @@
         \newtheoremstyle{MyLineTheoremStyle}% <name>
             {11pt}% <space above>
             {11pt}% <space below>
-            {}% <body font> 使用默认正文字体
+            {\kaishu}% <body font> 使用默认正文字体
             {}% <indent amount>
             {\bfseries}% <theorem head font> 设置标题项为加粗
             {：}% <punctuation after theorem head>
@@ -141,15 +141,14 @@
 % 外源代码插入设置
     % matlab 代码插入设置
     \usepackage{matlab-prettifier}
-        \lstset{
-            style=Matlab-editor,  % 继承matlab代码颜色等
-        }
+        \lstset{style=Matlab-editor}    % 继承 matlab 代码高亮 , 此行不能删去
     \usepackage[most]{tcolorbox} % 引入tcolorbox包 
     \usepackage{listings} % 引入listings包
         \tcbuselibrary{listings, skins, breakable}
-        \lstdefinestyle{matlabstyle}{
+        \newfontfamily\codefont{Consolas} % 定义需要的 codefont 字体
+        \lstdefinestyle{MatlabStyle_inc}{   % 插入代码的样式
             language=Matlab,
-            basicstyle=\small,
+            basicstyle=\small\ttfamily\codefont,    % ttfamily 确保等宽 
             breakatwhitespace=false,
             breaklines=true,
             captionpos=b,
@@ -159,17 +158,48 @@
             showspaces=false,
             showstringspaces=false,
             showtabs=false,
-            tabsize=2
+            tabsize=2,
+            xleftmargin=15pt,   % 左边距
+            %frame=single, % single 为包围式单线框
+            frame=shadowbox,    % shadowbox 为带阴影包围式单线框效果
+            %escapeinside=``,   % 允许在代码块中使用 LaTeX 命令 (此行无用)
+            %frameround=tttt,    % tttt 表示四个角都是圆角
+            framextopmargin=0pt,    % 边框上边距
+            framexbottommargin=0pt, % 边框下边距
+            framexleftmargin=5pt,   % 边框左边距
+            framexrightmargin=5pt,  % 边框右边距
+            rulesepcolor=\color{red!20!green!20!blue!20}, % 阴影框颜色设置
+            %backgroundcolor=\color{blue!10}, % 背景颜色
+        }
+        \lstdefinestyle{MatlabStyle_src}{   % 插入代码的样式
+            language=Matlab,
+            basicstyle=\small\ttfamily\codefont,    % ttfamily 确保等宽 
+            breakatwhitespace=false,
+            breaklines=true,
+            captionpos=b,
+            keepspaces=true,
+            numbers=left,
+            numbersep=15pt,
+            showspaces=false,
+            showstringspaces=false,
+            showtabs=false,
+            tabsize=2,
         }
         \newtcblisting{matlablisting}{
-            arc=0pt,
+            %arc=2pt,        % 圆角半径
+            % 调整代码在 listing 中的位置以和引入文件时的格式相同
             top=0pt,
             bottom=0pt,
-            left=1mm,
-            listing only,
-            listing style=matlabstyle,
+            left=-5pt,
+            right=-5pt,
+            listing only,   % 此句不能删去
+            listing style=MatlabStyle_src,
             breakable,
-            colback=white   % 选一个合适的颜色
+            colback=white,   % 选一个合适的颜色
+            colframe=black!0,   % 感叹号后跟不透明度 (为 0 时完全透明)
+        }
+        \lstset{
+            style=MatlabStyle_inc,
         }
 
 % table 支持
@@ -386,7 +416,7 @@
 \end{circledenum}
 
 \begin{figure}[H]\centering
-\includegraphics[width=0.45\textwidth]{assets/4d651e08624250e2b6a287f557fe1cf8.png}
+\includegraphics[width=0.45\textwidth]{assets/1,2/4d651e08624250e2b6a287f557fe1cf8.png}
 \caption{\textbf{(a) (b) 构成区域，(c) 不构成区域}}\label{(a) (b) 构成区域，(c) 不构成区域}
 \end{figure}
 \end{definition}
@@ -403,7 +433,7 @@
 如 图 \ref{Riemann 球面（复数球面）} ，过扩充的复平面$\overline{\C}$中的原点$(0,0)$作直径为 1 的球面，使之与$\overline{\C}$相切，切点称为南极 S，南极直径另一端称为北极 N。$\forall\ z \in \overline{\C}$，将它和复数球面的北极 N 相连，连线和球面有且仅有一个交点，因此存在一一对应关系。容易理解，$0$ 对应南极 S 而 $\infty$ 对应北极 N。
 
 \begin{figure}[H]\centering
-\includegraphics[width=0.40\textwidth]{assets/79ee2f440c28e683147e653d153efc72.png}
+\includegraphics[width=0.40\textwidth]{assets/1,2/79ee2f440c28e683147e653d153efc72.png}
 \caption{\textbf{Riemann 球面（复数球面）}}\label{Riemann 球面（复数球面）}
 \end{figure}
 \end{definition}
@@ -413,10 +443,10 @@
 
 \begin{figure}[H]\centering
 \begin{subfigure}[t]{0.49\textwidth}\centering
-    \includegraphics[height=220pt]{assets/z^2.pdf}
+    \includegraphics[height=220pt]{assets/1,2/z^2.pdf}
     \caption{\bfseries $f(z) = z^2$ }
 \end{subfigure}\begin{subfigure}[t]{0.49\textwidth}\centering
-    \includegraphics[height=220pt]{assets/zRez.pdf}
+    \includegraphics[height=220pt]{assets/1,2/zRez.pdf}
     \caption{\bfseries $f(z) = z\cdot \Re z$ }
 \end{subfigure}
 \caption{\bfseries 复变函数可视化 }\label{可视化1}
@@ -426,10 +456,10 @@
 
 \begin{figure}[H]\centering
     \begin{subfigure}[t]{0.49\textwidth}\centering
-        \includegraphics[height=220pt]{assets/e^(iz).pdf}
+        \includegraphics[height=220pt]{assets/1,2/e^(iz).pdf}
         \caption{\bfseries $f(z) = e^{iz}$ }
     \end{subfigure}\begin{subfigure}[t]{0.49\textwidth}\centering
-        \includegraphics[height=220pt]{assets/cos(iz).pdf}
+        \includegraphics[height=220pt]{assets/1,2/cos(iz).pdf}
         \caption{\bfseries $f(z) = cos(z)$ }
     \end{subfigure}
     \caption{\bfseries 复变函数可视化 }\label{可视化2}
@@ -584,7 +614,7 @@ g_2(y) = \int (\frac{\partial v }{\partial y } - \frac{\partial g_1 }{\partial y
     \end{gather*}
     它们的等高线图如图 \ref{解析函数 $f(z) = z^2$ 实虚部示意图} 所示：
     \begin{figure}[H]\centering
-    \includegraphics[width=0.3\textwidth]{assets/2024-08-28_10-23-23.png}
+    \includegraphics[width=0.3\textwidth]{assets/1,2/2024-08-28_10-23-23.png}
     \caption{\textbf{解析函数 $f(z) = z^2$ 实虚部示意图}}\label{解析函数 $f(z) = z^2$ 实虚部示意图}
     \end{figure}
     \par}
@@ -689,7 +719,7 @@ $\omega $ 的多值性来源于 $z-a$ 幅角的多样性，我们把这样的量
 
 
 \begin{figure}[H]\centering
-\includegraphics[width=0.55\textwidth]{assets/image (43).jpg}
+\includegraphics[width=0.55\textwidth]{assets/1,2/image (43).jpg}
 \caption{\textbf{$z$ 沿闭合曲线一周回到原处时，$w = \sqrt{z-a}$ 值的不同变化}}\label{沿闭合曲线一周回到原处时}
 \end{figure}
 \end{definition}
@@ -735,6 +765,34 @@ f(z) = \sqrt[k]{
     \Arctan z = \frac{1}{2i}\Ln(\frac{1+iz}{1-iz}) ,\quad
     z^\alpha = e^{\alpha \Ln z},\  \alpha \in \C
 \end{gather}
+
+
+\section{部分复变函数可视化}
+
+图 \ref{可视化3} 是 $f(z) = e^z$ 与 $f(z) = \cos (z)$ 的可视化，图 \ref{可视化4}\footnote{图 \ref{可视化3} 和图 \ref{可视化4} 源码见附录 \ref{可视化34 源码}} 是多值函数 $f(z) = \sqrt{z}$ 和 $f(z) = \Ln z$ 的单值分支的可视化，图中等高线表示模长相等。
+
+\begin{figure}[H]\centering
+\begin{subfigure}[t]{0.49\textwidth}\centering
+    \includegraphics[height=210pt]{assets/1,2/e^z.pdf}
+    \caption{\bfseries $\boldsymbol{f(z) = e^z}$ }
+\end{subfigure}\begin{subfigure}[t]{0.49\textwidth}\centering
+    \includegraphics[height=210pt]{assets/1,2/cos z.pdf}
+    \caption{\bfseries $\boldsymbol{f(z) = \cos (z)}$ }
+\end{subfigure}
+\caption{\bfseries 单值复变函数可视化 }\label{可视化3}
+\end{figure}
+
+
+\begin{figure}[H]\centering
+    \begin{subfigure}[t]{0.49\textwidth}\centering
+        \includegraphics[height=210pt]{assets/1,2/sqrt z.pdf}
+        \caption{\bfseries $\boldsymbol{f(z) = \sqrt{z} },\ \boldsymbol{\arg z \in [0, 2\pi]}$ 单值分支 }
+    \end{subfigure}\begin{subfigure}[t]{0.49\textwidth}\centering
+        \includegraphics[height=210pt]{assets/1,2/ln z.pdf}
+        \caption{\bfseries $\boldsymbol{f(z) = \Ln z},\ \boldsymbol{\arg z \in [0, 2\pi]}$ 单值分支  }
+    \end{subfigure}
+    \caption{\bfseries 多值复变函数可视化 }\label{可视化4}
+\end{figure}
 
 
 \chapter{复变积分}
@@ -1122,7 +1180,8 @@ v(r, \phi) &= \frac{a^2 - r^2}{2 \pi} \int_{0}^{2 \pi} \frac{ v(a, \theta) }{a^2
 \titleformat{\section}[hang]{\normalfont\centering\Large\bfseries}{\thesection}{8pt}{}
 
 % 附录 A
-\chapter*{附录 A\hspace*{20pt}  数物方法 Q \& A}\addcontentsline{toc}{chapter}{附录 A\hspace*{6pt}  数物方法 Q \& A}   
+\chapter*{附录 A\hspace*{20pt}  数物方法 Q \& A}\setcounter{chapter}{20}   % 20-A, 21-B, 用于避免超链接跳转冲突
+\addcontentsline{toc}{chapter}{附录 A\hspace*{6pt}  数物方法 Q \& A}   
 \thispagestyle{fancy} 
 \setcounter{section}{0}   
 \renewcommand\thesection{A.\arabic{section}}   
@@ -1190,7 +1249,17 @@ f^{(n)}(z) = \frac{n !}{2\pi i} \oint_{\partial G} \frac{f(\zeta)}{(\zeta - z )^
 
 \subsection{如何理解 Cauchy 型积分揭示的“解析函数在（分段）光滑曲线上的值决定了它 在整个复平面上的值”}
 
+\chapter*{附录 B\hspace*{20pt}  Matlab 代码}\addcontentsline{toc}{chapter}{附录 B\hspace*{6pt}  Matlab 代码}
+\thispagestyle{fancy}
+\setcounter{chapter}{21}   % 20-A, 21-B, 用于避免超链接跳转冲突
+\setcounter{section}{0}   
+\renewcommand\thesection{B.\arabic{section}}   
+\renewcommand{\thefigure}{B.\arabic{figure}} 
+\renewcommand{\thetable}{B.\arabic{table}}
 
+\section{图 \ref{可视化3} 和图 \ref{可视化4} 源码}
+\label{可视化34 源码}
+\lstinputlisting{d:/a_RemoteRepo/GH.MatlabCodes/本科课程代码/数学物理方法/ComplexFunctionsVisualization.m}
 
 % --------------------------- 附录 --------------------------- %
 % >> ------------------------ 附录 ------------------------ << %

@@ -85,12 +85,13 @@
         \geometry{marginparwidth=1.75cm}    % 设置边注距离（注释、标记等）
 
 % 配置数学环境
+    %\everymath{\displaystyle}   % 设置全文数学公式都为展示样式
     \usepackage{amsthm} % 宏包：数学环境配置
     % theorem-line 环境自定义
         \newtheoremstyle{MyLineTheoremStyle}% <name>
             {11pt}% <space above>
             {11pt}% <space below>
-            {}% <body font> 使用默认正文字体
+            {\kaishu}% <body font> 使用默认正文字体
             {}% <indent amount>
             {\bfseries}% <theorem head font> 设置标题项为加粗
             {：}% <punctuation after theorem head>
@@ -147,14 +148,12 @@
 % 外源代码插入设置
     % matlab 代码插入设置
     \usepackage{matlab-prettifier}
-        \lstset{
-            style=Matlab-editor,  % 继承matlab代码颜色等
-        }
+        \lstset{style=Matlab-editor}    % 继承 matlab 代码高亮 , 此行不能删去
     \usepackage[most]{tcolorbox} % 引入tcolorbox包 
     \usepackage{listings} % 引入listings包
         \tcbuselibrary{listings, skins, breakable}
         \newfontfamily\codefont{Consolas} % 定义需要的 codefont 字体
-        \lstdefinestyle{matlabstyle}{
+        \lstdefinestyle{MatlabStyle_inc}{   % 插入代码的样式
             language=Matlab,
             basicstyle=\small\ttfamily\codefont,    % ttfamily 确保等宽 
             breakatwhitespace=false,
@@ -166,17 +165,48 @@
             showspaces=false,
             showstringspaces=false,
             showtabs=false,
-            tabsize=2
+            tabsize=2,
+            xleftmargin=15pt,   % 左边距
+            %frame=single, % single 为包围式单线框
+            frame=shadowbox,    % shadowbox 为带阴影包围式单线框效果
+            %escapeinside=``,   % 允许在代码块中使用 LaTeX 命令 (此行无用)
+            %frameround=tttt,    % tttt 表示四个角都是圆角
+            framextopmargin=0pt,    % 边框上边距
+            framexbottommargin=0pt, % 边框下边距
+            framexleftmargin=5pt,   % 边框左边距
+            framexrightmargin=5pt,  % 边框右边距
+            rulesepcolor=\color{red!20!green!20!blue!20}, % 阴影框颜色设置
+            %backgroundcolor=\color{blue!10}, % 背景颜色
+        }
+        \lstdefinestyle{MatlabStyle_src}{   % 插入代码的样式
+            language=Matlab,
+            basicstyle=\small\ttfamily\codefont,    % ttfamily 确保等宽 
+            breakatwhitespace=false,
+            breaklines=true,
+            captionpos=b,
+            keepspaces=true,
+            numbers=left,
+            numbersep=15pt,
+            showspaces=false,
+            showstringspaces=false,
+            showtabs=false,
+            tabsize=2,
         }
         \newtcblisting{matlablisting}{
-            arc=2pt,        % 圆角半径
-            top=-5pt,
-            bottom=-5pt,
-            left=1mm,
-            listing only,
-            listing style=matlabstyle,
+            %arc=2pt,        % 圆角半径
+            % 调整代码在 listing 中的位置以和引入文件时的格式相同
+            top=0pt,
+            bottom=0pt,
+            left=-5pt,
+            right=-5pt,
+            listing only,   % 此句不能删去
+            listing style=MatlabStyle_src,
             breakable,
-            colback=white   % 选一个合适的颜色
+            colback=white,   % 选一个合适的颜色
+            colframe=black!0,   % 感叹号后跟不透明度 (为 0 时完全透明)
+        }
+        \lstset{
+            style=MatlabStyle_inc,
         }
 
 % table 支持
@@ -248,9 +278,9 @@
     % section
         \titleformat{\section}[hang]{\normalfont\large\bfseries}{\thesection}{8pt}{}
     % subsection
-        %\titleformat{\subsubsection}[hang]{\normalfont\bfseries}{}{8pt}{}
-    % subsubsection
-        %\titleformat{\subsubsection}[hang]{\normalfont\bfseries}{}{8pt}{}
+        % 设置 subsection 样式为 (1) (2) (3)
+        \renewcommand{\thesubsection}{(\arabic{subsection})}    
+        \titleformat{\subsection}[hang]{\normalfont\bfseries}{\thesubsection}{8pt}{}    
 
 % >> ------------------ 文章宏包及相关设置 ------------------ << %
 % ------------------------------------------------------------- %
@@ -895,7 +925,8 @@ $\theta_i = 0$ 时，由菲涅尔定律和能量关系，有：
 \titleformat{\section}[hang]{\normalfont\centering\Large\bfseries}{\thesection}{8pt}{}
 
 % 附录 A
-\chapter*{附录 A\hspace*{20pt}  Matlab 代码}\addcontentsline{toc}{chapter}{附录 A\hspace*{6pt}  Matlab 代码}   
+\chapter*{附录 A\hspace*{20pt}  Matlab 代码}\setcounter{chapter}{20}   % 20-A, 21-B, 用于避免超链接跳转冲突
+\addcontentsline{toc}{chapter}{附录 A\hspace*{6pt}  Matlab 代码}   
 \thispagestyle{fancy} 
 \setcounter{section}{0}   
 \renewcommand\thesection{A.\arabic{section}}   

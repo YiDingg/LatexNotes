@@ -459,7 +459,8 @@
 \titleformat{\section}[hang]{\normalfont\centering\Large\bfseries}{\thesection}{8pt}{}
 
 % 附录 A
-\chapter*{附录 A\hspace*{20pt}  某某课程 Q \& A}\setcounter{chapter}{20}   % 20-A, 21-B, 用于避免超链接跳转冲突
+\chapter*{附录 A\hspace*{20pt}  某某课程 Q \& A}\setcounter{chapter}{1} 
+\setcounter{equation}{0}    % 重置公式计数器   
 \addcontentsline{toc}{chapter}{附录 A\hspace*{6pt}  某某课程 Q \& A}   
 \thispagestyle{fancy} 
 \setcounter{section}{0}   
@@ -472,7 +473,8 @@
 
 % 附录 B
 \chapter*{附录 B\hspace*{20pt}  中英文对照表}
-\setcounter{chapter}{21}   % 20-A, 21-B, 用于避免超链接跳转冲突
+\setcounter{chapter}{2} 
+\setcounter{equation}{0}    % 重置公式计数器   
 \addcontentsline{toc}{chapter}{附录 B\hspace*{6pt}  中英文对照表}   
 \thispagestyle{fancy} 
 \setcounter{section}{0}   

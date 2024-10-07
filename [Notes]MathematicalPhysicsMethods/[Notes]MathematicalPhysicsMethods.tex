@@ -1180,7 +1180,8 @@ v(r, \phi) &= \frac{a^2 - r^2}{2 \pi} \int_{0}^{2 \pi} \frac{ v(a, \theta) }{a^2
 \titleformat{\section}[hang]{\normalfont\centering\Large\bfseries}{\thesection}{8pt}{}
 
 % 附录 A
-\chapter*{附录 A\hspace*{20pt}  数物方法 Q \& A}\setcounter{chapter}{20}   % 20-A, 21-B, 用于避免超链接跳转冲突
+\chapter*{附录 A\hspace*{20pt}  数物方法 Q \& A}\setcounter{chapter}{1} 
+\setcounter{equation}{0}    % 重置公式计数器   
 \addcontentsline{toc}{chapter}{附录 A\hspace*{6pt}  数物方法 Q \& A}   
 \thispagestyle{fancy} 
 \setcounter{section}{0}   
@@ -1251,7 +1252,8 @@ f^{(n)}(z) = \frac{n !}{2\pi i} \oint_{\partial G} \frac{f(\zeta)}{(\zeta - z )^
 
 \chapter*{附录 B\hspace*{20pt}  Matlab 代码}\addcontentsline{toc}{chapter}{附录 B\hspace*{6pt}  Matlab 代码}
 \thispagestyle{fancy}
-\setcounter{chapter}{21}   % 20-A, 21-B, 用于避免超链接跳转冲突
+\setcounter{chapter}{2} 
+\setcounter{equation}{0}    % 重置公式计数器   
 \setcounter{section}{0}   
 \renewcommand\thesection{B.\arabic{section}}   
 \renewcommand{\thefigure}{B.\arabic{figure}} 

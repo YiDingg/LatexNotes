@@ -14,6 +14,7 @@
 % 本文特殊宏定义
     \def\Re{\mathrm{Re}\,}
     \def\Im{\mathrm{Im}\,}
+    \def\sinc{\mathrm{sinc}\,}
 
 % 自定义宏定义
     \def\N{\mathbb{N}}
@@ -337,50 +338,47 @@
 
 \section{光的几何传播规律}
 
-\begin{definition}[光传播的基本原理]
+\subsection{光传播的基本原理}
+
 光传播的常见基本原理：
 \begin{enumerate}
-    \item 直线传播：光在均匀介质里沿直线传播 \footnote{对高功率激光，此定律不成立}
-    \item 反射定律：光线入射到两种不同的均匀介质的分界面上反射线位于入射面内，反射线和入射线分居法线两侧，反射角等于入射角
+    \item 直线传播：光在均匀介质里沿直线传播\footnote{对高功率激光，此定律不成立}
+    \item 反射定律：光线入射到两种不同的均匀介质的分界面上反射线位于入射面内，反射线和入射线分居法线两侧，反射角等于入射角。
     \item 折射定律（斯涅尔定律）：折射线位于入射面内，折射线与入射线分居法线两侧，入射角的正弦与折射角的正弦
-    之比为一与入射角无关的常数 \footnote{折射率较大的一侧称为光密介质；较小的一侧称为光疏介质}
+    之比为一与入射角无关的常数
     \begin{equation}
     n_1\sin i_1 = n_2 \sin i_2
-    \end{equation}
-    
-    \begin{figure}[H]\centering
-    \includegraphics[width=0.4\textwidth]{assets/1,2/image (44).jpg}
-    \caption{\textbf{反射与折射}}\label{反射与折射}
-    \end{figure}
-    
-    \item 光路可逆性：光沿反方向传播时，必定沿原光路返回 \footnote{也即在几何光学中，任何光路都是可逆的}
+    \end{equation}    
+    \item 光路可逆性：光沿反方向传播时，必定沿原光路返回\footnote{也即在几何光学中，任何光路都是可逆的}
     \item 独立传播：光在传播过程中与其他光束相遇时，各光束都各自独立传播，不改变其传播方向
-    \item 全反射：光线从光密介质入射到光疏介质，当入射角大于某临界值时，折射光完
+    \item 全反射：光线从光密介质入射到光疏介质\footnote{折射率较大的一侧称为光密介质；较小的一侧称为光疏介质}，当入射角大于某临界值时，折射光完
     全消失，只剩下反射光。该临界角度称为全反射临界角。
     \begin{equation}
-    i_C = \arcsin (\frac{n_1}{n_2})\quad n_1<n_2
+    i_C = \arcsin (\frac{n_1}{n_2}),\quad n_1<n_2
     \end{equation}
 \end{enumerate}
-\end{definition}
+
+\begin{figure}[H]\centering
+\begin{subfigure}[t]{0.5\columnwidth}\centering
+    \includegraphics[height=120pt]{assets/1,2/image (44).jpg}
+    \caption{\bfseries 反射与折射 }
+\end{subfigure}\hfill
+\begin{subfigure}[t]{0.5\columnwidth}\centering
+    \includegraphics[height=120pt]{assets/1,2/image (45).jpg}
+    \caption{\bfseries 三棱镜最小偏向角 }
+\end{subfigure}
+\caption{\bfseries 反射与折射、三棱镜最小偏向角 }\label{反射与折射、三棱镜最小偏向角}
+\end{figure}
 
 
-\begin{definition}[彩虹]
-\end{definition}
+\subsection{三棱镜最小偏向角}
 
-
-\begin{definition}[三棱镜最小偏向角]
-
-最小偏向角 $\theta_0 = (i_1 - i_1')_{\text{min}}$ 满足：
+如图 \ref{反射与折射、三棱镜最小偏向角} (b) 所示，最小偏向角 $\theta_0 = (i_1 - i_1')_{\text{min}}$ 满足：
 \begin{equation}
     \theta_0 = 2i_1 - A, \quad \frac{n_2}{n_1} = \frac{\sin\frac{\theta_0+A}2}{\sin\frac A2}
 \end{equation}
 
-\begin{figure}[H]\centering
-\includegraphics[width=0.4\textwidth]{assets/1,2/image (45).jpg}
-\caption{\textbf{三棱镜最小偏向角}}\label{三棱镜最小偏向角}
-\end{figure}
 
-\end{definition}
 
 \section{惠更斯原理与费马原理}
 
@@ -422,7 +420,7 @@
 
 同心光束：各光线本身或其延长线交于同一点的光束称为同心光束，在各向同性介质中，它对应于球面波。
 
-由若干反射面或折射面组成的光学系统称为光具组
+由若干反射面或折射面组成的光学系统称为光具组。
 
 \begin{enumerate}
 \item 实物：发散的同心入射光束的“心”
@@ -431,40 +429,33 @@
 \item 虚像：汇聚的同心出射光束的“心”
 \end{enumerate}
 
-\textbf{物像的共轭性（可逆性）：}
+\subsection{物像的共轭性（可逆性）}
+
 若 $P$ 为 物体 $P$（可实可虚）的像点，则反之，当物点为 $P$ 时，像点必在点 $P'$（实际光路可能不同）。是光路可逆性的必然结果。 
 
 计算由物到像的 OPL 时，若为实线（实物、实像）则取正，称为实光程，若为虚线（虚物、虚像）则取负，称为虚光程。
 
 \begin{figure}[H]\centering
-\includegraphics[width=0.7\textwidth]{assets/1,2/path2.pdf}
+\includegraphics[width=0.6\textwidth]{assets/1,2/path2.pdf}
 \caption{\textbf{光程恒定的例子}}\label{光程恒定的例子}
 \end{figure}
 
 
-\begin{definition}[折射球面与反射球面]
+\subsection{折射球面与反射球面}
+
+
 的
 对于折射球面，存在一对恰好成像的共轭点，称为齐明点。在齐明点处，可以证明 $Q$ 到 $Q'$ 的光程（即物像间的OPL）$l_{QQ'}$。
 
-折射球面公式：
-\begin{gather}
-\frac{n_1}{l_1} + \frac{n_2}{l_2} = \frac{1}{R\,}\left( \frac{n_{{\color{red} 2}}s_{{\color{red} 2}}}{l_{{\color{red} 2}}} - \frac{n_1s_1}{l_1} \right)
-\end{gather}
-{\color{gray}\small
-\begin{equation}
-    \frac{n'}{s'}  +  \frac{n}{s} = \frac{n'-n}{r}\quad  \text{(傍轴)}
-\end{equation}
-}
+\begin{align}
+\begin{matrix}
+    \text{折射球面公式：}& \displaystyle \frac{n_1}{l_1} + \frac{n_2}{l_2} = \frac{1}{R\,}\left( \frac{n_{{\color{red} 2}}s_{{\color{red} 2}}}{l_{{\color{red} 2}}} - \frac{n_1s_1}{l_1} \right) & \displaystyle {\color{gray} \Longrightarrow     \frac{n'}{s'}  +  \frac{n}{s} = \frac{n'-n}{r}\quad  \text{(傍轴)}} 
+    \vspace*{3pt}\\ 
+    \text{反射球面公式：}& \displaystyle  \frac{1}{l_1} + \frac{1}{l_2} = {\color{red} -}\frac{2}{R\,}\left(\frac{s_1}{l_1} + \frac{s_2}{l_2}  \right) & \displaystyle {\color{gray} \Longrightarrow   \frac{1}{s_1} + \frac{1}{s_2} = -\frac{2}{R\,} \quad  \text{(傍轴)}}
+\end{matrix}
+\end{align}
 
-反射球面公式：
-\begin{equation}
-\frac{1}{l_1} + \frac{1}{l_2} = {\color{red} -}\frac{2}{R\,}\left(\frac{s_1}{l_1} + \frac{s_2}{l_2}  \right)
-\end{equation}
-{\par\color{gray}\small
-\begin{equation}
- \frac{1}{s_1} + \frac{1}{s_2} = -\frac{2}{R\,} \quad  \text{(傍轴)}
-\end{equation}
-\par}
+
 
 \begin{figure}[H]\centering
 \begin{subfigure}[t]{0.45\textwidth}\centering
@@ -477,10 +468,10 @@
 \caption{\bfseries 折射球面与反射球面 }
 \end{figure}
 
-\end{definition}
+
+\subsection{像的放大率}
 
 
-\begin{definition}[像的放大率]
 放大率公式：
 \begin{equation}
 \frac{n_1 | y_1 |}{s_1} = \frac{n_2 | y_2 |}{s_2}
@@ -493,7 +484,7 @@ n_1u_1y_1 = n_2u_2y_2
 
 上式的 $u$ 和 $y$ 是有正负的，例如折射球面中 $u_1 > 0,\ y_1 >0$ 而 $u_2 <0,\ y_2 < 0$。
 
-\end{definition}
+
 
 
 
@@ -534,7 +525,7 @@ xx = ff'
 \subsection{其它仪器}
 投影仪器、照相机、眼睛、放大镜、显微镜、望远镜
 
-\section{光波的描述}
+\section{光波的描述（略）}
 \section{光度学基本概念}
 
 在学习光度学之前，需要区分辐射度学与光度学中的基本概念。辐射度学研究的是辐射能量对实际物体的影响，而光度学研究的是辐射能量对人眼的影响，是基于人眼实验数据的学科，例如 Luminous Efficiency Function。它们的概念相互对应（可以相互转化）但并不相同，如下表所示: 
@@ -603,7 +594,7 @@ $K_{\text{max}} = 683\ \mathrm{lm \cdot W^{-1}}$ 在波长约 555.0 nm 取到，
 = \int K_{\text{max}}V(\lambda)\phi_e(\lambda) \mathrm{d} \lambda  
 \end{equation}
 
-\subsection{光度学基本概念}
+\subsection{光度学基本概念}\label{光度学基本概念}
 
 \begin{table}[H]\centering
     \caption{\textbf{光度学基本概念}}
@@ -645,11 +636,12 @@ $K_{\text{max}} = 683\ \mathrm{lm \cdot W^{-1}}$ 在波长约 555.0 nm 取到，
 \end{aligned}
 \end{gather}
 
-\section{特殊发光体}
+\section{特殊发光体（略）}
 
 \subsection{余弦发光体（朗伯发光体）}
 
 \subsection{定向发光体}
+
 
 \chapter{光的反射与折射}\thispagestyle{fancy}
 
@@ -1012,7 +1004,7 @@ r' + r = 1,\quad tt' + rr' = 1
 \caption{\bfseries 光路可逆性下的振幅与能量系数}\label{光路可逆性下的振幅与能量系数}
 \end{figure}
 
-图 \ref{反射折射光的振幅与能量变化}\footnote{源码见附录 \ref{反射折射光的振幅与能量变化 源码}} 展示了反射折射光的振幅 $r_s, r_p, t_s, t_p$、能量 $R_s, R_p, R$ 随入射角 $\tan \theta_i$ 的变化，其中 (a) 图为空气入射玻璃（$n_i = 1, n_t = 1.5$），(b) 图为玻璃入射空气（$n_i = 1.5, n_t = 1$）。
+在下一页中给出了上面结论的图像。图 \ref{反射折射光的振幅与能量变化}\footnote{源码见附录 \ref{反射折射光的振幅与能量变化 源码}} 展示了反射折射光的振幅 $r_s, r_p, t_s, t_p$、能量 $R_s, R_p, R$ 随入射角 $\tan \theta_i$ 的变化，其中 (a) 图为空气入射玻璃（$n_i = 1, n_t = 1.5$），(b) 图为玻璃入射空气（$n_i = 1.5, n_t = 1$）。
 
 图 \ref{反射光 s 分量与 p 分量的相位增量}\footnote{源码见附录 \ref{反射光 s 分量与 p 分量的相位增量 源码}} 展示了反射光的 s 分量与 p 分量的相位增量 $\delta_{r,s}, \delta_{r,p}$ 随入射角 $\theta_i$ 的变化，其中 (a) 图为空气入射玻璃（$n_i = 1, n_t = 1.5$），(b) 图为玻璃入射空气（$n_i = 1.5, n_t = 1$）。特别地，当 (b) 图中 $\theta_i > \theta_C$ 时，发生全（内）反射，此时 $r_s, r_p, t_s, t_p \in \C \setminus \R$ ，图中展示的是它们的模长，即 $|r_s|, |r_p|, |t_s|, |t_p|$。
 
@@ -1251,8 +1243,8 @@ I = I_1 + I_2 + 2 \sqrt{I_1 I_2} \cdot \frac{1}{\tau} \int_{0}^{\tau}  \cos(\Del
 \\
 
 
-以能发射单频波的普通光源为例，光是由光源中的原子、分子发生能级跃迁时发出的，跃迁时发出的波列都是有限长的，且初相位随机，持续时间 $\tau_0$ 通常短于 10 ns，在此时段内，光场振荡约百万次。对于外界的探测设备来讲，10 ns 仍是一个极短的时间，通常远远小于曝光时间。因此，即使每个波列的初相位都相同，在曝光时间内的上万个波列的平均下，积分项 $\frac{1}{\tau}\int_{0}^{\tau}  \cos(\Delta \alpha) \mathrm{d} t$ 为 0，$I = I_1 + I_2$，导致观察到的强度分布仅为平凡的叠加，无法观察到干涉。
-上面的单频普通光源，不断发出初相位随机的波列，并且波列持续时间极短（相对于曝光时间），由这样的光源不能得到任何干涉图样，称为 {\color{red} 时间不相干}。
+以能发射单频波的普通光源为例，光是由光源中的原子、分子发生能级跃迁时发出的，跃迁时发出的波列长都有限，且初相位随机，持续时间 $\tau_0$ 通常短于 10 ns，在此时段内，光场振荡约百万次。对于探测设备来讲，10 ns 通常极短，远远小于曝光时间。由波列初相位的随机性，在曝光时间内的上万个波列的平均下，积分项 $\frac{1}{\tau}\int_{0}^{\tau}  \cos(\Delta \alpha) \mathrm{d} t$ 为 0，$I = I_1 + I_2$，导致观察到的强度分布仅为平凡的叠加，无法观察到干涉。
+上面的普通光源，不断发出初相位随机的波列，并且波列持续时间 $\tau_0$ 极短（相对于曝光时间），不能得到任何干涉图样，称为 {\color{red} 时间不相干}。称波列持续时间 $\tau_0$ 为相干时间，称波列长度 $l_0 = c \tau_0$ 为相干长度。
 
 有一些光源，它们具有一定的发光宽度，不能看作理想的点光源。当光源宽度较大时，光源不同部分发出的光的叠加，会导致条纹的对比度降低（甚至为 0），称为 {\color{red} 空间不相干}。
 
@@ -1644,7 +1636,7 @@ $T_{F-P} = T_{F-P}(F, \delta)$ 的图像如下所示\footnote{源码见附录 \r
 
 \subsection{单色光源迈克尔逊干涉：}
 
-迈克尔逊干涉仪如图 \ref{迈克尔逊干涉仪} 所示，图中反射镜 $M_1$ 与 $M_2'$（虚镜）水平，下方是接收屏或接受仪，图中的虚线光路表示出射向无穷远处（不被观察屏接收），或振幅较小而可以忽略的光线。此时的干涉现象类似等倾干涉。
+迈克尔逊干涉仪如图 \ref{迈克尔逊干涉仪} 所示，图中反射镜 $M_1$ 与 $M_2'$（虚镜）水平（此时的干涉现象类似等倾干涉），下方是接收屏或接受仪，图中的虚线光路表示出射向无穷远处（不被观察屏接收），或振幅较小而可以忽略的光线。
 
 可以证明，从出射开始，分束所得到的两束光的空间光程差为 $\Delta l = 2 d \cos \theta$，其中 $\theta$ 是光束射向反射镜 $M$ 的入射角（光源平行出射时，$\theta = 0$）。再考虑上在分束镜 $G$ 处发生的相位突变（半波损失），与等倾干涉的结论类似，此时的条纹内疏外密，类似等倾干涉时的图 \ref{等倾干涉实验装置}。
 \begin{align}
@@ -1705,6 +1697,8 @@ I = \int i(k)\left[1 + \cos (k \Delta L)\right] \ \mathrm{d}k = I_0 \left[ 1 + \
 上面的结果与 \ref{杨氏实验中光源位置和宽度对干涉条纹的影响} 节 “杨氏实验中光源位置和宽度对干涉条纹的影响” 中光源宽度对干涉条纹的影响完全同构，图像也是同构的。在讨论光源宽度时，我们定义了光源极限宽度 $b_{\max} = \frac{\lambda R}{d}$，类似地，在这里我们定义最大光程差 $\Delta L_{\max} = \frac{2 \pi}{\Delta k} \approx \frac{\lambda^2}{\Delta \lambda}$，这是条纹对比度第一次下降到 0 时对应的光程差。
 
 \subsection{马赫-曾德尔干涉}
+
+原理与迈克尔逊干涉仪类似，我们不多赘述。
 
 \section{光场的空间相干性与时间相干性}
 \section{多光束干涉}
@@ -1851,10 +1845,11 @@ I = \int i(k)\left[1 + \cos (k \Delta L)\right] \ \mathrm{d}k = I_0 \left[ 1 + \
 
 % 附录 A
 \chapter*{附录 A\hspace*{20pt} 波理论}
-\setcounter{chapter}{20}   % 20-A, 21-B, 用于避免超链接跳转冲突
 \addcontentsline{toc}{chapter}{附录 A\hspace*{6pt} 波理论}   
+\setcounter{chapter}{1}   
+\setcounter{equation}{0}    % 重置公式计数器   
 \thispagestyle{fancy} 
-\setcounter{section}{0}   
+\setcounter{section}{0}
 \renewcommand\thesection{A.\arabic{section}}   
 \renewcommand{\thefigure}{A.\arabic{figure}} 
 \renewcommand{\thetable}{A.\arabic{table}}
@@ -2263,11 +2258,58 @@ kr = \text{const}
 
 平面波投射到具有细长狭缝的不透明屏幕上，就会通过此狭缝发出与柱面波相似的扰动，目前大多采用此方法产生柱面光波。
 
+\section{波的能量与动量}
 
+本章只对具体结论和必要思维进行总结，更详细的内容可转至参考文献 \cite{Optics} Page 63-80。
+
+\subsection{波印廷矢量}
+
+对任意的电磁波，我们都有 $\displaystyle {\color{red} E = vB}$，其中 $v$ 是电磁波在介质中的波速（真空即为 $c$），$E$ 和 $B$ 可以是瞬时值，也可以是场的振幅值 $E_0$ 和 $B_0$。
+
+于是，电磁场的能量密度为：
+\begin{equation}
+    w = \frac{1}{2}\left( \varepsilon E^2 + \frac{1}{\mu}B^2 \right) = \varepsilon E^2 = \frac{1}{\mu}B^2
+\end{equation}
+
+
+
+波印廷矢量 $\boldsymbol{S}$ 定义为：
+\begin{equation}
+\boldsymbol{S} = \boldsymbol{E} \times \boldsymbol{H} = \frac{1}{\mu} \boldsymbol{E} \times \boldsymbol{B} = c^2 \varepsilon \boldsymbol{E} \times \boldsymbol{B} = \frac{c^2\varepsilon_0}{\mu_r} \boldsymbol{E} \times \boldsymbol{B}
+\end{equation}
+$\boldsymbol{S}$ 的方向即为波的传播方向，与 $\boldsymbol{k}$ 方向相同。在大多数情况下，我们都有 $\mu_r = 1$，于是得到常用形式：
+\begin{gather}
+\boldsymbol{S} = \boldsymbol{E} \times \boldsymbol{H} = \frac{1}{\mu_0} \boldsymbol{E} \times \boldsymbol{B}= c^2\varepsilon_0 \boldsymbol{E} \times \boldsymbol{B}
+,\quad 
+S = EH = \frac{1}{\mu_0} EB = c^2\varepsilon_0 EB\  {\color{red} = vw}
+\end{gather}
+我们直接给出简谐函数平均值的计算公式：
+\begin{equation}
+\langle e^{i \omega t} \rangle_T = \frac{1}{T}\int_{t - \frac{T}{2}}^{t + \frac{T}{2}} e^{i \omega t} \ \mathrm{d}t = \left(\frac{\sin \frac{\omega T}{2}}{\frac{\omega T}{2}}\right)e^{i \omega t}
+\end{equation}
+比值 $\frac{\sin x}{x}$ 在光学中很常见，也很重要，被专门定义为 $\sinc x = \frac{\sin x}{x}$，我们直接给出相关结论：
+\begin{gather}
+    \langle \cos \omega t \rangle_T  = \sinc \left(\frac{\omega T}{2}  \right)\cdot \cos \omega t, \quad \langle \sin \omega t \rangle_T  = \sinc \left(\frac{\omega T}{2} \right)\cdot \sin \omega t \\ 
+    \langle \cos^2 \omega t \rangle_T  = \frac{1}{2}\left(1 + \sinc \omega T  \cos 2 \omega t\right), \quad \langle \sin^2 \omega t \rangle_T  = \frac{1}{2}\left(1 - \sinc \omega T  \cos 2 \omega t\right)
+\end{gather}
+
+
+\subsection{辐照度}
+
+辐射照度，简称辐照度，是指单位时间内落在单位面积上的辐射能量，在辐射度学中用 $\boldsymbol{E}_e$ 表示；类似的有光照度，指单位时间内落在单位面积上的光量（辐射能的光度量大小，详见 \ref{光度学基本概念} 节），在光度学中用 $\boldsymbol{E}_v$ 表示。在不需要区分时“照度”和“强度”\footnote{过去常用“强度”来代表单位时间内落在单位面积上的能量，也即现在的“照度”，但国际上此概念已经默认归照度所有，而强度用于描述点辐射源在某方向上单位立体角内的能量通量。}时，常用 $\boldsymbol{I}$ 来表示照度。
+
+在简谐电磁场下，我们有：
+\begin{gather}
+S = c^2 \varepsilon_0 | \boldsymbol{E_0}\times \boldsymbol{B_0} | \cdot \cos^2 \left(\boldsymbol{k}\cdot \boldsymbol{x} - \omega t\right) \Longrightarrow  I = \langle  S  \rangle_T = \varepsilon_0 c \langle E^2 \rangle_T = \frac{c}{\mu_0} \langle B^2 \rangle_T \\ 
+\text{真空：} I  =  \frac{\varepsilon_0c}{2}\cdot E_0^2 = \frac{c}{2 \mu_0}\cdot B_0^2\\ 
+\text{介质：} I = \frac{\varepsilon_0v}{2}\cdot E_0^2 = \frac{\varepsilon_0c}{2n}\cdot E_0^2 
+\end{gather}
+上面的介质要求是线性、均匀、各向同性介质。
 
 \chapter*{附录 B\hspace*{20pt}  Matlab 代码}\addcontentsline{toc}{chapter}{附录 B\hspace*{6pt}  Matlab 代码}
 \thispagestyle{fancy}
-\setcounter{chapter}{21}   % 20-A, 21-B, 用于避免超链接跳转冲突
+\setcounter{chapter}{2} 
+\setcounter{equation}{0}    % 重置公式计数器   
 \setcounter{section}{0}   
 \renewcommand\thesection{B.\arabic{section}}   
 \renewcommand{\thefigure}{B.\arabic{figure}} 

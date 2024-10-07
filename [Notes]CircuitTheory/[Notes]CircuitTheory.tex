@@ -1408,7 +1408,7 @@ i_{\text{DS}} =
 \end{equation}
 可以证明异或“$\oplus$”、同或“$\odot$”也满足交换律、结合律以及分配率。
 
-\subsection{基本逻辑门}
+\subsection{基本逻辑门}\label{基本逻辑门}
 
 可以用 N-E-MOS（N 沟道增强型 MOS 管，N-Channel Enhancement-Type MOSFET）、电源、电阻构成三种基本逻辑门，如图 \ref{由 N-MOS 构成三种基本逻辑门}，但是它们的静态功率不为零。现实中广泛应用的是由 CMOS (Complementary Metal-Oxide-Semiconductor Transistor) 构成的基本逻辑门，如图 \ref{由 C-MOS 构成三种基本逻辑门} 所示，其中蓝色指 N-MOS，红色指 P-MOS。在这些基本门的结构上，相应地增加 MOS 管串联、并联的数量，可以实现 $n$ 输入的基本逻辑门。
 
@@ -2100,9 +2100,11 @@ $p=0$ 即没有无伴电流源时，可列出回路电流法的标准方程\foot
 
 \newpage
 \appendix
-\titlespacing*{\chapter}{0pt}{-15pt}{8pt} % 控制上方空白的大小
-\titleformat{\section}{\large\centering\bfseries}{\thesection}{1em}{}
-\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection}{1em}{}
+% chapter 标题自定义设置
+\titleformat{\chapter}[hang]{\normalfont\huge\bfseries\centering}{}{20pt}{}
+\titlespacing*{\chapter}{0pt}{-25pt}{8pt} % 控制上方空白的大小
+% section 标题自定义设置 
+\titleformat{\section}[hang]{\normalfont\centering\Large\bfseries}{\thesection}{8pt}{}
 
 \chapter*{附录 A: 中英文对照表}\addcontentsline{toc}{chapter}{附录 A: 中英文对照表}\thispagestyle{fancy} 
 \begin{multicols}{2}  
@@ -2164,7 +2166,8 @@ $p=0$ 即没有无伴电流源时，可列出回路电流法的标准方程\foot
 \end{multicols} 
 
 % 附录 B
-\chapter*{附录 B\hspace*{20pt} 电路原理 Q \& A}\setcounter{chapter}{21}   % 20-A, 21-B, 用于避免超链接跳转冲突
+\chapter*{附录 B\hspace*{20pt} 电路原理 Q \& A}\setcounter{chapter}{2} 
+\setcounter{equation}{0}    % 重置公式计数器   
 \addcontentsline{toc}{chapter}{附录 B\hspace*{6pt}  电路原理 Q \& A}   
 \thispagestyle{fancy} 
 \setcounter{section}{0}   
@@ -2189,6 +2192,13 @@ $p=0$ 即没有无伴电流源时，可列出回路电流法的标准方程\foot
 具有（唯一）公共端的 $n+1$ 端元件可视为 $n$ 端口网络，因此有公共端的三端元件可以视为一个二端口。并且，两个具有公共端的二端口，将公共端并联在一起不会破坏端口条件，将公共端串联在一起也不会破坏端口条件。
 
 \subsection{将具有公共端的三端元件看作二端口时，如何理解公共端一边流出 $i_1$，另一边流出 $i_2$？}
+
+\subsection{CMOS 的作用类似单刀双掷开关，输入 1 时输出与下方导通，输入 0 时输出与上方导通，那么上下参考端可以是其它的逻辑输入吗？}
+
+事实上是可以的，例如 \ref{基本逻辑门} 节“基本逻辑门”中，图 \ref{CMOS XOR} 所示的 CMOS 异或门 XOR，便是由三个 P-MOS 和三个 N-MOS 构成，其中就含有上下参考端非“标准”的反相器（非“标准”指参考端不是固定逻辑 1 或 0，而是可变逻辑输入）。
+
+这样的设计可以大幅提高门电路的材料与空间利用率，但会增加电路的复杂度，也伴有更高的设计要求。如何确保这样设计下的门电路能够稳定工作，不被击穿或突然失效，是比较复杂的问题。因此，现阶段我们只需考虑“标准”的 CMOS 门电路即可，非标准的情况留到以后的课程在行讨论。
+
 
 \section{第三章}
 

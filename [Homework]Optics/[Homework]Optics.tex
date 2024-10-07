@@ -650,12 +650,20 @@ k \in [5.2632,\ 10] \Longrightarrow k = 6,7,8,9,10 ,\quad \lambda = 400.0 \ \mat
 \end{equation}
 即为所求直径。
 
+\section{厚度为 0.050 mm 的玻璃片，其折射率为 1.520，插入迈克尔孙干涉仪的一条光路中，照明光为波长 587.56 nm 的氦黄线。求插入这片玻璃片移动了多少干涉条纹？}
 
+改变两干涉光束的光程差，会使原干涉条纹发生移动。设 $n_f$ 为玻璃片折射率，$d$ 为玻璃片厚度，$\lambda_0$ 为氦黄线在空气中的波长，则有：
+\begin{equation}
+2 n_f d = N\lambda_0 \Longrightarrow N = \frac{2 n_f d}{\lambda_0} = 258.6970
+\end{equation}
 
+\section{迈克耳逊干涉仪两臂中分别加入 20 cm 长的玻璃管，一个抽成真空，一个充以一个大气压的氩气，今以汞光线（波长为 546.0 nm）入射干涉仪，如将氩气抽出，发现干涉仪
+中条纹移动了 205 条，求氩气的折射率。}
 
-
-
-
+抽成真空的玻璃管补偿了穿过玻璃管带来的光程，因此没有引入附加光程差。与上题同理，设 $n_f$ 为氩气折射率，$d$ 为玻璃管长度，$\lambda_0$ 为汞光线在空气中的波长，并近似空气折射率为 1，则有: 
+\begin{equation}
+2 (n_f-1) d = N\lambda_0 \Longrightarrow n_f = \frac{N \lambda_0}{2d} + 1 = 1.0002798
+\end{equation}
 
 
 
@@ -672,7 +680,8 @@ k \in [5.2632,\ 10] \Longrightarrow k = 6,7,8,9,10 ,\quad \lambda = 400.0 \ \mat
 \titleformat{\section}[hang]{\normalfont\centering\Large\bfseries}{\thesection}{8pt}{}
 
 % 附录 A
-\chapter*{附录 A\hspace*{20pt}  Matlab 代码}\setcounter{chapter}{20}   % 20-A, 21-B, 用于避免超链接跳转冲突
+\chapter*{附录 A\hspace*{20pt}  Matlab 代码}\setcounter{chapter}{1} 
+\setcounter{equation}{0}    % 重置公式计数器   
 \addcontentsline{toc}{chapter}{附录 A\hspace*{6pt}  Matlab 代码}   
 \thispagestyle{fancy} 
 \setcounter{section}{0}   

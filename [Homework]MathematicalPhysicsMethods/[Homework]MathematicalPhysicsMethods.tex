@@ -93,7 +93,7 @@
         \newtheoremstyle{MyBlockTheoremStyle}% <name>
             {11pt}% <space above>
             {11pt}% <space below>
-            {}% <body font> 使用默认正文字体
+            {\kaishu}% <body font> 使用默认正文字体
             {}% <indent amount>
             {\bfseries}% <theorem head font> 设置标题项为加粗
             {：\\ \indent}% <punctuation after theorem head>
@@ -262,14 +262,14 @@
 % 各级标题自定义设置
     \usepackage{titlesec}   
     % chapter
-        \titleformat{\chapter}[hang]{\normalfont\Large\bfseries\centering}{Homework \thechapter :}{10pt}{}
+        \titleformat{\chapter}[hang]{\normalfont\Large\bfseries\centering\boldmath}{Homework \thechapter :}{10pt}{}
         \titlespacing*{\chapter}{0pt}{-30pt}{10pt} % 控制上方空白的大小
     % section
-        \titleformat{\section}[hang]{\normalfont\large\bfseries}{\thesection}{8pt}{}
+        \titleformat{\section}[hang]{\normalfont\large\bfseries\boldmath}{\thesection}{8pt}{}
     % subsection
         % 设置 subsection 样式为 (1) (2) (3)
         \renewcommand{\thesubsection}{(\arabic{subsection})}    
-        \titleformat{\subsection}[hang]{\normalfont\bfseries}{\thesubsection}{8pt}{}    
+        \titleformat{\subsection}[hang]{\normalfont\bfseries\boldmath}{\thesubsection}{8pt}{}    
 
 
 % --------------------- 文章宏包及相关设置 --------------------- %
@@ -1201,7 +1201,7 @@ $F(z)$ 是单值的，也即积分与路径无关，这等价于被积函数是�
 I =  2 \pi i \left\{ \left[e^z\right]_{z=0} + \frac{a}{2!}\cdot\left[e^z\right]^{(2)}_{z=0} \right\} = 2 \pi i \left( 1 + \frac{a}{2} \right) = 0 \Longrightarrow a = -2
 \end{equation}
 
-
+\chapter{2024.10.8 - 2024.10.14}\thispagestyle{fancy}
 
 
 

@@ -97,7 +97,7 @@
         \newtheoremstyle{MyBlockTheoremStyle}% <name>
             {11pt}% <space above>
             {11pt}% <space below>
-            {}% <body font> 使用默认正文字体
+            {\kaishu}% <body font> 使用默认正文字体
             {}% <indent amount>
             {\bfseries}% <theorem head font> 设置标题项为加粗
             {：\\ \indent}% <punctuation after theorem head>
@@ -265,12 +265,13 @@
 
 % 各级标题自定义设置
     \usepackage{titlesec}   
-        \titleformat{\chapter}[hang]{\normalfont\huge\bfseries\centering}{第\,\thechapter\,章}{20pt}{}
-        \titlespacing*{\chapter}{0pt}{-20pt}{20pt} % 控制上方空白的大小
+        % chapter 标题自定义设置
+        \titleformat{\chapter}[hang]{\normalfont\huge\bfseries\centering\boldmath}{第\,\thechapter\,章}{20pt}{}
+        \titlespacing*{\chapter}{0pt}{-20pt}{20pt} % 控制上下间距
         % section标题自定义设置 
-        \titleformat{\section}[hang]{\normalfont\Large\bfseries}{§\,\thesection\,}{8pt}{}
+        \titleformat{\section}[hang]{\normalfont\Large\bfseries\boldmath}{§\,\thesection\,}{8pt}{}
         % subsubsection标题自定义设置
-        %\titleformat{\subsubsection}[hang]{\normalfont\bfseries}{}{8pt}{}
+        \titlespacing*{\subsubsection}{0pt}{3pt}{0pt} % 控制上下间距
 
 % >> ------------------ 文章宏包及相关设置 ------------------ << %
 % ------------------------------------------------------------- %

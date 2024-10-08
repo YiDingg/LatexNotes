@@ -102,7 +102,7 @@
         \newtheoremstyle{MyBlockTheoremStyle}% <name>
             {11pt}% <space above>
             {11pt}% <space below>
-            {}% <body font> 使用默认正文字体
+            {\kaishu}% <body font> 使用默认正文字体
             {}% <indent amount>
             {\bfseries}% <theorem head font> 设置标题项为加粗
             {：\\ \indent}% <punctuation after theorem head>
@@ -270,13 +270,14 @@
 
 % 各级标题自定义设置
     \usepackage{titlesec}   
-        \titleformat{\chapter}[hang]{\normalfont\huge\bfseries\centering}{第\,\thechapter\,章}{20pt}{}
+        % chapter 标题自定义设置
+        \titleformat{\chapter}[hang]{\normalfont\huge\bfseries\centering\boldmath}{第\,\thechapter\,章}{20pt}{}
         \titlespacing*{\chapter}{0pt}{-20pt}{20pt} % 控制上下间距
         % section标题自定义设置 
-        \titleformat{\section}[hang]{\normalfont\Large\bfseries}{§\,\thesection\,}{8pt}{}
+        \titleformat{\section}[hang]{\normalfont\Large\bfseries\boldmath}{§\,\thesection\,}{8pt}{}
+        % subsubsection标题自定义设置
         \titlespacing*{\subsubsection}{0pt}{3pt}{0pt} % 控制上下间距
-% subsubsection标题自定义设置
-%\titleformat{\subsubsection}[hang]{\normalfont\bfseries}{}{8pt}{}
+
 
 % --------------------- 文章宏包及相关设置 --------------------- %
 % >> ------------------ 文章宏包及相关设置 ------------------ << %
@@ -1137,11 +1138,11 @@ u_o =
 另外，注意二端口两端输入电压的负极不一定等电势，也即 $u_1 = u_{1,+} - u_{1,-}$，$u_2 = u_{2,+} - u_{2,-}$，但不一定有 $u_{1,-} = u_{2,-}$。
 
 \subsection{输入电阻与输出电阻}
-\begin{LineTheorem}[戴维宁定理]\label{戴维宁定理}
+\begin{LineTheorem}[戴维南定理]
 一个含独立电源、线性电阻和受控源的一端口电路，对外可以等效成一个电压源和一个电阻串联，电压等于原电路端口两端的开路电压，电阻等于全部独立源置 0 （电压源短路，电流源断路）时的等效电阻。
 \end{LineTheorem}
 
-\begin{LineTheorem}[诺顿定理]\label{诺顿定理}
+\begin{LineTheorem}[诺顿定理]
 一个含独立电源、线性电阻和受控源的一端口电路，对外可以等效成一个电流源和一个电阻并联，电流大小等于原电路短路时端口流过的电流，电阻也是等于全部独立源置 0 （电压源短路，电流源断路）时的等效电阻。
 \end{LineTheorem}
 
@@ -1317,7 +1318,7 @@ i_{\text{DS}} =
 
 
 
-例如，$U_T = 1$ V，$K = 1\ \mathrm{mA \cdot V^{-2}}$ 时，N 沟道增强型 MOSFET 的电流特性如图 \ref{MOS 管的 iDS 电流特性}\footnote{Matlab 源码见附录 \ref{MOS 管的 iDS 电流特性源码}} 所示。
+例如，$U_T = 1$ V，$K = 1\ \mathrm{mA \cdot V^{-2}}$ 时，N 沟道增强型 MOSFET 的电流特性如图 \ref{MOS 管的 iDS 电流特性}\footnote{Matlab 源码见附录 \ref{MOS 管的 iDS 电流特性 源码}} 所示。
 
 \begin{figure}[H]\centering
 \begin{subfigure}[t]{0.67\textwidth}\centering
@@ -1610,37 +1611,106 @@ $p=0$ 即没有无伴电流源时，可列出回路电流法的标准方程\foot
 
 
 
-\section{叠加定理与齐性定理}
+\section{叠加、齐性、替代定理}
+
+\subsection{叠加定理与齐性定理}
 
 由线性元件和独立电源组成的电路称为线性电路。无论是选用电流作为变量，还是选用电压作为变量列出电路方程，最终得到都是线性方程组。而线性方程组的解具有可加性（additivity property）和齐次性（homogeneity property），反映到电路中即为响应和激励（独立电源）之间满足可加性和齐次性，称前者为叠加性质（superposition property），称后者为比例性质。
 
 从线性代数的角度来看，假设 $\vec{x}_1$ 和 $\vec{x}_2$ 都是线性方程组 $\boldsymbol{A} \cdot \vec{x} = \vec{b}$ 的解，那么 $\vec{x}_3 = \vec{x}_1 + \vec{x}_2$ 是方程组的解，这对应了叠加定理，并且 $\forall\ k \in \R,\ \vec{x}_4 = k\cdot \vec{x}_1$ 也是方程组的解，这对应了齐性定理。
 
-\subsection{叠加定理}
-
-
 
 \begin{LineTheorem}[叠加定理，Superposition Theorem]\label{叠加定理}
-在一个具有唯一解的线性电阻电路中，所有激励（独立电源）共同作用时产生的响应（电压和电流），等于各激励单独作用时产生的响应之和（代数和）。电压源不作用时成短路，电流源不作用时成开路。特别地，如果电路中含有受控源，它应保留在电路中，被控量与控制量之间的关系保持不变，但控制量随着激励的不同而改变。
+    在一个具有唯一解的线性电阻电路中，所有激励（独立电源）共同作用时产生的响应（电压和电流），等于各激励单独作用时产生的响应之和（代数和）。电压源不作用时成短路，电流源不作用时成开路。特别地，如果电路中含有受控源，它应保留在电路中，被控量与控制量之间的关系保持不变，但控制量随着激励的不同而改变。
 \end{LineTheorem}
-
-注意，不能直接用叠加定理求解功率（功率为 2 次方，非线性），应先求出电压或电流，得到叠加后的结果，再计算功率。
-\subsection{齐性定理}
 
 \begin{LineTheorem}[齐性定理，Homogeneous Theorem]\label{齐性定理}
 对于一个具有唯一解的线性电子电路，当电路中所有的激励（独立电源）都变化 $k$ 倍，那么电路中的响应（电压和电流）也都变化 $k$ 倍。
 \end{LineTheorem}
 
+注意，不能直接用叠加定理或齐性定理求解功率（功率为 2 次方，非线性），应先求出电压或电流，得到叠加后的结果，再计算功率。
 
-\section{替代定理}
+
+\subsection{替代定理}
+
+替代定理是对电路等效变换的一种方法，它用电压源或电流源来等效替代某条支路或部分电路，替代前后电路中各支路电压电流不发生变化。替代定理的应用较为广泛，它适用于任意电路。
+
+\begin{LineTheorem}[替代定理，Substitution Theorem]\label{替代定理}
+    对任意电路，假设电路中某条支路两端的电压为 $U$，流经该支路的电流为 $I$。则该支路既可以用一个电压为 $U$ 的独立电压源替代，也可以用一个电流为 $I$ 的独立电流源替代。其中，电压源的极性与原支路电压极性相同，电流源的方向与原支路电流方向相同，替代后电路中各支路电压电流与替代前电路中相应的变量相等。
+\end{LineTheorem}
+
+需要强调，替代定理作的是“替代”而不是“等效”。前者是在此工作点上的替代，而后者是对外 $u$-$i$ 关系的等效。一旦电路中各支路电压电流发生变化，替代定理就不再适用。此外，还需要被替代的支路与电路中其它支路之间无耦合关系。
+
 \section{戴维南定理和诺顿定理}
+
+\begin{LineTheorem}[戴维南定理，Thevenin's Theorem]\label{戴维南定理}
+    所有的一端口线性电阻电路对外都可以等效为一个理想电压源 $U$ 和电阻 $T$ 串联。电压源 $U$ 等于端口处的开路电压 (Open-circuit Voltage)，电阻 $R$ 是该端口内部所有{\color{red} 独立电源}（受控源仍保留）不起作用（又称“置零”）时端口处的等效电阻。
+\end{LineTheorem}
+
+\begin{LineTheorem}[诺顿定理，Norton's Theorem]\label{诺顿定理}
+    所有的一端口线性电阻电路对外都可以等效为一个理想电流源 $I$ 和一个电导 $G$ 并联。电流源 $I$ 等于端口处的短路电流 (Short-circuit Current)，电导 $G$ 是该端口内部所有{\color{red} 独立电源}（受控源仍保留）不起作用（又称“置零”）时端口处的等效电导。
+\end{LineTheorem}
+
+“置零”即将电压源移去后两端短路，将电流源移去后两端开路。
+
 \section{特勒根定理}
+
+
+\begin{BlockTheorem}[特勒根定理，Tellegen's Theorem\footnote{又称为特勒根定理似功率守恒定理 (Tellegen's Quasi-power Theorem)}]\label{特勒根定理}
+    若电路 $N$ 和 $\hat{N}$ 具有相同的拓扑结构\footnote{称两个电路具有相同的拓扑结构如果它们具有相同的支路数、节点数，且支路和节点联接关系也相同。}，则所有支路中的电压与对方对应支路电流的乘积之和为零，即：
+    \begin{equation}
+    \sum u_k \cdot \hat{i}_k = u_1\hat{i}_1 + u_2\hat{i}_2 + \cdots + u_n\hat{i}_n = 0,\quad 
+    \sum \hat{u}_k \cdot i_k = \hat{u}_1 i_1 + \hat{u}_2 i_2 + \cdots + \hat{u}_n i_n = 0
+    \end{equation}
+\end{BlockTheorem}
+特勒根定理是由基尔霍夫定律直接导出的，因此适用于任意电路。特别地，作为常见的情况，对{\color{red} 仅含电阻的二端口}（不要求电阻线性）有：
+
+\noindent
+\begin{equation}
+\sum u_k \cdot \hat{i}_k = \sum \hat{u}_k \cdot i_k 
+\end{equation}
+
 \section{互易定理}
+
+\begin{BlockTheorem}[互易定理，Reciprocal Theorem]\label{互易定理}
+给定一个 {\color{red} 仅含有线性电阻}的二端口。互易定理的第一种形式表明，依次在二端口两端接入电压源激励 $u_{s1}$ 和 $u_{s2}$，未接入激励的端口短路，依次有信号电流 $i_1$ 和 $i_2$，则前后有关系：
+\begin{equation}
+    u_{s1}i_2 = u_{s2}i_1
+\end{equation}
+互易定理的第二种形式表明，依次在二端口两端接入电流源激励 $i_{s1}$ 和 $i_{s2}$，未接入激励的端口开路，依次有信号电压 $u_1$ 和 $u_2$，则前后有关系：
+\begin{equation}
+    u_1i_{s2} = u_2i_{s1}
+\end{equation}
+\end{BlockTheorem}
+
+互易定理是仅含线性电阻的电路 $\boldsymbol{R}$ 参数与 $\boldsymbol{G}$ 参数互易的结果（这要求 $\boldsymbol{R} = \boldsymbol{R}^T$，$\boldsymbol{G} = \boldsymbol{G}^T$）。特别地，对于常用的情况，交换激励位置而大小不变，则得到的信号也交换位置而大小不变。
+
+
+
 \section{对偶电路和对偶原理}
 
+\section{定理适用范围总结}
 
+\begin{table}[H]\centering
+    %\renewcommand{\arraystretch}{1.5} % 调整行间距为 1.5 倍
+    %\setlength{\tabcolsep}{1.5mm} % 调整列间距
+    \caption{\textbf{定理适用范围总结}}
+    \label{定理适用范围总结}
+\begin{tabular}{cccccccccc}\toprule
+    定理 & 范围  \\
+    \midrule
+    节点电压法、回路电流法 &线性电阻电路（线性电阻、线性受控源、独立电源） \\
+    替代定理 & 任意电路（可非线性、非时变） \\
+    叠加定理、齐性定理 & 线性电路（线性元件、独立电源） \\
+    戴维南定理、诺顿定理 & 线性电阻电路（线性电阻、线性受控源、独立电源）\\
+    特勒根定理 & 任意电路（可非线性、非时变） \\
+    互易定理 & 线性电路（线性元件、独立电源） \\
+    对偶原理 &  \\
+    \bottomrule
+\end{tabular}
+\end{table}
 
-
+线性元件包括但不限于线性电阻和线性受控源
 
 
 
@@ -2106,7 +2176,11 @@ $p=0$ 即没有无伴电流源时，可列出回路电流法的标准方程\foot
 % section 标题自定义设置 
 \titleformat{\section}[hang]{\normalfont\centering\Large\bfseries}{\thesection}{8pt}{}
 
-\chapter*{附录 A: 中英文对照表}\addcontentsline{toc}{chapter}{附录 A: 中英文对照表}\thispagestyle{fancy} 
+\chapter*{附录 A: 中英文对照表}
+\addcontentsline{toc}{chapter}{附录 A: 中英文对照表}
+\thispagestyle{fancy} 
+\setcounter{chapter}{1} 
+
 \begin{multicols}{2}  
 \begin{table}[H]\centering
 \caption{\textbf{中英文对照表}}
@@ -2171,6 +2245,7 @@ $p=0$ 即没有无伴电流源时，可列出回路电流法的标准方程\foot
 \addcontentsline{toc}{chapter}{附录 B\hspace*{6pt}  电路原理 Q \& A}   
 \thispagestyle{fancy} 
 \setcounter{section}{0}   
+\setcounter{chapter}{1} 
 \renewcommand\thesection{B.\arabic{section}}   
 \renewcommand{\thefigure}{B.\arabic{figure}} 
 \renewcommand{\thetable}{B.\arabic{table}}
@@ -2220,13 +2295,14 @@ $p=0$ 即没有无伴电流源时，可列出回路电流法的标准方程\foot
 % 附录 C
 \chapter*{附录 C. Matlab 代码}\addcontentsline{toc}{chapter}{附录 C. Matlab 代码}   
 \thispagestyle{fancy} 
+\setcounter{chapter}{3} 
 \setcounter{section}{0}   
 \renewcommand\thesection{C.\arabic{section}}   
 \renewcommand{\thefigure}{C.\arabic{figure}} 
 \renewcommand{\thetable}{C.\arabic{table}}
 
 \section{图 \ref{MOS 管的 iDS 电流特性} 源码}
-\label{MOS 管的 iDS 电流特性源码}
+\label{MOS 管的 iDS 电流特性 源码}
 \lstinputlisting{d:/a_RemoteRepo/GH.MatlabCodes/本科课程代码/电路原理/ExternalCharacteristicsOfNEMOSFET.m}
 
 

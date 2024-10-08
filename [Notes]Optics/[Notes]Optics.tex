@@ -96,7 +96,7 @@
         \newtheoremstyle{MyBlockTheoremStyle}% <name>
             {11pt}% <space above>
             {11pt}% <space below>
-            {}% <body font> 使用默认正文字体
+            {\kaishu}% <body font> 使用默认正文字体
             {}% <indent amount>
             {\bfseries}% <theorem head font> 设置标题项为加粗
             {：\\ \indent}% <punctuation after theorem head>
@@ -2262,28 +2262,53 @@ kr = \text{const}
 
 本章只对具体结论和必要思维进行总结，更详细的内容可转至参考文献 \cite{Optics} Page 63-80。
 
+\subsection{前置知识}
+
+在本课程，若无特殊说明，都默认介质是均匀、线性、各向同性的。假设介质的绝对介电常量、绝对磁导率分别为 $\varepsilon = \varepsilon_r \varepsilon_0$、$\mu = \mu_r \mu_0$，其中 $\varepsilon_r$、$\mu_r$ 分别是相对介电常量和相对磁导率，$\varepsilon_0 $ 、$\mu_0$ 分别为为真空介电常量、真空磁导率。
+\begin{equation}
+    \varepsilon_0 = 8.854187817 \times 10^{-12}\ \ \mathrm{F\cdot m^{-1}},\quad \mu_0 = 4 \pi \times 10^{-7} \ \ \mathrm{N\cdot A^{-2}} 
+\end{equation}
+
+对任意介质，设其折射率为 $n$，电磁波在其中的波速为 $v$，则有以下恒等式：
+\begin{gather}
+\boxed{
+    nv = c ,\quad \varepsilon \mu v^2= 1,\quad \varepsilon_r \mu_r = n^2 
+}
+\end{gather}
+特别地，对于真空，上面三个式子变为：
+\begin{equation}
+1 \cdot c = c ,\quad (1\cdot \varepsilon_0) (\cdot \mu_0) c^2  = 1,\quad 1^2 = 1\cdot 1
+\end{equation}
+
+电磁场的能量密度 $w$: 
+\begin{equation}
+w = \frac{1}{2}\left( \varepsilon E^2 + \frac{1}{\mu} B^2 \right)
+\end{equation}
+
 \subsection{波印廷矢量}
 
 对任意的电磁波，我们都有 $\displaystyle {\color{red} E = vB}$，其中 $v$ 是电磁波在介质中的波速（真空即为 $c$），$E$ 和 $B$ 可以是瞬时值，也可以是场的振幅值 $E_0$ 和 $B_0$。
 
-于是，电磁场的能量密度为：
+于是，电磁波（不是电磁场）的能量密度为：
 \begin{equation}
-    w = \frac{1}{2}\left( \varepsilon E^2 + \frac{1}{\mu}B^2 \right) = \varepsilon E^2 = \frac{1}{\mu}B^2
+    w = \frac{1}{2}\left( \varepsilon E^2 + \frac{1}{\mu}B^2 \right) =  \frac{1}{2}\left( \varepsilon E^2 + \frac{1}{\mu}\cdot \frac{E^2}{v^2} \right) = \varepsilon E^2
 \end{equation}
 
 
 
 波印廷矢量 $\boldsymbol{S}$ 定义为：
 \begin{equation}
-\boldsymbol{S} = \boldsymbol{E} \times \boldsymbol{H} = \frac{1}{\mu} \boldsymbol{E} \times \boldsymbol{B} = c^2 \varepsilon \boldsymbol{E} \times \boldsymbol{B} = \frac{c^2\varepsilon_0}{\mu_r} \boldsymbol{E} \times \boldsymbol{B}
+\boldsymbol{S}
+= \boldsymbol{E} \times \boldsymbol{H} 
+= \frac{1}{\mu} \cdot\boldsymbol{E} \times \boldsymbol{B} 
+= v^2 \varepsilon \cdot \boldsymbol{E} \times \boldsymbol{B},\quad {\color{red} S = vw = \varepsilon v E^2}
 \end{equation}
-$\boldsymbol{S}$ 的方向即为波的传播方向，与 $\boldsymbol{k}$ 方向相同。在大多数情况下，我们都有 $\mu_r = 1$，于是得到常用形式：
-\begin{gather}
-\boldsymbol{S} = \boldsymbol{E} \times \boldsymbol{H} = \frac{1}{\mu_0} \boldsymbol{E} \times \boldsymbol{B}= c^2\varepsilon_0 \boldsymbol{E} \times \boldsymbol{B}
-,\quad 
-S = EH = \frac{1}{\mu_0} EB = c^2\varepsilon_0 EB\  {\color{red} = vw}
-\end{gather}
-我们直接给出简谐函数平均值的计算公式：
+$\boldsymbol{S}$ 的方向即为波的传播方向，与 $\boldsymbol{k}$ 方向相同，它的大小事实上就是能量的时间通量 $vw$。
+\subsection{辐照度}
+
+辐射照度，简称辐照度，是指单位时间内落在单位面积上的辐射能量，在辐射度学中用 $\boldsymbol{E}_e$ 表示；类似的有光照度，指单位时间内落在单位面积上的光量（辐射能的光度量大小，详见 \ref{光度学基本概念} 节），在光度学中用 $\boldsymbol{E}_v$ 表示。在不需要区分时“照度”和“强度”\footnote{过去常用“强度”来代表单位时间内落在单位面积上的能量，也即现在的“照度”，但国际上此概念已经默认归照度所有，而强度用于描述点辐射源在某方向上单位立体角内的能量通量。}时，常用 $\boldsymbol{I}$ 来表示照度。
+
+辐照度是波印廷矢量的时间平均，即 ${\color{red} I = \langle S  \rangle_T}$，我们直接给出简谐函数平均值的计算公式：
 \begin{equation}
 \langle e^{i \omega t} \rangle_T = \frac{1}{T}\int_{t - \frac{T}{2}}^{t + \frac{T}{2}} e^{i \omega t} \ \mathrm{d}t = \left(\frac{\sin \frac{\omega T}{2}}{\frac{\omega T}{2}}\right)e^{i \omega t}
 \end{equation}
@@ -2294,15 +2319,11 @@ S = EH = \frac{1}{\mu_0} EB = c^2\varepsilon_0 EB\  {\color{red} = vw}
 \end{gather}
 
 
-\subsection{辐照度}
-
-辐射照度，简称辐照度，是指单位时间内落在单位面积上的辐射能量，在辐射度学中用 $\boldsymbol{E}_e$ 表示；类似的有光照度，指单位时间内落在单位面积上的光量（辐射能的光度量大小，详见 \ref{光度学基本概念} 节），在光度学中用 $\boldsymbol{E}_v$ 表示。在不需要区分时“照度”和“强度”\footnote{过去常用“强度”来代表单位时间内落在单位面积上的能量，也即现在的“照度”，但国际上此概念已经默认归照度所有，而强度用于描述点辐射源在某方向上单位立体角内的能量通量。}时，常用 $\boldsymbol{I}$ 来表示照度。
-
-在简谐电磁场下，我们有：
+在简谐电磁波 $\boldsymbol{E} = \boldsymbol{E_0}\cdot e^{i\left(\boldsymbol{k}\cdot x - \omega t\right)}$ 下，我们有：
 \begin{gather}
-S = c^2 \varepsilon_0 | \boldsymbol{E_0}\times \boldsymbol{B_0} | \cdot \cos^2 \left(\boldsymbol{k}\cdot \boldsymbol{x} - \omega t\right) \Longrightarrow  I = \langle  S  \rangle_T = \varepsilon_0 c \langle E^2 \rangle_T = \frac{c}{\mu_0} \langle B^2 \rangle_T \\ 
-\text{真空：} I  =  \frac{\varepsilon_0c}{2}\cdot E_0^2 = \frac{c}{2 \mu_0}\cdot B_0^2\\ 
-\text{介质：} I = \frac{\varepsilon_0v}{2}\cdot E_0^2 = \frac{\varepsilon_0c}{2n}\cdot E_0^2 
+S = \varepsilon v E^2 = \varepsilon v E_0^2 \cdot \cos^2 \left(\boldsymbol{k}\cdot \boldsymbol{x} - \omega t\right)
+\Longrightarrow  
+I = \langle  S  \rangle_T = \frac{1}{2}\varepsilon v E_0^2
 \end{gather}
 上面的介质要求是线性、均匀、各向同性介质。
 

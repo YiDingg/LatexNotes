@@ -104,7 +104,7 @@
         \newtheoremstyle{MyBlockTheoremStyle}% <name>
             {11pt}% <space above>
             {11pt}% <space below>
-            {}% <body font> 使用默认正文字体
+            {\kaishu}% <body font> 使用默认正文字体
             {}% <indent amount>
             {\bfseries}% <theorem head font> 设置标题项为加粗
             {：\\ \indent}% <punctuation after theorem head>
@@ -271,14 +271,14 @@
 % 各级标题自定义设置
     \usepackage{titlesec}   
     % chapter
-        \titleformat{\chapter}[hang]{\normalfont\Large\bfseries\centering}{Homework \thechapter :}{10pt}{}
+        \titleformat{\chapter}[hang]{\normalfont\Large\bfseries\centering\boldmath}{Homework \thechapter :}{10pt}{}
         \titlespacing*{\chapter}{0pt}{-30pt}{10pt} % 控制上方空白的大小
     % section
-        \titleformat{\section}[hang]{\normalfont\large\bfseries}{\thesection}{8pt}{}
+        \titleformat{\section}[hang]{\normalfont\large\bfseries\boldmath}{\thesection}{8pt}{}
     % subsection
         % 设置 subsection 样式为 (1) (2) (3)
         \renewcommand{\thesubsection}{(\arabic{subsection})}    
-        \titleformat{\subsection}[hang]{\normalfont\bfseries}{\thesubsection}{8pt}{}    
+        \titleformat{\subsection}[hang]{\normalfont\bfseries\boldmath}{\thesubsection}{8pt}{}
 
 
 % --------------------- 文章宏包及相关设置 --------------------- %
@@ -1153,11 +1153,11 @@ p = \frac{u_2^2}{R_2} = \frac{36}{\frac{13^2}{R_2} + 78 + 9R_2} \leqslant \frac{
 事实上，视 $R_2$ 为负载，视电路的剩余部分为电源，可求得电源的内阻（也即输出电阻）为 $R_s = \frac{13}{3}\ \Omega$，因此当 $R_2 = R_s =  \frac{13}{3}\ \Omega$ 时，外部电路（也即负载 $R_2$）有最大功率。 
 
 \begin{figure}[H]\centering
-\begin{subfigure}[t]{0.5\columnwidth}\centering
-    \includegraphics[height=120pt]{assets/4/199279d29390a5449f7ef5c5dc7f8a3d.png}
+\begin{subfigure}[t]{0.4\columnwidth}\centering
+    \includegraphics[height=110pt]{assets/4/199279d29390a5449f7ef5c5dc7f8a3d.png}
     \caption{\bfseries 讲义题 2-22 图 }
-\end{subfigure}\begin{subfigure}[t]{0.5\columnwidth}\centering
-    \includegraphics[height=120pt]{assets/4/bd23c61fd9d5ec13d9ce56376fe64d2c.png}
+\end{subfigure}\begin{subfigure}[t]{0.6\columnwidth}\centering
+    \includegraphics[height=110pt]{assets/4/2-22.pdf}
     \caption{\bfseries 讲义题 2-20 等效电路 }
 \end{subfigure}
 \caption{\bfseries 讲义题 2-22 }
@@ -1472,12 +1472,225 @@ U_1 = U_2 = U_3 = 1 \ \mathrm{V},\quad i = 0,\quad u = 1 \ \mathrm{V}
 
 
 
+\chapter{2024.10.9 - 2024.10.15}\thispagestyle{fancy}
+
+\section{习题集 4-10: 题图电路中电流源 $I_{S1} = 2 \ \mathrm{A}$，$I_{S2}= 3 \ \mathrm{A}$。断开 3 A 电流源，则 2 A 电流源输出 28 W，$U$ = 8 V。断开 2 A 电流源，则 3 A 的电流源输出 54 W，$U$ = 12 V。求两个电流源同时作用时，每个电流源输出的功率。}
+
+仅有 $2 \ \mathrm{A}$ 电流源时，$U_1 = 14 \ \mathrm{V}$，$U_2 = 8 \ \mathrm{V}$；仅有 $3 \ \mathrm{A}$ 电流源时，$U_1 = 12 \ \mathrm{V}$，$U_2 = 18 \ \mathrm{V}$。由叠加定理，两电流源同时作用时：
+\begin{equation}
+\begin{cases}
+    U_1 = 14 + 12 = 26 \ \mathrm{V} \\ 
+    U_2 = 8 + 18 = 26 \ \mathrm{V}
+\end{cases}
+\Longrightarrow 
+\boxed{
+    \begin{cases}
+        P_{2\mathrm{A}} = 2 \cdot 26 = 52 \ \mathrm{W} \\ 
+        P_{3\mathrm{A}} = 3 \cdot 26 = 78 \ \mathrm{W}
+    \end{cases}
+}
+\end{equation}
+\begin{figure}[H]\centering
+\includegraphics[width=0.4\columnwidth]{assets/6/9506aa8f7aeba32072fee006fa1076c7.png}
+\caption{\bfseries 6.1 习题集 4-10}\label{6.1 习题集 4-10}
+\end{figure}
+
+\section{习题集 4-24: 题图电路中，已知 $U_{S1} = 24 \ \mathrm{V},\  U_{S2} = 18 \ \mathrm{V},\ R_1 = 2 \ \Omega,\ R_2 = 1 \ \Omega,\ R_3 = 3 \ \Omega$。}
+
+\subsection{求 $U_{S3} = 15 \ \mathrm{V}$ 时，通过 $R_3$ 的电流}
+
+先求出激励为单个电压源时，通过 $R_3$ 的电流（参考方向标在图 \ref{6.2 习题集 4-24} 中）：
+\begin{equation}
+U_{S1}:\ I_{R_3} = \frac{24}{11} \ \mathrm{A} ,\quad U_{S2}:\ I_{R_3} = -\frac{36}{11} \ \mathrm{A},\quad U_{S3}:\ I_{R_3} = \frac{3}{11} U_{S3}
+\end{equation}
+由叠加定理，通过 $R_3$ 的电流为：
+\begin{equation}
+\boxed{
+    I_{R_3} = \frac{24}{11} - \frac{36}{11} + \frac{3}{11} \cdot 15 = 3 \ \mathrm{A}
+}
+\end{equation}
+
+\begin{figure}[H]\centering
+\begin{subfigure}[t]{0.55\columnwidth}\centering
+    \includegraphics[height=115pt]{assets/6/a45e47a606698b8a935641ad6e1e5ab9.png}
+    \caption{\bfseries 原题图 }
+\end{subfigure}\hfill
+\begin{subfigure}[t]{0.45\columnwidth}\centering
+    \includegraphics[height=125pt]{assets/6/0d7f9f1c42f022fbf24925b67ee966d3.png}
+    \caption{\bfseries 电流参考方向 }
+\end{subfigure}
+\caption{\bfseries 6.2 习题集 4-24}\label{6.2 习题集 4-24}
+\end{figure}
+
+\subsection{$R_3$ 为多大时可获得最大功率，值是多少}
+
+此题表述有些问题，既没有说明固定 $U_{S3}$ 的值为多少，也没有强调“功率”的主语，是指“$R_3$ 的功率”还是“电路总功率”，有些模糊不清。不论功率是前者还是后者，必须先给定 $U_{S3}$ 才可计算。所以，我们在这里沿用第一问的条件，假设 $U_{S1} = 15 \ \mathrm{V}$，则各电源（激励）对电阻的电流为：
+\begin{align}
+    U_{S1}:\quad & 
+    I_{R_1} = \frac{U_{S1}}{R_1 + R_2 \parallel R_3},\quad 
+    I_{R_2} = I_{R_1}\cdot \frac{R_3}{R_2 + R_3},\quad 
+    I_{R_3} = I_{R_1}\cdot \frac{R_2}{R_2 + R_3} \\ 
+    U_{S2}:\quad & 
+    I_{R_1} =  I_{R_2}\cdot \frac{R_3}{R_1 + R_3},\quad 
+    I_{R_2} =\frac{U_{S2}}{R_2 + R_1 \parallel R_3},\quad  
+    I_{R_3} = - I_{R_2}\cdot \frac{R_1}{R_1 + R_3} \\ 
+    U_{S3}:\quad & 
+    I_{R_1} =  I_{R_3}\cdot \frac{R_2}{R_1+ R_2},\quad 
+    I_{R_2} = - I_{R_3}\cdot \frac{R_1}{R_1 + R_2} ,\quad 
+    I_{R_3} = \frac{U_{S3}}{R_3 + R_1 \parallel R_2}
+\end{align}
+由叠加定理计算 $R_3$ 的功率和电路总功率：
+\begin{equation}
+    P_{R_3} = I_{R_3}^2R_3,\quad P = I_{R_1}^2R_1 + I_{R_2}^2R_2 + I_{R_3}^2R_3
+\end{equation}
+代入数据，做数学上的化简和整理，可得：
+\begin{equation}
+    P_{R_3} = \frac{1089 R_3}{(3 R_3 + 2)^2} = \frac{1089}{9 R_3 + \frac{4}{R_3} + 12} ,\quad P = \frac{363}{3R_3 + 2 } + 588
+\end{equation}
+于是：
+\begin{center}
+    \boxed{
+        \begin{matrix}
+            \text{
+                当 $R_3 = \frac{2}{3} \Omega$ 时，$R_3$ 有最大功率 $P_{R_3, \max} = \frac{363}{8} \ \mathrm{W} = 45.375 \ \mathrm{W}$
+            }\\ 
+            \text{
+                当 $R_3 = 0$ 时，有最大电路总功率 $P_{\max} = \frac{1539}{2} \ \mathrm{W} = 769.5 \ \mathrm{W}$
+            }
+        \end{matrix}
+        }
+\end{center}
+
+%\begin{align}
+%    U_{S1}:\quad & 
+%    I_{R_1} = \frac{96}{11}\ \mathrm{A},\quad 
+%    I_{R_2} = \frac{72}{11}\ \mathrm{A},\quad 
+%    I_{R_3} = \frac{24}{11} \ \mathrm{A} 
+%    \\
+%    U_{S2}:\quad & 
+%    I_{R_1} = \frac{54}{11}\ \mathrm{A},\quad 
+%    I_{R_2} = \frac{90}{11}\ \mathrm{A},\quad 
+%    I_{R_3} = -\frac{36}{11} \ \mathrm{A} 
+%    \\
+%    U_{S3}:\quad & 
+%    I_{R_1} = \frac{1}{11}U_{S3},\quad 
+%    I_{R_2} = -\frac{2}{11}U_{S3},\quad
+%    I_{R_3} = \frac{3}{11} U_{S3}
+%\end{align}
 
 
 
 
+\subsection{求使 $R_3$ 中电流为 0 的 $U_{S3}$}
 
+由叠加定理：
+\begin{equation}
+\boxed{
+    \frac{24}{11} - \frac{36}{11} + \frac{3}{11} \cdot U_{S3} = 0 \Longrightarrow U_{S3} = 4 \ \mathrm{V}
+}
+\end{equation}
 
+\section{习题集 4-36: 题图电路中网络 $A$ 内含有独立电压源、电流源和线性电阻。在 (a) 图中测得 $U_{ab} = 10 \ \mathrm{V}$，(b) 图中测得 $U_{a'b'} = 4 \ \mathrm{V}$，求 (c) 图中的电压 $U_{a''b''}$。}
+
+由戴维南定理，可将网络 $A$ 等效为一个电压源 $U$ 串联一个电阻 $R$，如图 \ref{6.3 习题集 4-36.2} (a) 所示。列出方程：
+\begin{equation}
+U = 10 - 0.5 R,\quad U - 0.4 R = 4 \Longrightarrow R = \frac{20}{3} \ \Omega,\quad U = \frac{20}{3} \ \mathrm{V}
+\end{equation}
+作电源等效如图 \ref{6.3 习题集 4-36.2} (b)，求得题图 (c) 中的 $U_{a''b''}$:
+\begin{equation}
+R_0 = R \parallel 10 \ \Omega \parallel 8 \ \Omega = \frac{8}{3} \ \Omega,\quad I_0 = \frac{U}{R} + 0.5 + 1 = 2.5 \ \mathrm{A} \Longrightarrow 
+\boxed{
+    U_{a''b''} =  I_0R_0 = \frac{20}{3} \ \mathrm{V} = 6.67 \ \mathrm{V}
+}
+\end{equation}
+
+\begin{figure}[H]\centering
+\includegraphics[width=0.85\columnwidth]{assets/6/image (7).jpg}
+\caption{\bfseries 6.3 习题集 4-36}\label{6.3 习题集 4-36}
+\end{figure}
+
+\begin{figure}[H]\centering
+\begin{subfigure}[t]{0.6\columnwidth}\centering
+    \includegraphics[height=100pt]{assets/6/acd560ff4ae20eb901019a90b84ef837.png}
+    \caption{\bfseries 戴维南定理等效 }
+\end{subfigure}\hfill
+\begin{subfigure}[t]{0.4\columnwidth}\centering
+    \includegraphics[height=100pt]{assets/6/7367192b138adaf93ddf5c5fcc94a53b.png}
+    \caption{\bfseries 等效电源 }
+\end{subfigure}
+\caption{\bfseries 6.3 习题集 4-36 的等效处理}\label{6.3 习题集 4-36.2}
+\end{figure}
+
+\section{习题集 4-37: 题图电路方框内为线性电阻网络，测得 $U_S = 8 \ \mathrm{V},\ R = 3 \ \Omega$ 时 $I = 0.5 \ \mathrm{A}$；$U_S = 18 \ \mathrm{V},\ R = 4 \ \Omega$ 时 $I = 1 \ \mathrm{A}$。求 $U_S = 30 \ \mathrm{V},\ R = 5 \ \Omega$ 时的电流 $I$}
+
+由戴维南定理，将方框内的线性电阻网络与电压源 $U_S$ 等效为一个电压源 $U_0$ 串联一个电阻 $R_0$，如图 \ref{6.4 习题集 4-37} 所示。当 $U_S$ 从 $8 \ \mathrm{V}$ 变为 $18 = \frac{9}{4} \cdot 8\ \mathrm{V}$ 时，由齐性定理，等效后的电压源 $U_0$ 应变为 $\frac{9}{4}U_0$，于是可求得 $U_0$ 和 $R_0$:
+\begin{equation}
+\begin{cases}
+    U_0 = 0.5 (R_0 + 3)\\ 
+    \frac{9}{4}U_0 =  R_0 + 4
+\end{cases} 
+\Longrightarrow 
+\begin{cases}
+    R_0 = 5 \Omega \\ 
+    U_0 = 4 \ \mathrm{V}
+\end{cases}
+\Longrightarrow 
+\boxed{
+    I\mid_{R = 5 \Omega} = \left[\frac{ \frac{30}{8} U_0}{R_0 + R}\right]_{R = 5 \Omega} = 1.5 \ \mathrm{A}
+}
+\end{equation}
+
+\begin{figure}[H]\centering
+\includegraphics[width=0.52\columnwidth]{assets/6/0f2c149b099f73467b72503826e5385d.png}
+\caption{\bfseries 6.4 习题集 4-37}\label{6.4 习题集 4-37}
+\end{figure}
+
+\section{（选做）讲义题 3-13: 题图电路中，$R_x = 0$ 时测得 $I_x = 8 \ \mathrm{A}$，$U = 12 \ \mathrm{V}$；$R_x = \infty$ 时测得 $U_x = 36 \ \mathrm{V}$，$U = 6 \ \mathrm{V}$。求出 $R_x = 9 \ \Omega$ 时的 $U_x$ 和 $U$。}
+
+先将除 $R_x$ 外的电路等效为戴维南电路，设戴维南电路的电压源为 $U_1$，电阻为 $R_1$，由题意可得：
+\begin{equation}
+\begin{cases}
+    U_1 = 36 \ \mathrm{V} \\ 
+    R_1 = \frac{36}{8} \ \Omega = 4.5 \ \Omega
+\end{cases}
+\Longrightarrow 
+\boxed{
+    U_x \mid_{R_x = 9 \Omega} = U_1 \cdot \frac{R_x}{R_1 + R_x} = 24 \ \mathrm{V}
+}
+\end{equation}
+
+然后用替代定理，将 $R_x$ 替换为电压源 $U_x$。由叠加定理和齐性定理，可得：
+\begin{equation}
+    U = U' + kU_x
+    \Longrightarrow 
+\begin{cases}
+    U' = 12 \ \mathrm{V} \\ 
+    6 = 12 + k \cdot 36
+\end{cases}
+\Longrightarrow 
+\begin{cases}
+    U' = 12 \ \mathrm{V} \\ 
+    k = -\frac{1}{6}
+\end{cases}
+\Longrightarrow 
+\boxed{
+    U\mid_{R_x = 9 \Omega} = 12 - \frac{1}{6} \cdot 24 = 8 \ \mathrm{V}
+}
+\end{equation}
+
+\begin{figure}[H]\centering
+\begin{subfigure}[t]{0.45\columnwidth}\centering
+    \includegraphics[height=125pt]{assets/6/image (9).jpg}
+    \caption{\bfseries 讲义 3-13 题图 }
+\end{subfigure}\hfill
+\begin{subfigure}[t]{0.55\columnwidth}\centering
+    \includegraphics[height=125pt]{assets/6/image (10).jpg}
+    \caption{\bfseries 讲义 3-18 题图 }
+\end{subfigure}
+\caption{\bfseries 讲义题 3-13、讲义题 3-18 }
+\end{figure}
+
+\section{（选做）讲义题 3-18: 题图电路中 OPA 理想，求 ab 端口的诺顿等效电路，以及电流之比 $\frac{i_1}{i_4}$（设ab端开路）。}
 
 
 
@@ -1560,7 +1773,7 @@ U_1 = U_2 = U_3 = 1 \ \mathrm{V},\quad i = 0,\quad u = 1 \ \mathrm{V}
 \titleformat{\chapter}[hang]{\normalfont\huge\bfseries\centering}{}{20pt}{}
 \titlespacing*{\chapter}{0pt}{-25pt}{8pt} % 控制上方空白的大小
 % section 标题自定义设置 
-\titleformat{\section}[hang]{\normalfont\centering\Large\bfseries}{\thesection}{8pt}{}
+\titleformat{\section}[hang]{\normalfont\centering\Large\bfseries  }{\thesection}{8pt}{}
 
 % 附录 A
 \chapter*{附录 A\hspace*{20pt}  Matlab 代码}\setcounter{chapter}{1} 

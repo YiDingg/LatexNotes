@@ -75,7 +75,7 @@
         \geometry{marginparwidth=1.75cm}    % 设置边注距离（注释、标记等）
 
 % 配置数学环境
-    %\everymath{\displaystyle}   % 设置全文数学公式都为展示样式
+    \everymath{\displaystyle}   % 设置全文数学公式都为展示样式
     \usepackage{amsthm} % 宏包：数学环境配置
     % theorem-line 环境自定义
         \newtheoremstyle{MyLineTheoremStyle}% <name>
@@ -1203,17 +1203,41 @@ I =  2 \pi i \left\{ \left[e^z\right]_{z=0} + \frac{a}{2!}\cdot\left[e^z\right]^
 
 \chapter{2024.10.8 - 2024.10.14}\thispagestyle{fancy}
 
+\section{确定下列幂级数的收敛半径}
+
+\subsection{$\sum_{n=1}^{\infty} \frac{z^n}{n}$}
+\subsection{$\sum_{n=1}^{\infty} n^n z^n$}
+\subsection{$\sum_{n=1}^{\infty} z^{n!}$}
+\subsection{$\sum_{n=1}^{\infty} z^{2n}$}
+\subsection{$\sum_{n=1}^{\infty} \left[3 + (-1)^n\right]^n z^n$}
+\subsection{$\sum_{n=1}^{\infty} cos(in) \cdot z^n$}
+\subsection{$\sum_{n=1}^{\infty} (n + a^n) z^n$}
+\subsection{$\sum_{n=1}^{\infty} (1 - \frac{1}{n})^n z^n$}
+
+\section{设幂级数 $\sum_{n=1}^{\infty} (1 - \frac{1}{n})^n z^n$ 的收敛半径为 $R \in (0,\infty)$，求下列幂级数的收敛半径}
+
+\subsection{$\sum_{n=1}^{\infty} n^Rc_n z^n$}
+\subsection{$\sum_{n=1}^{\infty} (2^n - 1)c_n z^n$}
+\subsection{$\sum_{n=1}^{\infty} (c_n)^k z^n$}
+
+\section{证明级数 $\sum_{n=1}^{\infty} \frac{z^{n-1}}{(1 - z^n)(1 - z^{n+1})}$ 在 $ z \ne 1$ 上收敛，并求其和函数}
+
+\section{证明级数 $\sum_{n=1}^{\infty} \left( \frac{z^{n+1}}{n+1} - \frac{2z^{2n+3}}{2n+3} \right)$ 的和函数 $S = S(z)$ 在 $z = 1$ 不连续}
 
 
 
+\section{对 $| z | < 1$，求下列级数的和}
 
 
 
+\subsection{$\sum_{n=1}^{\infty} n z^n$}
+\subsection{$\sum_{n=1}^{\infty} \frac{z^{2n+1}}{2n+1}$}
 
+。
 
+\subsection{$\sum_{n=1}^{\infty} (-1)^{n+1}\frac{z^n}{n}$}
 
-
-
+\section{证明级数 $\sum_{n=1}^{\infty} \frac{(-1)^{n-1}}{z + n}$ 在不包含负整数的任意闭圆上一致收敛}
 
 
 

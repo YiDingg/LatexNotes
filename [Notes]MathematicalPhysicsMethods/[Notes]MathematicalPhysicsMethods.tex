@@ -35,12 +35,12 @@
 
 % 导入基本宏包
     \usepackage[UTF8]{ctex}     % 设置文档为中文语言
-    \usepackage{hyperref}  % 宏包：自动生成超链接 (此宏包与标题中的数学环境冲突)
+        \usepackage{hyperref}  % 宏包：自动生成超链接 (此宏包与标题中的数学环境冲突)
     \hypersetup{
         colorlinks=true,    % false:边框链接 ; true:彩色链接
-        citecolor={red},    % 文献引用颜色
-        linkcolor={blue},   % 目录，公式，图表，脚注等内部链接颜色
-        urlcolor={cyan},    % 网页 URL 链接颜色，包括 \href 中的 text
+        citecolor={blue},    % 文献引用颜色
+        linkcolor={blue},   % 目录 (我们在目录处单独设置)，公式，图表，脚注等内部链接颜色
+        urlcolor={orange},    % 网页 URL 链接颜色，包括 \href 中的 text
         % cyan 浅蓝色 
         % magenta 洋红色
         % yellow 黄色
@@ -244,6 +244,7 @@
 
 % 其它设置
     % 脚注设置
+    % 钩住脚注的内容，并将其设置为黑体
         \renewcommand\thefootnote{\ding{\numexpr171+\value{footnote}}}
     % 参考文献引用设置
         \bibliographystyle{unsrt}   % 设置参考文献引用格式为unsrt
@@ -968,7 +969,7 @@ f^{(n)}(z) = \frac{n !}{2\pi i}\oint_{L} \frac{\phi(\zeta)}{(\zeta - z)^{n+1}} \
 \end{BlockTheorem}
 
 \begin{BlockTheorem}[含参量积分的解析性]\label{含参量积分的解析性}
-设 $f = f(t,z)$ 是定义在 $L \times \overline{G} $ 上的连续函数（对两个变量都连续），其中 $\overline{G} $ 是有界闭域。且 $\forall\ t \in L$，$f(t,z)$ 是 $\overline{G}$ 上的单值解析函数，则函数 $\displaystyle F(z) = \int_{L} f(t,z) \mathrm{d}t$
+设含参函数 $f = f(t,z)$ 分别对 $t\in L$ 和 $z\in \overline{G} $ 连续\footnote{这与在 $ L \times \overline{G}$ 上连续不同。}（对两个变量都连续），其中 $\overline{G} $ 是有界闭域。且 $\forall\ t \in L$，$f(t,z)$ 是 $\overline{G}$ 上的单值解析函数，则函数 $\displaystyle F(z) = \int_{L} f(t,z) \mathrm{d}t$
 在 $G$ 内解析，且 $\displaystyle F'(z) =  \int_{L} \frac{\partial f(t,z) }{\partial z } \mathrm{d}t$。
 \end{BlockTheorem}
 
@@ -1083,6 +1084,25 @@ v(r, \phi) &= \frac{a^2 - r^2}{2 \pi} \int_{0}^{2 \pi} \frac{ v(a, \theta) }{a^2
 若 $\Re \zeta > 1$，则 $\sum | u_n |$ 收敛；若 $\Re \zeta \leqslant 1$，则 $\sum | u_n |$ 发散。
 \end{LineTheorem}
 
+\begin{LineTheorem}[Dirichlet 判别法]\label{Dirichlet 判别法}
+    设级数 $\sum c_n$ 有界，$\sum \left(z_{n+1} - z_{n}\right)$ 绝对收敛且 $\lim z_n = 0$，则级数 $\sum c_n z_n$ 收敛。
+\end{LineTheorem}
+
+\begin{BlockTheorem}[Weierstrass 判别法\footnote{Theorem.\ref{Gauss 判别法} (Gauss 判别法) 是 Theorem.\ref{Weierstrass 判别法} (Weierstrass 判别法) 的特殊情形。}]\label{Weierstrass 判别法}
+    假设存在 $\zeta \in \C, \ p > 1$ 使得序列 $u_n$ 满足：
+    \begin{equation}
+        \frac{z_n}{z_{n+1}} = 1 + \frac{\zeta}{n} + O\left( \frac{1}{n^p} \right),\quad \zeta \in \C, \ p > 1
+    \end{equation}
+    设 $\zeta = \alpha + i\beta$，则：
+    \begin{enumerate}
+    \item 若 $\alpha > 1$，则 $\sum z_n$ 收敛；
+    \item 若 $\alpha = 1$ 且 $\beta = \ne 0$，则 $\sum z_n$ 振荡（发散的一种）。
+    \item 若 $\alpha \in (0,1)$，则 $\sum z_n$ 发散。
+    \item 若 $\alpha \leqslant 0$ 则 $z_n$ 不趋于 0，于是 $\sum z_n$ 必发散。
+    \end{enumerate}
+\end{BlockTheorem}
+
+
 \subsection{复变函数项级数}
 
 
@@ -1148,15 +1168,56 @@ v(r, \phi) &= \frac{a^2 - r^2}{2 \pi} \int_{0}^{2 \pi} \frac{ v(a, \theta) }{a^2
 \end{equation}
 上式中并没有规定求和顺序，常见的求和顺序有次对角线求和、累次求和（先行后列或先列后行）。需要注意，即使二重级数收敛，某些行或列的和也不一定存在，因此累次求和的结果也不一定存在。二重积分的和是否依赖于求和方式，原则上与级数是否绝对收敛有关，若绝对收敛，则所有求和方式结果相同。
 
+\section{幂级数}
+
+幂级数是指通项为幂函数的函数项级数，即：
+\begin{equation}
+    f(z) = \sum_{n = 0}^{\infty} c_n (z - a)^n
+\end{equation}
+
+
+\begin{BlockTheorem}[Abel 第一定理]\label{Abel 第一定理}
+    若级数 $\sum_{n = 0}^{\infty} c_n (z - a)^n$ 在点 $z_0$ 收敛，则其在圆 $| z - a | < | z_0 - a |$ 内绝对收敛且内闭一致收敛\footnote{在圆上的收敛性未知，需要依据级数来具体判断。}。圆内区域称为幂级数的收敛圆，收敛圆的半径称为收敛半径。
+    \par 
+    推论：若级数 $\sum_{n = 0}^{\infty} c_n (z - a)^n$ 在点 $z_0$ 发散，则在圆外（即 $| z - a | > | z_0 - a |$）处处发散。 
+\end{BlockTheorem}
+
+求幂级数有两个常用方法：
+\begin{gather}
+\frac{1}{R} = \overline{\lim_{n \to \infty}} \, | c_n |^{\frac{1}{n}} ,\quad 
+\frac{1}{R} = \lim_{n \to \infty} \left| \frac{c_{n+1}}{c_{n}} \right|
+\end{gather}
+
+前者称为 Cauchy-Hadamard 公式，是普遍成立的，后者称为 d'Alembert 公式，在极限存在时成立，但计算通常更简单。
+
+\begin{BlockTheorem}[Abel 第二定理]\label{Abel 第二定理}
+设幂级数 $\sum_{n = 0}^{\infty} c_n (z - a)^n$ 在收敛圆内收敛到 $f(z)$，且在收敛圆周上某点 $z_0$ 也收敛，和为 $S(z_0)$ 则当由收敛圆内趋于 $z_0$ 时，只要保持在以 $z_0$ 为顶点、张角为 $2 \phi < \pi$的范围内（见图 4.1），$f(z)$ 就一定趋于 $S(z_0)$，也即：
+\begin{equation}
+    \lim_{\begin{subarray}{c}
+        z \to z_0 \\ 
+        2 \phi < \pi
+    \end{subarray}}     f(z) = S(z_0)
+\end{equation}
+\end{BlockTheorem}
+
+\section{含参量反常积分的解析性}
+
+\begin{BlockTheorem}[含参量反常积分的解析性]\label{含参量反常积分的解析性}
+\hspace*{-2.8em} 设含参函数 $f = f(t,z)$ 满足：
+\begin{enumerate}
+\item $f(t,z)$ 分别对 $t\in [a, \infty) \subset \R $ 和 $z\in \overline{G} \subseteq \C$ 连续\footnote{这与在 $[a, \infty)\times \overline{G}$ 上连续不同。}
+\item $\forall\ t \in [a, \infty)$，$f(t,z)$ 在 $\overline{G}$ 上单值解析
+\item $\displaystyle F(z) = \lim_{b \to \infty} \int_{a}^{b} f(t,z) \ \mathrm{d}t$ 在 $\overline{G}$ 上一致收敛，即 $\displaystyle h(b,z) = \int_{a}^{b} f(t,z) \ \mathrm{d}t$ 满足 $\displaystyle \lim_{b \to \infty} \sup_{z} h(b,z) \in \C < \infty$
+\end{enumerate}
+则反常积分 $\displaystyle F(z) = \int_{a}^{+\infty} f(t,z)\ \mathrm{d}t$ 在 $G$ 内解析，且：
+\begin{equation}
+F'(z) = \int_{a}^{+\infty} \frac{\partial f(t,z)}{\partial z}\ \mathrm{d}t
+\end{equation}
+\end{BlockTheorem}
 
 
 
-
-
-
-
-
-
+\section{发散级数与渐近级数（略）}
 
 
 

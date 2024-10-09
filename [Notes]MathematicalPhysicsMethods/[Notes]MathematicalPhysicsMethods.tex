@@ -658,11 +658,11 @@ e^z = e^{x + \mathrm{i} y} = e^x(\cos y + \mathrm{i} \sin y)
     \begin{aligned}
         \cos z
         =\frac{\mathrm{e}^{\mathrm{i}z}+\mathrm{e}^{-\mathrm{i}z}}{2}
-        = {\color{red} \frac{1}{2}}\cdot \left[ \left( \frac{1}{e^y} + e^y \right)\cos x - \left( \frac{1}{e^y} - e^y \right)\sin x \right]
+        = {\color{red} \frac{1}{2}}\cdot \left[ \left( \frac{1}{e^y} + e^y \right)\cos x + \left( \frac{1}{e^y} {\color{red} \,-\,} e^y \right)\sin x \right]
         \\
         \sin z
         =\frac{\mathrm{e}^{\mathrm{i}z}-\mathrm{e}^{-\mathrm{i}z}}{2\mathrm{i}} 
-        = {\color{red} \frac{1}{2i}}\cdot \left[ \left( \frac{1}{e^y} - e^y \right)\cos x + \left( \frac{1}{e^y} + e^y \right)\sin x \right]
+        = {\color{red} \frac{1}{2i}}\cdot \left[ \left( \frac{1}{e^y} {\color{red} \,-\,} e^y \right)\cos x + \left( \frac{1}{e^y} + e^y \right)\sin x \right]
     \end{aligned}
 }
 \end{gather}
@@ -1059,6 +1059,8 @@ v(r, \phi) &= \frac{a^2 - r^2}{2 \pi} \int_{0}^{2 \pi} \frac{ v(a, \theta) }{a^2
 \item 积收敛：两个绝对收敛级数之积（是一个二重级数）仍然绝对收敛
 \end{enumerate}
 
+\subsection{复变级数的判别法}
+
 判断复数级数是否绝对收敛，由于取模后皆为正实数，因此与正项级数的收敛判别完全等价，常见的方法有比较判别法、比式判别法、根式判别法和 Gauss 判别法。
 
 \begin{BlockTheorem}[比较判别法]\label{比较判别法}
@@ -1182,7 +1184,7 @@ v(r, \phi) &= \frac{a^2 - r^2}{2 \pi} \int_{0}^{2 \pi} \frac{ v(a, \theta) }{a^2
     推论：若级数 $\sum_{n = 0}^{\infty} c_n (z - a)^n$ 在点 $z_0$ 发散，则在圆外（即 $| z - a | > | z_0 - a |$）处处发散。 
 \end{BlockTheorem}
 
-求幂级数有两个常用方法：
+求幂级数的收敛半径有两个常用方法：
 \begin{gather}
 \frac{1}{R} = \overline{\lim_{n \to \infty}} \, | c_n |^{\frac{1}{n}} ,\quad 
 \frac{1}{R} = \lim_{n \to \infty} \left| \frac{c_{n+1}}{c_{n}} \right|
@@ -1309,7 +1311,7 @@ f^{(n)}(z) = \frac{n !}{2\pi i} \oint_{\partial G} \frac{f(\zeta)}{(\zeta - z )^
     \oint_{\partial G} g(z) = {\color{red} \frac{2\pi i}{n!}} \cdot \left[ (z - a)^{n+1}\cdot g(z) \right]^{(n)}_{z = a}
 \end{equation}
 
-\subsection{如何理解 Cauchy 型积分揭示的“解析函数在（分段）光滑曲线上的值决定了它 在整个复平面上的值”}
+\subsection{如何理解 Cauchy 型积分揭示的“解析函数在（分段）光滑曲线上的值决定了它 在整个复平面上的值”？}
 
 \chapter*{附录 B\hspace*{20pt}  Matlab 代码}\addcontentsline{toc}{chapter}{附录 B\hspace*{6pt}  Matlab 代码}
 \thispagestyle{fancy}

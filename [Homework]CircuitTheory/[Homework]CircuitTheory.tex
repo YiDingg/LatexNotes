@@ -1621,7 +1621,7 @@ R_0 = R \parallel 10 \ \Omega \parallel 8 \ \Omega = \frac{8}{3} \ \Omega,\quad 
 \caption{\bfseries 6.3 习题集 4-36 的等效处理}\label{6.3 习题集 4-36.2}
 \end{figure}
 
-\section{习题集 4-37: 题图电路方框内为线性电阻网络，测得 $U_S = 8 \ \mathrm{V},\ R = 3 \ \Omega$ 时 $I = 0.5 \ \mathrm{A}$；$U_S = 18 \ \mathrm{V},\ R = 4 \ \Omega$ 时 $I = 1 \ \mathrm{A}$。求 $U_S = 30 \ \mathrm{V},\ R = 5 \ \Omega$ 时的电流 $I$}
+\section{习题集 4-37: 题图电路方框内为线性电阻网络，测得 $U_S = 8 \ \mathrm{V},\ R = 3 \ \Omega$ 时 $I = 0.5 \ \mathrm{A}$；$U_S = 18 \ \mathrm{V},\ R = 4 \ \Omega$ 时 $I = 1 \ \mathrm{A}$。求 $U_S = 30 \ \mathrm{V},\ R = 5 \ \Omega$ 时的电流 $I$。}
 
 由戴维南定理，将方框内的线性电阻网络与电压源 $U_S$ 等效为一个电压源 $U_0$ 串联一个电阻 $R_0$，如图 \ref{6.4 习题集 4-37} 所示。当 $U_S$ 从 $8 \ \mathrm{V}$ 变为 $18 = \frac{9}{4} \cdot 8\ \mathrm{V}$ 时，由齐性定理，等效后的电压源 $U_0$ 应变为 $\frac{9}{4}U_0$，于是可求得 $U_0$ 和 $R_0$:
 \begin{equation}
@@ -1692,8 +1692,17 @@ R_0 = R \parallel 10 \ \Omega \parallel 8 \ \Omega = \frac{8}{3} \ \Omega,\quad 
 
 \section{（选做）讲义题 3-18: 题图电路中 OPA 理想，求 ab 端口的诺顿等效电路，以及电流之比 $\frac{i_1}{i_4}$（设ab端开路）。}
 
+由虚短和虚断，$i_4 = - \frac{u_s}{R_2} \Longrightarrow U_{ab} = -\frac{R_4}{R_2}u_s$，将电压源置零，可得戴维南等效电阻为 $R = R_4$，于是诺顿等效电流为 $i = \frac{U}{R} = - \frac{u_s}{R_2}$，也即大小 $\frac{u_s}{R_2}$，由 $a$ 指向 $b$，如图 \ref{6.6 讲义题 3-18 诺顿等效电路} 所示。并且电流之比：
+\begin{equation}
+u_s - i_1R_1 = \left(1 - \frac{R_3 + R_4}{R_2}u_s\right) \Longrightarrow  \boxed{
+    \frac{i_1}{i_4} = - \frac{R_3 + R_4}{R_2}
+}
+\end{equation}
 
-
+\begin{figure}[H]\centering
+\includegraphics[width=0.4\columnwidth]{assets/6/9d53a9b244bf76e6ad1734869043135a.png}
+\caption{\bfseries 6.6 讲义题 3-18 诺顿等效电路}\label{6.6 讲义题 3-18 诺顿等效电路}
+\end{figure}
 
 
 

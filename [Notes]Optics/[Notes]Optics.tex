@@ -598,7 +598,6 @@ $K_{\text{max}} = 683\ \mathrm{lm \cdot W^{-1}}$ 在波长约 555.0 nm 取到，
 
 \begin{table}[H]\centering
     \caption{\textbf{光度学基本概念}}
-    \label{光度学基本概念}
     \renewcommand{\arraystretch}{1.15} % 调整行间距为默认值的1.5倍
 %\resizebox{0.9\linewidth}{!}{   % 设置宽度为 \linewidth 等比例缩放
 %}
@@ -1147,7 +1146,7 @@ E = E_0 \cos \left(-\omega t + \alpha \right) = E_0 \cdot e^{i(-\omega t + \alph
 \end{gather}
 
 
-对于可见光，其波长在 nm 级别，空间频率 $k = \frac{2\pi}{\lambda}$ 极高。为方便可视化，我们取波长 $\lambda = 0.4 \pi \ \mathrm{m}$，即 $k = 5$ 的微波，并令振幅系数 $A = 50$，$B = 50$，作出图像。图 \ref{单个球面波源在平面上的振荡情况} 展示了单个波源在平面上的振荡情况（$t = 0$）。对两波源的干涉\footnote{源码见附录 \ref{单个球面波源在平面上的振荡情况 源码}}，我们令两波源位置分别为 $(-2, 0)$，$(2, 0)$，作出图像，图 \ref{两个球面波源在平面上的干涉情况} 展示了它们的干涉情况（$t = 0$）\footnote{源码见附录 \ref{两个球面波源在平面上的干涉情况 源码}}。单波源和双波源随时间的振动详见 GIF 动图链接 \href{https://www.123pan.com/s/0y0pTd-QwKj3}{https://www.123pan.com/s/0y0pTd-QwKj3}。
+对于可见光，其波长在 nm 级别，空间频率 $k = \frac{2\pi}{\lambda}$ 极高。为方便可视化，我们取波长 $\lambda = 0.4 \pi \ \mathrm{m}$，即 $k = 5$ 的微波，并令振幅系数 $A = 50$，$B = 50$，作出图像。图 \ref{单个球面波源在平面上的振荡情况}\footnote{源码见附录 \ref{单个球面波源在平面上的振荡情况 源码}} 展示了单个波源在平面上的振荡情况（$t = 0$）。对两波源的干涉，我们令两波源位置分别为 $(-2, 0)$，$(2, 0)$，作出图像，图 \ref{两个球面波源在平面上的干涉情况}\footnote{源码见附录 \ref{两个球面波源在平面上的干涉情况 源码}} 展示了它们的干涉情况（$t = 0$）。单波源和双波源随时间的振动详见 GIF 动图链接 \href{https://www.123pan.com/s/0y0pTd-QwKj3}{https://www.123pan.com/s/0y0pTd-QwKj3}。
 
 \begin{figure}[H]\centering
 \includegraphics[width=0.95\columnwidth]{assets/3/单个球面波源.pdf}
@@ -1228,29 +1227,42 @@ E = E_0 \cos \left(-\omega t + \alpha \right) = E_0 \cdot e^{i(-\omega t + \alph
     I = \sum_{i=1}^n I_i + \sum_{1 <= i < j <= n} 2\sqrt{I_iI_j} \cos(\alpha_i - \alpha_j) 
 \end{gather}
 
-\section{不同频率光的干涉}
+\section{不同频率光的干涉（略）}
 
-\section{产生干涉的实际条件}
+\section{产生干涉的前提条件}\label{产生干涉的前提条件}
 
-前面我们已经提到，在叠加（或干涉）问题中，电场的振幅通常只是位置的函数，而与时间无关，其实这也是观察到干涉图样的必要条件。观察干涉图样，无非是用照片（视频等同于照片）、人眼、辐射计以及类似的传感器，它们都有一定的“曝光时间”，我们只能观察到在曝光时间内，光强或辐射强度的平均值，即：
-
+前面我们已经提到，在叠加（或干涉）问题中，电场的振幅通常只是位置的函数，而与时间无关，其实这也是观察到干涉图样的必要条件。观察干涉图样，无非是用照片（视频等同于照片）、人眼、辐射计以及类似的传感器，它们都有一定的“曝光时间”，我们只能观察到在曝光时间内，光强或辐射强度的平均值。
+其中 $\tau$ 为仪器的曝光时间。可见光的简谐周期 $T = \frac{\lambda}{v}$ 在 $10^{-15}$ s 级别，因此曝光时间 $\tau$ 通常远大于 $T$，于是我们只能观察到平均光强，而无法观察到光强的瞬时变化，即：
 \begin{equation}
-I = I_1 + I_2 + 2 \sqrt{I_1 I_2} \cdot \frac{1}{\tau} \int_{0}^{\tau}  \cos(\Delta \alpha) \mathrm{d} t
+I = I_1 + I_2 + 2 \sqrt{I_1 I_2} \cdot \frac{1}{\tau} \int_{0}^{\tau}  \cos(\Delta \alpha) \mathrm{d} t =  I_1 + I_2 + 2 \sqrt{I_1 I_2} \cdot \langle \cos \Delta \alpha \rangle_\tau
 \end{equation}
-其中 $\tau$ 为仪器的曝光时间。对可见光而言，其振荡周期 $T = \frac{\lambda}{v}$ 在 $10^{-15}$ s 级别，因此 $\tau$ 通常远大于 $T$，这样，我们只能观察到平均光强，而无法观察到光强的瞬时变化。如果 $\Delta \alpha$ 与时间无关，或者在曝光时间内几乎保持不变，那么就能得到（观察到）稳定的干涉图样。否则恒有 $I = I_1 + I_2$，是平凡的叠加，称为非相干叠加。
+如果 $\Delta \alpha$ 与时间无关（这对波列长度有要求），或者在曝光时间内几乎保持不变，那么就能得到（观察到）稳定的干涉图样。否则恒有 $I = I_1 + I_2$，是平凡的叠加，称为非相干叠加。另外，若两波源的振动方向垂直，电场也仅是平凡的叠加，而不会产生干涉。因此，干涉现象要求两波源振动方向不能垂直。
 
-另外，若两波源的振动方向垂直，电场也仅是平凡的叠加，而不会产生干涉。因此，干涉现象要求两波源振动方向不能垂直。
-\\
+以能发射单频波的普通光源为例，光是由光源中的原子发生能级跃迁时发出的，原子跃迁时发出的波列长都有限，且初相位随机，持续时间 $\tau_0$ 通常短于 10 ns，在此时段内，光场振荡约百万次。对于探测设备来讲，10 ns 通常极短，远远小于曝光时间，也即 $\tau \ll \tau_0 \ll T$。
+
+%\footnote{即光谱宽度极短，光谱宽度对对比度的影响详见 \ref{多色光源迈克尔逊干涉} 节“多色光源迈克尔逊干涉”的公式 \ref{光谱宽度对对比度的影响}}
+
+现在假设光源的单色性极好，考虑被分波前或分振幅而导致具有光程差的两束相干光的叠加，此时，相位差 $\Delta \alpha$ 随时间 $t$ 的变化仅取决于波列长度 $L_0 = c \tau_0$。设两相干光的光程差为 $\Delta L$，其小于波列长度 $L_0$ 时，同一波列中的重合部分占比为 $\frac{L_0 - \Delta L}{L_0}$，也即实际相干时间占比为 $\frac{L_0 - \Delta L}{L_0}$；当 $\Delta L \geqslant L_0$ 时，由波列初相位的随机性，在曝光时间内干涉项的时间平均为 0（积分值为 0），不存在干涉现象。综合考虑，仅有重合部分对干涉项有贡献，得到条纹对比度上限 $\gamma_{\max}$ : 
+\begin{equation}
+    \gamma_{\max} = 
+    \begin{cases}
+        \left(\frac{L_0 - \Delta L}{L_0}\right)^2 &, \Delta L \in [0, L_0) \\ 
+        0 &, \Delta L \in [L_0, \infty)
+    \end{cases}\Longrightarrow \text{产生干涉的前提条件：} {\color{red} \Delta L < L_0 = c \tau_0}
+\end{equation}
+并且，随着 $\Delta L \in [0, L_0)$ 的增大，相干占比降低，干涉项逐渐向 0 靠拢，条纹对比度不断降低，直至完全消失。这一结论很好的解释了许多干涉实验中央对比度高而边缘对比度低，并且干涉条纹仅在有限范围内存在的现象（例如杨氏双缝干涉）。
+
+我们称波列持续时间 $\tau_0$ 为相干时间，波列长度 $L_0 = c \tau_0$ 为相干长度。
+上面讨论了观察干涉的原理，以及波列长度对干涉性的影响（这是产生干涉的必要条件）。在 \ref{光场的空间相干性与时间相干性} 节“光场的空间相干性与时间相干性”，我们还会讨论光源的空间相干性与时间相干性，前者与光源的线度有关（例如发光宽度），后者与光源的发光光谱有关（例如多色光源）。
+
+%由波列初相位的随机性，每个波列都会有随机的相位差 $\alpha$，在曝光时间内的上万个波列的平均下，积分项 $\frac{1}{\tau}\int_{0}^{\tau}  \cos(\Delta \alpha) \mathrm{d} t$ 为 0，$I = I_1 + I_2$，导致观察到的强度分布仅为平凡的叠加，无法观察到干涉。
+%上面的普通光源，不断发出初相位随机的波列，并且波列持续时间 $\tau_0$ 极短（相对于曝光时间），不能得到任何干涉图样，称为不相干相干光源。
 
 
-以能发射单频波的普通光源为例，光是由光源中的原子、分子发生能级跃迁时发出的，跃迁时发出的波列长都有限，且初相位随机，持续时间 $\tau_0$ 通常短于 10 ns，在此时段内，光场振荡约百万次。对于探测设备来讲，10 ns 通常极短，远远小于曝光时间。由波列初相位的随机性，在曝光时间内的上万个波列的平均下，积分项 $\frac{1}{\tau}\int_{0}^{\tau}  \cos(\Delta \alpha) \mathrm{d} t$ 为 0，$I = I_1 + I_2$，导致观察到的强度分布仅为平凡的叠加，无法观察到干涉。
-上面的普通光源，不断发出初相位随机的波列，并且波列持续时间 $\tau_0$ 极短（相对于曝光时间），不能得到任何干涉图样，称为 {\color{red} 时间不相干}。称波列持续时间 $\tau_0$ 为相干时间，称波列长度 $l_0 = c \tau_0$ 为相干长度。
 
-有一些光源，它们具有一定的发光宽度，不能看作理想的点光源。当光源宽度较大时，光源不同部分发出的光的叠加，会导致条纹的对比度降低（甚至为 0），称为 {\color{red} 空间不相干}。
 
-还有一些光源是多频光源（或具有一定宽度的光谱），波长差别极小时（通常是 $10^{-2}$ nm 级），不同波长相互叠加导致条纹对比度降低，波长差别较大时，$\cos(\Delta \alpha)$ 的周期远小于 $\tau$，积分项为零，也只能发生非相干叠加。以两频光源为例，发出时间角频率为 $\omega_1$ 和 $\omega_2$ 的光，则在同一位置，相位差 $\Delta \alpha = (k_2 - k_1)x - (\omega_2 - \omega_1)t$ 是 $t$ 的函数，当曝光时间 $\tau$ 远大于调制周期 $T = \frac{2 \pi}{\omega_1 - \omega_2}$ 时，积分项 $\frac{1}{\tau}\int_{0}^{\tau}  \cos(\Delta \alpha) \mathrm{d} t$ 趋于 0，得到 $I = I_1 + I_2$，也是非相干叠加。
 
-总而言之，影响相干性的条件大致有三个方面：波列持续时间 $\tau_0$、光源宽度 $d$ 和发光光谱 $i = i(\lambda)$。现实中没有任何一种光源在上面三个方面都做到极好，因此，在设计干涉实验时，需要依据选定光源的特性，选择合适的实验方案，或者依据实验弱化了哪些因素的影响，选择合适的光源。
+
 
 %\includemedia[
 %  width=10cm,
@@ -1299,10 +1311,10 @@ d = 100 \ \mathrm{\mu m},\  R = 5\ \mathrm{cm},\ D = 1\ \mathrm{m},\ L = 4 \ \ma
 
 \begin{figure}[H]\centering
     \begin{subfigure}[t]{0.52\columnwidth}\centering
-        \includegraphics[height=165pt]{assets/3/杨双.pdf}
+        \includegraphics[height=160pt]{assets/3/杨双.pdf}
         \caption{\bfseries 杨氏双缝干涉装置 }
     \end{subfigure}\begin{subfigure}[t]{0.48\columnwidth}\centering
-        \includegraphics[height=165pt]{assets/3/杨残差.pdf}
+        \includegraphics[height=160pt]{assets/3/杨残差.pdf}
         \caption{\bfseries 近似模型残差分布 }
     \end{subfigure}
     \caption{\bfseries 杨氏双缝干涉装置与近似模型残差分布 }\label{杨氏双缝干涉装置}
@@ -1323,7 +1335,7 @@ d = 100 \ \mathrm{\mu m},\  R = 5\ \mathrm{cm},\ D = 1\ \mathrm{m},\ L = 4 \ \ma
 \begin{equation}\label{杨氏双缝干涉近似}
 \frac{r_1}{D} = \frac{r_2}{D} = 1,\quad r_2 - r_1 = \frac{d}{\sin \theta} = \frac{d}{\sin \theta} = \frac{x d}{ D },\quad I_1 = I_2
 \end{equation}
-得到近似后的振幅和强度分布如下，其中 $\Delta x= \frac{\lambda D}{b}$ 称为条纹间距。
+得到近似后的振幅和强度分布如下，其中 ${\color{red} \Delta x= \frac{\lambda D}{b}}$ 称为条纹间距。
 \begin{gather}\label{杨氏双缝干涉近似结果}
     E_0(x) = \frac{\sqrt{2}A}{\sqrt{D}} \cdot \sqrt{1 + \cos \left( \frac{2 \pi d}{\lambda D}x \right)} = \frac{\sqrt{2}A}{\sqrt{D}} \cdot \sqrt{1 + \cos \left( \frac{2 \pi x}{\Delta x} \right)} \\ 
     I(x) = \sqrt{\frac{\varepsilon_0}{\mu_0}} \cdot \frac{A^2}{D} \left[ 1 + \cos \left( \frac{2 \pi  d}{\lambda D }x \right) \right] = \sqrt{\frac{\varepsilon_0}{\mu_0}} \cdot \frac{A^2}{D} \left[ 1 + \cos \left( \frac{2 \pi x}{\Delta x} \right) \right]
@@ -1405,17 +1417,18 @@ I(x) &= \frac{I_{\text{max}}}{2}\left[
 1 + \cos \left( \eta x \right)\cos \left(\eta\frac{D}{R}\delta_s \right) - \sin \left( \eta x \right)\sin \left( \eta\frac{D}{R}\delta_s \right)
 \right],\quad \eta = \frac{2 \pi}{\Delta x}
 \end{align}
-
-
-
 设光源在中央且宽度为 $b$（即发光区域在 $[-\frac{2}{b},\ \frac{2}{b}]$），光源均匀发光（事实上这个条件比较苛刻，现实中的激光器无法做到，需要对光线进行处理），屏幕上的强度分布 $I(x, b)$ 和条纹对比度为：
 \begin{gather}
-I(x, b) = \frac{I_{\text{max}}}{2b} \int_{-\frac{b}{2}}^{\frac{b}{2}} \left[ 1 + \cos \left( \eta x \right)\cos \left( \eta\frac{D}{R}\delta_s \right) - \sin \left( \eta x \right)\sin \left( \eta\frac{D}{R}\delta_s \right) \right] \mathrm{d} \delta_s \\ 
-= \frac{I_{\text{max}}}{2} \left[ 1 + \frac{\sin \left( \frac{\eta D}{2 R} b \right)}{\frac{\eta D}{2 R} b}\cdot \cos \left( \eta x \right) \right] = \frac{I_{\text{max}}}{2} \left[ 1 + \frac{\sin \left( \frac{\pi d}{\lambda R} b \right)}{\frac{\pi d}{\lambda R} b}\cdot \cos \left( \frac{2 \pi x}{\Delta x}  \right) \right] \\ 
-\gamma = \gamma(b) = \left| \frac{\sin u}{u} \right| = \left| \frac{\sin \left( \frac{\pi d}{\lambda R} b \right)}{\frac{\pi d}{\lambda R} b} \right|
+I(x, b) = \frac{I_{\text{max}}}{2b} \int_{-\frac{b}{2}}^{\frac{b}{2}} \left[ 1 + \cos \left( \eta x \right)\cos \left( \eta\frac{D}{R}\delta_s \right) - \sin \left( \eta x \right)\sin \left( \eta\frac{D}{R}\delta_s \right) \right] \mathrm{d} \delta_s 
+\\ 
+= \frac{I_{\text{max}}}{2} \left[ 1 + \frac{\sin \left( \frac{\eta D}{2 R} b \right)}{\frac{\eta D}{2 R} b}\cdot \cos \left( \eta x \right) \right] 
+= \frac{I_{\text{max}}}{2} \left[ 1 + \sinc \left(\frac{\pi d}{\lambda R} b\right) \cdot \cos \left( \frac{2 \pi x}{\Delta x}  \right) \right] 
+\\ 
+\gamma = \gamma(b) 
+= \left| \frac{\sin \left( \frac{\pi d}{\lambda R} b \right)}{\frac{\pi d}{\lambda R} b} \right|
+= \left| \sinc \left(\frac{\pi d}{\lambda R} b\right) \right|
 \end{gather}
-
-其中 $u = \frac{\pi d}{\lambda R} b$。强度分布 $I(x, b)$ 与干涉条纹对比度 $\gamma(b)$ 如图 \ref{光源宽度} 所示\footnote{源码见附录 \ref{光源宽度 源码}}，当 $b = \frac{\lambda R}{d}$ 时，对比度为 0，完全看不到干涉条纹，将其称为光源极限宽度，此时认为光源完全不相干。
+强度分布 $I(x, b)$ 与干涉条纹对比度 $\gamma(b)$ 如图 \ref{光源宽度} 所示\footnote{源码见附录 \ref{光源宽度 源码}}，当 $b = \frac{\lambda R}{d}$ 时，条纹对比度第一次为 0，称为光源极限宽度 $b_0$，此时认为光源完全不相干。总之，对任意的光源线度 $b$ 和双缝间距 $d$，有限制 $bd <  \lambda R$。
 
 \begin{figure}[H]\centering
 \begin{subfigure}[t]{0.5\columnwidth}\centering
@@ -1428,7 +1441,6 @@ I(x, b) = \frac{I_{\text{max}}}{2b} \int_{-\frac{b}{2}}^{\frac{b}{2}} \left[ 1 +
 \end{subfigure}
 \caption{\bfseries 光源宽度对干涉条纹的影响 }\label{光源宽度}
 \end{figure}
-
 
 \section{分振幅干涉}
 
@@ -1611,8 +1623,8 @@ $T_{F-P} = T_{F-P}(F, \delta)$ 的图像如下所示\footnote{源码见附录 \r
 
 两块（几乎）平行的玻璃板，夹角为 $\theta$ 极小，中间是空气层，即薄膜是空气，观察反射光的干涉现象。由 $R_{F-P} = \frac{ F \sin^2 (\frac{\delta}{2}) }{1 + F \sin^2 (\frac{\delta}{2})}$ 可知，明条纹对应 $\frac{\delta}{2} = (k + \frac{1}{2}) \pi$，这等价于 $2 n_f d\cos \theta_f + \frac{\lambda}{2} = k\lambda$，而暗条纹对应 $\frac{\delta}{2} = k \pi$。作近似 $n_f = 1$，$\cos \theta_f = 1$，得到：
 \begin{gather}
-    \text{明条纹：} d = \left( 1 + 2k \right)\cdot \frac{\lambda}{4},\quad \text{暗条纹：} d = \left( 2k \right)\cdot \frac{\lambda}{4},\quad k = 0, 1, 2, ... \\ 
-    \text{相邻亮（暗）纹：}\Delta d = \frac{\lambda}{2},\quad \Delta x = \frac{\lambda}{2\sin \theta}
+    \text{明条纹：} d_k = \left( 1 + 2k \right)\cdot \frac{\lambda}{4},\quad \text{暗条纹：} d_k = \left( 2k \right)\cdot \frac{\lambda}{4},\quad k = 0, 1, 2, ... \\ 
+    \text{条纹间距：}\Delta d = \frac{\lambda}{2},\quad \Delta x = \frac{\lambda}{2\sin \theta}
 \end{gather}
 
 
@@ -1621,11 +1633,11 @@ $T_{F-P} = T_{F-P}(F, \delta)$ 的图像如下所示\footnote{源码见附录 \r
 \subsubsection{牛顿环：}
 
 把一个曲率半径很大的凸透镜至于平面玻璃片上，两者接触的地方形成厚度不均匀的空气薄膜，得到的干涉条纹是一系列同心圆环。设凸透镜的半径为 $R$，以接触点为圆心 $O$，类似劈尖干涉中的近似，得到：
-\begin{equation}
-\text{明条纹：} r = \sqrt{\left(k + \frac{1}{2}\right)R\lambda} 
+\begin{gather}
+\text{明条纹：} r_k = \sqrt{\left(k + \frac{1}{2}\right)R\lambda} 
 ,\quad 
-\text{暗条纹：} r = \sqrt{kR\lambda},\quad k = 0, 1, 2, ...
-\end{equation}
+\text{暗条纹：} r_k = \sqrt{kR\lambda},\quad k = 0, 1, 2, ... 
+\end{gather}
 
 中心为 0 级暗纹，往外级数增大，干涉条纹逐渐变密。
 
@@ -1634,7 +1646,7 @@ $T_{F-P} = T_{F-P}(F, \delta)$ 的图像如下所示\footnote{源码见附录 \r
 
 我们需要认识到，绝大多数的干涉现象，本质都是空间上两个（甚至多个）不同位置的球面波源（或其他类型的波）在某点的叠加。随着目标位置点 $P$ 的移动，发生叠加的两波（两束光）的 OPD（即 $\Delta L$）不断改变，得到不同的振幅大小，从而产生干涉图样。本节所介绍的几种干涉，其本质也是如此，只是具体实现方式不同。
 
-\subsection{单色光源迈克尔逊干涉：}
+\subsection{单色光源迈克尔逊干涉}
 
 迈克尔逊干涉仪如图 \ref{迈克尔逊干涉仪} 所示，图中反射镜 $M_1$ 与 $M_2'$（虚镜）水平（此时的干涉现象类似等倾干涉），下方是接收屏或接受仪，图中的虚线光路表示出射向无穷远处（不被观察屏接收），或振幅较小而可以忽略的光线。
 
@@ -1669,7 +1681,7 @@ $T_{F-P} = T_{F-P}(F, \delta)$ 的图像如下所示\footnote{源码见附录 \r
 \end{equation}
 其中 $n$ 是插入介质的折射率（移动镜面时相当于 $n=1$），$\lambda_0$ 是光源发出的光在空气中的波长，$N$ 是移动的条纹数。
 
-\subsection{多色光源迈克尔逊干涉：}
+\subsection{多色光源迈克尔逊干涉}\label{多色光源迈克尔逊干涉}
 
 假设光源是双色光源，且两色的强度相同，对任意给定的 $\Delta L$（相当于给定位置 $P$），我们有：
 \begin{gather}
@@ -1684,23 +1696,61 @@ I_1(\Delta L) = 2I_0 \left[1 + \cos \left(k_1 \Delta L\right)\right],\quad I_2(\
 \end{figure}
 
 上面考虑的是线光谱，对于连续光谱，有光谱密度 $i = i(\lambda)$，总光强 $I = \int i(\lambda)\ \mathrm{d}\lambda$。当然，也可以用空间角频率 $k$ 作变量。考虑以 $k_0$ 为中心，宽为 $\Delta k$ 的均匀光谱 $i(k)$，我们有：
-\begin{gather}
+\begin{gather}\label{光谱宽度对对比度的影响}
 i (k) = 
 \begin{cases}
     \frac{I_0}{\Delta k}, & |k - k_0| < \frac{\Delta k}{2} \\
     0, & |k - k_0| > \frac{\Delta k}{2}
-\end{cases} ,\quad \gamma = \gamma(\Delta L) = \left| \frac{\sin \left(\frac{\Delta k \Delta L}{2}\right)}{\frac{\Delta k \Delta L}{2}} \right| 
+\end{cases} ,\quad \gamma = \gamma(\Delta L) = \left| \frac{\sin \left(\frac{\Delta k \Delta L}{2}\right)}{\frac{\Delta k \Delta L}{2}} \right| = \left| \sinc \left( \frac{1}{2}\Delta k \Delta L\right) \right| 
 \\
-I = \int i(k)\left[1 + \cos (k \Delta L)\right] \ \mathrm{d}k = I_0 \left[ 1 + \frac{\sin \left(\frac{\Delta k \Delta L}{2}\right)}{\frac{\Delta k \Delta L}{2}}\cdot \cos (k_0 \Delta L)\right]
+I = \int i(k)\left[1 + \cos (k \Delta L)\right] \ \mathrm{d}k = I_0 \left[ 1 + \sinc \left( \frac{1}{2}\Delta k \Delta L\right) \cdot \cos (k_0 \Delta L)\right]
 \end{gather}
 
-上面的结果与 \ref{杨氏实验中光源位置和宽度对干涉条纹的影响} 节 “杨氏实验中光源位置和宽度对干涉条纹的影响” 中光源宽度对干涉条纹的影响完全同构，图像也是同构的。在讨论光源宽度时，我们定义了光源极限宽度 $b_{\max} = \frac{\lambda R}{d}$，类似地，在这里我们定义最大光程差 $\Delta L_{\max} = \frac{2 \pi}{\Delta k} \approx \frac{\lambda^2}{\Delta \lambda}$，这是条纹对比度第一次下降到 0 时对应的光程差。
+上面的结果与 \ref{杨氏实验中光源位置和宽度对干涉条纹的影响} 节 “杨氏实验中光源位置和宽度对干涉条纹的影响” 中光源宽度对干涉条纹的影响完全同构，图像也是同构的。我们定义最大光程差 $\Delta L_{\max} = \frac{2 \pi}{\Delta k} \approx \frac{\lambda^2}{\Delta \lambda}$，这是条纹对比度第一次下降到 0 时对应的光程差。
 
 \subsection{马赫-曾德尔干涉}
 
 原理与迈克尔逊干涉仪类似，我们不多赘述。
 
-\section{光场的空间相干性与时间相干性}
+\section{光场的空间相干性与时间相干性}\label{光场的空间相干性与时间相干性}
+
+\subsection{波列长度、发光线度与光谱宽度}
+
+在杨氏双缝干涉中，我们讨论了光源的线度（宽度）对干涉图样的影响，得到了极限宽度 $b_0 = \frac{\lambda R}{d}$，它是中心条纹对比度第一次为 0 时的光源宽度；在迈克尔逊干涉中，我们又讨论了发光光谱对干涉图样的影响，得到了最大光程差 $\Delta L_{\max} = \frac{2 \pi}{\Delta k} = \approx \frac{\lambda^2}{\Delta \lambda}$，这是条纹对比度第一次下降到 0 时对应的光程差。
+
+上面的例子告诉我们，光源的发光线度与光谱宽度会对干涉性产生影响，前者影响的是 {\color{red} 空间相干性}，描述同一时刻不同位置的条纹对比度变化情况，后者影响的是 {\color{red} 时间相干性}，描述同一位置不同时刻的条纹对比度变化情况。另外，光源的波列长度也会影响其干涉性（详见 \ref{产生干涉的前提条件} 节“产生干涉的前提条件”）
+\\
+
+现实中常可以见到这样的例子：有一些光源，它们具有一定的发光宽度，不能看作理想的点光源。当光源宽度较大时，光源不同部分发出的光的叠加，会导致条纹的对比度降低（甚至为 0），称为空间不相干。
+
+还有一些光源是多频光源（或具有一定光谱宽度，详见表 \ref{}）。波长差别极小时（通常是 $10^{-2}$ nm 级），不同波长相互叠加导致条纹对比度降低（但仍可见）；波长差别较大时，$\cos(\Delta \alpha)$ 的周期远小于 $\tau$，积分项为零，也只能发生非相干叠加。以两频光源为例，发出时间角频率为 $\omega_1$ 和 $\omega_2$ 的光，则在同一位置，相位差 $\Delta \alpha = (k_2 - k_1)x - (\omega_2 - \omega_1)t$ 是 $t$ 的函数，当曝光时间 $\tau$ 远大于调制周期 $T = \frac{2 \pi}{\omega_1 - \omega_2}$ 时，积分项 $\frac{1}{\tau}\int_{0}^{\tau}  \cos(\Delta \alpha) \mathrm{d} t$ 趋于 0，得到 $I = I_1 + I_2$，也是非相干叠加。
+
+总而言之，影响光源相干性的条件大致有三个方面：波列持续时间 $\tau_0$、光源宽度 $d$ 和发光光谱 $i = i(\lambda)$。现实中的光源总是有一定发光线度、一定光谱宽度、且波列长度有限的，没有任何一种光源在上面三个方面都做到极好。因此，在设计干涉实验时，需要依据光源的特性，选择合适的实验方案，或者依据实验弱化了哪些因素的影响，选择合适的光源。
+
+\begin{table}[H]\centering
+    %\renewcommand{\arraystretch}{1.5} % 调整行间距为 1.5 倍
+    %\setlength{\tabcolsep}{1.5mm} % 调整列间距
+    \caption{\textbf{光谱宽度对光源单色性的影响}}
+    \label{光谱宽度对光源单色性的影响}
+\begin{tabular}{cccccccccc}\toprule
+    光谱宽度 $\Delta \lambda$ & 光源单色性  \\
+    \midrule
+    10 nm & 极差 \\
+    1 nm &  较差 \\
+    $10^{-3}$ nm & 较好 \\
+    $10^{-6}$ nm & 极好 \\
+    \bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{相干孔径角与空间相干性}
+
+在杨氏双缝干涉中，即相干孔径角 $\Delta \theta_0 \approx \tan \left(\Delta \theta_0\right) = \frac{d}{R}$ 为双孔对光源中心所张角度。记光源面积为 $A_s$，则距离光源 $R$ 处的相干面积 $A_c$: 
+\begin{equation}
+A_c = \frac{\lambda^2}{A_s} R^2
+\end{equation}
+相干面积 $A_c$ 与光源面积 $A_s$ 成反比，在相干面积内，取两点作为双孔（次波源），可以得到一定的相干性。这是空间相干性的具体体现之一。
+
 \section{多光束干涉}
 \section{激光}
 
@@ -2264,7 +2314,7 @@ kr = \text{const}
 
 \subsection{前置知识}
 
-在本课程，若无特殊说明，都默认介质是均匀、线性、各向同性的。假设介质的绝对介电常量、绝对磁导率分别为 $\varepsilon = \varepsilon_r \varepsilon_0$、$\mu = \mu_r \mu_0$，其中 $\varepsilon_r$、$\mu_r$ 分别是相对介电常量和相对磁导率，$\varepsilon_0 $ 、$\mu_0$ 分别为为真空介电常量、真空磁导率。
+在本课程，若无特殊说明，都默认介质是均匀、线性、各向同性的。假设介质的（绝对）介电常量、（绝对）磁导率\footnote{事实上，介质的介电常数是相对给定电磁波而言的，详见 \href{https://zhuanlan.zhihu.com/p/62494685}{知乎：介电常数对频率的依赖}}分别为 $\varepsilon = \varepsilon_r \varepsilon_0$、$\mu = \mu_r \mu_0$，其中 $\varepsilon_r$、$\mu_r$ 分别是相对介电常量和相对磁导率，$\varepsilon_0 $ 、$\mu_0$ 分别为为真空介电常量、真空磁导率。
 \begin{equation}
     \varepsilon_0 = 8.854187817 \times 10^{-12}\ \ \mathrm{F\cdot m^{-1}},\quad \mu_0 = 4 \pi \times 10^{-7} \ \ \mathrm{N\cdot A^{-2}} 
 \end{equation}

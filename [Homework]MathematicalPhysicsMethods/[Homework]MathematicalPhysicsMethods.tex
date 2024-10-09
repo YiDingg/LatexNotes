@@ -1141,15 +1141,15 @@ I = I(r) =
 
 $r \in (1 ,2)$ 时，有两奇点 $0,\ -1$，于是：
 \begin{equation}
-I = 2 \pi i \left\{ \frac{1}{2!}\cdot \left[ \frac{1}{(z + 1)(z + 2)} \right]^{(2)}_{z = 0} + \left[ \frac{1}{z^3(z + 2)} \right]_{z = -1}\right\} = 2 \pi i \left[ \frac{7}{16} + (-1) \right] = -\frac{9}{8} \pi i
+I = 2 \pi i \left\{ \frac{1}{2!}\cdot \left[ \frac{1}{(z + 1)(z + 2)} \right]^{(2)}_{z = 0} + \left[ \frac{1}{z^3(z + 2)} \right]_{z = -1}\right\} = 2 \pi i \left[ \frac{7}{8} + (-1) \right] = -\frac{1}{4} \pi i
 \end{equation}
 
 再考虑上 $r \in (0, 1)$，综上有：
 \begin{equation}
 I = I(r) = 
 \begin{cases}
-    \displaystyle \frac{7 \pi }{8} i &, r \in (0, 1) \\ 
-    \displaystyle -\frac{9}{8} \pi i &, r \in (1, 2) \\ 
+    \displaystyle \frac{7}{4} \pi i &, r \in [0, 1) \\ 
+    \displaystyle -\frac{1}{4} \pi i &, r \in (1, 2) \\ 
     0 &, r \in (2, +\infty)
 \end{cases}
 \end{equation}
@@ -1165,24 +1165,34 @@ f(z) = 2 \pi i \left[ 3z^2 + 7z + 1 \right],\quad \Longrightarrow  f''(1+i) = 2 
 
 \section{计算积分 $\displaystyle f(z) = \oint_{| \zeta | = 1} \frac{\overline{\zeta}}{\zeta - z} \ \mathrm{d}\zeta$，其中 $| z | \ne 1$}
 
-$| \zeta | = 1$ 时有 $\overline{\zeta} = \frac{1}{\zeta}$，于是：
+$| \zeta | = 1$ 时有 $\overline{\zeta} = \frac{1}{\zeta}$，$z = 0$ 的情况需单独计算，综合有：
 \begin{equation}
 f(z) = \oint_{| \zeta | = 1} \frac{1}{\zeta(\zeta - z)} \ \mathrm{d}\zeta =
 \begin{cases}
-    0, & | z | < 1 \\ 
-    -\frac{1}{z}, & | z | > 1
+    0 &, | z | \in [0, 1) \\ 
+    -\frac{2\pi i}{z} &, | z | \in (1, +\infty)
 \end{cases}
 \end{equation}
 
+
 \section{计算积分 $\displaystyle f(z) = \oint_{| \zeta | = 2} \frac{\overline{\zeta}^2 e^\zeta}{\zeta - z} \ \mathrm{d}\zeta $，其中 $| z | \ne 2$}
 
-$| \zeta |  = 2$ 时 $\overline{\zeta} = \frac{4}{\zeta}$，于是：
+$| \zeta |  = 2$ 时 $\overline{\zeta} = \frac{4}{\zeta}$，于是 $| z | < 2$ 时：
 \begin{align}
 I 
 &= 16 \oint_{| \zeta | = 2} \frac{e^\zeta}{\zeta^2(\zeta - z)} \ \mathrm{d}\zeta 
 = 16 \cdot 2 \pi i \left\{ \left[\frac{e^\zeta}{\zeta - z}\right]^{(1)}_{\zeta = 0} + \left[\frac{e^\zeta}{\zeta^2}\right]_{\zeta = z}\right\} \\
 &= 32 \pi i \left[ \left(-\frac{z+1}{z^2}\right) + \frac{e^z}{z^2}  \right] = 32 \pi i \cdot \frac{e^z - z - 1}{z^2} 
 \end{align}
+$| z | = 0$ 时 $I = 16 \oint_{| \zeta | = 2} \frac{e^\zeta}{\zeta^3} \ \mathrm{d}\zeta = 16 \pi i$，再考虑上 $| z | > 2$，综合有：
+\begin{equation}
+I = f(z) =
+\begin{cases}
+    16 \pi i &,  | z | = 0 \\ 
+    32 \pi i \cdot \frac{e^z - z - 1}{z^2} &, | z | \in (0, 2) \vspace*{1mm} \\ 
+    -32 \pi i \cdot \frac{z+1}{z^2} &, | z | \in (2, +\infty)
+\end{cases}
+\end{equation}
 
 \section{计算积分 $\displaystyle \oint_{| z | = 1} \frac{e^z }{z^3} \ \mathrm{d}z$}
 由高阶导数公式：
@@ -1203,27 +1213,151 @@ I =  2 \pi i \left\{ \left[e^z\right]_{z=0} + \frac{a}{2!}\cdot\left[e^z\right]^
 
 \chapter{2024.10.8 - 2024.10.14}\thispagestyle{fancy}
 
+求幂级数的收敛半径有两个常用方法：
+\begin{gather}
+\frac{1}{R} = \overline{\lim_{n \to \infty}} \, | c_n |^{\frac{1}{n}} ,\quad 
+\frac{1}{R} = \lim_{n \to \infty} \left| \frac{c_{n+1}}{c_{n}} \right|
+\end{gather}
+
+前者称为 Cauchy-Hadamard 公式，是普遍成立的，后者称为 d'Alembert 公式，在极限存在时成立，但通常计算更简单。
+
 \section{确定下列幂级数的收敛半径}
 
 \subsection{$\sum_{n=1}^{\infty} \frac{z^n}{n}$}
-\subsection{$\sum_{n=1}^{\infty} n^n z^n$}
-\subsection{$\sum_{n=1}^{\infty} z^{n!}$}
-\subsection{$\sum_{n=1}^{\infty} z^{2n}$}
-\subsection{$\sum_{n=1}^{\infty} \left[3 + (-1)^n\right]^n z^n$}
-\subsection{$\sum_{n=1}^{\infty} cos(in) \cdot z^n$}
-\subsection{$\sum_{n=1}^{\infty} (n + a^n) z^n$}
-\subsection{$\sum_{n=1}^{\infty} (1 - \frac{1}{n})^n z^n$}
+\noindent
+\begin{equation}
+    \frac{1}{R} = \lim_{n \to \infty} \frac{n}{n+1} = 1 \Longrightarrow R = 1
+\end{equation}
 
-\section{设幂级数 $\sum_{n=1}^{\infty} (1 - \frac{1}{n})^n z^n$ 的收敛半径为 $R \in (0,\infty)$，求下列幂级数的收敛半径}
+\subsection{$\sum_{n=1}^{\infty} n^n z^n $}
+\noindent
+\begin{equation}
+    \frac{1}{R} = \lim_{n \to \infty} \frac{(n+1)^{n+1}}{n^n} = \lim_{n \to \infty} (n+1)\cdot \left(1 + \frac{1}{n}\right)^n = \infty \cdot e \Longrightarrow R = 0
+\end{equation}
+
+\subsection{$\sum_{n=1}^{\infty} z^{n!},\quad 
+???
+$}
+
+\subsection{$\sum_{n=1}^{\infty} z^{2n}$}
+\noindent
+\begin{equation}
+\text{级数 $\sum_{n=1}^{\infty} z^{n} $ 的收敛半径 $r = 1 \Longrightarrow  \sum_{n=1}^{\infty} z^{2n}$ 的收敛半径为 $R = \sqrt{r} = 1$。}
+\end{equation}
+
+
+
+\subsection{$\sum_{n=1}^{\infty} \left[3 + (-1)^n\right]^n z^n$}
+\noindent
+\begin{equation}
+\frac{1}{R} = \overline{\lim_{n \to \infty}} \left[3 + (-1)^n\right] = 4 \Longrightarrow R = \frac{1}{4}
+\end{equation}
+
+
+\subsection{$\sum_{n=1}^{\infty} cos(in) \cdot z^n$}
+\noindent
+\begin{equation}
+\frac{1}{R} 
+= \lim_{n \to \infty} \left| \frac{\cos (in+i)}{\cos (in)} \right| 
+= \lim_{n \to \infty} \left| \cos i - \sin i \cdot \tan (in) \right|
+= \left| \cos i - i\sin i \right|
+= | e^{i(-i)} | = e \Longrightarrow R = \frac{1}{e}
+\end{equation}
+
+\subsection{$\sum_{n=1}^{\infty} (n + a^n) z^n$}
+\noindent
+\begin{equation}
+\frac{1}{R} 
+= \lim_{n \to \infty} \left| \frac{(n+1) + a^{n+1}}{n + a^n} \right| 
+= \lim_{n \to \infty} \left|\frac{1 + a\cdot \left(\frac{a^n}{n}\right)}{1 + \left(\frac{a^n}{n}\right)} \right| 
+= \begin{cases}
+    1, & | a | \leqslant 1 \\
+    a, & | a | > 1
+\end{cases}\Longrightarrow 
+R =
+\begin{cases}
+    1, & | a | \leqslant 1 \\
+    \frac{1}{|a|}, & | a | > 1
+\end{cases}
+\end{equation}
+
+\subsection{$\sum_{n=1}^{\infty} (1 - \frac{1}{n})^n z^n$}
+\noindent
+\begin{equation}
+\frac{1}{R} = \overline{\lim_{n \to \infty}} \left(1 - \frac{1}{n}\right) = 1 \Longrightarrow R = 1
+\end{equation}
+
+\section{设幂级数 $\sum_{n=1}^{\infty} c_n z^n$ 的收敛半径为 $R \in (0,\infty)$，求下列幂级数的收敛半径}
 
 \subsection{$\sum_{n=1}^{\infty} n^Rc_n z^n$}
+\noindent
+\begin{equation}
+\frac{1}{R_1} 
+= \lim_{n \to \infty} \left| \frac{(n+1)^R c_{n+1}}{n^R c_n} \right|
+= \lim_{n \to \infty} \left(1 + \frac{1}{n}\right)^R \left| \frac{c_{n+1}}{c_n} \right|
+= 1 \cdot \frac{1}{R} \Longrightarrow R_1 = R
+\end{equation}
+
 \subsection{$\sum_{n=1}^{\infty} (2^n - 1)c_n z^n$}
+\noindent
+\begin{equation}
+\frac{1}{R_2} 
+= \lim_{n \to \infty} \frac{2\cdot 2^n - 1}{2^n - 1} \left| \frac{c_{n+1}}{c_n} \right|
+= 2\cdot \frac{1}{R} \Longrightarrow R_2 = \frac{R}{2}
+\end{equation}
+
 \subsection{$\sum_{n=1}^{\infty} (c_n)^k z^n$}
+\noindent
+\begin{equation}
+\frac{1}{R_3}
+= \lim_{n \to \infty} \left| \frac{c_{n+1}}{c_n} \right|^k
+= \frac{1}{R^k} \Longrightarrow R_3 = R^k
+\end{equation}
 
-\section{证明级数 $\sum_{n=1}^{\infty} \frac{z^{n-1}}{(1 - z^n)(1 - z^{n+1})}$ 在 $ z \ne 1$ 上收敛，并求其和函数}
+\section{证明级数 $\sum_{n=1}^{\infty} \frac{z^{n-1}}{(1 - z^n)(1 - z^{n+1})}$ 在 $ | z | \ne 1$ 上收敛，并求其和函数}
+\begin{gather*}
+    S_n(z) 
+    = \sum_{k=1}^{n} \frac{z^{k-1}}{(1 - z^k)(1 - z^{k+1})} 
+    = \frac{1}{z(1 - z)} \cdot \sum_{k=1}^{n} \left( \frac{1}{1 - z^k} - \frac{1}{1 - z^{k+1}} \right) 
+    = \frac{1}{z(1 - z)} \cdot \left[ \frac{1}{z^{n+1} - 1} - \frac{1}{z - 1} \right]
+    \\ 
+    \Longrightarrow 
+    S(z) = \lim_{n \to \infty}S_n(z) = 
+    \begin{cases}
+        \frac{1}{(1 - z)^2} &, | z | < 1 \vspace*{2mm} \\ 
+        \frac{1}{z(1 - z)^2} &, | z | > 1
+    \end{cases}
+\end{gather*}
+因此级数在 $ | z | \ne 1$ 上收敛。
 
-\section{证明级数 $\sum_{n=1}^{\infty} \left( \frac{z^{n+1}}{n+1} - \frac{2z^{2n+3}}{2n+3} \right)$ 的和函数 $S = S(z)$ 在 $z = 1$ 不连续}
 
+\section{证明级数 $\sum_{n=0}^{\infty} \left( \frac{z^{n+1}}{n+1} - \frac{2z^{2n+3}}{2n+3} \right)$ 的和函数 $S = S(z)$ 在 $z = 1$ 不连续}
+容易知道上面级数在 $| z | < 1$ 收敛而在 $| z | > 1$ 发散，因此在 $| z | = 1$ 处不连续 $\Longrightarrow $ 在 $z = 1$ 点不连续。但我们不妨求解一下和函数。
+
+先求和函数 $S(z),\ | z | < 1$。级数 $\sum_{n=0}^{\infty} \frac{z^{n+1}}{n+1}$ 和 $\sum_{n=0}^{\infty} \frac{2z^{2n+3}}{2n+3}$ 的收敛半径都为 1，,因此当 $| z | < 1$ 时，由一致收敛性有：
+\begin{gather}
+    \sum_{n=0}^{\infty} \frac{z^{n+1}}{n+1} 
+    = \int \left[ \sum_{n=0}^{\infty}  \frac{\mathrm{d} }{\mathrm{d} z }  \left(\frac{z^{n+1}}{n+1}\right) \right]\ \mathrm{d}z
+    = \int \left[  \sum_{n=0}^{\infty} z^n  \right]\ \mathrm{d}z 
+    = \int \frac{1}{1 - z} \ \mathrm{d}z
+    = - \ln (z - 1) + C_1
+\end{gather}
+$z = 0$ 时级数为 0，因此 $C_1 = \ln (-1)$。同理可得：
+\begin{gather}
+    \sum_{n=0}^{\infty} \frac{2z^{2n+3}}{2n+3}
+    = 2 \int \left[ \sum_{n=0}^{\infty}  \frac{\mathrm{d} }{\mathrm{d} z }  \left(\frac{z^{2n+3}}{2n+3}\right) \right]\ \mathrm{d}z
+    = 2 \int \left[  \sum_{n=0}^{\infty} \left(z^2\right)^{n+1}  \right]\ \mathrm{d}z 
+    = 2 \int \frac{z^2}{1 - z^2} \ \mathrm{d}z \\ 
+    = 2 \int \left[ -1 - \frac{1}{2}\left( \frac{1}{z - 1} - \frac{1}{z + 1}\right) \right] \ \mathrm{d}z
+    = - 2z - \ln \left(\frac{z - 1}{z + 1}\right)  + C_2
+\end{gather}
+$z = 0$ 时级数为 0，因此 $C_2 = 0$。由于原级数在 $| z | < 1$ 内绝对收敛，可以任意交换求和次序，因此有：
+\begin{equation}
+    \sum_{n=0}^{\infty} \left( \frac{z^{n+1}}{n+1} - \frac{2z^{2n+3}}{2n+3} \right) 
+    = \sum_{n=0}^{\infty}\frac{z^{n+1}}{n+1} - \sum_{n=0}^{\infty}\frac{2z^{2n+3}}{2n+3}
+    =  - \left[ \ln(z - 1) + 2z + \ln \left(\frac{z - 1}{z + 1}\right) \right] + \ln (-1)
+\end{equation}
+于是极限 $\lim_{z \to 1} S(z)$ 不存在，自然不可能连续。
 
 
 \section{对 $| z | < 1$，求下列级数的和}
@@ -1231,19 +1365,92 @@ I =  2 \pi i \left\{ \left[e^z\right]_{z=0} + \frac{a}{2!}\cdot\left[e^z\right]^
 
 
 \subsection{$\sum_{n=1}^{\infty} n z^n$}
-\subsection{$\sum_{n=1}^{\infty} \frac{z^{2n+1}}{2n+1}$}
+级数的收敛半径为 1，由绝对收敛性: 
+\begin{equation}
+    \sum_{n=1}^{\infty} n z^n = \sum_{n=1}^{\infty} (n+1) z^n - \sum_{n=1}^{\infty} z^n = \sum_{n=1}^{\infty} (n+1) z^n - \frac{z}{1 - z}
+\end{equation}
 
-。
+级数 $\sum_{n=1}^{\infty} (n+1) z^n$ 的收敛半径仍为 1，由一致收敛性: 
+\begin{equation}
+    \sum_{n=1}^{\infty} (n+1) z^n
+    = \frac{\mathrm{d} }{\mathrm{d} z } \left[ \sum_{n=1}^{\infty} \left( \int (n+1) z^n \ \mathrm{d}z\right) \right]
+    = \frac{\mathrm{d} }{\mathrm{d} z } \left[ \sum_{n=1}^{\infty}  z^{n+1}  \right]
+    = \frac{\mathrm{d} }{\mathrm{d} z } \left[ \frac{z^2}{1 - z} \right]
+    = \frac{z(2 - z)}{(1 - z)^2}
+\end{equation}
+综上有：
+\begin{equation}
+    \sum_{n=1}^{\infty} n z^n 
+    = \frac{z(2 - z)}{(1 - z)^2} - \frac{z}{1 - z} 
+    = \frac{z}{(1 - z)^2}
+\end{equation}
+
+\subsection{$\sum_{n=1}^{\infty} \frac{z^{2n+1}}{2n+1}$}
+由一致收敛性：
+\begin{gather}
+    \sum_{n=1}^{\infty} \frac{z^{2n+1}}{2n+1}
+    =  \int \left[ \sum_{n=1}^{\infty}  \frac{\mathrm{d} }{\mathrm{d} z }  \left(\frac{z^{2n+1}}{2n+1}\right) \right]\ \mathrm{d}z
+    =  \int \left[  \sum_{n=1}^{\infty} \left(z^2\right)^{n}  \right]\ \mathrm{d}z 
+    =  \int \frac{z^2}{1 - z^2} \ \mathrm{d}z \\ 
+    =  \int \left[ -1 - \frac{1}{2}\left( \frac{1}{z - 1} - \frac{1}{z + 1}\right) \right] \ \mathrm{d}z
+    =  - z - \frac{1}{2}\ln \left(\frac{z - 1}{z + 1}\right)  + C
+\end{gather}
+$z = 0$ 时级数为 0，因此 $C = 0$。
 
 \subsection{$\sum_{n=1}^{\infty} (-1)^{n+1}\frac{z^n}{n}$}
+由一致收敛性：
+\begin{gather}
+    \sum_{n=0}^{\infty} \frac{z^{n+1}}{n+1} 
+    = \int \left[ \sum_{n=0}^{\infty}  \frac{\mathrm{d} }{\mathrm{d} z }  \left(\frac{z^{n+1}}{n+1}\right) \right]\ \mathrm{d}z
+    = \int \left[  \sum_{n=0}^{\infty} z^n  \right]\ \mathrm{d}z 
+    = \int \frac{1}{1 - z} \ \mathrm{d}z
+    = - \ln (z - 1) + C_1
+\end{gather}
+$z = 0$ 时级数为 0，因此 $C_1 = \ln (-1)$。
 
 \section{证明级数 $\sum_{n=1}^{\infty} \frac{(-1)^{n-1}}{z + n}$ 在不包含负整数的任意闭圆上一致收敛}
 
+\noindent 首先有两个引理：
 
+\begin{LineTheorem}[Dirichlet 判别法]\label{Dirichlet 判别法}
+    设 $\sum_{n=1}^{\infty} a_n $ 有界，$\sum_{n=1}^{\infty} \left(v_{n+1} - v_{n}\right)$ 绝对收敛且 $\lim v_n = 0$，则 $\sum_{n=1}^{\infty} a_n v_n$ 收敛。
+\end{LineTheorem}
+\begin{LineTheorem}[级数收敛]\label{级数收敛}
+    级数 $\sum_{n=1}^{\infty} \frac{(-1)^{n-1}}{n}$ 收敛，但不绝对收敛。证明略。
+\end{LineTheorem}
 
+\noindent 在 Theorem.\ref{级数收敛} 的基础上，由 Theorem.\ref{Dirichlet 判别法} (Dirichlet 判别法) 知 $\sum_{n=1}^{\infty} \frac{(-1)^{n-1}}{z + n}$ 收敛，可以任意加括号。给定不包含负整数的任意闭圆 $G$，记 $r = \left| z \right| $，$N_0 = \sup_z \left \lceil \frac{| z | + 1}{2}  \right \rceil $，则有：
+\begin{gather}
+S(z) 
+= \sum_{n=1}^{\infty} \frac{(-1)^{n-1}}{z + n}
+= \sum_{n=1}^{\infty} \left( \frac{1}{z+ 2n -1} - \frac{1}{z + 2n } \right)
+= \sum_{n=1}^{\infty} \frac{1}{ (z + 2n -1)(z + 2n) } 
+\\
+\Longrightarrow  
+\left| S(z) \right| 
+\leqslant \sum_{n=1}^{\infty} \frac{1}{\left| z + 2n -1 \right|  \cdot \left| z + 2n \right| } 
+= \sum_{n=1}^{N_0 - 1} \frac{1}{\left| z + 2n -1 \right|  \cdot \left| z + 2n \right| }  + \sum_{n=N_0}^{\infty} \frac{1}{\left| z + 2n -1 \right|  \cdot \left| z + 2n \right| } 
+\\
+\leqslant \sum_{n=1}^{\infty} \frac{1}{\left| 2n - 1 -r \right| \cdot \left| 2n - r \right| }
+\leqslant \sum_{n=1}^{\infty} \frac{1}{\left| 2n - 1 -r \right|^2} < \infty
+\end{gather}
 
-
-
+\begin{align}
+S(z) 
+&= \sum_{n=1}^{\infty} \frac{(-1)^{n-1}}{z + n}
+= \sum_{n=1}^{\infty} \left( \frac{1}{z+ 2n -1} - \frac{1}{z + 2n } \right)
+= \sum_{n=1}^{\infty} \frac{1}{ (z + 2n -1)(z + 2n) } 
+\\
+\Longrightarrow  
+\left| S(z) \right| 
+&\leqslant \sum_{n=1}^{\infty} \frac{1}{\left| z + 2n -1 \right|  \cdot \left| z + 2n \right| } 
+= \sum_{n=1}^{N_0 - 1} \frac{1}{\left| z + 2n -1 \right|  \cdot \left| z + 2n \right| }  + \sum_{n=N_0}^{\infty} \frac{1}{\left| z + 2n -1 \right|  \cdot \left| z + 2n \right| } 
+\\ 
+& \leqslant \sum_{n=1}^{N_0 - 1} \frac{1}{\left| z + 2n -1 \right|  \cdot \left| z + 2n \right| }  + \sum_{n=N_0}^{\infty} \frac{1}{\left|2n -1 - r \right|  \cdot \left|2n - r\right| } 
+\\
+& \leqslant \sum_{n=1}^{N_0 - 1} \frac{1}{\left| z + 2n -1 \right|  \cdot \left| z + 2n \right| }  + \sum_{n=N_0}^{\infty} \frac{1}{\left|2n -1 - r \right|^2 } 
+\end{align}
+对给定的区域 $G$，前一项是有限和，自然收敛，后一项是收敛级数，因此原级数在 $G$ 上一致收敛。 $\quad\square$
 
 
 

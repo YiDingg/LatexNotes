@@ -223,7 +223,11 @@
     \usepackage{caption}    % 图注、表注
         \captionsetup[figure]{name=图}  
         \captionsetup[table]{name=表}
-        \captionsetup{labelfont=bf, font=small}
+        \captionsetup{
+            labelfont=bf, % 设置标签为粗体
+            textfont=bf,  % 设置文本为粗体
+            font=small  
+        }
     \usepackage{float}     % 图表位置浮动设置 
     \usepackage{subcaption} % subfigure 子图支持
 
@@ -310,9 +314,13 @@
 
 % 序言
 \begin{cnabstract}\normalsize 
-本文为笔者本科时的“光学”课程笔记（Optics Notes, 2024.8-2025.1）。
-课程信息、作业和相关资料可在笔者的个人网站上找到: \href{https://yidingg.github.io/YiDingg/\#/Notes/Phisics/OpticsNotes}{Notes > Phisics > Optics (https://yidingg.github.io/YiDingg/\#/Notes/Phisics/OpticsNotes)}，也可以到网址 {\color{red}（课程结束后更新）} 下载全部相关资料。
-由于个人学识浅陋，认识有限，文中难免有不妥甚至错误之处，望读者不吝指正。读者可以到笔者的 \href{https://github.com/YiDingg/LatexNotes}{GitHub 笔记库 (https://github.com/YiDingg/LatexNotes)} 上提 issue，也可以将错误发送到我的邮箱 {\color{blue}\ dingyi233@mails.ucas.ac.cn}，衷心感谢。
+本文为笔者本科时的“光学”课程笔记（Optics Notes, 2024.8 - 2025.1）。
+
+读者可以到网址 \href{https://www.123865.com/s/0y0pTd-1GKj3}{https://www.123865.com/s/0y0pTd-1GKj3} 下载全部相关资料，也可以在笔者的个人网站上找到
+课程信息、作业答案和其它相关资料: 
+\href{https://yidingg.github.io/YiDingg/\#/Notes/Phisics/OpticsNotes}{https://yidingg.github.io/YiDingg/\#/Notes/Phisics/OpticsNotes}。
+
+由于个人学识浅陋，认识有限，文中难免有不妥甚至错误之处，望读者不吝指正。读者可以将错误发送到我的邮箱 {\color{blue}\ dingyi233@mails.ucas.ac.cn}，也可以到笔者的 \href{https://github.com/YiDingg/LatexNotes}{GitHub (https://github.com/YiDingg/LatexNotes)} 上提 issue，衷心感谢。
 
 在正式学习之前，建议先跳转至附录 A “波理论”部分，学习必要的前置知识（否则可能难以理解）。
 \end{cnabstract}
@@ -361,13 +369,13 @@
 \begin{figure}[H]\centering
 \begin{subfigure}[t]{0.5\columnwidth}\centering
     \includegraphics[height=120pt]{assets/1,2/image (44).jpg}
-    \caption{\bfseries 反射与折射 }
+    \caption{ 反射与折射 }
 \end{subfigure}\hfill
 \begin{subfigure}[t]{0.5\columnwidth}\centering
     \includegraphics[height=120pt]{assets/1,2/image (45).jpg}
-    \caption{\bfseries 三棱镜最小偏向角 }
+    \caption{ 三棱镜最小偏向角 }
 \end{subfigure}
-\caption{\bfseries 反射与折射、三棱镜最小偏向角 }\label{反射与折射、三棱镜最小偏向角}
+\caption{ 反射与折射、三棱镜最小偏向角 }\label{反射与折射、三棱镜最小偏向角}
 \end{figure}
 
 
@@ -460,12 +468,12 @@
 \begin{figure}[H]\centering
 \begin{subfigure}[t]{0.45\textwidth}\centering
     \includegraphics[height=100pt]{assets/1,2/image.jpg}
-    \caption{\bfseries 折射球面 }
+    \caption{ 折射球面 }
 \end{subfigure}\begin{subfigure}[t]{0.4\textwidth}\centering
     \includegraphics[height=100pt]{assets/1,2/image (1).jpg}
-    \caption{\bfseries 反射球面 }
+    \caption{ 反射球面 }
 \end{subfigure}
-\caption{\bfseries 折射球面与反射球面 }
+\caption{ 折射球面与反射球面 }
 \end{figure}
 
 
@@ -719,23 +727,23 @@ $p$ 波 & $\displaystyle r_p = \frac{n_t\cos \theta_i - n_i \cos \theta_t}{n_t\c
 \begin{figure}[H]\centering
 \begin{subfigure}[t]{0.49\textwidth}\centering
     \includegraphics[height=190pt]{assets/1,2/2024-09-15_10-53-31.pdf}
-    \caption{\bfseries 由空气入射玻璃（$n_i = 1,\ n_t = 1.5$） }
+    \caption{ 由空气入射玻璃（$n_i = 1,\ n_t = 1.5$） }
 \end{subfigure}
 \begin{subfigure}[t]{0.49\textwidth}\centering
     \includegraphics[height=190pt]{assets/1,2/2024-09-15_10-53-27.pdf}
-    \caption{\bfseries 由玻璃入射空气（$n_i = 1.5,\ n_t = 1$） }
+    \caption{ 由玻璃入射空气（$n_i = 1.5,\ n_t = 1$） }
 \end{subfigure}
-\caption{\bfseries 振幅系数 $r$ 随入射角 $\theta_i$ 的变化 }\label{振幅系数随入射角的变化}
+\caption{ 振幅系数 $r$ 随入射角 $\theta_i$ 的变化 }\label{振幅系数随入射角的变化}
 \end{figure}
 
 \begin{figure}[ht]\centering
     \includesvg[width=0.93\textwidth]{assets/1,2/相位突变.svg}
-    \caption{\bfseries $s$ 波和 $p$ 波在反射时的相位变化}\label{反射时 s 波和 p 波的相位变化}
+    \caption{ $s$ 波和 $p$ 波在反射时的相位变化}\label{反射时 s 波和 p 波的相位变化}
 \end{figure}
 
 \begin{figure}[H]\centering
 \includesvg[width=0.95\textwidth]{assets/1,2/反射后的方向情况.svg}
-\caption{\bfseries 由空气入射玻璃的光线示意图}\label{反射示意图}
+\caption{ 由空气入射玻璃的光线示意图}\label{反射示意图}
 \end{figure}
 
 
@@ -886,7 +894,7 @@ n_i \cos \theta_i E_{i,p}^2 - n_i \cos \theta_i r_{i,p}^2E_{i,p}^2 -   n_t \cos 
 
 \begin{figure}[H]\centering
 \includegraphics[width=0.8\columnwidth]{assets/1,2/GHShift.pdf}
-\caption{\bfseries Goos-Hanchen Shift}\label{Goos-Hanchen Shift}
+\caption{ Goos-Hanchen Shift}\label{Goos-Hanchen Shift}
 \end{figure}
 
 \section{全反射时的相位变化}\label{全反射时的相位变化}
@@ -1000,7 +1008,7 @@ r' + r = 1,\quad tt' + rr' = 1
 
 \begin{figure}[H]\centering
 \includegraphics[width=\columnwidth]{assets/3/光路可逆性下的振幅与能量系数.pdf}
-\caption{\bfseries 光路可逆性下的振幅与能量系数}\label{光路可逆性下的振幅与能量系数}
+\caption{ 光路可逆性下的振幅与能量系数}\label{光路可逆性下的振幅与能量系数}
 \end{figure}
 
 在下一页中给出了上面结论的图像。图 \ref{反射折射光的振幅与能量变化}\footnote{源码见附录 \ref{反射折射光的振幅与能量变化 源码}} 展示了反射折射光的振幅 $r_s, r_p, t_s, t_p$、能量 $R_s, R_p, R$ 随入射角 $\tan \theta_i$ 的变化，其中 (a) 图为空气入射玻璃（$n_i = 1, n_t = 1.5$），(b) 图为玻璃入射空气（$n_i = 1.5, n_t = 1$）。
@@ -1014,7 +1022,7 @@ r' + r = 1,\quad tt' + rr' = 1
 \begin{figure}[H]\centering
 \begin{subfigure}[t]{0.44\columnwidth}\centering
     \includegraphics[height=170pt]{assets/1,2/2024-09-21_12-26-37.pdf}
-    \caption{\bfseries 由空气入射玻璃 }
+    \caption{ 由空气入射玻璃 }
 \end{subfigure}
 \subcaptionsetup{
     margin={2cm,0cm}, % 右边距不变，左边距为 2cm
@@ -1022,27 +1030,27 @@ r' + r = 1,\quad tt' + rr' = 1
     }
 \begin{subfigure}[t]{0.54\columnwidth}\centering
     \includegraphics[height=170pt]{assets/1,2/2024-09-21_12-31-00.pdf}
-    \caption{\bfseries 由玻璃入射空气 }
+    \caption{ 由玻璃入射空气 }
 \end{subfigure}
-\caption{\bfseries 反射折射光的振幅与能量变化 }
+\caption{ 反射折射光的振幅与能量变化 }
 \label{反射折射光的振幅与能量变化}
 \end{figure}
 
 \begin{figure}[H]\centering
 \begin{subfigure}[t]{0.5\columnwidth}\centering
     \includegraphics[height=175pt]{assets/1,2/光疏到光密.pdf}
-    \caption{\bfseries 由空气入射玻璃 }
+    \caption{ 由空气入射玻璃 }
 \end{subfigure}\begin{subfigure}[t]{0.5\columnwidth}\centering
     \includegraphics[height=175pt]{assets/1,2/光密到光疏.pdf}
-    \caption{\bfseries 由玻璃入射空气 }
+    \caption{ 由玻璃入射空气 }
 \end{subfigure}
-\caption{\bfseries 反射光 s 分量与 p 分量的相位增量 }
+\caption{ 反射光 s 分量与 p 分量的相位增量 }
 \label{反射光 s 分量与 p 分量的相位增量}
 \end{figure}
 
 \begin{figure}[H]\centering
 \includegraphics[width=0.70\columnwidth]{assets/1,2/2024-09-21_13-29-49.pdf}
-\caption{\bfseries 隐失波穿透深度与 GH Shift（玻璃入射空气）}\label{隐失波穿透深度与 GH Shift 玻璃入射空气}
+\caption{ 隐失波穿透深度与 GH Shift（玻璃入射空气）}\label{隐失波穿透深度与 GH Shift 玻璃入射空气}
 \end{figure}
 
 
@@ -1124,13 +1132,13 @@ E_B = \frac{B}{ r_2 } \cdot e^{i(-\omega t + k r_2  + \varepsilon_B)}\quad E_{B,
 \begin{figure}[H]\centering
     \begin{subfigure}[t]{0.49\columnwidth}\centering
         \includegraphics[height=120pt]{assets/3/crop_pdf_66eff444a80a6_f690229642a2b8bc66e9fbb05793266b_66eff43590e16.pdf}
-        \caption{\bfseries 两球面波源或两柱面波源 }
+        \caption{ 两球面波源或两柱面波源 }
     \end{subfigure}\hfill
     \begin{subfigure}[t]{0.49\columnwidth}\centering
         \includegraphics[height=120pt]{assets/3/双平面波源.pdf}
-        \caption{\bfseries 两平面波源 }
+        \caption{ 两平面波源 }
     \end{subfigure}
-    \caption{\bfseries 两个同频波源的干涉 }\label{两个同频波源的干涉}
+    \caption{ 两个同频波源的干涉 }\label{两个同频波源的干涉}
 \end{figure}
 
 
@@ -1150,12 +1158,12 @@ E = E_0 \cos \left(-\omega t + \alpha \right) = E_0 \cdot e^{i(-\omega t + \alph
 
 \begin{figure}[H]\centering
 \includegraphics[width=0.95\columnwidth]{assets/3/单个球面波源.pdf}
-\caption{\bfseries 单个球面波源在平面上的振荡情况}\label{单个球面波源在平面上的振荡情况}
+\caption{ 单个球面波源在平面上的振荡情况}\label{单个球面波源在平面上的振荡情况}
 \end{figure}
 
 \begin{figure}[H]\centering
 \includegraphics[width=0.95\columnwidth]{assets/3/两个球面波源.pdf}
-\caption{\bfseries 两个球面波源在平面上的干涉情况}\label{两个球面波源在平面上的干涉情况}
+\caption{ 两个球面波源在平面上的干涉情况}\label{两个球面波源在平面上的干涉情况}
 \end{figure}
 
 当点 $P$ 离波源极远时，近似有 $\frac{r_1}{r_2} = 1$（这与近似有 $r_1 - r_2 = 0$ 不同），将距离记为 $r$，则振幅的位置分布为 $E_0 = \frac{1}{r} \sqrt{ A^2 + B^2 + 2AB \cos (k(r_1 - r_2))} $。若可以认为 $\frac{1}{r}$ 近似不变，则此时，具有相同振幅大小的点，等价于 $\cos (k(r_1 - r_2))$ 具有相同的值，也即：
@@ -1312,12 +1320,12 @@ d = 100 \ \mathrm{\mu m},\  R = 5\ \mathrm{cm},\ D = 1\ \mathrm{m},\ L = 4 \ \ma
 \begin{figure}[H]\centering
     \begin{subfigure}[t]{0.52\columnwidth}\centering
         \includegraphics[height=160pt]{assets/3/杨双.pdf}
-        \caption{\bfseries 杨氏双缝干涉装置 }
+        \caption{ 杨氏双缝干涉装置 }
     \end{subfigure}\begin{subfigure}[t]{0.48\columnwidth}\centering
         \includegraphics[height=160pt]{assets/3/杨残差.pdf}
-        \caption{\bfseries 近似模型残差分布 }
+        \caption{ 近似模型残差分布 }
     \end{subfigure}
-    \caption{\bfseries 杨氏双缝干涉装置与近似模型残差分布 }\label{杨氏双缝干涉装置}
+    \caption{ 杨氏双缝干涉装置与近似模型残差分布 }\label{杨氏双缝干涉装置}
 \end{figure}
 
 
@@ -1372,13 +1380,13 @@ d = 100 \ \mathrm{\mu m},\  R = 5\ \mathrm{cm},\ D = 1\ \mathrm{m},\ L = 4 \ \ma
 \begin{figure}[H]\centering
 \begin{subfigure}[t]{0.5\columnwidth}\centering
     \includegraphics[height=165pt]{assets/3/杨电场.pdf}
-    \caption{\bfseries 电场振幅位置分布 }
+    \caption{ 电场振幅位置分布 }
 \end{subfigure}\hfill
 \begin{subfigure}[t]{0.5\columnwidth}\centering
     \includegraphics[height=165pt]{assets/3/杨光强.pdf}
-    \caption{\bfseries 光强位置分布 }
+    \caption{ 光强位置分布 }
 \end{subfigure}
-\caption{\bfseries 近似模型与非近似模型的比较 }\label{近似模型与非近似模型的比较}
+\caption{ 近似模型与非近似模型的比较 }\label{近似模型与非近似模型的比较}
 \end{figure}
 
 \noindent 杨氏双缝干涉的特点：
@@ -1433,13 +1441,13 @@ I(x, b) = \frac{I_{\text{max}}}{2b} \int_{-\frac{b}{2}}^{\frac{b}{2}} \left[ 1 +
 \begin{figure}[H]\centering
 \begin{subfigure}[t]{0.5\columnwidth}\centering
     \includegraphics[height=160pt]{assets/3/光强分布.pdf}
-    \caption{\bfseries 光强分布随光源宽度的变化 }
+    \caption{ 光强分布随光源宽度的变化 }
 \end{subfigure}\hfill
 \begin{subfigure}[t]{0.5\columnwidth}\centering
     \includegraphics[height=160pt]{assets/3/干涉条纹对比度.pdf}
-    \caption{\bfseries 干涉条纹对比度随光源宽度的变化 }
+    \caption{ 干涉条纹对比度随光源宽度的变化 }
 \end{subfigure}
-\caption{\bfseries 光源宽度对干涉条纹的影响 }\label{光源宽度}
+\caption{ 光源宽度对干涉条纹的影响 }\label{光源宽度}
 \end{figure}
 
 \section{分振幅干涉}
@@ -1469,13 +1477,13 @@ I(x, b) = \frac{I_{\text{max}}}{2b} \int_{-\frac{b}{2}}^{\frac{b}{2}} \left[ 1 +
 \begin{figure}[H]\centering
     \begin{subfigure}[t]{0.6\columnwidth}\centering
         \includegraphics[height=145pt]{assets/3/薄膜干涉.pdf}
-        \caption{\bfseries 薄膜多光束干涉 }
+        \caption{ 薄膜多光束干涉 }
     \end{subfigure}\hfill
     \begin{subfigure}[t]{0.4\columnwidth}\centering
         \includegraphics[height=145pt]{assets/3/薄膜双光束干涉.pdf}
-        \caption{\bfseries 薄膜双光束干涉 }
+        \caption{ 薄膜双光束干涉 }
     \end{subfigure}
-    \caption{\bfseries 薄膜干涉 }\label{薄膜干涉}
+    \caption{ 薄膜干涉 }\label{薄膜干涉}
 \end{figure}
 
 由于没有发生全反射，相位变化是平凡的（透射无相变，反射只能是 $-\pi$ 或零），而反射光的相位变化已经包含在振幅反射系数 $r$ 中了（由其正负表示）。因此，在分析多光束干涉时，只需考虑各光（有正负）的振幅以及光程差，处理波函数的表达式的叠加即可。
@@ -1527,7 +1535,7 @@ $T_{F-P} = T_{F-P}(F, \delta)$ 的图像如下所示\footnote{源码见附录 \r
 
 \begin{figure}[H]\centering
 \includegraphics[width=\columnwidth]{assets/3/精细度对透射率的影响.pdf}
-\caption{\bfseries 精细度对透射率的影响}\label{精细度对透射率的影响}
+\caption{ 精细度对透射率的影响}\label{精细度对透射率的影响}
 \end{figure}
 
 实际中常基于上面理论，设计出增透膜、增反膜等薄膜，实现光的选择性透射、反射。如果遇到，直接利用反射相位突变进行分析即可。
@@ -1610,7 +1618,7 @@ $T_{F-P} = T_{F-P}(F, \delta)$ 的图像如下所示\footnote{源码见附录 \r
 
 \begin{figure}[H]\centering
 \includegraphics[width=0.7\columnwidth]{assets/3/等倾干涉.jpg}
-\caption{\bfseries 等倾干涉实验装置}\label{等倾干涉实验装置}
+\caption{ 等倾干涉实验装置}\label{等倾干涉实验装置}
 \end{figure}
 
 等倾干涉实验动图见链接 \href{https://www.123pan.com/s/0y0pTd-MgKj3}{https://www.123pan.com/s/0y0pTd-MgKj3}。
@@ -1663,7 +1671,7 @@ $T_{F-P} = T_{F-P}(F, \delta)$ 的图像如下所示\footnote{源码见附录 \r
 
 \begin{figure}[H]\centering
     \includegraphics[width=0.8\columnwidth]{assets/3/迈克尔逊干涉仪.pdf}
-    \caption{\bfseries 迈克尔逊干涉仪}\label{迈克尔逊干涉仪}
+    \caption{ 迈克尔逊干涉仪}\label{迈克尔逊干涉仪}
 \end{figure}
 
 对给定的第 $k$ 条亮纹，在图 \ref{迈克尔逊干涉仪} 的情况下（$M_1$ 在 $M_2'$ 下方），将 $M_1$ 向上移动，$d$ 减小，$\cos \theta_k$ 增加，$\theta_k$ 减小，条纹向中心移动，直至完全收缩并消失。并且，随着 $d$ 越来越小，条纹间距 $| \Delta r |$ 越来越大，直至 $d \to 0$ 时 $| \Delta r | \to \infty$，中心条纹布满整个观察屏。继续向上移动 $M_1$，“穿过” $M_2'$ 后，干涉条纹重新出现。
@@ -1692,7 +1700,7 @@ I_1(\Delta L) = 2I_0 \left[1 + \cos \left(k_1 \Delta L\right)\right],\quad I_2(\
 
 \begin{figure}[H]\centering
 \includegraphics[width=0.85\columnwidth]{assets/3/迈克尔逊干涉_双色光源.pdf}
-\caption{\bfseries 双色光源的对比度分布情况}\label{双色光源的对比度分布情况}
+\caption{ 双色光源的对比度分布情况}\label{双色光源的对比度分布情况}
 \end{figure}
 
 上面考虑的是线光谱，对于连续光谱，有光谱密度 $i = i(\lambda)$，总光强 $I = \int i(\lambda)\ \mathrm{d}\lambda$。当然，也可以用空间角频率 $k$ 作变量。考虑以 $k_0$ 为中心，宽为 $\Delta k$ 的均匀光谱 $i(k)$，我们有：
@@ -1968,12 +1976,12 @@ A_c = \frac{\lambda^2}{A_s} R^2
 \begin{figure}[H]\centering
 \begin{subfigure}[t]{0.62\columnwidth}\centering
     \includegraphics[height=120pt]{assets/1,2/image (41).jpg}
-    \caption{\bfseries 空间频率较低的正弦亮度分布 }
+    \caption{ 空间频率较低的正弦亮度分布 }
 \end{subfigure}\begin{subfigure}[t]{0.37\columnwidth}\centering
     \includegraphics[height=120pt]{assets/1,2/image (42).jpg}
-    \caption{\bfseries 空间频率较高的正弦亮度分布 }
+    \caption{ 空间频率较高的正弦亮度分布 }
 \end{subfigure}
-\caption{\bfseries 正弦亮度分布 }
+\caption{ 正弦亮度分布 }
 \end{figure}
 
 \section{复数表示}

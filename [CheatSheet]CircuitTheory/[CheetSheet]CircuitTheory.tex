@@ -147,7 +147,11 @@
     \usepackage{caption}    % 图注、表注
         \captionsetup[figure]{name=图, skip=0.8pt}    % 图注名称为 '图', 并修改 skip 间距
         \captionsetup[table]{name=表, skip=0.8pt}
-        \captionsetup{labelfont=bf, font=small}
+        \captionsetup{
+            labelfont=bf, % 设置标签为粗体
+            textfont=bf,  % 设置文本为粗体
+            font=small  
+        }
     \usepackage{float}     % 图表位置浮动设置 
 
 % 列表设置
@@ -358,18 +362,18 @@
 \begin{figure}[H]\centering
 \begin{subfigure}[t]{0.49\columnwidth}\centering
     \includegraphics[height=60pt]{assets/线性运算器.png}
-    \caption{\bfseries 线性运算器电路图 }
+    \caption{ 线性运算器电路图 }
 \end{subfigure}\begin{subfigure}[t]{0.49\columnwidth}\centering
     \includegraphics[height=60pt]{assets/线性运算器接线端.png}
-    \caption{\bfseries 接线端示意图 }
+    \caption{ 接线端示意图 }
 \end{subfigure}
-\caption{\bfseries 自设计线性运算器 }\label{自设计线性运算器}
+\caption{ 自设计线性运算器 }\label{自设计线性运算器}
 \end{figure}
 
 \lipsum[3-4]    % 生成示例文本  
 \begin{figure}[H]\centering
 \includegraphics[width=0.8\columnwidth]{assets/线性运算器.png}
-\caption{\bfseries 这里是图注}\label{这里是图注}
+\caption{ 这里是图注}\label{这里是图注}
 \end{figure}
 
 我们先研究图 \ref{自设计线性运算器} (a) 的输出特性，再讨论如果没有电阻 $R_M$ 或 $R_P$，输出电压会受到什么限制。输出电压的推导是简单的，先考虑点 A 的电势 $u_A$，求得：
@@ -467,13 +471,13 @@ u_o =
 \begin{figure}[H]\centering
 \begin{subfigure}[t]{0.49\columnwidth}\centering
     \includegraphics[height=70pt]{assets/2024-09-15_10-53-31.pdf}
-    \caption{\bfseries 由空气入射玻璃（$n_i = 1,\ n_t = 1.5$） }
+    \caption{ 由空气入射玻璃（$n_i = 1,\ n_t = 1.5$） }
 \end{subfigure}
 \begin{subfigure}[t]{0.49\columnwidth}\centering
     \includegraphics[height=70pt]{assets/2024-09-15_10-53-27.pdf}
-    \caption{\bfseries 由玻璃入射空气（$n_i = 1.5,\ n_t = 1$） }
+    \caption{ 由玻璃入射空气（$n_i = 1.5,\ n_t = 1$） }
 \end{subfigure}
-\caption{\bfseries 振幅系数 $r$ 随入射角 $\theta_i$ 的变化 }\label{振幅系数随入射角的变化}
+\caption{ 振幅系数 $r$ 随入射角 $\theta_i$ 的变化 }\label{振幅系数随入射角的变化}
 \end{figure}
 
 

@@ -223,7 +223,11 @@
     \usepackage{caption}    % 图注、表注
         \captionsetup[figure]{name=图}  
         \captionsetup[table]{name=表}
-        \captionsetup{labelfont=bf, font=small}
+        \captionsetup{
+            labelfont=bf, % 设置标签为粗体
+            textfont=bf,  % 设置文本为粗体
+            font=small  
+        }
     \usepackage{float}     % 图表位置浮动设置 
 
 % 圆圈序号自定义

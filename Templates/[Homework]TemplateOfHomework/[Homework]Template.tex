@@ -230,7 +230,11 @@
     \usepackage{caption}    % 图注、表注
         \captionsetup[figure]{name=图}  
         \captionsetup[table]{name=表}
-        \captionsetup{labelfont=bf, font=small}
+        \captionsetup{
+            labelfont=bf, % 设置标签为粗体
+            textfont=bf,  % 设置文本为粗体
+            font=small  
+        }
     \usepackage{float}     % 图表位置浮动设置 
 
 % 圆圈序号自定义
@@ -492,7 +496,7 @@ i(t) = \frac{2u_s}{6 \KO} = \frac{u_s}{3} \mA
 
 \begin{figure}[H]\centering
 \includegraphics[width=0.4\textwidth]{assets/3/3-40.jpg}
-\caption{\bfseries 习题集 3-40}
+\caption{ 习题集 3-40}
 \end{figure}
 
 \section{习题集 3-45（注意题目单位是 S）}
@@ -516,12 +520,12 @@ i(t) = \frac{2u_s}{6 \KO} = \frac{u_s}{3} \mA
 \begin{figure}[H]\centering
     \begin{subfigure}[t]{0.43\textwidth}\centering
         \includegraphics[height=150pt]{assets/3/3-45.png}
-        \caption{\bfseries 习题集 3-45 }
+        \caption{ 习题集 3-45 }
     \end{subfigure}\begin{subfigure}[t]{0.43\textwidth}\centering
         \includegraphics[height=150pt]{assets/3/3-46.png}
-        \caption{\bfseries 习题集 3-46 }
+        \caption{ 习题集 3-46 }
     \end{subfigure}
-    \caption{\bfseries 习题集 3-45 和习题集 3-46 }
+    \caption{ 习题集 3-45 和习题集 3-46 }
     \end{figure}
     
 
@@ -546,12 +550,12 @@ R_i = \infty,\ R_o = 0
 \begin{figure}[H]\centering
 \begin{subfigure}[t]{0.4\textwidth}\centering
     \includegraphics[height=100pt]{assets/3/反向比例放大器.png}
-    \caption{\bfseries 同相比例放大器}
+    \caption{ 同相比例放大器}
 \end{subfigure}\begin{subfigure}[t]{0.4\textwidth}\centering
     \includegraphics[height=100pt]{assets/3/同相比例放大器.png}
-    \caption{\bfseries 反向比例放大器}
+    \caption{ 反向比例放大器}
 \end{subfigure}
-\caption{\bfseries 讲义题 2-19}
+\caption{ 讲义题 2-19}
 \end{figure}
 
 \section{讲义题 2-20}
@@ -591,7 +595,7 @@ R_i = \infty,\ R_o = 0
 
 \begin{figure}[H]\centering
 \includegraphics[width=0.7\textwidth]{assets/3/image (8).jpg}
-\caption{\bfseries 讲义题 2-20}\label{讲义题 2-20}
+\caption{ 讲义题 2-20}\label{讲义题 2-20}
 \end{figure}
 
 \section{仿真 2-1}
@@ -603,12 +607,12 @@ R_i = \infty,\ R_o = 0
 \begin{figure}[H]\centering
 \begin{subfigure}[t]{0.43\textwidth}\centering
     \includegraphics[height=150pt]{assets/3/单OPA.png}
-    \caption{\bfseries 电路示意图 }
+    \caption{ 电路示意图 }
 \end{subfigure}\begin{subfigure}[t]{0.43\textwidth}\centering
     \includegraphics[height=150pt]{assets/3/单OPA接线端.png}
-    \caption{\bfseries 接线端示意图 }
+    \caption{ 接线端示意图 }
 \end{subfigure}
-\caption{\bfseries 单 OPA 实现 电压运算 }\label{单 OPA 实现 电压运算}
+\caption{ 单 OPA 实现 电压运算 }\label{单 OPA 实现 电压运算}
 \end{figure}
 
 下面分析其输出特性。由虚断，在 $u_1$ 和 $u_2$ 构成的回路中，设正向流经 $u_2$ 的电流为 $i_2$，则有：
@@ -675,12 +679,12 @@ R_1 = 4\KO,\ R_2 = 6\KO,\ R_3 = 7\KO,\ R_M = 1\KO,\ R_f = 3.5\KO
 \begin{figure}[H]\centering
 \begin{subfigure}[t]{0.45\textwidth}\centering
     \includegraphics[height=130pt]{assets/3/8a5141629bce86a4810852d0002e5180.png}
-    \caption{\bfseries 单 OPA 实现电压运算 }
+    \caption{ 单 OPA 实现电压运算 }
 \end{subfigure}\begin{subfigure}[t]{0.53\textwidth}\centering
     \includegraphics[height=130pt]{assets/3/OPA饱和电流.png}
-    \caption{\bfseries OPA 饱和电压 }
+    \caption{ OPA 饱和电压 }
 \end{subfigure}
-\caption{\bfseries 仿真电路图与 OPA 饱和电压 }\label{单 OPA 实现电压运算仿真}
+\caption{ 仿真电路图与 OPA 饱和电压 }\label{单 OPA 实现电压运算仿真}
 \end{figure}
 
 由表可见，除了最后一组数据，仿真结果与理论结果完全一致。最后一组之所以不同，是因为输出电压 $u_o$ 超出了此 OPA 的饱和电压 $U_{\text{sat}}$，导致输出电压 $u_o = U_{\text{sat}} = 10.494 \mathrm{V}$。如图 \ref{单 OPA 实现电压运算仿真} (b) 所示，此 OPA (LM324ADTBR2G) 的饱和电压为 $10.525 \mathrm{V}$，与解释相符。具体仿真时的结果见图 \ref{一个图}。
@@ -688,19 +692,19 @@ R_1 = 4\KO,\ R_2 = 6\KO,\ R_3 = 7\KO,\ R_M = 1\KO,\ R_f = 3.5\KO
 \begin{figure}[H]\centering
 \begin{subfigure}[t]{0.48\textwidth}\centering
     \includegraphics[height=145pt]{assets/3/111.png}
-    \caption{\bfseries $(x,y,z) = (1,1,1)$ }
+    \caption{ $(x,y,z) = (1,1,1)$ }
 \end{subfigure}\begin{subfigure}[t]{0.48\textwidth}\centering
     \includegraphics[height=145pt]{assets/3/132.png}
-    \caption{\bfseries $(x,y,z) = (1,3,2)$ }
+    \caption{ $(x,y,z) = (1,3,2)$ }
 \end{subfigure}
 \begin{subfigure}[t]{0.48\textwidth}\centering
     \includegraphics[height=145pt]{assets/3/91f965079537c7c35944182511dce291.png}
-    \caption{\bfseries $(x,y,z) = (-2,2,0)$ }
+    \caption{ $(x,y,z) = (-2,2,0)$ }
 \end{subfigure}\begin{subfigure}[t]{0.48\textwidth}\centering
     \includegraphics[height=145pt]{assets/3/def5c414621689edf67e4afb5251cf4a.png}
-    \caption{\bfseries $(x,y,z) = (3,3,2)$ }
+    \caption{ $(x,y,z) = (3,3,2)$ }
 \end{subfigure}
-\caption{\bfseries 仿真具体结果图 }\label{一个图}
+\caption{ 仿真具体结果图 }\label{一个图}
 \end{figure}
 
 
@@ -714,12 +718,12 @@ R_1 = 4\KO,\ R_2 = 6\KO,\ R_3 = 7\KO,\ R_M = 1\KO,\ R_f = 3.5\KO
 \begin{figure}[H]\centering
 \begin{subfigure}[t]{0.43\textwidth}\centering
     \includegraphics[height=120pt]{assets/3/失败的例子.png}
-    \caption{\bfseries 失败的例子 }
+    \caption{ 失败的例子 }
 \end{subfigure}\begin{subfigure}[t]{0.43\textwidth}\centering
     \includegraphics[height=120pt]{assets/3/image (5).jpg}
-    \caption{\bfseries 仿真作业 2-1 }
+    \caption{ 仿真作业 2-1 }
 \end{subfigure}
-\caption{\bfseries 示意图 }
+\caption{ 示意图 }
 \end{figure}
 
 在 $u_1, R_1, u_2, R_2 $ 和 $R_M$ 构成的局部电路中，由 KVC:
@@ -776,12 +780,12 @@ u_o &= u_A - i_3R_f = (1+\frac{R_f}{R_3})u_A - \frac{R_f}{R_3}u_3
 \begin{figure}[H]\centering
 \begin{subfigure}[t]{0.47\textwidth}\centering
     \includegraphics[height=140pt]{assets/3/0649949f48a11f77b47f406012e3f7a8.png}
-    \caption{\bfseries 负电阻仿真电路 }
+    \caption{ 负电阻仿真电路 }
 \end{subfigure}\begin{subfigure}[t]{0.5\textwidth}\centering
     \includegraphics[height=140pt]{assets/3/83d7126e6d74b406acb4bbc94900f2c6.png}
-    \caption{\bfseries $I$（纵轴）$U$（横轴）关系 }
+    \caption{ $I$（纵轴）$U$（横轴）关系 }
 \end{subfigure}
-\caption{\bfseries 负电阻仿真 }\label{负电阻仿真}
+\caption{ 负电阻仿真 }\label{负电阻仿真}
 \end{figure}
 
 简记电压源 V11 的电压为 $u$，继续仿真输出电压 $u_o$ 关于输入电压 $u$ 的变化，将数据导出后在 Matlab 中绘制曲线，如图 \ref{仿真结果分析} (a)。再将 $I-U$ 关系转化为 $U-I$ 关系，如图 \ref{仿真结果分析} (b)。可以发现，在线性工作区内，电路表现为负阻。而线性区外的两段折线位于 OPA 的饱和区，此时 $u_o$ 始终为饱和电压，电路呈现正电阻，且阻值为:
@@ -797,12 +801,12 @@ R_{\text{sat}} = R_1 = 10 \KO
 \begin{figure}[H]\centering
 \begin{subfigure}[t]{0.52\textwidth}\centering
     \includegraphics[height=190pt]{assets/3/2024-09-13_01-13-08.png}
-    \caption{\bfseries $u_o$ 与 $i$ 关于 $u$ 的变化}
+    \caption{ $u_o$ 与 $i$ 关于 $u$ 的变化}
 \end{subfigure}\begin{subfigure}[t]{0.47\textwidth}\centering
     \includegraphics[height=180pt]{assets/3/2024-09-13_01-13-52.png}
-    \caption{\bfseries $U$-$I$ 关系（VCR）}
+    \caption{ $U$-$I$ 关系（VCR）}
 \end{subfigure}
-\caption{\bfseries 仿真结果分析 }\label{仿真结果分析}
+\caption{ 仿真结果分析 }\label{仿真结果分析}
 \end{figure}
 
 %在负电阻中，OPA 输出电压 $u_o$:
@@ -819,7 +823,7 @@ R_{\text{sat}} = R_1 = 10 \KO
 %\end{equation}
 %\begin{figure}[H]\centering
 %\includegraphics[width=0.45\textwidth]{assets/3/ee57b549a02999b0856af303ac0e8510.jpg}
-%\caption{\bfseries 第一次仿真作业 (2)}\label{第一次仿真作业 (2)}
+%\caption{ 第一次仿真作业 (2)}\label{第一次仿真作业 (2)}
 %\end{figure}
 
 
@@ -855,13 +859,13 @@ R_{\text{sat}} = R_1 = 10 \KO
 \begin{figure}[H]\centering
 \begin{subfigure}[t]{0.49\textwidth}\centering
     \includegraphics[height=180pt]{assets/2/2024-09-15_10-53-31.pdf}
-    \caption{\bfseries 由空气入射玻璃（$n_i = 1,\ n_t = 1.5$） }
+    \caption{ 由空气入射玻璃（$n_i = 1,\ n_t = 1.5$） }
 \end{subfigure}
 \begin{subfigure}[t]{0.49\textwidth}\centering
     \includegraphics[height=180pt]{assets/2/2024-09-15_10-53-27.pdf}
-    \caption{\bfseries 由玻璃入射空气（$n_i = 1.5,\ n_t = 1$） }
+    \caption{ 由玻璃入射空气（$n_i = 1.5,\ n_t = 1$） }
 \end{subfigure}
-\caption{\bfseries 振幅系数 $r$ 随入射角 $\theta_i$ 的变化 }\label{振幅系数随入射角的变化}
+\caption{ 振幅系数 $r$ 随入射角 $\theta_i$ 的变化 }\label{振幅系数随入射角的变化}
 \end{figure}
 
 

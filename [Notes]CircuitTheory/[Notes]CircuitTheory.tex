@@ -228,7 +228,11 @@
     \usepackage{caption}    % 图注、表注
         \captionsetup[figure]{name=图}  
         \captionsetup[table]{name=表}
-        \captionsetup{labelfont=bf, font=small}
+        \captionsetup{
+            labelfont=bf, % 设置标签为粗体
+            textfont=bf,  % 设置文本为粗体
+            font=small  
+        }
     \usepackage{float}     % 图表位置浮动设置 
 
 % 圆圈序号自定义
@@ -315,11 +319,15 @@
     \thispagestyle{fancy}   % 显示页码、页眉等
 
 % 序言
-    \begin{cnabstract}\normalsize 
-        本文为笔者本科时的电路原理笔记（Notes of Principles of Electric Circuits, 2024.9 -- 2025.1）。由于个人学识浅陋，认识有限，文中难免有不妥甚至错误之处，望读者不吝指正，在此感谢。\par
-        我的邮箱是 dingyi233@mails.ucas.ac.cn。
-    \end{cnabstract}
-    \addcontentsline{toc}{chapter}{序言} % 手动添加为目录
+\begin{cnabstract}\normalsize 
+本文为笔者本科时的“电路原理”课程笔记（Notes of Principles of Electric Circuits, 2024.8 - 2025.1）。
+
+读者可到网址 \href{https://www.123865.com/s/0y0pTd-pGKj3}{https://www.123865.com/s/0y0pTd-pGKj3} 下载全部资料，也可在笔者的个人网站上找到课程信息、作业答案和其他相关资料: 
+\href{https://yidingg.github.io/YiDingg/\#/Notes/MajorCourses/CircuitTheoryNotes}{https://yidingg.github.io/YiDingg/\#/Notes/MajorCourses/CircuitTheoryNotes}。
+
+由于个人学识浅陋，认识有限，文中难免有不妥甚至错误之处，望读者不吝指正。读者可以将错误发送到我的邮箱 {\color{blue}\ dingyi233@mails.ucas.ac.cn}，也可以到笔者的 \href{https://github.com/YiDingg/LatexNotes}{GitHub (https://github.com/YiDingg/LatexNotes)} 上提 issue，衷心感谢。
+\end{cnabstract}
+\addcontentsline{toc}{chapter}{序言} % 手动添加为目录
 
 % 目录
     \setcounter{tocdepth}{2}                % 目录深度（为1时显示到section）
@@ -347,12 +355,12 @@
 \begin{figure}[H]\centering
 \begin{subfigure}[t]{0.52\textwidth}\centering
     \includegraphics[height=130pt]{assets/1,2/11b7879b24f71ddbf3e5316424203201.jpg}
-    \caption{\bfseries 电路原理与其他电类主要课程的联系 }
+    \caption{ 电路原理与其他电类主要课程的联系 }
 \end{subfigure}\begin{subfigure}[t]{0.48\textwidth}\centering
     \includegraphics[height=130pt]{assets/1,2/电动势与电压.drawio.pdf}
-    \caption{\bfseries 电压与电动势的三种表示方法 }
+    \caption{ 电压与电动势的三种表示方法 }
 \end{subfigure}
-\caption{\bfseries 电路原理与其他电类主要课程的联系、电压与电动势的三种表示方法 }\label{电路原理与其他电类主要课程的联系，电压与电动势的三种表示方法}
+\caption{ 电路原理与其他电类主要课程的联系、电压与电动势的三种表示方法 }\label{电路原理与其他电类主要课程的联系，电压与电动势的三种表示方法}
 \end{figure}
 
 \section{电流、电压和电势}
@@ -389,7 +397,7 @@ u_{ab} = \frac{\mathrm{d} w_{ab}}{\mathrm{d}q},\ i_{ab} = \frac{\mathrm{d} q_{ab
 \end{subfigure}\begin{subfigure}[t]{0.47\textwidth}\centering
     \includegraphics[height=160pt]{assets/1,2/3f5d73ec5ae9909ab42cd864852b0d72.jpg}
 \end{subfigure}
-\caption{\bfseries \textbf{部分常见电路元件} }\label{部分常见电路元件}
+\caption{ \textbf{部分常见电路元件} }\label{部分常见电路元件}
 \end{figure}
 
 
@@ -417,12 +425,12 @@ $R, L, C$ 被称为电路基本模型，是电路分析的最基本模型。对�
 \begin{figure}[H]\centering
 \begin{subfigure}[t]{0.52\textwidth}\centering
     \includesvg[height=75pt]{assets/1,2/信号分类.drawio.svg}
-    \caption{\bfseries 信号分类 }
+    \caption{ 信号分类 }
 \end{subfigure}\begin{subfigure}[t]{0.48\textwidth}\centering
     \includegraphics[height=75pt]{assets/1,2/1b9e0bed85e1f3a049de96f4c6018da8.jpg}
-    \caption{\bfseries 信号示意图 }
+    \caption{ 信号示意图 }
 \end{subfigure}
-\caption{\bfseries 信号分类、信号示意图 }\label{信号分类、信号示意图}
+\caption{ 信号分类、信号示意图 }\label{信号分类、信号示意图}
 \end{figure}
 
 \section{电路能量处理}
@@ -652,12 +660,12 @@ $n$ 节点 $p$ 支路的电路含有 $p-n+1$ 个独立的回路方程（即最�
 \begin{figure}[H]\centering
 \begin{subfigure}[t]{0.46\textwidth}\centering
     \includegraphics[height=125pt]{assets/1,2/平衡电桥.drawio.pdf}
-    \caption{\bfseries 平衡电桥 }
+    \caption{ 平衡电桥 }
 \end{subfigure}\begin{subfigure}[t]{0.54\textwidth}\centering
     \includegraphics[height=125pt]{assets/1,2/YDelta等效变换.drawio.pdf}
-    \caption{\bfseries Y-$\Delta$ 等效变换 }
+    \caption{ Y-$\Delta$ 等效变换 }
 \end{subfigure}
-\caption{\bfseries 平衡电桥与Y-Delta等效变换 }\label{平衡电桥与Y-Delta等效变换}
+\caption{ 平衡电桥与Y-Delta等效变换 }\label{平衡电桥与Y-Delta等效变换}
 \end{figure}
 
 \subsection{电源等效变换}
@@ -689,12 +697,12 @@ U_S = I_SR_S\ \  \text{或}\ \  I_S = \frac{U_S}{R_S}
 \begin{figure}[H]\centering
 \begin{subfigure}[t]{0.53\textwidth}\centering
     \includegraphics[height=120pt]{assets/1,2/独立源等效.drawio.pdf}
-    \caption{\bfseries 实际独立源等效变换、独立电流源串联 }
+    \caption{ 实际独立源等效变换、独立电流源串联 }
 \end{subfigure}\begin{subfigure}[t]{0.47\textwidth}\centering
     \includegraphics[height=120pt]{assets/1,2/独立电流源并联.drawio.pdf}
-    \caption{\bfseries 独立电流源串联 }
+    \caption{ 独立电流源串联 }
 \end{subfigure}
-\caption{\bfseries 实际独立源等效变换、独立电流源串联 }\label{实际独立源等效变换、独立电流源串联}
+\caption{ 实际独立源等效变换、独立电流源串联 }\label{实际独立源等效变换、独立电流源串联}
 \end{figure}
 
 
@@ -864,12 +872,12 @@ u_i - iR_1 = u_1,\quad u_1 - iR_f = -Au_1 \Longrightarrow I =(1+A) \frac{u_1}{R_
 \begin{figure}[H]\centering
     \begin{subfigure}[t]{0.37\textwidth}\centering
         \includegraphics[height=90pt]{assets/1,2/同相比例放大器.png}
-        \caption{\bfseries 同相比例放大器}
+        \caption{ 同相比例放大器}
     \end{subfigure}\begin{subfigure}[t]{0.37\textwidth}\centering
         \includegraphics[height=90pt]{assets/1,2/反向比例放大器.png}
-        \caption{\bfseries 反向比例放大器}
+        \caption{ 反向比例放大器}
     \end{subfigure}
-    \caption{\bfseries 比例放大器}
+    \caption{ 比例放大器}
 \end{figure}
 
 \begin{definition}[同相比例放大器]
@@ -894,12 +902,12 @@ u_i - iR_1 = u_1,\quad u_1 - iR_f = -Au_1 \Longrightarrow I =(1+A) \frac{u_1}{R_
 \begin{figure}[H]\centering
     \begin{subfigure}[t]{0.37\textwidth}\centering
         \includegraphics[height=90pt]{assets/1,2/反相加法器.png}
-        \caption{\bfseries 反相加法器}
+        \caption{ 反相加法器}
     \end{subfigure}\begin{subfigure}[t]{0.37\textwidth}\centering
         \includegraphics[height=90pt]{assets/1,2/减法器.png}
-        \caption{\bfseries 减法器}
+        \caption{ 减法器}
     \end{subfigure}
-    \caption{\bfseries 反相加法器与减法器}
+    \caption{ 反相加法器与减法器}
 \end{figure}
 
 
@@ -925,12 +933,12 @@ u_i - iR_1 = u_1,\quad u_1 - iR_f = -Au_1 \Longrightarrow I =(1+A) \frac{u_1}{R_
 \begin{figure}[H]\centering
 \begin{subfigure}[t]{0.37\textwidth}\centering
     \includegraphics[height=95pt]{assets/1,2/压控电流源.png}
-    \caption{\bfseries 压控电流源 VCCS}
+    \caption{ 压控电流源 VCCS}
 \end{subfigure}\begin{subfigure}[t]{0.37\textwidth}\centering
     \includegraphics[height=95pt]{assets/1,2/负电阻.png}
-    \caption{\bfseries  负电阻}
+    \caption{  负电阻}
 \end{subfigure}
-\caption{\bfseries 压控电流源 VCCS 和负电阻 }
+\caption{ 压控电流源 VCCS 和负电阻 }
 \end{figure}
 
 
@@ -965,12 +973,12 @@ u_i - iR_1 = u_1,\quad u_1 - iR_f = -Au_1 \Longrightarrow I =(1+A) \frac{u_1}{R_
 \begin{figure}[H]\centering
 \begin{subfigure}[t]{0.49\textwidth}\centering
     \includegraphics[height=140pt]{assets/1,2/线性运算器.png}
-    \caption{\bfseries 线性运算器电路图 }
+    \caption{ 线性运算器电路图 }
 \end{subfigure}\begin{subfigure}[t]{0.49\textwidth}\centering
     \includegraphics[height=140pt]{assets/1,2/线性运算器接线端.png}
-    \caption{\bfseries 接线端示意图 }
+    \caption{ 接线端示意图 }
 \end{subfigure}
-\caption{\bfseries 自设计线性运算器 }\label{自设计线性运算器}
+\caption{ 自设计线性运算器 }\label{自设计线性运算器}
 \end{figure}
 
 
@@ -1151,12 +1159,12 @@ u_o =
 \newpage
 \begin{figure}[H]\centering
 \includegraphics[width=\textwidth]{assets/1,2/二端口网络.jpg}
-\caption{\bfseries 二端口相关概念}\label{二端口相关概念}
+\caption{ 二端口相关概念}\label{二端口相关概念}
 \end{figure}
 
 \begin{figure}[H]\centering
 \includegraphics[width=\textwidth]{assets/1,2/image (9).jpg}
-\caption{\bfseries 参数矩阵间的关系与等效电路}\label{参数矩阵间的关系与等效电路}
+\caption{ 参数矩阵间的关系与等效电路}\label{参数矩阵间的关系与等效电路}
 \end{figure}
 
 \subsection{二端口的常见联接方式}
@@ -1182,34 +1190,34 @@ u_o =
 \begin{figure}[H]\centering
 \begin{subfigure}[t]{0.42\textwidth}\centering
     \includegraphics[height=60pt]{assets/2/级联.png}
-    \caption{\bfseries 级联 }
+    \caption{ 级联 }
 \end{subfigure}\begin{subfigure}[t]{0.58\textwidth}\centering
     \includegraphics[height=60pt]{assets/2/负级联.png}
-    \caption{\bfseries 负级联 }
+    \caption{ 负级联 }
 \end{subfigure}
-\caption{\bfseries 二端口级联、负级联}
+\caption{ 二端口级联、负级联}
 \end{figure}
 
 \begin{figure}[H]\centering
 \begin{subfigure}[t]{0.46\textwidth}\centering
     \includegraphics[height=120pt]{assets/2/串联.png}
-    \caption{\bfseries 串联 }
+    \caption{ 串联 }
 \end{subfigure}\begin{subfigure}[t]{0.54\textwidth}\centering
     \includegraphics[height=120pt]{assets/2/并联.png}
-    \caption{\bfseries 并联 }
+    \caption{ 并联 }
 \end{subfigure}
-\caption{\bfseries 二端口串联、并联 }
+\caption{ 二端口串联、并联 }
 \end{figure}
 
 \begin{figure}[H]\centering
 \begin{subfigure}[t]{0.5\textwidth}\centering
     \includegraphics[height=100pt]{assets/2/串并联.png}
-    \caption{\bfseries 串并联 }
+    \caption{ 串并联 }
 \end{subfigure}\begin{subfigure}[t]{0.5\textwidth}\centering
     \includegraphics[height=100pt]{assets/2/并串联.png}
-    \caption{\bfseries 并串联 }
+    \caption{ 并串联 }
 \end{subfigure}
-\caption{\bfseries 二端口串并联、并串联 }
+\caption{ 二端口串并联、并串联 }
 \end{figure}
 
 \subsection{参数矩阵间的转换与等效电路}
@@ -1284,7 +1292,7 @@ MOSFET，是指 Metal Oxide Semiconductor Field Effect Transistor，它是数字
 \end{minipage}\hfill\begin{minipage}{0.53\columnwidth}
     \begin{figure}[H]\centering
         \includegraphics[width=\columnwidth]{assets/2/MOS管大全.pdf}
-        \caption{\bfseries MOSFET 电路符号（ANSI 标准）与简化符号 }\label{}
+        \caption{ MOSFET 电路符号（ANSI 标准）与简化符号 }\label{}
     \end{figure}
 \end{minipage}\end{center}
 
@@ -1323,12 +1331,12 @@ i_{\text{DS}} =
 \begin{figure}[H]\centering
 \begin{subfigure}[t]{0.67\textwidth}\centering
     \includegraphics[height=135pt]{assets/2/MOS管外特性.pdf}
-    \caption{\bfseries $i_{\text{DS}} = i_{\text{DS}}(u_{\text{DS}}, u_{GS})$ 的函数图像 }
+    \caption{ $i_{\text{DS}} = i_{\text{DS}}(u_{\text{DS}}, u_{GS})$ 的函数图像 }
 \end{subfigure}\begin{subfigure}[t]{0.33\textwidth}\centering
     \includegraphics[height=135pt]{assets/2/MOS管外特性 (2).pdf}
-    \caption{\bfseries 在给定 $U_{GS}$ 下 $i_{\text{DS}} = i_{\text{DS}}(u_{\text{DS}})$ 的函数图像 }
+    \caption{ 在给定 $U_{GS}$ 下 $i_{\text{DS}} = i_{\text{DS}}(u_{\text{DS}})$ 的函数图像 }
 \end{subfigure}
-\caption{\bfseries N 沟道增强型 MOSFET 的 $i_{\text{DS}}$ 电流特性 }\label{MOS 管的 iDS 电流特性}
+\caption{ N 沟道增强型 MOSFET 的 $i_{\text{DS}}$ 电流特性 }\label{MOS 管的 iDS 电流特性}
 \end{figure}
 
 \subsection{MOSFET 等效电路}
@@ -1336,7 +1344,7 @@ i_{\text{DS}} =
 依 MOS 管的外特性，可分为三个区，截止区、线性区和恒流区，分别对应三个等效电路，如下图所示：
 \begin{figure}[H]\centering
 \includegraphics[width=0.63\textwidth]{assets/2/MOS管等效电路.png}
-\caption{\bfseries MOS 管等效电路}\label{MOS管等效电路}
+\caption{ MOS 管等效电路}\label{MOS管等效电路}
 \end{figure}
 
 事实上，MOS 管上下端连接负载（例如灯泡）时，在上方连接和在下方连接会有不同的效果，具体例子详见 \href{https://www.zhihu.com/question/34634572/answer/3421289786}{知乎: 为什么一般用 P-MOS 做上管，N-MOS 做下管}。
@@ -1372,13 +1380,13 @@ i_{\text{DS}} =
 \begin{figure}[H]\centering
 \begin{subfigure}[t]{0.7\columnwidth}\centering
     \includegraphics[height=90pt]{assets/2/逻辑门.png}
-    \caption{\bfseries 几种常见的逻辑门 }
+    \caption{ 几种常见的逻辑门 }
 \end{subfigure}\hfill
 \begin{subfigure}[t]{0.3\columnwidth}\centering
     \includesvg[height=90pt]{assets/2/逻辑门关系.drawio.svg}
-    \caption{\bfseries 逻辑门之间的关系 }
+    \caption{ 逻辑门之间的关系 }
 \end{subfigure}
-\caption{\bfseries 逻辑门 }\label{逻辑门}
+\caption{ 逻辑门 }\label{逻辑门}
 \end{figure}
 
 \subsection{数字信号的运算}
@@ -1413,61 +1421,61 @@ i_{\text{DS}} =
 
 可以用 N-E-MOS（N 沟道增强型 MOS 管，N-Channel Enhancement-Type MOSFET）、电源、电阻构成三种基本逻辑门，如图 \ref{由 N-MOS 构成三种基本逻辑门}，但是它们的静态功率不为零。现实中广泛应用的是由 CMOS (Complementary Metal-Oxide-Semiconductor Transistor) 构成的基本逻辑门，如图 \ref{由 C-MOS 构成三种基本逻辑门} 所示，其中蓝色指 N-MOS，红色指 P-MOS。在这些基本门的结构上，相应地增加 MOS 管串联、并联的数量，可以实现 $n$ 输入的基本逻辑门。
 
-CMOS 由一个 NMOS 和一个 PMOS 构成，无论输入是 0 或 1，都是一个 MOS 管导通，另一个截止（断开），因此静态功率为 0。实际生产中，CMOS 是单独的一个元件，内部已经集成了 NMOS 和 PMOS。
+CMOS 由一个 N-MOS 和一个 PMOS 构成，无论输入是 0 或 1，都是一个 MOS 管导通，另一个截止（断开），因此静态功率为 0。实际生产中，CMOS 是单独的一个元件，内部已经集成了 N-MOS 和 PMOS。
 
 %\begin{figure}[H]\centering
 %\begin{subfigure}[t]{0.33\columnwidth}\centering
 %    \includegraphics[height=125pt]{assets/2/反相器.pdf}
-%    \caption{\bfseries 反相器（CMOS） }
+%    \caption{ 反相器（CMOS） }
 %\end{subfigure}\hfill
 %\begin{subfigure}[t]{0.33\columnwidth}\centering
 %    \includegraphics[height=125pt]{assets/2/与非门.pdf}
-%    \caption{\bfseries 与非门 }
+%    \caption{ 与非门 }
 %\end{subfigure}
 %\begin{subfigure}[t]{0.33\columnwidth}\centering
 %    \includegraphics[height=125pt]{assets/2/或非门.pdf}
-%    \caption{\bfseries 或非门 }
+%    \caption{ 或非门 }
 %\end{subfigure}
-%\caption{\bfseries 基本逻辑门 }\label{基本逻辑门}
+%\caption{ 基本逻辑门 }\label{基本逻辑门}
 %\end{figure}
 
 \begin{figure}[H]\centering
 \begin{subfigure}[t]{0.33\columnwidth}\centering
     \includegraphics[height=120pt]{assets/2/NMOS NOT.pdf}
-    \caption{\bfseries N-MOS NOT }
+    \caption{ N-MOS NOT }
 \end{subfigure}\hfill
 \begin{subfigure}[t]{0.33\columnwidth}\centering
     \includegraphics[height=120pt]{assets/2/NMOS NOR.pdf}
-    \caption{\bfseries N-MOS NOR }
+    \caption{ N-MOS NOR }
 \end{subfigure}
 \begin{subfigure}[t]{0.33\columnwidth}\centering
     \includegraphics[height=120pt]{assets/2/NMOS NAND.pdf}
-    \caption{\bfseries N-MOS NAND }
+    \caption{ N-MOS NAND }
 \end{subfigure}
-\caption{\bfseries 由 N-MOS 构成三种基本逻辑门 }\label{由 N-MOS 构成三种基本逻辑门}
+\caption{ 由 N-MOS 构成三种基本逻辑门 }\label{由 N-MOS 构成三种基本逻辑门}
 \end{figure}
 
 \begin{figure}[H]\centering
     \begin{subfigure}[t]{0.33\columnwidth}\centering
         \includegraphics[height=120pt]{assets/2/CMOS NOT.pdf}
-        \caption{\bfseries C-MOS NOT }
+        \caption{ C-MOS NOT }
     \end{subfigure}\hfill
     \begin{subfigure}[t]{0.33\columnwidth}\centering
         \includegraphics[height=120pt]{assets/2/CMOS NOR.pdf}
-        \caption{\bfseries C-MOS NOR }
+        \caption{ C-MOS NOR }
     \end{subfigure}
     \begin{subfigure}[t]{0.33\columnwidth}\centering
         \includegraphics[height=120pt]{assets/2/CMOS NAND.pdf}
-        \caption{\bfseries C-MOS NAND }
+        \caption{ C-MOS NAND }
     \end{subfigure}
-    \caption{\bfseries 由 C-MOS 构成三种基本逻辑门 }\label{由 C-MOS 构成三种基本逻辑门}
+    \caption{ 由 C-MOS 构成三种基本逻辑门 }\label{由 C-MOS 构成三种基本逻辑门}
 \end{figure}
 
 为了方便参考，我们再给出 CMOS XOR 的电路图，如图 \ref{CMOS XOR}，其静态功率为 0。
 
 \begin{figure}[H]\centering
 \includegraphics[width=0.42\columnwidth]{assets/2/CMOS XOR.pdf}
-\caption{\bfseries CMOS XOR }\label{CMOS XOR}
+\caption{ CMOS XOR }\label{CMOS XOR}
 \end{figure}
 
 需要指出，上面的门电路只是几个例子，现实中实际使用的门电路可能比它们复杂得多，有时也用二极管和三极管来构成门电路，具体的例子见 \href{https://www.zhihu.com/question/36577129/answer/68096454}{知乎：怎样用电路符号表示异或门}。反相器 NOT 的功耗与其它特性可参考 \href{https://blog.csdn.net/vivid117/article/details/100083567}{数字电路基础知识：反相器（噪声容限、VTC、转换时间、速度的影响因素、传播延时等）}。
@@ -1497,25 +1505,25 @@ C = A \cdot B,\quad S = (A + B)\cdot \overline{C} = (A + B)\cdot \overline{(A \c
 \begin{figure}[H]\centering
 \begin{subfigure}[t]{0.5\columnwidth}\centering
     \includegraphics[height=80pt]{assets/2/NMOS 半加器数字电路.pdf}
-    \caption{\bfseries N-MOS HA 数字电路}
+    \caption{ N-MOS HA 数字电路}
 \end{subfigure}\hfill
 \begin{subfigure}[t]{0.5\columnwidth}\centering
     \includegraphics[height=80pt]{assets/2/CMOS 半加器数字电路.pdf}
-    \caption{\bfseries C-MOS HA 数字电路 }
+    \caption{ C-MOS HA 数字电路 }
 \end{subfigure}
-\caption{\bfseries 半加器 HA 数字电路 }\label{半加器 HA 数字电路}
+\caption{ 半加器 HA 数字电路 }\label{半加器 HA 数字电路}
 \end{figure}
 
 \begin{figure}[H]\centering
 \begin{subfigure}[t]{0.42\columnwidth}\centering
     \includegraphics[height=170pt]{assets/2/NMOS 半加器实际电路.pdf}
-    \caption{\bfseries N-MOS HA 实际电路 }
+    \caption{ N-MOS HA 实际电路 }
 \end{subfigure}\hfill
 \begin{subfigure}[t]{0.58\columnwidth}\centering
     \includegraphics[height=155pt]{assets/2/CMOS 半加器实际电路.pdf}
-    \caption{\bfseries C-MOS HA 实际电路 }
+    \caption{ C-MOS HA 实际电路 }
 \end{subfigure}
-\caption{\bfseries 半加器 HA 实际电路 }\label{半加器 HA 实际电路}
+\caption{ 半加器 HA 实际电路 }\label{半加器 HA 实际电路}
 \end{figure}
 
 \subsection{全加器（三输入一位加法器）}
@@ -1533,7 +1541,7 @@ S = A \oplus B \oplus C
 
 \begin{figure}[H]\centering
 \includegraphics[width=0.65\columnwidth]{assets/2/全加器.pdf}
-\caption{\bfseries 全加器 FA}\label{全加器 FA}
+\caption{ 全加器 FA}\label{全加器 FA}
 \end{figure}
 
 
@@ -1545,7 +1553,7 @@ S = A \oplus B \oplus C
 
 \begin{figure}[H]\centering
 \includegraphics[width=0.9\columnwidth]{assets/2/四位加法器.pdf}
-\caption{\bfseries 四位加法器}\label{四位加法器}
+\caption{ 四位加法器}\label{四位加法器}
 \end{figure}
 
 
@@ -1663,33 +1671,57 @@ $p=0$ 即没有无伴电流源时，可列出回路电流法的标准方程\foot
     \sum \hat{u}_k \cdot i_k = \hat{u}_1 i_1 + \hat{u}_2 i_2 + \cdots + \hat{u}_n i_n = 0
     \end{equation}
 \end{BlockTheorem}
-特勒根定理是由基尔霍夫定律直接导出的，因此适用于任意电路。特别地，作为常见的情况，对{\color{red} 仅含电阻的二端口}（不要求电阻线性）有：
+特勒根定理是由基尔霍夫定律直接导出的，因此适用于任意电路。特别地，作为常见的情况，对{\color{red} 纯电阻网络}（不要求电阻线性）有：
 
-\noindent
+将给定电路的支路（共 $b$ 支）分为外部（$1 \sim b_0$）和内部支路（$b_0 + 1 \sim b$），则特勒根定理可表示为：
 \begin{equation}
-\sum u_k \cdot \hat{i}_k = \sum \hat{u}_k \cdot i_k 
+\sum_{k=1}^{b_0} u_k \cdot \hat{i}_k + \boxed{\sum_{k=b_0+1}^{b} u_k \cdot \hat{i}_k} = 0
+,\quad 
+\sum_{k=1}^{b_0} \hat{u}_k \cdot i_k + \boxed{\sum_{k=b_0+1}^{b} \hat{u}_k \cdot i_k} = 0
 \end{equation}
+方框圈出的部分是内部项，只有在证明了这两项相等时（例如 {\color{red} 内部网络是纯电阻电路}），才可得到常用结论：
+\begin{equation}
+\sum_{k=1}^{b_0} u_k \cdot \hat{i}_k = \sum_{k=1}^{b_0} \hat{u}_k \cdot i_k
+\end{equation}
+
 
 \section{互易定理}
 
-\begin{BlockTheorem}[互易定理，Reciprocal Theorem]\label{互易定理}
-给定一个 {\color{red} 仅含有线性电阻}的二端口。互易定理的第一种形式表明，依次在二端口两端接入电压源激励 $u_{s1}$ 和 $u_{s2}$，未接入激励的端口短路，依次有信号电流 $i_1$ 和 $i_2$，则前后有关系：
+互易定理共有三种形式，分别对应了纯线性电阻二端口的 $\boldsymbol{G}$ 参数互易、$\boldsymbol{R}$ 参数互易和 $\boldsymbol{H}$ 参数互易，分别对应 $\boldsymbol{R} = \boldsymbol{R}^T$，$\boldsymbol{G} = \boldsymbol{G}^T$ 和 $H_{12} + H_{21} = 0$。特别注意，互易定理仅适用于 {\color{red} 只含线性电阻的二端口}，也即纯线性电阻二端口。
+
+
+\begin{BlockTheorem}[互易定理 Ⅰ]\label{互易定理 Ⅰ}
+对任意一个仅含线性电阻的二端口，在 11' 端口接入电压激励 $u_{s1}$ 时得到 22' 端口的短路电流为 $i_2$，在 22' 端口接入电压激励 $u_{s2}$ 时得到 11' 端口的短路电流为 $i_1$，则有：
 \begin{equation}
-    u_{s1}i_2 = u_{s2}i_1
+\frac{i_2}{u_{s1}} = \frac{i_1}{u_{s2}} \Longleftrightarrow u_1 i_{1} = u_2 i_{2}
 \end{equation}
-互易定理的第二种形式表明，依次在二端口两端接入电流源激励 $i_{s1}$ 和 $i_{s2}$，未接入激励的端口开路，依次有信号电压 $u_1$ 和 $u_2$，则前后有关系：
-\begin{equation}
-    u_1i_{s2} = u_2i_{s1}
-\end{equation}
+特别地，当 $u_{s1} = u_{s2}$ 时，有 $i_2 = i_1$，即交换两端口激励位置，得到的响应电流不变。
 \end{BlockTheorem}
 
-互易定理是仅含线性电阻的电路 $\boldsymbol{R}$ 参数与 $\boldsymbol{G}$ 参数互易的结果（这要求 $\boldsymbol{R} = \boldsymbol{R}^T$，$\boldsymbol{G} = \boldsymbol{G}^T$）。特别地，对于常用的情况，交换激励位置而大小不变，则得到的信号也交换位置而大小不变。
+\begin{BlockTheorem}[互易定理 Ⅱ]\label{互易定理 Ⅱ}
+对任意一个仅含线性电阻的二端口，在 11' 端口接入电流激励 $i_{s1}$ 时得到 22' 端口的开路电压为 $u_2$，在 22' 端口接入电流激励 $i_{s2}$ 时得到 11' 端口的开路电压为 $u_1$，则有：
+\begin{equation}
+\frac{u_2}{i_{s1}} = \frac{u_1}{i_{s2}} \Longleftrightarrow u_{1} i_1 = u_{2} i_2
+\end{equation}
+特别地，当 $i_{s1} = i_{s2}$ 时，有 $u_2 = u_1$，即交换两端口激励位置，得到的响应电压不变。
+\end{BlockTheorem}
 
+\begin{BlockTheorem}[互易定理 Ⅲ]\label{互易定理 Ⅲ}
+    对任意一个仅含线性电阻的二端口，在 11' 端口接入电流激励 $i_{s1}$ 时得到 22' 端口的开路电压为 $u_2$，在 22' 端口接入电压激励 $u_{s2}$ 时得到 11' 端口的短路电流为 $i_1$，则有：
+    \begin{equation}
+        \frac{i_{s1}}{i_2} = \frac{u_{s2}}{u_{1}} \Longleftrightarrow u_{1} i_1 = u_{2} i_2
+    \end{equation}
+\end{BlockTheorem}
+
+总的来讲，无论是哪种形式，当激励为电流源时，另一端响应是开路电压；当激励为电压源时，另一端响应为短路电流。并且总有 $u_1i_1 = u_2 i_2$。需要特别注意的是，在 Ⅰ、Ⅱ 两种情况，只要统一规定了正方向（例如电流向上为正，电压上正下负），则总有 $u_1i_1 = u_2 i_2$ 成立。而在情况 Ⅲ，两个电流的 {\color{red} 正方向必须相反}，这体现在 $H_{12} = - H_{21}$ 的负号上。
 
 
 \section{对偶电路和对偶原理}
 
 \section{定理适用范围总结}
+
+
+在下表中，“任意电路”指可非线性、非时变电路；“线性电路”指仅含线性元件（包括但不限于线性电阻、线性受控源）和独立源的电路；“线性电阻电路”指仅含线性电阻、线性受控源和独立源的电路；“纯电阻网络”指仅含电阻的网络，电阻可非线性；“纯线性电阻二端口”指仅含线性电阻的二端口。
 
 \begin{table}[H]\centering
     %\renewcommand{\arraystretch}{1.5} % 调整行间距为 1.5 倍
@@ -1699,18 +1731,19 @@ $p=0$ 即没有无伴电流源时，可列出回路电流法的标准方程\foot
 \begin{tabular}{cccccccccc}\toprule
     定理 & 范围  \\
     \midrule
-    节点电压法、回路电流法 &线性电阻电路（线性电阻、线性受控源、独立电源） \\
-    替代定理 & 任意电路（可非线性、非时变） \\
-    叠加定理、齐性定理 & 线性电路（线性元件、独立电源） \\
-    戴维南定理、诺顿定理 & 线性电阻电路（线性电阻、线性受控源、独立电源）\\
-    特勒根定理 & 任意电路（可非线性、非时变） \\
-    互易定理 & 线性电路（线性元件、独立电源） \\
+    节点电压法、回路电流法 &线性电阻电路 \\
+    替代定理 & 任意电路 \\
+    叠加定理、齐性定理 & 线性电路 \\
+    戴维南定理、诺顿定理 & 线性电阻电路\\
+    特勒根定理 & 任意电路 \\
+    特勒根定理应用 & {\color{red} 纯电阻网络} \\
+    互易定理 & 线性电路 \\
+    互易定理的应用 & {\color{red} 纯线性电阻二端口} \\
     对偶原理 &  \\
     \bottomrule
 \end{tabular}
 \end{table}
 
-线性元件包括但不限于线性电阻和线性受控源
 
 
 

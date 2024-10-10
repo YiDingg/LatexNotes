@@ -201,7 +201,11 @@
 \usepackage{caption}    % 图注、表注
     \captionsetup[figure]{name=图}  
     \captionsetup[table]{name=表}
-    \captionsetup{labelfont=bf, font=small}
+    \captionsetup{
+            labelfont=bf, % 设置标签为粗体
+            textfont=bf,  % 设置文本为粗体
+            font=small  
+        }
 
 % 文章默认字体设置
     \usepackage{fontspec}   % 宏包：字体设置
@@ -538,7 +542,7 @@ CCD杨氏弹性模量测量仪的主要技术指标有：
 % \usepackage{longtable}
 % Note: It may be necessary to compile the document several times to get a multi-page table to line up properly
 \begin{longtable}[c]{ccc}
-    \caption{\bfseries Create Latex Tables Online 示例}
+    \caption{ Create Latex Tables Online 示例}
     \label{tab:my-table}\\
     \toprule
     表头& 表头 & 表头 \\* \midrule

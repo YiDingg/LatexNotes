@@ -222,7 +222,11 @@
     \usepackage{caption}    % 图注、表注
         \captionsetup[figure]{name=图}  
         \captionsetup[table]{name=表}
-        \captionsetup{labelfont=bf, font=small}
+        \captionsetup{
+            labelfont=bf, % 设置标签为粗体
+            textfont=bf,  % 设置文本为粗体
+            font=small  
+        }
     \usepackage{float}     % 图表位置浮动设置 
 
 % 圆圈序号自定义
@@ -308,12 +312,14 @@
     \thispagestyle{fancy}   % 显示页码、页眉等
 
 % 序言
-    \begin{cnabstract}\normalsize 
-        本文为笔者本科时的“数学物理方法”课程笔记（Notes of Mathematical Physics Methods, 2024.9 -- 2025.1）。课程信息、作业与相关资料可以在笔者的个人网站上找到: \href{https://yidingg.github.io/YiDingg/\#/Notes/Math/MathematicalPhysicsMathods}{Notes > Math > Mathematical Physics Mathods (https://yidingg.github.io/YiDingg/\#/Notes/Math/MathematicalPhysicsMathods)}，参考文献会在课程结束后统一上传到网址 {\color{red}（待更新）}。
-    
-        由于个人学识浅陋，认识有限，文中难免有不妥甚至错误之处，望读者不吝指正。可以将错误发送到我的邮箱 {\color{cyan}\ dingyi233@mails.ucas.ac.cn}，也可以到笔者的 \href{https://github.com/YiDingg/LatexNotes}{GitHub 笔记库 (https://github.com/YiDingg/LatexNotes)} 提 issue，衷心感谢。
-    \end{cnabstract}
-    \addcontentsline{toc}{chapter}{序言} % 手动添加为目录
+\begin{cnabstract}\normalsize 
+    本文为笔者本科时的“数学物理方法”课程笔记（Notes of Mathematical Physics Methods, 2024.9 - 2025.1）。
+
+    读者可到网址 \href{https://www.123865.com/s/0y0pTd-pGKj3}{https://www.123865.com/s/0y0pTd-pGKj3} 下载全部资料，也可在笔者的个人网站上找到课程信息、作业答案和其他相关资料: 
+    \href{https://yidingg.github.io/YiDingg/\#/Notes/Math/MathematicalPhysicsMathods}{https://yidingg.github.io/YiDingg/\#/Notes/Math/MathematicalPhysicsMathods}。
+
+    由于个人学识浅陋，认识有限，文中难免有不妥甚至错误之处，望读者不吝指正。读者可以将错误发送到我的邮箱 {\color{blue}\ dingyi233@mails.ucas.ac.cn}，也可以到笔者的 \href{https://github.com/YiDingg/LatexNotes}{GitHub (https://github.com/YiDingg/LatexNotes)} 上提 issue，衷心感谢。
+\end{cnabstract}
 
 % 目录
     \setcounter{tocdepth}{2}                % 目录深度（为1时显示到section）
@@ -445,12 +451,12 @@
 \begin{figure}[H]\centering
 \begin{subfigure}[t]{0.49\textwidth}\centering
     \includegraphics[height=220pt]{assets/1,2/z^2.pdf}
-    \caption{\bfseries $f(z) = z^2$ }
+    \caption{ $f(z) = z^2$ }
 \end{subfigure}\begin{subfigure}[t]{0.49\textwidth}\centering
     \includegraphics[height=220pt]{assets/1,2/zRez.pdf}
-    \caption{\bfseries $f(z) = z\cdot \Re z$ }
+    \caption{ $f(z) = z\cdot \Re z$ }
 \end{subfigure}
-\caption{\bfseries 复变函数可视化 }\label{可视化1}
+\caption{ 复变函数可视化 }\label{可视化1}
 \end{figure}
 
 图 \ref{可视化2} (a) 是 $f(z) = e^{iz}$，图 \ref{可视化2} (b) 是 $f(z) = cos(z)$。
@@ -458,12 +464,12 @@
 \begin{figure}[H]\centering
     \begin{subfigure}[t]{0.49\textwidth}\centering
         \includegraphics[height=220pt]{assets/1,2/e^(iz).pdf}
-        \caption{\bfseries $f(z) = e^{iz}$ }
+        \caption{ $f(z) = e^{iz}$ }
     \end{subfigure}\begin{subfigure}[t]{0.49\textwidth}\centering
         \includegraphics[height=220pt]{assets/1,2/cos(iz).pdf}
-        \caption{\bfseries $f(z) = cos(z)$ }
+        \caption{ $f(z) = cos(z)$ }
     \end{subfigure}
-    \caption{\bfseries 复变函数可视化 }\label{可视化2}
+    \caption{ 复变函数可视化 }\label{可视化2}
 \end{figure}
 
 \chapter{解析函数}\thispagestyle{fancy}
@@ -775,24 +781,24 @@ f(z) = \sqrt[k]{
 \begin{figure}[H]\centering
 \begin{subfigure}[t]{0.49\textwidth}\centering
     \includegraphics[height=210pt]{assets/1,2/e^z.pdf}
-    \caption{\bfseries $\boldsymbol{f(z) = e^z}$ }
+    \caption{ $\boldsymbol{f(z) = e^z}$ }
 \end{subfigure}\begin{subfigure}[t]{0.49\textwidth}\centering
     \includegraphics[height=210pt]{assets/1,2/cos z.pdf}
-    \caption{\bfseries $\boldsymbol{f(z) = \cos (z)}$ }
+    \caption{ $\boldsymbol{f(z) = \cos (z)}$ }
 \end{subfigure}
-\caption{\bfseries 单值复变函数可视化 }\label{可视化3}
+\caption{ 单值复变函数可视化 }\label{可视化3}
 \end{figure}
 
 
 \begin{figure}[H]\centering
     \begin{subfigure}[t]{0.49\textwidth}\centering
         \includegraphics[height=210pt]{assets/1,2/sqrt z.pdf}
-        \caption{\bfseries $\boldsymbol{f(z) = \sqrt{z} },\ \boldsymbol{\arg z \in [0, 2\pi]}$ 单值分支 }
+        \caption{ $\boldsymbol{f(z) = \sqrt{z} },\ \boldsymbol{\arg z \in [0, 2\pi]}$ 单值分支 }
     \end{subfigure}\begin{subfigure}[t]{0.49\textwidth}\centering
         \includegraphics[height=210pt]{assets/1,2/ln z.pdf}
-        \caption{\bfseries $\boldsymbol{f(z) = \Ln z},\ \boldsymbol{\arg z \in [0, 2\pi]}$ 单值分支  }
+        \caption{ $\boldsymbol{f(z) = \Ln z},\ \boldsymbol{\arg z \in [0, 2\pi]}$ 单值分支  }
     \end{subfigure}
-    \caption{\bfseries 多值复变函数可视化 }\label{可视化4}
+    \caption{ 多值复变函数可视化 }\label{可视化4}
 \end{figure}
 
 

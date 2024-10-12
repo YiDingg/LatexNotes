@@ -44,10 +44,25 @@
     \usepackage[UTF8]{ctex}     % 设置文档为中文语言
     \usepackage{hyperref}  % 宏包：自动生成超链接 (此宏包与标题中的数学环境冲突)
     \hypersetup{
+        % 超链接颜色设置
         colorlinks=true,    % false:边框链接 ; true:彩色链接
         citecolor={blue},    % 文献引用颜色
         linkcolor={blue},   % 目录 (我们在目录处单独设置)，公式，图表，脚注等内部链接颜色
-        urlcolor={orange},    % 网页 URL 链接颜色，包括 \href 中的 text
+        urlcolor={magenta},    % 网页 URL 链接颜色，包括 \href 中的 text
+        % pdf 相关设置
+        pdfauthor={丁毅},% PDF 作者
+        pdftitle={Notes of Principles of Electric Circuits},% PDF 标题
+        pdfproducer={LaTeX with hyperref}, % PDF 制作软件
+        pdfcreator={xelatex},       % PDF 创建者
+        pdfpagelayout=TwoColumn,    % 双栏布局
+        pdfstartview=FitH,          % 页面宽度适合窗口
+        %pdfpagemode=UseNone,       % 不显示书签 (默认会显示)
+        pdfpagemode=UseOutlines,    % 显示书签
+        pdfnewwindow=true,          % 在新窗口中打开链接
+        pdfencoding=auto,           % 自动编码
+        pdfborder={0 0 0},          % pdf 无边框
+        pdfhighlight=/I,            % 链接高亮样式
+        % magenta 洋红色
         % cyan 浅蓝色 
         % magenta 洋红色
         % yellow 黄色
@@ -322,7 +337,7 @@
 \begin{cnabstract}\normalsize 
 本文为笔者本科时的“电路原理”课程笔记（Notes of Principles of Electric Circuits, 2024.8 - 2025.1）。
 
-读者可到网址 \href{https://www.123865.com/s/0y0pTd-pGKj3}{https://www.123865.com/s/0y0pTd-pGKj3} 下载全部资料，也可在笔者的个人网站上找到课程信息、作业答案和其他相关资料: 
+读者可到网址 \href{https://www.123865.com/s/0y0pTd-pGKj3}{https://www.123865.com/s/0y0pTd-pGKj3} 下载相关资料，也可在笔者的个人网站上找到课程信息、作业答案等全部资料: 
 \href{https://yidingg.github.io/YiDingg/\#/Notes/MajorCourses/CircuitTheoryNotes}{https://yidingg.github.io/YiDingg/\#/Notes/MajorCourses/CircuitTheoryNotes}。
 
 由于个人学识浅陋，认识有限，文中难免有不妥甚至错误之处，望读者不吝指正。读者可以将错误发送到我的邮箱 {\color{blue}\ dingyi233@mails.ucas.ac.cn}，也可以到笔者的 \href{https://github.com/YiDingg/LatexNotes}{GitHub (https://github.com/YiDingg/LatexNotes)} 上提 issue，衷心感谢。
@@ -330,10 +345,19 @@
 \addcontentsline{toc}{chapter}{序言} % 手动添加为目录
 
 % 目录
-    \setcounter{tocdepth}{2}                % 目录深度（为1时显示到section）
-    \tableofcontents                        % 目录页
-    \addcontentsline{toc}{chapter}{目录}    % 手动添加此页为目录
-    \thispagestyle{fancy}                   % 显示页码、页眉等 
+    \setcounter{tocdepth}{2}    % 目录深度 (为 1 时显示到 section)
+    % 目录页
+        \tableofcontents
+        \addcontentsline{toc}{chapter}{目录}
+        \thispagestyle{fancy}                   % 显示页码、页眉等
+    % 插图页
+        %\cleardoublepage\listoffigures
+        %\addcontentsline{toc}{chapter}{插图}
+        %\thispagestyle{fancy}                   % 显示页码、页眉等
+    % 表格页
+        %\cleardoublepage\listoftables
+        %\addcontentsline{toc}{chapter}{表格}
+        %\thispagestyle{fancy}                   % 显示页码、页眉等 
 
 % 收尾工作
     \newpage    
@@ -384,7 +408,7 @@ u_{ab} = \frac{\mathrm{d} w_{ab}}{\mathrm{d}q},\ i_{ab} = \frac{\mathrm{d} q_{ab
 
 \begin{figure}[H]\centering
 \includegraphics[width=0.35\textwidth]{assets/1,2/端口.drawio.pdf}
-\caption{\textbf{端口示意图}}\label{端口示意图}
+\caption{端口示意图}\label{端口示意图}
 \end{figure}
 
 与外部电路有 $n$ 个端口相连的电路称为 $n$ 端口网络（n-port network）。
@@ -397,7 +421,7 @@ u_{ab} = \frac{\mathrm{d} w_{ab}}{\mathrm{d}q},\ i_{ab} = \frac{\mathrm{d} q_{ab
 \end{subfigure}\begin{subfigure}[t]{0.47\textwidth}\centering
     \includegraphics[height=160pt]{assets/1,2/3f5d73ec5ae9909ab42cd864852b0d72.jpg}
 \end{subfigure}
-\caption{ \textbf{部分常见电路元件} }\label{部分常见电路元件}
+\caption{部分常见电路元件}\label{部分常见电路元件}
 \end{figure}
 
 
@@ -507,7 +531,7 @@ p(t) = \frac{\mathrm{d}w}{\mathrm{d}t} = \frac{\mathrm{d}w}{\mathrm{d}q}\cdot\fr
 \end{minipage}\hfill\begin{minipage}{0.35\textwidth}
     \begin{figure}[H]\centering
         \includesvg[width=\textwidth]{assets/1,2/电路基本名词.drawio.svg}
-        \caption{\textbf{电路基本名词}}\label{电路基本名词}
+        \caption{电路基本名词}\label{电路基本名词}
     \end{figure}
 \end{minipage}\end{center}
 
@@ -530,7 +554,7 @@ p(t) = \frac{\mathrm{d}w}{\mathrm{d}t} = \frac{\mathrm{d}w}{\mathrm{d}q}\cdot\fr
 \end{equation}
 \begin{table}[H]\centering\small
     \setlength{\tabcolsep}{2mm} % 调整列间距
-    \caption{\textbf{常见材料的 0 \textdegree C 电阻率和温度系数 }}
+    \caption{常见材料的 0 \textdegree C 电阻率和温度系数}
     \label{常见材料的0度电阻率和温度系数}
     \resizebox{\linewidth}{!}{
         \begin{tabular}{cccccccccc}\toprule
@@ -596,7 +620,7 @@ i = I_{\mathrm{S}}\left(e^{\frac{u}{U_{\mathrm{TH}}}} - 1\right)
 
 \begin{figure}[H]\centering
 \includegraphics[width=0.7\textwidth]{assets/1,2/受控电源电路符号.drawio.pdf}
-\caption{\textbf{受控电源电路符号}}\label{受控电源电路符号}
+\caption{受控电源电路符号}\label{受控电源电路符号}
 \end{figure}
 
 图 \ref{受控电源电路符号} 中，控制量 $u_1$ 和 $i_1$ 分别是电路其它部分任意两点间的电压或电流；$\mu$ 是一个无量纲常数，称为电压放大倍数（转移电压比）；$r_m$ 是电阻量纲常数，称为转移电阻；$g_m$ 是电导量纲常数，称为转移电导；$\beta$ 是无量纲常数，称为电流放大倍数（转移电流比）。
@@ -732,7 +756,7 @@ P_L = P_L(R_L) =  \left(\frac{U_S}{R_S + R_L}\right)^2R_L, \ P_{L,\mathrm{max}} 
 
 \begin{figure}[H]\centering
 \includegraphics[width=0.5\textwidth]{assets/1,2/电阻与电源并联.drawio.pdf}
-\caption{\textbf{元件与电压源并联}}\label{元件与电压源并联}
+\caption{元件与电压源并联}\label{元件与电压源并联}
 \end{figure}
 
 例如，理想电压源 $U_s$ 的两端并联了一个电阻，对外等效结果是这个电阻不起作用。
@@ -752,7 +776,7 @@ P_L = P_L(R_L) =  \left(\frac{U_S}{R_S + R_L}\right)^2R_L, \ P_{L,\mathrm{max}} 
 在图 \ref{OPA 示意图} 中，OPA 的国标电路符号如图 (a) 所示，简化符号如图 (b) 所示，过去也惯用符号图 (c)。
 \begin{figure}[H]\centering
 \includegraphics[width=0.8\textwidth]{assets/1,2/OPA运放.drawio.pdf}
-\caption{\textbf{OPA 示意图}}\label{OPA 示意图}
+\caption{OPA 示意图}\label{OPA 示意图}
 \end{figure}
 
 其中，a 接线端称为反相输入端（inverting input），用 $u_-$ 表示；b 接线端称为同相输入端（noninverting input），用 $u_+$ 表示；o 接线端称为输出端（output），用 $u_o$ 表示; $V_{CC}$ supply voltage, working voltage），向 OPA 提供直流电压以保证其正常工作；接地端 ground 并非大地，而是电源 $V_{CC}$ 的公共参考零点；参数 $A$ 为开环放大倍数。需要注意，在图 \ref{OPA 示意图} (b) 中，因为省略了电源部分，所以包围 OPA 的封闭曲线不满足广义 KCL。
@@ -774,7 +798,7 @@ OPA 的主要电气参数包括：
 \begin{minipage}{0.31\textwidth}
     \begin{figure}[H]\centering
         \includegraphics[width=\textwidth]{assets/1,2/image (49).jpg}
-        \caption{\textbf{OPA 输入输出曲线}}\label{OPA 输入输出曲线}
+        \caption{OPA 输入输出曲线}\label{OPA 输入输出曲线}
         \end{figure}
 \end{minipage}
 
@@ -782,7 +806,7 @@ OPA 的主要电气参数包括：
 
 \begin{figure}[H]\centering
 \includegraphics[width=0.7\textwidth]{assets/1,2/image (50).png}
-\caption{\textbf{OPA 的低频受控源模型}}\label{OPA 的低频受控源模型}
+\caption{OPA 的低频受控源模型}\label{OPA 的低频受控源模型}
 \end{figure}
 
 为了使 OPA 在多种场合可以正常使用，我们需要将一部分输出引回到输入，这种电路连接方式称为反馈（feedback）。将部分输出引到 $u_-$ 端，使得 $u_-$ 升高，进而抑制信号放大，可以构成负反馈；将部分输出引到 $u_+$ 端，使得 $u_+$ 升高，进而促进信号放大，可以构成正反馈。
@@ -803,7 +827,7 @@ u_i - iR_1 = u_1,\quad u_1 - iR_f = -Au_1 \Longrightarrow I =(1+A) \frac{u_1}{R_
 
 \begin{figure}[H]\centering
 \includegraphics[width=0.75\textwidth]{assets/1,2/image (51).png}
-\caption{\textbf{负反馈 OPA 电路}}\label{负反馈 OPA 电路}
+\caption{负反馈 OPA 电路}\label{负反馈 OPA 电路}
 \end{figure}
 
 
@@ -825,12 +849,12 @@ u_i - iR_1 = u_1,\quad u_1 - iR_f = -Au_1 \Longrightarrow I =(1+A) \frac{u_1}{R_
 \begin{center}\noindent\begin{minipage}{0.4\textwidth}
         \begin{figure}[H]\centering
             \includegraphics[height=100pt]{assets/1,2/4323bb51980c2d4d8e127dfa2e8110d0.png}
-            \caption{\textbf{IOPA 输入输出曲线}}\label{IOPA 输入输出曲线}
+            \caption{IOPA 输入输出曲线}\label{IOPA 输入输出曲线}
         \end{figure}
     \end{minipage}\begin{minipage}{0.49\textwidth}
         \begin{figure}[H]\centering
             \includegraphics[height=100pt]{assets/1,2/电压跟随器.png}
-            \caption{\textbf{电压跟随器}}\label{电压跟随器}
+            \caption{电压跟随器}\label{电压跟随器}
         \end{figure}
 \end{minipage}\end{center}
 
@@ -844,7 +868,7 @@ u_i - iR_1 = u_1,\quad u_1 - iR_f = -Au_1 \Longrightarrow I =(1+A) \frac{u_1}{R_
 
 \begin{table}[H]
     \centering
-    \caption{\textbf{常见的含 OPA 电路}}
+    \caption{常见的含 OPA 电路}
     \begin{tabular}{ccccc} 
     \toprule
     名称         & 输入电阻 $R_i$ & 输出电阻 $R_o$ & 输出电压 $u_o$ & 专门特性  \\
@@ -1120,7 +1144,7 @@ u_o =
 
 \begin{table}[H]\centering
 % \setlength{\tabcolsep}{1.5mm} % 调整列间距
-    \caption{\textbf{参数矩阵代表的意义}}
+    \caption{参数矩阵代表的意义}
     \label{参数矩阵代表的意义}
 \begin{tabular}{cccccccccc}\toprule
     因变量& 自变量 & 参数矩阵 & 复参数名称\\
@@ -1176,7 +1200,7 @@ u_o =
 \begin{table}[H]\centering
     %\renewcommand{\arraystretch}{1.5} % 调整行间距为 1.5 倍
     %\setlength{\tabcolsep}{1.5mm} % 调整列间距
-    \caption{\textbf{二端口的六种常见连接方式}}
+    \caption{二端口的六种常见连接方式}
     \label{二端口的六种常见连接方式}
 \begin{tabular}{cccccccccc}\toprule
     连接方式 & 参数矩阵 & 连接方式 & 参数矩阵 & 连接方式 & 参数矩阵\\
@@ -1260,7 +1284,7 @@ $\boldsymbol{G}$ 与 $\boldsymbol{R}$ 矩阵之间满足 $\boldsymbol{G}^{-1} = 
 \end{minipage}\hfill\begin{minipage}{0.39\columnwidth}
     \begin{figure}[H]\centering
         \includesvg[width=\columnwidth]{assets/2/H参数等效.svg}
-        \caption{\textbf{$\boldsymbol{H}$ 参数等效电路}}\label{H参数等效电路}
+        \caption{$H$ 参数等效电路}\label{H参数等效电路}
     \end{figure}
 \end{minipage}\end{center}
 
@@ -1271,18 +1295,6 @@ $\boldsymbol{G}$ 与 $\boldsymbol{R}$ 矩阵之间满足 $\boldsymbol{G}^{-1} = 
 \subsection{MOSFET 基本概念}
 
 MOSFET，是指 Metal Oxide Semiconductor Field Effect Transistor，它是数字电路的核心元素。小功率 FET 有 JFET、MOSFET，大功率 FET 有 VDMOS、IGBT 等，本课程主要面向 MOSFET。
-
-%后文所说的 MOS，除非特别说明，一般都指 N 沟道增强型 MOS 管（N-Channel Enhancement-Type MOSFET），名称应拆解为 N 沟道、增强型、MOS、FET，与 N 沟道对应的有 P 沟道（P-Channel），与增强型对应的有耗尽型（Depletion-Type），与 MOS 对应的有结型，与 FET 对应的是有 BJT（双极型三极管）。
-%\begin{center}\noindent\begin{minipage}{0.6\columnwidth}
-%    \hspace*{2em} 图 \ref{N-MOS 示意图} 是一个 N-MOS 的示意图（ANSI 标准），
-%    
-%    \hspace*{2em} 栅极 G 和源级 S 之间的电压 $u_{\text{GS}}$ 会对 VCR 产生影响，主要表现为 D-S 开路（称为截止区）或非开路。在非开路情况下（$u_{\text{GS}}$ 超过阈值电压），$u_{\text{DS}}$ 会影响通过的电流 $i_{\text{DS}}$。总而言之，MOS 管可视为一个非线性的 VCVS。
-%\end{minipage}\hfill\begin{minipage}{0.30\columnwidth}
-%    \begin{figure}[H]\centering
-%        \includesvg[width=\textwidth]{assets/1,2/MOS管符号.drawio.svg}
-%        \caption{\textbf{N-MOS 示意图}}\label{N-MOS 示意图}
-%    \end{figure}
-%\end{minipage}\end{center}
 
 
 \begin{center}\noindent\begin{minipage}{0.41\columnwidth}
@@ -1726,7 +1738,7 @@ $p=0$ 即没有无伴电流源时，可列出回路电流法的标准方程\foot
 \begin{table}[H]\centering
     %\renewcommand{\arraystretch}{1.5} % 调整行间距为 1.5 倍
     %\setlength{\tabcolsep}{1.5mm} % 调整列间距
-    \caption{\textbf{定理适用范围总结}}
+    \caption{定理适用范围总结}
     \label{定理适用范围总结}
 \begin{tabular}{cccccccccc}\toprule
     定理 & 范围  \\
@@ -2216,7 +2228,7 @@ $p=0$ 即没有无伴电流源时，可列出回路电流法的标准方程\foot
 
 \begin{multicols}{2}  
 \begin{table}[H]\centering
-\caption{\textbf{中英文对照表}}
+\caption{中英文对照表}
 \begin{tabular}{cccccccc}\toprule
     English & 中文 \\
     \midrule
@@ -2261,7 +2273,7 @@ $p=0$ 即没有无伴电流源时，可列出回路电流法的标准方程\foot
 \end{table}
 
 \begin{table}[H]\centering
-    \caption{\textbf{中英文对照表}}
+    \caption{中英文对照表}
     \begin{tabular}{cccccccc}\toprule
         English & 中文 \\
         \midrule

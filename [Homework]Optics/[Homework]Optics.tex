@@ -30,7 +30,7 @@
         colorlinks=true,    % false:边框链接 ; true:彩色链接
         citecolor={blue},    % 文献引用颜色
         linkcolor={blue},   % 目录 (我们在目录处单独设置)，公式，图表，脚注等内部链接颜色
-        urlcolor={orange},    % 网页 URL 链接颜色，包括 \href 中的 text
+        urlcolor={magenta},    % 网页 URL 链接颜色，包括 \href 中的 text
         % cyan 浅蓝色 
         % magenta 洋红色
         % yellow 黄色
@@ -669,8 +669,26 @@ k \in [5.2632,\ 10] \Longrightarrow k = 6,7,8,9,10 ,\quad \lambda = 400.0 \ \mat
 2 (n_f-1) d = N\lambda_0 \Longrightarrow n_f = \frac{N \lambda_0}{2d} + 1 = 1.0002798
 \end{equation}
 
+\section{有一谱线结构，谱线范围是 500 nm 至 501 nm，若 F-P 标准具 $d = 0.5 \ \mathrm{mm}$，可否用它来分析这一谱线结构？}
 
-
+波长的自由光谱宽度 $\left(\Delta\lambda\right)_{\text{fsr}}$、最小分辨率 $\left(\Delta\lambda\right)_{\min}$ 和极限分辨率 $\left(\Delta\lambda\right)_{\lim}$ 分别为：
+\begin{equation}
+    \left(\Delta\lambda\right)_{\text{fsr}} = \frac{\lambda_0^2}{2 n d}
+    ,\quad 
+    \left(\Delta\lambda\right)_{\min} = \frac{2\lambda_0}{\pi \sqrt{F}}
+    ,\quad 
+    \left(\Delta\lambda\right)_{\lim} = \frac{\lambda_0^2}{\pi n d \sqrt{F}}
+\end{equation}
+代入数据 $d = 0.5 \ \mathrm{mm}$，空气折射率近似 $n = 1$，并取能量反射率为典型值 $R = 0.90$，可以得到：
+\begin{equation}
+F = 80.0000 ,\quad 
+\left(\Delta\lambda\right)_{\text{fsr}} = 0.2505 \ \mathrm{nm}
+,\quad
+\left(\Delta\lambda\right)_{\min} = 0.0011 \ \mathrm{nm}
+,\quad 
+\left(\Delta\lambda\right)_{\lim} = 5.6382 \times 10^{-7} \ \mathrm{nm}
+\end{equation}
+而谱线宽度 $\Delta \lambda = 1 \ \mathrm{nm} > \left(\Delta\lambda\right)_{\text{fsr}}$，因此，无论光谱是连续谱还是分立谱，虽然可以观察到明显的、可被分辨的条纹，但会出现严重的条纹越级，因此不能用它来分析这一谱线结构。
 
 % --------------------------- 附录 --------------------------- %
 % >> ------------------------ 附录 ------------------------ << %
@@ -682,6 +700,7 @@ k \in [5.2632,\ 10] \Longrightarrow k = 6,7,8,9,10 ,\quad \lambda = 400.0 \ \mat
 \titlespacing*{\chapter}{0pt}{-25pt}{8pt} % 控制上方空白的大小
 % section 标题自定义设置 
 \titleformat{\section}[hang]{\normalfont\centering\Large\bfseries}{\thesection}{8pt}{}
+\lhead{附录 \thechapter}
 
 % 附录 A
 \chapter*{附录 A\hspace*{20pt}  Matlab 代码}\setcounter{chapter}{1} 

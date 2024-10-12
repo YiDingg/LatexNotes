@@ -39,7 +39,8 @@
         colorlinks=true,    % false:边框链接 ; true:彩色链接
         citecolor={blue},    % 文献引用颜色
         linkcolor={blue},   % 目录 (我们在目录处单独设置)，公式，图表，脚注等内部链接颜色
-        urlcolor={orange},    % 网页 URL 链接颜色，包括 \href 中的 text
+        urlcolor={magenta},    % 网页 URL 链接颜色，包括 \href 中的 text
+        % magenta 洋红色
         % cyan 浅蓝色 
         % magenta 洋红色
         % yellow 黄色
@@ -250,6 +251,7 @@
 
 % 其它设置
     % 脚注设置
+        \usepackage[perpage]{footmisc} % 每页脚注重新计数
         \renewcommand\thefootnote{\ding{\numexpr171+\value{footnote}}}
     % 参考文献引用设置
         \bibliographystyle{unsrt}   % 设置参考文献引用格式为unsrt
@@ -322,12 +324,12 @@
 
 由于个人学识浅陋，认识有限，文中难免有不妥甚至错误之处，望读者不吝指正。读者可以将错误发送到我的邮箱 {\color{blue}\ dingyi233@mails.ucas.ac.cn}，也可以到笔者的 \href{https://github.com/YiDingg/LatexNotes}{GitHub (https://github.com/YiDingg/LatexNotes)} 上提 issue，衷心感谢。
 
-在正式学习之前，建议先跳转至附录 A “波理论”部分，学习必要的前置知识（否则可能难以理解）。
+在正式学习之前，建议先跳转至“附录 A \ 波理论”部分，学习必要的前置知识（否则可能难以理解）。
 \end{cnabstract}
 \addcontentsline{toc}{chapter}{序言} % 手动添加为目录
 
 % 目录
-\setcounter{tocdepth}{1}                % 目录深度（chapter 下 为 1 时显示到section）
+\setcounter{tocdepth}{2}                % 目录深度（chapter 下 为 1 时显示到section）
 \tableofcontents                        % 目录页
 \addcontentsline{toc}{chapter}{目录}    % 手动添加此页为目录
 \thispagestyle{fancy}                   % 显示页码、页眉等 
@@ -1131,7 +1133,7 @@ E_B = \frac{B}{ r_2 } \cdot e^{i(-\omega t + k r_2  + \varepsilon_B)}\quad E_{B,
 
 \begin{figure}[H]\centering
     \begin{subfigure}[t]{0.49\columnwidth}\centering
-        \includegraphics[height=120pt]{assets/3/crop_pdf_66eff444a80a6_f690229642a2b8bc66e9fbb05793266b_66eff43590e16.pdf}
+        \includegraphics[height=120pt]{assets/3/两球面波源或两柱面波源.pdf}
         \caption{ 两球面波源或两柱面波源 }
     \end{subfigure}\hfill
     \begin{subfigure}[t]{0.49\columnwidth}\centering
@@ -1452,7 +1454,7 @@ I(x, b) = \frac{I_{\text{max}}}{2b} \int_{-\frac{b}{2}}^{\frac{b}{2}} \left[ 1 +
 
 \section{分振幅干涉}
 
-\subsection{多光束薄膜干涉}
+\subsection{多光束薄膜干涉}\label{多光束薄膜干涉}
 
 %\begin{table}[H]\centering
 %    %\renewcommand{\arraystretch}{1.5} % 调整行间距为 1.5 倍
@@ -1540,7 +1542,7 @@ $T_{F-P} = T_{F-P}(F, \delta)$ 的图像如下所示\footnote{源码见附录 \r
 
 实际中常基于上面理论，设计出增透膜、增反膜等薄膜，实现光的选择性透射、反射。如果遇到，直接利用反射相位突变进行分析即可。
 
-更多有关多光束薄膜干涉（法布里-珀罗干涉仪 Fabry-Perot Interferometer）的内容见 \href{https://zhuanlan.zhihu.com/p/579184206}{Fabry-Perot Interferometer (https://zhuanlan.zhihu.com/p/579184206)}，以及 \href{https://zhuanlan.zhihu.com/p/453978087}{F-P干涉仪 (https://zhuanlan.zhihu.com/p/453978087)}。
+更多有关多光束薄膜干涉（法布里-珀罗干涉仪 Fabry-Perot Interferometer）的内容见 \href{https://zhuanlan.zhihu.com/p/579184206}{知乎: Fabry-Perot Interferometer}，以及 \href{https://zhuanlan.zhihu.com/p/453978087}{知乎: F-P干涉仪}。
 
 %不妨设入射光相位为 0，强度为 1，依据公式 \ref{对称前后的振幅与能量系数%变化}，在图中标出各光线的强度。$n_i < n_f$ 时，它们的相位如表 \ref{薄%膜干涉光线的相位1} 所示，$n_i > n_f$ 时，各光线相位如表 \ref{薄膜干涉%光线的相位2} 所示，其中“$A$ $s$” 指 $A$ 光 $s$ 分量的相位。
 
@@ -1650,7 +1652,7 @@ $T_{F-P} = T_{F-P}(F, \delta)$ 的图像如下所示\footnote{源码见附录 \r
 中心为 0 级暗纹，往外级数增大，干涉条纹逐渐变密。
 
 
-\section{迈克尔逊干涉}
+\section{迈克尔逊干涉仪 (Michelson Interferometer)}
 
 我们需要认识到，绝大多数的干涉现象，本质都是空间上两个（甚至多个）不同位置的球面波源（或其他类型的波）在某点的叠加。随着目标位置点 $P$ 的移动，发生叠加的两波（两束光）的 OPD（即 $\Delta L$）不断改变，得到不同的振幅大小，从而产生干涉图样。本节所介绍的几种干涉，其本质也是如此，只是具体实现方式不同。
 
@@ -1759,11 +1761,129 @@ A_c = \frac{\lambda^2}{A_s} R^2
 \end{equation}
 相干面积 $A_c$ 与光源面积 $A_s$ 成反比，在相干面积内，取两点作为双孔（次波源），可以得到一定的相干性。这是空间相干性的具体体现之一。
 
-\section{多光束干涉}
-\section{激光}
+\section{法布里-珀罗干涉仪 (Fabry-Perot Interferometer)}
+
+在 \ref{多光束薄膜干涉} 节“多光束薄膜干涉”中，我们讨论过多光束薄膜干涉的原理，法布里-珀罗干涉仪就是一种利用多光束薄膜干涉的仪器。
+
+\subsection{前置知识}
+
+法布里-珀罗干涉仪如图 \ref{法布里-珀罗干涉仪} 所示，两片玻璃板中间夹有介质（可以是空气），玻璃片内侧表面镀银以增强反射率。需要注意，应将夹在中间的介质视为薄膜，而不是玻璃板，并且镀银相当于改变了薄膜的反射率。细致的讨论表明，在分析的过程中忽略玻璃板和反射膜带来的额外影响（包括相位差、反射透射率等），仍可得到正确且精度极高的结论\footnote{详见参考文献 \cite{Optics} Page 530}。因此，在后文我们只考虑“空气-薄膜-空气”模型，并视 $R$ 为薄膜表面的反射率。
+\begin{figure}[H]\centering
+\includegraphics[width=0.9\columnwidth]{assets/3/法布里-珀罗干涉仪.jpg}
+\caption{\bfseries 法布里-珀罗干涉仪}\label{法布里-珀罗干涉仪}
+\end{figure}
+如果以单色扩展光源入射，透射光汇聚到屏幕上，得到等倾干涉条纹（由 $\theta_k$ 提供相位变化）。与迈克尔逊干涉条纹相比，两者都是同心圆，但 F-P 条纹要细锐得多。设薄膜宽度为 $h$，折射率 $n_f$，空气折射率为 1，则薄膜干涉的关键公式如下: 
+\begin{gather}
+    T_{F-P} = \frac{1}{1 + F \sin^2 \frac{\delta}{2}},\quad R_{F-P} = \frac{F \sin^2 \frac{\delta}{2}}{1 + F \sin^2 \frac{\delta}{2}},  \quad F = \frac{4R}{(1 - R)^2},\quad \delta = \frac{4 \pi n_f d \cos \theta_f}{\lambda_i},\quad m = \frac{\delta}{2}
+\end{gather}
+在本节后文，我们简记 $\lambda = \lambda_i$ 为光波在空气中的波长，$n_f$ 为玻璃板之间薄膜的折射率，$\theta = \theta_k$ 为薄膜中的折射角（即内角），并称入射角 $\theta_i$ 为外角。则 $\delta$ 可写为 $\delta = \frac{4 \pi n d \cos \theta}{\lambda}$。
+\vspace*{-5mm}
+\begin{center}\noindent\begin{minipage}{0.48\columnwidth}
+    \hspace*{2em} 透射峰的性质可由半峰宽 $\varepsilon$、内角宽度 $\Delta \theta_f$和外角宽度 $\Delta \theta_i$ 来描述。其中，半峰宽指给定 $R$ 时，FP 透射率 $T_{F-P} = T(\delta)$ 图像中 $T_{F-P} = 0.5$ 对应的峰宽，如图 \ref{半峰宽} 所示。而内角宽度是图像 $T_{F-P} = T(\theta_f)$ 的半峰宽、外角宽度是 $T_{F-P} = T(\theta_i)$ 的半峰宽。内角宽度也常称作角宽度，记为 $\Delta \theta$。
+\begin{gather}
+    \varepsilon = 4 \arcsin \left(\frac{1}{\sqrt{F} }\right) 
+    \\
+    \Delta \theta_f = \frac{\lambda}{\pi n d \sin \theta_f\sqrt{F}}
+    \\
+    \Delta \theta_i = \frac{n \lambda}{\pi d\sin \theta_i \sqrt{F}} 
+\end{gather}
+\end{minipage}\hfill\begin{minipage}{0.48\columnwidth}
+    \begin{figure}[H]\centering
+        \includegraphics[width=\columnwidth]{assets/3/半峰宽.pdf}
+        \caption{\bfseries 半峰宽 $\varepsilon$}\label{半峰宽}
+        \end{figure}
+\end{minipage}\end{center}
+
+通常情况下，镀膜后的 $R$ 在 $ [0.895, 0.94]$ 内，在此区间内 $F \in [324.7166, 1044.4444]$ 相当大，此时可近似 $\varepsilon \approx\frac{4}{\sqrt{F}}$，所得半峰宽 $\varepsilon$ 的误差不超过 $ 1.1409\times 10^{-4} $。常见的法布里-珀罗干涉仪在可见光波段的锐度 $\mathscr{F}$ 约为 30（对应 $R = 0.9006$），也有特殊的能做到 1000。
 
 
+所得干涉条纹的明显程度可由透射光对比度 $\gamma_{T_{F-P}}$（简记为 $\gamma$）和锐度 $\mathscr{F}$ 来描述。
+\begin{gather}
+\gamma = \frac{2R}{1 + R^2}
+,\quad 
+\mathscr{F} = \frac{2\pi}{\varepsilon} = \frac{\pi}{2 \arcsin \left(\frac{1}{\sqrt{F}}\right)}
+\end{gather}
 
+图 \ref{法布里-珀罗干涉仪各参数变化} (a) 展示了对比度 $\gamma$、半峰宽 $\varepsilon$ 和锐度 $\mathscr{F}$ 随反射率 $R$ 的变化情况；图 \ref{法布里-珀罗干涉仪各参数变化} (b)\footnote{图 \ref{法布里-珀罗干涉仪各参数变化} 源码见附录 \ref{法布里-珀罗干涉仪各参数变化 源码}} 展示了透射率 $T = T(\delta, R)$ 的变化情况。
+
+\begin{figure}[H]\centering
+\begin{subfigure}[t]{0.49\columnwidth}\centering
+    \includegraphics[height=190pt]{assets/3/对比度、半峰宽和锐度随反射率 R 的变化情况.pdf}
+    \caption{\bfseries 对比度 $\gamma$、半峰宽 $\varepsilon$ 和锐度 $\mathscr{F}$ 随反射率 $R$ 的变化情况 }
+\end{subfigure}\hfill
+\begin{subfigure}[t]{0.49\columnwidth}\centering
+    \includegraphics[height=190pt]{assets/3/透射率 T 随 R 和 delta 的变化.pdf}
+    \caption{\bfseries 透射率 $T = T(\delta, R)$ 随 $R$ 和 $\delta$ 的变化情况 }
+\end{subfigure}
+\caption{\bfseries 法布里-珀罗干涉仪各参数变化 }\label{法布里-珀罗干涉仪各参数变化}
+\end{figure}
+
+
+\subsection{双色光源}
+
+当光源不可视为单色光时，例如两个波长相近的双色光，所形成的等倾干涉条纹（F-P 条纹）就会有稍微不同的半径。这个现象可以用于分辨精细谱线，因此有必要讨论条纹的色分辨能力。
+
+两谱线第 $m$ 级亮纹间的（内）角距离记作 $\delta \theta_f^m$（注意不是 $\delta \cdot \theta$，而是类似 $\Delta \theta$的记法），或者简记为 $\delta \theta_m$，以及第 $m$ 级亮纹的角宽度 $\Delta \theta_m$ 为：
+\begin{equation}
+\delta \theta_m = \frac{{\color{red} m} \Delta \lambda}{2nh\sin \theta_m},\quad \Delta \theta_m = \frac{\lambda}{\pi n d \sin \theta_m\sqrt{F}}
+\end{equation}
+
+判断能否分辨两谱线，通常采用泰勒判据或瑞丽判据\footnote{此处列出的瑞丽判据是大 $F$ 下的近似判据，详见参考文献 \cite{Optics} Page 532。实际中主要采用泰勒判据。}，如下：
+\begin{gather}
+    \text{Taylor criterion: \quad } \delta \theta_m \geq \Delta \theta_m \Longrightarrow m \geqslant \frac{2\lambda_0}{\pi \sqrt{F} \Delta \lambda}
+    \\
+    \text{Rayleigh criterion: \quad } \delta \theta_m \geqslant \frac{4.2}{\sqrt{F}} \Longrightarrow m \geqslant \frac{8.4 n h \sin \theta_m}{\Delta \lambda \sqrt{F} }
+\end{gather}
+
+在泰勒判据下，当条纹级数 $m$ 满足判据时，此条纹可以被分辨。需要注意，上面的所称的各级亮纹，其 0 级亮纹不在观察屏中心，而是在无穷远处。这是因为多光束薄膜干涉中，$\delta = \frac{4 \pi n_f d \cos \theta_f}{\lambda_i}$，$\theta_f = 0$ 时，$\delta $ 有最大值，$\theta_f \to \frac{\pi}{2}$ 时，$\delta \to 0$。而习惯上我们称 $\delta = 0$ 的位置为 0 级条纹，因此在这里，0 级条纹无穷远，随着 $m$ 的增大，条纹逐渐向中心靠拢。
+
+并且可以知道，$\theta_f = 0$ 时对应的最高级条纹（位于屏幕最中心的条纹）为:
+\begin{equation}
+m_{\max} =  \left \lfloor \frac{\delta}{2\pi} \right \rfloor_{\theta_f = 0} = \left \lfloor \frac{2nd}{\lambda_0} \right \rfloor,\quad \text{或}\  m_{\max} = \frac{2nd}{\lambda_0}
+\end{equation}
+
+依泰勒判据，当所有条纹都可分辨时（$\forall\ m \geqslant 1$），得到 $\Delta \lambda \geqslant \frac{2\lambda_0}{1\cdot \pi \sqrt{F}}$，将后者称为可分辨的最小波长差；存在可分辨条纹时（$\exists\ m \geqslant 1$），得到 $\Delta \lambda \geqslant \frac{2\lambda_0}{m_{\max}\cdot \pi \sqrt{F}}$，将后者称为极限波长差。
+\begin{equation}
+    (\Delta \lambda)_{\min} = \frac{2\lambda_0}{\pi \sqrt{F}}
+    ,\quad 
+    (\Delta \lambda)_{\lim} = \frac{\lambda_0^2}{\pi n d \sqrt{F}  }
+\end{equation}
+
+$\Delta \lambda$ 越大时，谱线越容易被分辨，但当其大到一定程度时，会发生条纹的越级。由于波长短的条纹更密，所以边界情况是 $ \lambda_0 - \frac{\Delta \lambda}{2}$ 的最高级条纹 ($m_{\max}$) 越过 $ \lambda_0 + \frac{\Delta \lambda}{2}$ 的次级条纹 ($m_{\max} - 1$)。记此时的波长宽为自由光谱范围 (free spectral range)，记作 $\left(\Delta \lambda\right)_{\text{fsr}}$。由于中心处 $\theta = 0$，且 $m = \frac{\delta}{2\pi} = \frac{2 nd }{\lambda}$，得到：
+\begin{equation}
+\begin{cases}
+    \lambda + \frac{\Delta \lambda}{2}: & m_{\max} = \frac{2 n d}{\lambda + \left(\Delta \lambda\right)_{\text{fsr}}} 
+    \\ 
+    \lambda - \frac{\Delta \lambda}{2}: & m_{\max} - 1 = \frac{2 n d}{\lambda - \left(\Delta \lambda\right)_{\text{fsr}}}
+\end{cases}\Longrightarrow 
+\left(\Delta \lambda\right)_{\text{fsr}} = \frac{\lambda_0^2}{2 n d}
+\end{equation}
+
+
+~\\
+
+教材中还提到了色分辨本领 $\mathscr{R} = \frac{\lambda_0}{\Delta \lambda} = m \mathscr{F} = \frac{m \pi \sqrt{F} }{2}$，
+但并没有讲清其意义，教材称其为光谱仪或分光仪器的色分辨本领，但为什么会与条纹级数 $m$ 有关？是不是该理解为给定光源 $\lambda_0, \Delta \lambda$，第 $m$ 级条纹被分辨的容易程度？暂不清楚，因此不深究。
+
+
+\subsection{自由光谱}
+
+本节仅考虑 $\theta \to 0$ 的情况。当光源具有自由光谱时，F-P 薄膜（也称为 F-P 腔）具有“选频”的效果。具体表现是，光在 F-P 腔内多次相干叠加，使透射光谱结构明显区别于入射光谱，将连续光谱变为离散的准分立谱，也即最终接收到的光谱，如图 \ref{F-P 腔对连续谱的选择作用} 所示。
+\begin{figure}[H]\centering
+\includegraphics[width=0.8\columnwidth]{assets/3/F-P 腔.jpg}
+\caption{\bfseries F-P 腔对连续谱的选择作用}\label{F-P 腔对连续谱的选择作用}
+\end{figure}
+出现纵模的波长满足 $2nd = m\lambda_m$，因此谱线具有相同的纵模间距（“纵模”即为谱线中的“峰”），且可以计算其半峰宽：
+\begin{equation}
+\nu_m = \frac{mc}{2nd},\quad (\nu_{m+1} - \nu_m) = \frac{c}{2nd},\quad \varepsilon_{\nu, m} = \frac{2c}{m \pi \lambda\sqrt{F}}
+\end{equation}
+
+巧合的是，$I_T = I_T(\lambda)$ 图像中的半峰宽 $\varepsilon_{\lambda, m} = \frac{2\lambda_0}{\pi m \sqrt{F} } $ 恰好是泰勒判据中的 $\Delta \lambda \geqslant \frac{2\lambda_0}{\pi m \sqrt{F} }$。
+
+\section{激光（略）}
+
+
+\chapter{光的衍射}\thispagestyle{fancy}
 
 
 
@@ -2432,6 +2552,10 @@ I = \langle  S  \rangle_T = \frac{1}{2}\varepsilon v E_0^2
 \section{图\ref{精细度对透射率的影响} 源码}
 \label{精细度对透射率的影响 源码}
 \lstinputlisting{D:/a_RemoteRepo/GH.MatlabCodes/本科课程代码/光学/EffectOfFinenessOnTransmittance.m}
+
+\section{图 \ref{法布里-珀罗干涉仪各参数变化} 源码}
+\label{法布里-珀罗干涉仪各参数变化 源码}
+\lstinputlisting{d:/a_RemoteRepo/GH.MatlabCodes/本科课程代码/光学/FabryPerotInterferometer.m}
 
 % --------------------------- 附录 --------------------------- %
 % >> ------------------------ 附录 ------------------------ << %

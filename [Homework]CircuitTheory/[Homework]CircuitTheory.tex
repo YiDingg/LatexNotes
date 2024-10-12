@@ -48,7 +48,7 @@
         colorlinks=true,    % false:边框链接 ; true:彩色链接
         citecolor={blue},    % 文献引用颜色
         linkcolor={blue},   % 目录 (我们在目录处单独设置)，公式，图表，脚注等内部链接颜色
-        urlcolor={orange},    % 网页 URL 链接颜色，包括 \href 中的 text
+        urlcolor={magenta},    % 网页 URL 链接颜色，包括 \href 中的 text
         % cyan 浅蓝色 
         % magenta 洋红色
         % yellow 黄色
@@ -231,11 +231,7 @@
     \usepackage{caption}    % 图注、表注
         \captionsetup[figure]{name=图}  
         \captionsetup[table]{name=表}
-        \captionsetup{
-            labelfont=bf, % 设置标签为粗体
-            textfont=bf,  % 设置文本为粗体
-            font=small  
-        }
+        \captionsetup{labelfont=bf, font=small}
     \usepackage{float}     % 图表位置浮动设置 
 
 % 圆圈序号自定义
@@ -275,7 +271,8 @@
 % 各级标题自定义设置
     \usepackage{titlesec}   
     % chapter
-        \titleformat{\chapter}[hang]{\normalfont\Large\bfseries\centering\boldmath}{Homework \thechapter :}{10pt}{}
+        \titleformat{\chapter}[hang]{\normalfont\Large\bfseries\centering\boldmath}{}{10pt}{}
+        %\titleformat{\chapter}[hang]{\normalfont\Large\bfseries\centering\boldmath}{Homework \thechapter :}{10pt}{}
         \titlespacing*{\chapter}{0pt}{-30pt}{10pt} % 控制上方空白的大小
     % section
         \titleformat{\section}[hang]{\normalfont\large\bfseries\boldmath}{\thesection}{8pt}{}
@@ -345,7 +342,7 @@
 % >> --------------------- 封面序言与目录 --------------------- << %
 % ------------------------ 封面序言与目录 ------------------------ %
 
-\chapter{2024.8.27 - 2024.9.2}\thispagestyle{fancy}
+\chapter{Homework 1: 2024.8.27 - 2024.9.2}\thispagestyle{fancy}
 
 \section{习题集 1-2: 求题图各电路中的电压 $U$ 和电流 $I$}
 
@@ -357,7 +354,7 @@
 
 \begin{figure}[H]\centering
 \includegraphics[width=0.6\textwidth]{assets/1/ae1cfc03fad5c98bfff08a663714a004.png}
-\caption{ 1.1 习题集 1-2}
+\caption{\bfseries 1.1 习题集 1-2}
 \end{figure}
 
 \section{习题集 1-9: 求题图 (a) 中的电压 $U_{ab}$，图 (b) 中的电阻 $R$，图 (c) 中的电压 $U_S$ 和图 (d) 中的电流 $I$}
@@ -371,7 +368,7 @@
 
 \begin{figure}[H]\centering
     \includegraphics[width=0.6\textwidth]{assets/1/d3d69ecd6b1c1bc476fd4a4957fb9e56.png}
-\caption{ 1.2 习题集 1-9}
+\caption{\bfseries 1.2 习题集 1-9}
 \end{figure}
 
 \section{习题集 1-10: 求题图电路中的电压 $U_{ab}$}
@@ -389,7 +386,7 @@
 
 \begin{figure}[H]\centering
 \includegraphics[width=0.55\textwidth]{assets/1/9dda9e5f333b8cb7f498d15c015e5fd0.png}
-\caption{ 1.3 习题集 1-10}
+\caption{\bfseries 1.3 习题集 1-10}
 \end{figure}
 {\par\color{gray}\small
 后补：(b) 中电流源两端仍有电势差，$\varphi_c \ne 6 \ \mathrm{V}$ 而是 $ \varphi_c = -3\ \mathrm{V} $，最终得 $U_{ab} = -5 \ \mathrm{V}$。
@@ -407,7 +404,7 @@
 
 \begin{figure}[H]\centering
 \includegraphics[width=0.7\textwidth]{assets/1/b82ef4f3b4efd9d0ee903e5f19353345.png}
-\caption{ 1.4 习题集 1-15}
+\caption{\bfseries 1.4 习题集 1-15}
 \end{figure}
 
 \section{习题集 1-29: 题图电路中流过 $40\ \Omega$ 电阻的电流为 $2$ A，求电流源的电流值 $I_S$}
@@ -429,7 +426,7 @@ $0.2\ \Omega$ 电阻处又有 $U_1 = 0.2 I_S$，联立解得 $I_S = 3.6 \ \mathr
 
 \begin{figure}[H]\centering
 \includegraphics[width=0.7\textwidth]{assets/1/94b342032a5f6622a60b3c9d99e37993.png}
-\caption{ 1.4 习题集 1-29 和 1.5 习题集 1-30}
+\caption{\bfseries 1.4 习题集 1-29 和 1.5 习题集 1-30}
 \end{figure}
 
 {\par\color{gray}\small
@@ -487,7 +484,7 @@ C （充放电倍率）表示电池充放电时电流相对电池容量的大小
 
 
 
-\chapter{2024.9.3 - 2024.9.9}\thispagestyle{fancy}
+\chapter{Homework 2: 2024.9.3 - 2024.9.9}\thispagestyle{fancy}
 
 \section{习题集 1-33: 题图电路中 $R_1 = 40$，$R_e = 27$，$R_b = 150$，$R_L = 1500$，单位都为 $\Omega$，$\alpha = 0.98$，求电压增益 $\frac{u_2}{u_1}$ 和功率增益 $\frac{p_2}{p_1}$，其中 $p_1$ 是 $u_1$ 输出的功率，$p_2$ 是 $R_L$ 吸收的功率}
 左半边回路有：
@@ -625,7 +622,7 @@ U_1 = 6 - 3\times 1.2 = 2.4\ \mathrm{V},\ U_2 = 2\times \frac{I}{2} = 1.2\ \math
 
 
 
-\chapter{2024.9.10 - 2024.9.18}\thispagestyle{fancy}
+\chapter{Homework 3: 2024.9.10 - 2024.9.18}\thispagestyle{fancy}
 
 
 \section{习题集 3-40（书上答案不正确）: 题图电路中，$u_s(t) = \sin 4t\ \mathrm{V} $，电阻 $R_2 = 2R_1 = 1 \kO$，求电流 $i(t)$}
@@ -637,7 +634,7 @@ i(t) = \frac{2u_s}{6 \KO} = \frac{u_s}{3} \mA
 
 \begin{figure}[H]\centering
 \includegraphics[width=0.35\textwidth]{assets/3/3-40.jpg}
-\caption{ 习题集 3-40}
+\caption{\bfseries 习题集 3-40}
 \end{figure}
 
 \section{习题集 3-45（注意题目单位是 S）: 对题图电路，求电压增益 $\frac{U_o}{U_i}$ 和入端电阻 $R_i$}
@@ -661,12 +658,12 @@ i(t) = \frac{2u_s}{6 \KO} = \frac{u_s}{3} \mA
 \begin{figure}[H]\centering
     \begin{subfigure}[t]{0.43\textwidth}\centering
         \includegraphics[height=130pt]{assets/3/3-45.png}
-        \caption{ 习题集 3-45 }
+        \caption{\bfseries 习题集 3-45 }
     \end{subfigure}\begin{subfigure}[t]{0.43\textwidth}\centering
         \includegraphics[height=130pt]{assets/3/3-46.png}
-        \caption{ 习题集 3-46 }
+        \caption{\bfseries 习题集 3-46 }
     \end{subfigure}
-    \caption{ 习题集 3-45 和习题集 3-46 }
+    \caption{\bfseries 习题集 3-45 和习题集 3-46 }
     \end{figure}
     
 
@@ -691,12 +688,12 @@ R_i = \infty,\ R_o = 0
 \begin{figure}[H]\centering
 \begin{subfigure}[t]{0.4\textwidth}\centering
     \includegraphics[height=100pt]{assets/3/反向比例放大器.png}
-    \caption{ 同相比例放大器}
+    \caption{\bfseries 同相比例放大器}
 \end{subfigure}\begin{subfigure}[t]{0.4\textwidth}\centering
     \includegraphics[height=100pt]{assets/3/同相比例放大器.png}
-    \caption{ 反向比例放大器}
+    \caption{\bfseries 反向比例放大器}
 \end{subfigure}
-\caption{ 讲义题 2-19}
+\caption{\bfseries 讲义题 2-19}
 \end{figure}
 
 \section{讲义题 2-20: 求题图各网络的 $\boldsymbol{G}$ 参数}
@@ -736,304 +733,11 @@ R_i = \infty,\ R_o = 0
 
 \begin{figure}[H]\centering
 \includegraphics[width=0.55\textwidth]{assets/3/image (8).jpg}
-\caption{ 讲义题 2-20}\label{讲义题 2-20}
-\end{figure}
-
-\section{仿真 2-1: 题目详见图 \ref{示意图} (b)}
-
-\subsection{单 OPA 实现电压运算}
-
-电路如图 \ref{单 OPA 实现 电压运算} (a) 所示，接线端示意图见图 \ref{单 OPA 实现 电压运算} (b)。
-
-\begin{figure}[H]\centering
-\begin{subfigure}[t]{0.43\textwidth}\centering
-    \includegraphics[height=150pt]{assets/3/单OPA.png}
-    \caption{ 电路示意图 }
-\end{subfigure}\begin{subfigure}[t]{0.43\textwidth}\centering
-    \includegraphics[height=150pt]{assets/3/单OPA接线端.png}
-    \caption{ 接线端示意图 }
-\end{subfigure}
-\caption{ 单 OPA 实现 电压运算 }\label{单 OPA 实现 电压运算}
-\end{figure}
-
-下面分析其输出特性。由虚断，在 $u_1$ 和 $u_2$ 构成的回路中，设正向流经 $u_2$ 的电流为 $i_2$，则有：
-\begin{equation}
-i_2 = \frac{u_2 - u_1}{R_1+R_2}
-\Longrightarrow  
-u_A = u_2 - i_2R_2 = \frac{R_2u_1 + R_1u_2}{R_1 + R_2}
-\end{equation}
-由虚短，B 点的电势也为 $u_A$，于是：
-\begin{equation}
-i_3 = \frac{u_3 - u_A}{R_3},\ i_M = \frac{u_A}{R_M} \Longrightarrow  i_f = i_3 - i_M = \frac{u_3 - u_A}{R_3} - \frac{u_A}{R_M} = \frac{u_3}{R_3} - (\frac{1}{R_3} + \frac{1}{R_M})u_A
-\end{equation}
-由虚断和 KVL:
-\begin{equation}
-u_o = u_A - i_fR_f = u_A - \frac{R_f}{R_3}u_3 + (\frac{R_f}{R_3} + \frac{R_f}{R_M})u_A = \left( 1 +  \frac{R_f}{R_3} + \frac{R_f}{R_M}\right)u_A - \frac{R_f}{R_3}u_3
-\end{equation}
-将 $u_A$ 的表达式代入，最终得到：
-\begin{equation}
-\boxed{
-    u_o = \left( 1 +  \frac{R_f}{R_3} + \frac{R_f}{R_M}\right)\frac{1}{\frac{R_1}{R_2} + 1}u_1 
-    + \left( 1 +  \frac{R_f}{R_3} + \frac{R_f}{R_M}\right)\frac{\frac{R_1}{R_2}}{\frac{R_1}{R_2} + 1}u_2
-    - \frac{R_f}{R_3}u_3
-}
-\end{equation}
-我们需要 $u_1,u_2,u_3$ 前的系数分别为 3, 2, -0.5，于是有：
-\begin{equation}
-\begin{cases}
-    \left( 1 +  \frac{R_f}{R_3} + \frac{R_f}{R_M}\right)\frac{1}{\frac{R_1}{R_2} + 1} = 3 \vspace*{5pt}\\ 
-    \vspace*{5pt}
-    \left( 1 +  \frac{R_f}{R_3} + \frac{R_f}{R_M}\right)\frac{\frac{R_1}{R_2}}{\frac{R_1}{R_2} + 1} = 2 \\ 
-    -\frac{R_f}{R_3} = -0.5
-\end{cases}
-\Longrightarrow 
-\begin{cases}
-    R_1 = \frac{2}{3}R_2 &,\ R_2 > 0\\ 
-    R_3 = 2R_f,\ R_M = \frac{2}{7}R_f &,\ R_f >0\\
-\end{cases}
-\end{equation}
-为了保持 OPA 的理想性，我们应选择 $\KO$ 量级的电阻，同时，为了降低电路的整体功率，减少消耗，电阻阻值应该尽量大。综合下来，不妨选取 $R_2 = 6 \KO,\ R_f = 3.5 \KO$，此时所有电阻阻值为：
-\begin{equation}
-R_1 = 4\KO,\ R_2 = 6\KO,\ R_3 = 7\KO,\ R_M = 1\KO,\ R_f = 3.5\KO
-\end{equation}
-
-如图 \ref{单 OPA 实现电压运算仿真} (a)，在 Multisim 中进行仿真，得到的结果如下表所示：
-
-% \usepackage[longtable]{multirow}
-% \usepackage{longtable}
-
-
-\begin{longtable}{|c|c|c|c|c|c|c|c|c|c|c|c|c|} 
-    \hline
-    \multirow{3}{*}{项目} & \multicolumn{3}{c|}{1} & \multicolumn{3}{c|}{2} & \multicolumn{3}{c|}{3} & \multicolumn{3}{c|}{4}  \\* 
-    \cline{2-13}
-                      & $x,\ u_1$ & $y,\ u_2$ & $z,\ u_3$  & $x,\ u_1$ & $y,\ u_2$ & $z,\ u_3$               &  $x,\ u_1$ & $y,\ u_2$ & $z,\ u_3$             &  $x,\ u_1$ & $y,\ u_2$ & $z,\ u_3$              \\* 
-    \cline{2-13}
-                      & 1     & 1     & 1      & 1 & 3 & 2              & -2 & 2 & 0             & 3 & 3 & 2               \endfirsthead 
-    \hline
-    理论输出 $(\mathrm{V})$             & \multicolumn{3}{c|}{$3+2-0.5 = 4.5$}  & \multicolumn{3}{c|}{$3+6-1=8$}  & \multicolumn{3}{c|}{$-6+4-0 = -2$}  & \multicolumn{3}{c|}{$9+6-1=14$}   \\ 
-    \hline
-    仿真输出 $(\mathrm{V})$     & \multicolumn{3}{c|}{4.50}  & \multicolumn{3}{c|}{8.00}  & \multicolumn{3}{c|}{-2.00}  & \multicolumn{3}{c|}{10.494}   \\
-    \hline
-\end{longtable}
-
-\begin{figure}[H]\centering
-\begin{subfigure}[t]{0.45\textwidth}\centering
-    \includegraphics[height=130pt]{assets/3/8a5141629bce86a4810852d0002e5180.png}
-    \caption{ 单 OPA 实现电压运算 }
-\end{subfigure}\begin{subfigure}[t]{0.53\textwidth}\centering
-    \includegraphics[height=130pt]{assets/3/OPA饱和电流.png}
-    \caption{ OPA 饱和电压 }
-\end{subfigure}
-\caption{ 仿真电路图与 OPA 饱和电压 }\label{单 OPA 实现电压运算仿真}
-\end{figure}
-
-由表可见，除了最后一组数据，仿真结果与理论结果完全一致。最后一组之所以不同，是因为输出电压 $u_o$ 超出了此 OPA 的饱和电压 $U_{\text{sat}}$，导致输出电压 $u_o = U_{\text{sat}} = 10.494 \mathrm{V}$。如图 \ref{单 OPA 实现电压运算仿真} (b) 所示，此 OPA (LM324ADTBR2G) 的饱和电压为 $10.525 \mathrm{V}$，与解释相符。具体仿真时的结果见图 \ref{一个图}。
-
-\begin{figure}[H]\centering
-\begin{subfigure}[t]{0.48\textwidth}\centering
-    \includegraphics[height=145pt]{assets/3/111.png}
-    \caption{ $(x,y,z) = (1,1,1)$ }
-\end{subfigure}\begin{subfigure}[t]{0.48\textwidth}\centering
-    \includegraphics[height=145pt]{assets/3/132.png}
-    \caption{ $(x,y,z) = (1,3,2)$ }
-\end{subfigure}
-\begin{subfigure}[t]{0.48\textwidth}\centering
-    \includegraphics[height=145pt]{assets/3/91f965079537c7c35944182511dce291.png}
-    \caption{ $(x,y,z) = (-2,2,0)$ }
-\end{subfigure}\begin{subfigure}[t]{0.48\textwidth}\centering
-    \includegraphics[height=145pt]{assets/3/def5c414621689edf67e4afb5251cf4a.png}
-    \caption{ $(x,y,z) = (3,3,2)$ }
-\end{subfigure}
-\caption{ 仿真具体结果图 }\label{一个图}
+\caption{\bfseries 讲义题 2-20}\label{讲义题 2-20}
 \end{figure}
 
 
-\subsection{一些失败的例子}
-注意到，减法器是在反相加法器的基础上，串联入电压源（和电阻）改变了 $u_+$ 端的电压。这样，在最终的输出电压 $u_o$ 中，$u_-$ 端的电源电压会带负号，$u_+$ 端的电源电压带正号。用类似的思想，我们可以对减法器进行改造，最终仅用一个 OPA 便实现 $3x+2y-0.5z$ 的电压运算。
-
-一种方法是向 $u_+$ 端再串联一个电压源，使得输出 $u_o$ 中两正一负，然后通过电阻值来调整系数，但是，这样不满足接线端的要求（三正一共地）。另一种方法是向 $u_-$ 端再并联一个电压源，使得输出 $u_o$ 中两负一正（$-u_1,\ -u_2,\ +u_3$），最后通过电阻值来调整系数，但是，这样得到的是两负一正而不是两正一负，虽满足了接线端要求，却不是我们需要的结果。
-
-其实，我们只需要向 $u_+$ 端的电压源再并联一个电压源即可，如图所示。下面分析其输出特性。
-
-\begin{figure}[H]\centering
-\begin{subfigure}[t]{0.43\textwidth}\centering
-    \includegraphics[height=120pt]{assets/3/失败的例子.png}
-    \caption{ 失败的例子 }
-\end{subfigure}\begin{subfigure}[t]{0.43\textwidth}\centering
-    \includegraphics[height=120pt]{assets/3/image (5).jpg}
-    \caption{ 仿真作业 2-1 }
-\end{subfigure}
-\caption{ 示意图 }\label{示意图}
-\end{figure}
-
-在 $u_1, R_1, u_2, R_2 $ 和 $R_M$ 构成的局部电路中，由 KVC:
-\begin{gather}
-\begin{cases}
-    u_1 - R_1i_1 - R_M(i_1 + i_2) = 0 \\
-u_2 - R_2i_2 - R_M(i_1 + i_2) = 0
-\end{cases}
-\Longrightarrow 
-\begin{cases}
-    i_1 = \frac{(R_2+R_M)u_1 - R_Mu_2}{R_1R_2 +R_1R_M + R_2R_M} \\ 
-    i_2 = \frac{(R_1+R_M)u_2 - R_Mu_1}{R_1R_2 +R_1R_M + R_2R_M} \\ 
-\end{cases}
-\end{gather}
-由此得点 A 处的电势 $u_A$:
-\begin{equation}
-    u_A = \frac{R_2R_Mu_1 + R_1R_Mu_2}{R_1R_2 +R_1R_M + R_2R_M}
-\end{equation}
-也即点 B 和非反相输入端的电势 $u_+ = u_B = u_A$。由虚短，$u_- = u_+$，可得电流 $i_3$:
-\begin{equation}
-i_3 = \frac{u_3 - u_-}{R_3} = \frac{1}{R_3}(u_3 - \frac{R_2R_Mu_1 + R_1R_Mu_2}{R_1R_2 +R_1R_M + R_2R_M}) 
-\end{equation}
-由虚断，经过电阻 $R_f$ 求得 D 点电势，也即输出电压 $u_o$:
-\begin{align}
-u_o &= u_A - i_3R_f = (1+\frac{R_f}{R_3})u_A - \frac{R_f}{R_3}u_3 
-\\
-&= (1+\frac{R_f}{R_3})\cdot \frac{\frac{R_M}{R_1}u_1 + \frac{R_M}{R_2}u_2}{1 + \frac{R_M}{R_1} + \frac{R_M}{R_2}} - \frac{R_f}{R_3}u_3
-\\ 
-&=\frac{1+\frac{R_f}{R_3}}{1 + \frac{R_M}{R_1} + \frac{R_M}{R_2}}
-\left( \frac{R_M}{R_1}u_1 + \frac{R_M}{R_2}u_2  \right) - \frac{R_f}{R_3}u_3
-\end{align}
-
-最后调整电阻阻值。为了保持 OPA 的理想性，电阻需要在 $\KO$ 量级，令电阻比例如下：
-\begin{equation}
-\begin{cases}
-    \frac{R_f}{R_3} = 0.5 \\ 
-    \frac{1+\frac{R_f}{R_3}}{1 + \frac{R_M}{R_1} + \frac{R_M}{R_2}}\cdot \frac{R_M}{R_1} = 3 \\ 
-    \frac{1+\frac{R_f}{R_3}}{1 + \frac{R_M}{R_1} + \frac{R_M}{R_2}}\cdot \frac{R_M}{R_2} = 2
-\end{cases}\Longrightarrow 
-\begin{cases}
-    R_f = \frac{1}{2}R_3 \\ 
-    R_1 =  -2R_M\\ 
-    R_2 = -\frac{4}{3}R_M
-\end{cases}
-\end{equation}
-显然，这不可能实现，舍弃。
-
-
-
-\section{仿真 2-2}
-
-仿真电路如图 \ref{负电阻仿真} (a) 所示，对输入电压进行参数扫描，输出通过电压源的电流，得到图 \ref{负电阻仿真} (b)。这里需要注意，在 Multisim 中，电流的参考方向始终是高电势指向低电势（包括电压源），因此，仿真输出中的 I(V11) 是从上往下通过 V11 的电流（而不是从下至上），电压源 V11 的实际电流为 $i = -I(V11)$。
-
-\begin{figure}[H]\centering
-\begin{subfigure}[t]{0.47\textwidth}\centering
-    \includegraphics[height=140pt]{assets/3/0649949f48a11f77b47f406012e3f7a8.png}
-    \caption{ 负电阻仿真电路 }
-\end{subfigure}\begin{subfigure}[t]{0.5\textwidth}\centering
-    \includegraphics[height=140pt]{assets/3/83d7126e6d74b406acb4bbc94900f2c6.png}
-    \caption{ $I$（纵轴）$U$（横轴）关系 }
-\end{subfigure}
-\caption{ 负电阻仿真 }\label{负电阻仿真}
-\end{figure}
-
-简记电压源 V11 的电压为 $u$，继续仿真输出电压 $u_o$ 关于输入电压 $u$ 的变化，将数据导出后在 Matlab 中绘制曲线，如图 \ref{仿真结果分析} (a)。再将 $I-U$ 关系转化为 $U-I$ 关系，如图 \ref{仿真结果分析} (b)。可以发现，在线性工作区内，电路表现为负阻。而线性区外的两段折线位于 OPA 的饱和区，此时 $u_o$ 始终为饱和电压，电路呈现正电阻，且阻值为:
-\begin{equation}
-\begin{cases}
-    i = \frac{u - U_{\text{sat}}}{R_1} &, u > 3.54\ \mathrm{V} \\ 
-    i = \frac{u + U_{\text{sat}}}{R_1} &, u < -4.05 \ \mathrm{V} \\ 
-\end{cases}\Longrightarrow 
-R_{\text{sat}} = R_1 = 10 \KO
-\end{equation}
-这与图 \ref{仿真结果分析} (b) 中曲线的斜率是相符的。而在线性区，负电阻 $R = -\frac{10 \KO}{10 \KO} \cdot 5 \KO = - 5 \KO$，这也是符合的。
-
-\begin{figure}[H]\centering
-\begin{subfigure}[t]{0.52\textwidth}\centering
-    \includegraphics[height=190pt]{assets/3/2024-09-13_01-13-08.png}
-    \caption{ $u_o$ 与 $i$ 关于 $u$ 的变化}
-\end{subfigure}\begin{subfigure}[t]{0.47\textwidth}\centering
-    \includegraphics[height=180pt]{assets/3/2024-09-13_01-13-52.png}
-    \caption{ $U$-$I$ 关系（VCR）}
-\end{subfigure}
-\caption{ 仿真结果分析 }\label{仿真结果分析}
-\end{figure}
-
-%在负电阻中，OPA 输出电压 $u_o$:
-%\begin{equation}
-%u_o = \left(1 + \frac{R_2}{R}\right)u_i
-%\end{equation}
-%由图 \ref{单 OPA 实现电压运算仿真} (b) 可知，我们选择的 OPA 饱和电压 $U_{\text{sat}} = 10.525\ V$，输入电压线性区约为 [0 mV, 100 mV]。因此，当 $u_i < $ 或 $u_i >$ 时，OPA 工作在饱和区，此时 $u_o = \pm U_{\text{sat}}$ 为定值，且虚短不再成立，电流 $i_1$:
-%\begin{equation}
-%i_1 = \frac{u_1 - u_o}{R_1} = 
-%\begin{cases}
-%    \frac{u_1 - U_{\text{sat}}}{R_1} &, u_1 > \\ 
-%    \frac{u_1 + U_{\text{sat}}}{R_1} &, u_1 < \\ 
-%\end{cases}
-%\end{equation}
-%\begin{figure}[H]\centering
-%\includegraphics[width=0.45\textwidth]{assets/3/ee57b549a02999b0856af303ac0e8510.jpg}
-%\caption{ 第一次仿真作业 (2)}\label{第一次仿真作业 (2)}
-%\end{figure}
-
-\chapter*{第二次习题课课前练习}
-
-\begin{figure}[H]\centering
-\includegraphics[width=0.95\columnwidth]{assets/4/16b6858d371dc967c7673595957d383b_720.jpg}
-\caption{ 第二次习题课课前练习}\label{第二次习题课课前练习}
-\end{figure}
-
-\section{求图示二端口的 $\boldsymbol{G}$ 参数}\thispagestyle{fancy}
-
-由 KVL 和广义 KCL，得到: 
-\begin{equation}
-\begin{cases}
-    (i_1 - 0.5u_1) + (i_2 - 0.5u_2) = 5(0.5u_1) \\ 
-    3u_1 + 0.5u_2 = 2i_1 + 2i_2
-\end{cases}
-\Longrightarrow 
-\begin{cases}
-    i_1 = \frac{9}{8}u_1 + \frac{5}{8}u_2 \\ 
-    i_2 = \frac{15}{8}u_1 - \frac{1}{8}u_2
-\end{cases}
-,\quad \boldsymbol{G} = 
-\begin{bmatrix}
-    \frac{8}{9} & \frac{8}{5} \\ 
-    \frac{8}{15} & - 8
-\end{bmatrix}
-\mathrm{S}
-\end{equation}
-
-\section{设计一个用于直流信号下的最简二端口（略）}
-
-\section{求图示电路的电压增益与入端电阻}
-
-容易得到：
-\begin{equation}
-u_o = 2u_i,\quad i = (\frac{1}{R_1} - \frac{1}{R_2})u_i \Longrightarrow A = 2,\quad R_{i} = \frac{1}{\frac{1}{R_1} - \frac{1}{R_2}} = \frac{R_1R_2}{R_2-R_1}
-\end{equation}
-
-\section{根据图示电路回答问题}
-
-\begin{enumerate}[label=(\arabic*)]
-\item 这是一个（反相）对数运算电路，$u_o = - U_{\text{TH}} \ln \left( \frac{u_i}{I_S R} \right)$
-\item 将二极管与电阻 $R$ 的位置互换
-\item 依次复合对数运算、线性运算和指数运算，或者依次复合指数运算、线性运算和对数运算
-\end{enumerate}
-
-\section{分析下图所示电路的功能}
-图示电路是一个简易的 DAC（Digital-Anolog Converter），将数字信号转为模拟信号。考虑到无论输入的数字信号是多少，中间三条支路中的电阻都是接地的，因此各三条支路的电流值是不变的，MOS 管的作用仅是调节电流是否输入到运放，也即是否通过运放上侧的电阻 $R_f = R$，依次调节输出电压 $u_o = -i_fR_f$。
-
-列出方程如下：
-\begin{gather}
-\begin{cases}
-    2i_2R = u_s \\ 
-    2i_2R - (i + i_0 + i_1)R = 2i_1R \\ 
-    2i_1R - (i + i_0 )R = 2i_0R \\ 
-    2i_0R - i(2R) = 0
-\end{cases}
-\Longrightarrow 
-\begin{cases}
-    i_2 = \frac{1}{8R} 4u_s \\ 
-    i_1 = \frac{1}{8R} 2u_s \\ 
-    i_0 = i = \frac{1}{8R} u_s
-\end{cases} \\ 
-\Longrightarrow 
-u_o = - (d_0i_0 + d_1i_1 + d_2i_2)R = -\frac{u_s}{8}\left( d_2\cdot 2^2 + d_1\cdot 2^1 + d_0\cdot 2^0 \right)
-\end{gather}
-
-\chapter{2024.9.19 - 2024.9.24}\thispagestyle{fancy}
+\chapter{Homework 4: 2024.9.19 - 2024.9.24}\thispagestyle{fancy}
 
 \section{讲义题 2-20: 求图示各网络的 和 $\boldsymbol{R}$ 参数}
 
@@ -1125,12 +829,12 @@ $(-i_2) = I_2 = 2\ \mathrm{A},\quad u_2 = I_2R_3 = 40\ \mathrm{V}$，代入即�
 \begin{figure}[H]\centering
 \begin{subfigure}[t]{0.4\columnwidth}\centering
     \includegraphics[height=76pt]{assets/4/ffe92b96174b737b0ba9725eef3dd53e.png}
-    \caption{ 讲义题 2-20 图 }
+    \caption{\bfseries 讲义题 2-20 图 }
 \end{subfigure}\begin{subfigure}[t]{0.6\columnwidth}\centering
     \includegraphics[height=76pt]{assets/4/a3822dcee8e6253ad95a943b6b83e06e.png}
-    \caption{ 讲义题 2-21 图 }
+    \caption{\bfseries 讲义题 2-21 图 }
 \end{subfigure}
-\caption{ 讲义题 2-20、讲义题 2-21 }\label{求G参数}
+\caption{\bfseries 讲义题 2-20、讲义题 2-21 }\label{求G参数}
 \end{figure}
 
 \section{讲义题 2-22: 图示电路中二端口网络的 $\boldsymbol{T}$ 参数为 $\boldsymbol{T} = \begin{bmatrix} 2 & 8\  \Omega \\ 0.5\ \mathrm{S} & 2.5 \end{bmatrix} $}
@@ -1159,15 +863,16 @@ p = \frac{u_2^2}{R_2} = \frac{36}{\frac{13^2}{R_2} + 78 + 9R_2} \leqslant \frac{
 \begin{figure}[H]\centering
 \begin{subfigure}[t]{0.4\columnwidth}\centering
     \includegraphics[height=110pt]{assets/4/199279d29390a5449f7ef5c5dc7f8a3d.png}
-    \caption{ 讲义题 2-22 图 }
+    \caption{\bfseries 讲义题 2-22 图 }
 \end{subfigure}\begin{subfigure}[t]{0.6\columnwidth}\centering
     \includegraphics[height=110pt]{assets/4/2-22.pdf}
-    \caption{ 讲义题 2-20 等效电路 }
+    \caption{\bfseries 讲义题 2-20 等效电路 }
 \end{subfigure}
-\caption{ 讲义题 2-22 }
+\caption{\bfseries 讲义题 2-22 }
 \end{figure}
 
-\chapter{2024.9.25 - 2024.10.8}\thispagestyle{fancy}
+
+\chapter{Homework 5: 2024.9.25 - 2024.10.8}\thispagestyle{fancy}
 
 \section{教材 2-41: 求由 N-E MOS 构成的两输入 NAND 和两输入 NOR 的最大功率，并指出何时有最大功率}
 
@@ -1188,17 +893,17 @@ p = \frac{u_2^2}{R_2} = \frac{36}{\frac{13^2}{R_2} + 78 + 9R_2} \leqslant \frac{
 \begin{figure}[H]\centering
     \begin{subfigure}[t]{0.33\columnwidth}\centering
         \includegraphics[height=120pt]{assets/5/CMOS NOT.pdf}
-        \caption{ C-MOS NOT }
+        \caption{\bfseries C-MOS NOT }
     \end{subfigure}\hfill
     \begin{subfigure}[t]{0.33\columnwidth}\centering
         \includegraphics[height=120pt]{assets/5/CMOS NOR.pdf}
-        \caption{ C-MOS NOR }
+        \caption{\bfseries C-MOS NOR }
     \end{subfigure}
     \begin{subfigure}[t]{0.33\columnwidth}\centering
         \includegraphics[height=120pt]{assets/5/CMOS NAND.pdf}
-        \caption{ C-MOS NAND }
+        \caption{\bfseries C-MOS NAND }
     \end{subfigure}
-    \caption{ 由 C-MOS 构成三种基本逻辑门 }\label{由 C-MOS 构成三种基本逻辑门}
+    \caption{\bfseries 由 C-MOS 构成三种基本逻辑门 }\label{由 C-MOS 构成三种基本逻辑门}
 \end{figure}
 
 
@@ -1223,25 +928,25 @@ p = \frac{u_2^2}{R_2} = \frac{36}{\frac{13^2}{R_2} + 78 + 9R_2} \leqslant \frac{
 \begin{figure}[H]\centering
 \begin{subfigure}[t]{0.5\columnwidth}\centering
     \includegraphics[height=80pt]{assets/5/NMOS 半加器数字电路.pdf}
-    \caption{ N-MOS HA 数字电路}
+    \caption{\bfseries N-MOS HA 数字电路}
 \end{subfigure}\hfill
 \begin{subfigure}[t]{0.5\columnwidth}\centering
     \includegraphics[height=80pt]{assets/5/CMOS 半加器数字电路.pdf}
-    \caption{ C-MOS HA 数字电路 }
+    \caption{\bfseries C-MOS HA 数字电路 }
 \end{subfigure}
-\caption{ 半加器 HA 数字电路 }\label{半加器 HA 数字电路}
+\caption{\bfseries 半加器 HA 数字电路 }\label{半加器 HA 数字电路}
 \end{figure}
 
 \begin{figure}[H]\centering
 \begin{subfigure}[t]{0.42\columnwidth}\centering
     \includegraphics[height=165pt]{assets/5/NMOS 半加器实际电路.pdf}
-    \caption{ N-MOS HA 实际电路 }
+    \caption{\bfseries N-MOS HA 实际电路 }
 \end{subfigure}\hfill
 \begin{subfigure}[t]{0.58\columnwidth}\centering
     \includegraphics[height=160pt]{assets/5/CMOS 半加器实际电路.pdf}
-    \caption{ C-MOS HA 实际电路 }
+    \caption{\bfseries C-MOS HA 实际电路 }
 \end{subfigure}
-\caption{ 半加器 HA 实际电路 }\label{半加器 HA 实际电路}
+\caption{\bfseries 半加器 HA 实际电路 }\label{半加器 HA 实际电路}
 \end{figure}
 
 \subsection{用两个半加器 HA 和一个逻辑门构成一个全加器 FA}
@@ -1259,7 +964,7 @@ S = A \oplus B \oplus C
 
 \begin{figure}[H]\centering
 \includegraphics[width=0.65\columnwidth]{assets/5/全加器.pdf}
-\caption{ 全加器 FA}\label{全加器 FA}
+\caption{\bfseries 全加器 FA}\label{全加器 FA}
 \end{figure}
 
 
@@ -1270,7 +975,7 @@ S = A \oplus B \oplus C
 
 \begin{figure}[H]\centering
 \includegraphics[width=0.9\columnwidth]{assets/5/四位加法器.pdf}
-\caption{ 四位加法器}\label{四位加法器}
+\caption{\bfseries 四位加法器}\label{四位加法器}
 \end{figure}
 
 
@@ -1309,13 +1014,13 @@ I = \frac{U_2 - 8 - U_3}{2} = -\frac{41}{64} \ \mathrm{A} = -0.640625 \ \mathrm{
 \begin{figure}[H]\centering
 \begin{subfigure}[t]{0.5\columnwidth}\centering
     \includegraphics[height=120pt]{assets/5/5.4 (1).png}
-    \caption{ 题目原电路图 }
+    \caption{\bfseries 题目原电路图 }
 \end{subfigure}\hfill
 \begin{subfigure}[t]{0.5\columnwidth}\centering
     \includegraphics[height=120pt]{assets/5/5.4 (2).png}
-    \caption{ 等效后的最简电路图 }
+    \caption{\bfseries 等效后的最简电路图 }
 \end{subfigure}
-\caption{ 5.4 习题集 3-20 }\label{5.4 习题集 3-20}
+\caption{\bfseries 5.4 习题集 3-20 }\label{5.4 习题集 3-20}
 \end{figure}
 
 
@@ -1338,13 +1043,13 @@ I_3 = \frac{U_1 - 10}{11.9} = 0.3615 \ \mathrm{A}
 \begin{figure}[H]\centering
 \begin{subfigure}[t]{0.5\columnwidth}\centering
     \includegraphics[height=120pt]{assets/5/5.5 (1).png}
-    \caption{ 题目原电路图 }
+    \caption{\bfseries 题目原电路图 }
 \end{subfigure}\hfill
 \begin{subfigure}[t]{0.5\columnwidth}\centering
     \includegraphics[height=120pt]{assets/5/5.5 (2).png}
-    \caption{ 等效后的最简电路图 }
+    \caption{\bfseries 等效后的最简电路图 }
 \end{subfigure}
-\caption{ 5.5 习题集 3-21 }\label{5.5 习题集 3-21}
+\caption{\bfseries 5.5 习题集 3-21 }\label{5.5 习题集 3-21}
 \end{figure}
 
 
@@ -1371,7 +1076,7 @@ U_1 = U_2 = U_3 = 1 \ \mathrm{V},\quad i = 0,\quad u = 1 \ \mathrm{V}
 
 \begin{figure}[H]\centering
 \includegraphics[width=0.8\columnwidth]{assets/5/5.6.png}
-\caption{ 5.6 讲义题 3-4}\label{5.6 讲义题 3-4}
+\caption{\bfseries 5.6 讲义题 3-4}\label{5.6 讲义题 3-4}
 \end{figure}
 
 \section{习题集 3-15: 用回路电流法求图中电路的独立电流源功率}
@@ -1408,13 +1113,13 @@ U_1 = U_2 = U_3 = 1 \ \mathrm{V},\quad i = 0,\quad u = 1 \ \mathrm{V}
 \begin{figure}[H]\centering
 \begin{subfigure}[t]{0.5\columnwidth}\centering
     \includegraphics[height=120pt]{assets/5/5.7 (1).png}
-    \caption{ 回路电流法 }
+    \caption{\bfseries 回路电流法 }
 \end{subfigure}\hfill
 \begin{subfigure}[t]{0.5\columnwidth}\centering
     \includegraphics[height=120pt]{assets/5/5.7 (2).png}
-    \caption{ 节点电压法 }
+    \caption{\bfseries 节点电压法 }
 \end{subfigure}
-\caption{ 5.7 习题集 3-15 }\label{5.7 习题集 3-15}
+\caption{\bfseries 5.7 习题集 3-15 }\label{5.7 习题集 3-15}
 \end{figure}
 
 不妨也用节点电压法求解一下此题。如图 \ref{5.7 习题集 3-15} (b)，电路中有 4 个节点（含 1 个无伴电压源）和 1 个（受控源）控制变量，取节点 0 为参考节点，共需列出 $ (4 - 1 - 1) + 0 + 2 = 4$ 个方程，如下：
@@ -1470,13 +1175,11 @@ U_1 = U_2 = U_3 = 1 \ \mathrm{V},\quad i = 0,\quad u = 1 \ \mathrm{V}
 
 \begin{figure}[H]\centering
 \includegraphics[width=0.5\columnwidth]{assets/5/5.8.png}
-\caption{ 5.8 讲义题 3-8}\label{5.8 讲义题 3-8}
+\caption{\bfseries 5.8 讲义题 3-8}\label{5.8 讲义题 3-8}
 \end{figure}
 
 
-
-
-\chapter{2024.10.9 - 2024.10.15}\thispagestyle{fancy}
+\chapter{Homework 6: 2024.10.9 - 2024.10.15}\thispagestyle{fancy}
 
 \section{习题集 4-10: 题图电路中电流源 $I_{S1} = 2 \ \mathrm{A}$，$I_{S2}= 3 \ \mathrm{A}$。断开 3 A 电流源，则 2 A 电流源输出 28 W，$U$ = 8 V。断开 2 A 电流源，则 3 A 的电流源输出 54 W，$U$ = 12 V。求两个电流源同时作用时，每个电流源输出的功率。}
 
@@ -1496,7 +1199,7 @@ U_1 = U_2 = U_3 = 1 \ \mathrm{V},\quad i = 0,\quad u = 1 \ \mathrm{V}
 \end{equation}
 \begin{figure}[H]\centering
 \includegraphics[width=0.4\columnwidth]{assets/6/9506aa8f7aeba32072fee006fa1076c7.png}
-\caption{ 6.1 习题集 4-10}\label{6.1 习题集 4-10}
+\caption{\bfseries 6.1 习题集 4-10}\label{6.1 习题集 4-10}
 \end{figure}
 
 \section{习题集 4-24: 题图电路中，已知 $U_{S1} = 24 \ \mathrm{V},\  U_{S2} = 18 \ \mathrm{V},\ R_1 = 2 \ \Omega,\ R_2 = 1 \ \Omega,\ R_3 = 3 \ \Omega$。}
@@ -1517,13 +1220,13 @@ U_{S1}:\ I_{R_3} = \frac{24}{11} \ \mathrm{A} ,\quad U_{S2}:\ I_{R_3} = -\frac{3
 \begin{figure}[H]\centering
 \begin{subfigure}[t]{0.55\columnwidth}\centering
     \includegraphics[height=115pt]{assets/6/a45e47a606698b8a935641ad6e1e5ab9.png}
-    \caption{ 原题图 }
+    \caption{\bfseries 原题图 }
 \end{subfigure}\hfill
 \begin{subfigure}[t]{0.45\columnwidth}\centering
     \includegraphics[height=125pt]{assets/6/0d7f9f1c42f022fbf24925b67ee966d3.png}
-    \caption{ 电流参考方向 }
+    \caption{\bfseries 电流参考方向 }
 \end{subfigure}
-\caption{ 6.2 习题集 4-24}\label{6.2 习题集 4-24}
+\caption{\bfseries 6.2 习题集 4-24}\label{6.2 习题集 4-24}
 \end{figure}
 
 \subsection{$R_3$ 为多大时可获得最大功率，值是多少}
@@ -1610,19 +1313,19 @@ R_0 = R \parallel 10 \ \Omega \parallel 8 \ \Omega = \frac{8}{3} \ \Omega,\quad 
 
 \begin{figure}[H]\centering
 \includegraphics[width=0.85\columnwidth]{assets/6/image (7).jpg}
-\caption{ 6.3 习题集 4-36}\label{6.3 习题集 4-36}
+\caption{\bfseries 6.3 习题集 4-36}\label{6.3 习题集 4-36}
 \end{figure}
 
 \begin{figure}[H]\centering
 \begin{subfigure}[t]{0.6\columnwidth}\centering
     \includegraphics[height=100pt]{assets/6/acd560ff4ae20eb901019a90b84ef837.png}
-    \caption{ 戴维南定理等效 }
+    \caption{\bfseries 戴维南定理等效 }
 \end{subfigure}\hfill
 \begin{subfigure}[t]{0.4\columnwidth}\centering
     \includegraphics[height=100pt]{assets/6/7367192b138adaf93ddf5c5fcc94a53b.png}
-    \caption{ 等效电源 }
+    \caption{\bfseries 等效电源 }
 \end{subfigure}
-\caption{ 6.3 习题集 4-36 的等效处理}\label{6.3 习题集 4-36.2}
+\caption{\bfseries 6.3 习题集 4-36 的等效处理}\label{6.3 习题集 4-36.2}
 \end{figure}
 
 \section{习题集 4-37: 题图电路方框内为线性电阻网络，测得 $U_S = 8 \ \mathrm{V},\ R = 3 \ \Omega$ 时 $I = 0.5 \ \mathrm{A}$；$U_S = 18 \ \mathrm{V},\ R = 4 \ \Omega$ 时 $I = 1 \ \mathrm{A}$。求 $U_S = 30 \ \mathrm{V},\ R = 5 \ \Omega$ 时的电流 $I$。}
@@ -1646,7 +1349,7 @@ R_0 = R \parallel 10 \ \Omega \parallel 8 \ \Omega = \frac{8}{3} \ \Omega,\quad 
 
 \begin{figure}[H]\centering
 \includegraphics[width=0.52\columnwidth]{assets/6/0f2c149b099f73467b72503826e5385d.png}
-\caption{ 6.4 习题集 4-37}\label{6.4 习题集 4-37}
+\caption{\bfseries 6.4 习题集 4-37}\label{6.4 习题集 4-37}
 \end{figure}
 
 \section{（选做）讲义题 3-13: 题图电路中，$R_x = 0$ 时测得 $I_x = 8 \ \mathrm{A}$，$U = 12 \ \mathrm{V}$；$R_x = \infty$ 时测得 $U_x = 36 \ \mathrm{V}$，$U = 6 \ \mathrm{V}$。求出 $R_x = 9 \ \Omega$ 时的 $U_x$ 和 $U$。}
@@ -1685,18 +1388,18 @@ R_0 = R \parallel 10 \ \Omega \parallel 8 \ \Omega = \frac{8}{3} \ \Omega,\quad 
 \begin{figure}[H]\centering
 \begin{subfigure}[t]{0.45\columnwidth}\centering
     \includegraphics[height=125pt]{assets/6/image (9).jpg}
-    \caption{ 讲义 3-13 题图 }
+    \caption{\bfseries 讲义 3-13 题图 }
 \end{subfigure}\hfill
 \begin{subfigure}[t]{0.55\columnwidth}\centering
     \includegraphics[height=125pt]{assets/6/image (10).jpg}
-    \caption{ 讲义 3-18 题图 }
+    \caption{\bfseries 讲义 3-18 题图 }
 \end{subfigure}
-\caption{ 讲义题 3-13、讲义题 3-18 }
+\caption{\bfseries 讲义题 3-13、讲义题 3-18 }
 \end{figure}
 
 \section{（选做）讲义题 3-18: 题图电路中 OPA 理想，求 ab 端口的诺顿等效电路，以及电流之比 $\frac{i_1}{i_4}$（设ab端开路）。}
 
-由虚短和虚断，$i_4 = - \frac{u_s}{R_2} \Longrightarrow U_{ab} = -\frac{R_4}{R_2}u_s$，将电压源置零，可得戴维南等效电阻为 $R = R_4$，于是诺顿等效电流为 $i = \frac{U}{R} = - \frac{u_s}{R_2}$，也即大小 $\frac{u_s}{R_2}$，由 $a$ 指向 $b$，如图 \ref{6.6 讲义题 3-18 诺顿等效电路} 所示。并且电流之比：
+由虚短和虚断，$i_4 = - \frac{u_s}{R_2} \Longrightarrow U_{ab} = -\frac{R_4}{R_2}u_s$，将电压源置零，可得戴维南等效电阻为 $R = R_4$，于是诺顿等效电流为 $i = \frac{U}{R} = - \frac{u_s}{R_2}$，也即大小 $\frac{u_s}{R_2}$，由 $a$ 指向 $b$，如图 \ref{6.6 等效电路、6.7 题图} (a) 所示。并且电流之比：
 \begin{equation}
 u_s - i_1R_1 = \left(1 - \frac{R_3 + R_4}{R_2}u_s\right) \Longrightarrow  \boxed{
     \frac{i_1}{i_4} = - \frac{R_3 + R_4}{R_2}
@@ -1704,8 +1407,57 @@ u_s - i_1R_1 = \left(1 - \frac{R_3 + R_4}{R_2}u_s\right) \Longrightarrow  \boxed
 \end{equation}
 
 \begin{figure}[H]\centering
-\includegraphics[width=0.4\columnwidth]{assets/6/9d53a9b244bf76e6ad1734869043135a.png}
-\caption{ 6.6 讲义题 3-18 诺顿等效电路}\label{6.6 讲义题 3-18 诺顿等效电路}
+\begin{subfigure}[t]{0.5\columnwidth}\centering
+    \includegraphics[height=120pt]{assets/6/9d53a9b244bf76e6ad1734869043135a.png}
+    \caption{\bfseries 6.6 讲义题 3-18 诺顿等效电路 }
+\end{subfigure}\hfill
+\begin{subfigure}[t]{0.5\columnwidth}\centering
+    \includegraphics[height=120pt]{assets/6/2e96a177467ade2ca35ed590fb9751d7.png}
+    \caption{\bfseries 6.7 习题集 4-47 }
+\end{subfigure}
+\caption{\bfseries 6.6 等效电路、6.7 题图 }\label{6.6 等效电路、6.7 题图}
+\end{figure}
+
+\section{习题集 4-47: 图 \ref{6.6 等效电路、6.7 题图} (b) 中，N 为纯电阻网络，已知 $ab$ 端开路电压 $U_o = 8 \ \mathrm{V}$，$ab$ 端纽左端的戴维南等效电阻 $R = 3 \ \Omega$，电压源 $U_S = 10 \ \mathrm{V}$。若 $ab$ 两端接上 $R_L = 2 \ \Omega$ 电阻时，电压源 $U_S$ 供出电流 $I_1$。求当把 $R_L$ 移走之后，电流 $I_1$ 变化多少？} 
+
+由特勒根定理，设电路总支路数为 $b$，由特勒根定理：
+\begin{equation}
+\sum_{k = 1}^{2} u_k \hat{i}_k + \sum_{k = 3}^{b} u_k \hat{i}_k =  0 = \sum_{k = 1}^{2} \hat{u}_k i_k + \sum_{k = 3}^{b} \hat{u}_k i_k 
+\end{equation}
+其中支路 $3 \sim b$ 是网络 N 内部的支路，由于 $N$ 为纯电阻网络，有：
+\begin{equation}
+    \sum_{k = 3}^{b} u_k \hat{i}_k  = \sum_{k = 3}^{b} i_k R_k \hat{i}_k =  \sum_{k = 3}^{b} \hat{u}_k i_k 
+\end{equation}
+于是内部项可以消去，得到：
+\begin{gather}
+    u_1\hat{i}_1 + u_2 \hat{i}_2 = \hat{u}_1i_1 + \hat{u}_2 i_2 \Longrightarrow 
+U_S I_1' + 0 = U_SI_1 + U_o \frac{U_o}{R_L + R}
+\Longrightarrow \\
+\boxed{
+    \Delta I_1 = \frac{U_o}{U_S}\cdot\frac{U_o}{R_L + R} = 1.28 \ \mathrm{A}
+}
+\end{gather}
+
+
+\section{（选做）讲义题 3-20: 题图电路中，$N_R$ 为只含线性电阻的网络，试求解电压 $U_R$。}
+
+$N_R$ 为线性电阻网络，由互易定理：
+\begin{equation}
+    u_1\hat{i}_1 + u_2 \hat{i}_2 = \hat{u}_1i_1 + \hat{u}_2 i_2 \Longrightarrow 
+    10\cdot \left(- \frac{U_R}{2}\right) + 0 = U_R\cdot 5 + 10 \cdot 1 \Longrightarrow \boxed{
+        U_R = -1 \ \mathrm{V}
+    }
+\end{equation}
+
+
+\begin{figure}[H]\centering
+\begin{subfigure}[t]{0.5\columnwidth}\centering
+    \includegraphics[height=120pt]{assets/6/940731df99ca203c28371281cebfb9ca.png}
+\end{subfigure}\hfill
+\begin{subfigure}[t]{0.5\columnwidth}\centering
+    \includegraphics[height=120pt]{assets/6/7c27b6b5231748eb023412fd0cbe700c.png}
+\end{subfigure}
+\caption{\bfseries 6.8 讲义题 3-20 }
 \end{figure}
 
 
@@ -1749,6 +1501,217 @@ u_s - i_1R_1 = \left(1 - \frac{R_3 + R_4}{R_2}u_s\right) \Longrightarrow  \boxed
 
 
 
+% --------------------------- 仿真作业 --------------------------- %
+% >> ------------------------ 仿真作业 ------------------------ << %
+
+
+\chapter{Simulate 1: 2024.9.10 - 2024.9.24}
+\lhead{Simulate 1: 2024.9.10 - 2024.9.24}
+\thispagestyle{fancy}
+
+\section{仿真 2-1: 题目详见图 \ref{示意图} (b)}
+
+\subsection{单 OPA 实现电压运算}
+
+电路如图 \ref{单 OPA 实现 电压运算} (a) 所示，接线端示意图见图 \ref{单 OPA 实现 电压运算} (b)。
+
+\begin{figure}[H]\centering
+\begin{subfigure}[t]{0.43\textwidth}\centering
+    \includegraphics[height=150pt]{assets/3/单OPA.png}
+    \caption{\bfseries 电路示意图 }
+\end{subfigure}\begin{subfigure}[t]{0.43\textwidth}\centering
+    \includegraphics[height=150pt]{assets/3/单OPA接线端.png}
+    \caption{\bfseries 接线端示意图 }
+\end{subfigure}
+\caption{\bfseries 单 OPA 实现 电压运算 }\label{单 OPA 实现 电压运算}
+\end{figure}
+
+下面分析其输出特性。由虚断，在 $u_1$ 和 $u_2$ 构成的回路中，设正向流经 $u_2$ 的电流为 $i_2$，则有：
+\begin{equation}
+i_2 = \frac{u_2 - u_1}{R_1+R_2}
+\Longrightarrow  
+u_A = u_2 - i_2R_2 = \frac{R_2u_1 + R_1u_2}{R_1 + R_2}
+\end{equation}
+由虚短，B 点的电势也为 $u_A$，于是：
+\begin{equation}
+i_3 = \frac{u_3 - u_A}{R_3},\ i_M = \frac{u_A}{R_M} \Longrightarrow  i_f = i_3 - i_M = \frac{u_3 - u_A}{R_3} - \frac{u_A}{R_M} = \frac{u_3}{R_3} - (\frac{1}{R_3} + \frac{1}{R_M})u_A
+\end{equation}
+由虚断和 KVL:
+\begin{equation}
+u_o = u_A - i_fR_f = u_A - \frac{R_f}{R_3}u_3 + (\frac{R_f}{R_3} + \frac{R_f}{R_M})u_A = \left( 1 +  \frac{R_f}{R_3} + \frac{R_f}{R_M}\right)u_A - \frac{R_f}{R_3}u_3
+\end{equation}
+将 $u_A$ 的表达式代入，最终得到：
+\begin{equation}
+\boxed{
+    u_o = \left( 1 +  \frac{R_f}{R_3} + \frac{R_f}{R_M}\right)\frac{1}{\frac{R_1}{R_2} + 1}u_1 
+    + \left( 1 +  \frac{R_f}{R_3} + \frac{R_f}{R_M}\right)\frac{\frac{R_1}{R_2}}{\frac{R_1}{R_2} + 1}u_2
+    - \frac{R_f}{R_3}u_3
+}
+\end{equation}
+我们需要 $u_1,u_2,u_3$ 前的系数分别为 3, 2, -0.5，于是有：
+\begin{equation}
+\begin{cases}
+    \left( 1 +  \frac{R_f}{R_3} + \frac{R_f}{R_M}\right)\frac{1}{\frac{R_1}{R_2} + 1} = 3 \vspace*{5pt}\\ 
+    \vspace*{5pt}
+    \left( 1 +  \frac{R_f}{R_3} + \frac{R_f}{R_M}\right)\frac{\frac{R_1}{R_2}}{\frac{R_1}{R_2} + 1} = 2 \\ 
+    -\frac{R_f}{R_3} = -0.5
+\end{cases}
+\Longrightarrow 
+\begin{cases}
+    R_1 = \frac{2}{3}R_2 &,\ R_2 > 0\\ 
+    R_3 = 2R_f,\ R_M = \frac{2}{7}R_f &,\ R_f >0\\
+\end{cases}
+\end{equation}
+为了保持 OPA 的理想性，我们应选择 $\KO$ 量级的电阻，同时，为了降低电路的整体功率，减少消耗，电阻阻值应该尽量大。综合下来，不妨选取 $R_2 = 6 \KO,\ R_f = 3.5 \KO$，此时所有电阻阻值为：
+\begin{equation}
+R_1 = 4\KO,\ R_2 = 6\KO,\ R_3 = 7\KO,\ R_M = 1\KO,\ R_f = 3.5\KO
+\end{equation}
+
+如图 \ref{单 OPA 实现电压运算仿真} (a)，在 Multisim 中进行仿真，得到的结果如下表所示：
+
+% \usepackage[longtable]{multirow}
+% \usepackage{longtable}
+
+
+\begin{longtable}{|c|c|c|c|c|c|c|c|c|c|c|c|c|} 
+    \hline
+    \multirow{3}{*}{项目} & \multicolumn{3}{c|}{1} & \multicolumn{3}{c|}{2} & \multicolumn{3}{c|}{3} & \multicolumn{3}{c|}{4}  \\* 
+    \cline{2-13}
+                      & $x,\ u_1$ & $y,\ u_2$ & $z,\ u_3$  & $x,\ u_1$ & $y,\ u_2$ & $z,\ u_3$               &  $x,\ u_1$ & $y,\ u_2$ & $z,\ u_3$             &  $x,\ u_1$ & $y,\ u_2$ & $z,\ u_3$              \\* 
+    \cline{2-13}
+                      & 1     & 1     & 1      & 1 & 3 & 2              & -2 & 2 & 0             & 3 & 3 & 2               \endfirsthead 
+    \hline
+    理论输出 $(\mathrm{V})$             & \multicolumn{3}{c|}{$3+2-0.5 = 4.5$}  & \multicolumn{3}{c|}{$3+6-1=8$}  & \multicolumn{3}{c|}{$-6+4-0 = -2$}  & \multicolumn{3}{c|}{$9+6-1=14$}   \\ 
+    \hline
+    仿真输出 $(\mathrm{V})$     & \multicolumn{3}{c|}{4.50}  & \multicolumn{3}{c|}{8.00}  & \multicolumn{3}{c|}{-2.00}  & \multicolumn{3}{c|}{10.494}   \\
+    \hline
+\end{longtable}
+
+\begin{figure}[H]\centering
+\begin{subfigure}[t]{0.45\textwidth}\centering
+    \includegraphics[height=130pt]{assets/3/8a5141629bce86a4810852d0002e5180.png}
+    \caption{\bfseries 单 OPA 实现电压运算 }
+\end{subfigure}\begin{subfigure}[t]{0.53\textwidth}\centering
+    \includegraphics[height=130pt]{assets/3/OPA饱和电流.png}
+    \caption{\bfseries OPA 饱和电压 }
+\end{subfigure}
+\caption{\bfseries 仿真电路图与 OPA 饱和电压 }\label{单 OPA 实现电压运算仿真}
+\end{figure}
+
+\begin{figure}[H]\centering
+\begin{subfigure}[t]{0.48\textwidth}\centering
+    \includegraphics[height=145pt]{assets/3/111.png}
+    \caption{\bfseries $(x,y,z) = (1,1,1)$ }
+\end{subfigure}\begin{subfigure}[t]{0.48\textwidth}\centering
+    \includegraphics[height=145pt]{assets/3/132.png}
+    \caption{\bfseries $(x,y,z) = (1,3,2)$ }
+\end{subfigure}
+\begin{subfigure}[t]{0.48\textwidth}\centering
+    \includegraphics[height=145pt]{assets/3/91f965079537c7c35944182511dce291.png}
+    \caption{\bfseries $(x,y,z) = (-2,2,0)$ }
+\end{subfigure}\begin{subfigure}[t]{0.48\textwidth}\centering
+    \includegraphics[height=145pt]{assets/3/def5c414621689edf67e4afb5251cf4a.png}
+    \caption{\bfseries $(x,y,z) = (3,3,2)$ }
+\end{subfigure}
+\caption{\bfseries 仿真具体结果图 }\label{一个图}
+\end{figure}
+
+由表可见，除了最后一组数据，仿真结果与理论结果完全一致。最后一组之所以不同，是因为输出电压 $u_o$ 超出了此 OPA 的饱和电压 $U_{\text{sat}}$，导致输出电压 $u_o = U_{\text{sat}} = 10.494 \mathrm{V}$。如图 \ref{单 OPA 实现电压运算仿真} (b) 所示，此 OPA (LM324ADTBR2G) 的饱和电压为 $10.525 \mathrm{V}$，与解释相符。具体仿真时的结果见图 \ref{一个图}。
+
+
+\subsection{一些失败的例子}
+注意到，减法器是在反相加法器的基础上，串联入电压源（和电阻）改变了 $u_+$ 端的电压。这样，在最终的输出电压 $u_o$ 中，$u_-$ 端的电源电压会带负号，$u_+$ 端的电源电压带正号。用类似的思想，我们可以对减法器进行改造，最终仅用一个 OPA 便实现 $3x+2y-0.5z$ 的电压运算。
+
+一种方法是向 $u_+$ 端再串联一个电压源，使得输出 $u_o$ 中两正一负，然后通过电阻值来调整系数，但是，这样不满足接线端的要求（三正一共地）。另一种方法是向 $u_-$ 端再并联一个电压源，使得输出 $u_o$ 中两负一正（$-u_1,\ -u_2,\ +u_3$），最后通过电阻值来调整系数，但是，这样得到的是两负一正而不是两正一负，虽满足了接线端要求，却不是我们需要的结果。
+
+其实，我们只需要向 $u_+$ 端的电压源再并联一个电压源即可，如图所示。下面分析其输出特性。
+
+\begin{figure}[H]\centering
+\begin{subfigure}[t]{0.43\textwidth}\centering
+    \includegraphics[height=110pt]{assets/3/失败的例子.png}
+    \caption{\bfseries 失败的例子 }
+\end{subfigure}\begin{subfigure}[t]{0.43\textwidth}\centering
+    \includegraphics[height=110pt]{assets/3/image (5).jpg}
+    \caption{\bfseries 仿真作业 2-1 }
+\end{subfigure}
+\caption{\bfseries 示意图 }\label{示意图}
+\end{figure}
+
+在 $u_1, R_1, u_2, R_2 $ 和 $R_M$ 构成的局部电路中，由 KVC 得点 A 处的电势 $u_A$:
+\begin{gather*}
+\begin{cases}
+    u_1 - R_1i_1 - R_M(i_1 + i_2) = 0 \\
+u_2 - R_2i_2 - R_M(i_1 + i_2) = 0
+\end{cases}
+\Longrightarrow 
+\begin{cases}
+    i_1 = \frac{(R_2+R_M)u_1 - R_Mu_2}{R_1R_2 +R_1R_M + R_2R_M} \\ 
+    i_2 = \frac{(R_1+R_M)u_2 - R_Mu_1}{R_1R_2 +R_1R_M + R_2R_M} \\ 
+\end{cases}\Longrightarrow 
+u_A = \frac{R_2R_Mu_1 + R_1R_Mu_2}{R_1R_2 +R_1R_M + R_2R_M}
+\end{gather*}
+也即点 B 和非反相输入端的电势 $u_+ = u_B = u_A$。由虚短，$u_- = u_+$，可得电流 $i_3$。再由虚断，经过电阻 $R_f$ 求得 D 点电势，也即输出电压 $u_o$。
+\begin{equation}
+i_3 = \frac{u_3 - u_-}{R_3} = \frac{1}{R_3}(u_3 - \frac{R_2R_Mu_1 + R_1R_Mu_2}{R_1R_2 +R_1R_M + R_2R_M}) 
+\end{equation}
+\begin{align}
+u_o &= u_A - i_3R_f = (1+\frac{R_f}{R_3})u_A - \frac{R_f}{R_3}u_3 
+\\
+&= (1+\frac{R_f}{R_3})\cdot \frac{\frac{R_M}{R_1}u_1 + \frac{R_M}{R_2}u_2}{1 + \frac{R_M}{R_1} + \frac{R_M}{R_2}} - \frac{R_f}{R_3}u_3
+\\ 
+&=\frac{1+\frac{R_f}{R_3}}{1 + \frac{R_M}{R_1} + \frac{R_M}{R_2}}
+\left( \frac{R_M}{R_1}u_1 + \frac{R_M}{R_2}u_2  \right) - \frac{R_f}{R_3}u_3
+\end{align}
+最后调整电阻阻值。为了保持 OPA 的理想性，电阻需要在 $\KO$ 量级，令电阻比例如下：
+\begin{equation}
+\begin{cases}
+    \frac{R_f}{R_3} = 0.5 \\ 
+    \frac{1+\frac{R_f}{R_3}}{1 + \frac{R_M}{R_1} + \frac{R_M}{R_2}}\cdot \frac{R_M}{R_1} = 3 \\ 
+    \frac{1+\frac{R_f}{R_3}}{1 + \frac{R_M}{R_1} + \frac{R_M}{R_2}}\cdot \frac{R_M}{R_2} = 2
+\end{cases}\Longrightarrow 
+\begin{cases}
+    R_f = \frac{1}{2}R_3 \\ 
+    R_1 =  -2R_M\\ 
+    R_2 = -\frac{4}{3}R_M
+\end{cases}
+\end{equation}
+显然这不可能实现，舍弃。
+
+\section{仿真 2-2}
+
+仿真电路如图 \ref{负电阻仿真} (a) 所示，对输入电压进行参数扫描，输出通过电压源的电流，得到图 \ref{负电阻仿真} (b)。这里需要注意，在 Multisim 中，电流的参考方向始终是高电势指向低电势（包括电压源），因此，仿真输出中的 I(V11) 是从上往下通过 V11 的电流（而不是从下至上），电压源 V11 的实际电流为 $i = -I(V11)$。
+
+\begin{figure}[H]\centering
+\begin{subfigure}[t]{0.47\textwidth}\centering
+    \includegraphics[height=140pt]{assets/3/0649949f48a11f77b47f406012e3f7a8.png}
+    \caption{\bfseries 负电阻仿真电路 }
+\end{subfigure}\begin{subfigure}[t]{0.5\textwidth}\centering
+    \includegraphics[height=140pt]{assets/3/83d7126e6d74b406acb4bbc94900f2c6.png}
+    \caption{\bfseries $I$（纵轴）$U$（横轴）关系 }
+\end{subfigure}
+\caption{\bfseries 负电阻仿真 }\label{负电阻仿真}
+\end{figure}
+
+简记电压源 V11 的电压为 $u$，继续仿真输出电压 $u_o$ 关于输入电压 $u$ 的变化，将数据导出后在 Matlab 中绘制曲线，如图 \ref{仿真结果分析} (a)。再将 $I-U$ 关系转化为 $U-I$ 关系，如图 \ref{仿真结果分析} (b)。可以发现，在线性工作区内，电路表现为负阻。而线性区外的两段折线位于 OPA 的饱和区，此时 $u_o$ 始终为饱和电压，电路呈现正电阻，且阻值为:
+\begin{equation}
+\begin{cases}
+    i = \frac{u - U_{\text{sat}}}{R_1} &, u > 3.54\ \mathrm{V} \\ 
+    i = \frac{u + U_{\text{sat}}}{R_1} &, u < -4.05 \ \mathrm{V} \\ 
+\end{cases}\Longrightarrow 
+R_{\text{sat}} = R_1 = 10 \KO
+\end{equation}
+这与图 \ref{仿真结果分析} (b) 中曲线的斜率是相符的。而在线性区，负电阻 $R = -\frac{10 \KO}{10 \KO} \cdot 5 \KO = - 5 \KO$，这也是符合的。
+
+\begin{figure}[H]\centering
+\begin{subfigure}[t]{0.52\textwidth}\centering
+    \includegraphics[height=175pt]{assets/3/2024-09-13_01-13-08.png}
+    \caption{\bfseries $u_o$ 与 $i$ 关于 $u$ 的变化}
+\end{subfigure}\begin{subfigure}[t]{0.47\textwidth}\centering
+    \includegraphics[height=170pt]{assets/3/2024-09-13_01-13-52.png}
+    \caption{\bfseries $U$-$I$ 关系（VCR）}
+\end{subfigure}
+\caption{\bfseries 仿真结果分析 }\label{仿真结果分析}
+\end{figure}
 
 
 
@@ -1757,22 +1720,104 @@ u_s - i_1R_1 = \left(1 - \frac{R_3 + R_4}{R_2}u_s\right) \Longrightarrow  \boxed
 
 
 
+% --------------------------- 实验作业 --------------------------- %
+% >> ------------------------ 实验作业 ------------------------ << %
+
+
+\chapter{Simulate 2: }
+\lhead{Simulate 2: }
+\thispagestyle{fancy}
+
+
+\chapter{Laboratory 1: 2024.10.11 - 2024.}
+\lhead{Laboratory 1: 2024.10.11 - 2024.}
+\thispagestyle{fancy}
+
+实验课件见网址 \href{https://www.123865.com/s/0y0pTd-KRKj3}{https://www.123865.com/s/0y0pTd-KRKj3}。
 
 
 
 
 
 
+% --------------------------- 其它作业 --------------------------- %
+% >> ------------------------ 其它作业 ------------------------ << %
 
 
+\chapter{Laboratory 2: }
+\lhead{Laboratory 2: }
+\thispagestyle{fancy}
+
+实验课件见网址 \href{}{https://www.123865.com/s/0y0pTd-KRKj3}。
 
 
+\chapter{第二次习题课课前练习}
+\lhead{第二次习题课课前练习}
+\thispagestyle{fancy}
 
+\begin{figure}[H]\centering
+\includegraphics[width=0.95\columnwidth]{assets/4/16b6858d371dc967c7673595957d383b_720.jpg}
+\caption{\bfseries 第二次习题课课前练习}\label{第二次习题课课前练习}
+\end{figure}
 
+\section{求图示二端口的 $\boldsymbol{G}$ 参数}\thispagestyle{fancy}
 
+由 KVL 和广义 KCL，得到: 
+\begin{equation}
+\begin{cases}
+    (i_1 - 0.5u_1) + (i_2 - 0.5u_2) = 5(0.5u_1) \\ 
+    3u_1 + 0.5u_2 = 2i_1 + 2i_2
+\end{cases}
+\Longrightarrow 
+\begin{cases}
+    i_1 = \frac{9}{8}u_1 + \frac{5}{8}u_2 \\ 
+    i_2 = \frac{15}{8}u_1 - \frac{1}{8}u_2
+\end{cases}
+,\quad \boldsymbol{G} = 
+\begin{bmatrix}
+    \frac{8}{9} & \frac{8}{5} \\ 
+    \frac{8}{15} & - 8
+\end{bmatrix}
+\mathrm{S}
+\end{equation}
 
+\section{设计一个用于直流信号下的最简二端口（略）}
 
+\section{求图示电路的电压增益与入端电阻}
 
+容易得到：
+\begin{equation}
+u_o = 2u_i,\quad i = (\frac{1}{R_1} - \frac{1}{R_2})u_i \Longrightarrow A = 2,\quad R_{i} = \frac{1}{\frac{1}{R_1} - \frac{1}{R_2}} = \frac{R_1R_2}{R_2-R_1}
+\end{equation}
+
+\section{根据图示电路回答问题}
+
+\begin{enumerate}[label=(\arabic*)]
+\item 这是一个（反相）对数运算电路，$u_o = - U_{\text{TH}} \ln \left( \frac{u_i}{I_S R} \right)$
+\item 将二极管与电阻 $R$ 的位置互换
+\item 依次复合对数运算、线性运算和指数运算，或者依次复合指数运算、线性运算和对数运算
+\end{enumerate}
+
+\section{分析下图所示电路的功能}
+图示电路是一个简易的 DAC（Digital-Anolog Converter），将数字信号转为模拟信号。考虑到无论输入的数字信号是多少，中间三条支路中的电阻都是接地的，因此各三条支路的电流值是不变的，MOS 管的作用仅是调节电流是否输入到运放，也即是否通过运放上侧的电阻 $R_f = R$，依次调节输出电压 $u_o = -i_fR_f$。
+
+列出方程如下：
+\begin{gather}
+\begin{cases}
+    2i_2R = u_s \\ 
+    2i_2R - (i + i_0 + i_1)R = 2i_1R \\ 
+    2i_1R - (i + i_0 )R = 2i_0R \\ 
+    2i_0R - i(2R) = 0
+\end{cases}
+\Longrightarrow 
+\begin{cases}
+    i_2 = \frac{1}{8R} 4u_s \\ 
+    i_1 = \frac{1}{8R} 2u_s \\ 
+    i_0 = i = \frac{1}{8R} u_s
+\end{cases} \\ 
+\Longrightarrow 
+u_o = - (d_0i_0 + d_1i_1 + d_2i_2)R = -\frac{u_s}{8}\left( d_2\cdot 2^2 + d_1\cdot 2^1 + d_0\cdot 2^0 \right)
+\end{gather}
 
 
 
@@ -1787,6 +1832,8 @@ u_s - i_1R_1 = \left(1 - \frac{R_3 + R_4}{R_2}u_s\right) \Longrightarrow  \boxed
 \titlespacing*{\chapter}{0pt}{-25pt}{8pt} % 控制上方空白的大小
 % section 标题自定义设置 
 \titleformat{\section}[hang]{\normalfont\centering\Large\bfseries  }{\thesection}{8pt}{}
+\lhead{附录 \thechapter}
+
 
 % 附录 A
 \chapter*{附录 A\hspace*{20pt}  Matlab 代码}\setcounter{chapter}{1} 

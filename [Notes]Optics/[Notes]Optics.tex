@@ -292,9 +292,12 @@
         \cfoot{\thepage}
         \renewcommand\headrulewidth{1pt}
         \renewcommand\footrulewidth{0pt}
-        \lhead{https://yidingg.github.io/YiDingg} 
-        \chead{光学笔记（Optics Notes）}    
-        \rhead{dingyi233@mails.ucas.ac.cn}
+        \usepackage{fontawesome}    % 宏包：更多符号与图标 (用于插入 GitHub 图标等)
+        \lhead{\small
+        \href{https://github.com/YiDingg/LatexNotes}{\color{black}\faGithub\ https://github.com/YiDingg/LatexNotes}
+        } 
+        \chead{Optics Notes}    
+        \rhead{\small dingyi233@mails.ucas.ac.cn}
 %文档信息设置
     \title{光学笔记\\Optics Notes}
     \author{丁毅\\ \footnotesize 中国科学院大学，北京 100049\\ Yi Ding \\ \footnotesize University of Chinese Academy of Sciences, Beijing 100049, China}
@@ -1059,7 +1062,7 @@ r' + r = 1,\quad tt' + rr' = 1
 \chapter{光的干涉}\thispagestyle{fancy}
 
 
-通常将平面波与球面波\footnote{即平面电磁波与球面电磁波，详见附录 \ref{平面波、柱面波与球面波}，也可参考 \href{https://www.zhihu.com/question/267133640/answer/319531458}{知乎：球面光波与平面光波 (https://www.zhihu.com/question/267133640/answer/319531458)} 和 \href{https://www.zhihu.com/question/534511391/answer/2501271591}{知乎：高斯光束，平面波，球面波三者间有什么关系 (https://www.zhihu.com/question/534511391/answer/2501271591)}}是光波的的基元，当两个光源（或两束光波）间存在某种关联，波的叠加会引起强度的重新分布，若相互叠加的波满足某些特定条件，使得叠加后产生了稳定的强度分布，则称发生了光的干涉。
+通常将平面波与球面波\footnote{即平面电磁波与球面电磁波，详见附录 \ref{平面波、柱面波与球面波}，也可参考 \href{https://www.zhihu.com/question/267133640/answer/319531458}{知乎：球面光波与平面光波} 和 \href{https://www.zhihu.com/question/534511391/answer/2501271591}{知乎：高斯光束，平面波，球面波三者间有什么关系}}是光波的的基元，当两个光源（或两束光波）间存在某种关联，波的叠加会引起强度的重新分布，若相互叠加的波满足某些特定条件，使得叠加后产生了稳定的强度分布，则称发生了光的干涉。
 
 换句话说，研究干涉现象，就是讨论当两个或多个（光）波在空间中的某区域相遇时，它们如何相互叠加，会产生怎样的新波动现象，了解各个波的特性（振幅、频率、相位、波的类型等）如何影响叠加后的波的性质。
 
@@ -1068,7 +1071,7 @@ r' + r = 1,\quad tt' + rr' = 1
 \section{叠加原理}
 只要波在空间中某点相遇，就会发生叠加，但不一定会产生干涉。也就是说，叠加是无条件的，干涉则要求形成稳定的、新的强度分布。
 
-回想波动方程\footnote{详见 \ref{波动方程}}，它的一个重要特性是：方程是线性的。因此，如果 $\boldsymbol{\psi_1},\ \boldsymbol{\psi_2},\ ...,\ \boldsymbol{\psi_n}$ 各自是波动方程的解，那么它们的任意线性组合也是方程的解，即：
+回想波动方程\footnote{详见附录 \ref{波动方程}}，它的一个重要特性是：方程是线性的。因此，如果 $\boldsymbol{\psi_1},\ \boldsymbol{\psi_2},\ ...,\ \boldsymbol{\psi_n}$ 各自是波动方程的解，那么它们的任意线性组合也是方程的解，即：
 \begin{equation}
 \boldsymbol{\psi} = \sum a_i \boldsymbol{\psi_i}
 \end{equation}

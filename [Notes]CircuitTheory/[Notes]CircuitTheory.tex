@@ -8,18 +8,21 @@
 \documentclass[UTF8]{report}		
 
 % 本 .tex 专属的宏定义
-    \def\V{\ \mathrm{V}}
+    \def\uV{\ \mathrm{uV}}
     \def\mV{\ \mathrm{mV}}
+    \def\V{\ \mathrm{V}}
     \def\kV{\ \mathrm{KV}}
     \def\KV{\ \mathrm{KV}}
     \def\MV{\ \mathrm{MV}}
-    \def\A{\ \mathrm{A}}
+    \def\uA{\ \mathrm{uA}}
     \def\mA{\ \mathrm{mA}}
+    \def\A{\ \mathrm{A}}
     \def\kA{\ \mathrm{KA}}
     \def\KA{\ \mathrm{KA}}
     \def\MA{\ \mathrm{MA}}
+    \def\uO{\ \mu\Omega}
+    \def\mO{\ \mathrm{m}\Omega}
     \def\O{\ \Omega}
-    \def\mO{\ \Omega}
     \def\kO{\ \mathrm{K}\Omega}
     \def\KO{\ \mathrm{K}\Omega}
     \def\MO{\ \mathrm{M}\Omega}
@@ -304,15 +307,18 @@
 % ------------------------ 文章信息区 ------------------------ %
 % ------------------------ 文章信息区 ------------------------ %
 % 页眉页脚设置
-    \usepackage{fancyhdr}   %宏包：页眉页脚设置
+    \usepackage{fancyhdr}   % 宏包：页眉页脚设置
         \pagestyle{fancy}
         \fancyhf{}
         \cfoot{\thepage}
         \renewcommand\headrulewidth{1pt}
         \renewcommand\footrulewidth{0pt}
-        \lhead{https://yidingg.github.io/YiDingg}
+        \usepackage{fontawesome}    % 宏包：更多符号与图标 (用于插入 GitHub 图标等)
+        \lhead{\small
+        \href{https://github.com/YiDingg/LatexNotes}{\color{black}\faGithub\ https://github.com/YiDingg/LatexNotes}
+        }
         \chead{Notes of Principles of Electric Circuits}    
-        \rhead{dingyi233@mails.ucas.ac.cn}
+        \rhead{\small dingyi233@mails.ucas.ac.cn}
 
 %文档信息设置
     \title{电路原理笔记\\ Notes of Principles of Electric Circuits}
@@ -335,10 +341,7 @@
 
 % 序言
 \begin{cnabstract}\normalsize 
-本文为笔者本科时的“电路原理”课程笔记（Notes of Principles of Electric Circuits, 2024.8 - 2025.1）。
-
-读者可到网址 \href{https://www.123865.com/s/0y0pTd-pGKj3}{https://www.123865.com/s/0y0pTd-pGKj3} 下载相关资料，也可在笔者的个人网站上找到课程信息、作业答案等全部资料: 
-\href{https://yidingg.github.io/YiDingg/\#/Notes/MajorCourses/CircuitTheoryNotes}{https://yidingg.github.io/YiDingg/\#/Notes/MajorCourses/CircuitTheoryNotes}。
+本文为笔者本科时的“电路原理”课程笔记（Notes of Principles of Electric Circuits, 2024.8 - 2025.1）。读者可以在笔者的个人网站 \href{https://yidingg.github.io/YiDingg/\#/Notes/MajorCourses/CircuitTheoryNotes}{https://yidingg.github.io/YiDingg/\#/Notes/MajorCourses/CircuitTheoryNotes} 上找到课程信息、教材、教辅和作业答案等相关资料。
 
 由于个人学识浅陋，认识有限，文中难免有不妥甚至错误之处，望读者不吝指正。读者可以将错误发送到我的邮箱 {\color{blue}\ dingyi233@mails.ucas.ac.cn}，也可以到笔者的 \href{https://github.com/YiDingg/LatexNotes}{GitHub (https://github.com/YiDingg/LatexNotes)} 上提 issue，衷心感谢。
 \end{cnabstract}
@@ -1758,7 +1761,99 @@ $p=0$ 即没有无伴电流源时，可列出回路电流法的标准方程\foot
 
 
 
+\chapter{非线性电阻电路分析}\thispagestyle{fancy}
 
+\section{非线性电阻电路}
+
+非线性电阻电路，是指电路中含有非线性电阻元件的电路。
+
+
+\subsection{非线性电阻}
+
+线性电阻（linear resistance）的阻值 $R = \frac{u}{i} = \tan \alpha = \text{\ const}$ 为定值，非线性电阻（nonlinear resistance）的阻值会随电压或电流发生变化，可表示为如下形式: 
+\begin{center}\noindent\begin{minipage}{0.49\columnwidth}
+    \begin{gather}
+        \text{流控型：} u = u(i) \\ 
+        \text{压控型：} i = i(u)
+    \end{gather}
+\end{minipage}\hfill\begin{minipage}{0.49\columnwidth}
+    \begin{figure}[H]\centering
+    %\includegraphics[width=0.4\columnwidth]{}
+    \caption{非线性电阻的符号}\label{非线性电阻的符号}
+    \end{figure}
+\end{minipage}\end{center}
+
+需要注意，非线性电阻电路的 $u$-$i$ 关系不满足齐次性和可加性，因此叠加定理不再适用。
+
+
+\subsection{几种常见的二极管}
+
+整流二极管\footnote{后文所说的“二极管”，如无特别说明，都是指整流二极管}、稳压二极管和发光二极管是最常用的非线性电阻，它们的伏安特性曲线类似（参数不同），正常工作时：
+\begin{gather}
+i = i(u) = I_\text{S}\left(e^{\frac{u}{U_{\text{TH}}}} - 1\right)
+\end{gather}
+其中，$U_{\text{TH}}$ 为常数，称为导通电压（典型值 $0.5 \ \mathrm{V}$）；$I_\text{s}$ 称为反相饱和电流（硅二极管典型值为 $0.1 \uA$）\footnote{有关二极管或其他元件的详细参数，可到\href{https://www.szlcsc.com/}{立创商城}进行检索并查看数据手册 (date sheet)，例如典型二极管 \href{https://item.szlcsc.com/65968.html}{SM4007PL} 的数据手册在 \href{https://atta.szlcsc.com/upload/public/pdf/source/20240710/496933BE705816864AC9581E766E463F.pdf}{here}。}。
+
+另外，还有隧道、充气二极管等。隧道二极管是一种压控型非线性电阻，在 $u-i$ 图中（$u$ 是横坐标），伏安特性形似字母 N，因此也称为 N 型非线性电阻；充气二极管是一种流控型非线性电阻，也称为 S 型非线性电阻。
+
+\begin{figure}[H]\centering
+\begin{subfigure}[t]{0.52\columnwidth}\centering
+    \includegraphics[height=135pt]{assets/4/常见二极管.pdf}
+    \caption{ 常见二极管的电路符号 }
+\end{subfigure}\hfill
+\begin{subfigure}[t]{0.48\columnwidth}\centering
+    \includegraphics[height=140pt]{assets/4/整流二极管.png}
+    \caption{ 整流二极管的伏安特性曲线 }
+\end{subfigure}
+\caption{二极管的符号与伏安特性}
+\end{figure}
+
+\subsection{非线性电阻电路解的唯一性条件}
+
+如果一个非线性电阻的 $u$-$i$ 曲线上任意的（不同）两点 $(u_1, i_1)$，$(u_2, i_2)$ 都满足：
+\begin{equation}
+(u_2 - u_1) \cdot (i_2 - i_1) > 0
+\end{equation}
+则称此电阻为严格递增电阻。非线性电阻电路存在唯一解的一个充分条件就是:\footnote{详见参考文献 \cite{电路原理} Page 158}
+\begin{enumerate}
+\item 每个电阻都是严格递增电阻
+\item 每个电阻都满足 $\displaystyle \lim_{u \to \infty}  i = \infty$
+\item 电路中不存在仅由独立电压源构成的回路或仅由独立电流源联接的两个支点
+\end{enumerate}
+
+\section{非线性电阻电路的求解}
+
+\subsection{四种常见解法}
+\begin{enumerate}
+\item 方程法（解析法）：
+
+当电路是直流，且工作点确定的时候，电路有确定的唯一解，可以使用方程法。列出电路的代数方程（组），利用 Matlab 等计算软件求解非线性方程（组）的解，即得最终结果。在列写代数方程组时，仍可以沿用节点电压法的思路（列出电流 KCL），或者回路电流法的思路（列出电压 KVL），详见参考文献 \cite{电路原理} Page 159 的例 4.2.3 和例 4.2.4。
+
+\item 图解法：
+
+图解法可用于大致估计电路的解，这在非线性元件有多个工作区时（例如二极管）有奇效，但不适用于求解精确解。详见参考文献 \cite{电路原理} Page 160，这里不多赘述。
+
+\item 分段线性法：
+
+将非线性电阻的伏安曲线分段线性化，从而使非线性电路转化为线性电路，然后便可等效为线性电子电路进行求解。\footnote{分段线性法可能导致电路有多解或无解，这超出了本课程的范围，本书始终假设运用分段线性法时，非线性电阻电路存在唯一解。}此方法还需要确定电阻的工作区（即哪一个线性段），先排除明显不可能的范围，再用假设法来验证即可。
+
+\item 小信号法：
+
+小信号法常用于求解
+\end{enumerate}
+
+现实中求解电路时，常常将上面几种方法相结合，混合使用。
+
+\subsection{二极管的四种近似模型}
+在分段线性法的指导下，我们可以提出二极管的几种近似模型。
+
+
+\section{用 MOSFET 构成放大器}
+
+\section{非线性电阻应用举例}
+\subsection{整流}
+\subsection{限幅}
+\subsection{倍频}
 
 
 

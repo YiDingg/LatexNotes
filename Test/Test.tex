@@ -289,9 +289,12 @@
     \cfoot{\thepage}
     \renewcommand\headrulewidth{1pt}
     \renewcommand\footrulewidth{0pt}
-    \lhead{https://yidingg.github.io/YiDingg} 
+    \usepackage{fontawesome}    % 宏包：更多符号与图标 (用于插入 GitHub 图标等)
+        \lhead{\small
+        \href{https://github.com/YiDingg/LatexNotes}{\color{black}\faGithub\ https://github.com/YiDingg/LatexNotes}
+        } 
     \chead{光学笔记（Optics Notes）}    
-    \rhead{dingyi233@mails.ucas.ac.cn}
+    \rhead{\small dingyi233@mails.ucas.ac.cn}
 %文档信息设置
 \title{光学笔记\\Optics Notes}
 \author{丁毅\\ \footnotesize 中国科学院大学，北京 100049\\ Yi Ding \\ \footnotesize University of Chinese Academy of Sciences, Beijing 100049, China}

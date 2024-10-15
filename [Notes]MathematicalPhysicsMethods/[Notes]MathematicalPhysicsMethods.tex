@@ -15,6 +15,7 @@
     \def\Arccos{\mathrm{Arccos\,}}
     \def\Arcsin{\mathrm{Arcsin\,}}
     \def\Arctan{\mathrm{Arctan\,}}
+    \def\res{\mathrm{res\,}}
 
 
 % 通用宏定义
@@ -289,9 +290,12 @@
         \cfoot{\thepage}
         \renewcommand\headrulewidth{1pt}
         \renewcommand\footrulewidth{0pt}
-        \lhead{https://yidingg.github.io/YiDingg}
+        \usepackage{fontawesome}    % 宏包：更多符号与图标 (用于插入 GitHub 图标等)
+        \lhead{\small
+        \href{https://github.com/YiDingg/LatexNotes}{\color{black}\faGithub\ https://github.com/YiDingg/LatexNotes}
+        }
         \chead{Notes of Mathematical Physics Methods}     
-        \rhead{dingyi233@mails.ucas.ac.cn}
+        \rhead{\small dingyi233@mails.ucas.ac.cn}
 %文档信息设置
     \title{数学物理方法笔记\\Notes of Mathematical Physics Methods}
     \author{丁毅\\ \footnotesize 中国科学院大学，北京 100049\\ Yi Ding \\ \footnotesize University of Chinese Academy of Sciences, Beijing 100049, China}
@@ -313,10 +317,7 @@
 
 % 序言
 \begin{cnabstract}\normalsize 
-    本文为笔者本科时的“数学物理方法”课程笔记（Notes of Mathematical Physics Methods, 2024.9 - 2025.1）。
-
-    读者可到网址 \href{https://www.123865.com/s/0y0pTd-pGKj3}{https://www.123865.com/s/0y0pTd-pGKj3} 下载全部资料，也可在笔者的个人网站上找到课程信息、作业答案和其他相关资料: 
-    \href{https://yidingg.github.io/YiDingg/\#/Notes/Math/MathematicalPhysicsMathods}{https://yidingg.github.io/YiDingg/\#/Notes/Math/MathematicalPhysicsMathods}。
+    本文为笔者本科时的“数学物理方法”课程笔记（Notes of Mathematical Physics Methods, 2024.9 - 2025.1）。读者可在笔者的个人网站 \href{https://yidingg.github.io/YiDingg/\#/Notes/Math/MathematicalPhysicsMathods}{https://yidingg.github.io/YiDingg/\#/Notes/Math/MathematicalPhysicsMathods} 上找到课程信息、教材、教辅和作业答案等相关资料。
 
     由于个人学识浅陋，认识有限，文中难免有不妥甚至错误之处，望读者不吝指正。读者可以将错误发送到我的邮箱 {\color{blue}\ dingyi233@mails.ucas.ac.cn}，也可以到笔者的 \href{https://github.com/YiDingg/LatexNotes}{GitHub (https://github.com/YiDingg/LatexNotes)} 上提 issue，衷心感谢。
 \end{cnabstract}
@@ -759,18 +760,18 @@ f(z) = \sqrt[k]{
 }
 \end{equation}
 
-对数函数也是一种常见的多值函数：
+对数函数和幂函数也是一种常见的多值函数：
 \begin{gather}
     \ln z = \ln | z | + i\arg z,\quad
     \Ln z = \ln | z | + i\Arg z
 \end{gather}
 
-很多常见的多值函数都可以通过 $\Ln z$ 和根号来定义：
+包括幂函数\footnote{在后文，除非特殊说明，都默认 $z^a$ 是取 $z \in [0, 2\pi]$ 时的单值分支，即 $z^a \mid_{z=1} = 1$}、三角函数在内的很多常见的多值函数都可以通过 $\Ln z$ 和根号来定义：
 \begin{gather}
     \Arcsin z = \frac{1}{i}\Ln (iz + \sqrt{1-z^2} ),\quad
     \Arccos z = \frac{1}{i}\Ln (z + \sqrt{z^2 - 1} ) \\
     \Arctan z = \frac{1}{2i}\Ln(\frac{1+iz}{1-iz}) ,\quad
-    z^\alpha = e^{\alpha \Ln z},\  \alpha \in \C
+    z^\alpha = e^{\alpha \Ln z}= | z |^a \cdot e^{i\left(a \Arg z\right)},\  \alpha \in \C
 \end{gather}
 
 
@@ -780,10 +781,10 @@ f(z) = \sqrt[k]{
 
 \begin{figure}[H]\centering
 \begin{subfigure}[t]{0.49\textwidth}\centering
-    \includegraphics[height=210pt]{assets/1,2/e^z.pdf}
+    \includegraphics[height=205pt]{assets/1,2/e^z.pdf}
     \caption{ $\boldsymbol{f(z) = e^z}$ }
 \end{subfigure}\begin{subfigure}[t]{0.49\textwidth}\centering
-    \includegraphics[height=210pt]{assets/1,2/cos z.pdf}
+    \includegraphics[height=205pt]{assets/1,2/cos z.pdf}
     \caption{ $\boldsymbol{f(z) = \cos (z)}$ }
 \end{subfigure}
 \caption{ 单值复变函数可视化 }\label{可视化3}
@@ -792,10 +793,10 @@ f(z) = \sqrt[k]{
 
 \begin{figure}[H]\centering
     \begin{subfigure}[t]{0.49\textwidth}\centering
-        \includegraphics[height=210pt]{assets/1,2/sqrt z.pdf}
+        \includegraphics[height=205pt]{assets/1,2/sqrt z.pdf}
         \caption{ $\boldsymbol{f(z) = \sqrt{z} },\ \boldsymbol{\arg z \in [0, 2\pi]}$ 单值分支 }
     \end{subfigure}\begin{subfigure}[t]{0.49\textwidth}\centering
-        \includegraphics[height=210pt]{assets/1,2/ln z.pdf}
+        \includegraphics[height=205pt]{assets/1,2/ln z.pdf}
         \caption{ $\boldsymbol{f(z) = \Ln z},\ \boldsymbol{\arg z \in [0, 2\pi]}$ 单值分支  }
     \end{subfigure}
     \caption{ 多值复变函数可视化 }\label{可视化4}
@@ -1236,6 +1237,7 @@ F'(z) = \int_{a}^{+\infty} \frac{\partial f(t,z)}{\partial z}\ \mathrm{d}t
     \\ 
     a_n = a_n(z) =\frac{1}{2 \pi i} \oint_{\partial G} \frac{f(\zeta)}{\zeta - z} \ \mathrm{d}\zeta  =  \frac{f^{(n)}(z_0)}{n!}
 \end{gather}
+一个解析函数在给定点有唯一的 Talor 展开式，即展开系数是唯一确定的。
 \end{BlockTheorem}
 由于公式的形式与实变函数中完全相同，因此可以将实变函数的结果直接搬用到复变函数中。求函数的 Talor 级数时，除了直接搬用，还可以利用级数乘法和待定系数法\footnote{详见参考文献 \cite{数学物理方法} Page 66}。
 
@@ -1272,11 +1274,282 @@ f^{(0)}(z_0) = f^{(1)}(z_0) = \cdots = f^{(m-1)}(z_0) = 0,\quad f^{(m)}(z_0) \ne
 \begin{gather}
 f(z) = \sum_{n = -m}^{+ \infty} a_n (z - z_0)^n,\quad  \forall\ R_1 \leqslant | z - z_0 | \leqslant R_2
 \\ 
-a_n = \displaystyle \frac{1}{2 \pi i}\oint_{C}\frac{f(\zeta)}{(\zeta - b)^{n+1}}\ \mathrm{d}\zeta
+a_n = \displaystyle \frac{1}{2 \pi i}\oint_{C}\frac{f(\zeta)}{(\zeta - b)^{n+1}}\ \mathrm{d}\zeta,\quad n \in [-m, +\infty)
 \end{gather}
+
 其中 $m$ 可以是 0、正整数或正无穷，$C$ 是圆环内绕点 $z_0$ 一周的任意一条闭合曲线。Laurent Expansion 中的正幂项在大圆以内收敛，称为正则部分；负幂项在小圆以外收敛，称为主要部分，$a_n$ 称为 Laurent 系数。Laurent 级数在环形区域内绝对且内闭一致收敛。
 \end{BlockTheorem}
-需要注意，对于 Laurent Expansion，幂级数的系数{\color{red}（即使是正则部分的系数）} $a_n {\ \color{red} \ne\ } \frac{f^{(n)}(z_0)}{n!}$。
+需要注意，对于 Laurent Expansion，幂级数的系数{\color{red}（即使是正则部分的系数）} $a_n {\ \color{red} \ne\ } \frac{f^{(n)}(z_0)}{n!}$。与 Talor Expansion 类似，Laurent Expansion 也具有唯一性。
+
+\section{单值函数的孤立奇点}
+设单值函数 $f(z)$ 在 $z_0$ 点不解析，则称 $z_0$ 为 $f$ 的奇点。如果 $f$ 在 $z_0$ 的任意空心邻域 $U_\delta^\circ(b):\ 0 < | z - z_0 | < r$ 上解析，则称 $z_0$ 为孤立奇点，否则称为非孤立奇点。
+
+孤立奇点意味着 $f$ 可在环域 $G:\ 0 < | z - z_0 | < R$ 内展开为 Laurent 级数。孤立奇点又分为三种\footnote{在本书，我们也称可去奇点为“$0$ 阶极点”，称本性奇点为“无穷阶极点”。}：可去奇点、极点和本性奇点。下面是一些等价的条件：
+\begin{enumerate}
+\item 可去奇点：若 $f$ 在 $z_0$ 的邻域内有界且不恒为零，则称 $z_0$ 为可去奇点。这等价于 Laurent Expansion 中没有负幂项，即 $m = 0$。
+\item 极点：若 $f$ 在 $z_0$ 的邻域内无界，则称 $z_0$ 为极点。这等价于 Laurent Expansion 中含有限个负幂项，即 $m \in \N^* = \{1, 2, 3, ...\}$，称 $z_0$ 为 m 阶极点。
+\item 本性奇点：若 $f$ 在 $z_0$ 的邻域内无界，则称 $z_0$ 为本性奇点。本性奇点的 Laurent 展开中有无限项。
+\end{enumerate}
+
+\begin{align}
+\begin{cases}
+    \text{可去奇点：}& \lim_{z \to z_0}f(z) = A < \infty \Longleftrightarrow m = 0 \\ 
+    \text{（$m$ 阶）极点：}& \lim_{z \to z_0}f(z) = \infty \Longleftrightarrow m \in \N^* \\
+    \text{本性奇点：}& \lim_{z \to z_0}f(z) = \text{NaN\,} \Longleftrightarrow m = +\infty
+\end{cases}
+\end{align}
+
+特别地，考虑无穷远点 $\infty$ 是否为函数 $f(z)$ 的奇点（或者是什么奇点），等价于考虑 $g(z) = f(\frac{1}{z})$ 在 $z = 0$ 处的奇点性质。例如 $z = \infty$ 是 $e^z, \sin z, \cos z$ 的本性奇点。
+
+\section{解析延拓}
+
+
+设函数 $f_1(z)$ 和 $f_2(z)$ 分别在 $G_1$ 和 $G_2$ 上解析，且 $G_1 \cap G_2 \ne \varnothing$。若在 $G_1 \cap G_2$ 上 $f_1(z) \equiv f_2(z) $，则称 $f_1(z)$ 是 $f_2(z)$ 在 $G_1$ 上的解析延拓，反之称 $f_2(z)$ 是 $f_1(z)$ 在 $G_2$ 上的解析延拓。
+
+解析延拓的目的是为了使得函数在更大的区域内解析，从而更好地研究函数的性质。
+
+\section{Bernoulli 数和 Euler 数（略）}
+
+
+\chapter{留数定理}\thispagestyle{fancy}
+
+\section{留数定理}
+
+\begin{BlockTheorem}[留数定理]\label{留数定理}
+设游街区域 $G$ 的边界 $\partial G$ 为分段光滑的简单闭合曲线。若除有限个孤立奇点 $\{b_1, b_2, ..., b_n\} \subset G$ 外，函数 $f$ 在 $\overline{G}$ 上单值解析，则：
+\begin{gather}
+\oint_{\partial G} f(z) \ \mathrm{d}z = 2 \pi i \sum_{k = 1}^{n} \res f(b_k)
+\end{gather}
+
+其中 $\res f(b_k)$ 称为 $f$ 在 $b_k$ 处的留数，它等价于 $f(z)$ 在 $b_k$ 点的 Laurent Expansion 中的系数 $a_{-1}$（即原形式），也等价于 $(z-b)^mf(z)$ 的 Talor Expansion 中的系数 $a_{m-1}$:
+\begin{gather}
+\boxed{
+    \res f(b_k) = 
+    a_{-1} =
+    \frac{1}{(m-1)!}\cdot \left\{\frac{\mathrm{d}^{m-1} }{\mathrm{d} z^{m-1} }\left[(z-b)^mf(z)\right]\right\}_{z=b}
+}
+\end{gather}
+
+特别地，当奇点为一阶极点时（$m=1$），无需求导：
+\begin{gather}
+\res f(b_k) = \lim_{z\to b}\left[(z-b)f(z)\right]
+\end{gather}
+\end{BlockTheorem}
+
+常见的情况列在下表\footnote{详见参考文献 \cite{数学物理方法} Page 86}: 
+\begin{table}[H]\centering
+    %\renewcommand{\arraystretch}{1.5} % 调整行间距为 1.5 倍
+    %\setlength{\tabcolsep}{1.5mm} % 调整列间距
+    \caption{常见的留数计算方法}
+    \label{常见的留数计算方法}
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}\hline
+    函数 & 给定条件 & 极点阶数 & 留数 $\res f(z_0)$  \\ \hline
+    $f(z)$ & $\displaystyle \lim_{z \to z_0} (z-z_0)f(z) = 0$ & 0 & 0 \\ \hline
+    $f(z)$ & $\displaystyle \lim_{z \to z_0} (z-z_0)f(z) \ne 0$ & 1 & $\displaystyle \lim_{z\to z} (z-z_0)f(z)$ \\ \hline
+    $f(z)$ & $\begin{matrix}\displaystyle
+        \lim_{z \to z_0} (z-z_0)^{k-1}f(z) = \infty \\ 
+        \displaystyle
+        \lim_{z \to z_0} (z-z_0)^{k}f(z) \ne 0
+    \end{matrix}$ & $k$ & $\displaystyle \frac{1}{(k-1)!}\cdot \left\{\frac{\mathrm{d}^{k-1} }{\mathrm{d} z^{k-1} }\left[(z-b)^k f(z)\right]\right\}_{z=b}$ \\ \hline
+    $\frac{f(z)}{g(z)}$ & $\displaystyle  \begin{matrix}f(z_0)\ne 0\\g(z_0) = 0,\ g'(z_0) = 0\end{matrix} $ & 1 (特殊) & $\displaystyle  \lim_{z\to z} \left[(z-z_0)\frac{f(z)}{g(z)}\right] = \frac{f(z_0)}{g'(z_0)}$ \\ \hline
+    $\frac{f(z)}{g(z)}$ & $z_0$ 是 $f(z),\ g(z)$ 的同阶零点 & 0 & 0 \\ \hline
+    $\frac{f(z)}{g(z)}$ & $\begin{matrix}\text{$z_0$ 是 $f(z)$ 的 $m$ 阶零点}\\ 
+    \text{是 $g(z)$ 的 $m+n$ 阶零点}\end{matrix} $ & $n$ & $\displaystyle \frac{1}{(k-1)!}\cdot \left\{\frac{\mathrm{d}^{k-1} }{\mathrm{d} z^{k-1} }\left[(z-b)^k \frac{f(z)}{g(z)}\right]\right\}_{z=b}$ \\ \hline
+\end{tabular}
+\end{table}
+
+另外，留数还可用于讨论有理函数的部分分式展开，例如函数 $f(z) = \frac{1}{(z-1)(z-2)(z-3)} = \frac{A}{z-1} + \frac{B}{z-2} + \frac{C}{z-3}$ 的常数 $A, B, C$ 正好就是 $f(z)$ 在一阶极点 $z = 1, 2, 3$ 处的留数，即：
+\begin{gather}
+A = \res f(1) = \frac{1}{2},\quad B = \res f(2) = -1,\quad C = \res f(3) = \frac{1}{2}
+\end{gather}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 \nocite{*}
 \bibliography{re}

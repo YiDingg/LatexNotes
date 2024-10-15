@@ -11,19 +11,22 @@ Latex Enviroment: Window 11 + Texlive 2023 (xelatex + bibtex) + VSCode
 Below are some previews:
 
 ## Optics (光学)
-### Notes
+### Notes of Optics
 ![image](https://github.com/user-attachments/assets/c85ba4b2-0d12-4737-ad3b-111a62a3475d)
 ![image](https://github.com/user-attachments/assets/91d8ee99-aa30-4bb3-8e3f-efa1110fc9b8)
 ![image](https://github.com/user-attachments/assets/007f594f-7653-49ee-a2aa-b0c71617a2b2)
 ![image](https://github.com/user-attachments/assets/9de3ffe4-9024-49e2-90ff-24243ee47de0)
 
-### Homework
+### Homework of Optics
+![image](https://github.com/user-attachments/assets/a2e2faa0-b512-4263-8b92-3d40bc4fbb1e)
 
 ## Principles of Electric Circuits (电路原理)
-### Notes
+### Notes of Principles of Electric Circuits
+![image](https://github.com/user-attachments/assets/6bf4a3a8-1eaa-4e51-9843-e0774ff158c7)
 
-
-### Homework
+### Homework of Principles of Electric Circuits
+![image](https://github.com/user-attachments/assets/d84235e4-fedb-4c3f-9352-e162116b66d0)
 
 ## Linear Algebra 2 (线性代数 2)
-## 
+![image](https://github.com/user-attachments/assets/1afb25ec-29f7-4b4b-97e3-33d15dc73e34)
+

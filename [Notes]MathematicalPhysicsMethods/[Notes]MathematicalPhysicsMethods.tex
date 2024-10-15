@@ -289,7 +289,7 @@
         \cfoot{\thepage}
         \renewcommand\headrulewidth{1pt}
         \renewcommand\footrulewidth{0pt}
-        \lhead{2024.8-2025.1}
+        \lhead{https://yidingg.github.io/YiDingg}
         \chead{Notes of Mathematical Physics Methods}     
         \rhead{dingyi233@mails.ucas.ac.cn}
 %文档信息设置
@@ -1223,12 +1223,60 @@ F'(z) = \int_{a}^{+\infty} \frac{\partial f(t,z)}{\partial z}\ \mathrm{d}t
 \end{equation}
 \end{BlockTheorem}
 
-
-
 \section{发散级数与渐近级数（略）}
 
+\chapter{解析函数的局域性展开}\thispagestyle{fancy}
+
+\section{解析函数的 Talor 展开}
+
+\begin{BlockTheorem}[Talor Expansion]\label{Talor Expansion}
+设 $G = \{z \mid \left| z - z_0 \right| < r  \}$ 是以 $z_0$ 为圆心的圆盘开域，若 $f$ 在 $\overline{G}$ 上解析，则 $f$ 可在 $z_0 \in G$ 点展开为：
+\begin{gather}
+    f(z) = \sum_{n = 0}^{\infty} a_n (z - z_0)^n,\quad  \forall\ z \in G
+    \\ 
+    a_n = a_n(z) =\frac{1}{2 \pi i} \oint_{\partial G} \frac{f(\zeta)}{\zeta - z} \ \mathrm{d}\zeta  =  \frac{f^{(n)}(z_0)}{n!}
+\end{gather}
+\end{BlockTheorem}
+由于公式的形式与实变函数中完全相同，因此可以将实变函数的结果直接搬用到复变函数中。求函数的 Talor 级数时，除了直接搬用，还可以利用级数乘法和待定系数法\footnote{详见参考文献 \cite{数学物理方法} Page 66}。
+
+\section{解析函数的零点}
+
+设 $f(z)$ 在 $z_0$ 的邻域内解析，且不恒为 0，若 $f(z_0) = 0$，则称 $z = z_0$ 为 $f$ 的零点。由于 $f$ 的解析性，考虑 Talor 展开 $f(z) = \sum_{n = 0}^{\infty} a_n (z - z_0)^n$，则 $f(z_0) = a_0 = 0$，因此 $z_0$ 为 $f$ 的零点等价于 $a_0 = 0$。由此引出 $m$ 阶零点的定义：$z = z_0$ 称为 $f$ 的 $m$ 阶零点如果
+\begin{gather}
+f^{(0)}(z_0) = f^{(1)}(z_0) = \cdots = f^{(m-1)}(z_0) = 0,\quad f^{(m)}(z_0) \ne 0 \\ 
+\Longleftrightarrow a_0 = a_1 = \cdots = a_{m-1} = 0,\quad a_m \ne 0
+\end{gather}
 
 
+\begin{BlockTheorem}[解析函数的零点孤立性]\label{解析函数的零点孤立性}
+若 $z = z_0$ 是 $f$ 的零点，且 $f$ 在 $z_0$ 的邻域内不恒为零，则一定存在 $z_0$ 的空心邻域 $U_{\delta}(z_0)$，使 $f$ 在 $U_{\delta}(z_0)$ 内没有零点。
+
+下面是零点孤立性的几条推论：
+\begin{enumerate}
+\item 设 $f(z)$ 在 $G = \{z \mid | z - a | < r\}$ 内解析。若在 $G$ 内存在 $f(z)$ 的无穷多个互不相等的零点 $\{z_n\}$，且 $\lim_{n \to \infty} z_n = a$ 但 $z_n \ne a$，则在 $G$ 内 $f(z) \equiv 0$。
+\item 设 $f(z)$ 在 $G = \{z \mid | z - a | < r\}$ 内解析。若在 $G$ 内存在过 $a$ 点的一段弧或含有 $a$ 的一个子区域 $g$，在其上 $f(z) \equiv 0$，则在 $G$ 内 $f(z) \equiv 0$。
+\item 设 $f(z)$ 在区域 $G$ 内解析。若在 $G$ 内存在过 $a$ 点的一段弧或含有 $a$ 的一个子区域 $g$，在其上 $f(z) \equiv 0$，则在 $G$ 内 $f(z) \equiv 0$。
+\item 设 $f_1$ 和 $f_2$ 在 $G$ 内解析，且在 $G$ 内的一段弧或一个子区域上相等，则在 $G$ 内 $f_1(z) \equiv f_2(z)$。
+\end{enumerate}
+\end{BlockTheorem}
+
+上面的推论 (1) 也可改写为解析函数的唯一性定理：
+\begin{BlockTheorem}[解析函数的唯一性定理]\label{解析函数的唯一性定理}
+    设 $f_1$ 和 $f_2$ 是区域 $G$ 上的两个解析函数，且在 $G$ 内存在序列 $\{z_n\}$ 使得 $f_1(z_n) = f_2(z_n), \forall\ n$。若 $\lim_{n \to \infty} z_n = a \in G$，则在 $G$ 内有 $f_1(z) \equiv f_2(z)$。
+\end{BlockTheorem}
+
+\section{解析函数的 Laurent 展开}
+
+\begin{BlockTheorem}[Laurent Expansion]\label{Laurent Expansion}
+若 $f$ 在以 $z_0$ 为圆心的环形区域 $G:\  R_1 \leqslant | z - z_0 | \leqslant R_2$ 中单值解析，则 $f$ 可在环域内（不包含边界）展开为：
+\begin{gather}
+f(z) = \sum_{n = -m}^{+ \infty} a_n (z - z_0)^n,\quad  \forall\ R_1 \leqslant | z - z_0 | \leqslant R_2
+\\ 
+a_n = \displaystyle \frac{1}{2 \pi i}\oint_{C}\frac{f(\zeta)}{(\zeta - b)^{n+1}}\ \mathrm{d}\zeta
+\end{gather}
+其中 $m$ 可以是 0、正整数或正无穷，$C$ 是圆环内绕点 $z_0$ 一周的任意一条闭合曲线。Laurent Expansion 中的正幂项在大圆以内收敛，称为正则部分；负幂项在小圆以外收敛，称为主要部分，$a_n$ 称为 Laurent 系数。Laurent 级数在环形区域内绝对且内闭一致收敛。
+\end{BlockTheorem}
+需要注意，对于 Laurent Expansion，幂级数的系数{\color{red}（即使是正则部分的系数）} $a_n {\ \color{red} \ne\ } \frac{f^{(n)}(z_0)}{n!}$。
 
 \nocite{*}
 \bibliography{re}

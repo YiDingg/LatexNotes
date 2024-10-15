@@ -292,7 +292,7 @@
         \cfoot{\thepage}
         \renewcommand\headrulewidth{1pt}
         \renewcommand\footrulewidth{0pt}
-        \lhead{2024.8 -- 2025.1} 
+        \lhead{https://yidingg.github.io/YiDingg} 
         \chead{光学笔记（Optics Notes）}    
         \rhead{dingyi233@mails.ucas.ac.cn}
 %文档信息设置
@@ -1781,7 +1781,7 @@ A_c = \frac{\lambda^2}{A_s} R^2
 \begin{center}\noindent\begin{minipage}{0.48\columnwidth}
     \hspace*{2em} 透射峰的性质可由半峰宽 $\varepsilon$、内角宽度 $\Delta \theta_f$和外角宽度 $\Delta \theta_i$ 来描述。其中，半峰宽指给定 $R$ 时，FP 透射率 $T_{F-P} = T(\delta)$ 图像中 $T_{F-P} = 0.5$ 对应的峰宽，如图 \ref{半峰宽} 所示。而内角宽度是图像 $T_{F-P} = T(\theta_f)$ 的半峰宽、外角宽度是 $T_{F-P} = T(\theta_i)$ 的半峰宽。内角宽度也常称作角宽度，记为 $\Delta \theta$。
 \begin{gather}
-    \varepsilon = 4 \arcsin \left(\frac{1}{\sqrt{F} }\right) 
+    \varepsilon_{\delta} = 4 \arcsin \left(\frac{1}{\sqrt{F} }\right) 
     \\
     \Delta \theta_f = \frac{\lambda}{\pi n d \sin \theta_f\sqrt{F}}
     \\
@@ -1878,7 +1878,12 @@ $\Delta \lambda$ 越大时，谱线越容易被分辨，但当其大到一定程
 \nu_m = \frac{mc}{2nd},\quad (\nu_{m+1} - \nu_m) = \frac{c}{2nd},\quad \varepsilon_{\nu, m} = \frac{2c}{m \pi \lambda\sqrt{F}}
 \end{equation}
 
-巧合的是，$I_T = I_T(\lambda)$ 图像中的半峰宽 $\varepsilon_{\lambda, m} = \frac{2\lambda_0}{\pi m \sqrt{F} } $ 恰好是泰勒判据中的 $\Delta \lambda \geqslant \frac{2\lambda_0}{\pi m \sqrt{F} }$。
+%巧合的是，$I_T = I_T(\lambda)$ 图像中的半峰宽 $\varepsilon_{\lambda, m} = \frac{2\lambda_0}{\pi m \sqrt{F} } $ 恰好是泰勒判据中的 $\Delta \lambda \geqslant \frac{2\lambda_0}{\pi m \sqrt{F} }$。
+
+\subsection{光学谐振腔}
+
+上面的法布里-珀罗干涉仪，也常称为 F-P 标准具，或简称为标准具。光学谐振腔本质上也是一个标准具，只是光学谐振腔的腔体结构更加特殊。通常情况下，谐振腔的两侧是一对的高反射镜（也可以是平面镜、球面镜等），光源在腔体内部，发出的光在腔内来回反射，最终形成透射光谱。
+详见 \href{https://www.zhihu.com/question/476559619/answer/3015092750}{知乎：光学微腔和光学谐振腔有什么区别} 以及 \href{https://www.thorlabs.com/newgrouppage9.cfm?objectgroup\_id=9021}{ThorLabs: 法布里-珀罗干涉仪教程}。
 
 \section{激光（略）}
 

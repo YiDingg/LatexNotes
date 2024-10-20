@@ -197,16 +197,19 @@
     }  
 
 % 图表进阶设置
-\usepackage{float}     % 图表位置浮动设置 
-\usepackage{caption}    % 图注、表注
-    \captionsetup[figure]{name=图}  
-    \captionsetup[table]{name=表}
-    \captionsetup{
-            labelfont=bf, % 设置标签为粗体
-            textfont=bf,  % 设置文本为粗体
-            font=small  
-        }
-
+    \usepackage{float}     % 图表位置浮动设置 
+    \usepackage{caption}    % 图注、表注
+        \captionsetup[figure]{name=图}  
+        \captionsetup[table]{name=表}
+        \captionsetup{
+                labelfont=bf, % 设置标签为粗体
+                textfont=bf,  % 设置文本为粗体
+                font=small  
+            }
+    \usepackage{etoolbox} % 用于保证图注表注的数学字符为粗体
+        \AtBeginEnvironment{figure}{\boldmath} % 图注中的数学字符为粗体
+        \AtBeginEnvironment{table}{\boldmath}  % 表注中的数学字符为粗体
+        \AtBeginEnvironment{tabular}{\unboldmath}   % 保证表格中的数学字符不受额外影响
 % 文章默认字体设置
     \usepackage{fontspec}   % 宏包：字体设置
         \setmainfont{SimSun}    % 设置中文字体为宋体字体

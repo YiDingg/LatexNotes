@@ -134,36 +134,39 @@
 \usepackage{longtable}  % 宏包：长表格
 
 % figure 设置
-\usepackage{graphicx}  % 支持 jpg, png, eps, pdf 图片 
-\usepackage{svg}       % 支持 svg 图片
-    \svgsetup{
-        % 指向 inkscape.exe 的路径
-        %inkscapeexe = C:/aa_MySame/inkscape/bin/inkscape.exe, 
-        inkscapeexe = D:/aa_MyApps/inkscape/bin/inkscape.exe, 
-        % 一定程度上修复导入后图片文字溢出几何图形的问题
-        inkscapelatex = false                 
-    }
-\usepackage[skip=0.6pt]{subcaption} % subfigure 子图支持
-\usepackage{caption}    % 图注、表注
-    \captionsetup[figure]{name=图, skip=0.8pt}    % 图注名称为 '图', 并修改 skip 间距
-    \captionsetup[table]{name=表, skip=0.8pt}
-    \captionsetup{
-            labelfont=bf, % 设置标签为粗体
-            textfont=bf,  % 设置文本为粗体
-            font=small  
+    \usepackage{graphicx}  % 支持 jpg, png, eps, pdf 图片 
+    \usepackage{svg}       % 支持 svg 图片
+        \svgsetup{
+            % 指向 inkscape.exe 的路径
+            %inkscapeexe = C:/aa_MySame/inkscape/bin/inkscape.exe, 
+            inkscapeexe = D:/aa_MyApps/inkscape/bin/inkscape.exe, 
+            % 一定程度上修复导入后图片文字溢出几何图形的问题
+            inkscapelatex = false                 
         }
-\usepackage{float}     % 图表位置浮动设置 
+    \usepackage[skip=0.6pt]{subcaption} % subfigure 子图支持
+    \usepackage{caption}    % 图注、表注
+        \captionsetup[figure]{name=图, skip=0.8pt}    % 图注名称为 '图', 并修改 skip 间距
+        \captionsetup[table]{name=表, skip=0.8pt}
+        \captionsetup{
+                labelfont=bf, % 设置标签为粗体
+                textfont=bf,  % 设置文本为粗体
+                font=small  
+            }
+    \usepackage{float}     % 图表位置浮动设置 
+    \usepackage{etoolbox} % 用于保证图注表注的数学字符为粗体
+    \AtBeginEnvironment{figure}{\boldmath} % 图注中的数学字符为粗体
+    \AtBeginEnvironment{table}{\boldmath}  % 表注中的数学字符为粗体
 
 % 列表设置
-\usepackage{enumitem}   % 宏包：列表环境设置
-    \setlist[enumerate]{itemsep=0pt, parsep=0pt, topsep=0pt, partopsep=0pt, leftmargin=3.5em} 
-    \setlist[itemize]{itemsep=0pt, parsep=0pt, topsep=0pt, partopsep=0pt, leftmargin=3.5em}
-    \newlist{circledenum}{enumerate}{1} % 创建一个新的枚举环境  
-    \setlist[circledenum,1]{  
-        label=\protect\circled{\arabic*}, % 使用 \arabic* 来获取当前枚举计数器的值，并用 \circled 包装它  
-        ref=\arabic*, % 如果需要引用列表项，这将决定引用格式（这里仍然使用数字）
-        itemsep=0pt, parsep=0pt, topsep=0pt, partopsep=0pt, leftmargin=3.5em
-    }  
+    \usepackage{enumitem}   % 宏包：列表环境设置
+        \setlist[enumerate]{itemsep=0pt, parsep=0pt, topsep=0pt, partopsep=0pt, leftmargin=3.5em} 
+        \setlist[itemize]{itemsep=0pt, parsep=0pt, topsep=0pt, partopsep=0pt, leftmargin=3.5em}
+        \newlist{circledenum}{enumerate}{1} % 创建一个新的枚举环境  
+        \setlist[circledenum,1]{  
+            label=\protect\circled{\arabic*}, % 使用 \arabic* 来获取当前枚举计数器的值，并用 \circled 包装它  
+            ref=\arabic*, % 如果需要引用列表项，这将决定引用格式（这里仍然使用数字）
+            itemsep=0pt, parsep=0pt, topsep=0pt, partopsep=0pt, leftmargin=3.5em
+        }  
 % >> ------------------ 文章宏包及相关设置 ------------------ << %
 % ------------------------------------------------------------- %
 

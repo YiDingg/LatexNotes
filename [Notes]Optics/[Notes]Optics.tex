@@ -231,6 +231,10 @@
         }
     \usepackage{float}     % 图表位置浮动设置 
     \usepackage{subcaption} % subfigure 子图支持
+    \usepackage{etoolbox} % 用于保证图注表注的数学字符为粗体
+        \AtBeginEnvironment{figure}{\boldmath} % 图注中的数学字符为粗体
+        \AtBeginEnvironment{table}{\boldmath}  % 表注中的数学字符为粗体
+        \AtBeginEnvironment{tabular}{\unboldmath}   % 保证表格中的数学字符不受额外影响
 
 % 圆圈序号自定义
     \newcommand*\circled[1]{\tikz[baseline=(char.base)]{\node[shape=circle,draw,inner sep=0.8pt, line width = 0.03em] (char) {\small \bfseries #1};}}   % TikZ solution
@@ -419,7 +423,7 @@
 \end{figure}
 
 \begin{BlockTheorem}[费马原理]\label{费马原理}
-光从空间中一点传播到另一点时，总是沿光程（optical length, OPL）取极值的路径传播 \footnote{这里的“极值”可以是极小值、极大值或常数，一般情况下，实际光程大多取极小值。极大值（如凹面镜成像）、拐点（如椭球面镜、凸透镜）的例子，可以参考 \href{https://zhuanlan.zhihu.com/p/107739173}{知乎：浅谈几何光学(1)——费马原理}}，公式：
+光从空间中一点传播到另一点时，总是沿光程（optical length, OPL）取极值的路径传播\footnote{这里的“极值”可以是极小值、极大值或常数，一般情况下，实际光程大多取极小值。极大值（如凹面镜成像）、拐点（如椭球面镜、凸透镜）的例子，可以参考 \href{https://zhuanlan.zhihu.com/p/107739173}{知乎：浅谈几何光学(1)——费马原理}}，公式：
 \begin{equation}
     \mathrm{d}\ \mathrm{OPL} =  \mathrm{d}\left(\int\limits_{Q}^{P}ndl\right)=0 \Longrightarrow \frac{\mathrm{d}\  \mathrm{OPL} }{\mathrm{d} \varphi } = \frac{\mathrm{d} OPL }{\mathrm{d} s } = 0 
 \end{equation}
@@ -732,11 +736,11 @@ $p$ 波 & $\displaystyle r_p = \frac{n_t\cos \theta_i - n_i \cos \theta_t}{n_t\c
 \begin{figure}[H]\centering
 \begin{subfigure}[t]{0.49\textwidth}\centering
     \includegraphics[height=190pt]{assets/1,2/2024-09-15_10-53-31.pdf}
-    \caption{ 由空气入射玻璃（$n_i = 1,\ n_t = 1.5$） }
+    \caption{ 由空气入射玻璃 ($n_i = 1,\ n_t = 1.5$) }
 \end{subfigure}
 \begin{subfigure}[t]{0.49\textwidth}\centering
     \includegraphics[height=190pt]{assets/1,2/2024-09-15_10-53-27.pdf}
-    \caption{ 由玻璃入射空气（$n_i = 1.5,\ n_t = 1$） }
+    \caption{ 由玻璃入射空气 ($n_i = 1.5,\ n_t = 1$) }
 \end{subfigure}
 \caption{ 振幅系数 $r$ 随入射角 $\theta_i$ 的变化 }\label{振幅系数随入射角的变化}
 \end{figure}
@@ -1348,7 +1352,7 @@ d = 100 \ \mathrm{\mu m},\  R = 5\ \mathrm{cm},\ D = 1\ \mathrm{m},\ L = 4 \ \ma
 \begin{equation}\label{杨氏双缝干涉近似}
 \frac{r_1}{D} = \frac{r_2}{D} = 1,\quad r_2 - r_1 = \frac{d}{\sin \theta} = \frac{d}{\sin \theta} = \frac{x d}{ D },\quad I_1 = I_2
 \end{equation}
-得到近似后的振幅和强度分布如下，其中 ${\color{red} \Delta x= \frac{\lambda D}{b}}$ 称为条纹间距。
+得到近似后的振幅和强度分布如下，其中 ${\color{red} \Delta x= \frac{D}{d}\lambda }$ 称为条纹间距。
 \begin{gather}\label{杨氏双缝干涉近似结果}
     E_0(x) = \frac{\sqrt{2}A}{\sqrt{D}} \cdot \sqrt{1 + \cos \left( \frac{2 \pi d}{\lambda D}x \right)} = \frac{\sqrt{2}A}{\sqrt{D}} \cdot \sqrt{1 + \cos \left( \frac{2 \pi x}{\Delta x} \right)} \\ 
     I(x) = \sqrt{\frac{\varepsilon_0}{\mu_0}} \cdot \frac{A^2}{D} \left[ 1 + \cos \left( \frac{2 \pi  d}{\lambda D }x \right) \right] = \sqrt{\frac{\varepsilon_0}{\mu_0}} \cdot \frac{A^2}{D} \left[ 1 + \cos \left( \frac{2 \pi x}{\Delta x} \right) \right]

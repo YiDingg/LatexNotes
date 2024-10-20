@@ -9,6 +9,7 @@
 
 % 本 .tex 专属的宏定义
     \def\V{\ \mathrm{V}}
+    \def\K{\ \mathrm{K}}
     \def\mV{\ \mathrm{mV}}
     \def\kV{\ \mathrm{KV}}
     \def\KV{\ \mathrm{KV}}
@@ -231,9 +232,16 @@
     \usepackage{caption}    % 图注、表注
         \captionsetup[figure]{name=图}  
         \captionsetup[table]{name=表}
-        \captionsetup{labelfont=bf, font=small}
+        \captionsetup{
+            labelfont=bf, % 设置标签为粗体
+            textfont=bf,  % 设置文本为粗体
+            font=small  
+            }
     \usepackage{float}     % 图表位置浮动设置 
-
+    \usepackage{etoolbox} % 用于保证图注表注的数学字符为粗体
+        \AtBeginEnvironment{figure}{\boldmath} % 图注中的数学字符为粗体
+        \AtBeginEnvironment{table}{\boldmath}  % 表注中的数学字符为粗体
+        \AtBeginEnvironment{tabular}{\unboldmath}   % 保证表格中的数学字符不受额外影响
 % 圆圈序号自定义
     \newcommand*\circled[1]{\tikz[baseline=(char.base)]{\node[shape=circle,draw,inner sep=0.8pt, line width = 0.03em] (char) {\small \bfseries #1};}}   % TikZ solution
 
@@ -297,7 +305,10 @@
     \renewcommand\headrulewidth{1pt}
     \renewcommand\footrulewidth{0pt}
     \chead{电路原理课程作业,\ 丁毅,\ 2023K8009908031}
-    \lhead{Homework \thechapter}
+    \usepackage{fontawesome}    % 宏包：更多符号与图标 (用于插入 GitHub 图标等)
+    \lhead{\small
+    \href{https://github.com/YiDingg/LatexNotes}{\color{black}\faGithub\ https://github.com/YiDingg/LatexNotes}
+    }
     \rhead{\small dingyi233@mails.ucas.ac.cn}
 
 %文档信息设置
@@ -321,8 +332,9 @@
 
 % 序言
     \begin{cnabstract}\normalsize 
-        本文为笔者本科时的“电路原理”课程作业（Homework of Principles of Electric Circuits, 2024.9-2025.1）。由于个人学识浅陋，认识有限，文中难免有不妥甚至错误之处，望读者不吝指正，在此感谢。\par 
-        我的邮箱是 dingyi233@mails.ucas.ac.cn。
+        本文为笔者本科时的“电路原理”课程作业（Homework of Principles of Electric Circuits, 2024.9-2025.1）。所有作业课件已上传到网址 \href{https://www.123865.com/s/0y0pTd-R8Kj3}{https://www.123865.com/s/0y0pTd-R8Kj3}（包括 Homework, Simulation 和 Laboratory）。读者可在笔者的个人网站 \href{https://yidingg.github.io/YiDingg/\#/Notes/MajorCourses/CircuitTheoryNotes}{https://yidingg.github.io/YiDingg/\#/Notes/MajorCourses/CircuitTheoryNotes} 上找到课程信息、教材、教辅和作业答案等相关资料。
+
+        由于个人学识浅陋，认识有限，文中难免有不妥甚至错误之处，望读者不吝指正。读者可以将错误发送到我的邮箱 {\color{blue}\ dingyi233@mails.ucas.ac.cn}，也可以到笔者的 \href{https://github.com/YiDingg/LatexNotes}{GitHub (https://github.com/YiDingg/LatexNotes)} 上提 issue，衷心感谢。
     \end{cnabstract}
     \addcontentsline{toc}{chapter}{序言} % 手动添加为目录
 
@@ -337,6 +349,7 @@
 
 % 收尾工作
     \newpage    
+    \lhead{Homework \thechapter}
     \pagenumbering{arabic} 
 
 % >> --------------------- 封面序言与目录 --------------------- << %
@@ -1058,20 +1071,25 @@ I_3 = \frac{U_1 - 10}{11.9} = 0.3615 \ \mathrm{A}
 原题图和等效电路如图 \ref{5.6 讲义题 3-4} 所示，电路中有 4 个节点（不含无伴电压源）和 2 个受控源控制变量，需要列出 3 个节点方程和 2 个控制方程，如下：
 \begin{align}
 \begin{matrix}
-    \text{节点 1: } & (1 + 1)U_1 - U_2 - 0 = 2u-1\\
-    \text{节点 2: } & -U_1 + \left(1 + \frac{1}{4}\right)U_2 - \frac{1}{4}U_3 = 3 i  \\
+    \text{节点 1: } & (1 + 2)U_1 - U_2 - 0 = 2u-1\\
+    \text{节点 2: } & -\frac{1}{2}U_1 + \left(\frac{1}{2} + \frac{1}{4}\right)U_2 - \frac{1}{4}U_3 = 3 i  \\
     \text{节点 3: } &  0-\frac{1}{4}U_2 + \left(1 + \frac{1}{4}\right)U_3 = 1 \\
-    \text{控制方程: } & i = U_1 - U_2,\quad u = U_3
+    \text{控制方程: } & i = \frac{U_1 - U_2}{2},\quad u = U_3
 \end{matrix}
 \end{align}
 代入化简并求解：
 \begin{equation}
 \begin{cases}
-    2U_1 - U_2 -2 U_3 = -1\\ 
-    -16U_1 + 17U_2 - U_3 = 0 \\ 
+    3U_1 - U_2 -2 U_3 = -1\\ 
+    -8U_1 + 9U_2 - U_3 = 0 \\ 
     0 - U_2 + 5U_3 = 1
 \end{cases}\Longrightarrow 
-U_1 = U_2 = U_3 = 1 \ \mathrm{V},\quad i = 0,\quad u = 1 \ \mathrm{V}
+\begin{cases}
+    U_1 =  -\frac{25}{76}  = -0.3289 \\
+    U_2 =  -\frac{21}{76}  = -0.2763 \\
+    U_3 = \frac{11}{76}    = 0.1447  
+\end{cases}
+i = -\frac{1}{38}\ \mathrm{A} = -0.0263 \ \mathrm{A},\quad u = \frac{11}{76} \ \mathrm{V}= 0.1447 \ \mathrm{V}
 \end{equation}
 
 \begin{figure}[H]\centering
@@ -1170,7 +1188,7 @@ U_1 = U_2 = U_3 = 1 \ \mathrm{V},\quad i = 0,\quad u = 1 \ \mathrm{V}
 \end{equation}
 于是得到吸收功率：
 \begin{equation}
-    P = 2i \cdot \left[ 0 - \left(4 - 2(i_2 - i_1)\right) \right] = 2.8 \ \mathrm{W}
+    P_{i} = 2i \cdot \left[ 0 - \left(4 - 2(i_2 - i_1)\right) \right] = -2.08 \ \mathrm{W}
 \end{equation}
 
 \begin{figure}[H]\centering
@@ -1461,33 +1479,160 @@ $N_R$ 为线性电阻网络，由互易定理：
 \end{figure}
 
 
+\chapter{Homework 7: 2024.10.15 - 2024.10.22}\thispagestyle{fancy}
+
+\section{习题集 5-1: 已知非线性电阻的 $u$-$i$ 关系为 $u = 2i + i^3$（式中 $u$ 的单位是 V，$i$ 的单位是 A），分别求 $i = 1 \ \mathrm{A}$、$i = 2 \ \mathrm{A}$ 时的静态电阻和动态电阻}
+
+\noindent $i = 1 \ \mathrm{A}$ 时：
+\begin{equation}
+R_s = \frac{u}{i} = 2 + i^2 = 3 \ \Omega,\quad R_d = \frac{du}{di} = 2 + 3i^2 = 5 \ \Omega
+\end{equation}
+$i = 2 \ \mathrm{A}$ 时：
+\begin{equation}
+R_s = \frac{u}{i} = 2 + i^2 = 6 \ \Omega,\quad R_d = \frac{du}{di} = 2 + 3i^2 = 14 \ \Omega
+\end{equation}
+
+
+\section{习题集 5-6: 题图 (a) 中非线性电阻的伏安特性如图 (b) 所示，分别求 $i_\text{S} = 1 \ \mathrm{A}$ 和 $i_{\text{S}} = 2 \ \mathrm{A}$ 时的电压 $u$。}
+
+两个非线性电阻两端电压 $u$ 相同，且电流满足 $i_1 + i_2 = i_{\text{S}}$。于是在同一坐标系中画出 $i_1 = i_1(u)$ 和 $i_2 = i_2(u)$ 的图像（$u > 0$），满足  $i_1 + i_2 = i_{\text{S}}$ 的点即为电路的解。由此得到：
+\begin{equation}
+    i_\text{S} = 1 \ \mathrm{A} \Longrightarrow u = 2 \ \mathrm{V},\quad i_\text{S} = 2 \ \mathrm{A} \Longrightarrow u = 3 \ \mathrm{V}
+\end{equation}
+\begin{figure}[H]\centering
+\includegraphics[width=0.8\columnwidth]{assets/7/7.3 习题集 5-11.png}
+\caption{7.3 习题集 5-11 原题图}\label{7.3 习题集 5-11}
+\end{figure}
+
+\section{习题集 5-11: 求题图电路中理想二极管 D 所在支路的电路 $i$}
+假设二极管导通，即短路，由 KCL:
+\begin{equation}
+\begin{cases}
+    \frac{u - u_1}{40 \K} + \frac{0 - u_1}{60 \K} - I = 0 \\ 
+    \frac{u - u_2}{60 \K} + \frac{0 - u_2}{30 \K} + I = 0 \\ 
+    I = \frac{u_1 - u_2}{2 \K}
+\end{cases}\Longrightarrow 
+\begin{cases}
+    u_1 = \frac{954}{23} \ \mathrm{V} = 41.4783 \ \mathrm{V}\\ 
+    u_2 = \frac{930}{23} \ \mathrm{V} = 40.4348 \ \mathrm{V}\\ 
+    I = \frac{12}{23} \mA =  0.52174 \mA
+\end{cases}
+\end{equation}
+与假设相符，因此上式即为所求。
+
+
+\section{讲义题 4-4: 用理想二极管模型分析题图电路，要求安装题号顺序进行}
+\subsection{每个二极管有两种状态（开路、短路），整个电路共有几种可能的状态？}
+不考虑电路是否导通的情况下，4 个二极管，每个二极管有 2 种状态，因此共有 $2^4 = 16$ 种可能的状态。
+
+\subsection{电流 $i$ 的方向是怎样的？}
+电流 $i$ 始终从上至下流经负载电阻 $R$。
+
+\subsection{沿 (2) 的思路，D1 $\sim$ D4 是怎样的状态是（可能不止一种）才能实现 (2) 中的电流？画出此时的等效电路图。}
+注意到此电路为全桥整流电路，借助电流方向可以判断出电路共有 2 种可行状态。在激励的正半周期，D1、D4 导通而 D2、D3 截止；在激励的负半周期，D2、D3 导通而 D1、D4 截止。
+
+\subsection{根据 (1) $\sim$ (3) 的结果，在坐标系中画出 $u_s$ 和 $u$ 随时间变化的曲线图}
+二极管理想，因此有如下公式，式中电压的单位是 V，它们的图像如图 \ref{理想图像} 所示。
+\begin{equation}
+u_s = 12 \sqrt{2} \sin (376.8 t),\quad u = 12 \sqrt{2}  \left| \sin (376.8 t) \right| 
+\end{equation}
+\begin{figure}[H]\centering
+\includegraphics[width=0.75\columnwidth]{assets/7/2024-10-17_00-07-30.pdf}
+\caption{$u_s = u_s(t)$ 和 $u = u(t)$ 的图像}\label{理想图像}
+\end{figure}
+
+\subsection{用 Multisim 仿真验证前面的分析，要求：(a) 给出仿真电路；(b) 用示波器的两个通道分别显示 $u_s$ 和 $u$；(c) 分析示波器波形与第 (4) 问图像的区别。}
+
+仿真电路图和示波器波形见图 \ref{Multisim 仿真}。由图可知，$u$ 的幅值比理想幅值要低，这是因为我们在电路中选用了具有实际参数的二极管 SURS8105T3G，电流通过实际二极管是有压降的，这消耗了一部分功率，因此 $u$ 的赋值比理想值稍低。
+
+\begin{figure}[H]\centering
+\includegraphics[width=0.6\columnwidth]{assets/7/f58e2946a0f20190cc27e51dfb8abb5a.png}
+\caption{7.4 讲义题 4-4 原题图}\label{}
+\end{figure}
+\begin{figure}[H]\centering
+\begin{subfigure}[b]{\columnwidth}\centering
+    \includegraphics[width=\columnwidth]{assets/7/e6767042d587b4f2ea07f547a007dc1f.png}
+    \caption{仿真电路}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{\columnwidth}\centering
+    \includegraphics[width=\columnwidth]{assets/7/d6a5ae36fb1ce8222b2554fb80254b4a.png}
+    \caption{示波器波形}
+\end{subfigure}
+\caption{Multisim 仿真}
+\label{Multisim 仿真}
+\end{figure}
+
+\subsection{习题集 5-15}\vspace*{-4mm}
+\begin{graybox}
+电路原理习题集与所有作业课件已上传到网址 \href{https://www.123865.com/s/0y0pTd-L8Kj3}{https://www.123865.com/s/0y0pTd-L8Kj3}，后文不再重复叙述题目。
+\end{graybox}
+
+先求电路的工作点 $(U_0, I_0)$，当 $u_s(t) = 0$ 时，由 KVL:
+\begin{equation}
+10 = I_0\cdot 1 + \left(I_0 + \frac{2}{3}I_0^3\right) \Longrightarrow I_0 = 2.0650 \ \mathrm{A}
+\end{equation}
+再考虑小信号带来的变化量，在小信号电路中，由 KVL:
+\begin{equation}
+\begin{cases}
+R_d = 
+\left.\begin{matrix}
+    \frac{\mathrm{d} u }{\mathrm{d} i } 
+\end{matrix}\right|_{i = I_0} = 1+2I_0^2 =  9.5281 \ \Omega \\
+u_s(t) = (R + R_d)\Delta i
+\end{cases}\Longrightarrow 
+\Delta i = \frac{1}{10.5281}u_s(t) = 0.0095 \sin (10^3 t) \ \mathrm{A}
+\end{equation}
+因此总电流为：
+\begin{equation}
+i = I_0 + \Delta i = 2.0650 \ \mathrm{A} + 0.0095 \sin (10^3 t) \ \mathrm{A}
+\end{equation}
+
+\section{讲义题 4-6}\label{讲义题 4-6}
+设二极管工作于截止区，这等价于 $u_{GS} < U_T$。而此时 $u_o = 0 \Longrightarrow u_{GS} = 2 \ \mathrm{V} > U_T = 1 \ \mathrm{V}$，矛盾！
+
+假设二极管工作于线性区，这等价于 $u_{GS} > U_T$ 且 $u_{DS} < u_{GS} - U_T$。由题意，二极管导通电阻为 $R_{ON} = 1 \kO$，因此 $u_o = 2.5 \ \mathrm{V} \Longrightarrow u_{GS} = -0.5 \ \mathrm{V} < U_T$，矛盾！因此二极管只能工作在恒流区。
+
+假设二极管工作于恒流区，这等价于 $u_{GS} > U_T$ 且 $u_{DS} > u_{GS} - U_T$。则导通电流为 $i = \frac{K}{2}\left(u_{GS} - u_{T}\right)^2 = \frac{K}{2}\left(1-u_o\right)^2$，由 KVL:
+\begin{equation}
+u_o = iR_L =  \frac{K}{2}\left(1-u_o\right)^2\cdot R_L\Longrightarrow u_o = 0.6417 \ \mathrm{V},\ \ 1.5583 \ \mathrm{V}
+\end{equation}
+$u_o = 1.5583 \ \mathrm{V}$ 时 $u_{GS} = 0.4417\ \mathrm{V} < U_T = 1 \ \mathrm{V}$，$u_{DS} = 3.4417 \ \mathrm{V}$，不符合假设，舍去；$u_o = 0.6417 \ \mathrm{V}$ 时 $u_{GS} = 1.3583\ \mathrm{V}$，$u_{DS} = 4.3583 \ \mathrm{V}$，符合假设。因此工作区为恒流区，此时 $u_o = 0.6417 \ \mathrm{V}$。
+
+\section{讲义题 4-7}
+
+\subsection{画出电路，标明各参数}
+小信号电路如图 \ref{7.6 讲义题 4-7 电路图} 所示。
+
+\subsection{求小信号放大倍数}
+
+在 $\max | \Delta u_{GS} | = 2 \mV$ 的条件下，容易验证二极管仍工作于恒流区。由 \ref{讲义题 4-6} 讲义题 4-6 可知二极管的工作点为 $u_{GS} = 1.3583 \ \mathrm{V}$，则有：
+\begin{gather}
+i = \frac{K}{2}\left(u_{GS} - U_T\right)^2,\quad 
+\left.\begin{matrix}
+    \frac{\mathrm{d} i }{\mathrm{d} u_{GS} } 
+\end{matrix}\right|_{u_{GS} = 1.3583 \ \mathrm{V}} = K\cdot(u_{GS} - U_T) = 3.583 \ \mathrm{mA\cdot V^{-1}} \\ 
+\Longrightarrow 
+\Delta u_o = R_L \Delta i = 3.583 \Delta u_{GS}
+\end{gather}
+又 $\Delta u_{GS} = \Delta u_{in} - \Delta u_{out}$，代入消去 $\Delta u_{GS}$，得到：
+\begin{equation}
+\Delta u_{out} = 3.583\left(\Delta u_{in} - \Delta u_{out}\right) \Longrightarrow \frac{\Delta u_{out}}{\Delta u_{in}} = \frac{3.583}{4.583} = 0.7818
+\end{equation}
+
+\begin{figure}[H]\centering
+\includegraphics[width=0.8\columnwidth]{assets/7/讲义题4-7.pdf}
+\caption{7.6 讲义题 4-7 电路图}\label{7.6 讲义题 4-7 电路图}
+\end{figure}
 
 
 
+\subsection{此时 MOSFET 的作用是什么？求小信号电路的输入电阻和输出电阻。}
+由 $\frac{\Delta u_{out}}{\Delta u_{in}} = 0.7818$ 可以看出，MOSFET 降低了激励的微小变化（例如噪声）对响应信号的影响，使得电路更加稳定。
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+在小信号电路中，求输入电阻时无需对输出端口作处理（即保持开路），由于 MOS 管 G 端流入的电流近似为 0，而输入电压 $\Delta u_{in}$ 非零，因此输入电阻为 $\infty$ 无穷大。求输出电阻时，将 $\Delta u_{in}$ 短路，相当于原激励电压不变，自然有 $\Delta i = 0$。此时，在输出端口加电流 $I$ 求电压 $U$:
+\begin{equation}
+U = \left(I + \Delta i\right)R_L = IR_L \Longrightarrow R_o = R_L = 1 \kO
+\end{equation}
 
 
 
@@ -1505,8 +1650,8 @@ $N_R$ 为线性电阻网络，由互易定理：
 % >> ------------------------ 仿真作业 ------------------------ << %
 
 
-\chapter{Simulate 1: 2024.9.10 - 2024.9.24}
-\lhead{Simulate 1: 2024.9.10 - 2024.9.24}
+\chapter{Simulation 1: 2024.9.10 - 2024.9.24}
+\lhead{Sim 1: 2024.9.10 - 2024.9.24}
 \thispagestyle{fancy}
 
 \section{仿真 2-1: 题目详见图 \ref{示意图} (b)}
@@ -1722,21 +1867,394 @@ R_{\text{sat}} = R_1 = 10 \KO
 
 % --------------------------- 实验作业 --------------------------- %
 % >> ------------------------ 实验作业 ------------------------ << %
+\captionsetup[figure]{name=Figure}  
+\captionsetup[table]{name=Table}
 
 
-\chapter{Simulate 2: }
-\lhead{Simulate 2: }
+\chapter{Simulation 2: 2024.10.11 - 2024.10.31}
+\lhead{Sim 2: 2024.10.11 - 2024.10.31}
 \thispagestyle{fancy}
 
 
-\chapter{Laboratory 1: 2024.10.11 - 2024.}
-\lhead{Laboratory 1: 2024.10.11 - 2024.}
+\chapter{Laboratory 1: 2024.10.11 - 2024.10.31}
+\lhead{Lab 1: 2024.10.11 - 2024.10.31}
 \thispagestyle{fancy}
 
-实验课件见网址 \href{https://www.123865.com/s/0y0pTd-KRKj3}{https://www.123865.com/s/0y0pTd-KRKj3}。
+所有 Lab 实验课件（以及作业、仿真课件）见网址 \href{https://www.123865.com/s/0y0pTd-L8Kj3}{https://www.123865.com/s/0y0pTd-L8Kj3}，后文不再重复实验要求和实验题目。
+
+\section{Pre-Lab}
+
+\noindent \textbf{(1)}
+The Thevenin and Norton eauivalents of the network:
+\begin{gather}
+U_{\text{The}} = \frac{R_3U}{R_1 + R_3},\quad R = R_2 + R_1 \parallel R_3 \\ 
+I_{\text{Nor}} = \frac{U}{R_1 \left(1 + \frac{R_2}{R_1 \parallel R_3}\right)},\quad R = R_2 + R_1 \parallel R_3
+\end{gather}
+
+\noindent \textbf{(2)}
+Evaluate the results via $R_1 = 50 \ \Omega$, $R_2 = 1.5 \kO$, $R_3 = 2.2 \kO$:
+\begin{gather}
+    U_{\text{The}} = 4.8889 \ \mathrm{V},\quad I_{\text{Nor}} = 0.003156 \ \mathrm{A},\quad  R = 1548.8889 \ \Omega
+\end{gather}
+
+\noindent \textbf{(3) }
+With $U_s = 5 \ \mathrm{V}$, $R_{\text{ON}} = 4 \ \Omega$ and $R_{\text{D}} = 1 \KO$, the output voltage of all combinations of input voltage are shown as below : 
+
+\begin{table}[H]\centering
+    %\renewcommand{\arraystretch}{1.5} % 调整行间距为 1.5 倍
+    %\setlength{\tabcolsep}{1.5mm} % 调整列间距
+    \caption{The output voltage $u_o$ of In-Lab (3)}
+    \label{The output voltage of In-Lab (3)}
+\begin{tabular}{ccccccccc}\toprule
+    Gate & Input voltage $u_i$ & Logic input   & Output voltage $u_o$ (V) & Logic output  \\
+    \hline
+    NOT  & $< U_T$ & 0 &  $U_s = 5$ & 1 \\
+    NOT  & $> U_T$ & 1 &  $\frac{R_{\text{ON}}U_s}{R_{\text{On}}+R_\text{D}} = 0.0199$ & 0 \\
+    NOR  & $u_1 < U_T,\ u_2 < U_T $ & (0, 0) & $U_s = 5$ & 1\\
+    NOR  & $u_1 > U_T,\ u_2 < U_T $ & (1, 0) & $\frac{R_{\text{ON}}U_s}{R_{\text{On}}+R_\text{D}} = 0.0199$ & 0 \\
+    NOR  & $u_1 < U_T,\ u_2 > U_T $ & (0, 1) & $\frac{R_{\text{ON}}U_s}{R_{\text{On}}+R_\text{D}} = 0.0199$ & 0 \\
+    NOR  & $u_1 > U_T,\ u_2 > U_T $ & (1, 1) & $\frac{R_{\text{ON}}U_s}{R_{\text{On}}+2R_\text{D}} = 0.0010$ & 0 \\
+    NAND & $u_1 < U_T,\ u_2 < U_T $ & (0, 0) & $U_s = 5$ & 1\\
+    NAND & $u_1 > U_T,\ u_2 < U_T $ & (1, 0) & $U_s = 5$ & 1\\
+    NAND & $u_1 < U_T,\ u_2 > U_T $ & (0, 1) & $U_s = 5$ & 1\\
+    NAND & $u_1 > U_T,\ u_2 > U_T $ & (1, 1) & $\frac{2R_{\text{ON}}U_s}{2R_{\text{On}}+R_\text{D}} = 0.0397$ & 0\\
+    \bottomrule
+\end{tabular}
+\end{table}
+
+\noindent \textbf{(4, 5)}
+The truth tabel and the circuit diagram are as below:
+\begin{center}\noindent\begin{minipage}{0.52\columnwidth}
+    \begin{table}[H]\centering
+        %\renewcommand{\arraystretch}{1.5} % 调整行间距为 1.5 倍
+        %\setlength{\tabcolsep}{1.5mm} % 调整列间距
+        \caption{Input-output truth table}
+        \label{Input-output truth table}
+    \begin{tabular}{cccc}\hline
+        Logic input (A, B, C) & Logic output \\
+        \hline
+        (0, 0, 0) & 1 \\
+        (0, 0, 1) & 1 \\
+        (0, 1, 0) & 1 \\
+        (0, 1, 1) & 1 \\
+        (1, 0, 0) & 0 \\
+        (1, 0, 1) & 1 \\
+        (1, 1, 0) & 1 \\
+        (1, 1, 1) & 1 \\
+        \hline
+    \end{tabular}
+    \end{table}
+\end{minipage}\hfill\begin{minipage}{0.47\columnwidth}
+\begin{figure}[H]\centering
+\includegraphics[height=160pt]{assets/Lab1/Pre-Lab (5).pdf}
+\caption{The circuit diagram}
+\end{figure}
+\end{minipage}\end{center}
+
+\section{In-Lab}
+
+\noindent \textbf{(1)  }
+The wire connection is shown in the  Figure \ref{The actual circuit connection of In-Lab (1)}, with $R_1 = 51.0 \ \Omega\ (51.0 \ \Omega)$, $R_2 = 1.50 \kO\ (1.47 \kO)$ and $R_3 = 2.40 \kO\ (2.36 \KO)$. Outside parentheses is the original value and the actual measured value is in parentheses.
+
+\begin{figure}[H]\centering
+\begin{subfigure}[b]{0.45\columnwidth}\centering
+    \includegraphics[height=260pt]{assets/Lab1/IMG_20241017_164811.jpg}
+    \caption{Global view}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{0.55\columnwidth}\centering
+    \includegraphics[height=260pt]{assets/Lab1/IMG_20241017_164900.jpg}
+    \caption{Partial view}
+\end{subfigure}
+\caption{The actual circuit connection of In-Lab (1)}
+\label{The actual circuit connection of In-Lab (1)}
+\end{figure}
+
+\noindent \textbf{(2) }
+Use the multi-meter and the open-circuit voltage is 4.89 V and the short-circuit current is 3.17 mA.
+
+\begin{figure}[H]\centering
+\begin{subfigure}[b]{0.5\columnwidth}\centering
+    \includegraphics[height=140pt]{assets/Lab1/IMG_20241018_180909.jpg}
+    \caption{Open-circuit voltage}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{0.5\columnwidth}\centering
+    \includegraphics[height=140pt]{assets/Lab1/IMG_20241018_175823.jpg}
+    \caption{Short-circuit current}
+\end{subfigure}
+\caption{Measure the short-circuit current and open-circuit voltage}
+\end{figure}
+
+\noindent \textbf{(3) }
+Connect the resistor and measure the port voltage, the results are as below:
+\begin{table}[H]\centering
+    %\renewcommand{\arraystretch}{1.5} % 调整行间距为 1.5 倍
+    %\setlength{\tabcolsep}{1.5mm} % 调整列间距
+    \caption{The port voltage}
+    \label{The port voltage}
+\begin{tabular}{cccccc}\hline
+    Resistance ($\Omega$) & 561 (560) & 1.00 K (0.99 K) & 2.20 K (2.19 K) \\
+    \hline
+    Voltage (V) & 1.30 & 1.92 & 2.89 \\
+    \hline
+\end{tabular}
+\end{table}
+
+\noindent \textbf{(4) }
+We use the signal generator to provide the voltage $u_{\text{GS}}$, and the oscilloscope to measure the output voltage $u_{\text{DS}}$.
+
+\begin{figure}[H]\centering
+\includegraphics[width=0.85\columnwidth]{assets/Lab1/5fe0d6c923f598052f8d5dd66829ef48.png}
+\caption{$u_{\text{DS}}$ starts to fall}
+\end{figure}
+\begin{figure}[H]\centering
+\includegraphics[width=0.85\columnwidth]{assets/Lab1/86cb72928caa02d6d52099c81652c080.png}
+\caption{$u_{\text{DS}}$ is reduced to half its original value}
+\end{figure}
+\begin{figure}[H]\centering
+\includegraphics[width=0.85\columnwidth]{assets/Lab1/572997193238edd36d4146fe759619af.png}
+\caption{$u_{\text{DS}}$ is almost approaching zero}
+\end{figure}
+
+The results are shown in the three figures above. It is $u_{\text{GS}} = 1.442 \ \mathrm{V}$ when $u_{\text{DS}}$ starts to fall, $u_{\text{GS}} = 1.811 \ \mathrm{V}$ when the $u_{\text{DS}}$ is reduced to half its original value, and $u_{\text{GS}} = 2.003 \ \mathrm{V}$ when $u_{\text{DS}}$ is almost approaching zero. To ensure MOSFET is fully on, the threshold voltage should be $U_T = 2.003 \ \mathrm{V}$.
+
+\noindent \textbf{(5) }
+The actual wire connection is shown as below.
+$R_{\text{DS}} = 2.8 \ \Omega$ when $U_{\text{GS}} = 5 \ \mathrm{V}$ and $R_{\text{DS}} = 8.7 \ \Omega$ when $U_{\text{GS}} = 2 \ \mathrm{V}$.
+
+\begin{figure}[H]\centering
+    \begin{subfigure}[b]{0.5\columnwidth}\centering
+        \includegraphics[height=170pt]{assets/Lab1/IMG_20241017_174011.jpg}
+        \caption{The actual wire connection of In-Lab (5)}
+    \end{subfigure}\hfill
+    \begin{subfigure}[b]{0.5\columnwidth}\centering
+        \includegraphics[height=170pt]{assets/Lab1/IMG_20241017_174040.jpg}
+        \caption{The actual wire connection of In-Lab (5)}
+    \end{subfigure}
+    \caption{}
+\end{figure}
+    
+
+\noindent \textbf{(6) }
+The actual wire connection is shown as below.
+$u_o = 4.989 \ \mathrm{V}$ when the switch is closed (logic input 0) and $u_o = 0.018 \ \mathrm{V}$ when the switch is opened (logic input 1).
+
+\begin{figure}[H]\centering
+\begin{subfigure}[b]{0.5\columnwidth}\centering
+    \includegraphics[height=220pt]{assets/Lab1/IMG_20241017_201914.jpg}
+    \caption{Global view}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{0.5\columnwidth}\centering
+    \includegraphics[height=220pt]{assets/Lab1/IMG_20241017_201900.jpg}
+    \caption{Partial view}
+\end{subfigure}
+\caption{The actual wire connection of In-Lab (6)}
+\end{figure}
+
+\noindent\textbf{(7, 8)}
+Construct the NOR Gate and NAND, measure their output voltage $u_o$ of all combinations of switch positions respectively. The results are as below:
+\begin{table}[H]\centering
+    %\renewcommand{\arraystretch}{1.5} % 调整行间距为 1.5 倍
+    %\setlength{\tabcolsep}{1.5mm} % 调整列间距
+    \caption{The output voltage $u_o$ results of In-Lab (7, 8)}
+    \label{The output voltage results of In-Lab (7, 8)}
+\begin{tabular}{cccccccccc}\toprule
+    Gate & Switch positon &  Logic Input & Output voltage (V) \\
+    \midrule
+    NOR  & (closed, closed) & (0, 0) & 4.989\\
+    NOR  & (opened, closed) & (0, 1) & 0.018\\
+    NOR  & (closed, opened) & (1, 0) & 0.018\\
+    NOR  & (opened, opened) & (1, 1) & 0.00874\\
+    NAND & (closed, closed) & (0, 0) & 4.989\\
+    NAND & (opened, closed) & (0, 1) & 4.989\\
+    NAND & (closed, opened) & (1, 0) & 4.989\\
+    NAND & (opened, opened) & (1, 1) & 0.03212\\
+    \bottomrule
+\end{tabular}
+\end{table}
+
+\noindent\textbf{(9)}
+The actual wire connection is shown as below.
+\begin{figure}[H]\centering
+    \begin{subfigure}[h]{0.48\columnwidth}\centering
+        \includegraphics[height=180pt]{assets/Lab1/IMG_20241017_205944.jpg}
+        \caption{Global view}
+    \end{subfigure}\hfill
+    \begin{subfigure}[h]{0.48\columnwidth}\centering
+        \includegraphics[height=180pt]{assets/Lab1/IMG_20241017_205937.jpg}
+        \caption{Partial view 1}
+    \end{subfigure}
+    \begin{subfigure}[h]{0.48\columnwidth}\centering
+        \includegraphics[height=180pt]{assets/Lab1/IMG_20241017_205950.jpg}
+        \caption{Partial view 2}
+    \end{subfigure}\hfill
+    \begin{subfigure}[h]{0.48\columnwidth}\centering
+        \includegraphics[height=180pt]{assets/Lab1/IMG_20241017_210003.jpg}
+        \caption{Partial view 3}
+    \end{subfigure}
+    \caption{The actual wire connection of In-Lab (9)}
+\end{figure}
+
+\noindent And the measurement results are:
+
+\begin{center}\noindent\begin{minipage}{0.37\columnwidth}
+\begin{table}[H]\centering
+    %\renewcommand{\arraystretch}{1.5} % 调整行间距为 1.5 倍
+    %\setlength{\tabcolsep}{1.5mm} % 调整列间距
+    \caption{$u_o$ results of In-Lab (9)}
+\begin{tabular}{cccccccccc}\toprule
+        (A, B, C) & $u_o$ (V) \\
+    \midrule
+        (0, 0, 0) & 4.991 \\
+        (0, 0, 1) & 4.987 \\
+        (0, 1, 0) & 4.987 \\
+        (0, 1, 1) & 4.987 \\
+        (1, 0, 0) & {\color{red} 0.01962} \\
+        (1, 0, 1) & 4.987 \\
+        (1, 1, 0) & 4.987 \\
+        (1, 1, 1) & 4.987 \\
+    \bottomrule
+\end{tabular}
+\end{table}
+\end{minipage}\hfill\begin{minipage}{0.6\columnwidth}
+\begin{figure}[H]\centering
+\includegraphics[width=\columnwidth]{assets/Lab1/0a4980b937130cf7da2712234599eb2a.png}
+\caption{$u_o$ becomes 19.62 mV only when (A, B, C) = (1, 0, 0)}
+\end{figure}
+\end{minipage}\end{center}
 
 
+\section{Post-Lab}
 
+\noindent\textbf{(1)}
+The Experimental parameters and their actual values is:
+\begin{table}[H]\centering
+    %\renewcommand{\arraystretch}{1.5} % 调整行间距为 1.5 倍
+    %\setlength{\tabcolsep}{1.5mm} % 调整列间距
+    \caption{Comparison of the values bewteen Pre-Lab (2) and In-Lab (2)}
+\begin{tabular}{cccc}\hline
+    Parameter & Theoretical & Experimental & Percentage error \\
+    \hline
+    $U_{\text{The}}$ (V) & 4.8889     &  4.89   & + 0.02 \%  \\
+    $I_{\text{Nor}}$ (mA)& 3.156      &  3.17    & + 0.44 \%  \\
+    $R$                  & 1548.8889  & 1542.5868  & - 0.41 \%  \\
+    \hline
+\end{tabular}
+\end{table}
+Percentage error $= \frac{y - \hat{y}}{y}$ standing for "Absolute Percentage Error", where $y$ is the experimental value and $\hat{y}$ is the theoretical value.
+
+In Pre-Lab (2), the given theoretical resistance is $R_1 = 50 \ \Omega$, $R_2 = 2.2 \KO$, $R_3 = 1.5 \KO$. However, the actual resistance we used in In-Lab (2) was $R_1 = 51.0 \ \Omega$, $R_2 = 1.47 \kO$ and $R_3 = 2.40 \KO$. Reevaluate the related parameters as below and these should be more realistic results.
+
+\begin{table}[H]\centering
+    %\renewcommand{\arraystretch}{1.5} % 调整行间距为 1.5 倍
+    %\setlength{\tabcolsep}{1.5mm} % 调整列间距
+    \caption{Comparison under the actual values}
+    \label{Comparison under the actual values}
+\begin{tabular}{cccc}\hline
+    Parameter & Actual theoretical & Experimental & Percentage error \\
+    \hline
+    $U_{\text{The}}$ (V) & 4.8942     &  4.89      & - 0.09 \% \\
+    $I_{\text{Nor}}$ (mA)& 3.220      &  3.17      & - 1.58 \% \\
+    $R$                  & 1519.921   & 1542.5868  & + 1.47 \% \\
+    \hline
+\end{tabular}
+\end{table}
+When using multi-meter as a voltage-meter, as it is not ideal, the  experimental voltage should be slightly lower the theoretical value. Also, the experimental current should be higher than the theoretical. These exactly matches the results in Table \ref{Comparison under the actual values}.
+
+
+\noindent\textbf{(2)}
+According to Table \ref{The port voltage}, the corresponding port current (with the actual resistance) is:
+
+\begin{table}[H]\centering
+    %\renewcommand{\arraystretch}{1.5} % 调整行间距为 1.5 倍
+    %\setlength{\tabcolsep}{1.5mm} % 调整列间距
+    \caption{The port current}
+    \label{The port current}
+\begin{tabular}{cccccc}\hline
+    Resistance ($\Omega$) & 561 (560) & 1.00 K (0.99 K) & 2.20 K (2.19 K) \\
+    \hline
+    Voltage (V) & 1.30 & 1.92 & 2.89 \\
+    current (mA) & 2.3214 & 1.9394 &  1.3196 \\
+    \hline
+\end{tabular}
+\end{table}
+
+\noindent\textbf{(3)}
+The port's $i$-$u$ relationship and the data obtained during In-Lab (3) are shown in the Figure \ref{The port's iu relationship} on the top of the next page.
+
+\noindent\textbf{(4)}
+According to the data sheet of N-MOSFET 2N7000, $R_{DS-ON}$ is typically $1.7 \ \Omega$ and not eexceeding $7.5 \ \Omega$ when $U_{GS} = 5 \ \mathrm{V}$. Our experimental data is $2.8 \ \Omega$, which is within the range of the data sheet. 
+
+We can know the threshold voltage $U_T$ of 2N7000 is about 2.0 V according to the Figure \ref{The threshold voltage of 2N7000} from the data sheet. The comparison of MOSFET data is shown in Table \ref{Comparison of MOSFET data}.
+
+\begin{center}\noindent\begin{minipage}{0.42\columnwidth}
+\begin{figure}[H]\centering
+    \includegraphics[height=165pt]{assets/Lab1/2024-10-18_20-04-11.pdf}
+    \caption{The port's $i$-$u$ relationship}
+    \label{The port's iu relationship}
+\end{figure}
+\end{minipage}\hfill\begin{minipage}{0.58\columnwidth}
+\begin{figure}[H]\centering
+    \includegraphics[height=165pt]{assets/Lab1/1dde8392e5bc21535aa77c1f94219773.png}
+    \caption{The threshold voltage of 2N7000}
+    \label{The threshold voltage of 2N7000}
+\end{figure}
+\end{minipage}\end{center}
+
+
+\begin{table}[H]\centering
+    %\renewcommand{\arraystretch}{1.5} % 调整行间距为 1.5 倍
+    %\setlength{\tabcolsep}{1.5mm} % 调整列间距
+    \caption{Comparison of MOSFET data}
+    \label{Comparison of MOSFET data}
+\begin{tabular}{ccc}\hline
+    Type & $R_{DS-ON} \ (\Omega)$ & $U_T$ (V) \\
+    \hline
+    Data sheet & typical 1.7 and max 7.2 & bewteen 1.85 and 2.5 \\
+    Experiment & 2.8 & 2.003 \\
+    \hline
+\end{tabular}
+\end{table}
+
+\noindent\textbf{(5)} With $R_{ON} = 2.8 \ \Omega$ measured during In-Lab (5), we can get the theoretical output voltage of different switch positions, comparing with the experimental values in Table \ref{The output voltage using RON measured during In-Lab (5)}.
+
+\begin{table}[H]\centering
+    %\renewcommand{\arraystretch}{1.5} % 调整行间距为 1.5 倍
+    %\setlength{\tabcolsep}{1.5mm} % 调整列间距
+    \caption{The output voltage $u_o$ using $R_{ON}$ measured during In-Lab (5)}
+    \label{The output voltage using RON measured during In-Lab (5)}
+\begin{tabular}{ccccccccc}\toprule
+    Gate & Input voltage $u_i$ & Logic input   & Theoretical output $u_o$ (V) & Experimental output (V) \\
+    \hline
+    NOT  & $< U_T$ & 0 &  $U_s = 5$ & 4.989 \\
+    NOT  & $> U_T$ & 1 &  $\frac{R_{\text{ON}}U_s}{R_{\text{On}}+R_\text{D}} = 0.0140$ & 0.018 \\
+    NOR  & $u_1 < U_T,\ u_2 < U_T $ & (0, 0) & $U_s = 5$ & 4.989\\
+    NOR  & $u_1 > U_T,\ u_2 < U_T $ & (1, 0) & $\frac{R_{\text{ON}}U_s}{R_{\text{On}}+R_\text{D}} = 0.014$ & 0.018 \\
+    NOR  & $u_1 < U_T,\ u_2 > U_T $ & (0, 1) & $\frac{R_{\text{ON}}U_s}{R_{\text{On}}+R_\text{D}} = 0.014$ & 0.018 \\
+    NOR  & $u_1 > U_T,\ u_2 > U_T $ & (1, 1) & $\frac{R_{\text{ON}}U_s}{R_{\text{On}}+2R_\text{D}} = 0.0070$ & 0.009 \\
+    NAND & $u_1 < U_T,\ u_2 < U_T $ & (0, 0) & $U_s = 5$ & 4.989 \\
+    NAND & $u_1 > U_T,\ u_2 < U_T $ & (1, 0) & $U_s = 5$ & 4.989 \\
+    NAND & $u_1 < U_T,\ u_2 > U_T $ & (0, 1) & $U_s = 5$ & 4.989 \\
+    NAND & $u_1 > U_T,\ u_2 > U_T $ & (1, 1) & $\frac{2R_{\text{ON}}U_s}{2R_{\text{On}}+R_\text{D}} = 0.0278$ & 0.032\\
+    \bottomrule
+\end{tabular}
+\end{table}
+
+\noindent\textbf{(6)} Suppose the supply voltage is 5 V, to achieve the best symmetric noise margins, we specify the voltage parameters of MOSFET as below:
+
+\begin{table}[H]\centering
+    %\renewcommand{\arraystretch}{1.5} % 调整行间距为 1.5 倍
+    %\setlength{\tabcolsep}{1.5mm} % 调整列间距
+    \caption{Voltage parameters of MOSFET}
+    \label{Voltage parameters of MOSFET}
+\begin{tabular}{cccccccccc}\toprule
+        & Input  & Output &  \\
+    \midrule
+    Low & $U_{IL} = 1.442 \ \mathrm{V}$  & $U_{OL} = 5 \ \mathrm{V}$  \\
+    High & $U_{IH} = 2.003 \ \mathrm{V}$ & $U_{OH} = 0 \ \mathrm{V}$  \\
+    \bottomrule
+\end{tabular}
+\end{table}
+When the input voltage is lower than $U_{LI} = 1.442 \ \mathrm{V}$ (logic 0), the MOSFET is off so that the inverter produce a high voltage closed to $U_{OH}=5 \ \mathrm{V}$ (logic 1). On the contrary, when the input voltage is higher than $U_{HI} = 2.003 \ \mathrm{V}$ (logic 1), the MOSFET is on so that the inverter produce a low voltage closed to $U_{OL} = 0 \ \mathrm{V}$ (logic 0).
 
 
 
@@ -1745,7 +2263,7 @@ R_{\text{sat}} = R_1 = 10 \KO
 
 
 \chapter{Laboratory 2: }
-\lhead{Laboratory 2: }
+\lhead{Lab 2: }
 \thispagestyle{fancy}
 
 实验课件见网址 \href{}{https://www.123865.com/s/0y0pTd-KRKj3}。
@@ -1845,9 +2363,9 @@ u_o = - (d_0i_0 + d_1i_1 + d_2i_2)R = -\frac{u_s}{8}\left( d_2\cdot 2^2 + d_1\cd
 \renewcommand{\thefigure}{A.\arabic{figure}} 
 \renewcommand{\thetable}{A.\arabic{table}}
 
-\section{图 \ref{振幅系数随入射角的变化} 源码}
-\begin{matlablisting}
-\end{matlablisting}
+%\section{图 \ref{振幅系数随入射角的变化} 源码}
+%\begin{matlablisting}
+%\end{matlablisting}
 
 
 % >> ------------------------ 附录 ------------------------ << %

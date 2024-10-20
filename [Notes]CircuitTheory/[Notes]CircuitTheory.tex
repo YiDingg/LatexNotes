@@ -252,6 +252,10 @@
             font=small  
         }
     \usepackage{float}     % 图表位置浮动设置 
+    \usepackage{etoolbox} % 用于保证图注表注的数学字符为粗体
+        \AtBeginEnvironment{figure}{\boldmath} % 图注中的数学字符为粗体
+        \AtBeginEnvironment{table}{\boldmath}  % 表注中的数学字符为粗体
+        \AtBeginEnvironment{tabular}{\unboldmath}   % 保证表格中的数学字符不受额外影响
 
 % 圆圈序号自定义
     \newcommand*\circled[1]{\tikz[baseline=(char.base)]{\node[shape=circle,draw,inner sep=0.8pt, line width = 0.03em] (char) {\small \bfseries #1};}}   % TikZ solution
@@ -1326,7 +1330,7 @@ N-Channel Enhancement-Type MOSFET 的外特性总结如下：
 \item 阈值电压 $U_T$: 使得 D-S 之间不再开路的电压阈值称为阈值电压（典型值为 1 V），需要注意 
 \item 绝缘性：栅极 G 与其它电极绝缘，有 $i_{\text{GS}} = i_{\text{GD}} = 0$。
 \item 最大电流 $i_{\text{DS},\text{max}}$：在非开路情况下，$i_{\text{DS},\text{max}} = \frac{K}{2}(u_{\text{GS}} - U_T)^2$，其中 $K$ 为常数（典型值 1 $\mathrm{mA\cdot V^{-2}}$）。
-\item 导通电阻 $R_{\text{ON}}$: 在线性区时，MOS 管在 D-S 端体现出的电阻大小。
+\item 导通电阻 $R_{\text{ON}}$: 在线性区时，MOS 管在 D-S 端体现出的电阻大小，$R = \frac{2}{K(u_{\text{GS} - U_T})}$ 通常为几百欧。
 \item 电流特性 $i_{\text{DS}}$: MOS 管的电流特性可采取如下近似模型\footnote{更精确的模型详见参考文献 \cite{电路原理导学导教} Page 30.}
 \begin{equation}
 i_{\text{DS}} = 
@@ -1792,7 +1796,7 @@ $p=0$ 即没有无伴电流源时，可列出回路电流法的标准方程\foot
 \begin{gather}
 i = i(u) = I_\text{S}\left(e^{\frac{u}{U_{\text{TH}}}} - 1\right)
 \end{gather}
-其中，$U_{\text{TH}}$ 为常数，称为导通电压（典型值 $0.5 \ \mathrm{V}$）；$I_\text{s}$ 称为反相饱和电流（硅二极管典型值为 $0.1 \uA$）\footnote{有关二极管或其他元件的详细参数，可到\href{https://www.szlcsc.com/}{立创商城}进行检索并查看数据手册 (date sheet)，例如典型二极管 \href{https://item.szlcsc.com/65968.html}{SM4007PL} 的数据手册在 \href{https://atta.szlcsc.com/upload/public/pdf/source/20240710/496933BE705816864AC9581E766E463F.pdf}{here}。}。
+其中，$U_{\text{TH}}$ 为常数，典型值 $25 \mV$（注意不是导通电压 $U_{\text{sd}}$）；$I_\text{s}$ 称为反相饱和电流（硅二极管典型值为 $10^{-12} \ \mathrm{A}$）\footnote{有关二极管或其他元件的详细参数，可到\href{https://www.szlcsc.com/}{立创商城}进行检索并查看数据手册 (date sheet)，例如典型二极管 \href{https://item.szlcsc.com/65968.html}{SM4007PL} 的数据手册在 \href{https://atta.szlcsc.com/upload/public/pdf/source/20240710/496933BE705816864AC9581E766E463F.pdf}{here}。}。
 
 另外，还有隧道、充气二极管等。隧道二极管是一种压控型非线性电阻，在 $u-i$ 图中（$u$ 是横坐标），伏安特性形似字母 N，因此也称为 N 型非线性电阻；充气二极管是一种流控型非线性电阻，也称为 S 型非线性电阻。
 
@@ -1838,17 +1842,61 @@ i = i(u) = I_\text{S}\left(e^{\frac{u}{U_{\text{TH}}}} - 1\right)
 将非线性电阻的伏安曲线分段线性化，从而使非线性电路转化为线性电路，然后便可等效为线性电子电路进行求解。\footnote{分段线性法可能导致电路有多解或无解，这超出了本课程的范围，本书始终假设运用分段线性法时，非线性电阻电路存在唯一解。}此方法还需要确定电阻的工作区（即哪一个线性段），先排除明显不可能的范围，再用假设法来验证即可。
 
 \item 小信号法：
+小信号法是指，如果非线性电阻的激励由直流和交流两部分构成，且交流的幅值比较小，则在其工作点附近，可用线性电阻来近似此非线性电阻。
 
-小信号法常用于求解
+小信号法常用于求解存在小扰动（例如小幅交流信号）的直流激励非线性电路时，这是实际中经常遇到的情况，不过它对存在大扰动的电路则无能为力。
 \end{enumerate}
 
 现实中求解电路时，常常将上面几种方法相结合，混合使用。
 
 \subsection{二极管的四种近似模型}
-在分段线性法的指导下，我们可以提出二极管的几种近似模型。
+在分段线性法的指导下，我们可以提处二极管的四种常见近似模型：
 
+\begin{gather}
+\begin{cases}
+    i = 0                                &, u < U_{\text{sd}} \\ 
+    i = \frac{u - U_{\text{sd}}}{R} &, u > U_{\text{sd}} \\
+\end{cases}\quad 
+\begin{cases}
+    i = 0 &, u < U_{\text{sd}} \\ 
+    u = U_{\text{sd}} &, i > 0 \\
+\end{cases}\quad 
+\begin{cases}
+    i = 0 &, u < 0 \\ 
+    i = \frac{u}{R} &, u > 0 \\
+\end{cases}\quad 
+\begin{cases}
+    i = 0 &, u < 0 \\ 
+    u = 0 &, i > 0 \\
+\end{cases}
+\end{gather}
+\begin{figure}[H]\centering
+\includegraphics[width=\columnwidth]{assets/4/二极管的四种近似模型.pdf}
+\caption{二极管的四种近似模型}\label{二极管的四种近似模型}
+\end{figure}
+其中，模型 4 也称为理想二极管模型。从左往右，模型的近似程度越大，分析起来也越简单。
 
-\section{用 MOSFET 构成放大器}
+\subsection{小信号法}
+假设非线性电阻的工作点为 $(U_0, I_0)$，且在此工作点附近可近似为线性电阻，则对电流 $i = i(u)$ 或电压 $u = u(i)$，在工作点 $(U_0, I_0)$ 处作泰勒展开：
+\begin{gather}
+i = i(U_0) + \left(\frac{\mathrm{d} i}{\mathrm{d} u }\right)_{u=U_0}(u - U_0) = I_0 + G_d\cdot \Delta u = I_0 + \Delta i
+,\quad 
+G_d = 
+\left.\begin{matrix}\displaystyle
+    \frac{\mathrm{d} i}{\mathrm{d} u }
+\end{matrix}\right|_{u=U_0}
+\\
+u = u(I_0) + \left(\frac{\mathrm{d} u}{\mathrm{d} i }\right)_{i=I_0}(i - I_0) = U_0 + R_d \cdot \Delta i = U_0 + \Delta u
+,\quad 
+R_d =
+\left.\begin{matrix}\displaystyle
+    \frac{\mathrm{d} u}{\mathrm{d} i }
+\end{matrix}\right|_{i=I_0}
+\end{gather}
+其中 $G_d$、$R_d$ 是元件在工作点处的线性近似，分别称为动态电导（Dynamic Conductance）和动态电阻（Dynamic Resistance），需要注意它们是工作点处的切线斜率（或其倒数）而非原点与工作点构成的割线斜率（割线是静态电导/电阻）。
+
+需要注意，小信号法看似与叠加定理相似，实际上是两种不同的思路，考虑的是激励的微小变化给响应带来的影响，而叠加定理是考虑不同激励的叠加。
+\section{用 MOSFET 构成放大器（略）}
 
 \section{非线性电阻应用举例}
 \subsection{整流}

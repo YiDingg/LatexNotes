@@ -10,13 +10,16 @@
 % 本文的特殊宏定义
     \def\Im{\mathrm{Im\,}}
     \def\Re{\mathrm{Re\,}}
-    \def\Arg{\mathrm{Arg}\,}
-    \def\Ln{\mathrm{Ln\,}}
-    \def\Arccos{\mathrm{Arccos\,}}
-    \def\Arcsin{\mathrm{Arcsin\,}}
-    \def\Arctan{\mathrm{Arctan\,}}
-    \def\res{\mathrm{res\,}}
-
+    \def\Arg{\mathrm{\,Arg\,}}
+    \def\Ln{\mathrm{\,Ln\,}}
+    \def\Arccos{\mathrm{\,Arccos\,}}
+    \def\Arcsin{\mathrm{\,Arcsin\,}}
+    \def\Arctan{\mathrm{\,Arctan\,}}
+    \def\res{\mathrm{\,res\,}}
+    \def\Res{\mathrm{\,Res\,}}
+    \def\arcsinh{\mathrm{\,arcsinh\,}}
+    \def\arccosh{\mathrm{\,arccosh\,}}
+    \def\arctanh{\mathrm{\,arctanh\,}}
 
 % 通用宏定义
     \def\N{\mathbb{N}}
@@ -289,16 +292,17 @@
 % 页眉页脚设置
     \usepackage{fancyhdr}   %宏包：页眉页脚设置
         \pagestyle{fancy}
-        \fancyhf{}
+        %\fancyhf{}\usepackage{lastpage} 
+        %\cfoot{第 \thepage 页 / 共 \pageref{LastPage} 页}
         \cfoot{\thepage}
         \renewcommand\headrulewidth{1pt}
         \renewcommand\footrulewidth{0pt}
         \usepackage{fontawesome}    % 宏包：更多符号与图标 (用于插入 GitHub 图标等)
+        \chead{Notes of Mathematical Physics Methods}     
+        \rhead{\small dingyi233@mails.ucas.ac.cn}
         \lhead{\small
         \href{https://github.com/YiDingg/LatexNotes}{\color{black}\faGithub\ https://github.com/YiDingg/LatexNotes}
         }
-        \chead{Notes of Mathematical Physics Methods}     
-        \rhead{\small dingyi233@mails.ucas.ac.cn}
 %文档信息设置
     \title{数学物理方法笔记\\Notes of Mathematical Physics Methods}
     \author{丁毅\\ \footnotesize 中国科学院大学，北京 100049\\ Yi Ding \\ \footnotesize University of Chinese Academy of Sciences, Beijing 100049, China}
@@ -666,13 +670,15 @@ e^z = e^{x + \mathrm{i} y} = e^x(\cos y + \mathrm{i} \sin y)
 \begin{gather}
 \boxed{
     \begin{aligned}
+        \sin z
+        =\frac{\mathrm{e}^{\mathrm{i}z}-\mathrm{e}^{-\mathrm{i}z}}{2i} 
+        = \sin x \cosh y + {\color{red} i} \cos x \sinh y
+        = \frac{1}{2{\color{red} i}}\cdot \left[ \left( e^y {\color{red} \,-\,} \frac{1}{e^y} \right)\cos x + {\color{red} i}\left( e^y +  \frac{1}{e^y}\right)\sin x \right]
+        \\
         \cos z
         =\frac{\mathrm{e}^{\mathrm{i}z}+\mathrm{e}^{-\mathrm{i}z}}{2}
-        = {\color{red} \frac{1}{2}}\cdot \left[ \left( \frac{1}{e^y} + e^y \right)\cos x + \left( \frac{1}{e^y} {\color{red} \,-\,} e^y \right)\sin x \right]
-        \\
-        \sin z
-        =\frac{\mathrm{e}^{\mathrm{i}z}-\mathrm{e}^{-\mathrm{i}z}}{2\mathrm{i}} 
-        = {\color{red} \frac{1}{2i}}\cdot \left[ \left( \frac{1}{e^y} {\color{red} \,-\,} e^y \right)\cos x + \left( \frac{1}{e^y} + e^y \right)\sin x \right]
+        = \cos x \cosh y - {\color{red} i} \sin x \sinh y
+        = \frac{1}{2}\cdot \left[ \left(e^y + \frac{1}{e^y}  \right)\cos x {\color{red} \,- \,} {\color{red} i}\left( e^y {\color{red} \,-\,} \frac{1}{e^y} \right)\sin x \right]
     \end{aligned}
 }
 \end{gather}
@@ -683,13 +689,28 @@ $\sin z,\ \cos z$ 在 $\C$ 内解析，唯一奇点是 $z = \infty$。可以证�
 \begin{definition}[双曲函数 $\sinh z,\ \cosh z,\ ...$]
 双曲函数也是通过复指数函数来定义的，如下
 \begin{gather}
-    \sinh z=\frac{\mathrm{e}^{z}-\mathrm{e}^{-z}}{2},\cosh z=\frac{\mathrm{e}^{z}+\mathrm{e}^{-z}}{2},\quad\tanh z=\frac{\sinh z}{\cosh z},\\\coth z=\frac{\cosh z}{\sinh z},\quad\mathrm{sech}z=\frac{1}{\cosh z},\quad\cosh z=\frac{1}{\sinh z}
+    \boxed{
+    \begin{aligned}
+        \sinh z
+        = \frac{\mathrm{e}^{z}-\mathrm{e}^{-z}}{2} 
+        = \sinh x \cos y + i \cosh x \sin y
+        = \frac{1}{2}\cdot \left[ \left( \frac{1}{e^x} {\color{red} \,-\,} e^x \right)\cos y + \left( \frac{1}{e^x} + e^x \right)\sin y \right]
+        \\
+        \cosh z
+        = \frac{\mathrm{e}^{z}+\mathrm{e}^{-z}}{2} 
+        = \cosh x \cos y {\color{red} \,+\,} i \sinh x \sin y
+        = \frac{1}{2}\cdot \left[ \left( \frac{1}{e^x} + e^x \right)\cos y + \left( \frac{1}{e^x} {\color{red} \,-\,} e^x \right)\sin y \right]
+    \end{aligned}
+    }
+    \\
+    \mathrm{sech}z=\frac{1}{\cosh z},\quad\cosh z=\frac{1}{\sinh z},\quad 
+    \tanh z=\frac{\sinh z}{\cosh z},\quad \coth z=\frac{\cosh z}{\sinh z}
 \end{gather}
 由定义可知，双曲函数和三角函数能够互化：
 \begin{equation}
     \sinh z=-\mathrm{i}\sin\mathrm{i}z,\quad\cosh z=\cos\mathrm{i}z,\quad\tanh z=-\mathrm{i}\tan\mathrm{i}z.
 \end{equation}
-另外注意导数公式：
+通过上面的式子，我们也能很容易知道，在复数域上，三角函数不再是有界的函数了。另外注意导数公式：
 \begin{equation}
     (\sinh z)'=\cosh z,\quad(\cosh z)'=\sinh z,\quad(\tanh z)'=\mathrm{sech}^2z
 \end{equation}
@@ -805,6 +826,36 @@ f(z) = \sqrt[k]{
     \caption{ 多值复变函数可视化 }\label{可视化4}
 \end{figure}
 
+\section{常见函数总结}
+
+三角函数及其反函数：
+\begin{gather}
+    \sin z
+    =\frac{\mathrm{e}^{\mathrm{i}z}-\mathrm{e}^{-\mathrm{i}z}}{2i} 
+    = \sin x \cosh y + i \cos x \sinh y
+    \\
+    \cos z
+    =\frac{\mathrm{e}^{\mathrm{i}z}+\mathrm{e}^{-\mathrm{i}z}}{2}
+    = \cos x \cosh y - i \sin x \sinh y
+    \\ 
+    \tan z = \frac{\sin z}{\cos z} = -i \cdot \frac{e^{iz} - e^{-iz}}{e^{iz} + e^{-iz}} = -i \cdot \frac{e^{2iz} - 1}{e^{2iz} + 1}
+    \\ 
+    \arcsin z = -i \cdot \ln \left(iz + \sqrt{1 - z^2}\right) \\ 
+    \arccos z = -i \cdot \ln \left(z + \sqrt{z^2 - 1}\right) \\
+    \arctan z = -\frac{i}{2} \ln \left(\frac{1 + iz}{1 - iz}\right)
+\end{gather}
+
+双曲函数及其反函数：
+\begin{align}
+\sinh z &= \frac{e^z - e^{-z}}{2} = \sinh x \cos y + i \cosh x \sin y\\ 
+\cosh z &= \frac{e^z + e^{-z}}{2} = \cosh x \cos y + i \sinh x \sin y\\ 
+\tanh z &= \frac{\sinh z}{\cosh z} = \frac{e^z - e^{-z}}{e^{z} + e^{-z}} = \frac{e^{2z} - 1}{e^{2z} + 1}
+\end{align}
+\begin{align}
+    \arcsinh z &= \ln \left(z + \sqrt{z^2 + 1} \right) \\ 
+    \arccosh z &= \ln \left(z + \sqrt{z^2 - 1} \right) \\ 
+    \arctanh z &= \frac{1}{2}\cdot \ln \left(\frac{1 + z}{1 - z}\right)
+\end{align}
 
 \chapter{复变积分}
 
@@ -876,7 +927,7 @@ Morera 定理可以理解为 Cauthy 定理的逆定理，用于判别函数在�
 \left| f^{(n)}(z) \right| \leqslant \frac{n!}{2 \pi d^{n+1}}\cdot Ml ,\quad n = 0, 1, 2, ...
 \end{equation}
 
-其中 $M = \sup \{ | f(z) |,\ z \in \partial G \}$ 是 $| f(z) |$ 在边界上的上界，$l = \int_{\partial G} \mathrm{d}s$ 是边界 $\partial G$ 的长度，$d = \inf \{ \rho(z, \partial G) \}$ 是 $z$ 点到边界 $\partial G$ 的距离下界。事实上，由于 $\overline{G}$ 是闭域，这里的上界、下界均可取到，因此分别是最大值、最小值。
+其中 $M = \sup \{ | f(z) |,\ z \in \partial G \}$ 是 $| f(z) |$ 在边界取值的上界，$l = \int_{\partial G} \mathrm{d}s$ 是边界 $\partial G$ 的长度，$d = \inf \{ \rho(z, \partial G) \}$ 是 $z$ 点到边界 $\partial G$ 的距离（距离即为下界）。事实上，由于 $\overline{G}$ 是闭域，这里的上界、下界均可取到，因此分别是最大值、最小值。
 
 特别地，当边界是以 $z$ 为圆心，$R$ 为半径的圆时，不等式变为：
 \begin{equation}
@@ -889,11 +940,11 @@ Morera 定理可以理解为 Cauthy 定理的逆定理，用于判别函数在�
 \end{LineTheorem}
 
 \begin{BlockTheorem}[均值定理]\label{均值定理}
-设 $f(z)$ 在 $\overline{G}$ 内解析，则 $f$ 在 $G$ 内任意一点 $z_0$ 的函数值为：
+设 $f(z)$ 在 $\overline{G}$ 内解析，则 $f$ 在 $G$ 内任意一点 $z_0$ 的函数值是它在圆周上取值的算术平均：
 \begin{equation}
-f(z_0) = \frac{1}{2\pi i} \int_{0}^{2\pi} f(z_0 + R e^{i\theta}) \mathrm{d}\theta
+f(z_0) = \frac{1}{2\pi} \int_{0}^{2\pi} f(z_0 + R e^{i\theta}) \mathrm{d}\theta
 \end{equation} 
-其中 $R$ 是以 $z_0$ 为圆心，位于 $\overline{G}$ 内的任一圆周的半径。
+其中 $R$ 是以 $z_0$ 为圆心，位于 $\overline{G}$ 内的任一圆周的半径。注意积分前的系数是 $\frac{1}{2\pi}$ 而不是 $\frac{1}{2\pi i}$。
 \end{BlockTheorem}
 
 
@@ -929,7 +980,7 @@ f^{(n)}(z) = \frac{n !}{2\pi i}\oint_{\partial G} \frac{f(\zeta)}{(\zeta - z)^{n
 \begin{equation}
     f(z) = \frac{1}{2\pi i}\oint_{\partial G} \frac{f(\zeta)}{(\zeta - z)} \mathrm{d} \zeta,\quad \forall\ z \in G
 \end{equation}
-
+闭域 $\overline{G}$ 可以是复联通区域，积分路径仍沿正向，即内部顺时针，最外围逆时针。
 \end{BlockTheorem}
 
 \begin{BlockTheorem}[Cauchy 定理的推广]\label{Cauchy 定理的推广}
@@ -937,9 +988,9 @@ f^{(n)}(z) = \frac{n !}{2\pi i}\oint_{\partial G} \frac{f(\zeta)}{(\zeta - z)^{n
 
 若 $f(z)$ 在 $\overline{G}$ 上有唯一奇点 $z = a$，且 $(z - a)^n f(z)$ 在  $\overline{G}$ 上解析，则：
 \begin{equation}
-I  = \oint_{\partial G} f(z) \mathrm{d}z = \frac{2 \pi i}{({\color{red} n-1})!}\lim_{z \to a} (z - a)^{n} f^{({\color{red} n-1})} (z) = \frac{2 \pi i}{({\color{red} n-1})!} \left[  (z - a)^{n} f^{({\color{red} n-1})} (z) \right]_{z = a}
+I  = \oint_{\partial G} f(z) \mathrm{d}z = 2 \pi i \cdot \frac{1}{({\color{red} n-1})!} \left[(z - a)^{n} f(z) \right]^{({\color{red} n-1})}_{z = a}
 \end{equation}
-特别地，当 $n = 1$ 时，得到 Cauchy 积分公式。
+特别地，当 $n = 1$ 时，得到 Cauchy 积分公式。当 $n = 1$ 时，$z = a$ 可能是可去奇点，此时 $z = a$ 是指 $\lim_{z \to a}$。
 \end{BlockTheorem}
 
 \begin{BlockTheorem}[无界区域上的 Cauchy 积分公式]\label{无界区域上的 Cauchy 积分公式}
@@ -1065,28 +1116,102 @@ v(r, \phi) &= \frac{a^2 - r^2}{2 \pi} \int_{0}^{2 \pi} \frac{ v(a, \theta) }{a^2
 \begin{enumerate}
 \item 结合律：可以任意加括号（只要收敛即可），组成新的求和项
 \item 交换律：可以任意改换求和次序
-\item 子级数收敛：把绝对收敛级数拆成多个子级数，每个子级数都收敛
+\item 子级数收敛：把绝对收敛级数拆成多个子级数，每个子级数仍然收敛
 \item 积收敛：两个绝对收敛级数之积（是一个二重级数）仍然绝对收敛
 \end{enumerate}
 
-\subsection{复变级数的判别法}
+\subsection{实变级数的判别法}
+复变级数的收敛性等价于实虚部对应两个实变级数的收敛性，考察一个复变函数的（绝对）收敛性时，常常会转化为实变级数的收敛性，因此重新温习实变级数判别法是十分必要的。本小节中所有数列均为实变数列。
 
-判断复数级数是否绝对收敛，由于取模后皆为正实数，因此与正项级数的收敛判别完全等价，常见的方法有比较判别法、比式判别法、根式判别法和 Gauss 判别法。
+实变数列可以分为正项级数和交错级数（一般级数）。正项级数有三种最常见的判别方法：比较判别法、比式判别法 (d'Alembert 判别法) 和根式判别法 (Cauthy 根值判别法)。
 
 \begin{BlockTheorem}[比较判别法]\label{比较判别法}
 比较判别法有常规形式、极限形式和上下极限形式，这里只介绍极限形式。后续的几种判别法也只给出极限形式。
 
-设正向数列 $v_n$ 满足 $\displaystyle \lim_{n \to \infty} \frac{| u_n |}{v_n} = \rho \in \overline{R}$。若$\rho \in (0, +\infty)$，则 $\sum | u_n |$ 与 $\sum v_n$ 同敛散；若 $\rho = 0$ 且 $\sum v_n$ 收敛，则 $\sum | u_n |$ 收敛；若 $\rho = +\infty$ 且 $ \sum v_n$ 发散，则 $\sum | u_n |$ 发散。
+设正项数列 $v_n$ 和 $u_n$ 满足 $\displaystyle \lim_{n \to \infty} \frac{u_n}{v_n} = \rho \in \overline{R}$。若$\rho \in (0, +\infty)$，则 $\sum u_n$ 与 $\sum v_n$ 同敛散；若 $\rho = 0$ 且 $\sum v_n$ 收敛，则 $\sum u_n$ 收敛；若 $\rho = +\infty$ 且 $ \sum v_n$ 发散，则 $\sum u_n$ 发散。
 \end{BlockTheorem}
 
 
 \begin{LineTheorem}[比式判别法]\label{比式判别法}
-    设 $\displaystyle \lim_{n \to \infty} \left| \frac{u_{n+1}}{u_n} \right|  = \rho$。若 $\rho \in [0,\ 1)$ 则 $\sum | u_n |$ 收敛；若 $\rho > 1$ 则 $\sum | u_n |$ 发散。
+    设正项级数 $\sum u_n$ 满足 $\displaystyle \lim_{n \to \infty} \frac{u_{n+1}}{u_n}  = \rho$。若 $\rho \in [0,\ 1)$ 则 $\sum u_n$ 收敛；若 $\rho > 1$ 则 $\sum u_n$ 发散；$\rho = 1$ 时无法判断。
 \end{LineTheorem}
 
-\begin{LineTheorem}[根式判别法]\label{根式判别法}
-    设 $\displaystyle \lim_{n \to \infty} \sqrt[n]{| u_n |}  = \rho$。若 $\rho \in [0,\ 1)$ 则 $\sum | u_n |$ 收敛；若 $\rho > 1$ 则 $\sum | u_n |$ 发散。
+\begin{LineTheorem}[根式判别法\footnote{相比于比式判别法，根式判别法的适用范围更广。这是因为 $\lim \frac{c_{n+1}}{c_n} = A \Longrightarrow  \lim \sqrt[n]{c_n} = A$，因此，比式可以使用的场合，根式一定可以使用。}]\label{根式判别法}
+    设正项级数 $u_n$ 满足 $\displaystyle \lim_{n \to \infty} \sqrt[n]{u_n}  = \rho$。若 $\rho \in [0,\ 1)$ 则 $\sum u_n$ 收敛；若 $\rho > 1$ 则 $\sum u_n$ 发散；$\rho = 1$ 时无法判断。
 \end{LineTheorem}
+
+交错级数有三种常见的判别方法：Leibniz 判别法、Abel 判别法和 Dirichlet 判别法，其中 Abel 判别法最常用（尽管 Dirichlet 的适用范围比它广）。
+
+\begin{BlockTheorem}[交错级数的 Leibniz 判别法]\label{交错级数的 Leibniz 判别法}
+设正项数列 $a_n$ 构成交错级数 $\sum (-1)^{n-1}a_n$，若 $a_n$ 严格单调递减且 $\lim_{n \to \infty} a_n = 0$，则：
+\begin{equation}
+    \text{级数\ } S = \sum_{n=1}^{\infty}(-1)^{n-1}a_n \in [0, a_1] \subset \R \text{\ 收敛，且\ } 0 \leqslant (-1)^n (S - S_n) \leqslant a_{n+1},\ \forall\ n \in \N^*
+\end{equation}
+后面的不等式给出了 $S$ 与 $S_n$ 之间的误差估计。
+\end{BlockTheorem}
+
+
+\begin{BlockTheorem}[一般级数的 Abel 判别法]\label{一般级数的 Abel 判别法}
+    设有界数列 $\{v_n\}$ 从某项开始单调，且 $\sum u_n$ 收敛，则级数 $\sum u_nv_n$ 收敛。用公式表示为：
+    \begin{equation}
+    \begin{cases}\displaystyle
+        \sup_{n} | v_n | < \infty,\ v_n \text{\ 单调} \\ \displaystyle
+        \lim_{n\to \infty} \sum_{k=1}^{\infty} u_k = S_u \in \R
+    \end{cases}
+    \Longrightarrow \lim_{n\to \infty} \sum_{k=1}^{n} u_kv_k \in \R
+    \end{equation}
+\end{BlockTheorem}
+
+
+\begin{BlockTheorem}[一般级数的 Dirichlet 判别法]\label{一般级数的 Dirichlet 判别法}
+    设极限为 0 的数列 $\{v_n\}$ 从某项开始单调，且 $\sum u_n$ 有界，则级数 $\sum u_nv_n$ 收敛。用公式表示为：
+    \begin{equation}
+    \begin{cases}\displaystyle
+        \lim_{n\to \infty} v_n = 0,\ v_n \text{\ 单调} \vspace*{1.2mm} \\  \displaystyle
+        \sup_{n} \left|\sum_{k=1}^{n} u_k\right| < \infty
+    \end{cases}
+    \Longrightarrow \lim_{n\to \infty} \sum_{k=1}^{n} u_kv_k \in \R
+    \end{equation}
+\end{BlockTheorem}
+
+另外，还有一些其他的定理，如下：
+
+\begin{BlockTheorem}[正项级数的 Raabe 判别法]\label{正项级数的 Raabe 判别法}
+
+\end{BlockTheorem}
+
+\begin{BlockTheorem}[正项级数的 Bertrand 判别法]\label{正项级数的 Bertrand 判别法}
+
+\end{BlockTheorem}
+
+\begin{BlockTheorem}[正项级数的 Gauss 判别法]\label{正项级数的 Gauss 判别法}
+
+\end{BlockTheorem}
+
+
+\begin{BlockTheorem}[特殊级数的 Kronecker 定理]\label{特殊级数的 Kronecker 定理}
+设极限为 0 的正项数列 $v_n$ 从某项开始严格单调递增，且 $\sum u_n$ 收敛，则极限 $\lim_{n \to \infty} \frac{1}{v_n}\sum_{k=1}^{n} u_kv_k$ 收敛。用公式表示为：
+\begin{equation}
+\begin{cases}\displaystyle
+    v_n > 0,\ v_n \uparrow,\ \lim_{n\to \infty} v_n = 0 \vspace*{1.2mm} \\ \displaystyle
+    \sup_{n} \left|\sum_{k=1}^{n} u_k\right| < \infty
+\end{cases}
+\Longrightarrow \lim_{n\to \infty} \frac{1}{v_n}\sum_{k=1}^{n} u_kv_k \in \R
+\end{equation}
+\end{BlockTheorem}
+
+
+\begin{BlockTheorem}[实变级数与反常积分的收敛关系]\label{级数与反常积分的收敛关系}
+    若{\color{red} 非负}函数 $f(x)$ 在 $[1, +\infty)$ 上 {\color{red} 单调}（递减），则：
+    \begin{equation}
+    \text{级数\ } \sum_{n=1}^{\infty}f(n) \text{\ 与反常积分\ } \int_{1}^{+\infty} f(x) \ \mathrm{d}x \text{\ 同敛散}
+    \end{equation}
+\end{BlockTheorem}
+    
+
+\subsection{复变级数的判别法}
+
+判断复数级数是否绝对收敛，由于取模后皆为正实数，因此与正项级数的收敛判别完全等价，常见的方法有比较判别法、比式判别法、根式判别法和 Gauss 判别法。只用于判断绝对收敛性的判别法等价于实变级数判别法，我们不再重复叙述，这里只给出其它几种判别法。
 
 \begin{LineTheorem}[Gauss 判别法]\label{Gauss 判别法}
 假设存在 $\zeta \in \C, \ p > 1$ 使得序列 $u_n$ 满足：
@@ -1113,7 +1238,6 @@ v(r, \phi) &= \frac{a^2 - r^2}{2 \pi} \int_{0}^{2 \pi} \frac{ v(a, \theta) }{a^2
     \item 若 $\alpha \leqslant 0$ 则 $z_n$ 不趋于 0，于是 $\sum z_n$ 必发散。
     \end{enumerate}
 \end{BlockTheorem}
-
 
 \subsection{复变函数项级数}
 
@@ -1316,7 +1440,9 @@ a_n = \displaystyle \frac{1}{2 \pi i}\oint_{C}\frac{f(\zeta)}{(\zeta - b)^{n+1}}
 
 \chapter{留数定理}\thispagestyle{fancy}
 
-\section{留数定理}
+\section{留数定理及其求法}
+
+\subsection{留数定理}
 
 \begin{BlockTheorem}[留数定理]\label{留数定理}
 设游街区域 $G$ 的边界 $\partial G$ 为分段光滑的简单闭合曲线。若除有限个孤立奇点 $\{b_1, b_2, ..., b_n\} \subset G$ 外，函数 $f$ 在 $\overline{G}$ 上单值解析，则：
@@ -1324,10 +1450,10 @@ a_n = \displaystyle \frac{1}{2 \pi i}\oint_{C}\frac{f(\zeta)}{(\zeta - b)^{n+1}}
 \oint_{\partial G} f(z) \ \mathrm{d}z = 2 \pi i \sum_{k = 1}^{n} \res f(b_k)
 \end{gather}
 
-其中 $\res f(b_k)$ 称为 $f$ 在 $b_k$ 处的留数，它等价于 $f(z)$ 在 $b_k$ 点的 Laurent Expansion 中的系数 $a_{-1}$（即原形式），也等价于 $(z-b)^mf(z)$ 的 Talor Expansion 中的系数 $a_{m-1}$:
+其中 $\res f(b_k)$ 称为 $f$ 在 $b_k$ 处的留数，也常记作 $\Res \left[ f(z), b_k \right]$，本书采用后一种记法（后者方便表示变换）。它等价于 $f(z)$ 在 $b_k$ 点的 Laurent Expansion 中的系数 $a_{-1}$（即原形式），也等价于 $(z-b)^mf(z)$ 的 Talor Expansion 中的系数 $a_{m-1}$:
 \begin{gather}
 \boxed{
-    \res f(b_k) = 
+    \Res \left[ f(z), b_k \right] = 
     a_{-1} =
     \frac{1}{(m-1)!}\cdot \left\{\frac{\mathrm{d}^{m-1} }{\mathrm{d} z^{m-1} }\left[(z-b)^mf(z)\right]\right\}_{z=b}
 }
@@ -1335,7 +1461,7 @@ a_n = \displaystyle \frac{1}{2 \pi i}\oint_{C}\frac{f(\zeta)}{(\zeta - b)^{n+1}}
 
 特别地，当奇点为一阶极点时（$m=1$），无需求导：
 \begin{gather}
-\res f(b_k) = \lim_{z\to b}\left[(z-b)f(z)\right]
+    \Res \left[ f(z), b_k \right] = \lim_{z\to b}\left[(z-b)f(z)\right]
 \end{gather}
 \end{BlockTheorem}
 
@@ -1346,7 +1472,7 @@ a_n = \displaystyle \frac{1}{2 \pi i}\oint_{C}\frac{f(\zeta)}{(\zeta - b)^{n+1}}
     \caption{常见的留数计算方法}
     \label{常见的留数计算方法}
 \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}\hline
-    函数 & 给定条件 & 极点阶数 & 留数 $\res f(z_0)$  \\ \hline
+    函数 & 给定条件 & 极点阶数 & 留数 $\Res \left[ f(z), z_0 \right]$  \\ \hline
     $f(z)$ & $\displaystyle \lim_{z \to z_0} (z-z_0)f(z) = 0$ & 0 & 0 \\ \hline
     $f(z)$ & $\displaystyle \lim_{z \to z_0} (z-z_0)f(z) \ne 0$ & 1 & $\displaystyle \lim_{z\to z} (z-z_0)f(z)$ \\ \hline
     $f(z)$ & $\begin{matrix}\displaystyle
@@ -1363,12 +1489,24 @@ a_n = \displaystyle \frac{1}{2 \pi i}\oint_{C}\frac{f(\zeta)}{(\zeta - b)^{n+1}}
 
 另外，留数还可用于讨论有理函数的部分分式展开，例如函数 $f(z) = \frac{1}{(z-1)(z-2)(z-3)} = \frac{A}{z-1} + \frac{B}{z-2} + \frac{C}{z-3}$ 的常数 $A, B, C$ 正好就是 $f(z)$ 在一阶极点 $z = 1, 2, 3$ 处的留数，即：
 \begin{gather}
-A = \res f(1) = \frac{1}{2},\quad B = \res f(2) = -1,\quad C = \res f(3) = \frac{1}{2}
+A = \Res \left[ f(z), 1 \right] = \frac{1}{2},\quad B = \Res \left[ f(z), 2\right] = -1,\quad C = \Res \left[ f(z), 3\right] = \frac{1}{2}
 \end{gather}
 
 
+\subsection{求有界点的留数}
+\subsection{求无穷点的留数}
 
-
+求无穷原点 $\infty$ 处的留数有多种方法，常用的有以下几种：
+\begin{align}
+\begin{aligned}
+    \Res \left[ f(z), \infty \right] 
+    &= \frac{1}{2\pi i}\oint_{C(\infty)} f(z) \ \mathrm{d} z && \text{(定义)} \\ 
+    & = - \frac{1}{2 \pi i} \lim_{R \to \infty} \oint_{C_R} f(z) \ \mathrm{d}z&& \text{(直接法)} \\ 
+    & = - \sum_{i=1}^{n} \Res \left[ f(z), z_i \right]  && \text{(间接法)} \\ 
+    & = - K && \text{(大圆弧, 需要 $zf(z) \to K$)} \\ 
+    & = - \Res \left[ \frac{1}{z^2} f(\frac{1}{z}), 0 \right] && \text{(变换, 最常用)}
+\end{aligned}
+\end{align}
 
 
 
@@ -1584,8 +1722,8 @@ A = \res f(1) = \frac{1}{2},\quad B = \res f(2) = -1,\quad C = \res f(3) = \frac
 
 \section{第一章}
 
-\subsection{问题1}
-
+\subsection{三角反函数或双曲反函数中，开根时为什么只取了正号？}
+例如 $\mathrm{Arcsin} z = -i\ \Ln \left( iz + \sqrt{1 - z^2} \right)$，可以是 $\mathrm{Arcsin} z = -i\ \Ln \left( iz \pm \sqrt{1 - z^2} \right)$ 吗？
 
 
 \subsection{问题2}
@@ -1593,7 +1731,7 @@ A = \res f(1) = \frac{1}{2},\quad B = \res f(2) = -1,\quad C = \res f(3) = \frac
 \section{第二章}
 
 
-\subsection{如何快速而大致准确地判断一个函数是否解析？}
+\subsection{如何快速而准确地判断一个函数是否解析？}
 
 判断一个函数（在某个开集 $G$ 上）是否解析，相当于判断它的可导性。如果一个复变函数是由初等函数构成的，不包括多值函数（包括 $\sqrt{z},\ \Ln z,\ \text{Arctan\,} z$ 等）或 $\Re z,\ \Im z$ 等特殊函数，那么在除去奇点（包括无定义点、不连续点和无穷点等）的开集上，一般都是解析的。例如，函数 $f(z) = \frac{z - 1}{z - i}$ 在 $\C \setminus \{i\}$ 上解析，函数 $f(z) = \frac{e^z}{\cos z}$ 在 $\C \setminus \{\frac{\pi}{2} + k\pi \mid k \in \Z \}$ 上解析。
 
@@ -1601,7 +1739,7 @@ A = \res f(1) = \frac{1}{2},\quad B = \res f(2) = -1,\quad C = \res f(3) = \frac
 
 \subsection{解析域一定是开集，为什么会说“在有界闭域 $\overline{G} $ 上解析” ？}\label{在闭域上解析}
 
-这个说法是许多教材中的惯用说法 \footnote{例如教材 \cite{数学物理方法}}，且并没有给出具体细节。我的理解是：解析区域必为开集，因此不可能是闭域，这里的意思是 $f$ 在开集 $\overline{G}$ 上解析，且在 $\partial$ 上连续。
+这个说法是许多教材中的惯用说法 \footnote{例如教材 \cite{数学物理方法}}，且并没有给出具体细节。我的理解是：解析区域必为开集，因此不可能是闭域，这里的意思是 $f$ 在开集 $G$ 上解析，且在 $\partial G$ 上可导，这等价于 $f(z)$ 在闭域 $\overline{G}$ 上每一点都可导。
 
 在本书中，不引起歧义的情况下，我们都说在闭域 $\overline{G} $ 上解析。
 
@@ -1609,6 +1747,39 @@ A = \res f(1) = \frac{1}{2},\quad B = \res f(2) = -1,\quad C = \res f(3) = \frac
 首先需要区分，“解析”是单值函数的概念，而“分支点”是多值函数的概念。在讨论一个函数是否（在某点）解析时，要么这个函数本就是单值函数，要么是多值函数的某个单值分支。对于一个多值函数，分支点仅可能出现在奇点，包括无定义点、不连续点、不解析点和无穷点 $\infty$。因此，当约定好多值函数的单值分支时，对前三种情况（也即 $\C$ 内的情况），分支点一定是不解析的。无穷点的情况可以做变换 $z \to \frac{1}{z}$ 转变为零点来讨论。
 
 例如，函数 $f(z) = \sqrt{z}$ 的分支点为 ${0,\ \infty}$，同时也是唯二的不解析点，无穷点不解析是因为函数 $\frac{1}{\sqrt{z}}$ 在 $z = 0$ 无定义，零点不解析是因为 $f'(z) = \frac{1}{2\sqrt{z}}$ 在 $z = 0$ 无定义。
+
+\subsection{如何求出（或判断）多值函数的分支点？}
+
+{\color{red} 分支点仅可能在宗量的零点、奇点处出现}，假设现在来判断 $z_0$ 是否为一个分支点，可以按照以下步骤进行：
+\begin{enumerate}
+\item 选定多值函数的单值分支。
+\item 判断有界点 $z_0 \in \C$ 是否为分支点时，对宗量的幅角（主值）作映射 $\theta \to  \theta + 2 \pi$，观察函数值是否变化。若发生变化，说明绕一圈后没有回到原点，即 $z_0$ 是分支点，反之则不是分支点。
+\item 判断无穷点 $\infty$ 是否为分支点，对所有宗量（通常是多个）同时作映射 $z \to \frac{1}{z}$，观察函数值是否变化。若发生变化，则 $\infty$ 是分支点，否则不是。
+\end{enumerate}
+
+例如，设 $\ln z$ 是 $\Ln z \mid_{z = 1} = 0$ 时的单值分支，对于下面的多值函数：
+\begin{gather}
+    f(z) = \ln \frac{(z-1)^n}{2-z} = \ln \frac{r_1^n}{r_2} + i\left[ (n \theta_1 - \theta_2) + 2\pi \cdot (n k_1 - k_2) \right]
+\end{gather}
+
+其中 $z - 1 = r_1 e^{i(\theta_1 + 2k_1 \pi)},\ 2 - z = r_2 e^{i(\theta_2 + 2 k_2 \pi)}$。我们可以选取单值分支：
+\begin{equation}
+    g(z) = \ln \frac{r_1^n}{r_2} + i (n \theta_1 - \theta_2)
+\end{equation}
+也即 $k_1 = k_2 = 0$ 对应的单值分支。
+
+在判断 $z = 1$ 是否为分支点时，宗量为 $z - 1$，因此作映射 $\theta_1 \to \theta_1 + 2\pi$，发现 $g(z)$ 的函数值发生了变化，即围绕 $z = 1$ 点绕一圈后，函数值没有还原，因此 $z = 1$ 是分支点；
+判断 $z = 2$ 是否为分支点，宗量为 $z - 2$，作映射 $\theta_2 \to \theta_2 + 2 \pi$，函数值也发生了变化，因此 $z = 2$ 也是分支点；最后判断 $\infty$，对两个宗量的幅角同时作映射 $\theta \to \theta + 2\pi$，可知，当 $n - 1$ 时，函数值还原，$\infty$ 不是分支点，否则 $\infty$ 是分支点。
+
+另外，我们还有结论：
+\begin{equation}{
+\color{red}\text{
+    $\Ln f(z)$ 的分支点 是且仅是方程 $f(z) = 0$ 和 $f(z) = \infty$ 的解
+}}
+\end{equation}
+
+\subsection{已知多值函数的分支点，作割线的意义是什么？}
+作割线是为了划定单值分支，这与给定多值函数在某点的函数值（通常）是等价的，更详细的讨论见 \href{https://zhuanlan.zhihu.com/p/422338793}{知乎：复变多值函数的黎曼面 (Riemann surface)、分支点 (branch point) 与割线 (branch cut)}。
 
 \section{第三章}
 
@@ -1642,6 +1813,12 @@ f^{(n)}(z) = \frac{n !}{2\pi i} \oint_{\partial G} \frac{f(\zeta)}{(\zeta - z )^
 \end{equation}
 
 \subsection{如何理解 Cauchy 型积分揭示的“解析函数在（分段）光滑曲线上的值决定了它 在整个复平面上的值”？}
+
+\section{第五章}
+
+\subsection{如何求一个函数在某点的 Laurent 展开式，是否有通法？}
+
+
 
 \chapter*{附录 B\hspace*{20pt}  Matlab 代码}\addcontentsline{toc}{chapter}{附录 B\hspace*{6pt}  Matlab 代码}
 \thispagestyle{fancy}

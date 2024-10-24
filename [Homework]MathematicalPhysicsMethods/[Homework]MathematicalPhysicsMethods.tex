@@ -15,6 +15,7 @@
     \def\Arccos{\mathrm{\,Arccos\,}}
     \def\Arcsin{\mathrm{\,Arcsin\,}}
     \def\Arctan{\mathrm{\,Arctan\,}}
+    \def\res{\mathrm{res\,}}
 
 % 通用宏定义
     \def\N{\mathbb{N}}
@@ -75,7 +76,7 @@
         \geometry{marginparwidth=1.75cm}    % 设置边注距离（注释、标记等）
 
 % 配置数学环境
-    \everymath{\displaystyle}   % 设置全文数学公式都为展示样式
+    %\everymath{\displaystyle}   % 设置全文数学公式都为展示样式
     \usepackage{amsthm} % 宏包：数学环境配置
     % theorem-line 环境自定义
         \newtheoremstyle{MyLineTheoremStyle}% <name>
@@ -269,7 +270,8 @@
 % 各级标题自定义设置
     \usepackage{titlesec}   
     % chapter
-        \titleformat{\chapter}[hang]{\normalfont\Large\bfseries\centering\boldmath}{Homework \thechapter :}{10pt}{}
+    %    \titleformat{\chapter}[hang]{\normalfont\Large\bfseries\centering\boldmath}{Homework \thechapter :}{10pt}{}
+        \titleformat{\chapter}[hang]{\normalfont\Large\bfseries\centering\boldmath}{}{10pt}{}
         \titlespacing*{\chapter}{0pt}{-30pt}{10pt} % 控制上方空白的大小
     % section
         \titleformat{\section}[hang]{\normalfont\large\bfseries\boldmath}{\thesection}{8pt}{}
@@ -291,9 +293,17 @@
     \cfoot{\thepage}
     \renewcommand\headrulewidth{1pt}
     \renewcommand\footrulewidth{0pt}
-    \chead{数学物理方法课程作业,\ 丁毅,\ 2023K8009908031}
-    \lhead{Homework \thechapter}
-    \rhead{\small dingyi233@mails.ucas.ac.cn}
+    \chead{数学物理方法课程作业,\ 丁毅}
+    \rhead{dingyi233@mails.ucas.ac.cn}
+    % \thechapter 是本页 chapter 序号
+    % \leftmark 是本页 chapter 标题
+    % \rightmark 是本页 section 标题
+    
+    %\rhead{\small dingyi233@mails.ucas.ac.cn}
+    \usepackage{fontawesome}    % 宏包：更多符号与图标 (用于插入 GitHub 图标等)
+    \lhead{
+    \href{https://github.com/YiDingg/LatexNotes}{\color{black}\faGithub\ https://github.com/YiDingg/LatexNotes}
+    }
     
 %文档信息设置
 \title{数学物理方法课程作业\\ Homework of Mathematical Physics Methods}
@@ -328,8 +338,9 @@
 
 \newpage
 \pagenumbering{arabic} 
+\rhead{\leftmark}
 
-\chapter{2024.8.26 - 2024.9.1}\thispagestyle{fancy}
+\chapter{Homework 1: 2024.8.26 - 2024.9.1}\thispagestyle{fancy}
 
 \section{计算}
 
@@ -489,7 +500,7 @@ f(x,y) = \frac{x^2 - y^2}{ x^2 + y^2 } = \frac{1-k^2}{1+k^2}
 
 
 
-\chapter{2024.9.2 - 2024.9.8}\thispagestyle{fancy}
+\chapter{Homework 2: 2024.9.2 - 2024.9.8}\thispagestyle{fancy}
 
 
 \section{下列函数在何处可导，何处解析}
@@ -750,7 +761,7 @@ g(z) = u_g(x,y) + iv_g(x,y),\quad u_g(x,y) = u(x,-y),\ v_g(x,y) = -v(x,-y)
 \end{enumerate}
 
 
-\chapter{2024.9.9 - 2024.9.15}\thispagestyle{fancy}
+\chapter{Homework 3: 2024.9.9 - 2024.9.15}\thispagestyle{fancy}
 
 \section{若 $f(z)$ 解析，$\arg f(z)$ 是否为调和函数？}
 
@@ -882,7 +893,7 @@ f(x,y) = u + iv = (2\arctan \frac{x}{y} - 2x -y + C) + i(\ln (x^2 + y^2) + x -2y
 
 \item $\Ln(2-3i)$
 
-由 $\Ln z = \ln a + i\Arg z$，可得：
+由 $\Ln z = \ln | z | + i\Arg z$，可得：
 \begin{align*}
 \Ln (2-3i) = \ln | 2-3i | + i\Arg (2-3i)
 = \frac{1}{2}\ln 13 + i\left(\arctan (-\frac{3}{2}) + 2k\pi\right),\quad k \in \mathbb{Z}
@@ -923,7 +934,7 @@ $\arccos z = -i \ln (z + \sqrt{z^2 -1} )$，于是：
 
 \item $\frac{\cos \sqrt{z} }{z }$
 
-单值函数。$\frac{\cos a}{a} =\frac{\cos (-a)}{a}$，故为单值函数。
+单值函数。$\frac{\cos a}{a^2} =\frac{\cos (-a)}{(-a)^2}$，故为单值函数。
 \end{enumerate}
 
 \section{解方程：$2\cosh^2 z - 3\cosh z + 1 = 0$}
@@ -940,9 +951,9 @@ z = i(\pm \frac{\pi}{3} + 2k\pi) \ \text{或}\ i(0 + 2k\pi),\quad  k \in \Z
 
 \section{求下列多值函数的分支点}
 
-\textbf{(1)\ } $\sqrt{1 - z^3}$ 的分支点：$1, -\frac{1}{2} + i\frac{3}{2}, -\frac{1}{2} - i\frac{3}{2}, \infty$
+\textbf{(1)\ } $\sqrt{1 - z^3}$ 的分支点：$1, -\frac{1}{2} + \frac{\sqrt{3}}{2}i, -\frac{1}{2} - \frac{\sqrt{3}}{2}i, \infty$
 
-$1 - z^3 = (1-z)[(-\frac{1}{2} + i\frac{3}{2}) -z][(-\frac{1}{2} - i\frac{3}{2})-z]$，不妨记为 $1 - z^3 = (z_1 - z)(z_2 - z)(z_3 - z)$。支点仅可能在宗量的零点、奇点处出现，下面分别考察 $z_1,z_2,z_3, \infty$ 四点。
+宗量 $1 - z^3$ 不妨记为 $1 - z^3 = (z_1 - z)(z_2 - z)(z_3 - z)$。支点仅可能在宗量的零点、奇点处出现，下面分别考察 $z_1,z_2,z_3, \infty$ 四点。
 
 对 $z_1$，取仅包含点 $z_1$ 的简单闭合曲线，曲线上一点 $z$ 沿逆时针绕一圈回到原处，因子 $(z_1 - z)$ 的幅角增加了 $2\pi$，因子 $(z_2 - z)$ 和 $z_3 - z$ 的幅角增加了 0，因此整个宗量的幅角增加 $2\pi$，开根后，函数值幅角增加 $\pi$，前后不相等。因此点 $z_1$ 是分支点。同理可得 $z_2$ 和 $z_3 $ 是分支点。
 
@@ -965,7 +976,7 @@ z = \frac{\pi}{2} + k\pi, \quad k \in \Z \text{ 或 } z = \infty
 
 与 (2) 同理，考虑宗量 $\frac{(z-a)(z-b)}{(z-c)}$ 的零点和无穷点，得到 $z = a,b,c, \infty$，即为所求分支点。
 
-\chapter{2024.9.16 - 2024.9.22}\thispagestyle{fancy}
+\chapter{Homework 4: 2024.9.16 - 2024.9.22}\thispagestyle{fancy}
 
 \section{计算下列积分}
 
@@ -1069,13 +1080,15 @@ f(a) = \frac{1}{2\pi i} \oint_{\partial G} \frac{f(z)}{z - a}\ \mathrm{d}z
 f(a) 
 = \frac{1}{2\pi i} \oint_{\partial G} \frac{f(z)}{r\cdot e^{i \theta}}\ ire^{i \theta}\ \mathrm{d}\theta 
 = \frac{1}{2 \pi} \oint_{0}^{2\pi}  f(z)\ \mathrm{d}\theta
-= \frac{1}{2 \pi} \oint_{0}^{2\pi}  f(r\cdot e^{i \theta})\ \mathrm{d}\theta \\ 
-\Longrightarrow  
-\oint_{0}^{2\pi} f(r\cdot e^{i \theta})\ \mathrm{d}\theta = 2 \pi f(a),\quad \forall\ r \in (0, R)   \quad\square
+= \frac{1}{2 \pi} \oint_{0}^{2\pi}  f(a + r\cdot e^{i \theta})\ \mathrm{d}\theta \\ 
 \end{gather*}
+上式中令 $a = 0$，即得：
+\begin{equation}
+    I = I(r) = \oint_{0}^{2\pi} f(r\cdot e^{i \theta})\ \mathrm{d}\theta = 2 \pi f(0),\quad \forall\ r \in (0, R)   \quad\square
+\end{equation}
+因此积分的值与 $r$ 无关。
 
-
-\chapter{2024.9.23 - 2024.9.29}\thispagestyle{fancy}
+\chapter{Homework 5: 2024.9.23 - 2024.9.29}\thispagestyle{fancy}
 
 {\color{red}\large ！！！不要忘了 $2 \pi i$ ！！！}
 
@@ -1218,7 +1231,7 @@ $F(z)$ 是单值的，也即积分与路径无关，这等价于被积函数是�
 I =  2 \pi i \left\{ \left[e^z\right]_{z=0} + \frac{a}{2!}\cdot\left[e^z\right]^{(2)}_{z=0} \right\} = 2 \pi i \left( 1 + \frac{a}{2} \right) = 0 \Longrightarrow a = -2
 \end{equation}
 
-\chapter{2024.10.8 - 2024.10.14}\thispagestyle{fancy}
+\chapter{Homework 6: 2024.10.8 - 2024.10.14}\thispagestyle{fancy}
 
 求幂级数的收敛半径有两个常用方法：
 \begin{gather}
@@ -1459,15 +1472,101 @@ S(z)
 \end{align}
 对给定的区域 $G$，前一项是有限和，自然收敛，后一项是收敛级数，因此原级数在 $G$ 上一致收敛。 $\quad\square$
 
+\chapter{Homework 7: 2024.10.15 - 2024.10.16 (略)}\thispagestyle{fancy}
 
 
 
+\chapter{Homework 8: 2024.10.15 - 2024.10.21}\thispagestyle{fancy}
+\vspace*{-6mm}
+\begin{graybox}
+作业题目详见网址 \href{https://www.123865.com/s/0y0pTd-jKKj3}{https://www.123865.com/s/0y0pTd-jKKj3}，后文不再重复叙述题目。
+\end{graybox}
 
+\section{}
+\begin{enumerate}
+\item $\frac{1}{z - z^3}$ : 
+有 $z = 0, 1, -1$ 三个一阶极点
+\item $\cos \frac{1}{\sqrt{z}}$ : 
+由 $\lim_{z\to 0} z\cos \frac{1}{\sqrt{z}} = 0$ 知，有一阶极点 $z=0$
+\item $\frac{\sqrt{z}}{\sin \sqrt{z}}$ : 
+$\lim_{z\to 0} \frac{\sqrt{z}}{\sin \sqrt{z}} = \lim_{z\to 0}\frac{z}{\sin z} = 1$，因此有可去极点 $z = 0$ 
+\item $\frac{1}{(z-1)\ln z}$ : 
+$\lim_{z\to 1} (z-1)^2\cdot \frac{1}{(z-1)\ln z} = 1$，因此有二阶极点 $z=1$
+\item $f(z) = \int_{0}^{z} \frac{\sin \sqrt{\zeta}}{\sqrt{\zeta}} \ \mathrm{d}\zeta$ : 
+作换元 $t = \sqrt{\zeta}$，可得 $f(z) = 1 - \cos t = 1 - \cos \sqrt{z}$，在 $\C$ 上无奇点，在 $\overline{\C}$ 上有本性奇点 $z = \infty$
+\item $\frac{1 - e^z}{2 + e^z}$ : 
+$\lim_{z\to \infty} \frac{1 - e^z}{2 + e^z} = -1$，因此有且仅有可去奇点 $z = \infty$
+\item $\frac{1}{z^3(2 - \cos z)}$ : 有三阶极点 $z = 0$
+\end{enumerate}
 
+\section{}
+\begin{enumerate}
+\item $\lim_{z\to \infty} \frac{\cos z}{z} = 0$，是可去奇点
+\item 做换元 $t =  \frac{1}{z}$，有 $\lim_{t\to 0} t^2\cdot \frac{1}{t\cos \frac{1}{t}} = 0$，因此为二阶极点。
+\item 做换元 $t =  \frac{1}{z}$，有 $\lim_{t \to 0} t \cdot \sqrt{\left(\frac{1}{t} - a\right)\left(\frac{1}{t} - b\right)} = \lim_{t \to 0} \sqrt{(1 - at)(1-bt)} = 1$，因此为一阶极点。
+\end{enumerate}
 
+\section{}
+\begin{enumerate}
+\item $f(z) = \frac{e^{z^2}}{z - 1}$，$z_0 = 1$ :
 
+$z_0 = 1$ 为一阶极点，因此：
+\begin{equation}
+    \res f(1) = \lim_{z \to 1}(z-1)f(z) = e
+\end{equation}
 
+\item $f(z) = \frac{z^2 + z -1}{z^2(z-1)}$ :
 
+$f(z)$ 有二阶极点 $z= 0$ 和一阶极点 $z = 1$，于是：
+\begin{gather}
+\res f(0) = \left[z^2 f(z)\right]^{(1)}_{z = 0} = \left[\frac{2\,z+1}{z-1}-\frac{z^2 +z-1}{{{\left(z-1\right)}}^2 }\right]_{z=0}= \left[-\frac{2\,z-z^2 }{{{\left(z-1\right)}}^2 }\right]_{z=0} = 0\\ 
+\res f(1) = \lim_{z \to 1} (z-1)f(z) = 1
+\end{gather}
+
+\item $f(z) = \frac{e^z}{z^2(z^2 + 9)}$ :
+
+有一阶极点 $z = \pm 3 i$ 和二阶极点 $z= 0$，因此：
+\begin{equation}
+    \res f(3i) = \lim_{z \to 3i} (z-3i)f(z) = -\frac{e^{3i}}{54 i}
+    ,\quad \res f(-3i) = \lim_{z \to 3i} (z-3i)f(z) = \frac{e^{-3i}}{54 i}
+\end{equation}
+\begin{gather}
+    \res f(0) =  \left[z^2 f(z)\right]^{(1)}_{z = 0} =  \left[ \frac{e^z(z^2-2z+9)}{(z^2 + 9)^2} \right]_{z = 0} = \frac{1}{9} 
+\end{gather}
+
+\item $\frac{1}{z^2 \sin z}$，$z_0 = 0$ :
+
+$z_0 = 0$ 为三阶极点，因此：
+\begin{equation}
+\res f(0) =  \frac{1}{2!}\left[z^3 f(z)\right]^{(2)}_{z = 0}
+= \frac{1}{2} \left[\frac{2\,z\,{\cos \left(z\right)}^2 -2\,\cos \left(z\right)\,\sin \left(z\right)+z\,{\sin \left(z\right)}^2 }{{\sin \left(z\right)}^3 }\right]_{z = 0} = \frac{1}{2}\cdot\frac{1}{3} = \frac{1}{6}
+\end{equation}
+
+\item $\frac{1}{\cosh \sqrt{z}}$，$z_0 = -\left(\frac{2n + 1}{2} \pi\right)^2$ :
+
+考虑 $\sqrt{z}$ 满足 $\sqrt{z}\mid_{z = 0} = 0$ 的单值分支，我们有$\sqrt{-\left(\frac{2n + 1}{2} \pi\right)^2} = i\cdot \left(\frac{\pi}{2} + n\pi\right)$，因此本题相当于求 $f(z) = \frac{1}{\cosh z}$，$z_0 =i \cdot \left(\frac{\pi}{2} + n\pi\right)$ 处的留数，由于 
+\begin{equation}
+    \cosh z = \frac{e^z + e^{-z}}{2} = \frac{1}{2}\left[\left(e^x + \frac{1}{e^x}\right)\cos y + i\cdot\left(e^x - \frac{1}{e^x}\right)\sin y\right]
+\end{equation}
+我们有：
+\begin{gather}
+    z = z_0 \Longleftrightarrow 
+    \begin{cases}
+    x = 0 \\ 
+    y = \pm \frac{\pi}{2} + n\pi
+    \end{cases} \Longrightarrow \frac{1}{\cosh \sqrt{z_0}} = \frac{1}{\cos y} = \infty \\ 
+    \lim_{z \to z_0} (z - z_o)f(z) = \lim_{z \to z_0} \frac{2(z - z_0)}{e^z - e^{-z}} \overset{\text{L'H}}{=} \lim_{z \to z_0} \frac{2}{e^z - e^{-z}} = \pm 1
+\end{gather}
+因此都是一阶极点，有：
+\begin{equation}
+\res f(z_0) = \lim_{z\to z_0}(z - z_0)f(z) = 
+\begin{cases}
+    -i &, n = 0, 2, 4, \dots \\
+    i &, n = 1, 3, 5, \dots
+\end{cases}
+\end{equation}
+
+\end{enumerate}
 
 
 

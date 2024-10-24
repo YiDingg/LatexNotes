@@ -9,13 +9,15 @@
 
 % 本 .tex 专属的宏定义
     \def\V{\ \mathrm{V}}
-    \def\K{\ \mathrm{K}}
+    \def\uV{\ \mu\mathrm{V}}
     \def\mV{\ \mathrm{mV}}
+    \def\K{\ \mathrm{K}}
     \def\kV{\ \mathrm{KV}}
     \def\KV{\ \mathrm{KV}}
     \def\MV{\ \mathrm{MV}}
-    \def\A{\ \mathrm{A}}
+    \def\uA{\ \mu\mathrm{A}}
     \def\mA{\ \mathrm{mA}}
+    \def\A{\ \mathrm{A}}
     \def\kA{\ \mathrm{KA}}
     \def\KA{\ \mathrm{KA}}
     \def\MA{\ \mathrm{MA}}
@@ -25,10 +27,13 @@
     \def\KO{\ \mathrm{K}\Omega}
     \def\MO{\ \mathrm{M}\Omega}
     \def\Hz{\ \mathrm{Hz}}
+    \def\uF{\ \mu\mathrm{F}}
+    \def\mF{\ \mathrm{mF}}
+    \def\F{\ \mathrm{F}}
 
 % 自定义宏定义
     \def\N{\mathbb{N}}
-    \def\F{\mathbb{F}}
+    %\def\F{\mathbb{F}}
     \def\Z{\mathbb{Z}}
     \def\Q{\mathbb{Q}}
     \def\R{\mathbb{R}}
@@ -304,12 +309,12 @@
     \cfoot{\thepage}
     \renewcommand\headrulewidth{1pt}
     \renewcommand\footrulewidth{0pt}
-    \chead{电路原理课程作业,\ 丁毅,\ 2023K8009908031}
+    \chead{电路原理课程作业,\ 丁毅}
     \usepackage{fontawesome}    % 宏包：更多符号与图标 (用于插入 GitHub 图标等)
-    \lhead{\small
+    \lhead{
     \href{https://github.com/YiDingg/LatexNotes}{\color{black}\faGithub\ https://github.com/YiDingg/LatexNotes}
     }
-    \rhead{\small dingyi233@mails.ucas.ac.cn}
+    \rhead{dingyi233@mails.ucas.ac.cn}
 
 %文档信息设置
 \title{电路原理课程作业\\ Homework of Principles of Electric Circuits }
@@ -349,7 +354,7 @@
 
 % 收尾工作
     \newpage    
-    \lhead{Homework \thechapter}
+    \rhead{Homework \thechapter}
     \pagenumbering{arabic} 
 
 % >> --------------------- 封面序言与目录 --------------------- << %
@@ -1417,10 +1422,11 @@ R_0 = R \parallel 10 \ \Omega \parallel 8 \ \Omega = \frac{8}{3} \ \Omega,\quad 
 
 \section{（选做）讲义题 3-18: 题图电路中 OPA 理想，求 ab 端口的诺顿等效电路，以及电流之比 $\frac{i_1}{i_4}$（设ab端开路）。}
 
-由虚短和虚断，$i_4 = - \frac{u_s}{R_2} \Longrightarrow U_{ab} = -\frac{R_4}{R_2}u_s$，将电压源置零，可得戴维南等效电阻为 $R = R_4$，于是诺顿等效电流为 $i = \frac{U}{R} = - \frac{u_s}{R_2}$，也即大小 $\frac{u_s}{R_2}$，由 $a$ 指向 $b$，如图 \ref{6.6 等效电路、6.7 题图} (a) 所示。并且电流之比：
+由虚短和虚断，$i_4 = \frac{u_s}{R_2} \Longrightarrow U_{ab} = \frac{R_4}{R_2}u_s$，将电压源置零，可得戴维南等效电阻为 $R = R_4$，于是诺顿等效电流为 $i = \frac{U}{R} = \frac{u_s}{R_2}$，如图 \ref{6.6 等效电路、6.7 题图} (a) 所示。并且电流之比：
 \begin{equation}
-u_s - i_1R_1 = \left(1 - \frac{R_3 + R_4}{R_2}u_s\right) \Longrightarrow  \boxed{
-    \frac{i_1}{i_4} = - \frac{R_3 + R_4}{R_2}
+u_s - i_1R_1 = u_s\left(1 + \frac{R_3 + R_4}{R_2}\right) \Longrightarrow  i_1 = - \frac{R_3 + R_4}{R_1R_2}\cdot u_s,\quad 
+\boxed{
+    \frac{i_1}{i_4} = - \frac{R_3 + R_4}{R_1}
 }
 \end{equation}
 
@@ -1459,14 +1465,14 @@ U_S I_1' + 0 = U_SI_1 + U_o \frac{U_o}{R_L + R}
 
 \section{（选做）讲义题 3-20: 题图电路中，$N_R$ 为只含线性电阻的网络，试求解电压 $U_R$。}
 
-$N_R$ 为线性电阻网络，由互易定理：
+$N_R$ 为线性电阻网络，由特勒根定理：
 \begin{equation}
     u_1\hat{i}_1 + u_2 \hat{i}_2 = \hat{u}_1i_1 + \hat{u}_2 i_2 \Longrightarrow 
-    10\cdot \left(- \frac{U_R}{2}\right) + 0 = U_R\cdot 5 + 10 \cdot 1 \Longrightarrow \boxed{
-        U_R = -1 \ \mathrm{V}
+    (-5)\cdot U_R + 1\cdot 10 = 10\cdot \frac{U_R}{2} + 0\Longrightarrow \boxed{
+        U_R = 1 \ \mathrm{V}
     }
 \end{equation}
-
+无论有没有电源，特勒根定理中对应支路的参考方向相同，且都为关联参考方向。比如说，无论有没有电源，我们都令电压上正下负，电流向下为正。
 
 \begin{figure}[H]\centering
 \begin{subfigure}[t]{0.5\columnwidth}\centering
@@ -1608,15 +1614,16 @@ $u_o = 1.5583 \ \mathrm{V}$ 时 $u_{GS} = 0.4417\ \mathrm{V} < U_T = 1 \ \mathrm
 在 $\max | \Delta u_{GS} | = 2 \mV$ 的条件下，容易验证二极管仍工作于恒流区。由 \ref{讲义题 4-6} 讲义题 4-6 可知二极管的工作点为 $u_{GS} = 1.3583 \ \mathrm{V}$，则有：
 \begin{gather}
 i = \frac{K}{2}\left(u_{GS} - U_T\right)^2,\quad 
+g_m = 
 \left.\begin{matrix}
     \frac{\mathrm{d} i }{\mathrm{d} u_{GS} } 
-\end{matrix}\right|_{u_{GS} = 1.3583 \ \mathrm{V}} = K\cdot(u_{GS} - U_T) = 3.583 \ \mathrm{mA\cdot V^{-1}} \\ 
+\end{matrix}\right|_{u_{GS} = 1.3583 \ \mathrm{V}} = K\cdot(u_{GS} - U_T) = 3.583 \ \times 10^{-3} \mathrm{A\cdot V^{-1}} \\ 
 \Longrightarrow 
-\Delta u_o = R_L \Delta i = 3.583 \Delta u_{GS}
+\Delta u_o = R_L \Delta i = R_L g_m\Delta u_{GS}
 \end{gather}
 又 $\Delta u_{GS} = \Delta u_{in} - \Delta u_{out}$，代入消去 $\Delta u_{GS}$，得到：
 \begin{equation}
-\Delta u_{out} = 3.583\left(\Delta u_{in} - \Delta u_{out}\right) \Longrightarrow \frac{\Delta u_{out}}{\Delta u_{in}} = \frac{3.583}{4.583} = 0.7818
+\Delta u_{out} = R_L g_m\left(\Delta u_{in} - \Delta u_{out}\right) \Longrightarrow \frac{\Delta u_{out}}{\Delta u_{in}} = \frac{R_L g_m}{1 + R_L g_m} = \frac{3.583}{4.583} = 0.7818
 \end{equation}
 
 \begin{figure}[H]\centering
@@ -1626,20 +1633,72 @@ i = \frac{K}{2}\left(u_{GS} - U_T\right)^2,\quad
 
 
 
-\subsection{此时 MOSFET 的作用是什么？求小信号电路的输入电阻和输出电阻。}
-由 $\frac{\Delta u_{out}}{\Delta u_{in}} = 0.7818$ 可以看出，MOSFET 降低了激励的微小变化（例如噪声）对响应信号的影响，使得电路更加稳定。
+\subsection{求小信号电路的输入电阻和输出电阻,此 MOSFET 的作用是什么？}
+在小信号电路中，求输入电阻时无需对输出端口作处理（即保持开路），由于 MOS 管 G 端流入的电流近似为 0，而输入电压 $\Delta u_{in}$ 非零，因此输入电阻为 $R_i = \infty$ 无穷大。
 
-在小信号电路中，求输入电阻时无需对输出端口作处理（即保持开路），由于 MOS 管 G 端流入的电流近似为 0，而输入电压 $\Delta u_{in}$ 非零，因此输入电阻为 $\infty$ 无穷大。求输出电阻时，将 $\Delta u_{in}$ 短路，相当于原激励电压不变，自然有 $\Delta i = 0$。此时，在输出端口加电流 $I$ 求电压 $U$:
+求输出电阻时，将 $\Delta u_{in}$ 短路，并在输出端口加极小的电压 $u$（以保证 MOSFET 仍在工作点附近），于是\ {\color{red} $\Delta u_{GS} = -u$}，有：
 \begin{equation}
-U = \left(I + \Delta i\right)R_L = IR_L \Longrightarrow R_o = R_L = 1 \kO
+\begin{cases}
+    \Delta u_{GS} = -u \\
+    i = \frac{u}{R_L} - \Delta i_{DS} = \frac{u}{R_L} - g_m\Delta u_{GS}
+\end{cases}
+\Longrightarrow 
+R_o = \frac{u}{i} = \frac{1}{\frac{1}{R_L} + g_m} = 218.1977 \ \Omega
+\end{equation}
+综上有：
+\begin{equation}
+R_i = \infty,\quad 
+R_o = \frac{1}{\frac{1}{R_L} + g_m} =  218.1977 \ \Omega
 \end{equation}
 
+由 $\frac{\Delta u_{out}}{\Delta u_{in}} = 0.7818$ 可以看出，MOSFET 降低了激励的微小变化（例如噪声）对响应信号的影响，使得电路更加稳定，可用于构建差分放大器。
+
+查阅资料知道，这是一个共漏放大器，其输出电阻比共源放大器的输出电阻要小。这样的一个放大倍数小于 1，但输出电阻比较小的信号处理单元适合放在整个信号处理电路的最后一级，以增强整个电路的带载能力。此外，由于共漏放大器的输出在 MOSFET 的 S 极，且在 $g_m$ 较大的情况下输入和输出基本相同（输出能够跟随输入），因此该电路也称为源级跟随器。
 
 
+\chapter{Homework 8: 2024.10.23 - 2024.10.29}\thispagestyle{fancy}
+
+\section{习题集 1-3}
+
+电容有 $q = Cu \Longrightarrow i = C \frac{\mathrm{d} u }{\mathrm{d} t }$，于是：
+\begin{center}\noindent\begin{minipage}{0.65\columnwidth}
+    \begin{equation}
+        i = i(t) = C \frac{\mathrm{d} u }{\mathrm{d} t } = 
+        \begin{cases}
+            50 \uA  &, t \in [0, 1 \ \mathrm{s}) \\ 
+            -250 \uA       &, t \in [1 \ \mathrm{s}, 1.2 \ \mathrm{s}) \\ 
+            0 &, t \in [1.2 \ \mathrm{s}, 2 \ \mathrm{s}) \\
+            50   \uA    &, t \in [2 \ \mathrm{s}, 3 \ \mathrm{s}) \\
+            -250 \uA  &, t \in [3 \ \mathrm{s}, 3.2 \ \mathrm{s}) \\
+            0       &, t \in [3.2 \ \mathrm{s}, + \infty) \\
+        \end{cases}
+        \end{equation}
+\end{minipage}\hfill\begin{minipage}{0.35\columnwidth}
+\begin{figure}[H]\centering
+\includegraphics[width=0.8\columnwidth]{assets/8/0f44a1b99db735634530b6af773398d5_720.jpg}
+\caption{$i = i(t)$ 的图像}
+\end{figure}
+\end{minipage}\end{center}
 
 
+\section{习题集 1-4}
 
-
+电感有 $\Psi = Li \Longrightarrow u = L \frac{\mathrm{d} i }{\mathrm{d} t } \Longrightarrow i = i_0 \frac{1}{L} \int_{0}^{t} u \ \mathrm{d}t$。又初始磁能为零，即 $i_0 = 0$，于是有：
+\begin{center}\noindent\begin{minipage}{0.65\columnwidth}
+\begin{equation}
+i = i(t) = 
+\begin{cases}
+    5 t^2 \ \mathrm{A} &, t \in [0, 1 \ \mathrm{s}) \\
+    (-5t^2 + 20 t -10) \ \mathrm{A} &, t \in [1 \ \mathrm{s}, 2 \ \mathrm{s}) \\
+    10 \ \mathrm{A} &, t \in [2 \ \mathrm{s}, +\infty) 
+\end{cases}
+\end{equation}
+\end{minipage}\hfill\begin{minipage}{0.35\columnwidth}
+\begin{figure}[H]\centering
+\includegraphics[width=0.8\columnwidth]{assets/8/8a9f16fc9f5993d3dabf5501a18fec1e_720.jpg}
+\caption{$i = i(t)$ 的图像}
+\end{figure}
+\end{minipage}\end{center}
 
 
 
@@ -1860,7 +1919,11 @@ R_{\text{sat}} = R_1 = 10 \KO
 
 
 
+\chapter{Simulation 2: 2024.10.22 - 2024.11.7}
+\lhead{Sim 2: 2024.10.11 - 2024.10.31}
+\thispagestyle{fancy}
 
+设计小信号放大电路，\href{https://zhuanlan.zhihu.com/p/600053414}{https://zhuanlan.zhihu.com/p/600053414} 和 \href{https://zhuanlan.zhihu.com/p/674897442}{https://zhuanlan.zhihu.com/p/674897442}
 
 
 
@@ -1871,9 +1934,9 @@ R_{\text{sat}} = R_1 = 10 \KO
 \captionsetup[table]{name=Table}
 
 
-\chapter{Simulation 2: 2024.10.11 - 2024.10.31}
-\lhead{Sim 2: 2024.10.11 - 2024.10.31}
-\thispagestyle{fancy}
+
+
+
 
 
 \chapter{Laboratory 1: 2024.10.11 - 2024.10.31}

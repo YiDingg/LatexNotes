@@ -348,7 +348,7 @@
 % >> --------------------- 封面序言与目录 --------------------- << %
 % ------------------------ 封面序言与目录 ------------------------ %
 
-\chapter{光学导言}\thispagestyle{fancy}
+\chapter{光的基本原理}\thispagestyle{fancy}
 
 \section{光学发展简史（略）}
 
@@ -371,7 +371,7 @@
     \item 全反射：光线从光密介质入射到光疏介质\footnote{折射率较大的一侧称为光密介质；较小的一侧称为光疏介质}，当入射角大于某临界值时，折射光完
     全消失，只剩下反射光。该临界角度称为全反射临界角。
     \begin{equation}
-    i_C = \arcsin (\frac{n_1}{n_2}),\quad n_1<n_2
+    i_C = \arcsin \left(\frac{n_1}{n_2}\right),\quad n_1<n_2
     \end{equation}
 \end{enumerate}
 
@@ -423,9 +423,9 @@
 \end{figure}
 
 \begin{BlockTheorem}[费马原理]\label{费马原理}
-光从空间中一点传播到另一点时，总是沿光程（optical length, OPL）取极值的路径传播\footnote{这里的“极值”可以是极小值、极大值或常数，一般情况下，实际光程大多取极小值。极大值（如凹面镜成像）、拐点（如椭球面镜、凸透镜）的例子，可以参考 \href{https://zhuanlan.zhihu.com/p/107739173}{知乎：浅谈几何光学(1)——费马原理}}，公式：
+光从空间中一点传播到另一点时，总是沿光程（Optical Length, OPL）平稳的路径传播\footnote{这里的平稳相当于“极值”，可以是极小值、极大值或常数，一般情况下，实际光程大多取极小值。极大值（如凹面镜成像）、拐点（如椭球面镜、凸透镜）的例子，可以参考 \href{https://zhuanlan.zhihu.com/p/107739173}{知乎：浅谈几何光学(1)——费马原理}}。写成公式即为：
 \begin{equation}
-    \mathrm{d}\ \mathrm{OPL} =  \mathrm{d}\left(\int\limits_{Q}^{P}ndl\right)=0 \Longrightarrow \frac{\mathrm{d}\  \mathrm{OPL} }{\mathrm{d} \varphi } = \frac{\mathrm{d} OPL }{\mathrm{d} s } = 0 
+    \mathrm{d}\ \mathrm{OPL} =  \mathrm{d}\left(\int_{Q}^{P} n \ \mathrm{d} l\right)=0 \Longrightarrow \frac{\mathrm{d}\  \mathrm{OPL} }{\mathrm{d} \varphi } = \frac{\mathrm{d} OPL }{\mathrm{d} s } = 0 
 \end{equation}
 \end{BlockTheorem}
 由费马原理可以导出诸多推论，包括我们熟知的几条基本原理，还有物像之间的等光程性（例如凸透镜）：
@@ -468,7 +468,7 @@
 \begin{matrix}
     \text{折射球面公式：}& \displaystyle \frac{n_1}{l_1} + \frac{n_2}{l_2} = \frac{1}{R\,}\left( \frac{n_{{\color{red} 2}}s_{{\color{red} 2}}}{l_{{\color{red} 2}}} - \frac{n_1s_1}{l_1} \right) & \displaystyle {\color{gray} \Longrightarrow     \frac{n'}{s'}  +  \frac{n}{s} = \frac{n'-n}{r}\quad  \text{(傍轴)}} 
     \vspace*{3pt}\\ 
-    \text{反射球面公式：}& \displaystyle  \frac{1}{l_1} + \frac{1}{l_2} = {\color{red} -}\frac{2}{R\,}\left(\frac{s_1}{l_1} + \frac{s_2}{l_2}  \right) & \displaystyle {\color{gray} \Longrightarrow   \frac{1}{s_1} + \frac{1}{s_2} = -\frac{2}{R\,} \quad  \text{(傍轴)}}
+    \text{反射球面公式：}& \displaystyle  \frac{1}{l_1} + \frac{1}{l_2} = {\color{red} -}\frac{2}{R\,}\left(\frac{s_1}{l_1} + \frac{s_2}{l_2}  \right) & \displaystyle {\color{gray} \Longrightarrow   \frac{1}{s} + \frac{1}{s'} = -\frac{2}{\,r\,} \quad  \text{(傍轴)}}
 \end{matrix}
 \end{align}
 
@@ -935,7 +935,7 @@ n_i \cos \theta_i E_{i,p}^2 - n_i \cos \theta_i r_{i,p}^2E_{i,p}^2 -   n_t \cos 
 入射光不发生全反射时，由菲涅尔定律，$t_s, t_p \in (0, \frac{2n_i}{n_i + n_t}) \subset \R$，恒为正实数，因此相位不发生任何变化。当入射光发生全反射时，折射光（透射光）以隐失波的形式存在，我们前面已经提过，隐失波同时含有横波纵波成分，它与入射光不再是同一种波，此时谈论相位变化自然没有意义。
 
 
-\section{反射折射总结}
+\section{章末总结}
 
 到此，我们已经讨论了目前可能接触到的所有情况，包括光疏射向光密、光密射向光疏、小于或大于临界角时的折射反射振幅、相位以及能量关系等，终于可以给出反射折射的总结。
 
@@ -1417,7 +1417,7 @@ d = 100 \ \mathrm{\mu m},\  R = 5\ \mathrm{cm},\ D = 1\ \mathrm{m},\ L = 4 \ \ma
 \end{equation}
 取 $\lambda = 700.0\ \mathrm{nm}$ 的红光，$\Delta x = 7 \ \mathrm{mm}$，可被人眼分辨。称 $\frac{\Delta x}{2}$ 为条纹宽度，此时条纹宽度为 $3.5\ \mathrm{mm}$。
 
-下面依次讨论光源位置、光源宽度对干涉条纹的影响。先考虑理想点光源的微小移动引起的干涉条纹移动。当点光源位于中轴线上时，0 级明纹也在轴上，假设光源 S 向下移动距离 $| \delta_s |$，也即向上移动 $(-\delta_s)$，在近似条件 \ref{杨氏双缝干涉近似} 下，以及 $R \gg d$ 时近似有 $R_1 - R_2 = \frac{d(-\delta_s)}{R}$，得到 0 级明纹向上移动的距离 $\delta_x$ 如下，其中负号表示两者移动方向相反。
+下面依次讨论光源位置、光源宽度对干涉条纹的影响。先考虑理想点光源的微小移动引起的干涉条纹移动。当点光源位于中轴线上时，0 级明纹也在轴上，假设光源 S 向下移动距离 $ \delta_s > 0$，也即向上移动 $(-\delta_s)$，在近似条件 \ref{杨氏双缝干涉近似} 下，以及 $R \gg d$ 时近似有 $R_1 - R_2 = \frac{d(-\delta_s)}{R}$，得到 0 级明纹向上移动的距离 $\delta_x$ 如下，其中负号表示两者移动方向相反。
 \begin{equation}
 \delta_x = - \frac{D}{R}\delta_s
 \end{equation}
@@ -1500,7 +1500,7 @@ I(x, b) = \frac{I_{\text{max}}}{2b} \int_{-\frac{b}{2}}^{\frac{b}{2}} \left[ 1 +
 
 记相邻两束反射（透射）光的光程差为 $\Delta l$，光程差带来的相位差为 $\delta$（{\color{red} 无需考虑反射相位突变，因为它涵盖在了振幅的正负中}），由图 \ref{薄膜干涉} (b) 所示，可求得：
 \begin{gather}
-    \Delta l = l_2 - l_1 = 2 n_f\cdot  \overline{O_1B_1} - n_i\cdot  \overline{O_1 C} = \frac{2 n_f d}{\cos \theta_t} - 2 n_i \sin \theta_i \tan \theta_t d = 2 n_f d \cos \theta_f \\ 
+    \Delta l = l_2 - l_1 = 2 n_f\cdot  \overline{O_1B_1} - n_i\cdot  \overline{O_1 C} = \frac{2 n_f d}{\cos \theta_f} - 2 n_i \sin \theta_i \tan \theta_f d = 2 n_f d \cos \theta_f \\ 
     \delta = \frac{2 \pi}{\lambda_i} \Delta l = \frac{4 \pi n_f d \cos \theta_f}{\lambda_i}
 \end{gather}
 由公式 \ref{斯托克斯倒逆关系}（斯托克斯倒逆关系），$r + r' = 1,\ tt' + rr' =1$，结合等比数列极限（$n \to \infty$），可得反射波的总振幅系数 $r_A$、透射波的总振幅系数 $t_B$:
@@ -1664,7 +1664,7 @@ $T_{F-P} = T_{F-P}(F, \delta)$ 的图像如下所示\footnote{源码见附录 \r
 
 我们需要认识到，绝大多数的干涉现象，本质都是空间上两个（甚至多个）不同位置的球面波源（或其他类型的波）在某点的叠加。随着目标位置点 $P$ 的移动，发生叠加的两波（两束光）的 OPD（即 $\Delta L$）不断改变，得到不同的振幅大小，从而产生干涉图样。本节所介绍的几种干涉，其本质也是如此，只是具体实现方式不同。
 
-\subsection{单色光源迈克尔逊干涉}
+\subsection{理想单色迈克尔逊干涉}
 
 迈克尔逊干涉仪如图 \ref{迈克尔逊干涉仪} 所示，图中反射镜 $M_1$ 与 $M_2'$（虚镜）水平（此时的干涉现象类似等倾干涉），下方是接收屏或接受仪，图中的虚线光路表示出射向无穷远处（不被观察屏接收），或振幅较小而可以忽略的光线。
 
@@ -1699,21 +1699,33 @@ $T_{F-P} = T_{F-P}(F, \delta)$ 的图像如下所示\footnote{源码见附录 \r
 \end{equation}
 其中 $n$ 是插入介质的折射率（移动镜面时相当于 $n=1$），$\lambda_0$ 是光源发出的光在空气中的波长，$N$ 是移动的条纹数。
 
-\subsection{多色光源迈克尔逊干涉}\label{多色光源迈克尔逊干涉}
+\subsection{双色分立谱迈克尔逊干涉}\label{双色谱迈克尔逊干涉}
 
 假设光源是双色光源，且两色的强度相同，对任意给定的 $\Delta L$（相当于给定位置 $P$），我们有：
 \begin{gather}
 I_1(\Delta L) = 2I_0 \left[1 + \cos \left(k_1 \Delta L\right)\right],\quad I_2(\Delta L) = 2I_0 \left[1 + \cos \left(k_2 \Delta L\right)\right] \\ 
-\Longrightarrow I(\Delta L) = 4 I_0 \left[ 1 + \cos \left(\frac{\Delta k}{2}\Delta L\right)\cos(\overline{k} \Delta L) \right],\quad \Delta k = k_1 - k_2,\ \overline{k} = \frac{k_1 + k_2}{2}
+\Longrightarrow I(\Delta L) = 4 I_0 \left[ 1 + \cos \left(\frac{\Delta k}{2}\Delta L\right)\cos(\overline{k} \Delta L) \right],\quad \Delta k = k_1 - k_2,\ \overline{k} = \frac{k_1 + k_2}{2} \\ 
+\gamma = \gamma (\Delta L) = \left|\cos \left(\frac{1}{2}\Delta k \Delta L\right) \right|
 \end{gather}
-其中 $\Delta k$ 称为调制（空间角）频率，$\overline{k}$ 为平均（空间角）频率，$\Delta k \ll \overline{k}$ 时，可以观察到条纹对比度 $\gamma$ 随 $\Delta L$ 周期性变化。例如，$\lambda_1 = 550.0\ \mathrm{nm}$，$\lambda_2 = 555.0\ \mathrm{nm}$ 时的情况如图 \ref{双色光源的对比度分布情况} 所示。
+其中 $\Delta k$ 称为调制（空间角）频率，$\overline{k}$ 为平均（空间角）频率，$\Delta k \ll \overline{k}$ 时，可以观察到条纹对比度 $\gamma$ 随 $\Delta L$ 周期性变化，在 $\Delta L = \frac{1}{2} \frac{\lambda_0^2}{\Delta \lambda}$ 第一次下降到 0。
+
+例如，$\lambda_1 = 550.0\ \mathrm{nm}$，$\lambda_2 = 600.0\ \mathrm{nm}$ 时的情况如图 \ref{双色光源的对比度分布情况} 所示。
 
 \begin{figure}[H]\centering
 \includegraphics[width=0.85\columnwidth]{assets/3/迈克尔逊干涉_双色光源.pdf}
 \caption{ 双色光源的对比度分布情况}\label{双色光源的对比度分布情况}
 \end{figure}
 
-上面考虑的是线光谱，对于连续光谱，有光谱密度 $i = i(\lambda)$，总光强 $I = \int i(\lambda)\ \mathrm{d}\lambda$。当然，也可以用空间角频率 $k$ 作变量。考虑以 $k_0$ 为中心，宽为 $\Delta k$ 的均匀光谱 $i(k)$，我们有：
+
+设一个周期的条纹数为 $N$（$\gamma$ 从 1 到 0 再回到 1），则：
+\begin{equation}
+N \cdot \lambda = \frac{2 \pi}{\frac{1}{2}\Delta k} = 2 \cdot \left(\frac{1}{2} \frac{\lambda_0^2}{\Delta \lambda}\right) \Longrightarrow N = \frac{\lambda_0}{\Delta \lambda}
+\end{equation}
+
+
+\subsection{(均匀) 连续谱迈克逊干涉}
+
+上面考虑的是线光谱，对于连续光谱，有光谱密度 $i = i(\lambda)$，总光强 $I = \int i(\lambda)\ \mathrm{d}\lambda$。当然，也可以用空间角频率 $k$ 作变量。考虑以 $k_0$ 为中心，宽为 $\Delta k$ 的均匀连续光谱 $i(k)$，我们有：
 \begin{gather}\label{光谱宽度对对比度的影响}
 i (k) = 
 \begin{cases}
@@ -1787,37 +1799,37 @@ A_c = \frac{\lambda^2}{A_s} R^2
 在本节后文，我们简记 $\lambda = \lambda_i$ 为光波在空气中的波长，$n_f$ 为玻璃板之间薄膜的折射率，$\theta = \theta_k$ 为薄膜中的折射角（即内角），并称入射角 $\theta_i$ 为外角。则 $\delta$ 可写为 $\delta = \frac{4 \pi n d \cos \theta}{\lambda}$。
 \vspace*{-5mm}
 \begin{center}\noindent\begin{minipage}{0.48\columnwidth}
-    \hspace*{2em} 透射峰的性质可由半峰宽 $\varepsilon$、内角宽度 $\Delta \theta_f$和外角宽度 $\Delta \theta_i$ 来描述。其中，半峰宽指给定 $R$ 时，FP 透射率 $T_{F-P} = T(\delta)$ 图像中 $T_{F-P} = 0.5$ 对应的峰宽，如图 \ref{半峰宽} 所示。而内角宽度是图像 $T_{F-P} = T(\theta_f)$ 的半峰宽、外角宽度是 $T_{F-P} = T(\theta_i)$ 的半峰宽。内角宽度也常称作角宽度，记为 $\Delta \theta$。
+    \hspace*{2em} 透射峰的性质可由半峰宽 $\varepsilon$、半峰内角宽度 $\Delta \theta_f$和半峰外角宽度 $\Delta \theta_i$ 来描述。其中，半峰宽指给定 $R$ 时，FP 透射率 $T_{F-P} = T(\delta)$ 图像中 $T_{F-P} = 0.5$ 对应的峰宽，如图 \ref{半峰宽} 所示。而内角宽度是图像 $T_{F-P} = T(\theta_f)$ 的半峰宽、外角宽度是 $T_{F-P} = T(\theta_i)$ 的半峰宽。半峰内角宽度也常简称为角宽度，记为 $\varepsilon_{\theta_f}$\footnote{有的教材中也记作 $\Delta \theta_f$。}。
 \begin{gather}
     \varepsilon_{\delta} = 4 \arcsin \left(\frac{1}{\sqrt{F} }\right) 
     \\
-    \Delta \theta_f = \frac{\lambda}{\pi n d \sin \theta_f\sqrt{F}}
+    \varepsilon_{\theta_f} = \frac{\lambda}{\pi n d \sin \theta_f\sqrt{F}}
     \\
-    \Delta \theta_i = \frac{n \lambda}{\pi d\sin \theta_i \sqrt{F}} 
+    \varepsilon_{\theta_i} = \frac{n \lambda}{\pi d\sin \theta_i \sqrt{F}} 
 \end{gather}
 \end{minipage}\hfill\begin{minipage}{0.48\columnwidth}
     \begin{figure}[H]\centering
         \includegraphics[width=\columnwidth]{assets/3/半峰宽.pdf}
-        \caption{\bfseries 半峰宽 $\varepsilon$}\label{半峰宽}
+        \caption{\bfseries 半峰宽 $\varepsilon_{\delta}$}\label{半峰宽}
         \end{figure}
 \end{minipage}\end{center}
 
-通常情况下，镀膜后的 $R$ 在 $ [0.895, 0.94]$ 内，在此区间内 $F \in [324.7166, 1044.4444]$ 相当大，此时可近似 $\varepsilon \approx\frac{4}{\sqrt{F}}$，所得半峰宽 $\varepsilon$ 的误差不超过 $ 1.1409\times 10^{-4} $。常见的法布里-珀罗干涉仪在可见光波段的锐度 $\mathscr{F}$ 约为 30（对应 $R = 0.9006$），也有特殊的能做到 1000。
+通常情况下，镀膜后的 $R$ 在 $ [0.895, 0.94]$ 内，在此区间内 $F \in [324.7166, 1044.4444]$ 相当大，此时可近似 $\varepsilon_{\delta} \approx\frac{4}{\sqrt{F}}$，所得半峰宽 $\varepsilon_{\delta}$ 的误差不超过 $ 1.1409\times 10^{-4} $。常见的法布里-珀罗干涉仪在可见光波段的锐度 $\mathscr{F}$ 约为 30（对应 $R = 0.9006$），也有特殊的能做到 1000。
 
 
 所得干涉条纹的明显程度可由透射光对比度 $\gamma_{T_{F-P}}$（简记为 $\gamma$）和锐度 $\mathscr{F}$ 来描述。
 \begin{gather}
 \gamma = \frac{2R}{1 + R^2}
 ,\quad 
-\mathscr{F} = \frac{2\pi}{\varepsilon} = \frac{\pi}{2 \arcsin \left(\frac{1}{\sqrt{F}}\right)}
+\mathscr{F} = \frac{2\pi}{\varepsilon_{\delta}} = \frac{\pi}{2 \arcsin \left(\frac{1}{\sqrt{F}}\right)}
 \end{gather}
 
-图 \ref{法布里-珀罗干涉仪各参数变化} (a) 展示了对比度 $\gamma$、半峰宽 $\varepsilon$ 和锐度 $\mathscr{F}$ 随反射率 $R$ 的变化情况；图 \ref{法布里-珀罗干涉仪各参数变化} (b)\footnote{图 \ref{法布里-珀罗干涉仪各参数变化} 源码见附录 \ref{法布里-珀罗干涉仪各参数变化 源码}} 展示了透射率 $T = T(\delta, R)$ 的变化情况。
+图 \ref{法布里-珀罗干涉仪各参数变化} (a) 展示了对比度 $\gamma$、半峰宽 $\varepsilon_{\delta}$ 和锐度 $\mathscr{F}$ 随反射率 $R$ 的变化情况；图 \ref{法布里-珀罗干涉仪各参数变化} (b)\footnote{图 \ref{法布里-珀罗干涉仪各参数变化} 源码见附录 \ref{法布里-珀罗干涉仪各参数变化 源码}} 展示了透射率 $T = T(\delta, R)$ 的变化情况。
 
 \begin{figure}[H]\centering
 \begin{subfigure}[t]{0.49\columnwidth}\centering
     \includegraphics[height=190pt]{assets/3/对比度、半峰宽和锐度随反射率 R 的变化情况.pdf}
-    \caption{\bfseries 对比度 $\gamma$、半峰宽 $\varepsilon$ 和锐度 $\mathscr{F}$ 随反射率 $R$ 的变化情况 }
+    \caption{\bfseries 对比度 $\gamma$、半峰宽 $\varepsilon_{\delta}$ 和锐度 $\mathscr{F}$ 随反射率 $R$ 的变化情况 }
 \end{subfigure}\hfill
 \begin{subfigure}[t]{0.49\columnwidth}\centering
     \includegraphics[height=190pt]{assets/3/透射率 T 随 R 和 delta 的变化.pdf}
@@ -1852,21 +1864,22 @@ m_{\max} =  \left \lfloor \frac{\delta}{2\pi} \right \rfloor_{\theta_f = 0} = \l
 
 依泰勒判据，当所有条纹都可分辨时（$\forall\ m \geqslant 1$），得到 $\Delta \lambda \geqslant \frac{2\lambda_0}{1\cdot \pi \sqrt{F}}$，将后者称为可分辨的最小波长差；存在可分辨条纹时（$\exists\ m \geqslant 1$），得到 $\Delta \lambda \geqslant \frac{2\lambda_0}{m_{\max}\cdot \pi \sqrt{F}}$，将后者称为极限波长差。
 \begin{equation}
-    (\Delta \lambda)_{\min} = \frac{2\lambda_0}{\pi \sqrt{F}}
+    (\Delta \lambda)_{\min} = \frac{1}{{\color{red} 1}}\cdot \frac{2\lambda_0}{\pi \sqrt{F}} = \frac{2\lambda_0}{\pi \sqrt{F}}
     ,\quad 
-    (\Delta \lambda)_{\lim} = \frac{\lambda_0^2}{\pi n d \sqrt{F}  }
+    (\Delta \lambda)_{\lim} = \frac{1}{{\color{red} m_{\max}}}\cdot \frac{2\lambda_0}{\pi \sqrt{F}} = \frac{\lambda_0^2}{\pi n d \sqrt{F}  }
 \end{equation}
 
-$\Delta \lambda$ 越大时，谱线越容易被分辨，但当其大到一定程度时，会发生条纹的越级。由于波长短的条纹更密，所以边界情况是 $ \lambda_0 - \frac{\Delta \lambda}{2}$ 的最高级条纹 ($m_{\max}$) 越过 $ \lambda_0 + \frac{\Delta \lambda}{2}$ 的次级条纹 ($m_{\max} - 1$)。记此时的波长宽为自由光谱范围 (free spectral range)，记作 $\left(\Delta \lambda\right)_{\text{fsr}}$。由于中心处 $\theta = 0$，且 $m = \frac{\delta}{2\pi} = \frac{2 nd }{\lambda}$，得到：
+$\Delta \lambda$ 越大时，谱线越容易被分辨，但当其大到一定程度时，会发生条纹的越级。由于波长短的条纹更密，所以临界情况是 $ \lambda_0 - \frac{\Delta \lambda}{2}$ 的最高级条纹 ($m_{\max}$) 越过 $ \lambda_0 + \frac{\Delta \lambda}{2}$ 的次级条纹 ($m_{\max} - 1$)。记此时的波长宽为自由光谱范围 (Free Spectral Range)，记作 $\left(\Delta \lambda\right)_{\text{fsr}}$。由于中心处 $\theta = 0$，且 $m = \frac{\delta}{2\pi} = \frac{2 nd }{\lambda}$，得到：
 \begin{equation}
 \begin{cases}
     \lambda + \frac{\Delta \lambda}{2}: & m_{\max} = \frac{2 n d}{\lambda + \left(\Delta \lambda\right)_{\text{fsr}}} 
     \\ 
     \lambda - \frac{\Delta \lambda}{2}: & m_{\max} - 1 = \frac{2 n d}{\lambda - \left(\Delta \lambda\right)_{\text{fsr}}}
 \end{cases}\Longrightarrow 
-\left(\Delta \lambda\right)_{\text{fsr}} = \frac{\lambda_0^2}{2 n d}
+\left(\Delta \lambda\right)_{\text{fsr}} = \frac{\lambda_0}{m_{\max}} = \frac{\lambda_0^2}{2 n d} 
 \end{equation}
 
+也就是说，要在不发生条纹越级的条件下分辨谱线，谱宽 $\Delta \lambda$ 需要小于自由光谱宽度 $\left(\Delta \lambda\right)_{\text{fsr}}$。在此前提下，$\Delta \lambda$ 越大，谱线的分辨性越好。
 
 ~\\
 
@@ -1883,8 +1896,10 @@ $\Delta \lambda$ 越大时，谱线越容易被分辨，但当其大到一定程
 \end{figure}
 出现纵模的波长满足 $2nd = m\lambda_m$，因此谱线具有相同的纵模间距（“纵模”即为谱线中的“峰”），且可以计算其半峰宽：
 \begin{equation}
-\nu_m = \frac{mc}{2nd},\quad (\nu_{m+1} - \nu_m) = \frac{c}{2nd},\quad \varepsilon_{\nu, m} = \frac{2c}{m \pi \lambda\sqrt{F}}
+\nu_m = \frac{mc}{2nd},\quad (\nu_{m+1} - \nu_m) = \frac{c}{2nd},\quad \varepsilon_{\nu, m} = \frac{2c}{m \pi \lambda\sqrt{F}} = \frac{c}{\lambda} \cdot 
 \end{equation}
+
+
 
 %巧合的是，$I_T = I_T(\lambda)$ 图像中的半峰宽 $\varepsilon_{\lambda, m} = \frac{2\lambda_0}{\pi m \sqrt{F} } $ 恰好是泰勒判据中的 $\Delta \lambda \geqslant \frac{2\lambda_0}{\pi m \sqrt{F} }$。
 
@@ -2463,7 +2478,7 @@ kr = \text{const}
 对任意介质，设其折射率为 $n$，电磁波在其中的波速为 $v$，则有以下恒等式：
 \begin{gather}
 \boxed{
-    nv = c ,\quad \varepsilon \mu v^2= 1,\quad \varepsilon_r \mu_r = n^2 
+    nv = c ,\quad \varepsilon \mu v^2= 1,\quad \varepsilon_r \mu_r = n^2 ,\quad {\color{red} E = vB}
 }
 \end{gather}
 特别地，对于真空，上面三个式子变为：

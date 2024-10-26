@@ -873,8 +873,8 @@ I = \lim_{\max | \Delta z_i \to 0|}\sum_{i=1}^{n} f(\xi_i)\Delta z_i = \int_{C_{
 
 \subsection{Cauthy-Goursat 定理}
 
-\begin{BlockTheorem}[Cauthy 定理]\label{Cauthy 定理}
-若 $f(z)$ 在{\color{red} 有界}区域 $G$ 上单值解析，在 $\overline{G}$ 上连续 \footnote{如何理解在 $\overline{G}$ 上解析？$\partial G$ 上的解析性如何定义？}，则：
+\begin{BlockTheorem}[Cauthy 定理\footnote{也称 Cauthy-Goursat 定理}]\label{Cauthy 定理}
+若 $f(z)$ 在{\color{red} 有界}开域 $G$ 上单值解析，在 $\partial G$ 上连续\footnote{有的教材称上述两个条件是“在闭域 $\overline{G}$ 中解析”，详见附录 \ref{在闭域上解析}}，则：
 \begin{gather}
 \oint_{\partial G} f(z) \mathrm{d}z = 0
 \end{gather}
@@ -971,8 +971,7 @@ f(z_0) = \frac{1}{2\pi} \int_{0}^{2\pi} f(z_0 + R e^{i\theta}) \mathrm{d}\theta
 
 \begin{BlockTheorem}[Cauchy 积分公式]\label{n 阶导数 Cauchy 积分公式}
 
-
-若 $f(z)$ 在 $\overline{G} $ 中解析\footnote{解析域闭为开集，至于为什么说在闭域上解析，详见附录 \ref{在闭域上解析}} ，则 $f(z)$ 在 $G$ 上有任意阶导数，且它们都是 $\overline{G} $ 上的解析函数。
+若 $f(z)$ 在 $\overline{G} $ 中解析\footnote{解析域一定是开集，为什么这里会说在闭域上解析？详见附录 \ref{在闭域上解析}} ，则 $f(z)$ 在 $G$ 上有任意阶导数，且它们都是 $\overline{G} $ 上的解析函数。
 \begin{equation}
 f^{(n)}(z) = \frac{n !}{2\pi i}\oint_{\partial G} \frac{f(\zeta)}{(\zeta - z)^{n+1}} \mathrm{d} \zeta,\quad \forall\ z \in G
 \end{equation} 
@@ -1494,6 +1493,16 @@ A = \Res \left[ f(z), 1 \right] = \frac{1}{2},\quad B = \Res \left[ f(z), 2\righ
 
 
 \subsection{求有界点的留数}
+
+设 $z_0$ 是 $n$ 阶极点，常用的两种：
+\begin{align}
+\begin{aligned}
+    \Res \left[ f(z), z_0 \right] 
+    & = c_{-1}  && \text{(Laurent 中 $\frac{1}{z}$ 项的系数，与极点阶数无关)}\\ 
+    & = \left[(z - z_0)^n f(z)\right]^{(n)}_{z = z_0} && \text{(常规法, 最常用)}
+\end{aligned}
+\end{align}
+
 \subsection{求无穷点的留数}
 
 求无穷原点 $\infty$ 处的留数有多种方法，常用的有以下几种：
@@ -1504,11 +1513,13 @@ A = \Res \left[ f(z), 1 \right] = \frac{1}{2},\quad B = \Res \left[ f(z), 2\righ
     & = - \frac{1}{2 \pi i} \lim_{R \to \infty} \oint_{C_R} f(z) \ \mathrm{d}z&& \text{(直接法)} \\ 
     & = - \sum_{i=1}^{n} \Res \left[ f(z), z_i \right]  && \text{(间接法)} \\ 
     & = - K && \text{(大圆弧, 需要 $zf(z) \to K$)} \\ 
-    & = - \Res \left[ \frac{1}{z^2} f(\frac{1}{z}), 0 \right] && \text{(变换, 最常用)}
+    & = - \Res \left[ \frac{1}{z^2} f(\frac{1}{z}), 0 \right] && \text{(换元, {\color{red} 最常用})}
 \end{aligned}
 \end{align}
 
+\section{数物期中复习}
 
+“数物期中典题复习 (2024秋)”详见网址 \href{https://www.123865.com/s/0y0pTd-4lKj3}{https://www.123865.com/s/0y0pTd-4lKj3}。
 
 
 
@@ -1739,9 +1750,11 @@ A = \Res \left[ f(z), 1 \right] = \frac{1}{2},\quad B = \Res \left[ f(z), 2\righ
 
 \subsection{解析域一定是开集，为什么会说“在有界闭域 $\overline{G} $ 上解析” ？}\label{在闭域上解析}
 
-这个说法是许多教材中的惯用说法 \footnote{例如教材 \cite{数学物理方法}}，且并没有给出具体细节。我的理解是：解析区域必为开集，因此不可能是闭域，这里的意思是 $f$ 在开集 $G$ 上解析，且在 $\partial G$ 上可导，这等价于 $f(z)$ 在闭域 $\overline{G}$ 上每一点都可导。
+这个说法是许多教材中的惯用说法 \footnote{例如教材 \cite{数学物理方法}}，并且没有给出具体含义。有的教材中，“在闭域 $\overline{G}$ 上解析”是指“$f(z)$ 在开集 $G$ 上解析，且在 $\partial G$ 上可导”（这等价于在闭域 $\overline{G}$ 上每一点都可导）。
 
-在本书中，不引起歧义的情况下，我们都说在闭域 $\overline{G} $ 上解析。
+也有的教材称“在闭域 $\overline{G}$ 上解析”是等价于“$f(z)$ 在开集 $G$ 上解析，且在 $\partial G$ 上连续”。
+
+在本书，不引起歧义的情况下，我们认为“在闭域 $\overline{G} $ 上解析”是指“$f(z)$ 在开集 $G$ 上解析，且在 $\partial G$ 上连续”。
 
 \subsection{分支点一定不解析吗？}
 首先需要区分，“解析”是单值函数的概念，而“分支点”是多值函数的概念。在讨论一个函数是否（在某点）解析时，要么这个函数本就是单值函数，要么是多值函数的某个单值分支。对于一个多值函数，分支点仅可能出现在奇点，包括无定义点、不连续点、不解析点和无穷点 $\infty$。因此，当约定好多值函数的单值分支时，对前三种情况（也即 $\C$ 内的情况），分支点一定是不解析的。无穷点的情况可以做变换 $z \to \frac{1}{z}$ 转变为零点来讨论。
@@ -1818,7 +1831,10 @@ f^{(n)}(z) = \frac{n !}{2\pi i} \oint_{\partial G} \frac{f(\zeta)}{(\zeta - z )^
 
 \subsection{如何求一个函数在某点的 Laurent 展开式，是否有通法？}
 
+\subsection{$ln (z + i)$ 在点 $z_0 = 0$ 有级数展开（对 $| z | < 1$ 成立），那么在 $| z | > 1 $ 上是否可展开为幂级数？}
 
+\subsection{$\ln z$ 在点 $z_0 = 0$ 是否可展开为幂级数？}
+结论：就目前所学，$\ln z$ 在 $z_0 = 0$ 不可展开为幂级数。因为 $0$ 和 $\infty$ 是 $\ln z$ 的奇点（非解析点），
 
 \chapter*{附录 B\hspace*{20pt}  Matlab 代码}\addcontentsline{toc}{chapter}{附录 B\hspace*{6pt}  Matlab 代码}
 \thispagestyle{fancy}

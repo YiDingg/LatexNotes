@@ -354,13 +354,15 @@
 
 % 收尾工作
     \newpage    
-    \rhead{Homework \thechapter}
+    %\rhead{Homework \thechapter}
     \pagenumbering{arabic} 
 
 % >> --------------------- 封面序言与目录 --------------------- << %
 % ------------------------ 封面序言与目录 ------------------------ %
 
-\chapter{Homework 1: 2024.8.27 - 2024.9.2}\thispagestyle{fancy}
+\chapter{Homework 1: 2024.8.27 - 2024.9.2}
+\rhead{Homework 1: 2024.8.27 - 2024.9.2}
+\thispagestyle{fancy}
 
 \section{习题集 1-2: 求题图各电路中的电压 $U$ 和电流 $I$}
 
@@ -502,7 +504,9 @@ C （充放电倍率）表示电池充放电时电流相对电池容量的大小
 
 
 
-\chapter{Homework 2: 2024.9.3 - 2024.9.9}\thispagestyle{fancy}
+\chapter{Homework 2: 2024.9.3 - 2024.9.9}
+\rhead{Homework 2: 2024.9.3 - 2024.9.9}
+\thispagestyle{fancy}
 
 \section{习题集 1-33: 题图电路中 $R_1 = 40$，$R_e = 27$，$R_b = 150$，$R_L = 1500$，单位都为 $\Omega$，$\alpha = 0.98$，求电压增益 $\frac{u_2}{u_1}$ 和功率增益 $\frac{p_2}{p_1}$，其中 $p_1$ 是 $u_1$ 输出的功率，$p_2$ 是 $R_L$ 吸收的功率}
 左半边回路有：
@@ -640,7 +644,9 @@ U_1 = 6 - 3\times 1.2 = 2.4\ \mathrm{V},\ U_2 = 2\times \frac{I}{2} = 1.2\ \math
 
 
 
-\chapter{Homework 3: 2024.9.10 - 2024.9.18}\thispagestyle{fancy}
+\chapter{Homework 3: 2024.9.10 - 2024.9.18}
+\rhead{Homework 3: 2024.9.10 - 2024.9.18}
+\thispagestyle{fancy}
 
 
 \section{习题集 3-40（书上答案不正确）: 题图电路中，$u_s(t) = \sin 4t\ \mathrm{V} $，电阻 $R_2 = 2R_1 = 1 \kO$，求电流 $i(t)$}
@@ -755,7 +761,9 @@ R_i = \infty,\ R_o = 0
 \end{figure}
 
 
-\chapter{Homework 4: 2024.9.19 - 2024.9.24}\thispagestyle{fancy}
+\chapter{Homework 4: 2024.9.19 - 2024.9.24}
+\rhead{Homework 4: 2024.9.19 - 2024.9.24}
+\thispagestyle{fancy}
 
 \section{讲义题 2-20: 求图示各网络的 和 $\boldsymbol{R}$ 参数}
 
@@ -890,7 +898,9 @@ p = \frac{u_2^2}{R_2} = \frac{36}{\frac{13^2}{R_2} + 78 + 9R_2} \leqslant \frac{
 \end{figure}
 
 
-\chapter{Homework 5: 2024.9.25 - 2024.10.8}\thispagestyle{fancy}
+\chapter{Homework 5: 2024.9.25 - 2024.10.8}
+\rhead{Homework 5: 2024.9.25 - 2024.10.8}
+\thispagestyle{fancy}
 
 \section{教材 2-41: 求由 N-E MOS 构成的两输入 NAND 和两输入 NOR 的最大功率，并指出何时有最大功率}
 
@@ -1202,7 +1212,9 @@ i = -\frac{1}{38}\ \mathrm{A} = -0.0263 \ \mathrm{A},\quad u = \frac{11}{76} \ \
 \end{figure}
 
 
-\chapter{Homework 6: 2024.10.9 - 2024.10.15}\thispagestyle{fancy}
+\chapter{Homework 6: 2024.10.9 - 2024.10.15}
+\rhead{Homework 6: 2024.10.9 - 2024.10.15}
+\thispagestyle{fancy}
 
 \section{习题集 4-10: 题图电路中电流源 $I_{S1} = 2 \ \mathrm{A}$，$I_{S2}= 3 \ \mathrm{A}$。断开 3 A 电流源，则 2 A 电流源输出 28 W，$U$ = 8 V。断开 2 A 电流源，则 3 A 的电流源输出 54 W，$U$ = 12 V。求两个电流源同时作用时，每个电流源输出的功率。}
 
@@ -1485,7 +1497,9 @@ $N_R$ 为线性电阻网络，由特勒根定理：
 \end{figure}
 
 
-\chapter{Homework 7: 2024.10.15 - 2024.10.22}\thispagestyle{fancy}
+\chapter{Homework 7: 2024.10.15 - 2024.10.22}
+\rhead{Homework 7: 2024.10.15 - 2024.10.22}
+\thispagestyle{fancy}
 
 \section{习题集 5-1: 已知非线性电阻的 $u$-$i$ 关系为 $u = 2i + i^3$（式中 $u$ 的单位是 V，$i$ 的单位是 A），分别求 $i = 1 \ \mathrm{A}$、$i = 2 \ \mathrm{A}$ 时的静态电阻和动态电阻}
 
@@ -1655,8 +1669,9 @@ R_o = \frac{1}{\frac{1}{R_L} + g_m} =  218.1977 \ \Omega
 
 查阅资料知道，这是一个共漏放大器，其输出电阻比共源放大器的输出电阻要小。这样的一个放大倍数小于 1，但输出电阻比较小的信号处理单元适合放在整个信号处理电路的最后一级，以增强整个电路的带载能力。此外，由于共漏放大器的输出在 MOSFET 的 S 极，且在 $g_m$ 较大的情况下输入和输出基本相同（输出能够跟随输入），因此该电路也称为源级跟随器。
 
-
-\chapter{Homework 8: 2024.10.23 - 2024.10.29}\thispagestyle{fancy}
+\chapter{Homework 8: 2024.10.23 - 2024.10.29}
+\rhead{Homework 8: 2024.10.23 - 2024.10.29}
+\thispagestyle{fancy}
 
 \section{习题集 1-3}
 
@@ -1703,14 +1718,12 @@ i = i(t) =
 
 
 
-
-
 % --------------------------- 仿真作业 --------------------------- %
 % >> ------------------------ 仿真作业 ------------------------ << %
 
 
 \chapter{Simulation 1: 2024.9.10 - 2024.9.24}
-\lhead{Sim 1: 2024.9.10 - 2024.9.24}
+\rhead{Simulation 1: 2024.9.10 - 2024.9.24}
 \thispagestyle{fancy}
 
 \section{仿真 2-1: 题目详见图 \ref{示意图} (b)}
@@ -1920,7 +1933,7 @@ R_{\text{sat}} = R_1 = 10 \KO
 
 
 \chapter{Simulation 2: 2024.10.22 - 2024.11.7}
-\lhead{Sim 2: 2024.10.11 - 2024.10.31}
+\rhead{Simulation 2: 2024.10.11 - 2024.10.31}
 \thispagestyle{fancy}
 
 设计小信号放大电路，\href{https://zhuanlan.zhihu.com/p/600053414}{https://zhuanlan.zhihu.com/p/600053414} 和 \href{https://zhuanlan.zhihu.com/p/674897442}{https://zhuanlan.zhihu.com/p/674897442}
@@ -1940,7 +1953,7 @@ R_{\text{sat}} = R_1 = 10 \KO
 
 
 \chapter{Laboratory 1: 2024.10.11 - 2024.10.31}
-\lhead{Lab 1: 2024.10.11 - 2024.10.31}
+\rhead{Laboratory 1: 2024.10.11 - 2024.10.31}
 \thispagestyle{fancy}
 
 所有 Lab 实验课件（以及作业、仿真课件）见网址 \href{https://www.123865.com/s/0y0pTd-L8Kj3}{https://www.123865.com/s/0y0pTd-L8Kj3}，后文不再重复实验要求和实验题目。
@@ -2326,14 +2339,14 @@ When the input voltage is lower than $U_{LI} = 1.442 \ \mathrm{V}$ (logic 0), th
 
 
 \chapter{Laboratory 2: }
-\lhead{Lab 2: }
+\rhead{Lab 2: }
 \thispagestyle{fancy}
 
 实验课件见网址 \href{}{https://www.123865.com/s/0y0pTd-KRKj3}。
 
 
-\chapter{第二次习题课课前练习}
-\lhead{第二次习题课课前练习}
+\chapter{$^*$第二次习题课课前练习}
+\rhead{$^*$第二次习题课课前练习}
 \thispagestyle{fancy}
 
 \begin{figure}[H]\centering
@@ -2413,11 +2426,12 @@ u_o = - (d_0i_0 + d_1i_1 + d_2i_2)R = -\frac{u_s}{8}\left( d_2\cdot 2^2 + d_1\cd
 \titlespacing*{\chapter}{0pt}{-25pt}{8pt} % 控制上方空白的大小
 % section 标题自定义设置 
 \titleformat{\section}[hang]{\normalfont\centering\Large\bfseries  }{\thesection}{8pt}{}
-\lhead{附录 \thechapter}
 
 
 % 附录 A
-\chapter*{附录 A\hspace*{20pt}  Matlab 代码}\setcounter{chapter}{1} 
+\chapter*{附录 A\hspace*{20pt}  Matlab 代码}
+\rhead{附录 A \quad  Matlab 代码}
+\setcounter{chapter}{1}     % 重置章节计数器
 \setcounter{equation}{0}    % 重置公式计数器   
 \addcontentsline{toc}{chapter}{附录 A\hspace*{6pt}  Matlab 代码}   
 \thispagestyle{fancy} 

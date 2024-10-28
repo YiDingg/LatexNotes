@@ -683,12 +683,17 @@ $K_{\text{max}} = 683\ \mathrm{lm \cdot W^{-1}}$ 在波长约 555.0 nm 取到，
 \hline
 类型 & \multicolumn{2}{c|}{振幅反射系数 $r$} & \multicolumn{2}{c|}{振幅透射系数 $t$ }  \\ 
 \hline
-$s$ 波 & $\displaystyle r_s = \frac{n_i\cos \theta_i - n_t \cos \theta_t}{n_i\cos \theta_i + n_t \cos \theta_t} $ & $\displaystyle  - \frac{\sin (\theta_i - \theta_t) }{\sin (\theta_i + \theta_t)}$ & $\displaystyle t_s  = \frac{2n_i \cos \theta_i}{n_i\cos \theta_i + n_t \cos \theta_t} $ &   $\displaystyle  + \frac{2 \sin \theta_t \cos \theta_i}{\sin (\theta_i + \theta_t)}$   \\ 
+$s$ 波 & $\displaystyle r_s = \frac{n_{{\color{red} i}}\cos \theta_{{\color{red} i}} - n_t \cos \theta_t}{n_{{\color{red} i}}\cos \theta_{{\color{red} i}} + n_t \cos \theta_t} $ & $\displaystyle  - \frac{\sin (\theta_i - \theta_t) }{\sin (\theta_i + \theta_t)}$ & $\displaystyle t_s  = \frac{2n_{{\color{red} i}} \cos \theta_{{\color{red} i}}}{n_{{\color{red} i}}\cos \theta_{{\color{red} i}} + n_t \cos \theta_t} $ &   $\displaystyle   \frac{2 \sin \theta_t \cos \theta_i}{\sin (\theta_i + \theta_t)}$   \\ 
 \hline
-$p$ 波 & $\displaystyle r_p = \frac{n_t\cos \theta_i - n_i \cos \theta_t}{n_t\cos \theta_i + n_i \cos \theta_t} $ &     $ \displaystyle  + \frac{\tan (\theta_i - \theta_t)}{\tan (\theta_i + \theta_t)} $  &  $\displaystyle t_p  = \frac{2n_i \cos \theta_i}{n_i\cos \theta_t + n_t \cos \theta_i} $ &   $\displaystyle + \frac{2 \sin \theta_t \cos \theta_i}{\sin (\theta_i + \theta_t) \cos (\theta_i - \theta_t)}$                  \\
+$p$ 波 & $\displaystyle r_p = \frac{n_t\cos \theta_{{\color{red} i}} - n_{{\color{red} i}} \cos \theta_t}{n_t\cos \theta_{{\color{red} i}} + n_{{\color{red} i}} \cos \theta_t} $ &     $ \displaystyle  + \frac{\tan (\theta_i - \theta_t)}{\tan (\theta_i + \theta_t)} $  &  $\displaystyle t_p  = \frac{2n_{{\color{red} i}} \cos \theta_{{\color{red} i}}}{n_{{\color{red} i}}\cos \theta_t + n_t \cos \theta_{{\color{red} i}}} $ &   $\displaystyle \frac{2 \sin \theta_t \cos \theta_i}{\sin (\theta_i + \theta_t) \cos (\theta_i - \theta_t)}$                  \\
 \hline
 \end{tabular}
 \end{table}
+
+注意，$t_p$ 分子上的两个角标都是 $i$，这意味着有 $(-r_s) + t_s = 1$，但并没有 $r_p + t_p = 1$，而应该是：
+\begin{equation}
+    r_p + \frac{\cos \theta_t}{\cos \theta_i}\cdot t_p = 1
+\end{equation}
 
 折射角 $\theta_t$、$s$ 波通量反射率 $R_s$、$p$ 波通量反射率 $R_p$ 和总通量反射率 $R$ 为：
 \begin{equation}
@@ -725,14 +730,6 @@ $p$ 波 & $\displaystyle r_p = \frac{n_t\cos \theta_i - n_i \cos \theta_t}{n_t\c
         \end{tabular}
     \end{table}
 \end{minipage}\end{center}
-可以推得 Brewster angle 的值为：
-\begin{equation}
-    \theta_B = \arctan \left( \frac{n_2}{n_1} \right)
-\end{equation}
-
-
-
-具体的振幅系数变化见图 \ref{振幅系数随入射角的变化}\footnote{源码见附录 \ref{振幅系数随入射角的变化 源码}}，相位增量见图 \ref{反射时 s 波和 p 波的相位变化}，反射示意图见图 \ref{反射示意图}。
 
 \begin{figure}[H]\centering
 \begin{subfigure}[t]{0.49\textwidth}\centering
@@ -755,6 +752,14 @@ $p$ 波 & $\displaystyle r_p = \frac{n_t\cos \theta_i - n_i \cos \theta_t}{n_t\c
 \includesvg[width=0.95\textwidth]{assets/1,2/反射后的方向情况.svg}
 \caption{ 由空气入射玻璃的光线示意图}\label{反射示意图}
 \end{figure}
+
+可以推得 Brewster angle 的值为：
+\begin{equation}
+    \theta_B = \arctan \left( \frac{n_2}{n_1} \right)
+\end{equation}
+
+
+具体的振幅系数变化见图 \ref{振幅系数随入射角的变化}\footnote{源码见附录 \ref{振幅系数随入射角的变化 源码}}，相位增量见图 \ref{反射时 s 波和 p 波的相位变化}，反射示意图见图 \ref{反射示意图}。
 
 
 由菲涅尔公式，当 $n_i < n_t$ 时，我们还有如下结论：
@@ -859,7 +864,7 @@ n_i \cos \theta_i E_{i,p}^2 - n_i \cos \theta_i r_{i,p}^2E_{i,p}^2 -   n_t \cos 
 \begin{gather}
 \begin{aligned}
     &\text{强度反射率 $R$: }\ &&R = \frac{1}{2}(R_s + R_p), &&R_s = r_s^2, && R_p = r_p^2 \\
-    &\text{强度透射率 $T$: }\ &&T = \frac{1}{2}(T_s + T_p), &&T_s = \left( \frac{n_t \cos \theta_t}{n_i \cos \theta_i} \right)^2 t_s^2, && T_p = \left( \frac{n_t \cos \theta_t}{n_i \cos \theta_i} \right)^2 t_p^2 \\
+    &\text{强度透射率 $T$: }\ &&T = \frac{1}{2}(T_s + T_p), &&T_s =\frac{n_t \cos \theta_t}{n_i \cos \theta_i} \cdot  t_s^2, && T_p =\frac{n_t \cos \theta_t}{n_i \cos \theta_i} \cdot  t_p^2 \\
 \end{aligned}
 \end{gather}
 
@@ -875,7 +880,8 @@ n_i \cos \theta_i E_{i,p}^2 - n_i \cos \theta_i r_{i,p}^2E_{i,p}^2 -   n_t \cos 
 \end{aligned}
 }
 \end{gather}
-{\color{red} 其中 $\Phi_{e,r} = R\Phi_{e,i}$ 和 $\Phi_{e,t} = T\Phi_{e,i}$ 是怎么来的？}
+
+%{\color{red} todo 其中 $\Phi_{e,r} = R\Phi_{e,i}$ 和 $\Phi_{e,t} = T\Phi_{e,i}$ 是怎么来的？}
 
 
 
@@ -934,27 +940,54 @@ n_i \cos \theta_i E_{i,p}^2 - n_i \cos \theta_i r_{i,p}^2E_{i,p}^2 -   n_t \cos 
 
 入射光不发生全反射时，由菲涅尔定律，$t_s, t_p \in (0, \frac{2n_i}{n_i + n_t}) \subset \R$，恒为正实数，因此相位不发生任何变化。当入射光发生全反射时，折射光（透射光）以隐失波的形式存在，我们前面已经提过，隐失波同时含有横波纵波成分，它与入射光不再是同一种波，此时谈论相位变化自然没有意义。
 
+\section{倒逆关系}
+
+如图 \ref{光路可逆性下的振幅与能量系数}，考虑光路可逆性，假设反射光、折射光振幅不变而方向置反，则合成出的光也应是原来的入射光（左下角合成后为 0），得到斯托克斯倒逆关系: 
+\begin{equation}\label{斯托克斯倒逆关系}
+r' + r = 1,\quad tt' + rr' = 1
+\end{equation}
+由于没有涉及电场的方向，上式对 $s$ 波、$p$ 波均成立，可以角标同时为 $s$，也可以角标同时为 $p$。
+
+\begin{figure}[H]\centering
+    \includegraphics[width=\columnwidth]{assets/3/光路可逆性下的振幅与能量系数.pdf}
+    \caption{ 光路可逆性下的振幅与能量系数}\label{光路可逆性下的振幅与能量系数}
+\end{figure}
+
+保持各角度不变，结合菲涅尔公式，可得对称前后（到逆前后）的各物理量变化：
+\begin{gather}
+r_s' = -r_s,\quad r_p' = -r_p \\ 
+t_s' = \frac{n_t \cos \theta_t}{n_i \cos \theta_i} \cdot t_s,\quad t_p' = \frac{n_t \cos \theta_t}{n_i \cos \theta_i} \cdot t_p \\
+R_s,\ R_p,\ R,\ T_s,\ T_p,\ T \ \text{均不变}
+\end{gather}
+式中的 $n_i$、$n_t$、$\theta_i$ 和 $\theta_t$ 都是倒逆之前的原始值。
+
 
 \section{章末总结}
 
-到此，我们已经讨论了目前可能接触到的所有情况，包括光疏射向光密、光密射向光疏、小于或大于临界角时的折射反射振幅、相位以及能量关系等，终于可以给出反射折射的总结。
-
-整个结论由菲涅尔定律推导而来，基于电磁场的边界条件和麦克斯韦方程组，从波的角度揭示了光在反射折射时发生的变化，包括振幅、相位、能量、位移等关系。
+本章的所有结论基于电磁场的边界条件和麦克斯韦方程组，由菲涅尔定律推导而来，从波的角度揭示了光在反射折射时发生的变化，包括振幅、相位、能量、位移等关系。
 \begin{align}
 &\text{反射波：} \quad \boldsymbol{E_r} = \boldsymbol{E_{r,s}} + \boldsymbol{E_{r,p}} = r_s \boldsymbol{E_{i,s}} + r_p \boldsymbol{E_{i,p}},\quad  r \in \C 
 \\ 
 &\text{透射波：}\quad \boldsymbol{E_t} = \boldsymbol{E_{t,s}} + \boldsymbol{E_{t,p}} = t_s \boldsymbol{E_{i,s}} + t_p \boldsymbol{E_{i,p}},\quad  t \in \R,\ \theta_i < \theta_C
 \\ 
 & \text{反射系数：}
-    r_s = \frac{\cos \theta_i - \sqrt{n_{ti}^2 - \sin^2 \theta_i} }{\cos \theta_i + \sqrt{n_{ti}^2 - \sin^2 \theta_i}},\quad  r_p = \frac{n_{ti}^2\cos \theta_i - \sqrt{n_{ti}^2 - \sin^2 \theta_i} }{n_{ti}^2\cos \theta_i + \sqrt{n_{ti}^2 - \sin^2 \theta_i}}
+\begin{cases}\displaystyle
+    r_s 
+    = \frac{n_{{\color{red} i}} \cos \theta_{{\color{red} i}} - n_t \cos \theta_t}{n_{{\color{red} i}} \cos \theta_{{\color{red} i}} + n_t\cos \theta_t} 
+    = \frac{\cos \theta_i - \sqrt{n_{ti}^2 - \sin^2 \theta_i} }{\cos \theta_i + \sqrt{n_{ti}^2 - \sin^2 \theta_i}}
+    \\\displaystyle
+    r_p 
+    = \frac{n_t \cos \theta_{{\color{red} i}} - n_{{\color{red} i}} \cos \theta_t}{n_t \cos \theta_{{\color{red} i}} + n_{{\color{red} i}} \cos \theta_t} 
+    =\frac{n_{ti}^2\cos \theta_i - \sqrt{n_{ti}^2 - \sin^2 \theta_i} }{n_{ti}^2\cos \theta_i + \sqrt{n_{ti}^2 - \sin^2 \theta_i}}
+\end{cases}
 \\ 
-& \text{透射系数：}(-r_s) + t_s  = 1,\quad r_p + t_p = 1 
+& \text{透射系数：} \quad  (-r_s) + t_s  = 1,\quad r_p + {\color{red} \frac{\cos \theta_t}{\cos \theta_i}}\cdot t_p = 1 
 \\
 & \text{能量关系：}
 \begin{cases}
     R = \frac{1}{2}(R_s + R_p)\quad R_s = | r_s |^2,\ R_p = | r_p |^2 \\ 
     T = \frac{1}{2}(T_s + T_p),\quad 
-    T_s = \left( \frac{n_t \cos \theta_t}{n_i \cos \theta_i} \right)^2 t_s^2, T_p = \left( \frac{n_t \cos \theta_t}{n_i \cos \theta_i} \right)^2 t_p^2 \\
+    T_s = {\color{red} \frac{n_t \cos \theta_t}{n_i \cos \theta_i}} \cdot t_s^2, T_p = \frac{n_t \cos \theta_t}{n_i \cos \theta_i} \cdot t_p^2 \\
     R + T = 1 ,\ R_s + T_s = 1,\ R_p + T_p = 1 \\ 
     \Phi_{e,r} = R\Phi_{e,i},\ \Phi_{e,t} = T\Phi_{e,i}
 \end{cases}
@@ -986,46 +1019,22 @@ n_i \cos \theta_i E_{i,p}^2 - n_i \cos \theta_i r_{i,p}^2E_{i,p}^2 -   n_t \cos 
 \\
 &\text{隐失波：} \boldsymbol{E_{t}} = \left( e^{-\beta y} \boldsymbol{E_{t,0}}\right)\cdot e^{i\left( \frac{\sin \theta_i}{n_{ti}}  k_t x - \omega t \right)},\quad \beta  = k_i\sqrt{\sin^2 \theta_i - n_{ti}^2} = \frac{2 \pi}{\lambda_i} \sqrt{\sin^2 \theta_i - n_{ti}^2},\quad \delta = \frac{1}{\beta}
 \\ 
-& \text{Goos-Hanchen Shift: \ } \Delta x = 2 \delta \tan \theta_i = \frac{2 \tan \theta_i}{k_i\sqrt{\sin^2 \theta_i - n_{ti}^2}}
+& \text{Goos-Hanchen Shift: \ } \quad \Delta x = 2 \delta \tan \theta_i = \frac{2 \tan \theta_i}{k_i\sqrt{\sin^2 \theta_i - n_{ti}^2}}
 = \frac{\lambda_i \tan \theta_i }{\pi \sqrt{\sin^2 \theta_i - n_{ti}^2} }
+\\ 
+& \ \text{倒逆关系：} 
+\begin{cases}
+    r_s' = -r_s,\quad r_p' = -r_p \\ 
+    t_s' = \frac{n_t \cos \theta_t}{n_i \cos \theta_i} \cdot t_s,\quad t_p' = \frac{n_t \cos \theta_t}{n_i \cos \theta_i} \cdot t_p \\
+    R_s,\ R_p,\ R,\ T_s,\ T_p,\ T \ \text{均不变}
+\end{cases}
 \end{align}
 
-另外，如图 \ref{光路可逆性下的振幅与能量系数} 考虑一束光由光疏介质射向光密介质（$n_i < n_t$），发生透射、反射。保持各角度不变，将透射光方向置反，射向光疏介质，由菲涅尔公式，可得对称前后的振幅与能量系数变化：
-\begin{gather}\label{对称前后的振幅与能量系数变化}
-\theta_i < \theta_B:\ \begin{cases}
-    \text{反射振幅与强度：}&\displaystyle \frac{r_s'}{r_s} = \frac{r_p'}{r_p} = 1, \quad \frac{R'}{R} = \frac{R_s'}{R_s} = \frac{R_p'}{R_p} = 1 
-    \\
-    \text{透射振幅与强度：} &\displaystyle \frac{t_s'}{t_s} = \frac{t_p'}{t_p} = \frac{\tan A}{\tan B} ,\quad  \frac{T'}{T} = \frac{T_s'}{T_s} = \frac{T_p'}{T_p} = \frac{1}{n_{ti}^2}\cdot \frac{\sin^2 2A}{\sin^2 2B}
-    \\ 
-    \text{反射光相位增量：} & \delta_{r,s} = -\pi,\ \delta_{r,p} = 0,\quad \delta_{r,s}' = 0,\ \delta_{r,p}' = -\pi
-\end{cases} \quad 
-\\ 
-\theta_i > \theta_B:\ \begin{cases}
-    \text{反射振幅与强度：}&\displaystyle \frac{r_s'}{r_s} = \frac{r_p'}{r_p} = 1, \quad \frac{R'}{R} = \frac{R_s'}{R_s} = \frac{R_p'}{R_p} = 1 
-    \\
-    \text{透射振幅与强度：} &\displaystyle \frac{t_s'}{t_s} = \frac{t_p'}{t_p} = \frac{\tan A}{\tan B} ,\quad  \frac{T'}{T} = \frac{T_s'}{T_s} = \frac{T_p'}{T_p} = \frac{1}{n_{ti}^2}\cdot \frac{\sin^2 2A}{\sin^2 2B}
-    \\ 
-    \text{反射光相位增量：} & \delta_{r,s} = -\pi,\ \delta_{r,p} = -\pi,\quad \delta_{r,s}' = 0,\ \delta_{r,p}' = 0
-\end{cases} \quad 
-\end{gather}
-
-上面最左侧的图中，考虑光路可逆性，假设反射光、折射光振幅不变而方向置反，则合成出的光也应是原来的入射光（左下角合成后为 0），得到斯托克斯倒逆关系: 
-\begin{equation}\label{斯托克斯倒逆关系}
-r' + r = 1,\quad tt' + rr' = 1
-\end{equation}
-由于没有涉及电场的方向，上式对 $s$ 波、$p$ 波均成立，可以角标同时为 $s$，也可以角标同时为 $p$。
 
 
-\begin{figure}[H]\centering
-\includegraphics[width=\columnwidth]{assets/3/光路可逆性下的振幅与能量系数.pdf}
-\caption{ 光路可逆性下的振幅与能量系数}\label{光路可逆性下的振幅与能量系数}
-\end{figure}
-
-在下一页中给出了上面结论的图像。图 \ref{反射折射光的振幅与能量变化}\footnote{源码见附录 \ref{反射折射光的振幅与能量变化 源码}} 展示了反射折射光的振幅 $r_s, r_p, t_s, t_p$、能量 $R_s, R_p, R$ 随入射角 $\tan \theta_i$ 的变化，其中 (a) 图为空气入射玻璃（$n_i = 1, n_t = 1.5$），(b) 图为玻璃入射空气（$n_i = 1.5, n_t = 1$）。
-
-图 \ref{反射光 s 分量与 p 分量的相位增量}\footnote{源码见附录 \ref{反射光 s 分量与 p 分量的相位增量 源码}} 展示了反射光的 s 分量与 p 分量的相位增量 $\delta_{r,s}, \delta_{r,p}$ 随入射角 $\theta_i$ 的变化，其中 (a) 图为空气入射玻璃（$n_i = 1, n_t = 1.5$），(b) 图为玻璃入射空气（$n_i = 1.5, n_t = 1$）。特别地，当 (b) 图中 $\theta_i > \theta_C$ 时，发生全（内）反射，此时 $r_s, r_p, t_s, t_p \in \C \setminus \R$ ，图中展示的是它们的模长，即 $|r_s|, |r_p|, |t_s|, |t_p|$。
-
-图 \ref{隐失波穿透深度与 GH Shift 玻璃入射空气}\footnote{源码见附录 \ref{隐失波穿透深度与 GH Shift 玻璃入射空气 源码}} 展示了隐失波穿透深度 $\delta$ 和 GH SHift $\Delta x$ 随入射角 $\theta_i$ 的变化。
+在下一页中给出了上面结论的相关图像。图 \ref{反射折射光的振幅与能量变化}\footnote{源码见附录 \ref{反射折射光的振幅与能量变化 源码}} 展示了反射折射光的振幅 $r_s, r_p, t_s, t_p$、能量 $R_s, R_p, R$ 随入射角 $\theta_i$ 的变化。
+图 \ref{反射光 s 分量与 p 分量的相位增量}\footnote{源码见附录 \ref{反射光 s 分量与 p 分量的相位增量 源码}} 展示了反射光的 s 分量与 p 分量的相位增量 $\delta_{r,s}, \delta_{r,p}$ 随入射角 $\theta_i$ 的变化。特别地，当 图 \ref{反射光 s 分量与 p 分量的相位增量} (b) 中 $\theta_i > \theta_C$ 时，发生全（内）反射，此时 $r_s, r_p, t_s, t_p \in \C \setminus \R$ ，图中展示的是它们的模长，即 $|r_s|, |r_p|, |t_s|, |t_p|$。
+图 \ref{隐失波穿透深度与 GH Shift 玻璃入射空气}\footnote{源码见附录 \ref{隐失波穿透深度与 GH Shift 玻璃入射空气 源码}} 展示了隐失波穿透深度 $\delta$ 和 GH Shift $\Delta x$ 随入射角 $\theta_i$ 的变化。
 
 
 \newpage
@@ -1843,21 +1852,21 @@ A_c = \frac{\lambda^2}{A_s} R^2
 
 当光源不可视为单色光时，例如两个波长相近的双色光，所形成的等倾干涉条纹（F-P 条纹）就会有稍微不同的半径。这个现象可以用于分辨精细谱线，因此有必要讨论条纹的色分辨能力。
 
-两谱线第 $m$ 级亮纹间的（内）角距离记作 $\delta \theta_f^m$（注意不是 $\delta \cdot \theta$，而是类似 $\Delta \theta$的记法），或者简记为 $\delta \theta_m$，以及第 $m$ 级亮纹的角宽度 $\Delta \theta_m$ 为：
+两谱线第 $m$ 级亮纹间的内角距离记作 $\delta \theta_f^m$（注意不是 $\delta \cdot \theta$，而是类似 $\Delta \theta$的记法），或者简记为 $\delta \theta_m$，并简记第 $m$ 级亮纹的内角宽度 $\varepsilon_{\theta_{f, m}}$ 为 $\varepsilon_{\theta_m}$，则有：
 \begin{equation}
-\delta \theta_m = \frac{{\color{red} m} \Delta \lambda}{2nh\sin \theta_m},\quad \Delta \theta_m = \frac{\lambda}{\pi n d \sin \theta_m\sqrt{F}}
+\delta \theta_m = \frac{{\color{red} m} \Delta \lambda}{2nd\sin \theta_m},\quad \varepsilon_{\theta_m} = \frac{\lambda}{\pi n d \sin \theta_m\sqrt{F}}
 \end{equation}
 
 判断能否分辨两谱线，通常采用泰勒判据或瑞丽判据\footnote{此处列出的瑞丽判据是大 $F$ 下的近似判据，详见参考文献 \cite{Optics} Page 532。实际中主要采用泰勒判据。}，如下：
 \begin{gather}
-    \text{Taylor criterion: \quad } \delta \theta_m \geq \Delta \theta_m \Longrightarrow m \geqslant \frac{2\lambda_0}{\pi \sqrt{F} \Delta \lambda}
+    \text{Taylor Criterion: \quad } \delta \theta_m \geq \varepsilon_{\theta_m} \Longrightarrow m \geqslant \frac{2\lambda_0}{\pi \sqrt{F} \Delta \lambda}
     \\
-    \text{Rayleigh criterion: \quad } \delta \theta_m \geqslant \frac{4.2}{\sqrt{F}} \Longrightarrow m \geqslant \frac{8.4 n h \sin \theta_m}{\Delta \lambda \sqrt{F} }
+    \text{Rayleigh Criterion: \quad } \delta \theta_m \geqslant \frac{4.2}{\sqrt{F}} \Longrightarrow m \geqslant \frac{8.4 n h \sin \theta_m}{\Delta \lambda \sqrt{F} }
 \end{gather}
 
 在泰勒判据下，当条纹级数 $m$ 满足判据时，此条纹可以被分辨。需要注意，上面的所称的各级亮纹，其 0 级亮纹不在观察屏中心，而是在无穷远处。这是因为多光束薄膜干涉中，$\delta = \frac{4 \pi n_f d \cos \theta_f}{\lambda_i}$，$\theta_f = 0$ 时，$\delta $ 有最大值，$\theta_f \to \frac{\pi}{2}$ 时，$\delta \to 0$。而习惯上我们称 $\delta = 0$ 的位置为 0 级条纹，因此在这里，0 级条纹无穷远，随着 $m$ 的增大，条纹逐渐向中心靠拢。
 
-并且可以知道，$\theta_f = 0$ 时对应的最高级条纹（位于屏幕最中心的条纹）为:
+并且可以知道，$\theta_f = 0$ 时对应的最高级条纹（位于屏幕最中间的条纹，不一定是中心点）为:
 \begin{equation}
 m_{\max} =  \left \lfloor \frac{\delta}{2\pi} \right \rfloor_{\theta_f = 0} = \left \lfloor \frac{2nd}{\lambda_0} \right \rfloor,\quad \text{或}\  m_{\max} = \frac{2nd}{\lambda_0}
 \end{equation}
@@ -1881,10 +1890,12 @@ $\Delta \lambda$ 越大时，谱线越容易被分辨，但当其大到一定程
 
 也就是说，要在不发生条纹越级的条件下分辨谱线，谱宽 $\Delta \lambda$ 需要小于自由光谱宽度 $\left(\Delta \lambda\right)_{\text{fsr}}$。在此前提下，$\Delta \lambda$ 越大，谱线的分辨性越好。
 
-~\\
 
-教材中还提到了色分辨本领 $\mathscr{R} = \frac{\lambda_0}{\Delta \lambda} = m \mathscr{F} = \frac{m \pi \sqrt{F} }{2}$，
-但并没有讲清其意义，教材称其为光谱仪或分光仪器的色分辨本领，但为什么会与条纹级数 $m$ 有关？是不是该理解为给定光源 $\lambda_0, \Delta \lambda$，第 $m$ 级条纹被分辨的容易程度？暂不清楚，因此不深究。
+进一步地，对任意一个光谱仪，我们可以定义它的色分辨本领为 $\mathscr{R} = \frac{\lambda_0}{\left(\Delta \lambda\right)_{\lim}}$，色分辨本领越高，表示仪器对谱线的分辨能力越强，分辨率越高。特别地，F-P 干涉仪也可看作是一种光谱仪，有：
+\begin{equation}
+\mathscr{R} = \frac{\lambda_0}{\left(\Delta \lambda\right)_{\lim}} = \frac{\lambda_0}{\frac{\lambda_0^2}{\pi n d \sqrt{F} }} = m_{\max} \cdot \frac{\pi \sqrt{F} }{2} = \frac{\pi n d \sqrt{F}}{\lambda_0}
+\end{equation}
+
 
 
 \subsection{自由光谱}
@@ -1894,29 +1905,32 @@ $\Delta \lambda$ 越大时，谱线越容易被分辨，但当其大到一定程
 \includegraphics[width=0.8\columnwidth]{assets/3/F-P 腔.jpg}
 \caption{\bfseries F-P 腔对连续谱的选择作用}\label{F-P 腔对连续谱的选择作用}
 \end{figure}
-出现纵模的波长满足 $2nd = m\lambda_m$，因此谱线具有相同的纵模间距（“纵模”即为谱线中的“峰”），且可以计算其半峰宽：
+出现纵模的波长满足 $2nd = m\lambda_m$，因此谱线具有相同的纵模间距（“纵模”即为谱线中的“峰”），且可以计算其半峰频宽：
 \begin{equation}
-\nu_m = \frac{mc}{2nd},\quad (\nu_{m+1} - \nu_m) = \frac{c}{2nd},\quad \varepsilon_{\nu, m} = \frac{2c}{m \pi \lambda\sqrt{F}} = \frac{c}{\lambda} \cdot 
+\nu_m = \frac{mc}{2nd},\quad \Delta \nu = \nu_{m+1} - \nu_m = \frac{c}{2nd},\quad \varepsilon_{\nu, m} = \frac{2c}{m \pi \lambda\sqrt{F}} = \frac{c}{\lambda^2} \cdot \frac{\left(\Delta \lambda\right)_{\min}}{m}
 \end{equation}
-
+由此可以发现，$\varepsilon_{\nu, m}$ 对应的波长宽度 $\varepsilon_{\lambda, m} = \frac{\lambda^2}{c} \varepsilon_{\nu, m}$ 恰好是 $\frac{\left(\Delta \lambda\right)_{\min}}{m}$。
 
 
 %巧合的是，$I_T = I_T(\lambda)$ 图像中的半峰宽 $\varepsilon_{\lambda, m} = \frac{2\lambda_0}{\pi m \sqrt{F} } $ 恰好是泰勒判据中的 $\Delta \lambda \geqslant \frac{2\lambda_0}{\pi m \sqrt{F} }$。
 
 \subsection{光学谐振腔}
 
-上面的法布里-珀罗干涉仪，也常称为 F-P 标准具，或简称为标准具。光学谐振腔本质上也是一个标准具，只是光学谐振腔的腔体结构更加特殊。通常情况下，谐振腔的两侧是一对的高反射镜（也可以是平面镜、球面镜等），光源在腔体内部，发出的光在腔内来回反射，最终形成透射光谱。
+上面的法布里-珀罗干涉仪，也常称为 F-P 标准具，或简称为标准具。光学谐振腔本质上也是一个 F-P 标准具，只是光学谐振腔的腔体结构更加特殊。通常情况下，谐振腔的两侧是一对的高反射镜（也可以是平面镜、球面镜等），光源在腔体内部，发出的光在腔内来回反射，最终形成透射光谱。
 详见 \href{https://www.zhihu.com/question/476559619/answer/3015092750}{知乎：光学微腔和光学谐振腔有什么区别} 以及 \href{https://www.thorlabs.com/newgrouppage9.cfm?objectgroup\_id=9021}{ThorLabs: 法布里-珀罗干涉仪教程}。
 
 \section{激光（略）}
+
+\section{章末总结}
+
 
 
 \chapter{光的衍射}\thispagestyle{fancy}
 
 
+如何判断是否考虑半波损失？（微信群的图片）
 
-
-
+期末不考第四章2节（）
 
 
 

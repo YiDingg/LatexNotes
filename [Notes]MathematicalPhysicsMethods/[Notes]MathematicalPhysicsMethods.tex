@@ -869,11 +869,11 @@ I = \lim_{\max | \Delta z_i \to 0|}\sum_{i=1}^{n} f(\xi_i)\Delta z_i = \int_{C_{
 \int_{C}f(z) \mathrm{d}z = \int_{C}(u \mathrm{d}x - v \mathrm{d}y) + i \int_{C}( v \mathrm{d}x + u \mathrm{d}y)
 \end{equation}
 
-\section{Cauthy 定理}
+\section{Cauchy 定理}
 
-\subsection{Cauthy-Goursat 定理}
+\subsection{Cauchy-Goursat 定理}
 
-\begin{BlockTheorem}[Cauthy 定理\footnote{也称 Cauthy-Goursat 定理}]\label{Cauthy 定理}
+\begin{BlockTheorem}[Cauchy 定理\footnote{也称 Cauchy-Goursat 定理}]\label{Cauchy 定理}
 若 $f(z)$ 在{\color{red} 有界}开域 $G$ 上单值解析，在 $\partial G$ 上连续\footnote{有的教材称上述两个条件是“在闭域 $\overline{G}$ 中解析”，详见附录 \ref{在闭域上解析}}，则：
 \begin{gather}
 \oint_{\partial G} f(z) \mathrm{d}z = 0
@@ -881,9 +881,9 @@ I = \lim_{\max | \Delta z_i \to 0|}\sum_{i=1}^{n} f(\xi_i)\Delta z_i = \int_{C_{
 对单连通区域，$\partial G$ 即为外围边界线（沿逆时针）；对多连通区域，外围边界线沿逆时针积分，内部边界线沿顺时针积分\footnote{始终保持区域在自身左侧的走向称为正向。}。
 \end{BlockTheorem}
 
-\subsection{Cauthy 定理的推广}
+\subsection{Cauchy 定理的推广}
 
-\begin{BlockTheorem}[Cauthy 定理推广1]\label{Cauthy 定理推广1}
+\begin{BlockTheorem}[Cauchy 定理推广1]\label{Cauchy 定理推广1}
 连续函数 $f$ 在有界复连通区域 $G$ 上单值解析，则：
 \begin{equation}
 \oint_{C_0} f(z) \mathrm{d}z = \sum_{i=1}^{i=n} \oint_{C_i^{(-)}} f(z) \mathrm{d}z
@@ -891,29 +891,29 @@ I = \lim_{\max | \Delta z_i \to 0|}\sum_{i=1}^{n} f(\xi_i)\Delta z_i = \int_{C_{
 路径上的负号表示路径沿反相，在这里即沿逆时针。也就是所有路径（包括 $C_0$）都沿逆时针。
 \end{BlockTheorem}
 
-\begin{BlockTheorem}[Cauthy 定理推广2]\label{Cauthy 定理推广2}
+\begin{BlockTheorem}[Cauchy 定理推广2]\label{Cauchy 定理推广2}
     连续函数 $f$ 在有界单连通区域 $G$ 上单值解析，则：
     \begin{equation}
     \text{$\oint_C f(z)\mathrm{d}z,\ C \subset G$ 与路径无关，也即 $f(z)$ 存在原函数}
     \end{equation}
 \end{BlockTheorem}
 
-\begin{BlockTheorem}[Cauthy 定理推广3]\label{Cauthy 定理推广3}
+\begin{BlockTheorem}[Cauchy 定理推广3]\label{Cauchy 定理推广3}
     $C$ 为 $G$ 的边界，任取简单闭合曲线 $C' \subset G$，若连续函数 $f(z)$ 在构成的新有界复连通区域上解析，则：
     \begin{equation}
         \oint_{C} f(z) \mathrm{d}z = \oint_{C'} f(z) \mathrm{d}z
     \end{equation}
 \end{BlockTheorem}
 
-\subsection{Cauthy 定理推论}
+\subsection{Cauchy 定理推论}
 
 \begin{BlockTheorem}[Morera 定理]\label{Morera 定理}
-设 $f$ 在闭域 $\overline{G} $ 中连续，且对 $G$ 中任意闭合围道 $C$，都有 $\oint_{C} f(z) \mathrm{d}z = 0$，则 $f$ 在 $G$ 中解析。结合 Cauthy 定理的正表述，也即：
+设 $f$ 在闭域 $\overline{G} $ 中连续，且对 $G$ 中任意闭合围道 $C$，都有 $\oint_{C} f(z) \mathrm{d}z = 0$，则 $f$ 在 $G$ 中解析。结合 Cauchy 定理的正表述，也即：
 \begin{equation}
 f(z) \ \text{在 $\overline{G} $ 内解析} \Longleftrightarrow  \oint_{C} f(z) \mathrm{d}z = 0,\ \forall\ C \subset \overline{G}  \Longleftrightarrow  \ \text{积分} \int_{z_1}^{z_2} f(z) \mathrm{d}z \ \text{与路径无关},\ z_1, z_2 \in \overline{G} 
 \end{equation}
 
-Morera 定理可以理解为 Cauthy 定理的逆定理，用于判别函数在某区域上的解析性。
+Morera 定理可以理解为 Cauchy 定理的逆定理，用于判别函数在某区域上的解析性。
 \end{BlockTheorem}
 
 \begin{LineTheorem}[最大模原理]\label{最大模原理}
@@ -921,7 +921,7 @@ Morera 定理可以理解为 Cauthy 定理的逆定理，用于判别函数在�
 \end{LineTheorem}
 
 
-\begin{BlockTheorem}[Cauthy 不等式]\label{Cauthy 不等式}
+\begin{BlockTheorem}[Cauchy 不等式]\label{Cauchy 不等式}
 设函数 $f$ 在 $\overline{G}$ 中解析，则有不等式：
 \begin{equation}
 \left| f^{(n)}(z) \right| \leqslant \frac{n!}{2 \pi d^{n+1}}\cdot Ml ,\quad n = 0, 1, 2, ...
@@ -936,7 +936,7 @@ Morera 定理可以理解为 Cauthy 定理的逆定理，用于判别函数在�
 \end{BlockTheorem}
 
 \begin{LineTheorem}[Liouville 定理]\label{Liouville 定理}
-若 $f(z)$ 在全平面上解析，且 $\displaystyle \lim_{z \to \infty} | f(z) | < \infty$，则 $f(z)$ 是常数函数。
+若 $f(z)$ 在全平面上解析，且 $\displaystyle \lim_{z \to \infty} | f(z) | < \infty$，则 $f(z)$ 是常数函数。更优雅的说法是：“在全平面上解析的有界复变函数都是常数函数”。
 \end{LineTheorem}
 
 \begin{BlockTheorem}[均值定理]\label{均值定理}
@@ -1001,7 +1001,7 @@ f^{(n)}(z) = \frac{n !}{2\pi i}\oint_{\partial G} \frac{f(\zeta)}{(\zeta - z)^{n
 
 \end{BlockTheorem}
 
-\section{Cauthy 型积分与含参量积分的解析性}
+\section{Cauchy 型积分与含参量积分的解析性}
 
 \begin{BlockTheorem}[Cauchy 型积分]\label{Cauchy 型积分}
 
@@ -1024,7 +1024,7 @@ f^{(n)}(z) = \frac{n !}{2\pi i}\oint_{L} \frac{\phi(\zeta)}{(\zeta - z)^{n+1}} \
 %f^{(n)}(z) = \frac{n !}{2\pi i}\oint_{L} \frac{f(\zeta)}{(\zeta - z)^{n+1}} \mathrm{d} \zeta,\quad \forall\ z \in G, n = 1,2,3,...
 %\end{gather}
 %{\par\color{gray}\small
-%注：上面的定理事实上是 Cauchy 型积分 + 补充定义得来。为保持定理的易用性，我们直接将其称为 Cauchy 积分公式。定理的推广过程是: Cauchy 积分公式，解析函数的高阶导数，无界区域上的 Cauthy 积分公式，无界区域上的解析函数高阶导数，Cauchy 型积分。详见参考文献 \cite{数学物理方法} 的 Page 40-42.
+%注：上面的定理事实上是 Cauchy 型积分 + 补充定义得来。为保持定理的易用性，我们直接将其称为 Cauchy 积分公式。定理的推广过程是: Cauchy 积分公式，解析函数的高阶导数，无界区域上的 Cauchy 积分公式，无界区域上的解析函数高阶导数，Cauchy 型积分。详见参考文献 \cite{数学物理方法} 的 Page 40-42.
 %\par}
 \end{BlockTheorem}
 
@@ -1122,20 +1122,20 @@ v(r, \phi) &= \frac{a^2 - r^2}{2 \pi} \int_{0}^{2 \pi} \frac{ v(a, \theta) }{a^2
 \subsection{实变级数的判别法}
 复变级数的收敛性等价于实虚部对应两个实变级数的收敛性，考察一个复变函数的（绝对）收敛性时，常常会转化为实变级数的收敛性，因此重新温习实变级数判别法是十分必要的。本小节中所有数列均为实变数列。
 
-实变数列可以分为正项级数和交错级数（一般级数）。正项级数有三种最常见的判别方法：比较判别法、比式判别法 (d'Alembert 判别法) 和根式判别法 (Cauthy 根值判别法)。
+实变数列可以分为正项级数和交错级数（一般级数）。正项级数有三种最常见的判别方法：比较判别法、比式判别法 (d'Alembert 判别法) 和根式判别法 (Cauchy 根值判别法)。
 
-\begin{BlockTheorem}[比较判别法]\label{比较判别法}
+\begin{BlockTheorem}[正项级数的比较判别法]\label{比较判别法}
 比较判别法有常规形式、极限形式和上下极限形式，这里只介绍极限形式。后续的几种判别法也只给出极限形式。
 
 设正项数列 $v_n$ 和 $u_n$ 满足 $\displaystyle \lim_{n \to \infty} \frac{u_n}{v_n} = \rho \in \overline{R}$。若$\rho \in (0, +\infty)$，则 $\sum u_n$ 与 $\sum v_n$ 同敛散；若 $\rho = 0$ 且 $\sum v_n$ 收敛，则 $\sum u_n$ 收敛；若 $\rho = +\infty$ 且 $ \sum v_n$ 发散，则 $\sum u_n$ 发散。
 \end{BlockTheorem}
 
 
-\begin{LineTheorem}[比式判别法]\label{比式判别法}
+\begin{LineTheorem}[正项级数的 d'Alembert 比式判别法]\label{比式判别法}
     设正项级数 $\sum u_n$ 满足 $\displaystyle \lim_{n \to \infty} \frac{u_{n+1}}{u_n}  = \rho$。若 $\rho \in [0,\ 1)$ 则 $\sum u_n$ 收敛；若 $\rho > 1$ 则 $\sum u_n$ 发散；$\rho = 1$ 时无法判断。
 \end{LineTheorem}
 
-\begin{LineTheorem}[根式判别法\footnote{相比于比式判别法，根式判别法的适用范围更广。这是因为 $\lim \frac{c_{n+1}}{c_n} = A \Longrightarrow  \lim \sqrt[n]{c_n} = A$，因此，比式可以使用的场合，根式一定可以使用。}]\label{根式判别法}
+\begin{LineTheorem}[正项级数的 Cauchy 根式判别法\footnote{相比于比式判别法，根式判别法的适用范围更广。这是因为 $\lim \frac{c_{n+1}}{c_n} = A \Longrightarrow  \lim \sqrt[n]{c_n} = A$，因此，比式可以使用的场合，根式一定可以使用。}]\label{根式判别法}
     设正项级数 $u_n$ 满足 $\displaystyle \lim_{n \to \infty} \sqrt[n]{u_n}  = \rho$。若 $\rho \in [0,\ 1)$ 则 $\sum u_n$ 收敛；若 $\rho > 1$ 则 $\sum u_n$ 发散；$\rho = 1$ 时无法判断。
 \end{LineTheorem}
 
@@ -1175,17 +1175,18 @@ v(r, \phi) &= \frac{a^2 - r^2}{2 \pi} \int_{0}^{2 \pi} \frac{ v(a, \theta) }{a^2
 
 另外，还有一些其他的定理，如下：
 
-\begin{BlockTheorem}[正项级数的 Raabe 判别法]\label{正项级数的 Raabe 判别法}
+\begin{LineTheorem}[正项级数的 Raabe 判别法]\label{正项级数的 Raabe 判别法}
+    设正项数列 $\{a_n\}$ 满足 $\displaystyle \lim_{n \to \infty} n\left(\frac{a_n}{a_{n+1}} - 1\right) = r \in \R$。若 $r > 1$，则级数 $\sum a_n$ 收敛；若 $r < 1$，则级数 $\sum a_n$ 发散。
+\end{LineTheorem}
 
-\end{BlockTheorem}
+\begin{LineTheorem}[正项级数的 Bertrand 判别法]\label{正项级数的 Bertrand 判别法}
+    设正项数列 $\{a_n\}$ 满足 $\displaystyle \lim_{n \to \infty} \ln n \left[n\left(\frac{a_n}{a_{n+1}} - 1\right) - 1\right] = r \in \R$。若 $r > 1$，则级数 $\sum a_n$ 收敛；若 $r < 1$，则级数 $\sum a_n$ 发散。
+\end{LineTheorem}
 
-\begin{BlockTheorem}[正项级数的 Bertrand 判别法]\label{正项级数的 Bertrand 判别法}
 
-\end{BlockTheorem}
-
-\begin{BlockTheorem}[正项级数的 Gauss 判别法]\label{正项级数的 Gauss 判别法}
-
-\end{BlockTheorem}
+\begin{LineTheorem}[正项级数的 Gauss 判别法]\label{正项级数的 Gauss 判别法}
+    设正项数列 $\{a_n\}$ 满足 $\displaystyle \frac{a_n}{a_{n+1}} = 1 + \frac{\mu}{n} + O(\frac{1}{n^p})$，其中 $p > 1$。若 $\mu > 1$，则级数 $\sum a_n$ 收敛；若 $\mu < 1$，则级数 $\sum a_n$ 发散。
+\end{LineTheorem}
 
 
 \begin{BlockTheorem}[特殊级数的 Kronecker 定理]\label{特殊级数的 Kronecker 定理}
@@ -1212,7 +1213,7 @@ v(r, \phi) &= \frac{a^2 - r^2}{2 \pi} \int_{0}^{2 \pi} \frac{ v(a, \theta) }{a^2
 
 判断复数级数是否绝对收敛，由于取模后皆为正实数，因此与正项级数的收敛判别完全等价，常见的方法有比较判别法、比式判别法、根式判别法和 Gauss 判别法。只用于判断绝对收敛性的判别法等价于实变级数判别法，我们不再重复叙述，这里只给出其它几种判别法。
 
-\begin{LineTheorem}[Gauss 判别法]\label{Gauss 判别法}
+\begin{LineTheorem}[复变级数的 Gauss 判别法]\label{Gauss 判别法}
 假设存在 $\zeta \in \C, \ p > 1$ 使得序列 $u_n$ 满足：
 \begin{equation}
     \frac{u_n}{u_{n+1}} = 1 + \frac{\zeta}{n} + O\left( \frac{1}{n^p} \right),\quad \zeta \in \C, \ p > 1
@@ -1220,11 +1221,11 @@ v(r, \phi) &= \frac{a^2 - r^2}{2 \pi} \int_{0}^{2 \pi} \frac{ v(a, \theta) }{a^2
 若 $\Re \zeta > 1$，则 $\sum | u_n |$ 收敛；若 $\Re \zeta \leqslant 1$，则 $\sum | u_n |$ 发散。
 \end{LineTheorem}
 
-\begin{LineTheorem}[Dirichlet 判别法]\label{Dirichlet 判别法}
+\begin{LineTheorem}[复变级数的 Dirichlet 判别法]\label{Dirichlet 判别法}
     设级数 $\sum c_n$ 有界，$\sum \left(z_{n+1} - z_{n}\right)$ 绝对收敛且 $\lim z_n = 0$，则级数 $\sum c_n z_n$ 收敛。
 \end{LineTheorem}
 
-\begin{BlockTheorem}[Weierstrass 判别法\footnote{Theorem.\ref{Gauss 判别法} (Gauss 判别法) 是 Theorem.\ref{Weierstrass 判别法} (Weierstrass 判别法) 的特殊情形。}]\label{Weierstrass 判别法}
+\begin{BlockTheorem}[复变级数的 Weierstrass 判别法\footnote{Theorem.\ref{Gauss 判别法} (Gauss 判别法) 是 Theorem.\ref{Weierstrass 判别法} (Weierstrass 判别法) 的特殊情形。}]\label{Weierstrass 判别法}
     假设存在 $\zeta \in \C, \ p > 1$ 使得序列 $u_n$ 满足：
     \begin{equation}
         \frac{z_n}{z_{n+1}} = 1 + \frac{\zeta}{n} + O\left( \frac{1}{n^p} \right),\quad \zeta \in \C, \ p > 1
@@ -1323,7 +1324,7 @@ v(r, \phi) &= \frac{a^2 - r^2}{2 \pi} \int_{0}^{2 \pi} \frac{ v(a, \theta) }{a^2
 \frac{1}{R} = \lim_{n \to \infty} \left| \frac{c_{n+1}}{c_{n}} \right|
 \end{gather}
 
-前者称为 Cauchy-Hadamard 公式，是普遍成立的，后者称为 d'Alembert 公式，在极限存在时成立，但计算通常更简单。
+前者称为 Cauchy-Hadamard 公式，是普遍成立的，后者称为 d'Alembert 公式，在极限存在时成立，但通常计算更简单。
 
 \begin{BlockTheorem}[Abel 第二定理]\label{Abel 第二定理}
 设幂级数 $\sum_{n = 0}^{\infty} c_n (z - a)^n$ 在收敛圆内收敛到 $f(z)$，且在收敛圆周上某点 $z_0$ 也收敛，和为 $S(z_0)$ 则当由收敛圆内趋于 $z_0$ 时，只要保持在以 $z_0$ 为顶点、张角为 $2 \phi < \pi$的范围内（见图 4.1），$f(z)$ 就一定趋于 $S(z_0)$，也即：
@@ -1472,7 +1473,7 @@ a_n = \displaystyle \frac{1}{2 \pi i}\oint_{C}\frac{f(\zeta)}{(\zeta - b)^{n+1}}
     \label{常见的留数计算方法}
 \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}\hline
     函数 & 给定条件 & 极点阶数 & 留数 $\Res \left[ f(z), z_0 \right]$  \\ \hline
-    $f(z)$ & $\displaystyle \lim_{z \to z_0} (z-z_0)f(z) = 0$ & 0 & 0 \\ \hline
+    $f(z)$ & $\displaystyle \lim_{z \to z_0} (z-z_0)f(z) = 0$ & 0 {\color{red} (或 1, 待定)} & 0 \\ \hline
     $f(z)$ & $\displaystyle \lim_{z \to z_0} (z-z_0)f(z) \ne 0$ & 1 & $\displaystyle \lim_{z\to z} (z-z_0)f(z)$ \\ \hline
     $f(z)$ & $\begin{matrix}\displaystyle
         \lim_{z \to z_0} (z-z_0)^{k-1}f(z) = \infty \\ 
@@ -1513,28 +1514,95 @@ A = \Res \left[ f(z), 1 \right] = \frac{1}{2},\quad B = \Res \left[ f(z), 2\righ
     & = - \frac{1}{2 \pi i} \lim_{R \to \infty} \oint_{C_R} f(z) \ \mathrm{d}z&& \text{(直接法)} \\ 
     & = - \sum_{i=1}^{n} \Res \left[ f(z), z_i \right]  && \text{(间接法)} \\ 
     & = - K && \text{(大圆弧, 需要 $zf(z) \to K$)} \\ 
-    & = - \Res \left[ \frac{1}{z^2} f(\frac{1}{z}), 0 \right] && \text{(换元, {\color{red} 最常用})}
+    & = - \Res \left[ \frac{1}{z^2} f(\frac{1}{z}), 0 \right] && \text{(换元)}
 \end{aligned}
 \end{align}
+其中，最常用的是大圆弧和计算换元后的留数 $- \Res \left[ \frac{1}{z^2} f(\frac{1}{z}), 0 \right]$。
 
 \section{数物期中复习}
 
-“数物期中典题复习 (2024秋)”详见网址 \href{https://www.123865.com/s/0y0pTd-4lKj3}{https://www.123865.com/s/0y0pTd-4lKj3}。
+“数物期中典题复习 (2024秋)”详见网址 \href{https://www.123865.com/s/0y0pTd-4lKj3}{https://www.123865.com/s/0y0pTd-4lKj3}，介绍了第三章至第六章中的一些可能有困难的题目，更基本的题目翻阅参考文献 \cite{数学物理方法习题指导} 上的例题即可。
 
 
 
+\section{留数定理的应用}
+
+\subsection{有理三角函数积分}
+
+关键在于做换元 $z = e^{i \theta}$，此时有：
+\begin{gather}
+\sin \theta = \frac{1}{2i}\left( e^{i \theta} - e^{-i \theta} \right) = \frac{1}{2i}\left( z - \frac{1}{z} \right) =\frac{z^2 - 1}{2iz} \\
+\cos \theta = \frac{1}{2}\left( e^{i \theta} + e^{-i \theta} \right) = \frac{1}{2}\left( z + \frac{1}{z} \right) =\frac{z^2 + 1}{2z} \\
+\ \mathrm{d} z = i e^{i \theta} \ \mathrm{d} \theta = i z \ \mathrm{d} \theta \Longrightarrow \mathrm{d} \theta = \frac{1}{iz}\ \mathrm{d} z
+\end{gather}
+然后按照正常的复变函数积分计算即可。
+
+特别地，记 $R(\sin \theta,\ \cos \theta)$ 是有理三角函数，我们有定理：
+
+\begin{BlockTheorem}[有理三角函数积分]\label{有理三角函数积分}
+设 $R(\sin \theta,\ \cos \theta)$ 是有理三角函数，对 $R(\sin \theta,\ \cos \theta)$ 作变换 $z = e^{i \theta}$，得到函数 $f(z)$。若 $R(\sin \theta,\ \cos \theta)$ 在 $\theta \in [0, 2\pi]$ 中存在瑕点（奇点），在单位圆 $| z |  = 1$ 上有奇点。记单位圆内部的孤立奇点为 $a_k\ (k =  1, 2, ..., n)$，圆边界上的奇点为 $b_k\ (k =  1, 2, ..., m)$，则有：
+\begin{equation}
+\int_{0}^{2\pi} R(\sin \theta,\ \cos \theta) \ \mathrm{d} \theta = {\color{red} 2 \pi} \cdot \sum_{| z | < 1} \Res \left[ \frac{f(z)}{z},\ a_k \right] + {\color{red} \pi} \cdot \sum_{| z | = 1} \Res \left[ \frac{f(z)}{z},\ b_k \right]
+\end{equation}
+特别地，当无瑕点时，圆边界上也没有奇点，此时有：
+\begin{equation}
+    \int_{0}^{2\pi} R(\sin \theta,\ \cos \theta) \ \mathrm{d} \theta = {\color{red} 2 \pi} \cdot \sum_{| z | < 1} \Res \left[ \frac{f(z)}{z},\ a_k \right] 
+\end{equation}
+
+\end{BlockTheorem}
+
+
+\subsection{无穷积分}
+求无穷积分时，可综合考奇偶性质、作圆弧轨道、大圆弧定理、留数定理等方法，常常会将多种方法结合使用。
 
 
 
+\subsection{含三角函数的无穷积分}
+对于含三角函数的无穷积分：
+\begin{equation}
+I = \int_{-\infty}^{+\infty} f(x) \cos px \ \mathrm{d} x \ \text{\ 或\ } I = \int_{-\infty}^{+\infty} f(x) \sin px \ \mathrm{d} x
+\end{equation}
+仍可延续上一节的思路，但是取被积函数为 $f(z)e^{ipz}$。作为一个例子，取积分围道是半圆并上实轴直径，此时有：
+\begin{equation}
+\oint_{C} f(z) e^{ipz} \ \mathrm{d} z 
+= \int_{-R}^{R} f(x) e^{ipx} \ \mathrm{d}x 
++ \int_{L}^{R} f(z) e^{ipz} \ \mathrm{d}z
+\end{equation}
+只要能求出 $\int_{L}^{R} f(z) e^{ipz} \ \mathrm{d}z$ 和总积分值，就比较实虚部得到所需答案。
 
 
+\begin{BlockTheorem}[Jordan 引理]\label{Jordan 引理}
+设在 $\arg z \in [0, \pi]$  范围内，$f(z)$ 在 $z \to \infty$ 时一致趋于 0 ，则：
+\begin{equation}
+\lim_{R \to \infty} 
+\int_{L_R} 
+f(z) e^{ipz} \ \mathrm{d} z = 0
+,\quad \forall\ p > 0
+\end{equation}
+其中 $L_R = \left\{z \in \C \left.\begin{matrix}\\\end{matrix}\right| | z | = R,\ y > 0\right\}$ 是以原点为圆心，$R$ 为
+半径的上半圆弧（不包括实轴，不闭合）。
+\end{BlockTheorem}
+
+\begin{BlockTheorem}[Jordan 引理的增强]\label{Jordan 引理的增强}
+    设 $\theta_1,\ \theta_2,\ \in [0, 2\pi]$ 且 $\theta_1 < \theta_2$，若在 $\arg z \in [\theta_1, \theta_2]$ 范围内，$f(z)$ 在 $z \to \infty$ 时一致趋于 0 ，则：
+    \begin{equation}
+    \lim_{R \to \infty} 
+    \int_{L_R} 
+    f(z) e^{ipz} \ \mathrm{d} z = 0
+    ,\quad \forall\ p > 0
+    \end{equation}
+    其中 $L_R = \left\{z \in \C \left.\begin{matrix}\\\end{matrix}\right| | z | = R,\ \arg z \in [\theta_1, \theta_2]\right\}$ 是以原点为圆心，$R$ 为
+    半径的圆弧，所张角度大小为 $(\theta_2 - \theta_1)$。
+\end{BlockTheorem}
 
 
+\subsection{积分路径上有奇点的情况}
 
+\subsection{涉及多值函数的复变积分}
 
+\subsection{特殊积分围道}
 
-
-
+\subsection{计算无穷级数的和}
 
 
 
@@ -1813,7 +1881,7 @@ A = \Res \left[ f(z), 1 \right] = \frac{1}{2},\quad B = \Res \left[ f(z), 2\righ
 f^{(n)}(z) = \frac{n !}{2\pi i} \oint_{\partial G} \frac{f(\zeta)}{(\zeta - z )^{n+1}} \ \mathrm{\zeta},\quad \forall\ n \in \N = \{0, 1, 2, \cdots\}
 \end{equation}
 
-在计算（含奇点的）回路积分时，我们常常会用到上述公式，有时取 $n = 0$，有时又取 $n =1$ 或其它数。事实上，上述公式的本质是：在计算含有唯一奇点的回路积分时，将奇点“挖出来”，借助 Cauchy Theorem（Theorem.\ref{Cauthy 定理}）转为绕小圆的回路积分，然后利用小圆弧定理（Theorem.\ref{小圆弧定理}）得到最终结果。这里面的关键就是“唯一奇点”。
+在计算（含奇点的）回路积分时，我们常常会用到上述公式，有时取 $n = 0$，有时又取 $n =1$ 或其它数。事实上，上述公式的本质是：在计算含有唯一奇点的回路积分时，将奇点“挖出来”，借助 Cauchy Theorem（Theorem.\ref{Cauchy 定理}）转为绕小圆的回路积分，然后利用小圆弧定理（Theorem.\ref{小圆弧定理}）得到最终结果。这里面的关键就是“唯一奇点”。
 
 在 $f(z)$ 解析的情况下，$g(z) = \frac{f(z)}{(z - a)}$ 有唯一奇点 $a$，且 $(z - a)\cdot g(z) $ 在 $\overline{G}$ 上解析，此时的 Cauchy 积分公式便可以写成：
 \begin{equation}

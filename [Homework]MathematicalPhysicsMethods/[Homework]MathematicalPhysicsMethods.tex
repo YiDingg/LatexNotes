@@ -15,7 +15,8 @@
     \def\Arccos{\mathrm{\,Arccos\,}}
     \def\Arcsin{\mathrm{\,Arcsin\,}}
     \def\Arctan{\mathrm{\,Arctan\,}}
-    \def\res{\mathrm{res\,}}
+    \def\res{\mathrm{\,res\,}}
+    \def\sgn{\mathrm{\,sgn\,}}
 
 % 通用宏定义
     \def\N{\mathbb{N}}
@@ -340,7 +341,9 @@
 \pagenumbering{arabic} 
 \rhead{\leftmark}
 
-\chapter{Homework 1: 2024.8.26 - 2024.9.1}\thispagestyle{fancy}
+\chapter{Homework 1: 2024.8.26 - 2024.9.1}
+\rhead{Homework 1: 2024.8.26 - 2024.9.1}
+\thispagestyle{fancy}
 
 \section{计算}
 
@@ -500,7 +503,9 @@ f(x,y) = \frac{x^2 - y^2}{ x^2 + y^2 } = \frac{1-k^2}{1+k^2}
 
 
 
-\chapter{Homework 2: 2024.9.2 - 2024.9.8}\thispagestyle{fancy}
+\chapter{Homework 2: 2024.9.2 - 2024.9.8}
+\rhead{Homework 2: 2024.9.2 - 2024.9.8}
+\thispagestyle{fancy}
 
 
 \section{下列函数在何处可导，何处解析}
@@ -654,7 +659,7 @@ v(x,y) = \int 2y \ \mathrm{d}x + \int \mathrm{d}y = 2xy + y + C \\
 v_x' = -u_y' = -e^y\cos x,\quad v_y' = u_x' = -e^y\sin x\\ 
 \Longrightarrow
 v(x,y) = \int -e^y\cos x\  \mathrm{d}x + \int 0\ \mathrm{d}y = - e^y\sin x  + C \\ 
-\Longrightarrow f(x,y) = (e^y\cos x) + i(-e^y\sin x ) + C ,\ C \in \R
+\Longrightarrow f(x,y) = (e^y\cos x) + i(-e^y\sin x + C),\quad  C \in \R
 \end{gather*}
 \end{enumerate}
 
@@ -694,22 +699,12 @@ u_x' = 6xy,\quad u_y' = 3x^2 - 3y^2 \\
 \begin{gather*}
 \frac{\partial  }{\partial r }u\left(x(r, \theta),y(r, \theta)\right) 
 = \frac{\partial u(x,y) }{\partial x }\cdot\frac{\partial x}{\partial r } + \frac{\partial u(x,y) }{\partial y}\cdot\frac{\partial y}{\partial r } 
-= \frac{\partial u(x,y) }{\partial x }\cdot \cos \theta + \frac{\partial u(x,y) }{\partial y}\cdot \sin \theta 
+= \frac{\partial u(x,y) }{\partial x }\cdot \cos \theta + \frac{\partial u(x,y) }{\partial y}\cdot \sin \theta
 \\
 \frac{\partial  }{\partial \theta }v\left(x(r, \theta),y(r, \theta)\right) 
 = \frac{\partial v(x,y) }{\partial x }\cdot\frac{\partial x}{\partial \theta } + \frac{\partial v(x,y) }{\partial y}\cdot\frac{\partial y}{\partial \theta } 
 = - \frac{\partial v(x,y) }{\partial x } \cdot r\sin \theta + \frac{\partial v(x,y) }{\partial y}\cdot r \cos \theta 
-\end{gather*}
-
-
-
-联立 C-R 条件，化简得到：
-\begin{equation*}
-v_r' = -u_y'\cos \theta + u_x' \sin \theta = \frac{1}{r}u_\theta'
-\end{equation*}
-
-同理，由偏导关系：
-\begin{gather*}
+\\ 
 \frac{\partial  }{\partial \theta }u\left(x(r, \theta),y(r, \theta)\right) 
 = \frac{\partial u(x,y) }{\partial x }\cdot\frac{\partial x}{\partial \theta } + \frac{\partial u(x,y) }{\partial y}\cdot\frac{\partial y}{\partial \theta } 
 = - \frac{\partial u(x,y) }{\partial x } \cdot r\sin \theta + \frac{\partial u(x,y) }{\partial y}\cdot r \cos \theta 
@@ -717,11 +712,26 @@ v_r' = -u_y'\cos \theta + u_x' \sin \theta = \frac{1}{r}u_\theta'
 \frac{\partial  }{\partial r }v\left(x(r, \theta),y(r, \theta)\right) 
 = \frac{\partial v(x,y) }{\partial x }\cdot\frac{\partial x}{\partial r } + \frac{\partial v(x,y) }{\partial y}\cdot\frac{\partial y}{\partial r } 
 = \frac{\partial v(x,y) }{\partial x }\cdot \cos \theta + \frac{\partial v(x,y) }{\partial y}\cdot \sin \theta 
+\\ 
+\Longrightarrow 
+\begin{cases}
+    u_r' = u_x' \cos \theta + u_y' \sin \theta , &u_\theta' = r \left(-u_x'\sin \theta + u_y' \cos \theta\right)\\ 
+    v_r' =  v_x'\cos \theta + v_y' \sin \theta , &v_\theta' = r\left(-v_x' \sin \theta + v_y' \cos \theta \right)
+\end{cases}
 \end{gather*}
+
 联立 C-R 条件，化简得到：
 \begin{equation*}
-u_r' = u_x'\cos \theta + u_y' \sin \theta = \frac{1}{r}v_\theta'
+\begin{cases}
+    u_r' = v_y' \cos \theta - v_x' \sin \theta , &u_\theta' = r \left(-v_y'\sin \theta - v_x' \cos \theta\right)\\ 
+    v_r' =  -u_y'\cos \theta + u_x' \sin \theta , &v_\theta' = r\left(u_y' \sin \theta + u_x' \cos \theta \right)
+\end{cases}
 \end{equation*}
+将两个大括号中的内容作对比，立即得到：
+\begin{equation}
+    u_r' = \frac{1}{r}v_\theta',\quad v_r' = -\frac{1}{r}u_\theta'
+\end{equation}
+
 
 反之也可以化为原 C-R 条件，因此 C-R 条件在极坐标下的形式为：
 \begin{equation*}
@@ -761,7 +771,9 @@ g(z) = u_g(x,y) + iv_g(x,y),\quad u_g(x,y) = u(x,-y),\ v_g(x,y) = -v(x,-y)
 \end{enumerate}
 
 
-\chapter{Homework 3: 2024.9.9 - 2024.9.15}\thispagestyle{fancy}
+\chapter{Homework 3: 2024.9.9 - 2024.9.15}
+\rhead{Homework 3: 2024.9.9 - 2024.9.15}
+\thispagestyle{fancy}
 
 \section{若 $f(z)$ 解析，$\arg f(z)$ 是否为调和函数？}
 
@@ -976,7 +988,9 @@ z = \frac{\pi}{2} + k\pi, \quad k \in \Z \text{ 或 } z = \infty
 
 与 (2) 同理，考虑宗量 $\frac{(z-a)(z-b)}{(z-c)}$ 的零点和无穷点，得到 $z = a,b,c, \infty$，即为所求分支点。
 
-\chapter{Homework 4: 2024.9.16 - 2024.9.22}\thispagestyle{fancy}
+\chapter{Homework 4: 2024.9.16 - 2024.9.22}
+\rhead{Homework 4: 2024.9.16 - 2024.9.22}
+\thispagestyle{fancy}
 
 \section{计算下列积分}
 
@@ -1088,7 +1102,9 @@ f(a)
 \end{equation}
 因此积分的值与 $r$ 无关。
 
-\chapter{Homework 5: 2024.9.23 - 2024.9.29}\thispagestyle{fancy}
+\chapter{Homework 5: 2024.9.23 - 2024.9.29}
+\rhead{Homework 5: 2024.9.23 - 2024.9.29}
+\thispagestyle{fancy}
 
 {\color{red}\large ！！！不要忘了 $2 \pi i$ ！！！}
 
@@ -1231,7 +1247,9 @@ $F(z)$ 是单值的，也即积分与路径无关，这等价于被积函数是�
 I =  2 \pi i \left\{ \left[e^z\right]_{z=0} + \frac{a}{2!}\cdot\left[e^z\right]^{(2)}_{z=0} \right\} = 2 \pi i \left( 1 + \frac{a}{2} \right) = 0 \Longrightarrow a = -2
 \end{equation}
 
-\chapter{Homework 6: 2024.10.8 - 2024.10.14}\thispagestyle{fancy}
+\chapter{Homework 6: 2024.10.8 - 2024.10.14}
+\rhead{Homework 6: 2024.10.8 - 2024.10.14}
+\thispagestyle{fancy}
 
 求幂级数的收敛半径有两个常用方法：
 \begin{gather}
@@ -1243,23 +1261,23 @@ I =  2 \pi i \left\{ \left[e^z\right]_{z=0} + \frac{a}{2!}\cdot\left[e^z\right]^
 
 \section{确定下列幂级数的收敛半径}
 
-\subsection{$\sum_{n=1}^{\infty} \frac{z^n}{n}$}
+\subsection{$\displaystyle \sum_{n=1}^{\infty} \frac{z^n}{n}$}
 \noindent
 \begin{equation}
     \frac{1}{R} = \lim_{n \to \infty} \frac{n}{n+1} = 1 \Longrightarrow R = 1
 \end{equation}
 
-\subsection{$\sum_{n=1}^{\infty} n^n z^n $}
+\subsection{$\displaystyle \sum_{n=1}^{\infty} n^n z^n $}
 \noindent
 \begin{equation}
     \frac{1}{R} = \lim_{n \to \infty} \frac{(n+1)^{n+1}}{n^n} = \lim_{n \to \infty} (n+1)\cdot \left(1 + \frac{1}{n}\right)^n = \infty \cdot e \Longrightarrow R = 0
 \end{equation}
 
-\subsection{$\sum_{n=1}^{\infty} z^{n!},\quad 
+\subsection{$\displaystyle \sum_{n=1}^{\infty} z^{n!},\quad 
 ???
 $}
 
-\subsection{$\sum_{n=1}^{\infty} z^{2n}$}
+\subsection{$\displaystyle \sum_{n=1}^{\infty} z^{2n}$}
 \noindent
 \begin{equation}
 \text{级数 $\sum_{n=1}^{\infty} z^{n} $ 的收敛半径 $r = 1 \Longrightarrow  \sum_{n=1}^{\infty} z^{2n}$ 的收敛半径为 $R = \sqrt{r} = 1$。}
@@ -1267,14 +1285,14 @@ $}
 
 
 
-\subsection{$\sum_{n=1}^{\infty} \left[3 + (-1)^n\right]^n z^n$}
+\subsection{$\displaystyle \sum_{n=1}^{\infty} \left[3 + (-1)^n\right]^n z^n$}
 \noindent
 \begin{equation}
 \frac{1}{R} = \overline{\lim_{n \to \infty}} \left[3 + (-1)^n\right] = 4 \Longrightarrow R = \frac{1}{4}
 \end{equation}
 
 
-\subsection{$\sum_{n=1}^{\infty} cos(in) \cdot z^n$}
+\subsection{$\displaystyle \sum_{n=1}^{\infty} cos(in) \cdot z^n$}
 \noindent
 \begin{equation}
 \frac{1}{R} 
@@ -1284,7 +1302,7 @@ $}
 = | e^{i(-i)} | = e \Longrightarrow R = \frac{1}{e}
 \end{equation}
 
-\subsection{$\sum_{n=1}^{\infty} (n + a^n) z^n$}
+\subsection{$\displaystyle \sum_{n=1}^{\infty} (n + a^n) z^n$}
 \noindent
 \begin{equation}
 \frac{1}{R} 
@@ -1301,7 +1319,7 @@ R =
 \end{cases}
 \end{equation}
 
-\subsection{$\sum_{n=1}^{\infty} (1 - \frac{1}{n})^n z^n$}
+\subsection{$\displaystyle \sum_{n=1}^{\infty} (1 - \frac{1}{n})^n z^n$}
 \noindent
 \begin{equation}
 \frac{1}{R} = \overline{\lim_{n \to \infty}} \left(1 - \frac{1}{n}\right) = 1 \Longrightarrow R = 1
@@ -1309,7 +1327,7 @@ R =
 
 \section{设幂级数 $\sum_{n=1}^{\infty} c_n z^n$ 的收敛半径为 $R \in (0,\infty)$，求下列幂级数的收敛半径}
 
-\subsection{$\sum_{n=1}^{\infty} n^Rc_n z^n$}
+\subsection{$\displaystyle \sum_{n=1}^{\infty} n^Rc_n z^n$}
 \noindent
 \begin{equation}
 \frac{1}{R_1} 
@@ -1318,7 +1336,7 @@ R =
 = 1 \cdot \frac{1}{R} \Longrightarrow R_1 = R
 \end{equation}
 
-\subsection{$\sum_{n=1}^{\infty} (2^n - 1)c_n z^n$}
+\subsection{$\displaystyle \sum_{n=1}^{\infty} (2^n - 1)c_n z^n$}
 \noindent
 \begin{equation}
 \frac{1}{R_2} 
@@ -1326,7 +1344,7 @@ R =
 = 2\cdot \frac{1}{R} \Longrightarrow R_2 = \frac{R}{2}
 \end{equation}
 
-\subsection{$\sum_{n=1}^{\infty} (c_n)^k z^n$}
+\subsection{$\displaystyle \sum_{n=1}^{\infty} (c_n)^k z^n$}
 \noindent
 \begin{equation}
 \frac{1}{R_3}
@@ -1384,7 +1402,7 @@ $z = 0$ 时级数为 0，因此 $C_2 = 0$。由于原级数在 $| z | < 1$ 内�
 
 
 
-\subsection{$\sum_{n=1}^{\infty} n z^n$}
+\subsection{$\displaystyle \sum_{n=1}^{\infty} n z^n$}
 级数的收敛半径为 1，由绝对收敛性: 
 \begin{equation}
     \sum_{n=1}^{\infty} n z^n = \sum_{n=1}^{\infty} (n+1) z^n - \sum_{n=1}^{\infty} z^n = \sum_{n=1}^{\infty} (n+1) z^n - \frac{z}{1 - z}
@@ -1405,19 +1423,30 @@ $z = 0$ 时级数为 0，因此 $C_2 = 0$。由于原级数在 $| z | < 1$ 内�
     = \frac{z}{(1 - z)^2}
 \end{equation}
 
-\subsection{$\sum_{n=1}^{\infty} \frac{z^{2n+1}}{2n+1}$}
+\subsection{$\displaystyle \sum_{n=0}^{\infty} \frac{z^{2n+1}}{2n+1}$}
 由一致收敛性：
 \begin{gather}
-    \sum_{n=1}^{\infty} \frac{z^{2n+1}}{2n+1}
-    =  \int \left[ \sum_{n=1}^{\infty}  \frac{\mathrm{d} }{\mathrm{d} z }  \left(\frac{z^{2n+1}}{2n+1}\right) \right]\ \mathrm{d}z
-    =  \int \left[  \sum_{n=1}^{\infty} \left(z^2\right)^{n}  \right]\ \mathrm{d}z 
-    =  \int \frac{z^2}{1 - z^2} \ \mathrm{d}z \\ 
-    =  \int \left[ -1 - \frac{1}{2}\left( \frac{1}{z - 1} - \frac{1}{z + 1}\right) \right] \ \mathrm{d}z
-    =  - z - \frac{1}{2}\ln \left(\frac{z - 1}{z + 1}\right)  + C
+    \sum_{n=0}^{\infty} \frac{z^{2n+1}}{2n+1}
+    =  \int \left[ \sum_{n=0}^{\infty}  \frac{\mathrm{d} }{\mathrm{d} z }  \left(\frac{z^{2n+1}}{2n+1}\right) \right]\ \mathrm{d}z
+    =  \int \left[  \sum_{n=0}^{\infty} \left(z^2\right)^{n}  \right]\ \mathrm{d}z 
+    =  \int \frac{1}{1 - z^2} \ \mathrm{d}z \\ 
+    =  \int \left[ - \frac{1}{2} \left(\frac{1}{z - 1} - \frac{1}{z + 1}\right) \right] \ \mathrm{d}z
+    =  \frac{1}{2}\ln \left(\frac{1 + z}{1 - z}\right) + C
 \end{gather}
 $z = 0$ 时级数为 0，因此 $C = 0$。
+{\par\color{gray}\small
+需要注意，这里的定积分 $\int \frac{1}{1 - z^2} \ \mathrm{d}z$ 结果与 $z$ 的范围有关，当 $| z | < 1$ 时，对应实函数上的 $ -1 < x < 1$，此时 $1 - x > 0$，所以应该对 $\frac{1}{1 - z}$ 积分：
+\begin{equation}
+    \int \frac{1}{1 - z^2} \ \mathrm{d}z = \int \frac{1}{2}\left( \frac{1}{1 - z} + \frac{1}{1 + z} \right) \ \mathrm{d}z = \frac{1}{2}\left[- \ln (1 - z) + \ln (1 + z)\right] + C = \frac{1}{2}\ln \left(\frac{1 + z}{1 - z}\right) + C
+\end{equation}
+当 $| z | > 1$ 时，对应实函数上的 $x > 1$，此时 $x - 1 > 0$，所以应该对 $\frac{1}{z - 1}$ 积分：
+\begin{equation}
+    \int \frac{1}{1 - z^2} \ \mathrm{d}z = \int \frac{1}{2}\left(  \frac{1}{z + 1} - \frac{1}{z - 1} \right) \ \mathrm{d}z = \frac{1}{2}\left[\ln (z + 1) - \ln (z - 1)\right] + C = \frac{1}{2}\ln \left(\frac{z + 1}{z - 1}\right) + C
+\end{equation}
+\par}
 
-\subsection{$\sum_{n=1}^{\infty} (-1)^{n+1}\frac{z^n}{n}$}
+
+\subsection{$\displaystyle \sum_{n=1}^{\infty} (-1)^{n+1}\frac{z^n}{n}$}
 由一致收敛性：
 \begin{gather}
     \sum_{n=0}^{\infty} \frac{z^{n+1}}{n+1} 
@@ -1472,17 +1501,21 @@ S(z)
 \end{align}
 对给定的区域 $G$，前一项是有限和，自然收敛，后一项是收敛级数，因此原级数在 $G$ 上一致收敛。 $\quad\square$
 
-\chapter{Homework 7: 2024.10.15 - 2024.10.16 (略)}\thispagestyle{fancy}
-
-
-
-\chapter{Homework 8: 2024.10.15 - 2024.10.21}\thispagestyle{fancy}
+\chapter{Homework 7: 2024.10.15 - 2024.10.16}
+\rhead{Homework 7: 2024.10.15 - 2024.10.16}
+\thispagestyle{fancy}
 \vspace*{-6mm}
 \begin{graybox}
-作业题目详见网址 \href{https://www.123865.com/s/0y0pTd-jKKj3}{https://www.123865.com/s/0y0pTd-jKKj3}，后文不再重复叙述题目。
+作业题目详见网址 \href{https://www.123865.com/s/0y0pTd-jKKj3}{https://www.123865.com/s/0y0pTd-jKKj3}，除非必要，后文不再重复叙述题目。
 \end{graybox}
 
-\section{}
+
+\chapter{Homework 8: 2024.10.15 - 2024.10.21}
+\rhead{Homework 8: 2024.10.15 - 2024.10.21}
+\thispagestyle{fancy}
+
+
+\section{讨论下列函数所有奇点的性质}
 \begin{enumerate}
 \item $\frac{1}{z - z^3}$ : 
 有 $z = 0, 1, -1$ 三个一阶极点
@@ -1499,14 +1532,14 @@ $\lim_{z\to \infty} \frac{1 - e^z}{2 + e^z} = -1$，因此有且仅有可去奇�
 \item $\frac{1}{z^3(2 - \cos z)}$ : 有三阶极点 $z = 0$
 \end{enumerate}
 
-\section{}
+\section{讨论}
 \begin{enumerate}
 \item $\lim_{z\to \infty} \frac{\cos z}{z} = 0$，是可去奇点
 \item 做换元 $t =  \frac{1}{z}$，有 $\lim_{t\to 0} t^2\cdot \frac{1}{t\cos \frac{1}{t}} = 0$，因此为二阶极点。
 \item 做换元 $t =  \frac{1}{z}$，有 $\lim_{t \to 0} t \cdot \sqrt{\left(\frac{1}{t} - a\right)\left(\frac{1}{t} - b\right)} = \lim_{t \to 0} \sqrt{(1 - at)(1-bt)} = 1$，因此为一阶极点。
 \end{enumerate}
 
-\section{}
+\section{计算函数在指定点的留数}
 \begin{enumerate}
 \item $f(z) = \frac{e^{z^2}}{z - 1}$，$z_0 = 1$ :
 
@@ -1568,12 +1601,141 @@ $z_0 = 0$ 为三阶极点，因此：
 
 \end{enumerate}
 
+\chapter{Homework 9: 2024.10.22 - 2024.10.28}
+\rhead{Homework 9: 2024.10.22 - 2024.10.28}
+\thispagestyle{fancy}
 
+\section{计算下列有理三角积分}
 
+\subsection{$\displaystyle \int_{0}^{2\pi}\frac{1}{a + b\cos \theta}\ \mathrm{d}\theta$}
 
+作三角换元 $z = e^{i \theta}$，则 $\cos \theta = \frac{z^2 + 1}{2z}$，$\ \mathrm{d} \theta = \frac{1}{iz} \ \mathrm{d}z$，有：
+\begin{equation}
+I = \oint_{|z| = 1}  \frac{1}{a + b\cdot \frac{z^2 + 1}{2z}} \cdot \frac{1}{iz} \ \mathrm{d}z
+= \frac{2}{i} \oint_{|z| = 1} \frac{1}{bz^2 + 2az + b} \ \mathrm{d}z
+\end{equation}
+函数 $bz^2 + 2az + b$ 有两根 $- k \pm \sqrt{k^2 - 1}$，其中 $k = \frac{a}{b} > 1$，但仅有 $z = - k + \sqrt{k^2 - 1}$ 在积分围道内，故：
+\begin{equation}
+    \boxed{
+        I = \frac{2}{i} \cdot 2\pi i \cdot \left[\frac{1}{2bz + 2a}\right]_{z =  - k + \sqrt{k^2 - 1}}
+    = \frac{2\pi}{\sqrt{a^2 - b^2}}
+    }
+\end{equation}
 
+\subsection{$\displaystyle \int_{0}^{\pi}\frac{1}{\left(1 + \sin^2 \theta \right)^2} \ \mathrm{d}\theta$}
+代入 $\sin^2 \theta = \frac{1 - \cos 2\theta}{2}$，并作三角换元 $z = e^{i\theta}$，得：
+\begin{equation}
+I = \int_{0}^{\pi} \frac{1}{\left(1 + \frac{1 - \cos 2\theta}{2}\right)^2} \ \mathrm{d} \theta = \int_{0}^{2\pi} \frac{2}{\left(3 - \cos \theta\right)^2} \ \mathrm{d}\theta
+= \frac{8}{i} \oint_{|z| = 1} \frac{1}{\left(z^2 - 6z + 1\right)^2} \ \mathrm{d}z
+\end{equation}
+函数 $z^2 - 6z + 1$ 有两根 $z_1 = 3 - 2 \sqrt{2}$，$z_2 =  3 + 2 \sqrt{2}$，但仅有 $z_1$ 在积分围道内，且是二阶极点，因此有：
+\begin{align}
+    I &= \frac{8}{i}\cdot 2\pi i \left[\frac{z}{(z - z_2)^2}\right]^{(1)}_{z = z_1}
+    = 16 \pi \cdot \left[\frac{1}{(z - z_2)^2} - \frac{2z}{(z - z_2)^3}\right]_{z = z_1}\\
+    &= 16\pi \cdot \frac{-(z_1 + z_2)}{(z_1 - z_2)^3}
+    = 16\pi \cdot \frac{-6}{32\cdot (-4\sqrt{2})}\\
+    & \boxed{= \frac{3\sqrt{2}}{8}\pi}
+\end{align}
 
+\subsection{$\displaystyle \int_{0}^{\frac{\pi}{2}} \frac{1}{a + \sin^2 \theta} \ \mathrm{d}\theta$}
+将其转化为第 (1) 小问中的形式：
+\begin{equation}
+I = \int_{0}^{\pi} \frac{1}{(2a+1) - \cos \theta} \ \mathrm{d}\theta
+= \frac{1}{2}\int_{-\pi}^{\pi} \frac{1}{(2a+1) - \cos \theta} \ \mathrm{d}\theta
+= \frac{1}{2}\int_{0}^{2\pi} \frac{1}{(2a+1) - \cos \theta} \ \mathrm{d}\theta
+\end{equation}
+由 (1) 的结论：
+\begin{equation}
+\boxed{
+    I = \frac{1}{2}\cdot \frac{2\pi}{\sqrt{(2a+1)^2 - (-1)^2}} = \frac{\pi}{2\sqrt{a(a+1)}}
+}
+\end{equation}
 
+\section{计算下列无穷积分}
+
+\subsection{$\displaystyle \int_{0}^{+\infty} \frac{x^2 + 1}{x^4 + 1} \ \mathrm{d}x$}
+作半圆积分围道，也即从 $(-R, 0)$ 到 $(R, 0)$ 的直线，以及半径为 $R$ 的上半圆 $L_R = \{| z | = R \mid \Im z > 0\}$ 构成的闭合围道 $C$。令 $f(z) = \frac{z^2 + 1}{z^4 + 1}$，则 $zf(z)$ 在 $z \to \infty$ 时一致趋于 0，由大圆弧定理，$\lim_{R \to \infty}\int_{L_R} f(z) \ \mathrm{d}z = 0$，于是：
+\begin{gather}
+I = \frac{1}{2} \int_{-\infty}^{+\infty}\frac{x^2 + 1}{x^4 + 1}\ \mathrm{d}x
+\Longrightarrow 
+I' = \lim_{R \to \infty}\oint_{C} f(z) \ \mathrm{d}z = 
+2 I + \lim_{R \to \infty}\int_{L_R} f(z) \ \mathrm{d}z
+= 2I + 0
+\end{gather}
+再单独计算积分 $I'$。
+$f(z)$ 有四个一阶极点，其中 $z_1 = \frac{\sqrt{2}}{2}(1 + i)$ 和 $z_2 = \frac{\sqrt{2}}{2}(-1 + i)$ 在积分围道内，由留数定理：
+\begin{align}
+I' &= 2\pi i \cdot \left[ \left(\frac{z_1^2 + 1}{4z_1^3}\right) +  \left(\frac{z_2^2 + 1}{4z_2^3}\right)\right]
+= 2\pi i \cdot \left[ -\frac{1}{4}z_1(z_1^2 + 1) -\frac{1}{4}z_2(z_2^2 + 1)\right] \\
+&= 2\pi i \cdot \left[ -\frac{\sqrt{2}}{4}i -\frac{\sqrt{2}}{4}i\right] = 2 \pi i \cdot \left(- \frac{\sqrt{2}}{2} i\right) \\
+&= \sqrt{2}\pi \\ 
+\Longrightarrow & \boxed{I = \frac{1}{2}I' = \frac{\sqrt{2}}{2}\pi}
+\end{align}
+
+\subsection{$\displaystyle \int_{0}^{+\infty}  \frac{x^2}{x^4 + 6x^2 + 13}  \ \mathrm{d}x$}
+与上题类似，作半圆积分围道，也即从 $(-R, 0)$ 到 $(R, 0)$ 的直线，以及半径为 $R$ 的上半圆 $L_R = \{| z | = R \mid \Im z > 0\}$ 构成的闭合围道 $C$。令 $f(z) = \frac{z^2}{z^4 + 6z^2 + 13}$，则 $zf(z)$ 在 $z \to \infty$ 时一致趋于 0，由大圆弧定理，$\lim_{R \to \infty}\int_{L_R} f(z) \ \mathrm{d}z = 0$，于是：
+\begin{equation}
+    I = \frac{1}{2} \int_{-\infty}^{+\infty}\frac{x^2 + 1}{x^4 + 1}\ \mathrm{d}x
+    \Longrightarrow 
+    I' = \lim_{R \to \infty}\oint_{C} f(z) \ \mathrm{d}z = 
+    2 I + \lim_{R \to \infty}\int_{L_R} f(z) \ \mathrm{d}z
+    = 2I + 0
+\end{equation}
+再单独计算积分 $I'$。
+$f(z)$ 有四个一阶极点，先求解：
+\begin{equation}
+    z^4 + 6z^2 + 13 = \left(z^2 + 3\right)^2 + 4 = 0 \Longrightarrow z^2 + 3 = \pm 2 i
+\end{equation}
+利用 $\sqrt{z} = \frac{1}{\sqrt{2}}\cdot \left[ \sgn (\pi - \arg z) \sqrt{| z | + x} + i \sqrt{| z | - x} \right]$，可以得到在积分围道中的两根 $z_1$ 和 $z_2$:
+\begin{equation}
+    z_1 = \frac{1}{\sqrt{2}} \left( \sqrt{\sqrt{13} - 3} + i \sqrt{\sqrt{13} + 3}^{\ } \right),\quad z_2 = \frac{1}{\sqrt{2}} \left( -\sqrt{\sqrt{13} - 3} + i \sqrt{\sqrt{13} + 3}^{\ } \right)
+\end{equation}
+由留数定理：
+\begin{align}
+I' 
+&= 2\pi i \left[ \frac{z_1^2}{4z_1^3 + 12z_1} + \frac{z_2^2}{4z_2^3 + 12z_2} \right] 
+= 2\pi i \left[ \frac{z_1}{4z_1^2 + 12} + \frac{z_2}{4z_2^2 + 12}\right] \\ 
+&= 2\pi i \left[ \frac{z_1}{8i} + \frac{z_2}{-8i} \right]
+= 2\pi i \cdot \frac{z_1 - z_2}{8i} \\
+&= 2\pi i \cdot \frac{\sqrt{2} \cdot \sqrt{\sqrt{13} - 3}}{8i} \\
+&= \frac{\sqrt{2}\cdot\sqrt{\sqrt{13} - 3}}{4}\pi \\
+\Longrightarrow & \boxed{I = \frac{1}{2}I' = \frac{\sqrt{2}\pi}{8} \cdot \sqrt{\sqrt{13} - 3}} 
+\end{align}
+
+\subsection{$\displaystyle \int_{0}^{+\infty}  \frac{\cos x}{\left(1 + x^2\right)^3}  \ \mathrm{d}x$}
+令 $f(z) = \frac{1}{\left(1 + z^2\right)^3}$，作半圆型闭合积分围道 $C$，其中半圆记作 $L_R$，则 $zf(z)$ 在 $z \to \infty$ 时一致趋于 0，由 Jordan 引理，$\lim_{R \to \infty}\int_{L_R} f(z)e^{iz} \ \mathrm{d}z = 0$，于是
+\begin{gather}
+I' = \lim_{R \to \infty}\oint_{C} f(z)e^{iz} \ \mathrm{d}z = \int_{-\infty}^{+\infty}f(x)\cos x \ \mathrm{d}x + i \int_{-\infty}^{+\infty}f(x)\sin x \ \mathrm{d}x +  \lim_{R \to \infty}\oint_{L_R} f(z)e^{iz} \ \mathrm{d}z \\ 
+I = \frac{1}{2}\int_{-\infty}^{+\infty}  \frac{\cos x}{\left(1 + x^2\right)^3}  \ \mathrm{d}x \Longrightarrow I' = 2I + 0 + 0 
+\end{gather}
+积分围道内有且仅有 $z = i$ 一个三阶极点，由留数定理：
+\begin{align}
+I' &= 2\pi i \cdot \frac{1}{2!} \left[ \frac{e^{iz}}{(z + i)^3} \right]^{(2)}_{z = i} \\
+&= \pi i \cdot \left[ e^{iz} \left( \frac{i}{(z + i)^3} - \frac{3}{(z + i)^4}\right) \right]^{(1)}_{z = i} \\
+&= \pi i \cdot \left[ e^{iz} \left( \frac{-1}{(z + i)^3} - \frac{3i}{(z + i)^4} - \frac{3i}{(z + i)^4} + \frac{12}{(z + i)^5}\right) \right]_{z = i} \\
+&= \pi i \cdot \frac{1}{e} \cdot \left[ \frac{-2i}{16} - \frac{6i}{16} - \frac{6i}{16} \right] = \pi i \cdot \frac{1}{e}\cdot \left(- \frac{7i}{8}\right) \\ 
+& = \frac{7\pi}{8e} \\
+\Longrightarrow 
+&\boxed{
+I = \frac{1}{2}I' = \frac{7\pi}{16e}
+}
+\end{align}
+
+\subsection{$\displaystyle \int_{0}^{+\infty} \frac{x\sin ax}{x^2 + b^2} \ \mathrm{d}x,\quad a, b \in \R_+ $}
+令 $f(z) = \frac{z}{z^2 + b^2}$，作半圆型闭合积分围道 $C$，其中半圆记作 $L_R$，则 $zf(z)$ 在 $z \to \infty$ 时一致趋于 0，由 Jordan 引理，$\lim_{R \to \infty}\int_{L_R} f(z)e^{iz} \ \mathrm{d}z = 0$，于是
+\begin{gather}
+I' = \lim_{R \to \infty}\oint_{C} f(z)e^{iaz} \ \mathrm{d}z = \int_{-\infty}^{+\infty}f(x)\cos ax \ \mathrm{d}x + i \int_{-\infty}^{+\infty}f(x)\sin ax \ \mathrm{d}x +  \lim_{R \to \infty}\oint_{L_R} f(z)e^{iz} \ \mathrm{d}z \\
+I = \frac{1}{2}\int_{-\infty}^{+\infty}  \frac{\sin ax}{\left(1 + x^2\right)^3}  \ \mathrm{d}x \Longrightarrow I' = 0 + 2i\cdot I + 0 
+\end{gather}
+积分围道内有且仅有 $z_1 = bi$ 一个一阶极点，由留数定理：
+\begin{align}
+I' 
+&= 2\pi i \cdot \frac{z_1e^{iaz_1}}{2z_1} = \pi i \cdot e^{-ab} \\
+\Longrightarrow & 
+\boxed{
+    I = \frac{I'}{2i} = \frac{\pi}{2} \cdot e^{-ab}
+}
+\end{align}
 
 \end{document}
 

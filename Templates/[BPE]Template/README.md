@@ -5,6 +5,7 @@ Refer to [GitHub > UCAS-BasicPhysicsExperiment](https://github.com/YiDingg/UCAS-
 
 ## 磁滞回线实验报告
 
+![img](https://github.com/YiDingg/LatexNotes/tree/main/assets/pic/fig_Templates_BPE/2024-10-29-18-04-32_README.jpg)
 ![img](https://github.com/YiDingg/LatexNotes/tree/main/assets/pic/fig_Templates_BPE/2024-10-29-18-04-32_README.webp)
 ![img](https://github.com/YiDingg/LatexNotes/tree/main/assets/pic/fig_Templates_BPE/2024-10-29-18-06-55_README.webp)
 ![img](https://github.com/YiDingg/LatexNotes/tree/main/assets/pic/fig_Templates_BPE/2024-10-29-18-08-39_README.webp)

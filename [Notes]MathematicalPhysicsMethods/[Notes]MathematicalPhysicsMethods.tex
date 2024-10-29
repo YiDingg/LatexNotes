@@ -20,6 +20,7 @@
     \def\arcsinh{\mathrm{\,arcsinh\,}}
     \def\arccosh{\mathrm{\,arccosh\,}}
     \def\arctanh{\mathrm{\,arctanh\,}}
+    \def\sgn{\mathrm{\,sgn\,}}
 
 % 通用宏定义
     \def\N{\mathbb{N}}
@@ -829,21 +830,22 @@ f(z) = \sqrt[k]{
 \section{常见函数总结}
 
 三角函数及其反函数：
-\begin{gather}
+\begin{align}
     \sin z
-    =\frac{\mathrm{e}^{\mathrm{i}z}-\mathrm{e}^{-\mathrm{i}z}}{2i} 
+    &=\frac{\mathrm{e}^{\mathrm{i}z}-\mathrm{e}^{-\mathrm{i}z}}{2i} 
     = \sin x \cosh y + i \cos x \sinh y
     \\
     \cos z
-    =\frac{\mathrm{e}^{\mathrm{i}z}+\mathrm{e}^{-\mathrm{i}z}}{2}
+    &=\frac{\mathrm{e}^{\mathrm{i}z}+\mathrm{e}^{-\mathrm{i}z}}{2}
     = \cos x \cosh y - i \sin x \sinh y
     \\ 
-    \tan z = \frac{\sin z}{\cos z} = -i \cdot \frac{e^{iz} - e^{-iz}}{e^{iz} + e^{-iz}} = -i \cdot \frac{e^{2iz} - 1}{e^{2iz} + 1}
-    \\ 
-    \arcsin z = -i \cdot \ln \left(iz + \sqrt{1 - z^2}\right) \\ 
-    \arccos z = -i \cdot \ln \left(z + \sqrt{z^2 - 1}\right) \\
-    \arctan z = -\frac{i}{2} \ln \left(\frac{1 + iz}{1 - iz}\right)
-\end{gather}
+    \tan z &= \frac{\sin z}{\cos z} = -i \cdot \frac{e^{iz} - e^{-iz}}{e^{iz} + e^{-iz}} = -i \cdot \frac{e^{2iz} - 1}{e^{2iz} + 1}
+\end{align}
+\begin{align}
+    \arcsin z &= -i \cdot \ln \left(iz + \sqrt{1 - z^2}\right) \\ 
+    \arccos z &= -i \cdot \ln \left(z + \sqrt{z^2 - 1}\right) \\
+    \arctan z &= -\frac{i}{2} \ln \left(\frac{1 + iz}{1 - iz}\right)
+\end{align}
 
 双曲函数及其反函数：
 \begin{align}
@@ -856,6 +858,16 @@ f(z) = \sqrt[k]{
     \arccosh z &= \ln \left(z + \sqrt{z^2 - 1} \right) \\ 
     \arctanh z &= \frac{1}{2}\cdot \ln \left(\frac{1 + z}{1 - z}\right)
 \end{align}
+
+根号函数：
+\begin{equation}
+    \sqrt{z} = \frac{1}{\sqrt{2}} \left( \text{sgn}(\pi -\theta) \sqrt{| z | + x} + i \sqrt{| z | - x}  \right),\quad 
+    \sgn x = \begin{cases}
+        -1, & x < 0 \\
+        1, & x > 0 \\ 
+        0, & x = 0  
+    \end{cases}
+\end{equation}
 
 \chapter{复变积分}
 
@@ -1455,7 +1467,7 @@ a_n = \displaystyle \frac{1}{2 \pi i}\oint_{C}\frac{f(\zeta)}{(\zeta - b)^{n+1}}
 \boxed{
     \Res \left[ f(z), b_k \right] = 
     a_{-1} =
-    \frac{1}{(m-1)!}\cdot \left\{\frac{\mathrm{d}^{m-1} }{\mathrm{d} z^{m-1} }\left[(z-b)^mf(z)\right]\right\}_{z=b}
+    \frac{1}{(m-1)!}\cdot \left[(z-b)^mf(z)\right]^{(m)}_{z=b}
 }
 \end{gather}
 
@@ -1544,7 +1556,7 @@ A = \Res \left[ f(z), 1 \right] = \frac{1}{2},\quad B = \Res \left[ f(z), 2\righ
 \begin{equation}
 \int_{0}^{2\pi} R(\sin \theta,\ \cos \theta) \ \mathrm{d} \theta = {\color{red} 2 \pi} \cdot \sum_{| z | < 1} \Res \left[ \frac{f(z)}{z},\ a_k \right] + {\color{red} \pi} \cdot \sum_{| z | = 1} \Res \left[ \frac{f(z)}{z},\ b_k \right]
 \end{equation}
-特别地，当无瑕点时，圆边界上也没有奇点，此时有：
+式中的 $\pi$ 是用小圆弧定理绕过奇点时产生的，我们在后面会再次见到这样的处理方法。特别地，当原积分范围没有瑕点时，圆边界上也没有奇点，此时有：
 \begin{equation}
     \int_{0}^{2\pi} R(\sin \theta,\ \cos \theta) \ \mathrm{d} \theta = {\color{red} 2 \pi} \cdot \sum_{| z | < 1} \Res \left[ \frac{f(z)}{z},\ a_k \right] 
 \end{equation}
@@ -1898,6 +1910,8 @@ f^{(n)}(z) = \frac{n !}{2\pi i} \oint_{\partial G} \frac{f(\zeta)}{(\zeta - z )^
 \section{第五章}
 
 \subsection{如何求一个函数在某点的 Laurent 展开式，是否有通法？}
+
+
 
 \subsection{$ln (z + i)$ 在点 $z_0 = 0$ 有级数展开（对 $| z | < 1$ 成立），那么在 $| z | > 1 $ 上是否可展开为幂级数？}
 

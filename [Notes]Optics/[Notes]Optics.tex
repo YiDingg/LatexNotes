@@ -658,6 +658,67 @@ $K_{\text{max}} = 683\ \mathrm{lm \cdot W^{-1}}$ 在波长约 555.0 nm 取到，
 
 \subsection{定向发光体}
 
+\section{章末总结}
+
+\begin{align}
+&
+\text{电磁波的四个恒等式：} \begin{cases}
+    nv = c \\ 
+    \varepsilon \mu v^2 = 1 \\ 
+    \varepsilon_r \mu_r = n^2 \\ 
+    E = vB
+\end{cases} 
+\\ &
+\text{波印廷与辐照度：} \begin{cases}
+    S = | \boldsymbol{E}\times \boldsymbol{H} | = \varepsilon w = \varepsilon v E^2 \\ 
+    I = \langle  S  \rangle_T \overset{\text{简谐}}{=} \frac{1}{2}\varepsilon v E^2 
+\end{cases}
+\\ &
+\text{惠更斯原理：} \ \text{波阵面上每一点都是次波源，次波面的包络面是新波阵面}
+\\ &
+\text{费马原理：} \ \text{光沿光程平稳的路径传播，即光程取极值}
+\\ &
+\text{三棱镜最小偏向角：} n = \frac{\sin \left(\frac{\alpha + \delta}{2}\right)}{\sin \left(\frac{\alpha}{2}\right)} 
+\\ &
+\text{发光体：}
+\begin{cases}
+    \text{点光源照度 $E$ :\ }E = \frac{\cos \theta}{r^2}\cdot I \\ 
+    \text{半球面亮度 $B$ 与照度 $E$ :\ } E = \pi B
+\end{cases} 
+\\ &
+\text{光路方程：}
+\begin{cases}
+    \text{一维：} y'' = \frac{1}{2n_0^2\cos^2 \theta_0}\cdot \frac{\mathrm{d} n^2 }{\mathrm{d} y } = A\cdot \frac{\mathrm{d} A }{\mathrm{d} y },\quad A = \frac{n}{n_0\cos \theta_0} \\ 
+    \text{三维：} \nabla n = \frac{\mathrm{d}  }{\mathrm{d} s }\left(n\, \frac{\mathrm{d} \boldsymbol{r} }{\mathrm{d} s }\right)
+\end{cases}
+\\ &
+\text{球面焦距：}
+\begin{cases}
+    \text{折射球面：}\begin{cases}
+        f = n \cdot \frac{r}{n' - n} \\ 
+        f' = n' \cdot \frac{r}{n' - n}
+    \end{cases} \\ 
+    \text{反射球面：}f = f' = - \frac{r}{2}
+\end{cases}
+\\ &
+\text{薄透镜：}
+\begin{cases}
+    f = n \cdot \frac{1}{\frac{n_L - n}{r} - \frac{n_L - n'}{r'}} \\ 
+    f' = n' \cdot \frac{1}{\frac{n_L - n}{r} - \frac{n_L - n'}{r'}}
+    \text{磨镜者公式 ($n = n' = 1$) : }f = f' = \frac{1}{\left(n_L - 1\right)\left(\frac{1}{r} - \frac{1}{r'}\right)}
+\end{cases}
+\\ &
+\text{成像公式：}
+\begin{cases}
+    \text{Gauss 公式：} \frac{f}{s} + \frac{f'}{s'} = 1 \\ 
+    \text{Newton 公式：} xx' = ff'\\
+    \text{亥姆霍兹公式：} yn \tan u = y'n' \tan u'\\
+    \text{横向放大率：} \frac{ny}{s} + \frac{n'y'}{s'} = 0 \Longrightarrow V = \frac{y'}{y} =  - \frac{ns'}{n's}=  - \frac{fs'}{f's}\\
+    \text{角放大率：} W = \frac{\tan u'}{\tan u},\quad VW = \frac{f}{f'}\\
+    \text{密接透镜组：} \frac{1}{f} = \sum \frac{1}{f_i}
+\end{cases}
+\end{align}
+
 
 
 \chapter{光的反射与折射}\thispagestyle{fancy}
@@ -1794,7 +1855,7 @@ A_c = \frac{\lambda^2}{A_s} R^2
 
 在 \ref{多光束薄膜干涉} 节“多光束薄膜干涉”中，我们讨论过多光束薄膜干涉的原理，法布里-珀罗干涉仪就是一种利用多光束薄膜干涉的仪器。
 
-\subsection{前置知识}
+\subsection{单色光谱}
 
 法布里-珀罗干涉仪如图 \ref{法布里-珀罗干涉仪} 所示，两片玻璃板中间夹有介质（可以是空气），玻璃片内侧表面镀银以增强反射率。需要注意，应将夹在中间的介质视为薄膜，而不是玻璃板，并且镀银相当于改变了薄膜的反射率。细致的讨论表明，在分析的过程中忽略玻璃板和反射膜带来的额外影响（包括相位差、反射透射率等），仍可得到正确且精度极高的结论\footnote{详见参考文献 \cite{Optics} Page 530}。因此，在后文我们只考虑“空气-薄膜-空气”模型，并视 $R$ 为薄膜表面的反射率。
 \begin{figure}[H]\centering
@@ -1848,7 +1909,7 @@ A_c = \frac{\lambda^2}{A_s} R^2
 \end{figure}
 
 
-\subsection{双色光源}
+\subsection{双色光谱}
 
 当光源不可视为单色光时，例如两个波长相近的双色光，所形成的等倾干涉条纹（F-P 条纹）就会有稍微不同的半径。这个现象可以用于分辨精细谱线，因此有必要讨论条纹的色分辨能力。
 
@@ -1898,7 +1959,7 @@ $\Delta \lambda$ 越大时，谱线越容易被分辨，但当其大到一定程
 
 
 
-\subsection{自由光谱}
+\subsection{连续光谱}
 
 本节仅考虑 $\theta \to 0$ 的情况。当光源具有自由光谱时，F-P 薄膜（也称为 F-P 腔）具有“选频”的效果。具体表现是，光在 F-P 腔内多次相干叠加，使透射光谱结构明显区别于入射光谱，将连续光谱变为离散的准分立谱，也即最终接收到的光谱，如图 \ref{F-P 腔对连续谱的选择作用} 所示。
 \begin{figure}[H]\centering
@@ -1921,9 +1982,196 @@ $\Delta \lambda$ 越大时，谱线越容易被分辨，但当其大到一定程
 
 \section{激光（略）}
 
+\newpage
 \section{章末总结}
+本章的内容框架大致为：
+\begin{gather*}
+\text{第三章：干涉}
+\begin{cases}
+    \text{分波前}
+        \begin{cases}
+            \text{杨氏双缝干涉} 
+                \begin{cases}
+                    \text{理想光源} \\ 
+                    \text{有宽度光源}
+                \end{cases}
+            \\ \text{菲涅尔双面镜} \\ 
+            \text{菲涅尔双棱镜} \\ 
+            \text{劳埃镜}
+        \end{cases} 
+    \\\text{分振幅} 
+        \begin{cases}
+            \text{薄膜干涉 (双光束)} 
+                \begin{cases}
+                    \text{等厚干涉} 
+                        \begin{cases}
+                            \text{劈尖干涉}\\
+                            \text{牛顿环}
+                        \end{cases}
+                    \\ \text{等倾干涉} 
+                        \begin{cases}
+                            \text{等倾干涉仪} \\ 
+                            \text{迈克尔逊干涉} 
+                                \begin{cases}
+                                    \text{单色光谱} \\ 
+                                    \text{双色光谱} \\ 
+                                    \text{连续光谱}
+                                \end{cases}
+                            \\\text{马赫曾德尔干涉}
+                        \end{cases}
+                \end{cases}
+            \\ \text{薄膜干涉 (多光束) : }\text{法布里-珀罗干涉}
+            \begin{cases}
+                \text{单色光谱} \\ 
+                \text{双色光谱} \\ 
+                \text{连续光谱}
+            \end{cases}
+        \end{cases}
+\end{cases}
+\end{gather*}
 
+下面给出相关的公式：
+\begin{align*}
+&
+\text{光场相干性} 
+\begin{cases}
+    \text{空间相干性}
+        \begin{cases}
+            \text{孔径角：} \theta_0 = \frac{\lambda}{b} \\ 
+            \text{相干面积：} A = \left(R \theta_0\right)^2 = \frac{R^2\lambda^2}{b^2}
+        \end{cases}\\ 
+    \text{时间相干性}
+        \begin{cases}
+            \text{波列宽：} \Delta L < l_0 = c_0\tau_0 \\ 
+            \text{光谱宽：} \Delta L < l_0 = \frac{\lambda_0^2}{\Delta \lambda}
+        \end{cases}
+\end{cases}
+\\ &
+\text{杨氏双缝干涉}
+\begin{cases}
+    \Delta L = \frac{nd}{D} x = \frac{d}{D} x\ (n=1)  \\ 
+    \Delta x = \frac{D}{nd} \lambda = \frac{D}{d} \lambda\ (n=1) \\
+    \delta x = - \frac{D}{R} \lambda \\ 
+    b_0 = \frac{R}{nd}\lambda = \frac{R}{d}\lambda\ (n=1) \\ 
+    bd < \lambda R
+\end{cases}
+,\ \text{菲涅尔双面/棱镜}
+\begin{cases}
+    \Delta x = \frac{D}{d}\lambda \\ 
+    D = B + C \\ 
+    d = \theta B \\ 
+    l = \theta C \\ 
+    \theta = 
+    \begin{cases}
+        2\alpha &, \text{双面镜} \\ 
+        2(n_L-1)\alpha & , \text{双棱镜}
+    \end{cases}
+\end{cases}
+\\ &
+\text{劳埃镜}
+\begin{cases}
+    d = 2a \\ 
+    l \text{\ 用相似三角形计算}
+\end{cases}
+\end{align*}
 
+\newpage
+\begin{align*}
+&
+\text{薄膜干涉 (双光束)}
+\begin{cases}
+\Delta L = 2n_fd \cos \theta_f + \frac{\lambda}{2} \\ 
+\Delta l = 2n_fd \cos \theta_f \\ 
+m_{\max} = \frac{2n_fd}{\lambda} \\ 
+\text{等厚干涉} 
+    \begin{cases}
+        \text{劈尖干涉} 
+            \begin{cases}
+                \Delta d = \frac{\lambda}{2} \\ 
+                \Delta x = \frac{\Delta d}{\tan \alpha} \approx \frac{\lambda}{2 \alpha} \\
+                \text{暗：}d_m = \frac{\lambda}{2} \cdot m \\ 
+                \text{明：}d_m = \frac{\lambda}{2} \cdot \left(m + \frac{1}{2}\right)
+            \end{cases}\\ 
+        \text{牛顿环}
+            \begin{cases}
+                \text{暗：} r_m = \sqrt{R\lambda m} \\ 
+                \text{明：} r_m = \sqrt{R\lambda \left(m + \frac{1}{2}\right)} \\ 
+                \Delta r_m = \sqrt{R\lambda} \left(\sqrt{m + \frac{1}{2}} - \sqrt{m}\right) = \sqrt{R\lambda}\cdot \frac{1}{2\left(\sqrt{m + \frac{1}{2}} + \sqrt{m}\right)}
+            \end{cases}
+    \end{cases}\\ 
+\text{等倾干涉 ($n_f = 1$)}
+    \begin{cases}
+        \text{等倾干涉仪} 
+        \begin{cases}
+            \text{亮：}\Delta L = m\lambda \Longrightarrow \cos \theta_m = \frac{\lambda}{2nd}\cdot \left(m - \frac{1}{2}\right) \\ 
+            \text{暗：}\Delta L = \left(m + \frac{1}{2}\right)\lambda  \Longrightarrow \cos \theta_m = \frac{\lambda}{2nd}\cdot m \\ 
+            r_m = A \cdot \tan \theta_m \approx A \theta_m \\
+            \Delta r_m = A \Delta \theta_m = A \cdot \frac{\lambda}{2d \sin \theta_m} = \frac{A\lambda}{2d \theta_k} 
+        \end{cases}
+        \\ \text{迈克尔逊干涉}
+            \begin{cases}
+                \text{单色谱：}
+                    \begin{cases}
+                        \text{以中心为零级：} 
+                        \begin{cases}
+                            2d\left(1 - \cos \theta_m\right) = \lambda m\\ 
+                            \theta_m = \sqrt{\frac{m\lambda}{d}}
+                        \end{cases}\\ 
+                        \text{精密测长：} 2 n \Delta d = N\lambda
+                    \end{cases} 
+                \\\text{双色谱：} 
+                    \begin{cases}
+                        \gamma = \left| \cos \left(\frac{1}{2}\Delta k \Delta L\right) \right| \\ 
+                        \left(\Delta L\right)_{\max} = \frac{1}{2}\cdot \frac{\lambda^2}{\Delta \lambda} \\ 
+                        N_{\text{circle}} = \frac{2\left(\Delta L\right)_{\max}}{\lambda} =  \frac{\lambda}{\Delta \lambda}
+                    \end{cases}
+                \\\text{连续谱：} 
+                    \begin{cases}
+                        \gamma = \left| \sinc \left(\frac{1}{2}\Delta k \Delta L\right) \right| \\ 
+                        \left(\Delta L\right)_{\max} = \frac{\lambda^2}{\Delta \lambda} \\ 
+                        N_{\text{circle}} = \frac{2\left(\Delta L\right)_{\max}}{\lambda} =  \frac{2\lambda}{\Delta \lambda}
+                    \end{cases}
+            \end{cases}
+    \end{cases}
+\end{cases}
+\end{align*}
+
+\begin{align*}
+    \text{薄膜干涉 (多光束) : }
+    \begin{cases}
+        \Delta l = 2n_fd \cos \theta_f \\
+        \delta = \frac{2\pi}{\lambda} \cdot \Delta l = \frac{4 \pi n_f d \cos \theta_f}{\lambda} \\
+        F = \frac{4R}{(1 - R)^2} \\
+        T_{\text{F-P}} = \frac{1}{1 + F \sin^2 \frac{\delta}{2}},\ R_{\text{F-P}} = 1 - T_{\text{F-P}} = \frac{F \sin^2 \frac{\delta}{2}}{1 + F \sin^2 \frac{\delta}{2}}\\
+        \text{法布里-珀罗干涉}
+            \begin{cases}
+                \text{单色谱：}
+                    \begin{cases}
+                        \text{半峰宽：}\varepsilon_{\delta} = 4 \arcsin \left(\frac{1}{\sqrt{F} }\right) \\
+                        \text{内角宽：} \varepsilon_{\theta_f} = \frac{1}{n \sin \theta_f} \cdot \frac{\lambda}{\pi d \sqrt{F}} = \frac{1}{\sin \theta_i} \cdot \frac{\lambda}{\pi d \sqrt{F}} \\
+                        \text{外角宽：} \varepsilon_{\theta_i} = \frac{n}{\sin \theta_i} \cdot \frac{n \lambda}{\pi d \sqrt{F}} \\
+                        \text{对比度：} \gamma = \frac{2R}{1 + R^2} \\
+                        \text{锐度：} \mathscr{F} = \frac{2\pi}{\varepsilon_{\delta}} \\
+                    \end{cases} \\ 
+                \text{双色谱：}
+                    \begin{cases}
+                        \text{内角距离：} \delta \theta_m = \frac{1}{n \sin \theta_{f,m}} \cdot m \cdot \frac{\Delta \lambda}{2d} \\ 
+                        \text{Talor 判据：} \delta \theta_m \geq \varepsilon_{\theta_m} \Longrightarrow m \geq \frac{2\lambda_0}{\pi \sqrt{F} \Delta \lambda} = \frac{1}{\frac{\pi \sqrt{F}}{2}}\cdot \frac{\lambda}{\Delta \lambda_0}\\
+                        \text{最小分辨率：}\left(\Delta \lambda\right)_{\min} = \frac{2\lambda_0}{\pi \sqrt{F}} \\ 
+                        \text{极限分辨率：}\left(\Delta \lambda\right)_{\lim} = \frac{\left(\Delta \lambda\right)_{\min}}{m_{\max}} = \frac{\lambda_0^2}{\pi n d \sqrt{F}} \\ 
+                        \text{自由光谱宽度：}\left(\Delta \lambda\right)_{\text{fsr}} =\frac{\lambda_0^2}{2nd} \\ 
+                        \text{色分辨本领：}\mathscr{R} = \frac{\lambda_0}{\left(\Delta \lambda\right)_{\lim}} = \frac{m_{\max}\pi \sqrt{F}}{2} = \frac{\pi n d \sqrt{F}}{\lambda_0}
+                    \end{cases}
+                \\\text{连续谱：}
+                \begin{cases}
+                    \text{纵模波长：} m\lambda = 2nd \Longrightarrow \lambda = \frac{2nd}{m} \\ 
+                    \text{纵模频率：}\nu_m = \frac{c}{\lambda_m} = \frac{mc}{2nd} \\ 
+                    \text{纵模间距：}\Delta \nu = \frac{c}{2nd} \\ 
+                    \text{半峰频宽：}\varepsilon_{\nu, m} = \frac{c}{\lambda^2}\left(\Delta \lambda\right)_{\min} \cdot \frac{1}{m}  = \frac{2c}{m \pi \lambda \sqrt{F}}
+                \end{cases}
+            \end{cases}
+    \end{cases}
+\end{align*}
 
 \chapter{光的衍射}\thispagestyle{fancy}
 

@@ -9,15 +9,20 @@
 
 % 物理实验报告所需的其它宏包
 \usepackage{ulem}   % \uline 下划线支持
+\usepackage{circuitikz} % 电路图 tikz 支持
+\usepackage{pdfpages}   % 用于导入 pdf 文件
 
 % 本 .tex 专属的宏定义
     \def\V{\ \mathrm{V}}
+    \def\uV{\ \mu\mathrm{V}}
     \def\mV{\ \mathrm{mV}}
+    \def\K{\ \mathrm{K}}
     \def\kV{\ \mathrm{KV}}
     \def\KV{\ \mathrm{KV}}
     \def\MV{\ \mathrm{MV}}
-    \def\A{\ \mathrm{A}}
+    \def\uA{\ \mu\mathrm{A}}
     \def\mA{\ \mathrm{mA}}
+    \def\A{\ \mathrm{A}}
     \def\kA{\ \mathrm{KA}}
     \def\KA{\ \mathrm{KA}}
     \def\MA{\ \mathrm{MA}}
@@ -27,6 +32,9 @@
     \def\KO{\ \mathrm{K}\Omega}
     \def\MO{\ \mathrm{M}\Omega}
     \def\Hz{\ \mathrm{Hz}}
+    \def\uF{\ \mu\mathrm{F}}
+    \def\mF{\ \mathrm{mF}}
+    \def\F{\ \mathrm{F}}
 
 % 自定义宏定义
     \def\N{\mathbb{N}}
@@ -50,7 +58,7 @@
         colorlinks=true,    % false:边框链接 ; true:彩色链接
         citecolor={blue},    % 文献引用颜色
         linkcolor={blue},   % 目录 (我们在目录处单独设置)，公式，图表，脚注等内部链接颜色
-        urlcolor={magenta},    % 网页 URL 链接颜色，包括 \href 中的 text
+        urlcolor={orange},    % 网页 URL 链接颜色，包括 \href 中的 text
         % cyan 浅蓝色 
         % magenta 洋红色
         % yellow 黄色
@@ -127,14 +135,14 @@
         \newtheorem{definition}{}
 
 %宏包：有色文本框（proof环境）及其设置
-    \usepackage[dvipsnames,svgnames]{xcolor}    %设置插入的文本框颜色
+    \usepackage{xcolor}    %设置插入的文本框颜色
     \usepackage[strict]{changepage}     % 提供一个 adjustwidth 环境
     \usepackage{framed}     % 实现方框效果
         \definecolor{graybox_color}{rgb}{0.95,0.95,0.96} % 文本框颜色。修改此行中的 rgb 数值即可改变方框纹颜色，具体颜色的rgb数值可以在网站https://colordrop.io/ 中获得。（截止目前的尝试还没有成功过，感觉单位不一样）（找到喜欢的颜色，点击下方的小眼睛，找到rgb值，复制修改即可）
         \newenvironment{graybox}{%
         \def\FrameCommand{%
         \hspace{1pt}%
-        {\color{gray}\small \vrule width 2pt}%
+        {\color{gray}\vrule width 2pt}%
         {\color{graybox_color}\vrule width 4pt}%
         \colorbox{graybox_color}%
         }%
@@ -157,7 +165,7 @@
         \newfontfamily\codefont{Consolas} % 定义需要的 codefont 字体
         \lstdefinestyle{MatlabStyle_inc}{   % 插入代码的样式
             language=Matlab,
-            basicstyle=\small\ttfamily\codefont,    % ttfamily 确保等宽 
+            basicstyle=\footnotesize\ttfamily\codefont,    % ttfamily 确保等宽 
             breakatwhitespace=false,
             breaklines=true,
             captionpos=b,
@@ -241,8 +249,9 @@
         \AtBeginEnvironment{figure}{\boldmath} % 图注中的数学字符为粗体
         \AtBeginEnvironment{table}{\boldmath}  % 表注中的数学字符为粗体
         \AtBeginEnvironment{tabular}{\unboldmath}   % 保证表格中的数学字符不受额外影响
+
 % 圆圈序号自定义
-    \newcommand*\circled[1]{\tikz[baseline=(char.base)]{\node[shape=circle,draw,inner sep=0.8pt, line width = 0.03em] (char) {\small \bfseries #1};}}   % TikZ solution
+    \newcommand*\circled[1]{\tikz[baseline=(char.base)]{\node[shape=circle,draw,inner sep=0.8pt, line width = 0.03em] (char) {\bfseries #1};}}   % TikZ solution
 
 % 列表设置
     \usepackage{enumitem}   % 宏包：列表环境设置
@@ -280,13 +289,11 @@
 
 % 各级标题自定义设置
     \usepackage{titlesec}   
-        % chapter 标题自定义设置
-        \titleformat{\chapter}[hang]{\normalfont\huge\bfseries\centering\boldmath}{第\,\thechapter\,章}{20pt}{}
-        \titlespacing*{\chapter}{0pt}{-20pt}{20pt} % 控制上下间距
         % section标题自定义设置 
         \titleformat{\section}[hang]{\normalfont\Large\bfseries\boldmath}{\thesection}{8pt}{}
-        % subsubsection标题自定义设置
-        \titlespacing*{\subsubsection}{0pt}{3pt}{0pt} % 控制上下间距
+        % subsection 标题自定义设置
+        \titleformat{\subsection}[hang]{\normalfont\large\bfseries\boldmath}{\thesubsection}{8pt}{}
+        \titlespacing*{\subsection}{0pt}{6pt}{3pt} % 控制上下间距
 
 
 % --------------------- 文章宏包及相关设置 --------------------- %
@@ -303,51 +310,44 @@
     \renewcommand\headrulewidth{1pt}
     \renewcommand\footrulewidth{0pt}
     \rhead{\bfseries \large {\color{red} 分组序号: 2-05}}    
-    \chead{《基础物理实验》实验报告,\ 丁毅,\ 2023K8009908031}
-    \lhead{Ex.7 虚拟仪器 (2024.10.15)}
-
-% 文档信息设置
-%\title{这里是标题\\The Title of the Report}
-%\author{丁毅\\ \footnotesize 中国科学院大学，北京 100049\\ Yi Ding \\ %\footnotesize University of Chinese Academy of Sciences, Beijing %100049, China}
-%\date{\footnotesize 2024.8 -- 2025.1}
-
-% 开始编辑文章
-
+    \chead{《基础物理实验》实验报告,\ 小明,\ 1111K8009000099}
+    \lhead{Ex.8 磁滞回线 (2099.99.99)}
 \begin{document}
-%\noindent\begin{flushright}
-%    \zihao{2}{分组序号: YK02-2}
-%\end{flushright}
-
-%\setCJKfamilyfont{boldsong}[AutoFakeBold = {2.17}]{SimSun}
-%\newcommand*{\boldsong}{\CJKfamily{boldsong}}
-
 \begin{center}\large
-    \noindent{\Huge\bfseries\bfseries《基础物理实验》实验报告 }
-    \\\vspace{0.4cm}
-    \noindent\textit{
-        \textbf{\bfseries 实验名称：}\uline{\hspace{1.5cm} \bfseries 虚拟仪器在物理实验中的应用 \hspace{1.5cm}}\hspace{0.4cm} 
-        指导教师：\uline{\hspace{1.5cm}张易\hspace{1.5cm}}}
+    \vspace*{-0.8cm}
+    \noindent{\huge\bfseries《\ \ 基\ \ 础\ \ 物\ \ 理\ \ 实\ \ 验\ \ \ 》\ \ 实\ \ 验\ \ 报\ \ 告 }
     \\\vspace{0.1cm}
-    \noindent\textit{
-        姓名：\uline{\,\,\,丁毅\,\,\,}\hspace{0.2cm}
-        学号：\uline{\,\,\,{\upshape 2023K8009908031}\,\,\,}\hspace{0.2cm}
-        专业：\uline{\,\,\,电子信息工程\,\,\,}\hspace{0.2cm}
-        班级：\uline{\,\,\,\upshape{2308}\,\,\,}\,座号：\uline{\,\,\,\upshape{6}\,\,\,}}
+    \noindent{
+    {\bfseries 
+    实验名称：\uline{\hspace{1.05cm} 实验名称实验名称实验名称 \hspace{1.05cm}}
+    }\hspace{0.4cm}
+    指导教师：\uline{\hspace{0.3cm}朱中柱\ \ zhuzz@ihep.ac.cn\hspace{0.3cm}}
+    }
     \\\vspace{0.1cm}
-    \noindent\textit{
-        实验日期：\uline{\,\,{\upshape 2024.10.15}\,\,}\hspace{0.2cm}
-        实验地点：\uline{\,\,\,教学楼{\upshape 702}\,\,\,}\hspace{0.2cm}
-        是否调课/补课：\uline{\hspace{0.26cm}否 \hspace{0.26cm}}\hspace{0.2cm}
-        成绩：\uline{\hspace{2cm}}}
+    \noindent
+    {
+    姓名：\uline{\,\,\,小明\,\,\,}\hspace{0.2cm}
+    学号：\uline{\,\,\,{1111K8009000099}\,\,\,}\hspace{0.2cm}
+    班级/专业：\uline{\,\,\,{2999/专业名字}\,\,\,}\hspace{0.2cm}
+    分组序号：\uline{\,\,\,{2-05}\,\,\,}
+    }
+    \\\vspace{0.1cm}
+    \noindent{
+    实验日期：\uline{\,\,{2099.99.99}\,\,}\hspace{0.2cm}
+    实验地点：\uline{\,\,\,教学楼{999}\,\,\,}\hspace{0.2cm}
+    是否调课/补课：\uline{\hspace{0.26cm}否 \hspace{0.26cm}}\hspace{0.2cm}
+    成绩：\uline{\hspace{2cm}}
+    }
 \end{center}
-% \vspace{-0.2cm}
-\noindent\rule{\textwidth}{0.1em}   % 分割线
+\vspace{-0.4cm}
+\noindent\rule{\textwidth}{0.075em}   % 分割线
+\vspace{-1.0cm}
 % ------------------------ 文章信息区 ------------------------ %
 % ------------------------ 文章信息区 ------------------------ %
 
 
 % 目录
-\setcounter{tocdepth}{2}  % 目录深度为 2（不显示 subsubsection）
+\setcounter{tocdepth}{3}  % 目录深度为 2（不显示 subsubsection）
 \noindent\tableofcontents\thispagestyle{fancy}   % 显示页码、页眉等
 
 % 控制目录不换页
@@ -371,190 +371,527 @@
 
 
 
-\section{拉伸法测量金属的杨氏模量}\thispagestyle{fancy} 
-
-\subsection{实验目的}
-
+\section{实验目的}
 
 \begin{enumerate}
-    \item 学会用CCD\footnote{Charge Coupled Device，电荷耦合器件}杨氏模量测量仪测量长度的微小变化量
-    \item 学会测定金属丝杨氏弹性模量的一种方法
-    \item 学习用逐差法、作图法和最小二乘法处理数据
-    \item 学会不确定的计算方法，结果的正确表达
-\end{enumerate}
-
-\subsection{实验仪器与要求}
-实验仪器 CCD杨氏弹性模量测量仪、螺旋测微器、钢卷尺。
-
-CCD杨氏弹性模量测量仪的主要技术指标有：
-
-
-\begin{enumerate}[leftmargin=2cm]
-    \item 采用分划板 + CCD测量显微镜系统 + 彩色液晶监视器方案
-    \item 立柱：不锈钢双柱高约 85 cm
-    \item 钼丝：长约 60 cm，直径 0.18 mm，悬挂位置及长度可调节
-    \item 监视器：彩色液晶监视器
-    \item 分化板：刻度范围4mm，分度值0.05mm，设有限位槽，可防止来回摆动，采用 LED 照明
-    \item CCD 测量显微镜系统：放大倍率60 倍，内含电子刻度线，可二维调节，可卸下用于其他微位移测量场合，采用高级面阵CCD，信噪比$ \geqslant 52\,\mathrm{db} $，分辨率$ 480\,\mathrm{TVL} $，视频输出幅度：$ 1.0\,\mathrm{V_{P-P}}/75\,\Omega $
-    \item  砝码组：10 个砝码，2 个 100 g 及 8 个 200 g
-    \item 底座沉稳，可进行水平调节，设有储藏格可贮存砝码组
-    \item 测量相对不确定度：$< 5\ \%$
+\item 掌握利用示波器测量铁磁材料动态磁滞回线的方法；
+\item 掌握利用霍尔传感器测量铁磁材料（准）静态磁滞回线的方法；
+\item 了解铁磁性材料的磁化特性；
+\item 了解磁滞、磁滞回线和磁化曲线的概念，加深对饱和磁化强度、剩余磁化强度、矫顽力等物理量的理解。
 \end{enumerate}
 
 
-\subsection{实验原理}
-物体在外力作用下都会发生形变。当形变不超过某一限度时，撤走外力之后，形变消失，
-物体形状恢复原状态，这样的形变称为弹性形变。弹性形变发生时，物体内部会产生恢复原
-状的内应力。弹簧模量即为反映材料形变与内应力关系的物理量。
+\section{实验仪器}
 
-\subsubsection{杨氏模量}
+\subsection{DH4516 磁特性综合测量实验仪等}
 
-记柱状物体的长度为$ L $，截面积为$ S $，沿长度方向受外力$ F $作用后伸长（或缩短）$ \Delta L $，单位横截面积上垂直作用力$ \frac FS $称为正应力，物体的相对伸长$ \frac{\Delta L}{L} $称为线应变。在弹性范围内，正应力与线应变成正比，即
-\begin{equation}
-    \frac FS=Y\frac{\Delta L}{L}
-\end{equation}
-该规律称为虎克定律。式中比例系数$ Y $即为杨氏弹性模量，其单位为$ \mathrm{N/m^2} $，其完全由材料的性质决定，与材料的几何形状无关。
+DH4516 磁特性综合测量实验仪（包括正弦波信号源，待测样品及绕组，积分电路所用的电阻和电容）、双通道示波器、直流电源、电感、数字多用表。
 
-本实验中测量钼丝的杨氏弹性模量，实验方法为将钼丝悬挂在支架上，上端固定，下端通过加砝码对钼丝施加力$ F $（由砝码的质量求出），测出钼丝相应的伸长量$ \Delta L $，用钢卷尺测出钼丝长度$ L $，用螺旋测微器测处钼丝直径$ d $，则可求得钼丝横截面积$ S=\frac{\pi d^2}{4} $。那么根据虎克定律可知
+其中，磁特性综合测量实验仪的主要技术参数如下表所示：
 
-\begin{equation}
-    Y=\frac{4FL}{\pi d^2\Delta L}
-\end{equation}
-
-\subsubsection{测量原理}
-
-实际测量过程中，钼丝的伸长量很小，约为$ 10^{-1}\,\mathrm{mm} $数量级。所以本次实验中$ \Delta L $的测量采用显微镜和CCD成像系统进行测量。钼丝下端加上一定质量的砝码时，十字叉丝随着金属丝的伸长同样下降$ \Delta L $，而叉丝板通过显微镜的物镜成像在最小分度为$ 0.05\,\mathrm{mm} $的分划板上，CCD摄像机的镜头将显微镜的光学图象汇聚到CCD上，再变成视频电信号，经视频电缆传送到显示器上，供实验者读取。
-
-\subsection{实验内容}
-
-\subsubsection{注意事项}
-
-\begin{enumerate}
-    \item 使用CCD摄像机时，不能将CCD器件正对太阳、激光或其他强光源，注意保护镜头，如非特别需要不要随意卸下。
-    \item 钼丝必须保持直线形态。测量直径时需要特别谨慎，避免扭转、拉扯、牵挂钼丝导致其折弯变形。
-    \item 读数时需等到刻度值稳定后才能进行读数。
-    \item 将砝码放置于砝码盘的时候需保证轻拿轻放，防止钼丝突然受力而断裂。
-\end{enumerate}
-
-\subsubsection{调节仪器}
-用螺旋底角调平底座，使叉丝组分划板正对CCD摄像头。调节下横梁高度，保证叉丝组放置在下横梁的槽内。将CCD摄像头与分划板放置在同一水平面上，调节CCD摄像头位置，直到可以观察到清晰的像且分划板刻度尺的像在监视器的中心。
-
-\subsubsection{测量数据}
-
-\begin{enumerate}
-    \item 在测量钼丝杨氏模量前，先放2块100\,g的砝码把钼丝拉直，保证分划板在下横梁槽内，避免在拉直过程中分划板的旋转。
-    \item 记下待测细丝下的砝码盘中仅有已加的2块100\,g砝码时屏幕上显示的毫米尺在横线上的读数$ l_0 $，然后再砝码上依次加上8个$ M=200\,\mathrm{g} $的砝码，记下相应的叉丝读数$ l_i\;(i=1,2,\cdots,8) $。然后逐一减掉砝码，再读取$ l_8',l_7',\cdots,l_1' $。此过程中需注意轻拿轻放砝码，避免因增减砝码使得砝码盘产生微小振动而使得读数起伏较大。
-    \item 取同一符合下叉丝读数的平均值$ \bar l_1,\bar l_2,\cdots,\bar l_8 $，用逐差法求出钼丝荷重增减四个砝码时光标的平均偏移量$ \Delta l $。
-    \item 用钢卷尺测量上下夹头之间的钼丝长度$ L $。
-    \item 用螺旋测微器测量钼丝直径$ d $，由于钼丝直径可能不均匀，需再上、中、下各部进行测量，每个位置在相互垂直的方向各测一次。
-    \item 将前述原理公式整理可得
-	\begin{equation}\label{1-Yang}
-		Y=\frac{4MgL}{\pi d^2\Delta l}
-	\end{equation}
-	式中$ \Delta l $与$ M $有对应关系，本实验中$ \Delta l $是荷重增减4个砝码所引起的光标偏移量，则$ M $为4个砝码的质量。
-\end{enumerate}
-
-\subsection{实验结果与数据处理}
-
-\subsubsection{数据记录}
-
-\begin{enumerate}
-    \item 钼丝长度$ L=578.9\,\mathrm{mm} $，其不确定度为$ u(L)=\sqrt{\frac{d^2}{10^2}+\frac{e^2}{3}}=1.159\,\mathrm{mm} $
-    \item 钼丝直径数据记录详见表 \ref{钼丝直径测量数据}
-    \item （此处读数估读所用最小精度为$ \frac d5 $）实验过程中加上两个100\,g砝码作为底码后，初始读数为$ l_0=1.05\,\mathrm{mm} $，此后累加与累减8个200\,g砝码时记录叉丝读数如表 \ref{增减砝码时叉丝读数数据记录}
-\end{enumerate}
-
-\begin{table}[H]
-    \centering
-    \caption{\textbf{钼丝直径测量数据}}
-    \label{钼丝直径测量数据}
-    \begin{tabular}{cccccccc}
-    \toprule
-    测量次数 &1&2&3&4&5&6& 平均值 $\bar{d}$ \\
+\begin{table}[H]\centering
+    %\renewcommand{\arraystretch}{1.5} % 调整行间距为 1.5 倍
+    %\setlength{\tabcolsep}{1.5mm} % 调整列间距
+    \caption{磁特性综合测量实验仪主要技术参数}
+    \label{磁特性综合测量实验仪主要技术参数}
+\begin{tabular}{cccccccccc}\toprule
+    样品 & 磁滞损耗 & 平均磁路长度 $l$ & 截面面积 $S$ & 线圈匝数 $N$  \\
     \midrule
-    $d\ (\mathrm{mm})$ &0.178&0.180&0.170&0.176&0.180&0.176&0.1767\\ 
+    样品 1（锰锌铁氧体）  & 较小 &  0.130 m & 1.24 $\times 10^{-4}\  \mathrm{m^2}$ & $N_1 = N_2 = N_3 = 150$\\
+    样品 2（EI 型硅钢片） & 较大 &  0.075 m & 1.20 $\times 10^{-4}\  \mathrm{m^2}$ & $N_1 = N_2 = N_3 = 150$\\
     \bottomrule
-    \end{tabular}
+\end{tabular}
 \end{table}
 
-\begin{table}[H]
-    \centering
-    \caption{\textbf{增减砝码时叉丝读数数据记录}}
-    \label{增减砝码时叉丝读数数据记录}
-    \begin{tabular}{cccccccc}
-    \toprule
-    $ \sum M\;(\mathrm g) $&$ \overline M\;(\mathrm g) $&$ \sum\bar l\;(\mathrm{mm}) $&$ \bar{\bar l}\;(\mathrm{mm}) $&$ \sum l_iM_i\;(\mathrm{mm\cdot g}) $&$ \overline{l_iM_i}\;(\mathrm{mm\cdot g}) $\\
-    \midrule
-    7200&900&15.15&1.89375&15175&1896.875\\ 
-    \bottomrule
+\begin{figure}[H]\centering
+\begin{subfigure}[b]{0.48\columnwidth}\centering
+    这里可以放实验仪器的图片这里可以放实验仪器的图片这里可以放实验仪器的图片这里可以放实验仪器的图片这里可以放实验仪器的图片这里可以放实验仪器的图片这里可以放实验仪器的图片这里可以放实验仪器的图片这里可以放实验仪器的图片这里可以放实验仪器的图片这里可以放实验仪器的图片这里可以放实验仪器的图片这里可以放实验仪器的图片
+    %\includegraphics[height=170pt]{assets/DH4516 磁特性综合测量实验仪.jpg}
+    \caption{DH4516 磁特性综合测量实验仪}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{0.48\columnwidth}\centering
+    这里可以放实验仪器的图片这里可以放实验仪器的图片这里可以放实验仪器的图片这里可以放实验仪器的图片这里可以放实验仪器的图片这里可以放实验仪器的图片这里可以放实验仪器的图片这里可以放实验仪器的图片这里可以放实验仪器的图片这里可以放实验仪器的图片这里可以放实验仪器的图片这里可以放实验仪器的图片这里可以放实验仪器的图片
+    %\includegraphics[height=170pt]{assets/示波器和可编程电源.jpg}
+    \caption{双通道示波器和可编程电源}
+\end{subfigure}
+\caption{第一部分实验的主要实验仪器}
+\end{figure}
+
+另外，信号源的频率 $f$ 在 $ 20\ \mathrm{Hz} \sim 200\ \mathrm{Hz} $ 间可调；可调标准电阻 $ R_1,R_2 $ 均为线性无感交流电阻，$ R_1 $ 的调节范围为 $ 0.1 \ \Omega \sim 11\ \Omega $，$ R_2 $ 的调节范围为 $ 1 \kO \sim 100 \kO $；标准电容 $C$ 在 $ 0.1 \uF \sim 11 \uF $ 间可调。
+
+\subsection{FD-BH-I 霍尔传感器磁滞回线和磁化曲线测定仪等}
+
+FD-BH-I 霍尔传感器磁滞回线和磁化曲线测定仪（包括数字式特斯拉计、恒流源、磁性材料样品、磁化线圈、双刀双掷开关、霍耳探头移动架、双叉头连接线、箱式实验平台）。
+
+其主要技术指标如下：
+\begin{enumerate}
+\item 数字式特斯拉计: 四位半LED 显示，量程 $0 \sim 2.000 $ T；分辨率 $0.1$ mT，带霍耳探头；
+\item 恒流源：四位半 LED 显示，可调恒定电流 $0\sim 600.0$ mA；
+\item 磁性材料样品：条状矩形结构，截面长 $2.00$ cm；宽 $2.00$ cm；间隙宽（隙隔） $l_g = 2.00$ mm；平均磁路长度 $l =0.240$ m（样品与固定螺丝为同种材料）；
+\item 磁化线圈总匝数 $N=2000$。
+\end{enumerate}
+
+这里是实验仪器这里是实验仪器这里是实验仪器这里是实验仪器这里是实验仪器这里是实验仪器这里是实验仪器这里是实验仪器这里是实验仪器这里是实验仪器这里是实验仪器这里是实验仪器这里是实验仪器这里是实验仪器这里是实验仪器这里是实验仪器这里是实验仪器这里是实验仪器这里是实验仪器这里是实验仪器这里是实验仪器这里是实验仪器这里是实验仪器这里是实验仪器
+
+这里是实验仪器这里是实验仪器这里是实验仪器这里是实验仪器这里是实验仪器这里是实验仪器这里是实验仪器这里是实验仪器这里是实验仪器这里是实验仪器这里是实验仪器这里是实验仪器这里是实验仪器这里是实验仪器这里是实验仪器这里是实验仪器这里是实验仪器这里是实验仪器
+
+\begin{figure}[H]\centering
+    这里可以放实验仪器的图片这里可以放实验仪器的图片这里可以放实验仪器的图片这里可以放实验仪器的图片这里可以放实验仪器的图片这里可以放实验仪器的图片
+%\includegraphics[width=0.4\columnwidth]{}
+\caption{这里可以放实验仪器的图片}\label{示例图片}
+\end{figure}
+
+\section{实验原理}
+\subsection{铁磁材料的磁化特性}
+把物体放在外磁场$ H $中，物体就会被磁化，在其内部产生磁场。设其内部磁化强度为$ M $，磁感应强度为$ B $，即可定义磁化率 $ \chi_m $ 和相对磁导率 $ \mu_r $: 
+\begin{equation}
+    \chi_m=\frac MH,\quad \mu_r=\frac{B}{\mu_0 H}
+\end{equation}
+
+其中$ \mu_0=4\pi\times10^{-7}\,\mathrm{N\cdot A^{-2}} $是真空磁导率。又由于 $ B=\mu_0(M+H) $，所以 $ \mu_r=1+\chi_m $。物质的磁性按磁化率可分为抗磁性（$\chi_m < 0$）、顺磁性（$\chi_m > 0$ 且较小）和铁磁性（$\chi_m >0$ 且较大）三种，其中铁磁性物质的磁化率通常大于 1，远大于前两类物质。
+
+这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理。
+
+除磁导率高这一特点外，铁磁材料还具有特殊的磁化规律。对一个处于磁中性状态（即完全退磁，外磁场 $H=0$ 时有 $B = 0$）的铁磁材料加上由小变大的磁场$ H $进行磁化时，磁感应强度$ B $随$ H $的变化曲线大致分为三个阶段：(1)可逆磁化阶段；(2)不可逆化阶段；(3)饱和磁化阶段。
+
+如果磁场 $H$ 在某个范围 $ [-H_0,H_0] $ 间作循环变化，那么$ B $也会作循环变化，从而$ B-H $图像成为一个闭合的回线，称为磁滞回线。当 $H_0$ 比较大时，回线会有一段明显的饱和区（平稳区），此时得到的回线称为饱和磁滞回线，如图 \ref{铁磁材料的动态磁滞回线和动态磁化曲线示意图} 所示，$ H_S$ 和 $B_S $分别称为饱和磁场强度与饱和磁感应强度。
+
+这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理。
+
+
+这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理。
+
+
+\subsection{动态磁滞回线的测量}
+测量动态磁滞回线的原理电路如图 \ref{用示波器测量动态磁滞回线电路图} 所示。环形铁芯上绕有三组线圈。线圈 1 为交流励磁线圈，接交流正弦信号源；线圈 2 为感应线圈，接 RC 积分电路；线圈 3 为直流励磁线圈，用于在测有直流偏置磁场下的可逆磁导率时接直流电源。将$ u_{R_1} $和$ u_C $从示波器两通道输入，在示波器 X-Y 显示模式下即可看到动态磁滞回线。
+
+这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理。
+
+\begin{gather}
+H = \frac{N_1}{l}i_1 = \frac{N_1}{lR_1}\cdot u_{R_1} \Longrightarrow \boxed{
+    H = \frac{N_1}{lR_1}\cdot u_{R_1} \propto u_{R_1}
+} 
+\\ 
+u_2 = - N_2 \frac{\mathrm{d} \Phi }{\mathrm{d} t } = - N_2S \frac{\mathrm{d} B }{\mathrm{d} t } 
+\\ 
+u_C = \frac{Q}{C} = u_C|_{t = 0} + \frac{1}{CR_2} \int_{0}^{t} u_{R_2}\mathrm{d}t \approx \frac{1}{CR_2} \int_{0}^{t} u_{R_2}\mathrm{d}t \quad  (R_2 C \gg T) 
+\\
+\Longrightarrow \boxed{
+    B = \frac{R_2 C}{N_2 S}\cdot u_C \propto u_C
+}
+\end{gather}
+
+因此，只需利用双通道示波器对 $u_{R_1}$ 和 $u_C$ 进行测量，便和等价地得到 $H$ 和 $B$，进而绘制出 $H$-$B$ 图像，得到动态磁化曲线或磁滞回线。
+
+\begin{figure}[H]\centering
+\begin{subfigure}[b]{0.48\columnwidth}\centering
+    这里是图片这里是图片这里是图片这里是图片这里是图片这里是图片这里是图片这里是图片这里是图片这里是图片这里是图片这里是图片这里是图片这里是图片
+    %\includegraphics[height=120pt]{}
+    \caption{取一个好听的名字}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{0.48\columnwidth}\centering
+    这里是图片这里是图片这里是图片这里是图片这里是图片这里是图片这里是图片这里是图片这里是图片这里是图片这里是图片这里是图片这里是图片这里是图片这里是图片这里是图片
+    %\includegraphics[height=120pt]{}
+    \caption{再取一个好听的名字}
+\end{subfigure}
+\caption{取一个更好听的名字}
+\end{figure}
+
+
+
+\subsection{（准）静态磁化曲线和（准）静态磁滞回线的测量}
+
+这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理，这里是实验原理。
+
+
+\section{实验内容与步骤}
+
+\subsection{第一部分}
+
+\subsubsection{实验一：观测样品 1（铁氧体）的饱和动态磁滞回线}
+
+这里是实验步骤
+
+\begin{enumerate}
+\item 这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤。
+\item 这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤。
+\item 这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤。
+\end{enumerate}
+
+\begin{figure}[H]\centering
+    这里是图片，这里是图片，这里是图片，这里是图片，这里是图片，这里是图片，这里是图片。
+%\includegraphics[width=0.6\columnwidth]{assets/1.1/第一部分实验一接线图.jpg}
+\caption{第一部分实验一接线图}\label{第一部分实验一接线图}
+\end{figure}
+
+\subsubsection{实验二：测量样品 1（铁氧体）的动态磁化曲线}
+
+这里是实验步骤
+
+\begin{enumerate}
+\item 这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤。
+\item 这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤。
+\item 这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤。
+\end{enumerate}
+
+
+\subsubsection{实验三：观察不同频率下样品 2（硅钢）的动态磁滞回线}
+
+这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤。
+
+
+\subsubsection{实验四：测量样品 1（铁氧体）在不同直流偏置磁场下的可逆磁导率}
+
+这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤，这里是实验步骤。
+
+
+
+\subsection{第二部分}
+
+\subsubsection{实验一：测量模具钢的（准）静态起始磁化曲线}
+
+\subsubsection{实验二：测量模具钢的（准）静态磁滞回线}
+
+
+\newpage
+\section{实验结果与数据处理}
+
+
+下面是数据处理需要用到的公式，在此一并列出：
+\begin{align}
+\boxed{
+\begin{aligned}
+    \text{第一部分中 $H$ 和 $B$ 的测量原理：}& H = \frac{N_1}{l_{1, k}R_1}\cdot u_{R_1},\quad B = \frac{R_2 C}{N_2 S_k}\cdot u_C
+    \\
+    \text{直流偏置下的测量原理：}&  H = \frac{N_3}{l_{1, k}}\cdot I,\quad \mu_R=\lim_{\Delta H\to 0}\frac{\Delta B}{\mu_0\Delta H}
+    \\
+    \text{第二部分中 $H$ 和 $H_{\text{re}}$ 的测量原理：}& H = \frac{N}{l_2}\cdot I,\quad H_{\text{re}} = \frac{N}{l_2}\cdot I - \frac{l_g}{\mu_0 l_2}\cdot B
+\end{aligned}
+}
+\end{align}
+实验中可能需要的常量如下所示：
+\begin{gather}
+    \mu_0 = 4\pi \times 10^{-7}\  \mathrm{H\cdot m},\ \ 
+    l_{1, 1} = 0.13 \ \mathrm{m},\ \ 
+    l_{1, 2} = 0.075 \ \mathrm{m}
+    \\
+    S_1 = 1.24 \times 10^{-4}\ \mathrm{m^2} ,\ \ 
+    S_2 = 1.20 \times 10^{-4}\ \mathrm{m^2} ,\ \ 
+    N_k = 150
+    \\ 
+    l_2 = 0.240 \ \mathrm{m},\ \ l_g = 2 \times 10^{-3} \ \mathrm{m},\ \ N = 2000
+\end{gather}
+
+对于每个小实验，我们会将对应的参数列出，给出具体的数据换算公式，然后代入计算。
+
+\subsection{第一部分}
+\subsubsection{实验一：观测样品 1（铁氧体）的饱和动态磁滞回线}\label{铁氧体}
+
+\noindent \textbf{(1)} 本节我们使用样品 1，参数 $f = 100 \ \mathrm{Hz}$，$R_1 = 2.0 \ \Omega$，$R_2 = 50.0 \kO$，$C = 10 \uF$，于是有换算公式 (\ref{1.1换算公式})。我们共测得 13 个数据点，原始电压测量结果见表 \ref{1.1电压}，换算结果见表 \ref{1.1换算后}。
+
+数据处理数据处理数据处理数据处理数据处理数据处理数据处理数据处理数据处理数据处理数据处理数据处理数据处理数据处理数据处理数据处理数据处理数据处理数据处理数据处理数据处理数据处理数据处理数据处理数据处理。
+
+
+\begin{equation}\label{1.1换算公式}
+    y = x^2,\quad y = x^2,\quad y = x^2,\quad y = x^2,\quad y = x^2,\quad y = x^2,\quad y = x^2
+\end{equation}
+
+数据处理数据处理数据处理数据处理数据处理数据处理数据处理数据处理数据处理数据处理数据处理数据处理数据处理数据处理数据处理数据处理数据处理数据处理数据处理数据处理数据处理数据处理数据处理数据处理数据处理。
+
+\begin{center}\noindent\begin{minipage}{0.35\columnwidth}
+\begin{table}[H]\centering
+        %\renewcommand{\arraystretch}{1.5} % 调整行间距为 1.5 倍
+        %\setlength{\tabcolsep}{1.5mm} % 调整列间距
+        \caption{原始电压数据点}
+        \label{1.1电压}
+    \begin{tabular}{cccccccccc}\toprule
+$u_{R_1}$ (mV) & $u_{C, 1}$ (mV) & $u_{C, 2}$ (mV)  \\
+\midrule
+0.001 &-0.002 &-0.003 \\
+0.001 &-0.002 &-0.003 \\
+0.001 &-0.002 &-0.003 \\
+0.001 &-0.002 &-0.003 \\
+0.001 &-0.002 &-0.003 \\
+0.001 & 0.002 &-0.003 \\
+0.001 & 0.002 &-0.003 \\
+0.001 & 0.002 & 0.003 \\
+0.001 & 0.002 & 0.003 \\
+0.001 & 0.002 & 0.003 \\
+0.001 & 0.002 & 0.003 \\
+0.001 & 0.002 & 0.003 \\
+0.001 & 0.002 & 0.003 \\
+        \bottomrule
     \end{tabular}
 \end{table}
+\end{minipage}\begin{minipage}{0.35\columnwidth}
+\begin{table}[H]\centering
+    %\renewcommand{\arraystretch}{1.5} % 调整行间距为 1.5 倍
+    %\setlength{\tabcolsep}{1.5mm} % 调整列间距
+    \caption{换算后的磁滞回线数据点}
+    \label{1.1换算后}
+    \begin{tabular}{ccc}\toprule
+$H$ $\mathrm{(A\cdot m^{-1})}$ & $B_1$ (T) & $B_2$ (T)  \\
+\midrule
+0.001 &-0.002 &-0.003 \\
+0.001 &-0.002 &-0.003 \\
+0.001 &-0.002 &-0.003 \\
+0.001 &-0.002 &-0.003 \\
+0.001 &-0.002 &-0.003 \\
+0.001 & 0.002 &-0.003 \\
+0.001 & 0.002 &-0.003 \\
+0.001 & 0.002 & 0.003 \\
+0.001 & 0.002 & 0.003 \\
+0.001 & 0.002 & 0.003 \\
+0.001 & 0.002 & 0.003 \\
+0.001 & 0.002 & 0.003 \\
+0.001 & 0.002 & 0.003 \\
+\bottomrule
+    \end{tabular}
+\end{table}
+\end{minipage}
+\begin{minipage}{0.24\columnwidth}
+\begin{figure}[H]\centering
+\includegraphics[width=\columnwidth]{assets/1.1/(1)/下半支.png}
+\caption{拟合结果与优度}\label{1.1拟合优度}
+\end{figure}
+\end{minipage}
+\end{center}
 
-\subsubsection{逐差法处理数据}
-你好
-\subsubsection{最小二乘法处理数据}
-你好
-\subsubsection{作图法处理数据}
 
-根据表 \ref{增减砝码时叉丝读数数据记录} 中数据，以最小二乘法拟合目标函数 $\Delta l = am+b $，其中 $a,b$ 为待定常数，可以得到 $a= 9.17\times10^{-4}\,\mathrm{mm/g}$ ，如图：
+为了得到较准确的 $B_r$ 和矫顽力 $H_c$，我们利用 Matlab 软件对数据进行拟合，定义拟合函数为：
+\begin{equation}
+y = f(x) = a \arctan (b x + c) + d
+\end{equation}
+其中 $a, b, c, d$ 为待定常数。据此拟合磁滞回线的半支，拟合两次分别得到上下半支。拟合优度如图 \ref{1.1拟合优度} 所示。
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{assets/2024-08-23_19-54-13.pdf}
-    \caption{\textbf{作图法求杨氏模量}}\label{作图法求杨氏模量}
+数据处理数据处理数据处理数据处理数据处理数据处理数据处理数据处理数据处理数据处理数据处理数据处理数据处理数据处理数据处理数据处理数据处理数据处理数据处理数据处理数据处理数据处理数据处理数据处理数据处理。
+
+
+依据原始数据和拟合结果，作出动态磁滞回线，如图 \ref{1.1图} 所示\footnote{Matlab 源码见附录 \ref{1.1源码}}。实验时的实际图像如图 \ref{1.1照片} 所示，结合优度参数和拟合图像，可以知道拟合效果极好，于是由此拟合结果可得 $B_r$ 和 $H_c$ :
+\begin{equation}
+    B_r = 99999999 \ \mathrm{T}\quad ,\quad H_c = 999999999999999 \ \mathrm{A\cdot m^{-1}}\quad
+\end{equation}
+
+\begin{figure}[H]\centering
+\begin{subfigure}[b]{0.5\columnwidth}\centering
+    \includegraphics[height=190pt]{assets/1.1/(1)/2024-10-23_01-06-12.pdf}
+    \caption{饱和磁滞回线}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{0.5\columnwidth}\centering
+    \includegraphics[height=190pt]{assets/1.1/(1)/2024-10-23_01-06-14.pdf}
+    \caption{局部放大图}
+\end{subfigure}
+\caption{磁感应强度 $B$ 随外磁场 $H$ 的变化情况}
+\label{1.1图}
+\end{figure}
+\begin{figure}[H]\centering
+\begin{subfigure}[b]{0.5\columnwidth}\centering
+    \includegraphics[height=170pt]{assets/1.1/(1)/CamScanner 10-22-2024 18.26_06.jpg}
+    \caption{饱和磁滞回线}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{0.5\columnwidth}\centering
+    \includegraphics[height=170pt]{assets/1.1/(1)/CamScanner 10-22-2024 18.26_08.jpg}
+    \caption{局部放大图}
+\end{subfigure}
+\caption{磁感应强度 $B$ 随外磁场 $H$ 的变化情况 (实物图)}\label{1.1照片}
 \end{figure}
 
-由此计算得
-	\begin{equation}
-        Y=\frac{4gL}{\pi d^2k}=2.523\times10^{11}\,\mathrm{N/m^2}
-    \end{equation}
-与理论值的相对误差为 $9.70\ \%$.
+\noindent \textbf{(2)} 仍利用公式 (\ref{1.1换算公式}) 进行数值换算，得到不同频率时的 $B_r$ 和 $H_c$，结果如下表所示：
 
-\newpage
-\section{霍尔位置传感方法测量杨氏模量}
 
-\subsection{实验目的}
-\subsection{实验器材}
-\subsection{实验原理}
-\subsubsection{霍尔位置传感器的定标}
-
-霍尔元件置于磁感强度为$ B $的磁场中，再垂直于磁场的方向上加上电流$ I $，那么在与这两者垂直的方向上将产生霍尔电势差
-\begin{equation}
-    U_H=K\cdot I\cdot B
-\end{equation}
-其中$ K $为元件的霍尔灵敏度。若保持霍尔元件的电流$ I $不变，而使其在一个均匀梯度的磁场中移动时，输出的霍尔电势差变化量为
-
-\begin{equation}
-    \Delta U_H=K\cdot I\cdot\frac{\mathrm{d} B}{\mathrm{d} Z}\cdot\Delta Z
-\end{equation}
-上式中$ \Delta Z $为位移量。
-
-\begin{figure}[H]
-    \centering
-    \includesvg[width=0.4\textwidth]{assets/梯度均匀磁场的实现.drawio.svg}
-    \caption{\textbf{梯度均匀磁场的实现}}\label{梯度均匀磁场的实现}
+\noindent \textbf{(3)} 改变积分常量 $R_2 C$，得到不同积分常量下的李萨如图形（动态磁滞回线），如下所示：
+\begin{figure}[H]\centering
+\begin{subfigure}[b]{0.33\columnwidth}\centering
+    %\includegraphics[height=120pt]{assets/1.1/(2)/IMG_1796.JPG}
+    \caption{$R_2C = 0.01$ s}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{0.33\columnwidth}\centering
+    %\includegraphics[height=120pt]{assets/1.1/(2)/IMG_1794.JPG}
+    \caption{$R_2C = 0.05$ s}
+\end{subfigure}
+\begin{subfigure}[b]{0.33\columnwidth}\centering
+    %\includegraphics[height=120pt]{assets/1.1/(2)/IMG_1795.JPG}
+    \caption{$R_2C = 0.5$ s}
+\end{subfigure}
+\caption{不同积分常量下的李萨如图形}
 \end{figure}
 
-\subsubsection{弯曲法测杨氏模量}
+\noindent Q1. 为什么积分常量会影响 $u_{R_1}-u_c$ 李萨如图形的形状？\par
 
-\subsection{实验内容}
-\subsubsection{注意事项}
-\subsubsection{实验步骤}
-\subsection{实验结果与数据处理}
-\subsubsection{数据记录}
 
-\newpage
-\section{动态悬挂法测量材料的杨氏模量}
-\subsection{实验目的}
-\subsection{实验器材}
+
+\noindent Q2. 积分常量是否会影响真实的$ B − H $磁滞回线的形状？\par
+
+
+\subsubsection{实验二：测量样品 1（铁氧体）的动态磁化曲线}
+
 
 \newpage
+
+
+\subsubsection{实验三：观察不同频率下样品 2（硅钢）的动态磁滞回线}\label{不同频率硅钢}
+
+\subsubsection{实验四：测量样品 1（铁氧体）在不同直流偏置磁场下的可逆磁导率}
+
+\subsection{第二部分}
+
+\subsubsection{实验一：测量模具钢的（准）静态起始磁化曲线}
+
+
+\subsubsection{实验二：测量模具钢的（准）静态磁滞回线}
+
+
+\begin{table}[H]\centering
+    %\renewcommand{\arraystretch}{1.5} % 调整行间距为 1.5 倍
+    %\setlength{\tabcolsep}{1.5mm} % 调整列间距
+    \caption{霍尔传感器测量样品的静态磁滞回线}
+    \label{2.2表}
+\resizebox{\linewidth}{!}{   % 设置宽度为 \linewidth 等比例缩放
+\begin{tabular}{|c|cccc|c|cccc|}\hline
+    序号 & $I$ (mA) & $B$ (mT) & $H \ \mathrm{(A\cdot m^{-1})}$ &  $H_{\text{re}} \ \mathrm{(A\cdot m^{-1})}$ & 序号 & $I$ (mA) & $B$ (mT) & $H \ \mathrm{(A\cdot m^{-1})}$ &  $H_{\text{re}} \ \mathrm{(A\cdot m^{-1})}$    \\
+    \hline
+    1	& 0.001 &0.002 	&0.003	&0.004	&28	&0.005	&0.006	&0.007 & 0.008 \\
+    2	& 0.001 &0.002 	&0.003	&0.004	&29	&0.005	&0.006	&0.007 & 0.008 \\
+    3	& 0.001 &0.002 	&0.003	&0.004	&30	&0.005	&0.006	&0.007 & 0.008 \\
+    4	& 0.001 &0.002 	&0.003	&0.004	&31	&0.005	&0.006	&0.007 & 0.008 \\
+    5	& 0.001 &0.002 	&0.003	&0.004	&32	&0.005	&0.006	&0.007 & 0.008 \\
+    6	& 0.001 &0.002 	&0.003	&0.004	&33	&0.005	&0.006	&0.007 & 0.008 \\
+    7	& 0.001 &0.002 	&0.003	&0.004	&34	&0.005	&0.006	&0.007 & 0.008 \\
+    8	& 0.001 &0.002  &0.003	&0.004	&35	&0.005	&0.006	&0.007 & 0.008 \\
+    9	& 0.001 &0.002  &0.003	&0.004	&36	&0.005	&0.006	&0.007 & 0.008 \\
+    10	& 0.001 &0.002  &0.003	&0.004	&37	&0.005	&0.006	&0.007 & 0.008 \\
+    11	& 0.001 &0.002  &0.003	&0.004	&38	&0.005	&0.006	&0.007 & 0.008 \\
+    12	& 0.001 &0.002  &0.003	&0.004	&39	&0.005	&0.006	&0.007 & 0.008 \\
+    13	& 0.001 &0.002  &0.003	&0.004	&40	&0.005  &0.006	&0.007 & 0.008 \\
+    14	& 0.001 &0.002  &0.003  &0.004	&41	&0.005  &0.006	&0.007 & 0.008 \\
+    15	& 0.001 &0.002  &0.003	&0.004	&42	&0.005	&0.006	&0.007 & 0.008 \\
+    16	& 0.001 &0.002  &0.003	&0.004	&43	&0.005	&0.006  &0.007 & 0.008 \\
+    17	& 0.001 &0.002 	&0.003	&0.004	&44	&0.005	&0.006  &0.007 & 0.008 \\
+    18	& 0.001 &0.002 	&0.003	&0.004	&45	&0.005	&0.006  &0.007 & 0.008 \\
+    19	& 0.001 &0.002 	&0.003	&0.004	&46	&0.005	&0.006  &0.007 & 0.008 \\
+    20	& 0.001 &0.002 	&0.003	&0.004	&47	&0.005	&0.006  &0.007 & 0.008 \\
+    21	& 0.001 &0.002 	&0.003	&0.004	&48	&0.005	&0.006  &0.007 & 0.008 \\
+    22	& 0.001 &0.002 	&0.003	&0.004	&49	&0.005	&0.006  &0.007 & 0.008 \\
+    23	& 0.001 &0.002 	&0.003	&0.004	&50	&0.005	&0.006  &0.007 & 0.008 \\
+    24	& 0.001 &0.002 	&0.003	&0.004	&51	&0.005	&0.006	&0.007 & 0.008 \\
+    25	& 0.001 &0.002 	&0.003	&0.004	&52	&0.005	&0.006	&0.007 & 0.008 \\
+    26	& 0.001 &0.002 	&0.003	&0.004	&53	&0.005	&0.006	&0.007 & 0.008 \\
+    27	& 0.001 &0.002 	&0.003	&0.004	&	&		&	    &      &       \\
+    \hline
+\end{tabular}}
+\end{table}
+
 \section{思考题}
-\subsection{思考题 1}
-\subsection{思考题 2}
 
-\subsection{实验总结与感想}
+\subsection*{6.1 铁磁材料的动态磁滞回线与（准）静态磁滞回线在概念上有什么区别？铁磁材料动态磁滞回线的形状和面积受那些因素影响？}
 
+
+\noindent \textbf{(1) 区别：}
+
+\noindent \textbf{(2) 影响因素：}
+
+
+
+\subsection*{6.2 什么叫做基本磁化曲线？它和起始磁化曲线间有何区别？}
+
+\noindent\textbf{(1) 初始磁化曲线：}
+
+
+\noindent\textbf{(2) 基本磁化曲线：}
+
+\noindent\textbf{(3) 区别：}
+
+
+
+\subsection*{6.3 铁氧体和硅钢材料的动态磁化特性各有什么特点？}
+
+\noindent\textbf{(1) 磁化特性：}
+
+
+
+\noindent\textbf{(2) 磁滞损耗：}
+
+
+
+\subsection*{6.4 动态磁滞回线测量实验中，电路参量应怎样设置才能保证$u_{R_1}-u_C$所形成的李萨如图形正确反映材料动态磁滞回线的形状？}
+
+
+
+\subsection*{6.5 准静态磁滞回线测量实验中，为什么要对样品进行磁锻炼才能获得稳定的饱和磁滞回线？}
+
+
+
+\section{实验总结与心得体会}
+
+实验总结与心得体会，实验总结与心得体会，实验总结与心得体会，实验总结与心得体会，实验总结与心得体会，实验总结与心得体会，实验总结与心得体会，实验总结与心得体会，实验总结与心得体会，实验总结与心得体会，实验总结与心得体会，实验总结与心得体会。实验总结与心得体会，实验总结与心得体会，实验总结与心得体会，实验总结与心得体会，实验总结与心得体会，实验总结与心得体会，实验总结与心得体会，实验总结与心得体会，实验总结与心得体会，实验总结与心得体会，实验总结与心得体会，实验总结与心得体会。
+
+
+实验总结与心得体会，实验总结与心得体会，实验总结与心得体会，实验总结与心得体会，实验总结与心得体会，实验总结与心得体会，实验总结与心得体会，实验总结与心得体会，实验总结与心得体会，实验总结与心得体会，实验总结与心得体会，实验总结与心得体会。
+
+
+实验总结与心得体会，实验总结与心得体会，实验总结与心得体会，实验总结与心得体会，实验总结与心得体会，实验总结与心得体会，实验总结与心得体会，实验总结与心得体会，实验总结与心得体会，实验总结与心得体会，实验总结与心得体会，实验总结与心得体会。
+\footnote{手写预习报告、原始数据记录表和 Matlab 源代码附在附录中。}
+
+
+
+
+% --------------------------- 附录 --------------------------- %
+% >> ------------------------ 附录 ------------------------ << %
+
+
+\newpage
+\appendix
+% section 标题自定义设置 
+\titleformat{\section}[hang]{\normalfont\huge\bfseries\centering}{}{20pt}{}
+\titlespacing*{\section}{0pt}{-25pt}{8pt} % 控制上方空白的大小
+% subsection 标题自定义设置 
+\titleformat{\subsection}[hang]{\normalfont\Large\bfseries\boldmath}{\thesubsection}{8pt}{}
+% subsubsection 标题自定义设置 
+\titleformat{\subsection}[hang]{\normalfont\normalsize\bfseries\boldmath}{\thesubsection}{8pt}{}
+
+
+% 附录 A
+\section*{附录 A\hspace*{20pt} 手写预习报告}
+\addcontentsline{toc}{section}{附录 A\hspace*{6pt} 手写预习报告} 
+\thispagestyle{fancy} 
+
+\begin{figure}[H]\centering
+    %\includepdf[pages=1, width=500pt]{assets/pdf/预习报告-2-05组-丁毅-磁滞回线-2024.10.22-朱中柱.pdf}
+\end{figure}
+%\includepdf[pages={2}]{assets/pdf/预习报告-2-05组-丁毅-磁滞回线-2024.10.22-朱中柱.pdf}
+
+
+% 附录 B
+\section*{附录 B\hspace*{20pt} 原始数据记录表}
+\addcontentsline{toc}{section}{附录 B\hspace*{6pt} 原始数据记录表} 
+\thispagestyle{fancy} 
+
+\begin{figure}[H]\centering
+    %\includepdf[pages=1, width=500pt]{assets/pdf/Ex.8 原始数据记录表.pdf}
+\end{figure}
+%\includepdf[pages={2-4}]{assets/pdf/Ex.8 原始数据记录表.pdf}
+
+
+% 附录 C
+\section*{附录 C\hspace*{20pt} Matlab 源码}
+\addcontentsline{toc}{section}{附录 C\hspace*{6pt} Matlab 源码} 
+\thispagestyle{fancy} 
+
+% 目录不够放了，只能出此下策
+{\normalfont\Large\bfseries\boldmath 
+\begin{center}
+    C.1 第一部分
+\end{center}
+}
+
+{\noindent\normalfont\large\bfseries\boldmath C.1.1 实验一图 \ref{1.1图} 源码}\label{1.1源码}
+\lstinputlisting{d:/a_RemoteRepo/GH.MatlabCodes/本科课程代码/基础物理实验/Ex_8/Ex_8_Part1_1.m}
+
+{\noindent\normalfont\large\bfseries\boldmath C.1.2 实验二图 \ref{1.2图} 源码}\label{1.2源码}
+\lstinputlisting{d:/a_RemoteRepo/GH.MatlabCodes/本科课程代码/基础物理实验/Ex_8/Ex_8_Part1_2.m}
+
+{\noindent\normalfont\large\bfseries\boldmath C.1.3 实验四图 \ref{1.4图} 源码}\label{1.4源码}
+\lstinputlisting{d:/a_RemoteRepo/GH.MatlabCodes/本科课程代码/基础物理实验/Ex_8/Ex_8_Part1_4.m}
 
 \end{document}
 

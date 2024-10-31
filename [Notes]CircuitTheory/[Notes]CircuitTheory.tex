@@ -1902,12 +1902,185 @@ R_d =
 需要注意，小信号法看似与叠加定理相似，实际上是两种不同的思路，考虑的是激励的微小变化给响应带来的影响，而叠加定理是考虑不同激励的叠加。
 \section{用 MOSFET 构成放大器（略）}
 
-\section{非线性电阻应用举例}
+\section{非线性电阻应用举例（略）}
 \subsection{整流}
 \subsection{限幅}
 \subsection{倍频}
 
 
+\chapter{动态电路的时域分析}\thispagestyle{fancy}
+
+\section{电容和电感}
+电容：
+\begin{gather}
+q = Cu
+\Longrightarrow 
+\begin{cases}
+    i = C \frac{\mathrm{d} u }{\mathrm{d} t } \\ 
+    u = \frac{1}{C} \int i \mathrm{d} t
+\end{cases},\quad E_C = \frac{1}{2}Cu^2 \\ 
+\text{串联：} \frac{1}{C} = \sum \frac{1}{C_i},\quad \text{并联：}C = \sum C_i
+\end{gather}
+
+电感：
+\begin{gather}
+    \Phi = L i
+    \Longrightarrow 
+    \begin{cases}
+        u = L \frac{\mathrm{d} i }{\mathrm{d} t } \\ 
+        i = \frac{1}{L} \int u \mathrm{d} t
+    \end{cases},\quad E_L = \frac{1}{2}Li^2\\ 
+    \text{串联：} L = \sum L_i,\quad \text{并联：}\frac{1}{L} = \sum \frac{1}{L_i}
+\end{gather}
+
+\begin{figure}[H]\centering
+\begin{subfigure}[b]{0.21\columnwidth}\centering
+    \includegraphics[width=\columnwidth]{assets/5/电容.png}\
+    \vspace*{3mm}
+    \caption{电容}
+\end{subfigure}
+\begin{subfigure}[b]{0.21\columnwidth}\centering
+    \includegraphics[width=\columnwidth]{assets/5/实际电容.png}
+    \caption{实际电容}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{0.21\columnwidth}\centering
+    \includegraphics[width=\columnwidth]{assets/5/电感.png}
+    \vspace*{3mm}
+    \caption{电感}
+\end{subfigure}
+\begin{subfigure}[b]{0.21\columnwidth}\centering
+    \includegraphics[width=\columnwidth]{assets/5/实际电感.png}
+    \caption{实际电感}
+\end{subfigure}
+\caption{电容和电感的符号}
+\end{figure}
+
+
+\begin{center}
+\noindent\begin{minipage}{0.49\columnwidth}
+    \hspace*{2em} 由于电容、电感和电阻等无源元件通常较大，在电路中占据更多的空间，因此集成电路设计中会尽量少用这些元件。
+
+    \hspace*{2em} MOSFET 的 G、D、S 各极之间都存在寄生电容，这些电容通常是 $u_{GS}$ 和 $u_{DS}$ 的函数，并且还会随温度变化，其中影响最大的是 $C_{GS}$。本书我们主要讨论 $C_{GS}$，并且认为其是恒定值。
+    
+    MOSFET 的 SRC (Switch-Resistor-Capacitor) 模型如右图所示。我们将在后文“反相器的输出延迟”一例中讨论寄生电阻所带来的影响。当然，也可以有 SSC (Switch-Source-Capacitor) 模型，这里不多赘述。
+\end{minipage}\hfill\begin{minipage}{0.4\columnwidth}
+\begin{figure}[H]\centering
+\includegraphics[height=150pt]{assets/5/MOSFET SRC模型.png}
+\caption{MOSFET 的 SRC 模型}\label{MOSFET SRC模型}
+\end{figure}
+\end{minipage}\end{center}
+
+\section{换路定理}
+动态电路中电路结构或参数变化引起的电路变化统称为“换路” (Switch)。假设电路在 $t = 0$ 时刻发生换路，把换路前一瞬间记为 $t = 0^-$，换路后一瞬间记为 $t = 0^+$，则微分方程的初始条件就是各参数在 $t = 0^+$ 时的值，称为初始值。
+
+依据电容和电感的定义，有界函数积分所得到的函数是连续的，因此有下面的换路定律。
+\begin{BlockTheorem}[换路定律]\label{换路定律}
+对任意电容，如果在换路瞬间电容电流为有限值，则有：
+\begin{equation}
+u_{C}(0^+) = u_{C}(0^-),\quad q_{C}(0^+) = q_{C}(0^-)
+\end{equation}
+对任意电感，如果在换路瞬间电感电压为有限值，则有：
+\begin{equation}
+i_{L}(0^+) = i_{L}(0^-),\quad \Phi_{L}(0^+) = \Phi_{L}(0^-)
+\end{equation}
+\end{BlockTheorem}
+
+需要强调的是，当两个电容串联时，换路定律不再适用，因为这时两电容中间的电流可以是无穷大。
+
+\section{一阶动态电路}
+
+用一阶常微分方程来描述的电路称为“一阶动态电路”，简称为一阶电路 (First Order Circuit)。只含有一个动态元件（电容或电感）的电路一定是一阶电路，含有多个电容（或多个电感）的电路也可能是一阶电路。
+如果一阶电路中只含有一个动态元件，则可以把该动态元件以外的电路用戴维南定理进行等效，从而得到经典的串联 $RC$ 电路或串联 $RL$ 电路。
+
+我们称激励恒为 0 (对 $t>0$) 的解为“零输入响应”，称电容（电感）初始能量为 0 的解为“零状态响应”。
+
+
+\subsection{一阶线性微分方程的解法}
+
+对一阶线性微分方程：
+\begin{equation}
+y' + p(x)y = q(x)
+\end{equation}
+考虑它的齐次方程 $y' + p(x)y = 0$，得到齐次解 $y_h$ : 
+\begin{equation}
+    y_h = y(0) e^{-\int_{0}^{x}p(x)\,\mathrm{d}x}
+\end{equation}
+再求出原方程的一个特解 $y_p$，则方程的通解为 $y = y_p + y_h = y_p(x) + y(0) e^{-\int_{0}^{x}p(x)\,\mathrm{d}x}$。特别地，当 $p(x)$ 和 $q(x)$ 都为常量时，一个特解是 $y \equiv \frac{q}{p}$，此时的通解为：
+\begin{equation}
+y = \frac{q}{p} + y(0)e^{-px}
+\end{equation}
+
+为了方便参考，用因子法给出一个普适的通解形式。在原方程两边同乘因子 $\mu(x) = e^{\int_{0}^{x}p(x)\mathrm{d}x}$，此时 $\mu'(x) = p\, e^{\int_{0}^{x}p \mathrm{d}x} = p \mu$，且 $\mu(0) = 0$，于是有：
+\begin{gather}
+\mathrm{d} \left(\mu y \right) = q\mu\ \mathrm{d}x
+\Longrightarrow 
+\left[\mu y\right]_0^x = \int_{0}^{x} q \mu \mathrm{d}x \\ 
+\Longrightarrow y = y(x) = \frac{1}{\mu} \int_{0}^{x} q \mu\ \mathrm{d}x 
+\end{gather}
+
+\subsection{经典解法}
+
+经典法求解一阶电路，便是根据 KCL 和 KVL 以及元件特性列写电路的微分方程（组），然后求解微分方程（组）的解。
+
+考虑常见的串联 $RC$ 电路，设激励 $U_s$ 恒定不变，则换路之后有：
+\begin{equation}
+u_C = u_C(t) = U_s + \left[u_C(0^+) - U_s\right] e^{-\frac{t}{\tau}} = u_C(0^+)e^{-\frac{t}{\tau}} + U_s\left[1 - e^{-\frac{t}{\tau}}\right],\quad \tau = RC
+\end{equation}
+我们称 $U_s$ 项为稳态分量（或强制分量），它是 $t \to \infty$ 时电路的响应；称 $\left(u_C(0^+) - U_s\right) e^{-\frac{t}{\tau}}$ 一项为自由分量，它是电容状态发生变化所带来的响应。$\tau$ 称为“时间常量”，它决定了电路的响应速度，$\tau$ 越小，电路响应越快。一般认为经过 $3\tau \sim 5 \tau$ 的时间，电路响应便达到稳态。
+
+类似地，对串联 $RL$ 电路，则有：
+\begin{equation}
+i_L = i_L(t) = \frac{U_s}{R} + \left[i_L(0^+) - \frac{U_s}{R}\right]e^{-\frac{t}{\tau}} = i_L(0^+)e^{-\frac{t}{\tau}} + \frac{U_s}{R}\left[1 - e^{-\frac{t}{\tau}}\right],\quad \tau = \frac{L}{R}
+\end{equation}
+其中 $u_C(0^+)$ 和 $i_L(0^+)$ 是初始条件，也常记为 $u_{C,0^+}$ 和 $i_{L,0^+}$。
+
+\subsection{三要素法}
+设 $f = f(t)$ 是某支路的待求参量（可以是电压或电流），定义 $f_{\infty}(t) = f(t)\mid_{t \to \infty}$ 是 $t \to \infty$（稳态）时 $f(t)$ 的表达式。那么，参数的通解是：
+\begin{equation}
+\boxed{
+    f = f(t) = f_{0^+}\cdot e^{-\frac{t}{\tau}} + \left[ f_{\infty}(t) - f_{\infty}(0)\cdot e^{-\frac{t}{\tau}} \right] = \left[f_{0^+} - f_{\infty}(0)\right]\cdot e^{-\frac{t}{\tau}} + f_{\infty}(t)
+}\quad 
+\text{三要素}
+\begin{cases}
+    f_{0^+} \\ 
+    f_{\infty} \\ 
+    \tau
+\end{cases}
+\end{equation}
+特别地，当 $f_{\infty}$ 为常量时，$f_{\infty}(0) \equiv f_{\infty}(t)$，有：
+\begin{equation}
+\boxed{
+    f = f(t) = f_{0^+}\cdot e^{-\frac{t}{\tau}} + f_{\infty}(0)\cdot \left[ 1 - e^{-\frac{t}{\tau}} \right]
+}
+\end{equation}
+只要确定了三要素，便能够确定方程的解。作为一个例子，考虑激励为 $U_s = U_m \sin (\omega t + \phi)$ 的一阶串联 $RL$ 电路，现在来求解 $i_L = i_L(t)$。电感 $L$ 的阻抗为 $\omega L$，可以得到电流的稳态解 $i_{L,\infty}$ :\footnote{我们将在下一章讨论这样做的正确性}
+\begin{equation}
+i_{L, \infty} = \frac{U_m}{\sqrt{R^2 + (\omega L)^2}} \sin \left(\omega t + \phi - \varphi \right),\quad \varphi =  \arctan \frac{\omega L}{R} > 0
+\end{equation}
+时间常量 $\tau = \frac{L}{R}$，记电感的初始电流 $i_{L,0^+} = I_0 $（原始储能为 $E = \frac{1}{2}LI_0^2$），便可以得到：
+\begin{align}
+i_L(t) &= i_{L,0^+} \cdot e^{-\frac{t}{\tau}} + i_{L, \infty}(t) -  i_{L, \infty}(0)\cdot e^{-\frac{t}{\tau}} \\
+&= \left[i_{L,0^+} - i_{L, \infty}(0)\right] \cdot e^{-\frac{t}{\tau}} + i_{L, \infty}(t)\\
+&= 
+\left[I_0 - \frac{U_m}{\sqrt{R^2 + (\omega L)^2}} \sin \left(\phi - \varphi \right) \right] \cdot e^{-\frac{t}{\tau}}
++ \frac{U_m}{\sqrt{R^2 + (\omega L)^2}} \sin \left(\omega t + \phi - \varphi \right)
+\end{align}
+式中前一项为自由分量，后一项为稳态分量。
+
+在第六章介绍“相量法”之后，这类方程的求解将变得简单。
+
+\section{一阶动态电路应用}
+此部分详见参考文献 \cite{电路原理} Page 207-223，我们不多赘述。
+
+
+\subsection{MOSFET 的传播延迟 (NOT Gate)}
+\subsection{RC 微分积分电路}
+\subsection{OPA 微分积分电路}
+\subsection{脉冲序列下的 RC 电路}
+\subsection{降压斩波器 (DC > DC)}
+\subsection{滤波全桥整流 (AC > DC)}
+
+\chapter{动态电路的稳态分析}\thispagestyle{fancy}
 
 
 

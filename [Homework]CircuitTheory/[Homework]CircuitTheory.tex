@@ -1720,7 +1720,186 @@ i = i(t) =
 \end{minipage}\end{center}
 
 
+\chapter{Homework 9: 2024.10.30 - 2024.11.05}
+\rhead{Homework 9: 2024.10.30 - 2024.11.05}
+\thispagestyle{fancy}
 
+\section{习题集 7-6-a}
+
+为求 $i_1$ 和 $i_C$ 的初始值，考虑 $t = 0^+$ 时的等效电路。$u_{C, 0^+} = u_{C, 0^-} = 10 \ \mathrm{V}$，因此 $t = 0^+$ 时电容 $C$ 相当于一个 $10 \ \mathrm{V}$ 电压源，有：
+\begin{gather}
+10 + ri_1 - 10 \KO \cdot i_1 - 20\kO \cdot (i_1 + i_S) = 0 \\
+\Longrightarrow 
+\boxed{
+    i_1(0^+) = \frac{10 - 1000}{30\K - 50} \ \mathrm{A} = -33.0551 \mA,\quad i_C(0^+) = -(i_S + i_1) =  -16.9449 \mA
+}
+\end{gather}
+
+不妨顺手求解一下 $u_C(t)$ 和 $i_C(t)$。对电路作戴维南等效以求解 $u_C$，如图 \ref{9.1 习题集 7-6} (b) 所示，有：
+\begin{equation}
+U_{\text{oc}} =  0 - (10 \kO - r)\cdot 50\mA = (2.5 - 500) \ \mathrm{V} = - 497.5 \ \mathrm{V},\quad R_{\text{eq}} = 30\kO - r = (30\K - 50) \ \Omega
+\end{equation}
+依据三要素方法，$u_{C, 0^+} = 10 \ \mathrm{V}$，$\tau = R_{\text{eq}}C$，$u_{C,\infty} = U_{\text{oc}} = - 497.5 \ \mathrm{V}$，可以得到：
+\begin{gather}
+u_C (t) = u_{C, 0^+}\cdot e^{-\frac{t}{\tau}} + u_{C,\infty}\cdot \left[1 - e^{-\frac{t}{\tau}}\right] = 10 \,e^{-\frac{t}{\tau}} +  U_{\text{oc}}\cdot \left[1 - e^{-\frac{t}{\tau}}\right] \\ 
+i_C (t) = C\frac{\mathrm{d} u_C }{\mathrm{d} t }
+= -\frac{10}{R_{\text{eq}}} \,e^{-\frac{t}{\tau}} + \frac{U_{\text{oc}}}{R_{\text{eq}}} \,e^{-\frac{t}{\tau}} \\ 
+\Longrightarrow i_C (0^+) = \frac{U_{\text{oc}} - 10}{R_{\text{eq}}} = -16.9449 \mA
+\end{gather}
+可以得到同样的结果。
+
+\begin{figure}[H]\centering
+\begin{subfigure}[b]{0.5\columnwidth}\centering
+    \includegraphics[height=120pt]{assets/9/9.1 (a).png}
+    \caption{原题图}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{0.5\columnwidth}\centering
+    \includegraphics[height=120pt]{assets/9/9.1 (b).png}
+    \caption{戴维南等效}
+\end{subfigure}
+\caption{9.1 习题集 7-6-a}
+\label{9.1 习题集 7-6}
+\end{figure}
+
+
+\section{习题集 7-10}
+$t = 0$ 时开关断开，于是：
+\begin{gather}
+    u_{C,0^+}  = -4 \ \mathrm{V},\quad u_{C,\infty} = 0,\quad \tau = 2\kO \cdot C = 50 \ \mathrm{ms}  \\
+    \Longrightarrow 
+    u_C(t) = u_{C,0^+}\cdot e^{-\frac{t}{\tau}} + u_{C,\infty}\cdot \left[1 - e^{-\frac{t}{\tau}}\right] = -4 \,e^{- \frac{1000}{50} t} \ \mathrm{V} \\
+    \boxed{
+        u_C(t) = -4 \,e^{-20 t} \ \mathrm{V}
+    }
+\end{gather}
+式中 $t$ 的单位是秒 (s)，作出 $u_C(t)$ 的图像，如图 \ref{9.2 习题集 7-10} (b) 所示。
+\begin{figure}[H]\centering
+\begin{subfigure}[b]{0.5\columnwidth}\centering
+    \includegraphics[height=120pt]{assets/9/9.2 (a).png}
+    \caption{原题图}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{0.5\columnwidth}\centering
+    \includegraphics[height=140pt]{assets/9/9.2 b.pdf}
+    \caption{$u_C = u_C(t)$ 的图像}
+\end{subfigure}
+\caption{9.2 习题集 7-10}
+\label{9.2 习题集 7-10}
+\end{figure}
+
+\section{习题集 7-12}
+开关闭合前（$t = 0^-$），由电阻分压 $u_{C, 0^-} = 18\cdot \frac{2}{2 + 3}\cdot \frac{1}{2} = \frac{18}{5} \ \mathrm{V}$，$t = 0^+$ 后开关闭合，两个 $3 \kO$ 电阻被短路，且电压源置零（零输入响应），只剩下两个 $3 \kO$ 电阻与电容并联，于是：
+\begin{gather}
+    u_{C, 0^+} = u_{C, 0^-} = \frac{18}{5} \ \mathrm{V},\quad u_{C, \infty} = 0,\quad \tau = R_{\text{eq}}C = 3 \ \mathrm{ms} \\
+    \Longrightarrow 
+    u_C(t) = u_{C,0^+}\cdot e^{-\frac{t}{\tau}} + u_{C,\infty}\cdot \left[1 - e^{-\frac{t}{\tau}}\right] = \frac{18}{5} \,e^{-\left(\frac{t}{3}\times 10^3\right)} \ \mathrm{V} \\ 
+    \boxed{
+        u_C(t) = 3.6 \,e^{-333.3t} \ \mathrm{V},\quad i_1(t) = - \frac{1}{3 \K}u_C(t) = -1.2 \,e^{-333.3t} \ \mathrm{mA}
+    }
+\end{gather}
+
+\section{习题集 7-17}
+作戴维南等效可得 $U_{\text{oc}} = 80 \cdot \left(\frac{1}{5} - \frac{4}{5}\right) = -48 \ \mathrm{V}$，$R_{\text{eq}} = (20 \parallel 80) + (20 \parallel 80) = 32 \ \Omega$。因为是零状态响应，$i_{L,0} = 0$，于是有：
+\begin{gather}
+    i_{L,0} = 0,\quad i_{L,\infty} = \frac{U_{\text{oc}}}{R_{\text{eq}}} = -1.5 \ \mathrm{A},\quad \tau = \frac{L}{R} = \frac{5}{8} \ \mathrm{ms} =  0.625 \ \mathrm{ms} \\ 
+    \Longrightarrow 
+    \boxed{
+        i_L = -1.5\cdot \left[1 - e^{- \left( \frac{8t}{5}\times 10^3\right)} \ \mathrm{A}\right] =  -1.5  + 1.5\,e^{- 1600 t} \ \mathrm{A}
+    }
+\end{gather}
+作出图像，如图 \ref{9.4 习题集 7-17} (b) 所示。
+\begin{figure}[H]\centering
+    \begin{subfigure}[b]{0.5\columnwidth}\centering
+        \includegraphics[height=140pt]{assets/9/9.4 a.png}
+        \caption{原题图}
+    \end{subfigure}\hfill
+    \begin{subfigure}[b]{0.5\columnwidth}\centering
+        \includegraphics[height=145pt]{assets/9/9.4 b.pdf}
+        \caption{$i_L = i_L(t)$ 的图像}
+    \end{subfigure}
+    \caption{9.4 习题集 7-17}
+    \label{9.4 习题集 7-17}
+\end{figure}
+
+\section{习题集 7-28}
+由电压关系可以发现，对电感而言，$2 \ \mathrm{H}$、$5 \ \Omega$ 和 $5 \ \mathrm{V}$ 三个元件构成一个 $RL$ 电路，因此有：
+\begin{gather}
+    i_{L,0^+} = \frac{10 \ \mathrm{V}}{20 \ \Omega} = 0.5 \ \mathrm{A},\quad i_{L,\infty} = \frac{5 \ \mathrm{V}}{5 \ \Omega} = 1 \ \mathrm{A},\quad \tau = \frac{L}{R} = \frac{2}{5} \ \mathrm{s} =  0.4 \ \mathrm{s} \\ 
+    \Longrightarrow 
+    i_L(t) = 0.5\, e^{ - 2.5 t} + 1\cdot \left[1 - e^{ - 2.5 t}\right] \ \mathrm{A} = 1 - 0.5 \,e^{ - 2.5 t} \ \mathrm{A}
+\end{gather}
+对电容而言，两个有伴电压源与其并联（注意有一个 $5 \ \Omega$ 电阻不起作用），戴维南等效得到 $U_{\text{oc}} = \frac{20}{3} \ \mathrm{V}$，$R_{\text{eq}} = \frac{10}{3} \ \Omega$，由于 $u_{C,0^+} = 5 \ \mathrm{V}$，可以得到：
+\begin{gather}
+    i_{C,0^+} = \frac{\frac{20}{3} - 5}{\frac{10}{3}} = 0.5 \ \mathrm{A}
+    ,\quad 
+    i_{L,\infty} = 0
+    ,\quad 
+    \tau = R_{\text{eq}}C = \frac{10}{3} \ \mathrm{s} =  0.333 \ \mathrm{s} \\ 
+    \Longrightarrow 
+    i_C(t) = 0.5 \,e^{ -0.3t} \ \mathrm{A}
+\end{gather}
+设流经 $10 \ \mathrm{V}$ 电压源的电流为 $I$，由 KVL 可得 $10 - 10 I - 5(I - i_C) = 5 \Longrightarrow I = \frac{1}{3}i_C + \frac{1}{3}$，于是：
+\begin{gather}
+i(t) = I - i_C - i_L = -\frac{2}{3}i_C - i_L + \frac{1}{3} = 
+- \frac{2}{3} - \frac{1}{3}\,e^{-0.3 t} + 0.5\,e^{-2.5 t} \ \mathrm{A}\\ 
+\Longrightarrow 
+\boxed{
+    i(t) = -0.6667 - 0.3333\,e^{-0.3 t} + 0.5\,e^{-2.5 t} \ \mathrm{A}
+}
+\end{gather}
+
+\section{习题集 7-35}
+\begin{enumerate}
+\item $S_1$ 闭合前瞬间 ($t = 0^-$) : $u_C = 1 \ \mathrm{V}$
+\item $S_1$ 闭合后瞬间 ($t = 0^+$) : $u_C = 1 \ \mathrm{V}$，$i_C = 1 \ \mathrm{A}$。对电路作戴维南等效，得 $U_{\text{oc}} = 5 \ \mathrm{V}$，$R_{\text{eq}} = 4 \ \Omega$。
+\item $t \in (0,\ 1 \ \mathrm{s})$ 的三要素： 
+\begin{equation}
+\begin{cases}
+    \frac{1}{\tau} = \frac{1}{R_{\text{eq}}C} = 1 \Hz \\ 
+    u_{C, 0^+} = 1 \ \mathrm{V},\  u_{C, \infty} = 5 \ \mathrm{V} \\ 
+    i_{C, 0^+} = 1 \ \mathrm{A},\ i_{C, \infty} = 0
+\end{cases}\Longrightarrow 
+\begin{cases}
+    u_C(t) = 5 + (1 - 5)\cdot e^{-t} = 5 - 4 \,e^{-t} \ \mathrm{V} \\ 
+    i_C(t) = 1\cdot e^{-t} \ \mathrm{A} = e^{-t} \ \mathrm{A}
+\end{cases}
+\end{equation}
+
+\item $S_2$ 闭合前瞬间 ($t = 1^-$) : $u_C = 5 - \frac{4}{e} \ \mathrm{V}$，记其为 $U_1 = 5 - \frac{4}{e} \ \mathrm{V} = 3.5285 \ \mathrm{V}$。
+\item $S_2$ 闭合后瞬间 ($t = 1^+$) : $u_C = U_1$，对电路作戴维南等效，得 $U_{\text{oc}} = 4.5 \ \mathrm{V}$，$R_{\text{eq}} = 2 \ \Omega$。于是 $i_C = \frac{4.5 - U_1}{2} $，记作 $I_1 = \frac{4.5 - U_1}{2} = 0.4858 \ \mathrm{A}$。
+\item $t \in (1 \ \mathrm{s}, + \infty)$ 的三要素：
+\begin{equation}
+    \begin{cases}
+        \frac{1}{\tau} = \frac{1}{R_{\text{eq}}C} = 2 \Hz \\ 
+        u_{C, 0^+} = U_1 = 3.5285 \ \mathrm{V},\  u_{C, \infty} = 4.5 \ \mathrm{V} \\ 
+        i_{C, 0^+} = I_1 = 0.4858 \ \mathrm{A},\ i_{C, \infty} = 0
+    \end{cases}\Longrightarrow 
+    \begin{cases}
+        u_C(t) = 4.5 - 0.9715 \,e^{-t} \ \mathrm{V} \\ 
+        i_C(t) = i_1\cdot e^{-2(t-1)} \ \mathrm{A} = 0.4858 \,e^{-t} \ \mathrm{A}
+    \end{cases}
+    \end{equation}
+\end{enumerate}
+综上，我们有：
+\begin{gather}
+\boxed{
+    u_C(t) = 
+    \begin{cases}
+        5 - 4 \,e^{-t} \ \mathrm{V} &, t \in [0, 1 \ \mathrm{s}) \\ 
+        4.5 - 0.9715 \,e^{-2(t-1)} \ \mathrm{V} &, t \in [1 \ \mathrm{s}, +\infty)
+    \end{cases},\quad 
+    i_C(t) =
+    \begin{cases}
+        e^{-t} \ \mathrm{A} &, t \in [0, 1 \ \mathrm{s}) \\ 
+        0.4858 \,e^{-2(t-1)} \ \mathrm{A} &, t \in (1 \ \mathrm{s}, +\infty)
+    \end{cases}
+}
+\end{gather}
+作出图像，如图 \ref{9.6 习题集 7-35} 所示。
+
+\begin{figure}[H]\centering
+\includegraphics[width=\columnwidth]{assets/9/9.6 3.pdf}
+\caption{$u_C = u_C(t)$ 和 $i_C = i_C(t)$ 的图像}\label{9.6 习题集 7-35}
+\end{figure}
 
 % --------------------------- 仿真作业 --------------------------- %
 % >> ------------------------ 仿真作业 ------------------------ << %

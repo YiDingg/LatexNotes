@@ -12,9 +12,9 @@
     \usepackage{siunitx} % 埃米单位
 
 % 本文特殊宏定义
-    \def\Re{\mathrm{Re}\,}
-    \def\Im{\mathrm{Im}\,}
-    \def\sinc{\mathrm{sinc}\,}
+    \def\Re{\mathrm{\,Re}\,}
+    \def\Im{\mathrm{\,Im}\,}
+    \def\sinc{\mathrm{\,sinc}\,}
 
 % 自定义宏定义
     \def\N{\mathbb{N}}
@@ -27,7 +27,7 @@
     \def\S{\mathbb{S}}
     \def\A{\mathbb{A}}
     \def\I{\mathscr{I}}
-    \def\Arg{\mathrm{Arg}\,}
+    \def\Arg{\mathrm{\,Arg\,}}
     \def\d{\mathrm{d}}
     \def\p{\partial}
 
@@ -673,6 +673,8 @@ $K_{\text{max}} = 683\ \mathrm{lm \cdot W^{-1}}$ 在波长约 555.0 nm 取到，
     S = | \boldsymbol{E}\times \boldsymbol{H} | = \varepsilon w = \varepsilon v E^2 \\ 
     I = \langle  S  \rangle_T \overset{\text{简谐}}{=} \frac{1}{2}\varepsilon v E^2 
 \end{cases}
+\\ &
+\text{光压 (吸收) : \ } pc = I = \langle S \rangle \overset{\text{简谐}}{\Longrightarrow} p = \frac{\varepsilon v E^2}{2c}
 \\ &
 \text{惠更斯原理：} \ \text{波阵面上每一点都是次波源，次波面的包络面是新波阵面}
 \\ &
@@ -2032,19 +2034,14 @@ $\Delta \lambda$ 越大时，谱线越容易被分辨，但当其大到一定程
 
 下面给出相关的公式：
 \begin{align*}
-&
-\text{光场相干性} 
+&\text{常识}
 \begin{cases}
-    \text{空间相干性}
+    \text{可见光范围} 
         \begin{cases}
-            \text{孔径角：} \theta_0 = \frac{\lambda}{b} \\ 
-            \text{相干面积：} A = \left(R \theta_0\right)^2 = \frac{R^2\lambda^2}{b^2}
-        \end{cases}\\ 
-    \text{时间相干性}
-        \begin{cases}
-            \text{波列宽：} \Delta L < l_0 = c_0\tau_0 \\ 
-            \text{光谱宽：} \Delta L < l_0 = \frac{\lambda_0^2}{\Delta \lambda}
+            400 \ \mathrm{nm} \sim 750 \ \mathrm{nm} \\ 
+            4.0 \times 10^{14} \ \mathrm{Hz} \sim 7.5 \times 10^{14} \ \mathrm{Hz}
         \end{cases}
+    \\\text{典型折射率：} n_{\text{水}} = \frac{4}{3} = 1.33,\ n_{\text{玻璃}} = 1.5
 \end{cases}
 \\ &
 \text{杨氏双缝干涉}
@@ -2078,6 +2075,20 @@ $\Delta \lambda$ 越大时，谱线越容易被分辨，但当其大到一定程
 \newpage
 \begin{align*}
 &
+\text{光场相干性} 
+\begin{cases}
+    \text{空间相干性}
+        \begin{cases}
+            \text{孔径角：} \theta_0 = \frac{\lambda}{b} \\ 
+            \text{相干面积：} A = \left(R \theta_0\right)^2 = \frac{R^2\lambda^2}{b^2}
+        \end{cases}\\ 
+    \text{时间相干性}
+        \begin{cases}
+            \text{波列宽：} \Delta L < l_0 = c_0\tau_0 \\ 
+            \text{光谱宽：} \Delta L < l_0 = \frac{\lambda_0^2}{\Delta \lambda}
+        \end{cases}
+\end{cases}
+\\ &
 \text{薄膜干涉 (双光束)}
 \begin{cases}
 \Delta L = 2n_fd \cos \theta_f + \frac{\lambda}{2} \\ 
@@ -2110,7 +2121,7 @@ m_{\max} = \frac{2n_fd}{\lambda} \\
         \end{cases}
         \\ \text{迈克尔逊干涉}
             \begin{cases}
-                \text{单色谱：}
+                \text{单色谱}
                     \begin{cases}
                         \text{以中心为零级：} 
                         \begin{cases}
@@ -2119,13 +2130,13 @@ m_{\max} = \frac{2n_fd}{\lambda} \\
                         \end{cases}\\ 
                         \text{精密测长：} 2 n \Delta d = N\lambda
                     \end{cases} 
-                \\\text{双色谱：} 
+                \\\text{双色谱} 
                     \begin{cases}
                         \gamma = \left| \cos \left(\frac{1}{2}\Delta k \Delta L\right) \right| \\ 
                         \left(\Delta L\right)_{\max} = \frac{1}{2}\cdot \frac{\lambda^2}{\Delta \lambda} \\ 
                         N_{\text{circle}} = \frac{2\left(\Delta L\right)_{\max}}{\lambda} =  \frac{\lambda}{\Delta \lambda}
                     \end{cases}
-                \\\text{连续谱：} 
+                \\\text{连续谱} 
                     \begin{cases}
                         \gamma = \left| \sinc \left(\frac{1}{2}\Delta k \Delta L\right) \right| \\ 
                         \left(\Delta L\right)_{\max} = \frac{\lambda^2}{\Delta \lambda} \\ 
@@ -2145,7 +2156,7 @@ m_{\max} = \frac{2n_fd}{\lambda} \\
         T_{\text{F-P}} = \frac{1}{1 + F \sin^2 \frac{\delta}{2}},\ R_{\text{F-P}} = 1 - T_{\text{F-P}} = \frac{F \sin^2 \frac{\delta}{2}}{1 + F \sin^2 \frac{\delta}{2}}\\
         \text{法布里-珀罗干涉}
             \begin{cases}
-                \text{单色谱：}
+                \text{单色谱}
                     \begin{cases}
                         \text{半峰宽：}\varepsilon_{\delta} = 4 \arcsin \left(\frac{1}{\sqrt{F} }\right) \\
                         \text{内角宽：} \varepsilon_{\theta_f} = \frac{1}{n \sin \theta_f} \cdot \frac{\lambda}{\pi d \sqrt{F}} = \frac{1}{\sin \theta_i} \cdot \frac{\lambda}{\pi d \sqrt{F}} \\
@@ -2153,7 +2164,7 @@ m_{\max} = \frac{2n_fd}{\lambda} \\
                         \text{对比度：} \gamma = \frac{2R}{1 + R^2} \\
                         \text{锐度：} \mathscr{F} = \frac{2\pi}{\varepsilon_{\delta}} \\
                     \end{cases} \\ 
-                \text{双色谱：}
+                \text{双色谱}
                     \begin{cases}
                         \text{内角距离：} \delta \theta_m = \frac{1}{n \sin \theta_{f,m}} \cdot m \cdot \frac{\Delta \lambda}{2d} \\ 
                         \text{Talor 判据：} \delta \theta_m \geq \varepsilon_{\theta_m} \Longrightarrow m \geq \frac{2\lambda_0}{\pi \sqrt{F} \Delta \lambda} = \frac{1}{\frac{\pi \sqrt{F}}{2}}\cdot \frac{\lambda}{\Delta \lambda_0}\\
@@ -2162,7 +2173,7 @@ m_{\max} = \frac{2n_fd}{\lambda} \\
                         \text{自由光谱宽度：}\left(\Delta \lambda\right)_{\text{fsr}} =\frac{\lambda_0^2}{2nd} \\ 
                         \text{色分辨本领：}\mathscr{R} = \frac{\lambda_0}{\left(\Delta \lambda\right)_{\lim}} = \frac{m_{\max}\pi \sqrt{F}}{2} = \frac{\pi n d \sqrt{F}}{\lambda_0}
                     \end{cases}
-                \\\text{连续谱：}
+                \\\text{连续谱}
                 \begin{cases}
                     \text{纵模波长：} m\lambda = 2nd \Longrightarrow \lambda = \frac{2nd}{m} \\ 
                     \text{纵模频率：}\nu_m = \frac{c}{\lambda_m} = \frac{mc}{2nd} \\ 
@@ -2175,20 +2186,299 @@ m_{\max} = \frac{2n_fd}{\lambda} \\
 
 \chapter{光的衍射}\thispagestyle{fancy}
 
+什么是衍射？衍射是波动现象的一个普遍特征，每逢波阵面（不论是声波、物质波还是光波）的一部分以某种方式受到阻碍时就会发生，如果在遇到障碍物（不论是透明的还是不透明的）的进程中，波阵面上一个区域的振幅或相位受到改变，波就会偏离直线传播的方向，这种现象叫做“衍射”。
 
-如何判断是否考虑半波损失？（微信群的图片）
+越过障碍物的波阵面的各区段因干涉而引起特定的能量密度分布，叫做“衍射图样”。干涉和衍射之间并不存在实质性的物理差别。然而习惯上（虽然并不总是恰当），当考虑的只是几个波源的叠加时说是干涉，而讨论大量波源（可以是无限个）的叠加则说是衍射。尽管如此，同一现象在有些地方叫做多光束干涉，而在另一地方则叫做光栅衍射。
 
-期末不考第四章2节（）
+\section{衍射发生的条件}
+
+\subsection{惠更斯-菲涅尔原理}
+
+惠更斯原理揭示了波在空间中传播时的姿态（即波阵面的形状和传播反向等），但它与波长无关，这无法解释为什么声波容易绕过障碍物而激光却不易。惠更斯-菲涅尔原理可以解释这一现象：
+
+\begin{LineTheorem}[惠更斯-菲涅尔原理]\label{惠更斯-菲涅尔原理}
+在给定时刻，波阵面上每一未被阻挡的点起着次级球面子波（频率与初波相同）波源的作用。对障碍物外任一点，各子波在这一点的振幅和相位通常不同，此点的振幅（电磁波即电场）是所有这些子波的相干叠加。
+\end{LineTheorem}
+
+从之前的方法来看，我们可以将障碍物或小孔看作是有宽度的光源，或 $N$ 个全同的波源（$N$ 趋于无穷），它们的行为将在后文进行讨论。定性地说，当障碍物的线度在几个波长的尺度时，衍射现象将十分明显。障碍物线度再变小，例如 0.1 个波长，电磁场的边界效应将成为主要部分，这不在本课讨论的范围内。
+
+应当指出，求一个特定衍射问题的严格解是光学中最难处理的问题之一，这涉及到许多更为复杂的理论。就目前的学习而言，惠更斯-菲涅尔原理是简单且足够精确的。
+
+\subsection{菲涅尔衍射与夫琅禾费衍射}
+
+对其上有一小孔的不透明屏幕，小孔附近的衍射现象（近场）与远场截然不同（尽管后者是前者的一个特例）。我们将小孔附近的衍射现象称为菲涅尔衍射（近场衍射），将离小孔足够远处衍射现象称为夫琅禾费衍射（远场衍射）。
+
+孔径的线度是是否发生夫琅禾费衍射的决定性判据。作为一条经验定则，设孔径（或障碍物）的最大宽度为 $b$，小孔到光源 $S$ 和观察点 $P$ 的距离分别为 $d_S$、$d_P$，则发生夫琅禾费衍射的充分条件是：
+\begin{equation}
+    d_S > \frac{b^2}{\lambda} ,\quad d_P > \frac{b^2}{\lambda}
+\end{equation}
+当满足判据，发生夫琅禾费衍射时，可以认为所有的子波源在 $P$ 点振幅都相同，而菲涅尔衍射通常不能作这样的近似。
+
+如图 \ref{近场和远场的不同衍射现象} 所示，左半边从下至上逐渐从近场过渡到远场，右半边显示了衍射角 $\theta_0$ 与小孔宽度 $b$ 的关系：
+\begin{equation}
+\theta_0 = \frac{\lambda}{b}
+\end{equation}
+小孔宽度 $b$ 越小，衍射角越大，所有子波叠加之后越接近球面波。由于远场衍射更为简单，后文我们会先讨论远场，再讨论近场。
+
+\begin{figure}[H]\centering
+    \includegraphics[width = 0.6\columnwidth]{assets/4/4.1 衍射发生的条件.jpg}
+    \caption{近场和远场的不同衍射现象}\label{近场和远场的不同衍射现象}
+\end{figure}
+
+\section{全同振子阵列与理想线光源}
+
+\subsection{全同振子阵列}
+如图 \ref{单缝衍射的理想模型} (a)，考虑 $N$ 个相干的点源振子构成的直线阵列，各个振子在一切方面（包括偏振方向）都完全相同，并且认为振子间没有固定的相位差。
+
+\begin{figure}[H]\centering
+\begin{subfigure}[b]{0.5\columnwidth}\centering
+    \includegraphics[height=180pt]{assets/4/4.2 全同振子阵列.jpg}
+    \caption{全同振子阵列}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{0.5\columnwidth}\centering
+    \includegraphics[height=180pt]{assets/4/4.2 理想相干线光源.jpg}
+    \caption{理想相干线光源}
+\end{subfigure}
+\caption{单缝衍射的理想模型}
+\label{单缝衍射的理想模型}
+\end{figure}
+
+对远场中的一点 $P$，可以认为各子波在此点有相同的振幅，即 $E_0(r) = E_0(r_1) = \cdots = E_0(r_N)$，总电场强度是 $N$ 个振子的场强叠加：
+\begin{equation}
+E = \sum_{m=1}^{N}E_0(r) e^{i\left(kr_m - \omega t\right)} = E_0(r) e^{-i\omega t} e^{ikr_1} \sum_{m=1}^{N}e^{ik(r_m - r_1)}
+\end{equation}
+记相邻点远之间的相差为 $\delta$，则 $\delta = kd\sin \theta \Longrightarrow k(r_m - r_1) = (m-1)\delta$，于是：
+\begin{align}
+    E 
+    &= E_0(r) e^{-i\omega t} e^{ikr_1} \sum_{m=1}^{N}e^{i(m-1)\delta} 
+    = E_0(r) e^{-i\omega t} e^{ikr_1} \frac{e^{iN\delta} - 1}{e^{i\delta} - 1} \\ 
+    &= E_0(r) e^{-i\omega t} e^{ikr_1} e^{i\left(\frac{(N-1)}{2}\delta\right)} \left(\frac{\sin \frac{N\delta}{2}}{\sin \frac{\delta}{2}}\right) 
+    = E_0(r) e^{i\left(kr_1 + \frac{N - 1}{2}\delta - \omega t\right)} \left(\frac{\sin \frac{N\delta}{2}}{\sin \frac{\delta}{2}}\right) \\
+    & = E_0(r)\left(\frac{\sin \frac{N\delta}{2}}{\sin \frac{\delta}{2}}\right)\cdot e^{i\left(kR - \omega t\right)}
+\end{align}
+其中 $R = \frac{1}{2}(N - 1)d\sin \theta + r_1$ 是阵列中心到 $P$ 点的距离。于是可以得到辐照度（通量密度）的分布：
+\begin{equation}
+I = I_0 \frac{\sin^2 \left(N\frac{\delta}{2}\right)}{\sin^2 \left(\frac{\delta}{2}\right)} = I_0\frac{\sin^2 \left(N \frac{kd}{2}\sin \theta \right)}{\sin^2 \left( \frac{kd}{2}\sin \theta \right)},\quad \sin \theta \approx \frac{y}{R}
+\end{equation}
+其中 $I_0$ 是任意一个波源在距离为 $r$ 时的辐照度。$N = 0$ 时 $I = 0$，$N = 1$ 时 $I = I_0$，$N = 2$ 时 $I = 4I_0\cos^2 \frac{\delta}{2} = 2I_0\left(1 + \cos \delta\right)$，这些与之前的内容都是相符的。
+
+由表达式可以知道，$I_0$ 的主极大出现在 $\frac{\delta}{2} = m \pi ,\ m = 0, \pm 1, ...$ 的方向上，也即 $d \sin \theta_m = m \lambda$。并且相邻两个主极大之间有 $(N-2)$ 个副极大，即相邻两个主峰之间有 $(N-2)$ 个辅峰。
+
+令 $\lambda = 1 \ \mathrm{m}$，$d = 5 \ \mathrm{m}$，作出 $I_0$ 随 $\sin \theta$ 的变化情况，如图 \ref{全同振子阵列的辐照度分布} 所示。可以看到，随着 $N$ 的增大，辐照度的最大值 $I_{\max} = N^2 I_0$ 越大.
+
+\begin{figure}[H]\centering
+\includegraphics[width=0.95\columnwidth]{assets/4/4.2 全同振子.pdf}
+\caption{全同振子阵列的辐照度分布}\label{全同振子阵列的辐照度分布}
+\end{figure}
+
+\subsection{理想线光源}
+
+如图 \ref{单缝衍射的理想模型} (b)，考虑一个宽度为 $D$ 的理想线光源（例如平面波照射宽度远小于 $\lambda$ 的长狭缝），它可以视为无限个全同振子，每一点发射一个球面子波，子波方程为：
+\begin{equation}
+E_{\text{sub}} = \frac{\varepsilon_0}{r}e^{i(kr - \omega t)}
+\end{equation}
+其中 $\varepsilon_0$ 称为波源强度（注意不是真空介电常量）。取阵列上的一段微元 $\ \mathrm{d}y$，其上包含 $\frac{\mathrm{d}y}{D}N$ 个波源（稍后我们会令 $N \to \infty$），则这一段微元对 $P$ 点电场的贡献为：
+\begin{equation}
+\mathrm{d}E = \frac{N\mathrm{d}y}{D}\cdot \frac{\varepsilon_0}{r}e^{i(kr - \omega t)} = \frac{N\varepsilon_0}{Dr}e^{i(kr - \omega t)} \mathrm{d}y = \frac{\varepsilon_L}{r}e^{i(kr - \omega t)} \mathrm{d}y,\quad \varepsilon_L = \lim_{N\to \infty} \frac{N\varepsilon_0}{D}
+\end{equation}
+其中 $\varepsilon_L$ 称为单位长度上的波源强度。作积分即得：
+\begin{equation}\label{理想线光源积分公式}
+E = \varepsilon_L \int_{-\frac{D}{2}}^{+\frac{D}{2}} \frac{e^{i(kr - \omega t)}}{r} \mathrm{d}y,\quad r = r(y)
+\end{equation}
+对不同位置的点 $P$，上式的近似方式也不同，从而得到不同的结果。相干的线光源现在还不存在物理实体，但它可以为我们提供数学上的启发。
+
+\section{夫琅禾费衍射}
+
+\subsection{单缝远场衍射}
+
+设相比于光源宽度 $D$，观察点 $P$ 离线光源很远，即 $R \gg D$，有近似 $r = R - y\sin \theta$，代入公式 (\ref{理想线光源积分公式}) 进行积分，得到：
+\begin{gather}
+E = \frac{\varepsilon_L D}{R}\cdot \sinc \left(\frac{1}{2}kD \sin \theta\right) e^{i\left(kR - \omega t\right)}
+= \frac{\varepsilon_L D \sinc \beta}{R}  e^{i\left(kR - \omega t\right)},\quad \beta = \frac{1}{2}kD \sin \theta = \frac{\pi D}{\lambda} \sin \theta\\ 
+I = I(\theta)= \langle E^2  \rangle_T = \frac{1}{2}\left(\frac{\varepsilon D}{R}\right)^2 \sinc^2 \beta,\quad I = I(0) \sinc^2 \beta
+\end{gather}
+因为 $\beta = \frac{1}{2}kD \sin \theta = \frac{\pi D}{\lambda} \sin \theta $，当 $D \gg \lambda$ 时，随着 $\theta$ 的增大，$\beta$ 急剧增大，$\sinc^2 \beta$ 迅速趋近于 0,。反之，如果 $D \ll \lambda$，$\beta$ 对一切 $\theta \in [0, \frac{\pi}{2})$ 都可近似为 0，此时 $I \equiv I(0)$ 不变（由能量守恒，此值也会趋近于 0），线源就化为一个发射球面波的点源。
+
+在处理单缝衍射时，设缝宽较小而缝长较大，呈竖直方向。那么狭缝的“每一横”（横向的微元）都可视作一个理想线光源，线光源宽度 $D$ 即为狭缝的宽度 $b$。基于此，仍可得到与上面一致的结果。特别地，单缝衍射辐照度的极值发生在：
+\begin{gather}
+\text{极小值 (为 0) : \ } \beta = m \pi,\ m = \pm 1, \pm 2, ... \Longrightarrow b \sin \theta = m \lambda,\ m = \pm 1, \pm 2, ... \\ 
+\text{极大值：} \tan \beta = \beta \Longrightarrow \beta \approx 1.43 \pi, 2.46 \pi, 3.47 \pi, ...
+\end{gather}
+下表列出了部分极值的角度和相对辐照度大小，以供形成直观的认识。
+\vspace*{-5mm}\begin{center}
+\noindent\begin{minipage}{0.49\columnwidth}
+    \begin{table}[H]\centering
+        %\renewcommand{\arraystretch}{1.5} % 调整行间距为 1.5 倍
+        %\setlength{\tabcolsep}{1.5mm} % 调整列间距
+        \caption{单缝夫琅禾费衍射的极大值}
+        \label{单缝夫琅禾费衍射的极大值}
+    \begin{tabular}{cccccccccc}\toprule
+        $\beta$ (rad) & 归一化振幅 $E_{0, r}$ & 归一化照度 $I_r$ \\
+        \midrule
+        0            & 1      & 1      \\
+        1.4303 $\pi$ & -0.217 & 0.047  \\
+        2.4590 $\pi$ & 0.128  & 0.016  \\
+        3.4707 $\pi$ & 0.091  & 0.008  \\
+        \bottomrule
+    \end{tabular}
+    \end{table}
+\end{minipage}\hfill\begin{minipage}{0.49\columnwidth}
+    \begin{table}[H]\centering
+        %\renewcommand{\arraystretch}{1.5} % 调整行间距为 1.5 倍
+        %\setlength{\tabcolsep}{1.5mm} % 调整列间距
+        \caption{单缝夫琅禾费衍射的极小值}
+        \label{单缝夫琅禾费衍射的极小值}
+    \begin{tabular}{cccccccccc}\toprule
+        $\beta$ (rad) & 归一化振幅 $E_{0, r}$ & 归一化照度 $I_r$ \\
+        \midrule
+        $\pi$  & 0 & 0 \\
+        $2\pi$ & 0 & 0 \\
+        $3\pi$ & 0 & 0 \\
+        $4\pi$ & 0 & 0 \\
+        \bottomrule
+    \end{tabular}
+    \end{table}
+\end{minipage}\end{center}
+
+
+对实验装置而言，如果我们使用能以单缝为轴自由旋转的辐照度计（始终指向狭缝中心），便可以方便的改变角度 $\theta$，此时应选择使 $N = \frac{b}{\lambda}$ 较小的狭缝宽度（$b$ 通常在几个波长），以使得主要的图像较好地分布在给定的 $\theta$ 范围内，例如 $[-50^\circ,\ 50^\circ]$。作为一个例子，我们固定 $\lambda = 3 \ \mathrm{cm}$ 不变，作出辐照度 $I$ 随 $\theta \in [-45^\circ,\ 45^\circ]$ 的分布情况，如图 \ref{单缝夫琅禾费衍射} (a) 所示。同时还可讨论中央极大的全峰角宽度 $\xi_{\theta}$ : 
+\begin{gather}
+I = I(0) \sinc^2 \beta =  I(0) \sinc^2\left( \frac{\pi b}{\lambda} \sin \theta \right) = I(0) \sinc^2\left( N \pi \sin \theta \right) \\ 
+b \sin \theta_0 = \lambda \Longrightarrow \xi_{\theta} = 2 \theta_0 = 2 \arcsin \left(\frac{\lambda}{b}\right) = 2 \arcsin \left(\frac{1}{N}\right)
+\end{gather}
+从公式和图 \ref{单缝夫琅禾费衍射} (a)中可以看到，$N$ 越大，角宽度就越小，若固定 $\lambda$ 不懂，缝宽 $b$ 减小则会使照度的幅度减小。
+
+
+\begin{figure}[H]\centering
+\begin{subfigure}[b]{0.5\columnwidth}\centering
+    \includegraphics[height=185pt]{assets/4/4.3 辐照度随角度变化.pdf}
+    \caption{辐照度随角度 $\theta$ 的变化}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{0.5\columnwidth}\centering
+    \includegraphics[height=185pt]{assets/4/4.3 辐照度随位置变化.pdf}
+    \caption{辐照度随位置 $z$ 的变化}
+\end{subfigure}
+\caption{单缝夫琅禾费衍射}
+\label{单缝夫琅禾费衍射}
+\end{figure}
+
+如果采用固定在中轴线上的观察板，由于实际的距离 $R$ 不可能无穷大，因此可以采用图 \ref{用屏幕观察单缝衍射的实验装置} 中的装置。其中，单缝与观察屏之间的透镜 $L_2$ 应紧挨单缝，其线度和焦距都要远大于单缝宽度 $b$，并且观察屏恰好放在 $L_2$ 的焦距处。另外，为了使主要图像集中在观潮屏对应的极小角度范围内，$N$ 应该较大（对可见光而言，通常是几百个波长）。这样，既实现了 $R \to \infty$，又能在接受屏上有较好的衍射现象。
+
+\begin{figure}[H]\centering
+\begin{subfigure}[b]{0.57\columnwidth}\centering
+    \includegraphics[height=145pt]{assets/4/4.3 辐照度位置仪2.jpg}
+    \caption{三维图}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{0.36\columnwidth}\centering
+    \includegraphics[height=145pt]{assets/4/4.3 辐照度位置仪.png}
+    \caption{横剖面}
+\end{subfigure}
+\caption{用屏幕观察单缝衍射的实验装置}
+\label{用屏幕观察单缝衍射的实验装置}
+\end{figure}
+
+借助狭缝中心点在屏幕上的成像，可以帮助我们推导辐照度随位置 $z$ 的分布。依据图 \ref{用屏幕观察单缝衍射的实验装置}，可以计算 $I = I(z)$ 的表示式，以及中央极大的全峰宽度 $\xi_z$ : 
+\begin{gather}
+    \sin \theta \approx \tan \theta = \frac{z}{f} \Longrightarrow I = I(z) = I(0) \sinc^2 \left( \frac{N \pi}{f} z\right) \\ 
+    \sin \theta_0 = \frac{\lambda}{b} \Longrightarrow \xi_z = 2 f \tan \theta_0 = 2f\frac{\sin \theta}{\sqrt{1 - \sin^2 \theta}} = \frac{2f}{\sqrt{N^2 - 1}}
+\end{gather}
+
+
+不妨作出 $z \in [-5 \ \mathrm{cm}, 5 \ \mathrm{cm}]$ 时，电场的幅度 $E_0$ 和辐照度 $I$ 的变化情况，如图 \ref{单缝夫琅禾费衍射} (b) 所示。
+
+
+\subsection{双缝远场衍射}
+
+假设现在有两个宽为 $b$ 的长狭缝，从中心到中心的距离为 $a$，这构成一个由单缝衍射调制过的快速变化的双缝干涉系统，所得到的辐照度分布是双缝衍射后的相干叠加。
+
+如图在远场近似下，积分公式 (\ref{理想线光源积分公式}) 变为：
+\begin{gather}
+E  = E(z)= \varepsilon_L \left[\int_{-\frac{b}{2}}^{\frac{b}{2}} F(z) \ \mathrm{d}z + \int_{a-\frac{b}{2}}^{a+\frac{b}{2}} F(z) \ \mathrm{d}z\right]
+,\quad F(z) = \sin \left(kR - \omega t + kz \sin \theta\right) \\ 
+\Longrightarrow E = b\,\varepsilon_L \sinc \beta \left[\sin (kR - \omega t) + \sin (kR - \omega t + 2\alpha)\right] = b\varepsilon_L \sinc \beta \cos \alpha \cdot e^{i(kR - \omega t + \alpha)} \\ 
+\Longrightarrow I = 4 I_0 \sinc^2 \beta \cos^2 \alpha,\quad \alpha = \frac{1}{2}k a \sin \theta = \frac{\pi a}{\lambda} \sin \theta,\ \beta = \frac{\pi b}{\lambda} \sin \theta
+\end{gather}
+其中 $I_0$ 是只有单条狭缝时的最大辐照度，系数 4 是因为电场变为两倍时，辐照度变为 4 倍。
+
+在上式中，若 $b$ 非常小（$kb \to 0$），则化为理想杨氏实验的表达式；若 $a = 0$，则化为单缝衍射的表达式。记 $m = \frac{a}{b}$，即 $a = mb$，则衍射主峰中可以观察到 $2m-1$ 个极大亮纹，也即除中央亮纹外，两边还各有 $m-1$ 条亮纹。最边缘的两个亮纹事实上被“分割”过，我们没有将其算在辅峰中，称为缺级，如果算入，则应有 $2m + 1$ 个极大峰。
 
 
 
+固定 $b = 0.35 \ \mathrm{mm}$ 不变，考虑不同 $m$ 下的衍射图样 ($a = mb$)，如图 \ref{双缝衍射图样} 和图 \ref{主峰内双缝衍射图样变化} 所示。
+
+\begin{figure}[H]\centering
+    \includegraphics[width=\columnwidth]{assets/4/4.3 m 变化.pdf}
+    \caption{单缝主峰内双缝衍射图样随 $m$ 的变化情况}\label{主峰内双缝衍射图样变化}
+\end{figure}
+\begin{figure}[H]\centering
+\begin{subfigure}[b]{0.33\columnwidth}\centering
+    \includegraphics[height=130pt]{assets/4/4.3 m=1.pdf}
+    \caption{$m=1$}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{0.33\columnwidth}\centering
+    \includegraphics[height=130pt]{assets/4/4.3 m=3.pdf}
+    \caption{$m=3$}
+\end{subfigure}
+\begin{subfigure}[b]{0.33\columnwidth}\centering
+    \includegraphics[height=130pt]{assets/4/4.3 m=6.pdf}
+    \caption{$m=6$}
+\end{subfigure}
+\caption{不同 $m$ 下的双缝衍射图样}
+\label{双缝衍射图样}
+\end{figure}
 
 
+\subsection{多缝远场衍射}
 
+现在设狭缝的数目为 $N_{\text{slit}} \ (N_{\text{slit}} \geqslant 2)$，或简记为 $N_s$，且相邻狭缝之间的中心距离都为 $a$，则积分式变为：
+\begin{gather}
+E = \varepsilon_L \sum_{j=0}^{N_s-1} \int_{(j-1)a-\frac{b}{2}}^{(j-1)a\frac{b}{2}} F(z) \ \mathrm{d}z = b \,\varepsilon_L  \sinc \beta \sum_{j=0}^{N_s-1}\sin (kR - \omega t + 2\alpha \cdot j) \\ 
+= b \,\varepsilon_L  \sinc \beta e^{i(kR - \omega t)}  \Im \left[ \sum_{j=0}^{N_s-1} \left(e^{i2\alpha}\right)^j \right]
+=  b \,\varepsilon_L  \sinc \beta \left(\frac{\sin N_s \alpha}{\sin \alpha}\right) \cdot e^{kR - \omega t + (N-1)\alpha} \\ 
+\Longrightarrow I = I_0 \left( \sinc \beta\right)^2 \left(\frac{\sin N_s \alpha}{\sin \alpha}\right)^2
+,\quad \alpha = \frac{1}{2}k a \sin \theta = \frac{\pi a}{\lambda} \sin \theta,\ \beta = \frac{\pi b}{\lambda} \sin \theta
+\end{gather}
+其中 $I_0$ 是仅有单缝时的辐照度，注意 $I(0) = N_s^2I_0$。主极大峰发生在 $\alpha = m\pi, m = 0, \pm 1, \pm 2, ...$ 的位置（角度）上，这等价于 $a \sin \theta_m = m \lambda$，此时 $\frac{\sin N_s \alpha}{\sin \alpha} = N_s$。相邻两个主峰之间有 $(N_s - 2)$ 个副峰。
+\begin{figure}[H]\centering
+\begin{subfigure}[b]{0.33\columnwidth}\centering
+    \includegraphics[height=130pt]{assets/4/4.3 N_s=2.pdf}
+    \caption{$N_s=2$}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{0.33\columnwidth}\centering
+    \includegraphics[height=130pt]{assets/4/4.3 N_s=4.pdf}
+    \caption{$N_s=4$}
+\end{subfigure}
+\begin{subfigure}[b]{0.33\columnwidth}\centering
+    \includegraphics[height=130pt]{assets/4/4.3 N_s=6.pdf}
+    \caption{$N_s=6$}
+\end{subfigure}
+\caption{不同 $N_s$ 下的多缝衍射图样}
+\label{多缝衍射图样}
+\end{figure}
 
+从单缝到双缝，是加入了单缝衍射调制后的峰（可以认为是主峰），从双缝再到多峰，便是在这些主峰之间又加入了 $(N_s - 2)$ 个辅峰，并且辅峰得到的能量很少。
 
+\subsection{小孔远场衍射}
 
+\subsection{矩形孔远场衍射}
 
+\subsection{圆孔远场衍射}
+
+\subsection{成像系统的分辨率}
+
+\subsection{零阶贝塞尔光束}
+
+\subsection{衍射光栅}
+
+\subsection{光栅光谱学}
+
+\section{菲涅尔衍射}
+
+\subsection{球面波的自由传播}
+
+\subsection{圆孔近场衍射}
+
+\subsection{圆形障碍物}
 
 
 

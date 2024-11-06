@@ -15,6 +15,7 @@
     \def\Re{\mathrm{\,Re}\,}
     \def\Im{\mathrm{\,Im}\,}
     \def\sinc{\mathrm{\,sinc}\,}
+    \def\Jc{\mathrm{\,Jc}}
 
 % 自定义宏定义
     \def\N{\mathbb{N}}
@@ -390,7 +391,7 @@
 
 \subsection{三棱镜最小偏向角}
 
-如图 \ref{反射与折射、三棱镜最小偏向角} (b) 所示，最小偏向角 $\theta_0 = (i_1 - i_1')_{\text{min}}$ 满足：
+如图 \ref{反射与折射、三棱镜最小偏向角} (b) 所示，最小偏向角 $\theta_0 = (i_1 - i_1')_{\min}$ 满足：
 \begin{equation}
     \theta_0 = 2i_1 - A, \quad \frac{n_2}{n_1} = \frac{\sin\frac{\theta_0+A}2}{\sin\frac A2}
 \end{equation}
@@ -1189,12 +1190,12 @@ $E_0$ 与 $\alpha$ 的取值可以由相矢量相加来理解。在给定的位�
 
 在光学中，常用干涉条纹对比度 $\gamma$ 来描述干涉情况是否明显，它定义为：
 \begin{equation}
-    \gamma = \frac{I_{\text{max}} - I_{\text{min}}}{I_{\text{max}} + I_{\text{min}}} = \frac{ E_{0,\text{max}}^2 -  E_{0,\text{min}}^2 }{E_{0,\text{max}}^2 +  E_{0,\text{min}}^2}
+    \gamma = \frac{I_{\text{max}} - I_{\min}}{I_{\text{max}} + I_{\min}} = \frac{ E_{0,\text{max}}^2 -  E_{0,\min}^2 }{E_{0,\text{max}}^2 +  E_{0,\min}^2}
 \end{equation}
 其中 $I$ 表示光强，也即光通量密度。在两波源产生的干涉中，有：
 \begin{gather}
 I = I_1 + I_2 + 2 \sqrt{I_1I_2}\cos (\alpha_A - \alpha_B) \\ 
-I_{\text{max}} = I_1 + I_2 + 2\sqrt{I_1I_2},\quad I_{\text{min}} =  I_1 + I_2 - 2\sqrt{I_1I_2}
+I_{\text{max}} = I_1 + I_2 + 2\sqrt{I_1I_2},\quad I_{\min} =  I_1 + I_2 - 2\sqrt{I_1I_2}
 \end{gather}
 则对比度为：
 \begin{equation}
@@ -2295,7 +2296,7 @@ E = \varepsilon_L \int_{-\frac{D}{2}}^{+\frac{D}{2}} \frac{e^{i(kr - \omega t)}}
 \begin{gather}
 E = \frac{\varepsilon_L D}{R}\cdot \sinc \left(\frac{1}{2}kD \sin \theta\right) e^{i\left(kR - \omega t\right)}
 = \frac{\varepsilon_L D \sinc \beta}{R}  e^{i\left(kR - \omega t\right)},\quad \beta = \frac{1}{2}kD \sin \theta = \frac{\pi D}{\lambda} \sin \theta\\ 
-I = I(\theta)= \langle E^2  \rangle_T = \frac{1}{2}\left(\frac{\varepsilon D}{R}\right)^2 \sinc^2 \beta,\quad I = I(0) \sinc^2 \beta
+I = I(\theta)= \langle E^2  \rangle_T = \frac{1}{2}\left(\frac{\varepsilon_LD}{R}\right)^2 \sinc^2 \beta,\quad I = I(0) \sinc^2 \beta
 \end{gather}
 因为 $\beta = \frac{1}{2}kD \sin \theta = \frac{\pi D}{\lambda} \sin \theta $，当 $D \gg \lambda$ 时，随着 $\theta$ 的增大，$\beta$ 急剧增大，$\sinc^2 \beta$ 迅速趋近于 0,。反之，如果 $D \ll \lambda$，$\beta$ 对一切 $\theta \in [0, \frac{\pi}{2})$ 都可近似为 0，此时 $I \equiv I(0)$ 不变（由能量守恒，此值也会趋近于 0），线源就化为一个发射球面波的点源。
 
@@ -2395,7 +2396,7 @@ b \sin \theta_0 = \lambda \Longrightarrow \xi_{\theta} = 2 \theta_0 = 2 \arcsin 
 \begin{gather}
 E  = E(z)= \varepsilon_L \left[\int_{-\frac{b}{2}}^{\frac{b}{2}} F(z) \ \mathrm{d}z + \int_{a-\frac{b}{2}}^{a+\frac{b}{2}} F(z) \ \mathrm{d}z\right]
 ,\quad F(z) = \sin \left(kR - \omega t + kz \sin \theta\right) \\ 
-\Longrightarrow E = b\,\varepsilon_L \sinc \beta \left[\sin (kR - \omega t) + \sin (kR - \omega t + 2\alpha)\right] = b\varepsilon_L \sinc \beta \cos \alpha \cdot e^{i(kR - \omega t + \alpha)} \\ 
+\Longrightarrow E = b\,\varepsilon_L \sinc \beta \left[\sin (kR - \omega t) + \sin (kR - \omega t + 2\alpha)\right] = b\,\varepsilon_L \sinc \beta \cos \alpha \cdot e^{i(kR - \omega t + \alpha)} \\ 
 \Longrightarrow I = 4 I_0 \sinc^2 \beta \cos^2 \alpha,\quad \alpha = \frac{1}{2}k a \sin \theta = \frac{\pi a}{\lambda} \sin \theta,\ \beta = \frac{\pi b}{\lambda} \sin \theta
 \end{gather}
 其中 $I_0$ 是只有单条狭缝时的最大辐照度，系数 4 是因为电场变为两倍时，辐照度变为 4 倍。
@@ -2434,7 +2435,7 @@ E  = E(z)= \varepsilon_L \left[\int_{-\frac{b}{2}}^{\frac{b}{2}} F(z) \ \mathrm{
 \begin{gather}
 E = \varepsilon_L \sum_{j=0}^{N_s-1} \int_{(j-1)a-\frac{b}{2}}^{(j-1)a\frac{b}{2}} F(z) \ \mathrm{d}z = b \,\varepsilon_L  \sinc \beta \sum_{j=0}^{N_s-1}\sin (kR - \omega t + 2\alpha \cdot j) \\ 
 = b \,\varepsilon_L  \sinc \beta e^{i(kR - \omega t)}  \Im \left[ \sum_{j=0}^{N_s-1} \left(e^{i2\alpha}\right)^j \right]
-=  b \,\varepsilon_L  \sinc \beta \left(\frac{\sin N_s \alpha}{\sin \alpha}\right) \cdot e^{kR - \omega t + (N-1)\alpha} \\ 
+=  b \,\varepsilon_L  \sinc \beta \left(\frac{\sin N_s \alpha}{\sin \alpha}\right) \cdot e^{i\left(kR - \omega t + (N-1)\alpha\right)} \\ 
 \Longrightarrow I = I_0 \left( \sinc \beta\right)^2 \left(\frac{\sin N_s \alpha}{\sin \alpha}\right)^2
 ,\quad \alpha = \frac{1}{2}k a \sin \theta = \frac{\pi a}{\lambda} \sin \theta,\ \beta = \frac{\pi b}{\lambda} \sin \theta
 \end{gather}
@@ -2460,19 +2461,279 @@ E = \varepsilon_L \sum_{j=0}^{N_s-1} \int_{(j-1)a-\frac{b}{2}}^{(j-1)a\frac{b}{2
 
 \subsection{小孔远场衍射}
 
+在研究具体的矩形孔、圆孔之前，我们先给出小孔衍射的理论基础。仍在夫琅禾费衍射情形下作推导，如图 \ref{任意小孔的夫琅禾费衍射} 所示。
+将小孔视为无限个具有面积 $\mathrm{d}A$ 的点光源（发出球面波），我们有：
+\begin{gather}
+\ \mathrm{d}E = \frac{\varepsilon_A}{r} \cdot e^{i(kr - \omega t)} \ \mathrm{d}A,\quad R  =\sqrt{X^2 + Y^2 + Z^2} \\ 
+r  = R\cdot \sqrt{ 1 - \frac{2\left(yY + zZ\right)}{R^2} +  \frac{y^2 + z^2}{R^2} }  \approx  R\left(1 - \frac{\left(yY + zZ\right)}{R^2}  \right)
+\end{gather}
+于是到达 $P$ 点的电场叠加为：
+\begin{equation}\label{小孔衍射积分公式}
+E = \frac{\varepsilon_A e^{i(kR - \omega t)}}{R} \iint_{A} e^{ik \left(\frac{yY + zZ}{R}\right)} \ \mathrm{d}A
+\end{equation}
+这便是小孔远场衍射的积分公式。此式没有通解，对于不同类型的小孔，我们可以取不同的近似方法，进而得到具体的结果。
+\begin{figure}[H]\centering
+    \includegraphics[width=0.5\columnwidth]{assets/4/4.3 小孔衍射.png}
+    \caption{任意小孔的夫琅禾费衍射}\label{任意小孔的夫琅禾费衍射}
+\end{figure}
+
 \subsection{矩形孔远场衍射}
 
+当小孔是横宽 $a$，纵高为 $b$ 的矩形孔时，如图 \ref{小孔衍射的具体例子} (a)。
+\begin{figure}[H]\centering
+    \begin{subfigure}[b]{0.5\columnwidth}\centering
+        \includegraphics[height=140pt]{assets/4/4.3 矩形孔.png}
+        \caption{矩形孔}
+    \end{subfigure}\hfill
+    \begin{subfigure}[b]{0.5\columnwidth}\centering
+        \includegraphics[height=140pt]{assets/4/4.3 圆孔.png}
+        \caption{圆孔}
+    \end{subfigure}
+    \caption{小孔衍射的具体例子}
+    \label{小孔衍射的具体例子}
+\end{figure}
+则积分式 (\ref{小孔衍射积分公式}) 变为：
+\begin{gather}
+    E = \frac{\varepsilon_{A} e^{i(kR - \omega t)}}{R} \int_{-\frac{b}{2}}^{\frac{b}{2}} e^{ik \cdot \frac{yY}{R}}\ \mathrm{d}y \cdot \int_{-\frac{a}{2}}^{\frac{a}{2}} e^{ik \cdot \frac{zZ}{R}}\ \mathrm{d} \Longrightarrow \\ 
+    E = \frac{A\varepsilon_A}{R} \sinc \alpha' \sinc \beta' \cdot e^{i(kR - \omega t)}
+    \\ 
+    I = I(0)\sinc^2 \alpha \sinc^2 \beta,\quad I(0) = \frac{A^2\varepsilon_A^2}{R^2} 
+    \\ 
+    \alpha = \frac{1}{2}ka \sin \theta_a = \frac{1}{2}ka\cdot \frac{Z}{R},\quad \beta = \frac{1}{2}kb \sin \theta_b = \frac{1}{2}kb\cdot \frac{Y}{R}
+\end{gather}
+沿 $a$ 轴方向（$\alpha$ 方向）时 $\beta = 0$，辐照度的包络线为 $I = \frac{I(0)}{\alpha^2}$；类似地，沿 $b$ 轴方向（$\beta$ 方向）的包络线为 $I = \frac{I(0)}{\beta^2}$。下面的几张图展示了矩形孔的辐照度分布情况。
+
+\begin{figure}[H]\centering
+\begin{subfigure}[b]{0.5\columnwidth}\centering
+    \includegraphics[height=190pt]{assets/4/4.3 矩形孔辐照度分布 1.pdf}
+    \caption{在观察屏上的辐照度分布}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{0.5\columnwidth}\centering
+    \includegraphics[height=190pt]{assets/4/4.3 矩形孔衍射辐照度分布.pdf}
+    \caption{沿 $alpha$ 轴的辐照度分布}
+\end{subfigure}
+\caption{矩形孔的辐照度分布}
+\end{figure}
+
+\begin{figure}[H]\centering
+    \includegraphics[width=\columnwidth]{assets/4/4.3 矩形孔辐照度分布 3.pdf}
+    \caption{辐照度分布细节放大}
+\end{figure}
+
+\begin{figure}[H]\centering
+\begin{subfigure}[b]{0.56\columnwidth}\centering
+    \includegraphics[height=123pt]{assets/4/4.3 矩形孔辐照度分布 4.png}
+    \caption{夫琅禾费衍射图}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{0.44\columnwidth}\centering
+    \includegraphics[height=123pt]{assets/4/4.3 矩形孔辐照度分布 5.png}
+    \caption{归一化夫琅禾费衍射图样}
+\end{subfigure}
+\caption{垂直矩形孔（竖直狭缝）的辐照度图像}
+\end{figure}
+
+
 \subsection{圆孔远场衍射}
+如图 \ref{小孔衍射的具体例子} (b)，对圆孔的情形，我们采用球坐标，则积分式 (\ref{小孔衍射积分公式}) 化为：
+\begin{equation}
+E = \frac{\varepsilon_A e^{i(kR - \omega t)}}{R} \int_{\rho = 0}^{\rho = a} \int_{\phi = 0}^{\phi = 2\pi} e^{i\left(\frac{k\rho q}{R} \cos (\phi - \Phi)\right)} \,\rho \ \mathrm{\rho} \ \mathrm{\phi}
+\end{equation}
+由旋转对称性，结果必然与 $\Phi$ 无关，因此不妨令 $\Phi = 0$。为求（表示）此积分结果，我们需要引入（第一类）贝塞尔函数 $J$，类似伽马函数和贝塔函数，它也是由积分定义的，在物理中很常见。定义 0 阶和 $n$ 阶贝塞尔函数如下：
+\begin{equation}
+J_0(x) = \frac{1}{2\pi} \int_{0}^{2\pi} e^{i x \cos \phi} \ \mathrm{d}\phi
+,\quad 
+J_n(x) = \frac{i^{-n}}{2\pi} \int_{0}^{2\pi} e^{i(n\phi + x\cos \phi)} \ \mathrm{d}\phi,\quad n = 0, 1, 2, ...
+\end{equation}
+变量 $x$ 可以是复数。它的一个重要性质是递推关系：
+\begin{equation}
+    J_0(x) = J_1'(x) + \frac{J_1(x)}{x},\quad \left[x^nJ_n(x)\right]' = x^nJ_{n-1}(x),\quad n = 1, 2, ...
+\end{equation}
+为了方便后文表示，与依据 $\sin$ 定义 $\sinc$ 时类似，我们也定义 $\Jc$ 函数如下：
+\begin{equation}
+\Jc_0(x) = \frac{{\color{red} 2} J_0(x)}{x},\quad \Jc_n(x) = \frac{{\color{red} 2} J_n(x)}{x},\quad n = 0, 1, 2, ...
+\end{equation} 
+分子上的 2 是为了使 $\Jc_1$ 在原点的极限值为 1（类似 $\sinc$ 的极限值）。$J_n(x)$ 和 $\Jc_n(x)$ 在正实轴上的图像如图 \ref{} 所示，偶数阶（包括 0 阶）时为偶函数，奇数阶时为奇函数。
+\begin{figure}[H]\centering
+\begin{subfigure}[b]{0.5\columnwidth}\centering
+    \includegraphics[height=180pt]{assets/4/4.3 贝塞尔函数 J.pdf}
+    \caption{(第一类) 贝塞尔函数}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{0.5\columnwidth}\centering
+    \includegraphics[height=180pt]{assets/4/4.3 Jc 函数.pdf}
+    \caption{定义的 $\Jc$ 函数}
+\end{subfigure}
+\caption{贝塞尔函数及其引申函数}
+\end{figure}
+
+继续我们的积分，并简记 $\delta = ka \cdot \frac{r}{R} \approx ka \sin \theta $，可以得到：
+\begin{gather}
+E = \frac{A\varepsilon_A}{R} \Jc_1(\delta) \cdot e^{i(kR - \omega t)} \\ 
+I = I(0) \Jc_1^2(\delta),\quad I(0) = \frac{A^2\varepsilon_A^2}{R^2},\quad 
+\delta =  ka \cdot \frac{r}{R} \approx ka \sin \theta 
+\end{gather}
+\vspace*{-6mm}
+\begin{figure}[H]\centering
+    \includegraphics[width=0.9\columnwidth]{assets/4/4.3 小孔辐照度分布 1.pdf}
+    \vspace*{-5mm}
+    \caption{在观察屏上的辐照度分布}
+\end{figure}
+\begin{figure}[H]\centering
+    \includegraphics[width=0.93\columnwidth]{assets/4/4.3 小孔辐照度分布 2.pdf}\vspace*{-5mm}
+    \caption{辐照度分布细节放大}
+\end{figure}
+\begin{figure}[H]\centering
+\begin{subfigure}[b]{0.5\columnwidth}\centering
+    \includegraphics[height=170pt]{assets/4/4.3 圆孔衍射示意图.png}
+    \caption{圆孔夫琅禾费衍射的爱里图样}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{0.5\columnwidth}\centering
+    \includegraphics[height=170pt]{assets/4/4.3 圆孔辐照度 3.pdf}
+    \caption{辐照度随自变量 $\delta$ 的变化}
+\end{subfigure}\vspace*{-3mm}
+\caption{圆孔夫琅禾费衍射}
+\end{figure}
+辐照度的极小值等价于 $J_1(x)$ 的零点（0 除外），极大值等价于 $J_2(x)$ 的零点，为方便参考，我们列出前几个极值的及相对大小：
+\begin{center}
+\noindent\begin{minipage}{0.49\columnwidth}
+    \begin{table}[H]\centering
+        %\renewcommand{\arraystretch}{1.5} % 调整行间距为 1.5 倍
+        %\setlength{\tabcolsep}{1.5mm} % 调整列间距
+        \caption{圆孔夫琅禾费衍射的极大值}
+        \label{圆孔夫琅禾费衍射的极大值}
+    \begin{tabular}{cccccccccc}\toprule
+        $\delta = kar/R$ & 0 & 5.1356 & 8.4172 & 11.6198 \\
+        \midrule
+        $I/I(0)$ & 1 & 0.0175 & 0.0042 & 0.0016  \\
+        \bottomrule
+    \end{tabular}
+    \end{table}
+\end{minipage}\hfill\begin{minipage}{0.49\columnwidth}
+    \begin{table}[H]\centering
+        %\renewcommand{\arraystretch}{1.5} % 调整行间距为 1.5 倍
+        %\setlength{\tabcolsep}{1.5mm} % 调整列间距
+        \caption{圆孔夫琅禾费衍射的极小值}
+        \label{圆孔夫琅禾费衍射的极小值}
+    \begin{tabular}{cccccccccc}\toprule
+        $\delta = kar/R$ & 3.8317 & 7.0156 & 10.1735 & 13.3237  \\
+        \midrule
+        $I/I(0)$ & 0 & 0 & 0 & 0 \\
+        \bottomrule
+    \end{tabular}
+    \end{table}
+\end{minipage}\end{center}
+为了描述衍射现象的尺度，我们定义辐照度的全峰角宽度 $\xi_{\theta}$，由于辐照度的第一个极小值（零点）在 $\delta = 3.8317$ 处，因此有：
+\begin{equation}
+ka \sin \theta_0 = 3.8317 \Longrightarrow \xi_\theta = 2 \theta_0 = 2\arcsin \left( \frac{3.8317}{2\pi} \cdot \frac{\lambda}{2a} \right) \approx  \frac{1.22}{\,a\,}\,\lambda = \frac{2.44}{D}\lambda
+\end{equation}
+常说的“角宽度”便是指 $\xi_\theta$。与单缝衍射时类似，我们使用透镜聚焦出射光，在焦平面上得到衍射图样，此时有全峰（线）宽度 $\xi_z = 2 f\tan \left(\frac{\xi_\theta}{2}\right) \approx f \xi_\theta = f \,\frac{2.44}{D}\lambda$。
+
+孔越小，峰越宽，衍射所得的图样越大（越明显），但相应辐照度的值会降低。
 
 \subsection{成像系统的分辨率}
 
-\subsection{零阶贝塞尔光束}
+考虑从原处设向圆孔的两束光线，夹角为 $\Delta \phi$，当所成的两个像恰好可分辨时，称此时的夹角为最小分辨角 $\left(\Delta \phi\right)_{\min}$。这里的“恰好可分辨”，是指恰好满足瑞丽判据，即像的半角宽恰好等于两个像的中心之间的角宽度，此时一个像的第一暗带正好落在另一个像的中心上，有：
+\begin{equation}
+    \left(\Delta \phi\right)_{\min} = \frac{\xi_\theta}{2} = \frac{1.22}{D}\lambda
+\end{equation}
+对应的最小分辨间距为：
+\begin{equation}
+\left(\Delta l\right)_{\min} = R \left(\Delta \phi\right)_{\min} 
+\end{equation}
+成像系统的分辨率常用 $\frac{1}{\left(\Delta \phi\right)_{\min}}$ 或 $\frac{1}{\left(\Delta l\right)_{\min}}$ 来定义。
 
 \subsection{衍射光栅}
 
+衍射元件（可以是透光孔缝或不透光障碍物）的重复阵列能够使得出射波的相位和振幅发生周期性的交替变化（振幅一般有衰减），这种基于衍射原理的重复阵列称为衍射光栅，光栅对入射光的作用称为“调制”。例如多缝便是一种最简单的光栅，它的调制效果是在夫琅禾费衍射图样上出现了多个主峰和辅峰。
+
+光栅又分为透射光栅和反射光栅，但它们都满足光栅方程：
+\begin{equation}
+    a(\sin \theta_m - \sin \theta_i) = m\lambda,\quad m = 0, \pm 1, \pm 2, ...
+\end{equation}
+其中 $a$ 是光栅常数，表示两相邻狭缝的间距，即周期长度。以垂直于光栅平面的直线为法线，$\theta_i$ 是入射角而 $\theta_m$ 是第 $m$ 级（极大）衍射角。
+
 \subsection{光栅光谱学}
+对光栅而言，即使是理想单色光入射，出射谱线也有一定的角宽度：
+\begin{equation}
+\Delta \alpha = \Delta \left( \frac{1}{2}ka \sin \theta \right) = \frac{2 \pi}{N} \Longrightarrow \xi_{\theta, m} = \frac{2 \lambda}{Na \cos \theta_m}
+\end{equation}
+
+由光栅方程可以知道，不同波长的光入射时，极大衍射角也不同，因此光栅也可作为一种分光装置（色散装置），对光栅方程两边求微分，可得光栅第 $m$ 级光线的角色散本领 $\mathscr{D}_\theta$ : 
+\begin{equation}
+    \mathscr{D} =  \frac{\mathrm{d}\theta_m}{\mathrm{d}\lambda} = \frac{m}{a\cos \theta_m}
+\end{equation}
+
+仍定义仪器的色分辨本领为 $\mathscr{R} = \frac{\lambda_0}{\left(\Delta \lambda\right)_{\min}}$，对光栅的第 $m$ 级而言，当谱峰的半角宽度 $\frac{1}{2}\xi_\theta$ 恰好等于两谱线的角距离 $\mathscr{D} \Delta \lambda$ 时（这仍是瑞丽判据），有最小可分辨波长 $\left(\Delta \lambda\right)_{\min}$ : 
+\begin{gather}
+    \frac{1}{2}\xi_\theta = \mathscr{D} \Delta \lambda 
+    \Longrightarrow \frac{\lambda}{Na \cos \theta_m} = \frac{m}{a \cos \theta_m} \left(\Delta \lambda\right)_{\min} 
+    \\ \Longrightarrow 
+    \left(\Delta \lambda\right)_{\min} = \frac{\lambda_0}{mN},\quad \mathscr{R} = mN = \frac{Na \left(\sin \theta_m - \sin \theta_i \right)}{\lambda_0}
+\end{gather}
+实际中常取 $N$ 为光栅的锐度，此时 $\mathscr{R} = m \mathscr{F}$，与F-P 干涉仪中的情形一致，后者的 $\mathscr{F} = \frac{1}{2}\pi \sqrt{F}$。
+
+特别地，对于自准直装置（入射光始终垂直于光栅沟槽面）装置，我们有 $\theta_i = -\theta_m$（负号是因为入射光与反射光在光栅的同侧），此时：
+\begin{gather}
+    \mathscr{D}_{\text{auto}} = \frac{2 \tan \theta_i}{\lambda_0} ,\quad 
+    \mathscr{R}_{\text{auto}} = \frac{2Na \sin \theta_i }{\lambda_0} 
+\end{gather}
+两者都与级数 $m$ 无关，且 $\mathscr{D}_{\text{auto}}$ 还和光栅常量 $a$ 无关。
+
+考虑光栅的自由光谱范围，由于波长小（频率高）的光谱线更密集，当 $\lambda_0 - \frac{\Delta \lambda}{2}$ 的第 $m+1$ 级与 $\lambda_0 + \frac{\Delta \lambda}{2}$ 的第 $m$ 级重合时，达到自由光谱范围 $\left(\Delta \lambda\right)_{\text{fsr}}$ :
+\begin{equation}
+\begin{cases}
+    a(\sin \theta_m - \sin \theta_i ) = (m+1)\left(\lambda_0 - \frac{\Delta \lambda}{2}\right) \\ 
+    a(\sin \theta_m - \sin \theta_i ) = m\left(\lambda_0 + \frac{\Delta \lambda}{2}\right)
+\end{cases}
+\Longrightarrow 
+\left(\Delta \lambda\right)_{\text{fsr}} = \frac{\lambda_0}{m}
+\end{equation}
+上面所有公式中的级数 $m$ 在范围 $[0, \frac{2a}{\lambda})$ 内。由此可得到各参数在不同要求下的最值，这与当初 F-P 时的讨论类似，我们不多赘述。
+
+\section{二维和三维光栅}
+此节不是本课的重点，我们仅给出经典的布拉格衍射公式（表示极大值所在角度）：
+\begin{equation}
+2d \sin \theta = m\lambda
+\end{equation}
 
 \section{菲涅尔衍射}
+
+在菲涅尔衍射中，之前的许多近似都不再成立，需要建立另外一套理论基础。
+
+由菲涅尔原理，如果每个子波向一切方向都均匀地辐射，那么除了产生一个向前进的波以外，还会出现一个向波源后退的反向波。实验上并没有发现这样的波，因此我们必须对次级发射体的辐射图样作某些修改。更详细的理论\footnote{基尔霍夫理论，详见参考文献 \cite{Optics} 的 10.4 节}表明，次波源发射的光具有方向性，由倾斜因子 $K = K(\theta)$ 来描述，它是次波源在不同方向光场的振幅系数：
+\begin{equation}
+    K = K(\theta) = \frac{1}{2}\left(1 + \cos \theta\right),\quad E = \frac{K\varepsilon_A}{R} \,e^{i(kr - \omega t)}
+\end{equation}
+
+如图 \ref{球形波阵面的传播}，由波带理论，第 $m$ 级波带在点 $P$ 的电场为：
+\begin{equation}
+E_m = (-1)^{m+1} \frac{2 K \varepsilon_A \rho \lambda}{\rho + r_0} \,e^{i\left(k(\rho + r_0) - \omega t\right)}
+\end{equation}
+假设点 $P$ 共看到 $l$ 个波带（有 $l$ 个波带可以到达点 $P$），则总振幅为：
+\begin{equation}
+    E = \frac{K(\theta_l) \varepsilon_A \rho \lambda}{\rho + r_0} \, e^{i(k(\rho+r_0) - \omega t)}
+\end{equation}
+\begin{figure}[H]\centering
+    \includegraphics[width=0.6\columnwidth]{assets/4/4.5 球形波阵面的传播.png}
+    \caption{球形波阵面的传播}\label{球形波阵面的传播}
+\end{figure}
+\begin{figure}[H]\centering
+\begin{subfigure}[b]{0.33\columnwidth}\centering
+    \includegraphics[height=130pt]{assets/4/4.5 相矢量叠加.png}
+    \caption{相矢量叠加}
+\end{subfigure}
+\begin{subfigure}[b]{0.33\columnwidth}\centering
+    \includegraphics[height=130pt]{assets/4/4.5 总振幅随波带数目的变化.png}
+    \caption{总振幅随波带数目的变化}
+\end{subfigure}
+\begin{subfigure}[b]{0.33\columnwidth}\centering
+    \includegraphics[height=130pt]{assets/4/4.5 振动曲线.png}
+    \caption{振动曲线}
+\end{subfigure}
+\caption{利用波带和振动曲线来判断中轴线上的振幅情况}
+\label{振动曲线}
+\end{figure}
+由图 \ref{振动曲线} (c) 可以看出在不同波带数目下，中轴线上的振幅情况。从切线还可看出，实际相位角与惠更斯-菲涅尔原理所预测的相位角的不同，$O_s$ 点的切线是惠更斯-菲涅尔原理的相位角，而 $A_s$ 点的切线对应实际相位角。
+
 
 \subsection{球面波的自由传播}
 
@@ -2622,7 +2883,7 @@ E = \varepsilon_L \sum_{j=0}^{N_s-1} \int_{(j-1)a-\frac{b}{2}}^{(j-1)a\frac{b}{2
 
 \subsection{$n$ 维波的概念}
 
-一维波指的是在一维空间中传播的波，或者可以看作在一维空间中传播的波。例如一束光在空间中传播，沿其传播方向建立 $x$ 轴，则有 $E = E_0 e^{kx - \omega t}$（具有正负），这束光便可视为一维波。
+一维波指的是在一维空间中传播的波，或者可以看作在一维空间中传播的波。例如一束光在空间中传播，沿其传播方向建立 $x$ 轴，则有 $E = E_0 e^{i(kx - \omega t)}$（具有正负），这束光便可视为一维波。
 
 一维波函数的最一般的形式：
 \begin{equation}

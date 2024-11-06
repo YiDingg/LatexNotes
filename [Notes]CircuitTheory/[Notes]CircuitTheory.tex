@@ -14,6 +14,9 @@
     \def\kV{\ \mathrm{KV}}
     \def\KV{\ \mathrm{KV}}
     \def\MV{\ \mathrm{MV}}
+    \def\uF{\ \mathrm{uF}}
+    \def\nF{\ \mathrm{nF}}
+    \def\pF{\ \mathrm{pF}}
     \def\uA{\ \mathrm{uA}}
     \def\mA{\ \mathrm{mA}}
     \def\A{\ \mathrm{A}}
@@ -2070,15 +2073,58 @@ i_L(t) &= i_{L,0^+} \cdot e^{-\frac{t}{\tau}} + i_{L, \infty}(t) -  i_{L, \infty
 在第六章介绍“相量法”之后，这类方程的求解将变得简单。
 
 \section{一阶动态电路应用}
-此部分详见参考文献 \cite{电路原理} Page 207-223，我们不多赘述。
+RC 微分积分电路、OPA 微分积分电路、滤波全桥整流 (AC > DC) 等部分详见参考文献 \cite{电路原理} Page 207-223，我们不多赘述。下面介绍一些结论性的内容。
 
 
-\subsection{MOSFET 的传播延迟 (NOT Gate)}
-\subsection{RC 微分积分电路}
-\subsection{OPA 微分积分电路}
-\subsection{脉冲序列下的 RC 电路}
+\subsection{反相器的传播延迟 (NOT Gate)}
+
+图 \ref{} 是由两个 N-MOS 反相器构成的缓冲器，受 MOSFET 寄生电阻的影响（主要是 $C_{\text{GS}}$），输入与输出数字信号间的存在延迟，称为“传播延迟” (Propagation Delay)。过程详见参考文献 \cite{电路原理} Page 207-223\footnote{注意，这里我们给出的结论与参考文献 \cite{电路原理} 不同，后者的结论是有些问题的。}，我们直接给出结论：
+\begin{gather}
+    t_\text{pd, $0\to 1$} = \left(R_{\text{ON, 1}} \parallel R_{\text{D, 1}}\right) C_{\text{GS, 2}}\cdot \ln \left(\frac{V_{\text{H}} - V_{\text{L}}}{{\color{red} V_{\text{0}, \min}} - V_{\text{L}}}\right)
+    ,\quad 
+    t_\text{pd, $1\to 0$} = R_{\text{D, 1}} C_{\text{GS, 2}}\cdot \ln \left(\frac{V_{\text{H}} - V_{\text{L}}}{V_{\text{H}} - {\color{red} V_{\text{0}, \max}}}\right)
+\end{gather}
+
+\noindent 式中各参数意义如下：
+\begin{enumerate}
+\item $V_\text{L}$ : 反相器稳定时的输出低电压，即输入稳定在 1 时输出的逻辑 0 低电压；
+\item $V_\text{H}$ : 反相器稳定时的输出高电压，即输入稳定在 0 时输出的逻辑 1 高电压；
+\item $V_{0,\min}$ : $V_{0,\min} = u_{\text{GS}}|_{u_{\text{o}} = V_{\text{OH}, \min}}$ 是反相器输出电压为 $V_{\text{OH},\min}$ 时的 GS 间电压，即使得反相器输出 $u_{\text{o}} = V_{\text{OH},\min}$ 时的输入电压 $u_{\text{GS}}$，它由反相器的 $u_i$-$u_o$ 特性和电压协议中的 $V_{\text{OH},\min}$ 共同确定
+\item $V_{0,\max}$ : 类似地，$V_{0,\max} =  u_{\text{GS}}|_{u_{\text{o}} = V_{\text{OL}, \max}}$ 是反相器输出电压为 $V_{\text{OL},\max}$ 时的 GS 间电压，它是由反相器的 $u_i$-$u_o$ 特性和电压协议中的 $V_{\text{OL},\max}$ 共同确定。
+\end{enumerate}
+
+\begin{figure}[H]\centering
+    \includegraphics[width=0.8\columnwidth]{assets/5/反相器的传播延迟.png}
+    \caption{由两个 N-MOS 构成的反相器}\label{N-MOS 反相器}
+\end{figure}
+
+%对 $V_{\text{IH}}$，应将其理解为高电平输入的临界值 Minimum Input High Voltage $V_{\text{IH}, \min}$，对反相器来说，当 $u_i > V_{\text{IH}}$ 时，输出电压 $u_o$ 为低电平（认为是瞬间完成变化）；类似，对 $V_{\text{IL}}$，应将其理解为低电平输入的临界值 Maximum Input Low Voltage $V_{\text{IL}, \max}$，对反相器而言，当 $u_i < V_{\text{IL}}$ 时，输出电压 $u_o$ 为高电平（认为是瞬间完成变化）。并且，实际中使用的元件都有 $V_{\text{OH}} > V_{\text{IH}} > V_{\text{IL}} > V_{\text{OL}}$。
+
+作为一个精度还不错的近似（也是最常见的情况），我们认为两个反相器的参数完全相同，令 $V_{\text{L}} = 0$、$V_{\text{H}} = V_{\text{DD}}$，作近似 $V_{0,\min} \approx V_{\text{T}}$（$V_{\text{T}}$ 是 MOS 的阈值电压，2N7000 的典型值为 2 V），并且 $R_{\text{D}} \gg R_{\text{ON}} \Longrightarrow R_{\text{ON}} \parallel R_{\text{D}} \approx R_{\text{ON}}$。此时有：
+\begin{gather}
+    t_\text{pd, $0\to 1$} = R_{\text{ON}} C_{\text{GS}}\cdot 
+    \ln \left(\frac{V_{\text{DD}}}{V_\text{T}}\right) \quad 
+    t_\text{pd, $1\to 0$} = R_{\text{D}} C_{\text{GS}}\cdot \ln \left(\frac{V_{\text{DD}}}{V_{\text{DD}} - V_\text{T}}\right)
+\end{gather}
+代入各项数据的典型值，我们可以得到一个大致的传播延迟。
+\begin{gather}
+V_{\text{DD}} = 5 \ \mathrm{V},\quad V_\text{T} = 2 \ \mathrm{V} ,\quad R_{\text{ON, 1}} = 5 \ \Omega,\quad C_{\text{GS}} = 10 \ \mathrm{pF} \\ 
+t_\text{pd, $0\to 1$} = 5 \ \Omega\times 10 \pF \times \ln \left(\frac{5 \ \mathrm{V}}{2 \ \mathrm{V}}\right) = 0.046 \ \mathrm{ns}  \\
+t_\text{pd, $0\to 1$} = 1 \kO\times 10 \pF \times \ln \left(\frac{5 \ \mathrm{V}}{5 \ \mathrm{V} - 2 \ \mathrm{V}}\right) = 5.108 \ \mathrm{ns}
+\end{gather}
+
+
+%通常情况下，四个电压参数的测量是简单的。还是以反相器为例，设地电压 $V_\text{SS} = 0$ 而电路电源为 $V_{\text{DD}} = 5 \ \mathrm{V}$，且四个电压参数都在 $[V_{\text{SS}}, V_{\text{DD}}]$ 之间。测量方法如下：
+%\begin{enumerate}
+%\item $V_{\text{IH}}$ : 将输入逻辑从 0 缓慢增至 1（即输入电压从 $V_{\text{SS}}$ 缓慢增加到 $V_{\text{DD}}$），反相器的输出电压会在某点 $v_i = v_{i1}$ 开始下降，然后在很近的一点 $v_i = v_{i2} > v_{i1}$ 处停止下降。通常可取 $V_{\text{IH}} = \frac{v_{i1} + v_{i2}}{2}$ 或者 $V_{\text{IH}} = v_{i2}$。
+%\item $V_{\text{IL}}$ :  将输入逻辑从 1 缓慢减至 0（即输入电压从 $V_{\text{DD}}$ 缓慢减小到 $V_{\text{SS}}$），反相器的输出电压会在某点 $v_i = v_{i2}$ 开始上升，然后在很近的一点 $v_i = v_{i1} < v_{i2}$ 处停止下降。通常可取 $V_{\text{IL}} = \frac{v_{i1} + v_{i2}}{2}$ 或者 $V_{\text{IH}} = v_{i1}$。
+%\item $V_{\text{OH}}$ : 在输入电压下降至 $v_i < V_{\text{IL}}$ 的区间中，$v_o$ 的稳定值即为 $V_{\text{OH}}$，例如 $v_i = V_{\text{SS}}$ 时的输出电压。
+%\item $V_{\text{OH}}$ : 在输入电压上升至 $v_i > V_{\text{IH}}$ 的区间中，$v_o$ 的稳定值即为 $V_{\text{OL}}$，例如 $v_i = V_{\text{DD}}$ 时的输出电压。
+%\end{enumerate}
+
+\subsection{脉冲序列发生器 (OPA 正反馈)}
+\subsection{三角波发生器 (脉冲序列下的 RC 电路)}
 \subsection{降压斩波器 (DC > DC)}
-\subsection{滤波全桥整流 (AC > DC)}
 
 \chapter{动态电路的稳态分析}\thispagestyle{fancy}
 

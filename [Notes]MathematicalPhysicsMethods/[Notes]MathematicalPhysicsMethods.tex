@@ -1610,15 +1610,68 @@ f(z) e^{ipz} \ \mathrm{d} z = 0
 
 \subsection{积分路径上有奇点的情况}
 
+设定合适的积分围道，然后绕过即可，具体还是要在例题中体会。
+
 \subsection{涉及多值函数的复变积分}
 
-\subsection{特殊积分围道}
+根据多值函数的性质，选择割线与单值分支，然后选择不跨过割线的、合适的积分围道。之后与前面相同，便是结合留数定理、大小圆弧定理、Jordan 引理等方法来求解积分。
 
-\subsection{计算无穷级数的和}
+特别地，计算 $\int_{0}^{\infty} f(x)\ln x$ 型积分时，应考虑函数 $f(z) \ln^2 z$ 的闭合积分，否则得不到所需答案，只能得到 $\int_{0}^{\infty} f(x)$ 的积分结果。
 
+\subsection{特殊积分围道（略）}
 
+\subsection{计算无穷级数的和（略）}
 
+\chapter{}\thispagestyle{fancy}
 
+\section{拉普拉斯变换}
+
+Laplace Transform 是一种积分变换，它把定义在正实轴 $(0, +\infty)$ 上的函数 $f(t)$ 变换到复平面上的函数 $F(z)$，定义为：
+\begin{equation}
+    F(z) = \mathscr{L}\left\{ f(t), z \right\} = \int_{0}^{+\infty} f(t)e^{-zt} \ \mathrm{d}t,\quad \forall\ z \in \C
+\end{equation}
+上式的 $e^{-zt}$ 称为 Laplace 变换的核，$f$ 称为原函数而 $F$ 称为相函数，通常把拉氏变换及其逆变换简写为：
+\begin{equation}
+    F(z) = \mathscr{L}\left\{ f(t), z \right\} ,\quad f(t) = \mathscr{L}^{-1}\left\{ F(z), t \right\}
+\end{equation} 
+另外，在本书中约定，当 $f(t)$ 在 $t < 0$ 使应理解为 $f(t) \equiv 0$，也即将 $f(t)$ 看作 $\eta(t) f(t)$，其中 $\eta(t)$ 是 Heaviside 单位阶跃函数。相应地，$f(t - t_0)$ 则理解为 $\eta(t - t_0) f(t - t_0)$。
+
+Laplace 变换具有一些性质，如下：
+\begin{gather}
+\mathscr{L}\left\{ f(t - t_0), z \right\} = e^{-zt_0} \mathscr{L}\left\{ f(t), z \right\} \\ 
+\mathscr{L}\left\{ f(at), z \right\} = \frac{1}{a} \mathscr{L}\left\{ f(t), \frac{z}{a} \right\},\quad a > 0 \\
+\mathscr{L}\left\{ f(t), z - z_0 \right\} = \mathscr{L}\left\{ e^{z_0 t} f(t), z \right\} \\
+\end{gather}
+
+需要注意，$f(t)$ 的 Laplace 变化并非对所有 $z$ 都收敛（存在），一个例子是 $ \mathscr{L}\left\{ 1, z \right\} = \int_{0}^{+\infty} e^{-zt} \ \mathrm{d}t = - \frac{1}{z} e^{-zt}\mid_0^{+\infty} = \frac{1}{p},\quad \forall\ \Re z > 0$ 仅在右半平面收敛。
+
+\section{傅里叶变换}
+
+Fourier Transform 把定义在时间域的函数 $f(t)$ 变换到频域，定义为：
+\begin{BlockTheorem}[傅里叶变换]\label{傅里叶变换}
+    设 $f(x)$ 是 $(-\infty, +\infty)$ 上的函数，如果在任意区间上其仅有有限个极值和有限个第一类间断点，且积分 $\int_{min}^{max} f(x) \ \mathrm{d}x$ 绝对收敛，则 $f(x)$ 的傅里叶变换存在，定义为：
+    \begin{equation}
+        F = F(\omega) = \mathscr{F}\left\{ f(x), \omega \right\} = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{+\infty} f(x)e^{-i\omega x} \ \mathrm{d}x,\quad \forall\ \omega \in \R
+    \end{equation}
+    而逆变换（反演）是：
+\begin{equation}
+    f(x) = \mathscr{F}^{-1}\left\{ F(\omega), x \right\} = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{+\infty} F(\omega)e^{i\omega x} \ \mathrm{d}\omega,\quad \forall\ x \in \R
+\end{equation}
+一个常见的例子是，$f = f(t)$ 表示随时间变化的信号，$F = F(\omega)$ 是信号的频谱。
+\end{BlockTheorem}
+
+傅里叶变化具有一些性质，如下：
+\begin{gather}
+\mathscr{F} \left\{ f'(x), \omega \right\} = i\omega F(\omega),\quad 
+\mathscr{F} \left\{ f''(x), \omega \right\} = -\omega^2 F(\omega) \\
+\mathscr{F} \left\{ f(x - x_0), \omega \right\} = e^{-i\omega x_0} F(\omega) \\
+\mathscr{F} \left\{ e^{i\omega_0 x}, \omega \right\} = 2\pi \delta(\omega - \omega_0) \\
+\mathscr{F} \left\{ \delta(x - x_0), \omega \right\} = e^{-i\omega x_0}
+\end{gather}
+以及卷积公式：
+\begin{equation}
+\mathscr{F}\left\{ f_1\right\}\cdot \mathscr{F}\left\{ f_2\right\} = \mathscr{F}\left\{ \frac{1}{\sqrt{2\pi} }\int_{-\infty}^{+\infty} f_1(\zeta) f_2(x - \zeta) \ \mathrm{d}\zeta  \right\}
+\end{equation}
 
 
 

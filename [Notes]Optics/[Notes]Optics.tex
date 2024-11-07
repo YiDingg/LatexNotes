@@ -326,13 +326,16 @@
 \begin{cnabstract}\normalsize 
 本文为笔者本科时的“光学”课程笔记（Optics Notes, 2024.8 - 2025.1）。
 
-读者可以到网址 \href{https://www.123865.com/s/0y0pTd-1GKj3}{https://www.123865.com/s/0y0pTd-1GKj3} 下载全部相关资料，也可以在笔者的个人网站上找到
-课程信息、作业答案和其它相关资料: 
-\href{https://yidingg.github.io/YiDingg/\#/Notes/Phisics/OpticsNotes}{https://yidingg.github.io/YiDingg/\#/Notes/Phisics/OpticsNotes}。为了方便复习，每章最后都会有章末总结，我会尽量使总结涵盖考试可能出现的所有内容，确定不在考试范围中的内容将不会列在总结中，但是无法绝对保证。
+读者可以到网址 \href{https://www.123865.com/s/0y0pTd-1GKj3}{https://www.123865.com/s/0y0pTd-1GKj3} 下载相关资料，也可在笔者的个人网站上找到
+课程信息、作业答案和教材教辅等资料: 
+\href{https://yidingg.github.io/YiDingg/\#/Notes/Phisics/OpticsNotes}{https://yidingg.github.io/YiDingg/\#/Notes/Phisics/OpticsNotes}。
 
-由于个人学识浅陋，认识有限，文中难免有不妥甚至错误之处，望读者不吝指正。读者可以将错误发送到我的邮箱 {\color{blue}\ dingyi233@mails.ucas.ac.cn}，也可以到笔者的 \href{https://github.com/YiDingg/LatexNotes}{GitHub (https://github.com/YiDingg/LatexNotes)} 上提 issue，衷心感谢。
+出于学习兴趣，笔记中许多内容都不在光学奚婷婷老师的考试范围内，另外，为了方便查阅和复习，每章最后都会有章末总结。本书主要参考了经典的光学教材 \cite{Optics} \textit{Optics (Eugene Hecht)}，其次是 \cite{PrinciplesOfOptics} \textit{Principles of Optics: Electromagnetic Theory of Propagation, Interference and Diffraction of Light (Born M., Wolf E.)} 、\cite{物理光学} {\kaishu 物理光学 (梁铨廷)}，以及 \cite{新概念物理教程} {\kaishu 新概念物理教程.光学 (赵凯华)}。所有的教材教辅和参考文献都会在课程结束后上传到网址 \href{https://www.123865.com/s/0y0pTd-1GKj3}{https://www.123865.com/s/0y0pTd-1GKj3}，读者可自由下载。其它科目的笔记和作业答案，例如热学、电磁学、电路原理和数学物理方法等，也可以在我的  \href{https://github.com/YiDingg/LatexNotes}{GitHub > LatexNotes} 仓库上找到。
 
-在正式学习之前，建议先跳转至“附录 A \ 波理论”部分，学习必要的前置知识（否则可能难以理解）。
+在正式学习之前，建议先跳转至“附录 A \ \  波理论”部分，学习必要的前置知识（否则可能难以理解）。
+
+由于个人学识浅陋，认识有限，文中难免有不妥甚至错误之处，望读者不吝指正。读者可以将错误发送到我的邮箱 {\color{blue}\ dingyi233@mails.ucas.ac.cn}，也可以到笔者的 \href{https://github.com/YiDingg/LatexNotes}{GitHub (https://github.com/YiDingg/LatexNotes)} 上提 \href{https://github.com/YiDingg/LatexNotes/issues}{issue}，衷心感谢。
+
 \end{cnabstract}
 \addcontentsline{toc}{chapter}{序言} % 手动添加为目录
 
@@ -351,14 +354,15 @@
 
 \chapter{光的基本原理}\thispagestyle{fancy}
 
+本章的内容较为简略，多为结论性的内容，读者只需在阅读教材的基础上，快速浏览本章内容，建立正确基本观念即可。至于一些具体的结论，需要时（例如做题或考试前）再回头复习即可。
+
+
 \section{光学发展简史（略）}
 
 
 \section{光的几何传播规律}
 
-\subsection{光传播的基本原理}
-
-光传播的常见基本原理：
+光传播的基本原理：
 \begin{enumerate}
     \item 直线传播：光在均匀介质里沿直线传播\footnote{对高功率激光，此定律不成立}
     \item 反射定律：光线入射到两种不同的均匀介质的分界面上反射线位于入射面内，反射线和入射线分居法线两侧，反射角等于入射角。
@@ -389,9 +393,8 @@
 \end{figure}
 
 
-\subsection{三棱镜最小偏向角}
 
-如图 \ref{反射与折射、三棱镜最小偏向角} (b) 所示，最小偏向角 $\theta_0 = (i_1 - i_1')_{\min}$ 满足：
+特别地，作为色散的一个例子，我们考虑三棱镜的最小偏向角。如图 \ref{反射与折射、三棱镜最小偏向角} (b) 所示，最小偏向角 $\theta_0 = (i_1 - i_1')_{\min}$ 满足：
 \begin{equation}
     \theta_0 = 2i_1 - A, \quad \frac{n_2}{n_1} = \frac{\sin\frac{\theta_0+A}2}{\sin\frac A2}
 \end{equation}
@@ -420,7 +423,7 @@
 
 \begin{figure}[H]\centering
 \includegraphics[width=0.5\textwidth]{assets/1,2/image (46).jpg}
-\caption{\textbf{惠更斯原理}}\label{惠更斯原理}
+\caption{惠更斯原理}\label{惠更斯原理}
 \end{figure}
 
 \begin{BlockTheorem}[费马原理]\label{费马原理}
@@ -455,7 +458,7 @@
 
 \begin{figure}[H]\centering
 \includegraphics[width=0.6\textwidth]{assets/1,2/path2.pdf}
-\caption{\textbf{光程恒定的例子}}\label{光程恒定的例子}
+\caption{光程恒定的例子}\label{光程恒定的例子}
 \end{figure}
 
 
@@ -508,10 +511,7 @@ n_1u_1y_1 = n_2u_2y_2
 
 
 
-\section{光学仪器}
-
-
-\subsection{薄透镜}
+\section{薄透镜}
 
 透镜是由两个共轴折射球面构成的光具组，球面间距远远小于球面半径和物距像距的透镜称为薄透镜，也即 $d \ll | R_1 |, | R_2 |, | s |, | s' |$。此时可以认为两球面顶点重合，称为光心。
 
@@ -539,16 +539,11 @@ f =f' = \frac{1}{(n_L - 1)(\frac{1}{r_1} - \frac{1}{r_2})},\quad  V = -\frac{\fr
 xx = ff'
 \end{equation}
 
-
-\subsection{其它仪器}
-投影仪器、照相机、眼睛、放大镜、显微镜、望远镜
-
-\section{光波的描述（略）}
 \section{光度学基本概念}
 
 在学习光度学之前，需要区分辐射度学与光度学中的基本概念。辐射度学研究的是辐射能量对实际物体的影响，而光度学研究的是辐射能量对人眼的影响，是基于人眼实验数据的学科，例如 Luminous Efficiency Function。它们的概念相互对应（可以相互转化）但并不相同，如下表所示: 
 \begin{table}[H]\centering
-    \caption{\textbf{光度学与辐射度学概念对应关系}}
+    \caption{光度学与辐射度学概念对应关系}
     \label{光度学与辐射度学概念对应关系}
     \resizebox{\linewidth}{!}{   % 设置宽度为 \linewidth 等比例缩放
     \begin{tabular}{|c|c|c|c|c|c|c|c|}
@@ -566,9 +561,9 @@ xx = ff'
 
 
 \subsection{辐射度学基本概念}
-
+下表展示了辐射度学的一些基本概念：
 \begin{table}[H]\centering
-    \caption{\textbf{辐射度学基本概念}}
+    \caption{辐射度学基本概念}
     \label{辐射度学基本概念}
     \renewcommand{\arraystretch}{1.1} % 调整行间距为默认值的1.5倍
 %\resizebox{0.9\linewidth}{!}{   % 设置宽度为 \linewidth 等比例缩放
@@ -613,9 +608,21 @@ $K_{\text{max}} = 683\ \mathrm{lm \cdot W^{-1}}$ 在波长约 555.0 nm 取到，
 \end{equation}
 
 \subsection{光度学基本概念}\label{光度学基本概念}
+表 \ref{光度学基本概念表} 展示了光度学的一些基本概念，它们\footnote{参考 \href{https://www.zhihu.com/question/53080536/answer/133398317}{知乎：如何区分并记忆光度、照度、发光强度、光强、亮度等}}之间的转化关系：
+\begin{gather}
+\text{与光通量的转换：} \Phi_v = \int \boldsymbol{E}_v \mathrm{d}\boldsymbol{A} = \int \boldsymbol{I}_v \mathrm{d}\boldsymbol{\Omega} = \iint \boldsymbol{L}_v \cos \theta\, \mathrm{d}A \,\mathrm{d} \boldsymbol{\Omega} \\ 
+\text{与光强的转换：} \boldsymbol{I}_v = r^2\boldsymbol{E}_v = \int \boldsymbol{L}_v \cos \theta\, \mathrm{d}A = \int \boldsymbol{L}_v  \mathrm{d}A_{\perp}
+\end{gather}
 
+计算时的常用微分：
+\begin{gather}
+\begin{aligned}
+    & \text{直角坐标系：}&& \mathrm{d}A = \mathrm{d}x \mathrm{d}y &&,  \mathrm{d}\boldsymbol{\Omega} = \frac{\mathrm{d}\boldsymbol{A}}{r^2} \\ 
+    & \text{球坐标系：}&& \mathrm{d}A = r^2 \sin \theta \mathrm{d}\theta \mathrm{d}\phi &&,\mathrm{d}\Omega = \sin \theta \mathrm{d}\theta \mathrm{d}\phi \\ 
+\end{aligned}
+\end{gather}
 \begin{table}[H]\centering
-    \caption{\textbf{光度学基本概念}}
+    \caption{光度学基本概念}\label{光度学基本概念表}
     \renewcommand{\arraystretch}{1.15} % 调整行间距为默认值的1.5倍
 %\resizebox{0.9\linewidth}{!}{   % 设置宽度为 \linewidth 等比例缩放
 %}
@@ -639,25 +646,7 @@ $K_{\text{max}} = 683\ \mathrm{lm \cdot W^{-1}}$ 在波长约 555.0 nm 取到，
 \end{tabular}
 \end{table}
 
-它们\footnote{参考 \href{https://www.zhihu.com/question/53080536/answer/133398317}{知乎：如何区分并记忆光度、照度、发光强度、光强、亮度等}}之间的转化关系：
-\begin{gather}
-\text{与光通量的转换：} \Phi_v = \int \boldsymbol{E}_v \mathrm{d}\boldsymbol{A} = \int \boldsymbol{I}_v \mathrm{d}\boldsymbol{\Omega} = \iint \boldsymbol{L}_v \cos \theta\, \mathrm{d}A \,\mathrm{d} \boldsymbol{\Omega} \\ 
-\text{与光强的转换：} \boldsymbol{I}_v = r^2\boldsymbol{E}_v = \int \boldsymbol{L}_v \cos \theta\, \mathrm{d}A = \int \boldsymbol{L}_v  \mathrm{d}A_{\perp}
-\end{gather}
-
-计算时的常用微分：
-\begin{gather}
-\begin{aligned}
-    & \text{直角坐标系：}&& \mathrm{d}A = \mathrm{d}x \mathrm{d}y &&,  \mathrm{d}\boldsymbol{\Omega} = \frac{\mathrm{d}\boldsymbol{A}}{r^2} \\ 
-    & \text{球坐标系：}&& \mathrm{d}A = r^2 \sin \theta \mathrm{d}\theta \mathrm{d}\phi &&,\mathrm{d}\Omega = \sin \theta \mathrm{d}\theta \mathrm{d}\phi \\ 
-\end{aligned}
-\end{gather}
-
 \section{特殊发光体（略）}
-
-\subsection{余弦发光体（朗伯发光体）}
-
-\subsection{定向发光体}
 
 \section{章末总结}
 
@@ -1826,7 +1815,7 @@ I = \int i(k)\left[1 + \cos (k \Delta L)\right] \ \mathrm{d}k = I_0 \left[ 1 + \
 
 现实中常可以见到这样的例子：有一些光源，它们具有一定的发光宽度，不能看作理想的点光源。当光源宽度较大时，光源不同部分发出的光的叠加，会导致条纹的对比度降低（甚至为 0），称为空间不相干。
 
-还有一些光源是多频光源（或具有一定光谱宽度，详见表 \ref{}）。波长差别极小时（通常是 $10^{-2}$ nm 级），不同波长相互叠加导致条纹对比度降低（但仍可见）；波长差别较大时，$\cos(\Delta \alpha)$ 的周期远小于 $\tau$，积分项为零，也只能发生非相干叠加。以两频光源为例，发出时间角频率为 $\omega_1$ 和 $\omega_2$ 的光，则在同一位置，相位差 $\Delta \alpha = (k_2 - k_1)x - (\omega_2 - \omega_1)t$ 是 $t$ 的函数，当曝光时间 $\tau$ 远大于调制周期 $T = \frac{2 \pi}{\omega_1 - \omega_2}$ 时，积分项 $\frac{1}{\tau}\int_{0}^{\tau}  \cos(\Delta \alpha) \mathrm{d} t$ 趋于 0，得到 $I = I_1 + I_2$，也是非相干叠加。
+还有一些光源是多频光源（或具有一定光谱宽度，详见表 \ref{光谱宽度对光源单色性的影响}）。波长差别极小时（通常是 $10^{-2}$ nm 级），不同波长相互叠加导致条纹对比度降低（但仍可见）；波长差别较大时，$\cos(\Delta \alpha)$ 的周期远小于 $\tau$，积分项为零，也只能发生非相干叠加。以两频光源为例，发出时间角频率为 $\omega_1$ 和 $\omega_2$ 的光，则在同一位置，相位差 $\Delta \alpha = (k_2 - k_1)x - (\omega_2 - \omega_1)t$ 是 $t$ 的函数，当曝光时间 $\tau$ 远大于调制周期 $T = \frac{2 \pi}{\omega_1 - \omega_2}$ 时，积分项 $\frac{1}{\tau}\int_{0}^{\tau}  \cos(\Delta \alpha) \mathrm{d} t$ 趋于 0，得到 $I = I_1 + I_2$，也是非相干叠加。
 
 总而言之，影响光源相干性的条件大致有三个方面：波列持续时间 $\tau_0$、光源宽度 $d$ 和发光光谱 $i = i(\lambda)$。现实中的光源总是有一定发光线度、一定光谱宽度、且波列长度有限的，没有任何一种光源在上面三个方面都做到极好。因此，在设计干涉实验时，需要依据光源的特性，选择合适的实验方案，或者依据实验弱化了哪些因素的影响，选择合适的光源。
 
@@ -2278,7 +2267,7 @@ I = I_0 \frac{\sin^2 \left(N\frac{\delta}{2}\right)}{\sin^2 \left(\frac{\delta}{
 \begin{equation}
 E_{\text{sub}} = \frac{\varepsilon_0}{r}e^{i(kr - \omega t)}
 \end{equation}
-其中 $\varepsilon_0$ 称为波源强度（注意不是真空介电常量）。取阵列上的一段微元 $\ \mathrm{d}y$，其上包含 $\frac{\mathrm{d}y}{D}N$ 个波源（稍后我们会令 $N \to \infty$），则这一段微元对 $P$ 点电场的贡献为：
+其中 $\varepsilon_0$ 称为波源强度（也称光源强度，注意不是真空介电常量）。取阵列上的一段微元 $\ \mathrm{d}y$，其上包含 $\frac{\mathrm{d}y}{D}N$ 个波源（稍后我们会令 $N \to \infty$），则这一段微元对 $P$ 点电场的贡献为：
 \begin{equation}
 \mathrm{d}E = \frac{N\mathrm{d}y}{D}\cdot \frac{\varepsilon_0}{r}e^{i(kr - \omega t)} = \frac{N\varepsilon_0}{Dr}e^{i(kr - \omega t)} \mathrm{d}y = \frac{\varepsilon_L}{r}e^{i(kr - \omega t)} \mathrm{d}y,\quad \varepsilon_L = \lim_{N\to \infty} \frac{N\varepsilon_0}{D}
 \end{equation}
@@ -2465,7 +2454,7 @@ E = \varepsilon_L \sum_{j=0}^{N_s-1} \int_{(j-1)a-\frac{b}{2}}^{(j-1)a\frac{b}{2
 将小孔视为无限个具有面积 $\mathrm{d}A$ 的点光源（发出球面波），我们有：
 \begin{gather}
 \ \mathrm{d}E = \frac{\varepsilon_A}{r} \cdot e^{i(kr - \omega t)} \ \mathrm{d}A,\quad R  =\sqrt{X^2 + Y^2 + Z^2} \\ 
-r  = R\cdot \sqrt{ 1 - \frac{2\left(yY + zZ\right)}{R^2} +  \frac{y^2 + z^2}{R^2} }  \approx  R\left(1 - \frac{\left(yY + zZ\right)}{R^2}  \right)
+r  = R\cdot \sqrt{ 1 - \frac{2\left(yY + zZ\right)}{R^2} +  \frac{y^2 + z^2}{R^2} }  \approx  R\left(1 - \frac{\left(yY + zZ\right)}{R^2}  \right) = R - \frac{yY + zZ}{R}
 \end{gather}
 于是到达 $P$ 点的电场叠加为：
 \begin{equation}\label{小孔衍射积分公式}
@@ -2552,7 +2541,7 @@ J_n(x) = \frac{i^{-n}}{2\pi} \int_{0}^{2\pi} e^{i(n\phi + x\cos \phi)} \ \mathrm
 \begin{equation}
 \Jc_0(x) = \frac{{\color{red} 2} J_0(x)}{x},\quad \Jc_n(x) = \frac{{\color{red} 2} J_n(x)}{x},\quad n = 0, 1, 2, ...
 \end{equation} 
-分子上的 2 是为了使 $\Jc_1$ 在原点的极限值为 1（类似 $\sinc$ 的极限值）。$J_n(x)$ 和 $\Jc_n(x)$ 在正实轴上的图像如图 \ref{} 所示，偶数阶（包括 0 阶）时为偶函数，奇数阶时为奇函数。
+分子上的 2 是为了使 $\Jc_1$ 在原点的极限值为 1（类似 $\sinc$ 的极限值）。$J_n(x)$ 和 $\Jc_n(x)$ 在正实轴上的图像如图 \ref{贝塞尔函数及其引申函数} 所示，偶数阶（包括 0 阶）时为偶函数，奇数阶时为奇函数。
 \begin{figure}[H]\centering
 \begin{subfigure}[b]{0.5\columnwidth}\centering
     \includegraphics[height=180pt]{assets/4/4.3 贝塞尔函数 J.pdf}
@@ -2563,6 +2552,7 @@ J_n(x) = \frac{i^{-n}}{2\pi} \int_{0}^{2\pi} e^{i(n\phi + x\cos \phi)} \ \mathrm
     \caption{定义的 $\Jc$ 函数}
 \end{subfigure}
 \caption{贝塞尔函数及其引申函数}
+\label{贝塞尔函数及其引申函数}
 \end{figure}
 
 继续我们的积分，并简记 $\delta = ka \cdot \frac{r}{R} \approx ka \sin \theta $，可以得到：
@@ -2697,25 +2687,40 @@ ka \sin \theta_0 = 3.8317 \Longrightarrow \xi_\theta = 2 \theta_0 = 2\arcsin \le
 
 \section{菲涅尔衍射}
 
+\subsection{球面波的传播（菲涅尔波带法）}
+
 在菲涅尔衍射中，之前的许多近似都不再成立，需要建立另外一套理论基础。
 
 由菲涅尔原理，如果每个子波向一切方向都均匀地辐射，那么除了产生一个向前进的波以外，还会出现一个向波源后退的反向波。实验上并没有发现这样的波，因此我们必须对次级发射体的辐射图样作某些修改。更详细的理论\footnote{基尔霍夫理论，详见参考文献 \cite{Optics} 的 10.4 节}表明，次波源发射的光具有方向性，由倾斜因子 $K = K(\theta)$ 来描述，它是次波源在不同方向光场的振幅系数：
 \begin{equation}
-    K = K(\theta) = \frac{1}{2}\left(1 + \cos \theta\right),\quad E = \frac{K\varepsilon_A}{R} \,e^{i(kr - \omega t)}
+    K = K(\theta) = \frac{1}{2}\left(1 + \cos \theta\right),\quad E = K\frac{\varepsilon_A}{R} \,e^{i(kr - \omega t)}
 \end{equation}
 
-如图 \ref{球形波阵面的传播}，由波带理论，第 $m$ 级波带在点 $P$ 的电场为：
+如图 \ref{球形波阵面的传播}，由波带理论，第 $m$ 级半波带（后文简称“波带”）在点 $P$ 的电场为：
 \begin{equation}
-E_m = (-1)^{m+1} \frac{2 K \varepsilon_A \rho \lambda}{\rho + r_0} \,e^{i\left(k(\rho + r_0) - \omega t\right)}
+E_m = (-1)^{m+1} \frac{2 K_m \varepsilon_0}{\rho_0 + r_0} \,e^{i\left(k(\rho_0 + r_0) - \omega t\right)},\quad \varepsilon_0 = \varepsilon_A \rho_0 \lambda
 \end{equation}
-假设点 $P$ 共看到 $l$ 个波带（有 $l$ 个波带可以到达点 $P$），则总振幅为：
-\begin{equation}
-    E = \frac{K(\theta_l) \varepsilon_A \rho \lambda}{\rho + r_0} \, e^{i(k(\rho+r_0) - \omega t)}
-\end{equation}
+式中 $\varepsilon_0 = \varepsilon_A \rho_0 \lambda$ 是波源强度，即球面波表达式 $E = \frac{\varepsilon_0}{r} \,e^{i(kr - \omega t)}$ 中的 $\varepsilon_0$。
+
 \begin{figure}[H]\centering
     \includegraphics[width=0.6\columnwidth]{assets/4/4.5 球形波阵面的传播.png}
     \caption{球形波阵面的传播}\label{球形波阵面的传播}
 \end{figure}
+
+\subsection{圆孔近场衍射}
+
+我们指出，虽然在数学上将半波带分为了无限多个，但由于倾斜因子 $K(\theta)$ 的存在，认为小孔中只能“看到”有限个半波带是合适的。通过计算给定小孔上的半波带数目 $N_F$，可以得到中轴线上辐照度的一个良好近似。每个半波带的面积 $A$ 由下式给出：
+\begin{equation}
+A = \pi \frac{r_0 \rho}{r_0 + \rho} \lambda \approx \pi r_0 \lambda
+\end{equation}
+对圆形小孔，半波带数目为：
+\begin{equation}
+N_F = \frac{\pi a^2}{A} = \frac{(\rho_0 + r_0)a^2 }{r_0 \rho_0 \lambda} \approx \frac{a^2}{ r_0 \lambda}
+\end{equation}
+上式中 $\rho$ 和 $r_0$ 分别是小孔到光源和观察点的距离，$a$ 是小孔的半径。$N_F$ 常称为菲涅耳数。保持小孔半径不变，当点 $P$ 从无穷远处向小孔靠近时，$r_0$ 由无穷到 0，$N_F$ 会由 $0$ 逐渐增大为 $\infty$。
+
+由图 \ref{振动曲线} (c) 可以看出在不同半波带数目下，中轴线上的振幅情况。角度还可看出，实际相位角与惠更斯-菲涅尔原理所预测的相位角的不同，$O_s$ 点的切线（向右）是惠更斯-菲涅尔原理的相位角，而相矢量 $\overrightarrow{O_sA_s}$ 的切线对应实际相位角。
+
 \begin{figure}[H]\centering
 \begin{subfigure}[b]{0.33\columnwidth}\centering
     \includegraphics[height=130pt]{assets/4/4.5 相矢量叠加.png}
@@ -2732,25 +2737,223 @@ E_m = (-1)^{m+1} \frac{2 K \varepsilon_A \rho \lambda}{\rho + r_0} \,e^{i\left(k
 \caption{利用波带和振动曲线来判断中轴线上的振幅情况}
 \label{振动曲线}
 \end{figure}
-由图 \ref{振动曲线} (c) 可以看出在不同波带数目下，中轴线上的振幅情况。从切线还可看出，实际相位角与惠更斯-菲涅尔原理所预测的相位角的不同，$O_s$ 点的切线是惠更斯-菲涅尔原理的相位角，而 $A_s$ 点的切线对应实际相位角。
+
+在固定直径的孔内，由于 $A = \frac{\pi a^2}{N_F}$，随着 $N_F$ 的增大，每个波带的面积 $A$ 会减小，使得轴上辐照度的极大值将依 $\frac{1}{N_F^2}$ 减小（包络线）。一个定性的近似是 $I = I(0) \sinc^2 \left(\frac{\pi}{2}N_F\right)$，其中 $I(0)$ 是 $N_F = 0$ ($P$ 点离小孔无穷远)，作出 $I$ 关于 $N_F$ 的变化情况，如图 \ref{中心振幅随波带数的变化} 所示：
+
+\begin{figure}[H]\centering
+\begin{subfigure}[b]{0.5\columnwidth}\centering
+    \includegraphics[height=185pt]{assets/4/4.5 中心振幅随波带数的变化 2.pdf}
+    \caption{$N_F \in [0, 10]$}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{0.5\columnwidth}\centering
+    \includegraphics[height=185pt]{assets/4/4.5 中心振幅随波带数的变化.pdf}
+    \caption{$N_F \in [0, 4]$}
+\end{subfigure}
+\caption{中心振幅随波带数的变化}
+\label{中心振幅随波带数的变化}
+\end{figure}
 
 
-\subsection{球面波的自由传播}
+另外，当观察点不在中轴线上时，随着点 $P$ 向外移动，“观察”到的波带也会发生变化，如图 \ref{圆孔向外移动}，此时辐照度会有一系列极大与极小值，变化比较复杂。对整个观察平面而言，所得衍射图样随着 $N_F$ 的变化而变化，如图 \ref{不同菲涅尔数时的圆孔衍射图样} 所示。
+\begin{figure}[H]\centering
+    \includegraphics[width=0.75\columnwidth]{assets/4/4.5 圆孔向外移动.png}
+    \caption{圆孔内“观察”到的波带}\label{圆孔向外移动}
+\end{figure}
+\begin{figure}[H]\centering
+\begin{subfigure}[b]{0.59\columnwidth}\centering
+    \includegraphics[height=185pt]{assets/4/4.5 菲涅尔衍射 不同波带 1.png}
+\end{subfigure}
+\begin{subfigure}[b]{0.39\columnwidth}\centering
+    \includegraphics[height=185pt]{assets/4/4.5 菲涅尔衍射 不同波带.png}
+\end{subfigure}
+\caption{不同菲涅尔数 $N_F$ 时的圆孔衍射图样}
+\label{不同菲涅尔数时的圆孔衍射图样}
+\end{figure}
 
-\subsection{圆孔近场衍射}
-
-\subsection{圆形障碍物}
 
 
+可以看到，当 $N_F \to 0 $ 时（即 $N_F \gg 1$），发生夫琅禾费衍射，这实质上是夫琅禾费衍射的另一种判别方法；当 $N_F \geqslant 1$ 时，发生菲涅尔衍射。特别地，对于环形孔，我们也可以借助振动曲线来分析，如下图：
+\begin{figure}[H]\centering
+    \includegraphics[width=0.65\columnwidth]{assets/4/4.5 菲涅尔圆环的轴上振幅.png}
+    \caption{透光圆环中心轴上的菲涅尔衍射情况}\label{透光圆环中心轴上的菲涅尔衍射情况}
+\end{figure}
+图 \ref{透光圆环中心轴上的菲涅尔衍射情况} 是一个包含 $\frac{1}{3} + 3 + \frac{1}{3}$ 个波带的环形孔，中心波带（第一波带）被圆盘挡住大约 $\frac{2}{3}$（剩余 $\frac{1}{3}$），振动曲线的 $A_s$ 和 $B_s$ 分别对应图中 $A$ 点和 $B$ 点。由合成结果知道，相矢量 $\overrightarrow{A_sB_s}$ 给出了振幅的大小和相位。
+
+\subsection{圆盘近场衍射}
+
+我们知道，对于中轴线上的一点 $P$，一个未受阻碍的波有无穷多个波带到达 $P$ 点，在此处产生一个大小为第一波带一半的电场，即 $E \approx \frac{1}{2} E_1$。如果某种障碍物正好盖住第一波带，在振动曲线中减去第一波带的贡献，可知此时的电场 $E' = -\frac{1}{2}E_1$，这表明障碍物的加入不会改变点 $P$ 的亮暗状态（仍是亮斑）。
+
+用类似地，思想，如果障碍物从 0 开始，逐渐遮住 $1, 2, ..., n$ 个波带，这等价于对给定的圆屏，点 $P$ 由无穷远向圆盘靠近。由振动曲线可以看出，除非 $n$ 非常大（$P$ 离圆盘很近），相矢量 $\overrightarrow{A_sB_s}$ 的振幅始终不（近似）为 0，这表明除了紧挨着圆盘之后的一小段，中轴线上处处为亮点。遮住前 $n$ 个波带时的振幅大小约为：
+\begin{equation}
+| E | = \frac{1}{2}| E_{n+1} | = K_{n+1} \frac{\varepsilon_A \rho_0 \lambda}{\rho_0 + r_0} \,e^{i\left(k(\rho_0 + r_0) - \omega t\right)} =  K_n \frac{\varepsilon_0}{\rho_0 + r_0} \,e^{i\left(k(\rho_0 + r_0) - \omega t\right)} 
+\end{equation}
+其中 $K_n$ 是第 $n$ 级波带的法线与中轴线的夹角，着 $n$ 的增大，夹角 $\theta$ 逐渐向 $\pi$ 靠近，$| E | \to 0$。
+
+\begin{figure}[H]\centering
+\begin{subfigure}[b]{0.5\columnwidth}\centering
+    \includegraphics[height=180pt]{assets/4/4.5 菲涅尔圆形障碍物.png}
+    \caption{直径为 3 mm 滚珠的衍射图样}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{0.5\columnwidth}\centering
+    \includegraphics[height=180pt]{assets/4/4.5 菲涅尔矩形孔衍射.png}
+    \caption{矩形孔的菲涅尔衍射}
+\end{subfigure}
+\caption{圆形障碍物和矩形孔菲涅尔衍射}
+\label{圆形障碍物和矩形孔菲涅尔衍射}
+\end{figure}
+
+\subsection{菲涅尔波带片}
+相邻两个波带的叠加可以近似抵消，那么我们不禁思考，如果挡住全部偶数波带而通过奇数波带，或者相反（挡奇通偶），是否可以观察到 $P$ 处辐照度的惊人增大？事实上是可以的。像这样能改变每隔半个周期的波带内的光的振幅或相位的屏，叫作（菲涅尔）波带片，波带片实质上是特殊的环形衍射光栅。
+
+\begin{figure}[H]\centering
+\begin{subfigure}[b]{0.5\columnwidth}\centering
+    \includegraphics[height=150pt]{assets/4/4.5 负菲涅尔波带片.png}
+    \caption{负菲涅尔波带片}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{0.5\columnwidth}\centering
+    \includegraphics[height=150pt]{assets/4/4.5 正菲涅尔波带片.png}
+    \caption{正菲涅尔波带片}
+\end{subfigure}
+\caption{菲涅尔波带片}
+\end{figure}
+
+例如，假设我们有一个波带片，它只通过前 20 个奇数波带而挡住其它所有波带，则：
+\begin{equation}
+E = \sum_{n=1}^{20}E_{2n-1} \approx 20 E_1 \approx 40 E_0
+\end{equation}
+此时辐照度将增加到无阻碍情况下的 1600 倍。
+
+由图 \ref{波带片} (a)，我们先来计算各波带的半径。
+\begin{figure}[H]\centering
+\begin{subfigure}[b]{0.53\columnwidth}\centering
+    \includegraphics[height=160pt]{assets/4/4.5 波带半径计算.png}
+    \caption{波带片各级圆环半径的计算}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{0.46\columnwidth}\centering
+    \includegraphics[height=160pt]{assets/4/4.5 波带片次焦点.png}
+    \caption{波带片的各级焦点}
+\end{subfigure}
+\caption{波带片}
+\label{波带片}
+\end{figure}
+将第 $m$ 个波带的外缘标以点 $A_m$，按定义，路程 $S$-$A_m$-$P$ 的光程应当比 $S$-$O$-$P$ 要大 $\frac{m\lambda}{2}$，也即：
+\begin{equation}
+(\rho_m + r_0) - (\rho_0 + r_0) = m \frac{\lambda}{2}
+\end{equation}
+作泰勒展开 $\rho_m = \rho_0 + \frac{R_m^2}{2\rho_0}$ 和 $r_m = r_0 + \frac{R_m^2}{2r_0}$，代入得到：
+\begin{equation}
+R_m = \sqrt{ \frac{m\lambda}{\frac{1}{\rho_0} + \frac{1}{r_0}} } \overset{\rho_0 \to \infty}{=}\sqrt{m r_0 \lambda}
+\end{equation}
+更精确的公式\footnote{由参考文献 \cite{波带片的设计及其衍射特性研究} Page 3 给出}是 $R_m = \sqrt{mr_0\lambda + \frac{m^2\lambda^2}{4}}$，式中 $\frac{m^2\lambda^2}{4}$ 代表球差。
+
+是上面，我们依据“在点 $r_0$ 的各波带振幅相互加强”的原则，得到了波带片的各级半径，使得点 $P$ 是中轴线上光强最大的一点，此时点 $P$ 称为主焦点或一级焦点，距离 $r_0$ 也相应的记作 $f$ 或 $f_1$，有：
+\begin{equation}
+f_1 = \frac{R_1^2}{\lambda} \Longrightarrow  \frac{1}{\rho_0} + \frac{1}{r_0} = \frac{1}{f}
+\end{equation}
+与薄透镜公式有相同的形式，因此，用一光束准直入射给定的波带片（起到 $\rho_0 \to \infty$ 的作业），此时中轴线上最亮的点就是主焦距，它是辐照度分布中的一个极大值（也是最大值），因为在 $f$ 处波带片上的各圆环刚好和波阵面上的各波带重合。
+
+为什么我们上面要说是“一级”焦距？因为波带片本质上还是一个光栅，它（在中轴线上）的衍射图样是一系列的主焦点和次焦点交替出现（次焦点都比主焦点近），如图 \ref{波带片} (b) 所示。下面我们推导这些次焦点的位置和辐照度大小。
+
+只需考虑 $r = \frac{f}{k}, k = 2, 3, 4, ...$ 时的情况，其余情况介于两者中间，可定性地判断辐照度的大小变化，且稍后能轻易知道它们都不是极值点。对于给定的 $k$，点 $P$ 与波带距离 $r = \frac{f}{k}$，我们保持波带片的直径 $D$ 不变，当距离变为原来的 $\frac{1}{k}$，由 $R_m = \sqrt{mr\lambda}$ 知道，$P$ 点“看到”的各波带半径变为原来的 $\frac{1}{\sqrt{k}}$。之前 $r = f$ 时波带片共有 $n$ 个半径，“孔”（波带片）的直径没变，而波带半径缩小为原来的 $\frac{1}{\sqrt{k}}$，因此在点 $P$ “看到” 的波带由 $n$ 个增长至 $kn$ 个。
+
+记 $r = \frac{f}{k}$ 时，$P$ 点“看到”的一系列波带半径为 $R_j^(k)$，$k = 1, 2, 3, \ \ j = 1, 2, ..., kn$，将它们的相对大小（$\frac{R_j^(k)}{R_1^(1)}$）如表 \ref{孔内不同波带的半径及位置关系} 一样列出，一切都会变得显然：
+\begin{table}[H]\centering
+    %\renewcommand{\arraystretch}{1.5} % 调整行间距为 1.5 倍
+    %\setlength{\tabcolsep}{1.5mm} % 调整列间距
+    \caption{$r = \frac{f}{k}, k = 1, 2, 3, $ 时孔内一系列波带的相对半径及位置关系}
+    \label{孔内不同波带的半径及位置关系}
+\begin{tabular}{cccccccccc}\toprule
+    $k = 1$ & $1$ & $\sqrt{2}$ & $\sqrt{3}$  & ... & $\sqrt{n}$ \\
+    \midrule
+    $k = 2$ & $(\frac{\sqrt{1}}{\sqrt{2}}, 1)$ & $(\frac{\sqrt{3}}{\sqrt{2}}, 2)$ &  $(\frac{\sqrt{5}}{\sqrt{2}}, \sqrt{3})$  & ... & $(\frac{\sqrt{2n -1 }}{\sqrt{2}}, \sqrt{n})$  \\
+    $k = 3$ &  $(\frac{\sqrt{1}}{\sqrt{3}}, \frac{\sqrt{2}}{\sqrt{3}}), 1$ & $(\frac{\sqrt{4}}{\sqrt{3}}, \frac{\sqrt{5}}{\sqrt{3}}), \sqrt{2}$ &  $(\frac{\sqrt{7}}{\sqrt{3}}, \frac{\sqrt{8}}{\sqrt{3}}, \sqrt{3})$  & ... & $(\frac{\sqrt{3n -1 }}{\sqrt{3}}, \frac{\sqrt{3n-2}}{\sqrt{3}}, \sqrt{n})$   \\
+    $k = 4$ &  $(\frac{\sqrt{1}}{\sqrt{4}}, \frac{\sqrt{2}}{\sqrt{4}}, \frac{\sqrt{3}}{\sqrt{4}}, 1)$ & $(\frac{\sqrt{5}}{\sqrt{4}}, \frac{\sqrt{6}}{\sqrt{4}}, \frac{7}{\sqrt{4}}, \sqrt{2})$ &  $(\frac{\sqrt{9}}{\sqrt{4}}, \frac{\sqrt{10}}{\sqrt{4}}, \frac{\sqrt{11}}{\sqrt{4}}, \sqrt{3})$  & ... & $(\frac{\sqrt{4n -1 }}{\sqrt{4}}, \frac{\sqrt{4n-2}}{\sqrt{4}}, \frac{\sqrt{4n-3}}{\sqrt{4}}, \sqrt{n})$   \\
+    \bottomrule
+\end{tabular}
+\end{table}
 
 
 
+需要注意，上面的“$n$ 级半径”并不是波带片的最大圆环半径，对有 $n_0$ 个圆环的挡光型波带片而言（中心圆算第一个圆环），无穷远处不透光，最外围的第 $n_0$ 级圆环 ($R_{n_0-1} \sim R_{n_0}$) 是透光的，则式中的 $n = n_0$；对透光型波带片而言，无穷远处透光，最外围的第 $n$ 级圆环 ($R_{n_0-1} \sim R_{n_0}$) 是不透光的，因此需要再往外“扩张一个半径”，式中的 $n = n_0 + 1$。
 
+\subsection{矩形孔近场衍射}
 
+矩形孔时衍射不再具有圆孔那么好的对称性。考虑图 \ref{圆形障碍物和矩形孔菲涅尔衍射} (b)，次波源微元 $\ \mathrm{d} A$ 对点 $P$ 的电场贡献为：
+\begin{equation}
+\ \mathrm{d}E = K(\theta)\frac{\varepsilon_A \rho \lambda}{\rho r \lambda} e^{k(\rho + r) - \omega t} \ \mathrm{d}A
+\end{equation}
+只考虑孔的线度远小于 $\rho_0$ 和 $r_0$ 的情况，此时系数上可以有近似 $K(\theta) \approx 1$，$r \approx r_0$ 且 $\rho \approx \rho_0$。对相位近似时需要更小心：
+\begin{equation}
+(\rho + r) = (\rho_0 + r_0) + \left(y^2 + z^2\right)\frac{\rho_0 + r_0}{r\rho_0 r_0}
+\end{equation}
+这个近似比夫琅禾费衍射中作的近似要更敏感，后者对应 $(Y, Z) = 0$ 的近似是 $r = R$ 没有高次项。为了简化积分，引入无量纲变量 $u$ 和 $v$ 如下：
+\begin{equation}
+u = y \sqrt{\frac{2(\rho_0 +r_0)}{\lambda \rho_0 r_0}},\quad 
+v = z \sqrt{\frac{2(\rho_0 +r_0)}{\lambda \rho_0 r_0}}
+\end{equation}
+则积分式为：
+\begin{align}
+E &= K(\theta)\frac{\varepsilon_A \rho \lambda}{\rho r \lambda} e^{k(\rho + r) - \omega t} \ \mathrm{d}A \\ &
+= \frac{\varepsilon_A \rho_0 \lambda}{\rho_0r_0 \lambda} \int_{y_1}^{y_2}\int_{z_1}^{z_2} \,e^{ik(\rho + r)}\ \mathrm{d}y \ \mathrm{d}z 
+\\ &
+= \frac{\varepsilon_0}{\rho_0r_0 \lambda} \int_{y_1}^{y_2}\int_{z_1}^{z_2} \,e^{ik(\rho + r)}\ \mathrm{d}y \ \mathrm{d}z 
+\\ &
+= \frac{1}{2} \frac{\varepsilon_0}{\rho_0 + r_0}\,e^{i\left[k(\rho_0 + r_0) - \omega t\right]}\cdot \int_{u_1}^{u_2}e^{i\left(\frac{\pi}{2}u^2\right)}\ \mathrm{d}u \cdot \int_{v_1}^{v_2}e^{i\left(\frac{\pi}{2}v^2\right)}\ \mathrm{d}v
+\end{align}
+上式中的两个积分没有初等解，可以用余弦菲涅尔积分和正弦菲涅尔积分来表示，定义为：
+\begin{equation}
+\mathscr{C}(x) = \int_{0}^{x} \cos \left(\frac{\pi}{2}t^2\right)\ \mathrm{d}t,\quad
+\mathscr{S}(x) = \int_{0}^{x} \sin \left(\frac{\pi}{2}t^2\right)\ \mathrm{d}t,\quad x \in \C
+\end{equation}
+这两个函数已经得到广泛的研究，Matlab 中也内置了这两个函数，分别是 fresnels (正弦) 和 fresnelc (余弦)，它们在正实轴上的值如下图所示：
+\begin{figure}[H]\centering
+\begin{subfigure}[b]{0.5\columnwidth}\centering
+    \includegraphics[height=185pt]{assets/4/4.5 菲涅尔积分 2.pdf}
+    \caption{$x \in [0, 10]$}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{0.5\columnwidth}\centering
+    \includegraphics[height=185pt]{assets/4/4.5 菲涅尔积分.pdf}
+    \caption{$x \in [0, 4]$}
+\end{subfigure}
+\caption{菲涅尔积分在正实轴上的值}
+\end{figure}
+由欧拉公式我们有：
+\begin{equation}
+\int_{0}^{x} e^{i\left(\frac{\pi}{2}t^2\right)} \ \mathrm{d}t = 
+\int_{0}^{x} \left[ \cos \left(\frac{\pi}{2}t^2\right) + i\, \sin \left(\frac{\pi}{2}t^2\right) \right] = \mathscr{C}(x) + i\, \mathscr{S}(x)
+\end{equation}
+于是 $P$ 点的电场和辐照度 $I = \frac{1}{2} E\cdot E^*$ 为：
+\begin{gather}
+E 
+= \frac{E_0}{2} \cdot  \left[\mathscr{C}(u) + i\, \mathscr{S}(u) \right]_{u_1}^{u_2} \cdot \left[\mathscr{C}(v) + i\, \mathscr{S}(v) \right]_{v_1}^{v_2} 
+\\ 
+I  = \frac{I_0}{4} \cdot  \left\{ \left[\mathscr{C}(u_2) - \mathscr{C}(u_1)\right]^2 + \left[\mathscr{S}(u_2) - \mathscr{S}(u_1)\right]^2 \right\} \cdot \left\{ \left[\mathscr{C}(v_2) - \mathscr{C}(v_1)\right]^2 + \left[\mathscr{S}(v_2) - \mathscr{S}(v_1)\right]^2 \right\}
+\end{gather}
+其中 $E_0 = \frac{\varepsilon_0}{\rho_0 + r_0}\,e^{i\left[k(\rho_0 + r_0) - \omega t\right]}$ 是波源未被阻挡时传到 $P$ 点的电场。特别地，当点 $P$ 在中轴线上时，$u_1 = -u_2$ 且 $v_1 = -v_2$，由菲涅尔积分是奇函数，因此：
+\begin{gather}
+E_{\text{center}} =  2 E_0 \cdot \left[\mathscr{C}(u_2) + i\, \mathscr{S}(u_2) \right]  \cdot \left[\mathscr{C}(v_2) + i\, \mathscr{S}(v_2) \right] 
+\\ 
+I_{\text{center}} = I_0 \cdot \left[\mathscr{C}(u_2) + \mathscr{S}(u_2) \right]^2  \cdot \left[\mathscr{C}(v_2) + \mathscr{S}(v_2) \right]^2
+\end{gather}
+图 \ref{逐渐增大孔径时矩形孔的衍射图样} 展示了逐渐增大孔径时矩形孔的衍射图样，图样由夫琅禾费衍射向菲涅尔衍射转化。
+\begin{figure}[H]\centering
+\begin{subfigure}[b]{0.66\columnwidth}\centering
+    \includegraphics[width=\columnwidth]{assets/4/4.5 矩形孔衍射 1.png}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{0.315\columnwidth}\centering
+    \includegraphics[width=\columnwidth]{assets/4/4.5 矩形孔衍射 2.png}
+\end{subfigure}
+\begin{subfigure}[b]{0.66\columnwidth}\centering
+    \includegraphics[width=\columnwidth]{assets/4/4.5 矩形孔衍射 3.png}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{0.315\columnwidth}\centering
+    \includegraphics[width=\columnwidth]{assets/4/4.5 矩形孔衍射 4.png}
+\end{subfigure}
+\caption{逐渐增大孔径时矩形孔的衍射图样}
+\label{逐渐增大孔径时矩形孔的衍射图样}
+\end{figure}
 
-
-
-
+定性计算菲涅尔积分的方法是使用考纽螺线，详见参考文献 \cite{Optics} Page 628-630，这里不谈。
 
 
 

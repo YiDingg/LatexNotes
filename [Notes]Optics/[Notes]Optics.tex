@@ -2367,7 +2367,7 @@ b \sin \theta_0 = \lambda \Longrightarrow \xi_{\theta} = 2 \theta_0 = 2 \arcsin 
 \label{用屏幕观察单缝衍射的实验装置}
 \end{figure}
 
-借助狭缝中心点在屏幕上的成像，可以帮助我们推导辐照度随位置 $z$ 的分布。依据图 \ref{用屏幕观察单缝衍射的实验装置}，可以计算 $I = I(z)$ 的表示式，以及中央极大的全峰宽度 $\xi_z$ : 
+借助狭缝中心点在屏幕上的成像，可以帮助我们推导辐照度随位置 $z$ 的分布。依据图 \ref{用屏幕观察单缝衍射的实验装置}，可以计算 $I = I(z)$ 的表示式，以及中央极大的全峰线宽度 $\xi_z$ : 
 \begin{gather}
     \sin \theta \approx \tan \theta = \frac{z}{f} \Longrightarrow I = I(z) = I(0) \sinc^2 \left( \frac{N \pi}{f} z\right) \\ 
     \sin \theta_0 = \frac{\lambda}{b} \Longrightarrow \xi_z = 2 f \tan \theta_0 = 2f\frac{\sin \theta}{\sqrt{1 - \sin^2 \theta}} = \frac{2f}{\sqrt{N^2 - 1}}
@@ -2667,6 +2667,11 @@ ka \sin \theta_0 = 3.8317 \Longrightarrow \xi_\theta = 2 \theta_0 = 2\arcsin \le
     \mathscr{R}_{\text{auto}} = \frac{2Na \sin \theta_i }{\lambda_0} 
 \end{gather}
 两者都与级数 $m$ 无关，且 $\mathscr{D}_{\text{auto}}$ 还和光栅常量 $a$ 无关。
+\begin{figure}[H]\centering
+    \includegraphics[width=0.75\columnwidth]{assets/4/4.3 自准直装置.png}
+    \caption{Littrow 自准直装置}\label{自准直装置}
+\end{figure}
+
 
 考虑光栅的自由光谱范围，由于波长小（频率高）的光谱线更密集，当 $\lambda_0 - \frac{\Delta \lambda}{2}$ 的第 $m+1$ 级与 $\lambda_0 + \frac{\Delta \lambda}{2}$ 的第 $m$ 级重合时，达到自由光谱范围 $\left(\Delta \lambda\right)_{\text{fsr}}$ :
 \begin{equation}
@@ -2677,7 +2682,7 @@ ka \sin \theta_0 = 3.8317 \Longrightarrow \xi_\theta = 2 \theta_0 = 2\arcsin \le
 \Longrightarrow 
 \left(\Delta \lambda\right)_{\text{fsr}} = \frac{\lambda_0}{m}
 \end{equation}
-上面所有公式中的级数 $m$ 在范围 $[0, \frac{2a}{\lambda})$ 内。由此可得到各参数在不同要求下的最值，这与当初 F-P 时的讨论类似，我们不多赘述。
+上面所有公式中的级数 $m$ 都有限制范围，对于正入射的情况，$\theta_i = 0 \Longrightarrow m < \frac{a}{\lambda}$，对于自准直装置，$\theta_i = -\theta_m \Longleftarrow m < \frac{2a}{\lambda}$。由此可得到各参数在不同要求下的最值，这与当初 F-P 时的讨论类似，我们不多赘述。
 
 \section{二维和三维光栅}
 此节不是本课的重点，我们仅给出经典的布拉格衍射公式（表示极大值所在角度）：
@@ -2703,7 +2708,7 @@ E_m = (-1)^{m+1} \frac{2 K_m \varepsilon_0}{\rho_0 + r_0} \,e^{i\left(k(\rho_0 +
 式中 $\varepsilon_0 = \varepsilon_A \rho_0 \lambda$ 是波源强度，即球面波表达式 $E = \frac{\varepsilon_0}{r} \,e^{i(kr - \omega t)}$ 中的 $\varepsilon_0$。
 
 \begin{figure}[H]\centering
-    \includegraphics[width=0.6\columnwidth]{assets/4/4.5 球形波阵面的传播.png}
+    \includegraphics[width=0.65\columnwidth]{assets/4/4.5 球形波阵面的传播.png}
     \caption{球形波阵面的传播}\label{球形波阵面的传播}
 \end{figure}
 
@@ -2723,30 +2728,30 @@ N_F = \frac{\pi a^2}{A} = \frac{(\rho_0 + r_0)a^2 }{r_0 \rho_0 \lambda} \approx 
 
 \begin{figure}[H]\centering
 \begin{subfigure}[b]{0.33\columnwidth}\centering
-    \includegraphics[height=130pt]{assets/4/4.5 相矢量叠加.png}
+    \includegraphics[height=135pt]{assets/4/4.5 相矢量叠加.png}
     \caption{相矢量叠加}
 \end{subfigure}
 \begin{subfigure}[b]{0.33\columnwidth}\centering
-    \includegraphics[height=130pt]{assets/4/4.5 总振幅随波带数目的变化.png}
+    \includegraphics[height=135pt]{assets/4/4.5 总振幅随波带数目的变化.png}
     \caption{总振幅随波带数目的变化}
 \end{subfigure}
 \begin{subfigure}[b]{0.33\columnwidth}\centering
-    \includegraphics[height=130pt]{assets/4/4.5 振动曲线.png}
+    \includegraphics[height=135pt]{assets/4/4.5 振动曲线.png}
     \caption{振动曲线}
 \end{subfigure}
 \caption{利用波带和振动曲线来判断中轴线上的振幅情况}
 \label{振动曲线}
 \end{figure}
 
-在固定直径的孔内，由于 $A = \frac{\pi a^2}{N_F}$，随着 $N_F$ 的增大，每个波带的面积 $A$ 会减小，使得轴上辐照度的极大值将依 $\frac{1}{N_F^2}$ 减小（包络线）。一个定性的近似是 $I = I(0) \sinc^2 \left(\frac{\pi}{2}N_F\right)$，其中 $I(0)$ 是 $N_F = 0$ ($P$ 点离小孔无穷远)，作出 $I$ 关于 $N_F$ 的变化情况，如图 \ref{中心振幅随波带数的变化} 所示：
+在固定直径的孔内，由于 $A = \frac{\pi a^2}{N_F}$，随着 $N_F$ 的增大，每个波带的面积 $A$ 会减小，使得轴上辐照度的极大值将依 $\frac{1}{N_F^2}$ 减小（包络线）。一个定性的近似是 $I = I(0) \sinc^2 \left(\frac{\pi}{2}N_F\right)$，其中 $I(0)$ 是 $N_F = 0$ ($P$ 点离小孔无穷远) 时的辐照度。作出 $I$ 关于 $N_F$ 的变化情况，如图 \ref{中心振幅随波带数的变化} 所示：
 
 \begin{figure}[H]\centering
 \begin{subfigure}[b]{0.5\columnwidth}\centering
-    \includegraphics[height=185pt]{assets/4/4.5 中心振幅随波带数的变化 2.pdf}
+    \includegraphics[height=190pt]{assets/4/4.5 中心振幅随波带数的变化 2.pdf}
     \caption{$N_F \in [0, 10]$}
 \end{subfigure}\hfill
 \begin{subfigure}[b]{0.5\columnwidth}\centering
-    \includegraphics[height=185pt]{assets/4/4.5 中心振幅随波带数的变化.pdf}
+    \includegraphics[height=190pt]{assets/4/4.5 中心振幅随波带数的变化.pdf}
     \caption{$N_F \in [0, 4]$}
 \end{subfigure}
 \caption{中心振幅随波带数的变化}
@@ -2756,9 +2761,10 @@ N_F = \frac{\pi a^2}{A} = \frac{(\rho_0 + r_0)a^2 }{r_0 \rho_0 \lambda} \approx 
 
 另外，当观察点不在中轴线上时，随着点 $P$ 向外移动，“观察”到的波带也会发生变化，如图 \ref{圆孔向外移动}，此时辐照度会有一系列极大与极小值，变化比较复杂。对整个观察平面而言，所得衍射图样随着 $N_F$ 的变化而变化，如图 \ref{不同菲涅尔数时的圆孔衍射图样} 所示。
 \begin{figure}[H]\centering
-    \includegraphics[width=0.75\columnwidth]{assets/4/4.5 圆孔向外移动.png}
+    \includegraphics[width=0.8\columnwidth]{assets/4/4.5 圆孔向外移动.png}
     \caption{圆孔内“观察”到的波带}\label{圆孔向外移动}
 \end{figure}
+
 \begin{figure}[H]\centering
 \begin{subfigure}[b]{0.59\columnwidth}\centering
     \includegraphics[height=185pt]{assets/4/4.5 菲涅尔衍射 不同波带 1.png}
@@ -2781,25 +2787,25 @@ N_F = \frac{\pi a^2}{A} = \frac{(\rho_0 + r_0)a^2 }{r_0 \rho_0 \lambda} \approx 
 
 \subsection{圆盘近场衍射}
 
-我们知道，对于中轴线上的一点 $P$，一个未受阻碍的波有无穷多个波带到达 $P$ 点，在此处产生一个大小为第一波带一半的电场，即 $E \approx \frac{1}{2} E_1$。如果某种障碍物正好盖住第一波带，在振动曲线中减去第一波带的贡献，可知此时的电场 $E' = -\frac{1}{2}E_1$，这表明障碍物的加入不会改变点 $P$ 的亮暗状态（仍是亮斑）。
+我们知道，一个未受阻碍的波有无穷多个波带到达 $P$ 点（中轴线上一点），在此处产生一个大小约为第一波带一半的电场，即 $E \approx \frac{1}{2} E_1$。如果障碍物正好盖住第一波带，在振动曲线中减去第一波带的贡献，此时的电场 $E' = -\frac{1}{2}E_1$，这表明障碍物的加入不会改变点 $P$ 的亮暗状态（仍是亮斑）。
 
-用类似地，思想，如果障碍物从 0 开始，逐渐遮住 $1, 2, ..., n$ 个波带，这等价于对给定的圆屏，点 $P$ 由无穷远向圆盘靠近。由振动曲线可以看出，除非 $n$ 非常大（$P$ 离圆盘很近），相矢量 $\overrightarrow{A_sB_s}$ 的振幅始终不（近似）为 0，这表明除了紧挨着圆盘之后的一小段，中轴线上处处为亮点。遮住前 $n$ 个波带时的振幅大小约为：
+用类似的思想，如果障碍物从无开始，逐渐遮住 $1, 2, ..., n$ 个波带，这相当于对给定的圆屏，点 $P$ 由无穷远向圆盘靠近。由振动曲线可看出，除非 $n$ 非常大（$P$ 离圆盘很近），相矢量 $\overrightarrow{A_sB_s}$ 的振幅始终不（近似）为 0。这表明除了紧挨着圆盘之后的一小段，中轴线上处处为亮点（辐照度始终不为 0）。遮住前 $n$ 个波带时的振幅大小约为：
 \begin{equation}
 | E | = \frac{1}{2}| E_{n+1} | = K_{n+1} \frac{\varepsilon_A \rho_0 \lambda}{\rho_0 + r_0} \,e^{i\left(k(\rho_0 + r_0) - \omega t\right)} =  K_n \frac{\varepsilon_0}{\rho_0 + r_0} \,e^{i\left(k(\rho_0 + r_0) - \omega t\right)} 
 \end{equation}
-其中 $K_n$ 是第 $n$ 级波带的法线与中轴线的夹角，着 $n$ 的增大，夹角 $\theta$ 逐渐向 $\pi$ 靠近，$| E | \to 0$。
+其中 $K_n$ 是第 $n$ 级波带法线与中轴线的夹角，随着 $n$ 的增大，夹角逐渐向 $\pi$ 靠近。放到图 \ref{圆盘障碍物衍射} (b) 中，便是点 $A_s$ 逆时针绕振动不断旋转，随着 $N_F$ 的增大，逐渐向中心点 $O_s'$ 靠近，直到 $A_s$ 和 $O_s'$ 重合，$| E | = 0 $。
 
 \begin{figure}[H]\centering
 \begin{subfigure}[b]{0.5\columnwidth}\centering
-    \includegraphics[height=180pt]{assets/4/4.5 菲涅尔圆形障碍物.png}
+    \includegraphics[height=160pt]{assets/4/4.5 菲涅尔圆形障碍物.png}
     \caption{直径为 3 mm 滚珠的衍射图样}
 \end{subfigure}\hfill
 \begin{subfigure}[b]{0.5\columnwidth}\centering
-    \includegraphics[height=180pt]{assets/4/4.5 菲涅尔矩形孔衍射.png}
-    \caption{矩形孔的菲涅尔衍射}
+    \includegraphics[height=160pt]{assets/4/4.5 圆盘衍射时的振动曲线.png}
+    \caption{圆盘衍射时振动曲线上的相矢量}
 \end{subfigure}
-\caption{圆形障碍物和矩形孔菲涅尔衍射}
-\label{圆形障碍物和矩形孔菲涅尔衍射}
+\caption{圆盘障碍物衍射}
+\label{圆盘障碍物衍射}
 \end{figure}
 
 \subsection{菲涅尔波带片}
@@ -2815,6 +2821,7 @@ N_F = \frac{\pi a^2}{A} = \frac{(\rho_0 + r_0)a^2 }{r_0 \rho_0 \lambda} \approx 
     \caption{正菲涅尔波带片}
 \end{subfigure}
 \caption{菲涅尔波带片}
+\label{菲涅尔波带片}
 \end{figure}
 
 例如，假设我们有一个波带片，它只通过前 20 个奇数波带而挡住其它所有波带，则：
@@ -2852,36 +2859,50 @@ f_1 = \frac{R_1^2}{\lambda} \Longrightarrow  \frac{1}{\rho_0} + \frac{1}{r_0} = 
 \end{equation}
 与薄透镜公式有相同的形式，因此，用一光束准直入射给定的波带片（起到 $\rho_0 \to \infty$ 的作业），此时中轴线上最亮的点就是主焦距，它是辐照度分布中的一个极大值（也是最大值），因为在 $f$ 处波带片上的各圆环刚好和波阵面上的各波带重合。
 
-为什么我们上面要说是“一级”焦距？因为波带片本质上还是一个光栅，它（在中轴线上）的衍射图样是一系列的主焦点和次焦点交替出现（次焦点都比主焦点近），如图 \ref{波带片} (b) 所示。下面我们推导这些次焦点的位置和辐照度大小。
+需要注意，上面的“$n$ 级半径”并不是波带片的最大圆环半径，对有 $n_0$ 个圆环的挡光型波带片而言（中心圆算第一个圆环），无穷远处不透光，最外围的第 $n_0$ 级圆环 ($R_{n_0-1} \sim R_{n_0}$) 是透光的，则式中的 $n = n_0$；对透光型波带片而言（如图 \ref{菲涅尔波带片} 所示的正负菲涅尔波带片），无穷远处透光，最外围的第 $n$ 级圆环 ($R_{n_0-1} \sim R_{n_0}$) 是不透光的，因此需要再往外“扩张一个半径”，式中的 $n = n_0 + 1$。当然，实际中的 $n_0$ 一般都较大（100 以上），即使不考虑也几乎没有误差。
+
+
+为什么我们要说是“一级”焦距？因为波带片本质上还是一个光栅，它（在中轴线上）的衍射图样是一系列的主焦点和次焦点交替出现（次焦点都比主焦点近），如图 \ref{波带片} (b) 所示。下面我们推导这些次焦点的位置和辐照度大小。
 
 只需考虑 $r = \frac{f}{k}, k = 2, 3, 4, ...$ 时的情况，其余情况介于两者中间，可定性地判断辐照度的大小变化，且稍后能轻易知道它们都不是极值点。对于给定的 $k$，点 $P$ 与波带距离 $r = \frac{f}{k}$，我们保持波带片的直径 $D$ 不变，当距离变为原来的 $\frac{1}{k}$，由 $R_m = \sqrt{mr\lambda}$ 知道，$P$ 点“看到”的各波带半径变为原来的 $\frac{1}{\sqrt{k}}$。之前 $r = f$ 时波带片共有 $n$ 个半径，“孔”（波带片）的直径没变，而波带半径缩小为原来的 $\frac{1}{\sqrt{k}}$，因此在点 $P$ “看到” 的波带由 $n$ 个增长至 $kn$ 个。
 
-记 $r = \frac{f}{k}$ 时，$P$ 点“看到”的一系列波带半径为 $R_j^(k)$，$k = 1, 2, 3, \ \ j = 1, 2, ..., kn$，将它们的相对大小（$\frac{R_j^(k)}{R_1^(1)}$）如表 \ref{孔内不同波带的半径及位置关系} 一样列出，一切都会变得显然：
+记 $r = \frac{f}{k}$ 时，$P$ 点“看到”的一系列波带半径为 $R_j^{(k)}$，$k = 1, 2, 3, \ \ j = 1, 2, ..., kn$，将它们的相对大小（$\frac{R_j^{(k)}}{R_1^(1)}$）如表 \ref{孔内不同波带的半径及位置关系} 一样列出，一切都会变得显然：
 \begin{table}[H]\centering
     %\renewcommand{\arraystretch}{1.5} % 调整行间距为 1.5 倍
     %\setlength{\tabcolsep}{1.5mm} % 调整列间距
-    \caption{$r = \frac{f}{k}, k = 1, 2, 3, $ 时孔内一系列波带的相对半径及位置关系}
+    \caption{$r = \frac{f}{k}, k = 1, 2, 3, ... $ 时孔内一系列波带的相对半径及位置关系}
     \label{孔内不同波带的半径及位置关系}
 \begin{tabular}{cccccccccc}\toprule
     $k = 1$ & $1$ & $\sqrt{2}$ & $\sqrt{3}$  & ... & $\sqrt{n}$ \\
     \midrule
     $k = 2$ & $(\frac{\sqrt{1}}{\sqrt{2}}, 1)$ & $(\frac{\sqrt{3}}{\sqrt{2}}, 2)$ &  $(\frac{\sqrt{5}}{\sqrt{2}}, \sqrt{3})$  & ... & $(\frac{\sqrt{2n -1 }}{\sqrt{2}}, \sqrt{n})$  \\
-    $k = 3$ &  $(\frac{\sqrt{1}}{\sqrt{3}}, \frac{\sqrt{2}}{\sqrt{3}}), 1$ & $(\frac{\sqrt{4}}{\sqrt{3}}, \frac{\sqrt{5}}{\sqrt{3}}), \sqrt{2}$ &  $(\frac{\sqrt{7}}{\sqrt{3}}, \frac{\sqrt{8}}{\sqrt{3}}, \sqrt{3})$  & ... & $(\frac{\sqrt{3n -1 }}{\sqrt{3}}, \frac{\sqrt{3n-2}}{\sqrt{3}}, \sqrt{n})$   \\
+    $k = 3$ &  $(\frac{\sqrt{1}}{\sqrt{3}}, \frac{\sqrt{2}}{\sqrt{3}}, 1)$ & $(\frac{\sqrt{4}}{\sqrt{3}}, \frac{\sqrt{5}}{\sqrt{3}}, \sqrt{2})$ &  $(\frac{\sqrt{7}}{\sqrt{3}}, \frac{\sqrt{8}}{\sqrt{3}}, \sqrt{3})$  & ... & $(\frac{\sqrt{3n -1 }}{\sqrt{3}}, \frac{\sqrt{3n-2}}{\sqrt{3}}, \sqrt{n})$   \\
     $k = 4$ &  $(\frac{\sqrt{1}}{\sqrt{4}}, \frac{\sqrt{2}}{\sqrt{4}}, \frac{\sqrt{3}}{\sqrt{4}}, 1)$ & $(\frac{\sqrt{5}}{\sqrt{4}}, \frac{\sqrt{6}}{\sqrt{4}}, \frac{7}{\sqrt{4}}, \sqrt{2})$ &  $(\frac{\sqrt{9}}{\sqrt{4}}, \frac{\sqrt{10}}{\sqrt{4}}, \frac{\sqrt{11}}{\sqrt{4}}, \sqrt{3})$  & ... & $(\frac{\sqrt{4n -1 }}{\sqrt{4}}, \frac{\sqrt{4n-2}}{\sqrt{4}}, \frac{\sqrt{4n-3}}{\sqrt{4}}, \sqrt{n})$   \\
     \bottomrule
 \end{tabular}
 \end{table}
 
+可以看到，当 $k$ 是奇数时，波带片的一个圆环内透过奇数个相邻波带，抵消之后仍剩一个波带的振幅，呈现亮斑；当 $k$ 是偶数时，波带片的一个圆环内透过偶数个相邻波带，抵消之后剩下的是零振幅，呈现暗斑。因此，波带片的所有焦点位置是 $\frac{f}{1}, \frac{f}{3}, \frac{f}{5}, ...$。
 
+再来看辐照度大小，在 $k$ 为奇数的情况下，每个波带片环相当于只透过一个波带，由 $A = \pi r_0 \lambda$ 知道波带面积缩小为原来的 $\frac{1}{k}$，因此电场振幅变为原来的 $\frac{1}{k}$，辐照度变为原来的 $\frac{1}{k^2}$。综上，波带片的所有焦点和辐照度大小是：
+\begin{gather}
+f_1 = \frac{R_1^2}{\lambda},\quad   E_1 \approx n E_0 ,\quad   I_1 \approx n^2 I_0 \\
+f_k = \frac{f_1}{k},\quad I_k = \frac{I_1}{k^2},\quad k = 1, 3, 5, ...
+\end{gather}
+式中 $n$ 为波带片最外圆对应的半径级数，也即波带片的圆环总个数，$E_0$ 和 $I_0$ 分别是无阻挡时的振幅和辐照度。
 
-需要注意，上面的“$n$ 级半径”并不是波带片的最大圆环半径，对有 $n_0$ 个圆环的挡光型波带片而言（中心圆算第一个圆环），无穷远处不透光，最外围的第 $n_0$ 级圆环 ($R_{n_0-1} \sim R_{n_0}$) 是透光的，则式中的 $n = n_0$；对透光型波带片而言，无穷远处透光，最外围的第 $n$ 级圆环 ($R_{n_0-1} \sim R_{n_0}$) 是不透光的，因此需要再往外“扩张一个半径”，式中的 $n = n_0 + 1$。
 
 \subsection{矩形孔近场衍射}
 
-矩形孔时衍射不再具有圆孔那么好的对称性。考虑图 \ref{圆形障碍物和矩形孔菲涅尔衍射} (b)，次波源微元 $\ \mathrm{d} A$ 对点 $P$ 的电场贡献为：
+矩形孔时衍射不再具有圆孔那么好的对称性。考虑图 \ref{菲涅尔矩形孔衍射}，次波源微元 $\ \mathrm{d} A$ 对点 $P$ 的电场贡献为：
 \begin{equation}
 \ \mathrm{d}E = K(\theta)\frac{\varepsilon_A \rho \lambda}{\rho r \lambda} e^{k(\rho + r) - \omega t} \ \mathrm{d}A
 \end{equation}
+\begin{figure}[H]\centering
+    \includegraphics[width=0.43\columnwidth]{assets/4/4.5 菲涅尔矩形孔衍射.png}
+    \caption{菲涅尔矩形孔衍射}\label{菲涅尔矩形孔衍射}
+\end{figure}
+
 只考虑孔的线度远小于 $\rho_0$ 和 $r_0$ 的情况，此时系数上可以有近似 $K(\theta) \approx 1$，$r \approx r_0$ 且 $\rho \approx \rho_0$。对相位近似时需要更小心：
 \begin{equation}
 (\rho + r) = (\rho_0 + r_0) + \left(y^2 + z^2\right)\frac{\rho_0 + r_0}{r\rho_0 r_0}

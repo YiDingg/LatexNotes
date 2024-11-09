@@ -1998,7 +1998,7 @@ i_{L}(0^+) = i_{L}(0^-),\quad \Phi_{L}(0^+) = \Phi_{L}(0^-)
 我们称激励恒为 0 (对 $t>0$) 的解为“零输入响应”，称电容（电感）初始能量为 0 的解为“零状态响应”。
 
 
-\subsection{一阶线性微分方程的解法}
+\subsection{一阶线性微分方程}
 
 对一阶线性微分方程：
 \begin{equation}
@@ -2124,9 +2124,101 @@ t_\text{pd, $0\to 1$} = 1 \kO\times 10 \pF \times \ln \left(\frac{5 \ \mathrm{V}
 
 \subsection{脉冲序列发生器 (OPA 正反馈)}
 \subsection{三角波发生器 (脉冲序列下的 RC 电路)}
-\subsection{降压斩波器 (DC > DC)}
+\subsection{降压斩波电路 (Buck)}
 
-\chapter{动态电路的稳态分析}\thispagestyle{fancy}
+\section{二阶动态电路}
+\section{二阶线性常系数微分方程}
+二阶线性微分方程如下：
+\begin{equation}
+y'' + p(x)y' + q(x)y = f(x)
+\end{equation}
+它的求解并不容易，我们本课仅限于常系数的情况，即 $p(x) = p$ 和 $q(x) = q$ 为常数，通常写成衰减系数 $\beta$ 和固有频率 $\omega_0$ 的形式：
+\begin{equation}
+y'' + 2\beta y' + \omega_0 y = f(x)
+\end{equation}
+考虑它的齐次解 $y_h$，我们直接给出结论：
+\begin{gather}
+\begin{aligned}
+    &\text{欠阻尼：} &&\beta < \omega_0, &&y(t) = e^{-\beta t} A\sin \left( \omega t + \phi \right) \\ 
+    &\text{临界阻尼：} &&\beta = \omega_0, &&y(t) = e^{-\beta t} (A + Bt) \\
+    &\text{过阻尼：} &&\beta > \omega_0, &&y(t) = e^{-\beta t}\left( A\,e^{\omega t} + B\,e^{-\omega t}\right)
+\end{aligned}
+\end{gather}
+设其稳态解（特解）为\textbf{常数} $y_s$（非常数的情况在下一章会谈），在电路中即为 $y_\infty$，则有全解：
+\begin{gather}
+    \begin{aligned}
+        &\text{欠阻尼：} &&\beta < \omega_0, &&y(t) = y_s +  e^{-\beta t} A\sin \left( \omega t + \phi \right) 
+        \\ 
+        &\text{临界阻尼：} &&\beta = \omega_0, &&y(t) = y_s +  e^{-\beta t} (A + Bt),&&
+        \begin{cases}
+            A = y(0) - y_s \\
+            B = \beta y(0) + y'(0) - \beta y_s
+        \end{cases} \\
+        &\text{过阻尼：} &&\beta > \omega_0, &&y(t) = y_s +  e^{-\beta t}\left( A\,e^{\omega t} + B\,e^{-\omega t}\right),&&
+        \begin{cases}
+            A = \frac{1}{2 \omega} \left[ y'(0) + (\beta + \omega)(y_0 - y_s) \right] \\ 
+            B = - \frac{1}{2 \omega} \left[ y'(0) + (\beta - \omega)(y_0 - y_s) \right]
+        \end{cases}
+    \end{aligned}
+\end{gather}
+欠阻尼的常数 $A$ 和 $\phi$ 的解析式比较复杂，我们不做详细讨论，仅给出 $y(0)$ 或 $y_s$ 其中一个为 0 时的情况：
+\begin{gather}
+    y_s = 0 \Longrightarrow 
+    A = y(0)\cdot \frac{\sqrt{1 + t^2}}{t},\quad \phi = \arctan t ,\quad t = \frac{\omega}{\beta + \frac{y'(0)}{y(0)}}
+    \\
+    y_0 = y_s = 0 \Longrightarrow
+    A = \frac{y'(0)}{\omega},\quad \phi = 0
+\end{gather}
+需要注意，在 $y_s = 0$ 时，$A = y(0)\cdot \frac{\sqrt{1 + t^2}}{t}$ 不能写作 $A = y(0)\cdot \sqrt{1 + \frac{1}{t^2}}$。这是因为 $A$ 的正负需要由 $t = \tan \phi$ 来决定，若将其写进根号中，可能导致结果正负号相反，这便得不偿失了。
+
+在实际的求解中，除了欠阻尼情形下 $y_0 = y_s = 0$ 时的结论值得记忆，其它的都建议现场推导，也可以先代入数值再求解常量。
+
+\subsection{经典解法}
+考虑如图 \ref{RLC} 左侧的 $RLC$ 串联电路，我们可以列出下面两个相同形式的特征方程（即齐次方程）：
+\begin{gather}
+    LC u_C'' + RC u_C' + u_C = U_s(t) \\
+    LC\, i_L'' + RC\, i_L' + i_L = I_s(t)
+\end{gather}
+在零状态的情况下，只有 $i_L$ 的方程能够求解，这是因为零状态时 $u_C(0^+) = u_C'(0^+) = 0$，没有非零初始条件；在非零状态的情况下，两个方程都能求解，因为两个变量的初值都不全为零。
+
+\begin{figure}[H]\centering
+    \includegraphics[width=0.4\columnwidth]{assets/5/RLC.pdf}
+    \caption{$RLC$ 电路}\label{RLC}
+\end{figure}
+
+类似地，对图 \ref{RLC} 右侧的 $RLC$ 并联电路，我们可以列出两个相同形式的特征方程（即齐次方程）：
+\begin{gather}
+    u_C'' + \frac{1}{RC} u_C' + \frac{1}{LC} u_C = U_s(t) \\
+    i_L'' + \frac{1}{RC} i_L' + \frac{1}{LC} i_L = I_s(t)
+\end{gather}
+同理，在零状态的情况下，只有 $i_L$ 的方程能够求解，在非零状态的情况下，两个方程都能求解。
+
+与一阶动态电路类似，二阶电路中也有时间常数 $\tau$ 的概念，它定义为 $\tau = \frac{1}{\beta}$。无论阻尼是三种情况中的哪种，当 $t$ 经过 $4\tau$ 左右时，认为电路已经达到稳态。
+
+
+
+\subsection{三要素法}
+与一阶电路类似，二阶电路也可以用三要素法来求解：
+\begin{equation}
+\begin{cases}
+    \text{初始值：} y(0), y'(0) \\
+    \text{稳态解：} y_s \\
+    \text{特征方程：} y'' + 2\beta y' + \omega_0^2 y = 0
+\end{cases}
+\end{equation}
+
+\section{二阶动态电路应用}
+\subsection{脉冲形成单元 (PFU)}
+\subsection{升压斩波电路 (Boost)}
+
+\section{阶跃响应与冲激响应}
+
+\subsection{单位阶跃响应}
+\subsection{单位冲激响应}
+\subsection{卷积积分}
+\subsection{状态变量法}
+
+\chapter{正弦激励电路的稳态分析}\thispagestyle{fancy}
 
 
 

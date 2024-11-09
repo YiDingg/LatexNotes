@@ -7,6 +7,17 @@
 % 设定文章类型与编码格式
 \documentclass[UTF8]{report}		
 
+% 本文专属的宏包
+\usepackage{pdfpages}   % 用于导入 pdf 文件
+\usepackage{titletoc}   % 用于设置 toc
+\titlecontents{chapter}
+              [0em]
+              {\bf}%
+              {}%   % \contentslabel{2.5em} 会显示宽为 2.5em 的章节编号
+              {}%
+              {\hfill \contentspage \vspace{10.5pt}}%
+              []%
+
 % 本文的特殊宏定义
     \def\Im{\mathrm{\,Im\,}}
     \def\Re{\mathrm{\,Re\,}}
@@ -117,7 +128,7 @@
         \newtheorem{definition}{}
 
 %宏包：有色文本框（proof环境）及其设置
-    \usepackage[dvipsnames,svgnames]{xcolor}    %设置插入的文本框颜色
+    \usepackage{xcolor}    %设置插入的文本框颜色
     \usepackage[strict]{changepage}     % 提供一个 adjustwidth 环境
     \usepackage{framed}     % 实现方框效果
         \definecolor{graybox_color}{rgb}{0.95,0.95,0.96} % 文本框颜色。修改此行中的 rgb 数值即可改变方框纹颜色，具体颜色的rgb数值可以在网站https://colordrop.io/ 中获得。（截止目前的尝试还没有成功过，感觉单位不一样）（找到喜欢的颜色，点击下方的小眼睛，找到rgb值，复制修改即可）
@@ -1736,6 +1747,31 @@ I'
     I = \frac{I'}{2i} = \frac{\pi}{2} \cdot e^{-ab}
 }
 \end{align}
+
+
+\clearpage  % \newpage 会跑到 include 的 pdf 后面去
+\begin{figure}[b]\centering
+    \begin{graybox}
+    由于时间安排和 \LaTeX 计划调整，后续的几次作业都将在 Notability 上手写，导出为 PDF 后插入到这里。插入前会对 PDF 进行极致压缩，以尽量减小文件体积。
+    \end{graybox}
+\end{figure}
+\begin{figure}[b]\centering
+    \begin{graybox}
+    由于时间安排和 \LaTeX 计划调整，后续的几次作业都将在 Notability 上手写，导出为 PDF 后插入到这里。插入前会对 PDF 进行极致压缩，以尽量减小文件体积。
+    \end{graybox}
+\end{figure}
+\begin{figure}[b]\centering
+    \begin{graybox}
+    由于时间安排和 \LaTeX 计划调整，后续的几次作业都将在 Notability 上手写，导出为 PDF 后插入到这里。插入前会对 PDF 进行极致压缩，以尽量减小文件体积。
+    \end{graybox}
+\end{figure}
+\clearpage
+
+\phantomsection % 添加虚拟节, 使得 pdf 书签定位正确
+\addcontentsline{toc}{chapter}{Homework 10: 2024.10.29 - 2024.11.04}   
+\includepdf[pages=-]{assets/Notability/数学物理方法 Homework 10 _ 2024.10.29 - 2024.11.04.pdf}
+
+
 
 \end{document}
 

@@ -7,6 +7,19 @@
 % 设定文章类型与编码格式
     \documentclass[UTF8]{report}		
 
+% 本文专属的宏包
+\usepackage{pdfpages}   % 用于导入 pdf 文件
+\usepackage{titletoc}   % 用于设置 toc
+\titlecontents{chapter}
+              [0em]
+              {\bf}%
+              {}%   % \contentslabel{2.5em} 会显示宽为 2.5em 的章节编号
+              {}%
+              {\hfill \contentspage \vspace{10.5pt}}%
+              []%
+
+
+
 % 本 .tex 专属的宏定义
     \def\V{\ \mathrm{V}}
     \def\uV{\ \mu\mathrm{V}}
@@ -132,7 +145,7 @@
         \newtheorem{definition}{}
 
 %宏包：有色文本框（proof环境）及其设置
-    \usepackage[dvipsnames,svgnames]{xcolor}    %设置插入的文本框颜色
+    \usepackage{xcolor}    %设置插入的文本框颜色
     \usepackage[strict]{changepage}     % 提供一个 adjustwidth 环境
     \usepackage{framed}     % 实现方框效果
         \definecolor{graybox_color}{rgb}{0.95,0.95,0.96} % 文本框颜色。修改此行中的 rgb 数值即可改变方框纹颜色，具体颜色的rgb数值可以在网站https://colordrop.io/ 中获得。（截止目前的尝试还没有成功过，感觉单位不一样）（找到喜欢的颜色，点击下方的小眼睛，找到rgb值，复制修改即可）
@@ -341,16 +354,18 @@
 
         由于个人学识浅陋，认识有限，文中难免有不妥甚至错误之处，望读者不吝指正。读者可以将错误发送到我的邮箱 {\color{blue}\ dingyi233@mails.ucas.ac.cn}，也可以到笔者的 \href{https://github.com/YiDingg/LatexNotes}{GitHub (https://github.com/YiDingg/LatexNotes)} 上提 issue，衷心感谢。
     \end{cnabstract}
-    \addcontentsline{toc}{chapter}{序言} % 手动添加为目录
+    \addcontentsline{toc}{chapter}{序言} % 手动添加到目录
 
-% 不换页目录
+
+
+%\listoftables
+%\listoffigures
+    \clearpage
     \setcounter{tocdepth}{0}
-    \noindent\rule{\textwidth}{0.1em}   % 分割线
-    \noindent\begin{minipage}{\textwidth}\centering 
-        \vspace{1cm}
-        \tableofcontents\thispagestyle{fancy}   % 显示页码、页眉等   
-    \end{minipage}  
-    \addcontentsline{toc}{chapter}{目录} % 手动添加为目录
+    \tableofcontents\thispagestyle{fancy}   % 显示页码、页眉等  
+    \addcontentsline{toc}{chapter}{目录} % 手动添加到目录
+
+
 
 % 收尾工作
     \newpage    
@@ -1901,6 +1916,31 @@ i(t) = I - i_C - i_L = -\frac{2}{3}i_C - i_L + \frac{1}{3} =
 \caption{$u_C = u_C(t)$ 和 $i_C = i_C(t)$ 的图像}\label{9.6 习题集 7-35}
 \end{figure}
 
+\clearpage  % \newpage 会跑到 include 的 pdf 后面去
+\begin{figure}[b]\centering
+    \begin{graybox}
+    由于时间安排和 \LaTeX 计划调整，后续的几次作业都将在 Notability 上手写，导出为 PDF 后插入到这里。插入前会对 PDF 进行极致压缩，以尽量减小文件体积。
+    \end{graybox}
+\end{figure}
+\begin{figure}[b]\centering
+    \begin{graybox}
+    由于时间安排和 \LaTeX 计划调整，后续的几次作业都将在 Notability 上手写，导出为 PDF 后插入到这里。插入前会对 PDF 进行极致压缩，以尽量减小文件体积。
+    \end{graybox}
+\end{figure}
+\begin{figure}[b]\centering
+    \begin{graybox}
+    由于时间安排和 \LaTeX 计划调整，后续的几次作业都将在 Notability 上手写，导出为 PDF 后插入到这里。插入前会对 PDF 进行极致压缩，以尽量减小文件体积。
+    \end{graybox}
+\end{figure}
+\clearpage
+
+
+\phantomsection % 添加虚拟节, 使得 pdf 书签定位正确
+\addcontentsline{toc}{chapter}{Homework 10: 2024.11.06 - 2024.11.12}   
+\includepdf[pages=-]{assets/Notability/电路原理 Homework 10 _ 2024.11.06 - 2024.11.12.pdf}
+
+
+
 % --------------------------- 仿真作业 --------------------------- %
 % >> ------------------------ 仿真作业 ------------------------ << %
 
@@ -2618,20 +2658,20 @@ We can know the threshold voltage $U_T$ of 2N7000 is about 2.0 V according to th
 \end{table}
 When the input voltage is lower than $U_{LI} = 1.442 \ \mathrm{V}$ (logic 0), the MOSFET is off so that the inverter produce a high voltage closed to $U_{OH}=5 \ \mathrm{V}$ (logic 1). On the contrary, when the input voltage is higher than $U_{HI} = 2.003 \ \mathrm{V}$ (logic 1), the MOSFET is on so that the inverter produce a low voltage closed to $U_{OL} = 0 \ \mathrm{V}$ (logic 0).
 
-
-
-% --------------------------- 其它作业 --------------------------- %
-% >> ------------------------ 其它作业 ------------------------ << %
-
-
 \chapter{Laboratory 2: }
 \rhead{Lab 2: }
 \thispagestyle{fancy}
 
 实验课件见网址 \href{}{https://www.123865.com/s/0y0pTd-KRKj3}。
 
+% --------------------------- 其它作业 --------------------------- %
+% >> ------------------------ 其它作业 ------------------------ << %
 
-\chapter{$^*$第二次习题课课前练习}
+
+
+
+
+\chapter*{$^*$第二次习题课课前练习}
 \rhead{$^*$第二次习题课课前练习}
 \thispagestyle{fancy}
 
@@ -2715,16 +2755,16 @@ u_o = - (d_0i_0 + d_1i_1 + d_2i_2)R = -\frac{u_s}{8}\left( d_2\cdot 2^2 + d_1\cd
 
 
 % 附录 A
-\chapter*{附录 A\hspace*{20pt}  Matlab 代码}
-\rhead{附录 A \quad  Matlab 代码}
-\setcounter{chapter}{1}     % 重置章节计数器
-\setcounter{equation}{0}    % 重置公式计数器   
-\addcontentsline{toc}{chapter}{附录 A\hspace*{6pt}  Matlab 代码}   
-\thispagestyle{fancy} 
-\setcounter{section}{0}   
-\renewcommand\thesection{A.\arabic{section}}   
-\renewcommand{\thefigure}{A.\arabic{figure}} 
-\renewcommand{\thetable}{A.\arabic{table}}
+%\chapter*{附录 A\hspace*{20pt}  Matlab 代码}
+%\rhead{附录 A \quad  Matlab 代码}
+%\setcounter{chapter}{1}     % 重置章节计数器
+%\setcounter{equation}{0}    % 重置公式计数器   
+%\addcontentsline{toc}{chapter}{附录 A\hspace*{6pt}  Matlab 代码}   
+%\thispagestyle{fancy} 
+%\setcounter{section}{0}   
+%\renewcommand\thesection{A.\arabic{section}}   
+%\renewcommand{\thefigure}{A.\arabic{figure}} 
+%\renewcommand{\thetable}{A.\arabic{table}}
 
 %\section{图 \ref{振幅系数随入射角的变化} 源码}
 %\begin{matlablisting}

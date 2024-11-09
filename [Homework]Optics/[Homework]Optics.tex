@@ -7,6 +7,13 @@
 % 设定文章类型与编码格式
 \documentclass[UTF8]{report}		
 
+% 本文特殊宏定义
+\def\Re{\mathrm{\,Re}\,}
+\def\Im{\mathrm{\,Im}\,}
+\def\sinc{\mathrm{\,sinc}\,}
+\def\Jc{\mathrm{\,Jc}}
+
+
 % 自定义宏定义
     \def\N{\mathbb{N}}
     \def\F{\mathbb{F}}
@@ -697,14 +704,362 @@ F = 80.0000 ,\quad
 
 \chapter{第四章作业}\thispagestyle{fancy}
 
-\section{对圆盘衍射，当圆盘恰好包含 $n$ 个半波带时( $n$ 个半波带被遮挡)，为何中心为亮斑？}
-\section{波长为 634.8 nm 的平行光射向直径为 2.76 mm 的圆孔，与孔相距 1 m 处放一屏。试问：(1) 屏上正对圆孔中心的 $P$ 点是亮点还是暗点？
-光栅的自由光谱范围？ (2) 要使 $P$ 点变成与 (1) 相反的情况，至少要把屏幕分别向前或向后移动多少？}
-\section{一波带片由五个环带组成，第一环带是半径 $0 \sim r_1$ 的不透明圆盘，第二环带
-半径 $r_1\sim r_2$ 透明，第三环带半径 $r_2\sim r_3$ 不透明，第四环带半径 $r_3\sim r_4$ 透明，第五环带是 $r_4 \sim \infty$ 的不透明区域。用波长 500 nm 的平行单色光照明，最亮的像点在距波带片 1 m 的轴上，试求：(1) $r_1$；(2) 像点的光强；(3) 其它光强极大值出现在轴上的哪些位置。}
-\section{一東波长为 500 nm 的平行光垂直照射在一个单缝上。(2) 如果所用的单缝的宽度 $a=0.5$ mm，缝后紧挨着的薄透镜焦距 $f=1$ m ，试求： (1) 中央明条纹的角宽度； (2) 中央亮纹的线宽
-度; (3) 第一级与第二级暗纹的距离。}
+\section{对圆盘衍射，当圆盘恰好包含 $n$ 个半波带时（即 $n$ 个半波带被遮挡），为何中心为亮斑？}
+\begin{graybox}
+\textbf{我们先给出结论，再作具体的讨论：}\\
+除了紧挨着圆盘后的一小段区域，{\bfseries 整个中轴线上处处呈亮态}（辐照度不为 0），{\bfseries 这与圆盘是否包含整数个半波带无关}，但可能是（与圆盘平行的）平面上的极小值。如果是圆孔衍射，则当圆盘恰好包含偶数个半波带时，中心为暗斑，恰好包含奇数个半波带时，中心为亮斑（且是极大值）。
+\end{graybox}
 
+为了讨论圆盘衍射，我们需要先给出菲涅尔衍射的基本原理（菲涅尔波带法）。
+
+\subsection{球面波的传播（菲涅尔波带法）}
+
+在菲涅尔衍射中，之前的许多近似都不再成立，需要建立另外一套理论基础。
+
+由菲涅尔原理，如果每个子波向一切方向都均匀地辐射，那么除了产生一个向前进的波以外，还会出现一个向波源后退的反向波。实验上并没有发现这样的波，因此我们必须对次级发射体的辐射图样作某些修改。更详细的理论\footnote{基尔霍夫理论，详见参考文献 \cite{Optics} 的 10.4 节}表明，次波源发射的光具有方向性，由倾斜因子 $K = K(\theta)$ 来描述，它是次波源在不同方向光场的振幅系数：
+\begin{equation}
+    K = K(\theta) = \frac{1}{2}\left(1 + \cos \theta\right),\quad E = K\frac{\varepsilon_A}{R} \,e^{i(kr - \omega t)}
+\end{equation}
+
+如图 \ref{球形波阵面的传播}，由波带理论，第 $m$ 级半波带（后文简称“波带”）在点 $P$ 的电场为：
+\begin{equation}
+E_m = (-1)^{m+1} \frac{2 K_m \varepsilon_0}{\rho_0 + r_0} \,e^{i\left(k(\rho_0 + r_0) - \omega t\right)},\quad \varepsilon_0 = \varepsilon_A \rho_0 \lambda
+\end{equation}
+式中 $\varepsilon_0 = \varepsilon_A \rho_0 \lambda$ 是波源强度，即球面波表达式 $E = \frac{\varepsilon_0}{r} \,e^{i(kr - \omega t)}$ 中的 $\varepsilon_0$。
+
+\begin{figure}[H]\centering
+    \includegraphics[width=0.6\columnwidth]{assets/4/4.5 球形波阵面的传播.png}
+    \caption{球形波阵面的传播}\label{球形波阵面的传播}
+\end{figure}
+
+\subsection{圆孔近场衍射}
+
+我们指出，虽然在数学上将半波带分为了无限多个，但由于倾斜因子 $K(\theta)$ 的存在，认为小孔中只能“看到”有限个半波带是合适的。通过计算给定小孔上的半波带数目 $N_F$，可以得到中轴线上辐照度的一个良好近似。每个半波带的面积 $A$ 由下式给出：
+\begin{equation}
+A = \pi \frac{r_0 \rho}{r_0 + \rho} \lambda \approx \pi r_0 \lambda
+\end{equation}
+对圆形小孔，半波带数目为：
+\begin{equation}
+N_F = \frac{\pi a^2}{A} = \frac{(\rho_0 + r_0)a^2 }{r_0 \rho_0 \lambda} \approx \frac{a^2}{ r_0 \lambda}
+\end{equation}
+上式中 $\rho$ 和 $r_0$ 分别是小孔到光源和观察点的距离，$a$ 是小孔的半径。$N_F$ 常称为菲涅耳数。保持小孔半径不变，当点 $P$ 从无穷远处向小孔靠近时，$r_0$ 由无穷到 0，$N_F$ 会由 $0$ 逐渐增大为 $\infty$。
+
+由图 \ref{振动曲线} (c) 可以看出在不同半波带数目下，中轴线上的振幅情况。角度还可看出，实际相位角与惠更斯-菲涅尔原理所预测的相位角的不同，$O_s$ 点的切线（向右）是惠更斯-菲涅尔原理的相位角，而相矢量 $\overrightarrow{O_sA_s}$ 的切线对应实际相位角。
+
+\begin{figure}[H]\centering
+\begin{subfigure}[b]{0.33\columnwidth}\centering
+    \includegraphics[height=130pt]{assets/4/4.5 相矢量叠加.png}
+    \caption{相矢量叠加}
+\end{subfigure}
+\begin{subfigure}[b]{0.33\columnwidth}\centering
+    \includegraphics[height=130pt]{assets/4/4.5 总振幅随波带数目的变化.png}
+    \caption{总振幅随波带数目的变化}
+\end{subfigure}
+\begin{subfigure}[b]{0.33\columnwidth}\centering
+    \includegraphics[height=130pt]{assets/4/4.5 振动曲线.png}
+    \caption{振动曲线}
+\end{subfigure}
+\caption{利用波带和振动曲线来判断中轴线上的振幅情况}
+\label{振动曲线}
+\end{figure}
+
+在固定直径的孔内，由于 $A = \frac{\pi a^2}{N_F}$，随着 $N_F$ 的增大，每个波带的面积 $A$ 会减小，使得轴上辐照度的极大值将依 $\frac{1}{N_F^2}$ 减小（包络线）。一个定性的近似是 $I = I(0) \sinc^2 \left(\frac{\pi}{2}N_F\right)$，其中 $I(0)$ 是 $N_F = 0$ ($P$ 点离小孔无穷远)，作出 $I$ 关于 $N_F$ 的变化情况，如图 \ref{中心振幅随波带数的变化} 所示：
+
+\begin{figure}[H]\centering
+\begin{subfigure}[b]{0.5\columnwidth}\centering
+    \includegraphics[height=185pt]{assets/4/4.5 中心振幅随波带数的变化 2.pdf}
+    \caption{$N_F \in [0, 10]$}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{0.5\columnwidth}\centering
+    \includegraphics[height=185pt]{assets/4/4.5 中心振幅随波带数的变化.pdf}
+    \caption{$N_F \in [0, 4]$}
+\end{subfigure}
+\caption{中心振幅随波带数的变化}
+\label{中心振幅随波带数的变化}
+\end{figure}
+
+
+另外，当观察点不在中轴线上时，随着点 $P$ 向外移动，“观察”到的波带也会发生变化，如图 \ref{圆孔向外移动}，此时辐照度会有一系列极大与极小值，变化比较复杂。对整个观察平面而言，所得衍射图样随着 $N_F$ 的变化而变化，如图 \ref{不同菲涅尔数时的圆孔衍射图样} 所示。
+\begin{figure}[H]\centering
+    \includegraphics[width=0.75\columnwidth]{assets/4/4.5 圆孔向外移动.png}
+    \caption{圆孔内“观察”到的波带}\label{圆孔向外移动}
+\end{figure}
+\begin{figure}[H]\centering
+\begin{subfigure}[b]{0.59\columnwidth}\centering
+    \includegraphics[height=185pt]{assets/4/4.5 菲涅尔衍射 不同波带 1.png}
+\end{subfigure}
+\begin{subfigure}[b]{0.39\columnwidth}\centering
+    \includegraphics[height=185pt]{assets/4/4.5 菲涅尔衍射 不同波带.png}
+\end{subfigure}
+\caption{不同菲涅尔数 $N_F$ 时的圆孔衍射图样}
+\label{不同菲涅尔数时的圆孔衍射图样}
+\end{figure}
+
+
+
+可以看到，当 $N_F \to 0 $ 时（即 $N_F \gg 1$），发生夫琅禾费衍射，这实质上是夫琅禾费衍射的另一种判别方法；当 $N_F \geqslant 1$ 时，发生菲涅尔衍射。特别地，对于环形孔，我们也可以借助振动曲线来分析，如下图：
+\begin{figure}[H]\centering
+    \includegraphics[width=0.65\columnwidth]{assets/4/4.5 菲涅尔圆环的轴上振幅.png}
+    \caption{透光圆环中心轴上的菲涅尔衍射情况}\label{透光圆环中心轴上的菲涅尔衍射情况}
+\end{figure}
+图 \ref{透光圆环中心轴上的菲涅尔衍射情况} 是一个包含 $\frac{1}{3} + 3 + \frac{1}{3}$ 个波带的环形孔，中心波带（第一波带）被圆盘挡住大约 $\frac{2}{3}$（剩余 $\frac{1}{3}$），振动曲线的 $A_s$ 和 $B_s$ 分别对应图中 $A$ 点和 $B$ 点。由合成结果知道，相矢量 $\overrightarrow{A_sB_s}$ 给出了振幅的大小和相位。
+
+\subsection{圆盘近场衍射}
+
+我们知道，一个未受阻碍的波有无穷多个波带到达 $P$ 点（中轴线上一点），在此处产生一个大小约为第一波带一半的电场，即 $E \approx \frac{1}{2} E_1$。如果障碍物正好盖住第一波带，在振动曲线中减去第一波带的贡献，此时的电场 $E' = -\frac{1}{2}E_1$，这表明障碍物的加入不会改变点 $P$ 的亮暗状态（仍是亮斑）。
+
+用类似的思想，如果障碍物从无开始，逐渐遮住 $1, 2, ..., n$ 个波带，这相当于对给定的圆屏，点 $P$ 由无穷远向圆盘靠近。由振动曲线可看出，除非 $n$ 非常大（$P$ 离圆盘很近），相矢量 $\overrightarrow{A_sB_s}$ 的振幅始终不（近似）为 0。这表明 {\bfseries 除了紧挨着圆盘之后的一小段，中轴线上处处为亮点（辐照度始终不为 0），但可能是（与圆盘平行的）平面上的极小值}。遮住前 $n$ 个波带时的电场可写为：
+\begin{equation}
+E = \frac{1}{2} E_{n+1} = (-1)^{n} K_{n+1} \frac{\varepsilon_A \rho_0 \lambda}{\rho_0 + r_0} \,e^{i\left(k(\rho_0 + r_0) - \omega t\right)} = (-1)^{n} K_n E_0
+\end{equation}
+其中 $E_0$ 是无阻挡时的电场，$K_n$ 是第 $n$ 级波带法线与中轴线的夹角，随着 $n$ 的增大，夹角逐渐向 $\pi$ 靠近。放到图 \ref{圆盘障碍物衍射} (b) 中，便是点 $A_s$ 逆时针绕振动不断旋转，随着 $N_F$ 的增大，逐渐向中心点 $O_s'$ 靠近，直到 $A_s$ 和 $O_s'$ 重合，$| E | = 0 $。
+
+\begin{figure}[H]\centering
+\begin{subfigure}[b]{0.5\columnwidth}\centering
+    \includegraphics[height=160pt]{assets/4/4.5 菲涅尔圆形障碍物.png}
+    \caption{直径为 3 mm 滚珠的衍射图样}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{0.5\columnwidth}\centering
+    \includegraphics[height=160pt]{assets/4/4.5 圆盘衍射时的振动曲线.png}
+    \caption{圆盘衍射时振动曲线上的相矢量}
+\end{subfigure}
+\caption{圆盘障碍物衍射}
+\label{圆盘障碍物衍射}
+\end{figure}
+
+
+
+\section{讨论光栅的自由光谱范围。}
+光栅方程为：
+\begin{equation}
+a \left(\sin \theta_m  - \sin \theta_i \right) = m \lambda,\quad m = 0, \pm1, \pm2, ...
+\end{equation}
+其中 $a$ 是光栅常数，表示两相邻狭缝的间距，即周期长度。以垂直于光栅平面的直线为法线，$\theta_i$ 是入射角而 $\theta_m$ 是第 $m$ 级（极大）衍射角。对于正入射的情况，$\theta_i = 0 \Longrightarrow m < \frac{a}{\lambda}$，对于自准直装置，$\theta_i = -\theta_m \Longleftarrow m < \frac{2a}{\lambda}$。
+
+考虑光栅的自由光谱范围，由于波长小（频率高）的光谱线更密集，当 $\lambda_0 - \frac{\Delta \lambda}{2}$ 的第 $m+1$ 级与 $\lambda_0 + \frac{\Delta \lambda}{2}$ 的第 $m$ 级重合时，达到自由光谱范围 $\left(\Delta \lambda\right)_{\text{fsr}}$ :
+\begin{equation}
+\begin{cases}
+    a(\sin \theta_m - \sin \theta_i ) = (m+1)\left(\lambda_0 - \frac{\Delta \lambda}{2}\right) \\ 
+    a(\sin \theta_m - \sin \theta_i ) = m\left(\lambda_0 + \frac{\Delta \lambda}{2}\right)
+\end{cases}
+\Longrightarrow 
+\left(\Delta \lambda\right)_{\text{fsr}} = \frac{\lambda_0}{m}
+\end{equation}
+上面所有公式中的级数 $m$ 在范围 $[0, \frac{2a}{\lambda})$ 内。由此可得到各参数在不同要求下的最值，这与当初 F-P 时的讨论类似，我们不多赘述。
+
+
+\section{波长为 634.8 nm 的平行光射向直径为 2.76 mm 的圆孔，与孔相距 1 m 处放一屏。回答下面两个问题：(1) 屏上正对圆孔中心的 $P$ 点是亮点还是暗点？(2) 要使 $P$ 点变成与 (1) 相反的情况，至少要把屏幕分别向前或向后移动多少？}
+
+\subsection{屏上正对圆孔中心的 $P$ 点是亮点还是暗点？}
+
+计算菲涅尔数 $N_F$ : 
+\begin{equation}
+N_F = \frac{\pi a^2}{A} = \frac{(\rho_0 + r_0) a^2}{r_0 \rho_0 \lambda} \overset{\rho_0 \to \infty}{=} \frac{D^2}{4 r_0 \lambda} = \frac{(2.76 \ \mathrm{mm})^2}{4 \times 1 \ \mathrm{m} \times 634.8 \ \mathrm{nm}} = 3
+\end{equation}
+$N_F$ 为奇数，因此中心点是亮点。
+
+\subsection{要使 $P$ 点变成与 (1) 相反的情况，至少要把屏幕分别向前或向后移动多少？}
+
+$N_F$ 为偶数时中心成暗点，因此分别令 $N_F$ 为 2 和 4 ，得到：
+\begin{equation}
+r_0 = \frac{D^2}{4 N_F \lambda} = 1.5 \ \mathrm{m},\quad 0.75 \ \mathrm{m}
+\end{equation}
+因此至少要把屏幕向 $P$ 点移动 0.25 m，或者把屏幕远离 $P$ 点移动 0.5 m。
+
+\section{一波带片由五个环带组成，第一环带是半径 $0 \sim r_1$ 的不透明圆盘，第二环带半径 $r_1\sim r_2$ 透明，第三环带半径 $r_2\sim r_3$ 不透明，第四环带半径 $r_3\sim r_4$ 透明，第五环带是 $r_4 \sim \infty$ 的不透明区域。用波长 500 nm 的平行单色光照明，最亮的像点在距波带片 1 m 的轴上，试求：(1) $r_1$；(2) 像点的光强；(3) 其它光强极大值出现在轴上的哪些位置？}
+
+\subsection{求 $r_1$}
+
+由题意知主焦距$f = 1 \ \mathrm{m}$ ，因此：
+\begin{equation}
+f = \frac{R_1^2}{\lambda} \Longrightarrow R_1 = \sqrt{f \lambda} = \sqrt{ 1 \ \mathrm{m} \times 500 \ \mathrm{nm} } = 0.7071 \ \mathrm{mm}
+\end{equation}
+
+\subsection{求像点的光强}
+
+像点是第一焦点，波带片如图 \ref{题意中的波带片} 所示。
+\begin{figure}[H]\centering
+    \includegraphics[width=0.3\columnwidth]{assets/4/波带片.pdf}
+    \caption{题意中的波带片}\label{题意中的波带片}
+\end{figure}
+设没有阻挡时的辐照度为 $I_0$，由于波带片透过第 2 和第 4 个（半）环带，因此振幅和辐照度为：
+\begin{equation}
+E = 2 E_1 = 4 E_0 \Longrightarrow I = 16 I_0
+\end{equation}
+
+\subsection{其它光强极大值出现在轴上的哪些位置？}
+
+\begin{graybox}
+\textbf{还是先给出结论，再做详细的讨论：}\\
+记主焦点（第一焦点）位于 $r = f_1$ 处，辐照度为 $I_1$，则波带片的所有焦点及其辐照度大小是：
+\begin{gather}
+    f_1 = \frac{R_1^2}{\lambda},\quad   E_1 \approx n E_0 ,\quad   I_1 \approx n^2 I_0 \\
+    f_k = \frac{f_1}{k},\quad I_k = \frac{I_1}{k^2},\quad k = 1, 3, 5, ...
+\end{gather}\noindent
+\end{graybox}
+
+
+由图 \ref{波带片} (a)，我们先来计算各波带的半径。
+\begin{figure}[H]\centering
+\begin{subfigure}[b]{0.53\columnwidth}\centering
+    \includegraphics[height=160pt]{assets/4/4.5 波带半径计算.png}
+    \caption{波带片各级圆环半径的计算}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{0.46\columnwidth}\centering
+    \includegraphics[height=160pt]{assets/4/4.5 波带片次焦点.png}
+    \caption{波带片的各级焦点}
+\end{subfigure}
+\caption{波带片}
+\label{波带片}
+\end{figure}
+将第 $m$ 个波带的外缘标以点 $A_m$，按定义，路程 $S$-$A_m$-$P$ 的光程应当比 $S$-$O$-$P$ 要大 $\frac{m\lambda}{2}$，也即：
+\begin{equation}
+(\rho_m + r_0) - (\rho_0 + r_0) = m \frac{\lambda}{2}
+\end{equation}
+作泰勒展开 $\rho_m = \rho_0 + \frac{R_m^2}{2\rho_0}$ 和 $r_m = r_0 + \frac{R_m^2}{2r_0}$，代入得到：
+\begin{equation}
+R_m = \sqrt{ \frac{m\lambda}{\frac{1}{\rho_0} + \frac{1}{r_0}} } \overset{\rho_0 \to \infty}{=}\sqrt{m r_0 \lambda}
+\end{equation}
+更精确的公式\footnote{由参考文献 \cite{波带片的设计及其衍射特性研究} Page 3 给出}是 $R_m = \sqrt{mr_0\lambda + \frac{m^2\lambda^2}{4}}$，式中 $\frac{m^2\lambda^2}{4}$ 代表球差。
+
+是上面，我们依据“在点 $r_0$ 的各波带振幅相互加强”的原则，得到了波带片的各级半径，使得点 $P$ 是中轴线上光强最大的一点，此时点 $P$ 称为主焦点或一级焦点，距离 $r_0$ 也相应的记作 $f$ 或 $f_1$，有：
+\begin{equation}
+f_1 = \frac{R_1^2}{\lambda} \Longrightarrow  \frac{1}{\rho_0} + \frac{1}{r_0} = \frac{1}{f}
+\end{equation}
+与薄透镜公式有相同的形式，因此，用一光束准直入射给定的波带片（起到 $\rho_0 \to \infty$ 的作业），此时中轴线上最亮的点就是主焦距，它是辐照度分布中的一个极大值（也是最大值），因为在 $f$ 处波带片上的各圆环刚好和波阵面上的各波带重合。
+
+需要注意，上面的“$n$ 级半径”并不是波带片的最大圆环半径，对有 $n_0$ 个圆环的挡光型波带片而言（中心圆算第一个圆环），无穷远处不透光，最外围的第 $n_0$ 级圆环 ($R_{n_0-1} \sim R_{n_0}$) 是透光的，则式中的 $n = n_0$；对透光型波带片而言（如图 \ref{菲涅尔波带片} 所示的正负菲涅尔波带片），无穷远处透光，最外围的第 $n$ 级圆环 ($R_{n_0-1} \sim R_{n_0}$) 是不透光的，因此需要再往外“扩张一个半径”，式中的 $n = n_0 + 1$。当然，实际中的 $n_0$ 一般都较大（100 以上），即使不考虑也几乎没有误差。
+
+
+为什么我们要说是“一级”焦距？因为波带片本质上还是一个光栅，它（在中轴线上）的衍射图样是一系列的主焦点和次焦点交替出现（次焦点都比主焦点近），如图 \ref{波带片} (b) 所示。下面我们推导这些次焦点的位置和辐照度大小。
+
+只需考虑 $r = \frac{f}{k}, k = 2, 3, 4, ...$ 时的情况，其余情况介于两者中间，可定性地判断辐照度的大小变化，且稍后能轻易知道它们都不是极值点。对于给定的 $k$，点 $P$ 与波带距离 $r = \frac{f}{k}$，我们保持波带片的直径 $D$ 不变，当距离变为原来的 $\frac{1}{k}$，由 $R_m = \sqrt{mr\lambda}$ 知道，$P$ 点“看到”的各波带半径变为原来的 $\frac{1}{\sqrt{k}}$。之前 $r = f$ 时波带片共有 $n$ 个半径，“孔”（波带片）的直径没变，而波带半径缩小为原来的 $\frac{1}{\sqrt{k}}$，因此在点 $P$ “看到” 的波带由 $n$ 个增长至 $kn$ 个。
+
+记 $r = \frac{f}{k}$ 时，$P$ 点“看到”的一系列波带半径为 $R_j^{(k)}$，$k = 1, 2, 3, \ \ j = 1, 2, ..., kn$，将它们的相对大小（$\frac{R_j^{(k)}}{R_1^(1)}$）如表 \ref{孔内不同波带的半径及位置关系} 一样列出，一切都会变得显然：
+\begin{table}[H]\centering
+    %\renewcommand{\arraystretch}{1.5} % 调整行间距为 1.5 倍
+    %\setlength{\tabcolsep}{1.5mm} % 调整列间距
+    \caption{$r = \frac{f}{k}, k = 1, 2, 3, ... $ 时孔内一系列波带的相对半径及位置关系}
+    \label{孔内不同波带的半径及位置关系}
+\begin{tabular}{cccccccccc}\toprule
+    $k = 1$ & $1$ & $\sqrt{2}$ & $\sqrt{3}$  & ... & $\sqrt{n}$ \\
+    \midrule
+    $k = 2$ & $(\frac{\sqrt{1}}{\sqrt{2}}, 1)$ & $(\frac{\sqrt{3}}{\sqrt{2}}, 2)$ &  $(\frac{\sqrt{5}}{\sqrt{2}}, \sqrt{3})$  & ... & $(\frac{\sqrt{2n -1 }}{\sqrt{2}}, \sqrt{n})$  \\
+    $k = 3$ &  $(\frac{\sqrt{1}}{\sqrt{3}}, \frac{\sqrt{2}}{\sqrt{3}}, 1)$ & $(\frac{\sqrt{4}}{\sqrt{3}}, \frac{\sqrt{5}}{\sqrt{3}}, \sqrt{2})$ &  $(\frac{\sqrt{7}}{\sqrt{3}}, \frac{\sqrt{8}}{\sqrt{3}}, \sqrt{3})$  & ... & $(\frac{\sqrt{3n -1 }}{\sqrt{3}}, \frac{\sqrt{3n-2}}{\sqrt{3}}, \sqrt{n})$   \\
+    $k = 4$ &  $(\frac{\sqrt{1}}{\sqrt{4}}, \frac{\sqrt{2}}{\sqrt{4}}, \frac{\sqrt{3}}{\sqrt{4}}, 1)$ & $(\frac{\sqrt{5}}{\sqrt{4}}, \frac{\sqrt{6}}{\sqrt{4}}, \frac{7}{\sqrt{4}}, \sqrt{2})$ &  $(\frac{\sqrt{9}}{\sqrt{4}}, \frac{\sqrt{10}}{\sqrt{4}}, \frac{\sqrt{11}}{\sqrt{4}}, \sqrt{3})$  & ... & $(\frac{\sqrt{4n -1 }}{\sqrt{4}}, \frac{\sqrt{4n-2}}{\sqrt{4}}, \frac{\sqrt{4n-3}}{\sqrt{4}}, \sqrt{n})$   \\
+    \bottomrule
+\end{tabular}
+\end{table}
+
+可以看到，当 $k$ 是奇数时，波带片的一个圆环内透过奇数个相邻波带，抵消之后仍剩一个波带的振幅，呈现亮斑；当 $k$ 是偶数时，波带片的一个圆环内透过偶数个相邻波带，抵消之后剩下的是零振幅，呈现暗斑。因此，波带片的所有焦点位置是 $\frac{f}{1}, \frac{f}{3}, \frac{f}{5}, ...$。
+
+再来看辐照度大小，在 $k$ 为奇数的情况下，每个波带片环相当于只透过一个波带，由 $A = \pi r_0 \lambda$ 知道波带面积缩小为原来的 $\frac{1}{k}$，因此电场振幅变为原来的 $\frac{1}{k}$，辐照度变为原来的 $\frac{1}{k^2}$。综上，波带片的所有焦点和辐照度大小是：
+\begin{gather}
+f_1 = \frac{R_1^2}{\lambda},\quad   E_1 \approx n E_0 ,\quad   I_1 \approx n^2 I_0 \\
+f_k = \frac{f_1}{k},\quad I_k = \frac{I_1}{k^2},\quad k = 1, 3, 5, ...
+\end{gather}
+式中 $n$ 为波带片最外圆的半径级数，也即波带片圆环总个数，$E_0$ 和 $I_0$ 分别是无阻挡时的振幅和辐照度。
+
+\section{一束波长为 500 nm 的平行光垂直照射在一个单缝上，如果所用的单缝的宽度 $a=0.5 \ \mathrm{mm}$，缝后紧挨着的薄透镜焦距 $f=1$ m ，试求： (1) 中央明条纹的角宽度； (2) 中央亮纹的线宽度； (3) 第一级与第二级暗纹的距离。}
+
+\begin{graybox}
+本题中的计算都可以借助近似来完成，但考虑到手边有计算机，我们还是取原公式来精确计算。从计算结果我们也可以看到，在小角近似下的误差是非常小的。
+\end{graybox}
+
+\subsection{中央明条纹的角宽度}
+
+计算菲涅尔数 $N_F$ : 
+\begin{equation}
+N_F = \frac{b^2}{f \lambda} = \frac{(0.5 \ \mathrm{mm})^2}{1 \ \mathrm{m} \times 500 \ \mathrm{nm}} = 0.5
+\end{equation}
+可以近似认为发生的是夫琅禾费衍射。由夫琅禾费单缝衍射公式：
+\begin{equation}
+I = I(0) \sinc^2 \beta,\quad \beta = \frac{1}{2}kb \sin \theta
+\end{equation}
+可以推得全峰角宽度 $\xi_\theta$ : 
+\begin{gather}
+    I = I(0) \sinc^2 \beta =  I(0) \sinc^2\left( \frac{\pi b}{\lambda} \sin \theta \right) = I(0) \sinc^2\left( N \pi \sin \theta \right) \\ 
+    b \sin \theta_0 = \lambda \Longrightarrow \xi_{\theta} = 2 \theta_0 = 2 \arcsin \left(\frac{\lambda}{b}\right) = 2 \arcsin \left(\frac{1}{N}\right)
+\end{gather}
+代入数据：
+\begin{equation}
+    \xi_\theta = 2 \arcsin \left( \frac{500 \ \mathrm{nm}}{ 0.5 \ \mathrm{mm} } \right) = 0.00200000033 \ \mathrm{rad} \approx 0.0020 \ \mathrm{rad}
+\end{equation}
+
+\subsection{中央亮纹的线宽度}
+借助狭缝中心点在屏幕上的成像，可以帮助我们推导辐照度随位置 $z$ 的分布。可以计算中央极大的全峰线宽度 $\xi_z$ : 
+\begin{gather}
+    \sin \theta_0 = \frac{\lambda}{b} \Longrightarrow \xi_z = 2 f \tan \theta_0 = 2f\frac{\sin \theta}{\sqrt{1 - \sin^2 \theta}} = \frac{2f}{\sqrt{N^2 - 1}},\quad N = \frac{b}{\lambda}
+\end{gather}
+代入数据：
+\begin{equation}
+N = \frac{0.5 \ \mathrm{mm}}{0.5 \ \mathrm{\mu m}} = 1000 \Longrightarrow \xi_z = \frac{2 \times 1 \ \mathrm{m}}{\sqrt{1000^2 - 1}} = 0.0020000010 \ \mathrm{m} \approx 2.0 \ \mathrm{mm}
+\end{equation}
+
+\subsection{第一级与第二级暗纹的距离}
+由单缝夫琅禾费衍射公式，可得极小值（暗斑）对应的角度：
+\begin{equation}
+b\sin \theta_m = m\lambda \Longrightarrow \sin \theta_m = \frac{m\lambda}{b},\quad m = 1, 2, ...
+\end{equation}
+于是一级和二级暗斑距离为：
+\begin{equation}
+\Delta x = f\tan \theta_2 - f \tan \theta_1 = f\left[ \frac{\sin \theta_2}{\sqrt{1 - \sin^2 \theta_2}} - \frac{\sin \theta_1}{\sqrt{1 - \sin^2 \theta_1}} \right],\quad \sin \theta_1 = \frac{\lambda}{b},\ \sin \theta_2 = \frac{2\lambda}{b}
+\end{equation}
+代入数据：
+\begin{equation}
+    \Delta x = 0.00100000350 \ \mathrm{m} \approx 1.0 \ \mathrm{mm}
+\end{equation}
+
+\section{一束白光垂直照射在一光栅上，在形成的同一级光栅光谱中，偏离中央明纹最远的是红光还是蓝光？为什么？}
+\vspace*{-3mm}
+由单缝夫琅禾费衍射公式，可得极大值（亮斑）对应的角度：
+\begin{equation}
+b\sin \theta_m = \left(m + \frac{1}{2}\right)\lambda,\quad m = 1, 2, ...
+\end{equation}
+从蓝光到红光，随着 $\lambda$ 的增大，同级下的 $\theta_m$ 也增大，因此红光散射角度更大，偏离中央明纹最远的是红光。
+
+\vspace*{-5mm}
+\section{波长为 600 nm 的单色光垂直入射在一光栅上，第二级明纹出现在 $\sin \theta_2 = 0.2$ 处，第 4 级为第一个缺级。求 (1) 光栅上相邻两缝的距离是多少？ (2) 狭缝可能的最小宽度是多少？ (3) 在该最小宽度下，实际上能观察到的全部明纹数是多少？}
+
+\vspace*{-3.5mm}
+\subsection{光栅上相邻两缝的距离是多少？}
+要相邻两缝的中心距离，即求光栅常数 $a$。由光栅方程：
+\begin{equation}
+a(\sin \theta_m - \sin \theta_i) = m\lambda,\quad m = 0, \pm1, \pm2, ... \Longrightarrow a = \frac{2 \lambda}{\sin \theta_2} = 6 \ \mathrm{\mu m}
+\end{equation}
+
+\vspace*{-8mm}
+\subsection{狭缝可能的最小宽度是多少？}
+当光栅是多缝光栅时，可以考虑狭缝宽度的概念。设光栅有 $N_\text{s}$ 条多缝，有多缝夫琅禾费衍射公式：
+\begin{equation}
+I = I(0) \sinc^2 \beta\  \frac{\sin^2 N_\text{s} \alpha}{N_s^2 \sin^2 \alpha} ,\quad \beta = \frac{1}{2}kb \sin \theta,\ \alpha = \frac{1}{2}ka \sin \theta
+\end{equation}
+设 $m = \frac{a}{b}$，由于第 4 极大是第一个缺级，因此 $m = 4$，得到：
+\begin{equation}
+b = \frac{a}{4} = 1.5 \ \mathrm{\mu m}
+\end{equation}
+
+当然，$m$ 可以适当的有一些变化范围，我们取 $m \in [3.5, 4.5]$，可以得到：
+\begin{equation}
+b \in [1.33 \ \mathrm{\mu m}, 1.71 \ \mathrm{\mu m}] \Longrightarrow b_{\min} = 1.3  \ \mathrm{\mu m}
+\end{equation}
+
+\vspace*{-6.5mm}
+\subsection{在该最小宽度下，实际上能观察到的全部明纹数是多少？}
+
+若 $b = 1.5  \ \mathrm{\mu m}$，此时 $m = 4$，实际能观察到的全部明纹数（主衍射峰内的极大，不包括缺级部分）为 $2m - 1 = 7$ 条。但是在 $b_{\min} = 1.33  \ \mathrm{\mu m}$ 下，$m = 4.5$，不好确定能观察到的明纹数，因此我们直接作出图像：
+\begin{figure}[H]\centering
+\begin{subfigure}[b]{0.5\columnwidth}\centering
+    \includegraphics[height=190pt]{assets/4/2024-11-08_01-24-51.pdf}
+    \caption{光栅的衍射图样}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{0.5\columnwidth}\centering
+    \includegraphics[height=190pt]{assets/4/2024-11-08_01-24-54.pdf}
+    \caption{光栅的对数衍射图样}
+\end{subfigure}\vspace*{-5mm}
+\caption{光栅的衍射图样}
+\end{figure}
+由图可知，$b_{\min} = 1.33  \ \mathrm{\mu m}$ 时 ($m = 4.5$) ，实际上能看到 7 条明纹，分别是 $0, \pm 1, \pm 2, \pm 3$ 级明纹。
 
 % --------------------------- 附录 --------------------------- %
 % >> ------------------------ 附录 ------------------------ << %

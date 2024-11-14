@@ -30,6 +30,9 @@
     \def\KO{\ \mathrm{K}\Omega}
     \def\MO{\ \mathrm{M}\Omega}
     \def\Hz{\ \mathrm{Hz}}
+    \def\Res{\,\mathrm{Res}\,}
+    \def\Im{\,\mathrm{Im}\,}
+    \def\Re{\,\mathrm{Re}\,}
 
 % 自定义宏定义
     \def\N{\mathbb{N}}
@@ -2207,32 +2210,171 @@ y'' + 2\beta y' + \omega_0 y = f(x)
 \end{cases}
 \end{equation}
 
+\subsection{状态变量法}
+状态变量法是一种求解微分方程的方法，它将高阶微分方程转化为一阶微分方程组，然后借助矩阵来求解此一阶微分方程组。对于二阶 $RLC$ 电路，状态方程的标准形式为：
+\begin{equation}
+\frac{\mathrm{d} X }{\mathrm{d} t } = A X + B S \\ 
+Y = C X + D S
+\end{equation}
+其中 $X = \begin{matrix}x_1 & x_2\end{matrix}^T$ 是状态变量，$S = \begin{matrix}u_s & i_s\end{matrix}^T$ 是输入变量，$Y = \begin{matrix}u_C & i_L\end{matrix}^T$ 是输出变量，$A$、$B$、$C$、$D$ 是系数矩阵，由电路的参数决定。
+
+列写状态方程时可用替代法，将 $C$ 替换为 $u_C$ 电压源，将 $L$ 替换为 $i_L$ 电流源，由此求出 $i_C$ 和 $u_L$ 的表达式，再将 $i_C$ 和 $u_L$ 替换回 $\frac{\mathrm{d} u_C }{\mathrm{d} t }$ 和 $\frac{\mathrm{d} i_L }{\mathrm{d} t }$，即可得到状态方程。
+
+如果能利用计算机，状态方程是非常方便的，因为它有一套完整的矩阵求解方法，可以精准而快速地求解高阶电路的解析解，现在的许多电路仿真软件都是基于状态方程进行的。用计算机求状态方程的一个典型的例子是在 Matlab 中求 ODE 数值解时，ODE 45 等函数就是基于状态方程的，输入参数是状态方程和初始条件，输出是状态变量随时间的变化。
+
+求解状态方程的具体方法不是本课程的重点，感兴趣的读者可以阅读参考文献 \cite{电路原理} Page 251-259。
+
 \section{二阶动态电路应用}
 \subsection{脉冲形成单元 (PFU)}
 \subsection{升压斩波电路 (Boost)}
 
 \section{阶跃响应与冲激响应}
 
-\subsection{单位阶跃响应}
-\subsection{单位冲激响应}
-\subsection{卷积积分}
-\subsection{状态变量法}
+\subsection{单位阶跃响应 (Unit Step Response)}
+单位阶跃响应是指激励为单位阶跃函数 $\eta(t) = \eta_0$ 且零状态时的响应，其中 $\eta$ 是 Heaviside 阶跃函数，定义为：
+\begin{equation}
+\eta(t) =
+\begin{cases}
+    0, & t < 0 \\
+    1, & t > 0
+\end{cases},\quad \eta(t - t_0) = 
+\begin{cases}
+    0, & t < t_0 \\
+    1, & t > t_0
+\end{cases}
+\end{equation}
+在本课程中，$\eta(0)$ 时的值可以是 0 也可以是 1，并不影响最终的结果，可以不用在意。另外，在本书，常常将 $\eta(t)$ 写作 $\eta_0 = \eta_0(t)$，而将 $\eta(t - t_0) $ 写作 $\eta_{t_0} = \eta_{t_0}(t)$，这是为了在强调阶跃函数的参数 $t_0$ 的同时，不至于与 $t$ 混淆。
 
-\chapter{正弦激励电路的稳态分析}\thispagestyle{fancy}
+\subsection{单位冲激响应 (Unit Impulse Response)}
+单位冲激响应是指激励为单位冲激函数 $\delta(t)$ 且零状态时的响应，其中 $\delta$ 是 Dirac $\delta$ 函数，定义为：
+\begin{equation}
+\delta(t) =
+\begin{cases}
+    0, & t \neq 0 \\
+    +\infty, & t = 0
+\end{cases},\quad \int_{-\infty}^{+\infty} \delta(t) \,\mathrm{d}t = 1,\quad \delta(t) = \frac{\mathrm{d} \eta(t)}{\mathrm{d} t}
+\end{equation}
+类似地，在本书，常常将 $\delta(t)$ 写作 $\delta_0 = \delta_0(t)$，而将 $\delta(t - t_0) $ 写作 $\delta_{t_0} = \delta_{t_0}(t)$。
+
+
+单位冲激响最重要的性质之一，是可以由单位阶跃响应求导得到。设电路的单位阶跃响应为 $s = s(t)$（可以是电压量也可以是电流量），可以证明，此电路的单位冲激响应 $h = h(t)$ 满足：
+\begin{equation}\label{for:单位冲激响应}
+h(t) = \frac{\mathrm{d} s(t)}{\mathrm{d} t}
+\end{equation}
+另一个重要的性质，是卷积延迟（注意不是普通的筛分），即：
+\begin{equation}
+f(t)*\delta_{t_0}(t) = f(t - t_0)
+\end{equation}
+
+
+特别地，当单位冲激作用在电容或电感上时：电压源作用在电容 $C$ 使电压突变 $\Delta u_C = \frac{1}{C}$，电流源作用在电感 $L$ 使电流突变 $\Delta i_L = \frac{1}{L}$。如果不能直接判断突变值，可以列出电路的微分方程，然后由积分关系求解 $t = 0^+$ 的初始值，详见文献 \cite{电路原理习题集} Page 245 例 5.7.3。当然，更简便的方法是先求单位阶跃响应。
 
 
 
+\subsection{任意激励响应}
+实际中的电路输入错综复杂，因此分析任意激励下的电路响应是十分有必要的。理论表面，卷积积分可以解决这个问题。
 
+\begin{BlockTheorem}[卷积定理]\label{卷积定理}
+设{\color{red} 线性}非时变电路在单位激励下的响应为 $h(t) = \Res(\delta_0)$（可以是电压或电流量），则当输入激励 $e(t)$ 为任意值时，相应的{\color{red} 零状态}响应（即 $\forall\ t < 0, e(t) = 0$）变为：
+\begin{equation}
+H(t) = \Res(e) = e(t)*h(t) = \int_{-\infty}^{+\infty} e(\tau)h(t - \tau)\mathrm{d}\tau 
+\end{equation}
+其中 $\Res: \C_{\R} \longrightarrow \C_{\R}$ 是激励到响应的映射，输入和输出都是时域 $(-\infty, +\infty)$ 上的函数。
+\end{BlockTheorem}
 
+\begin{graybox}
+\textbf{定理 \ref{卷积定理} 的证明：}\\
+电路是线性非时变的，因此响应映射 $\Res$ 构成线性映射，即：
+\begin{equation}
+\Res (af_1 + bf_2) = a\Res(f_1) + b\Res(f_2),\quad \forall\ a, b\in \R, f_1, f_2 \in \C_{\R}
+\end{equation}
+下面给出具体的证明。设电路的在冲激函数 $\delta_{t_0} = \delta (t - t_0)$ 下的响应是 $h_{t_0}(t)$，即 $h_{t_0}(t) = \Res (\delta_0)$，并设现在的任意激励是 $e(t)$，由 $e(t)$ 的连续性，我们以 $\Delta t$ 为分割，将 $(0, +\infty)$ 的时间分为无数段，则有：
+\begin{equation}
+e(t) = \lim_{\Delta t \to 0}\sum_{n=0}^{\infty} e(n \Delta t) \left(\varepsilon_{n\Delta t} (t) - \varepsilon_{(n+1)\Delta t} (t) \right)
+\end{equation}
+记 $\Delta t$ 未取极限时的激励为 $f(t, \Delta t)$，即：
+\begin{equation}
+f(t, \Delta t) = \sum_{n=0}^{\infty} e(n \Delta t) \left(\varepsilon_{n\Delta t} (t) - \varepsilon_{(n+1)\Delta t} (t) \right) = \sum_{n=0}^{\infty} e(n \Delta t) \cdot \frac{\varepsilon_{n\Delta t} (t) - \varepsilon_{(n+1)\Delta t} (t)}{\Delta t} \cdot \Delta t
+\end{equation}
+简记 $p_{k\Delta t}(t) = \frac{\varepsilon_{k\Delta t} (t) - \varepsilon_{(k+1)\Delta t} (t)}{\Delta t}$，它是面积为一且“延迟”了 $k\Delta t$ 的脉冲函数，称为延迟单位脉冲。由 $\Res$ 的线性性，我们有：
+\begin{align}
+\Res (f) 
+&= \Res \left[\sum_{n=0}^{\infty} e(n \Delta t) \ p_{k\Delta t}(t)\, \Delta t \right] \\
+&= \sum_{n=0}^{\infty} \Res \left[ e(n \Delta t) \ p_{k\Delta t}(t)\, \Delta t \right] \\ \label{for:卷积定理证明1}
+&= \sum_{n=0}^{\infty} \left[ e(n \Delta t) \Delta t\   \Res (p_{n\Delta t}) \right]
+\end{align}
+而脉冲函数 $p_{k \Delta t}$ 满足：
+\begin{align}
+    \lim_{\Delta t \to 0} p_{k\Delta t}(t) 
+    &= \lim_{\Delta t \to 0} \frac{\varepsilon_{k\Delta t} (t) - \varepsilon_{(k+1)\Delta t} (t)}{\Delta t} \\
+    &= \lim_{\Delta t \to 0} \frac{\varepsilon_{(k+1)\Delta t} (t + \Delta t) - \varepsilon_{(k+1)\Delta t} (t)}{\Delta t}\\ 
+    &= \frac{\mathrm{d} \varepsilon_{t_0}(t) }{\mathrm{d} t } \\ 
+    &=\delta_{t_0}(t)
+\end{align}
+在公式 (\ref{for:卷积定理证明1}) 中令 $\Delta t \to 0$，即可得到：
+\begin{align}
+\Res (e) &= \Res (\lim_{\Delta t \to 0} f) \\ 
+&= \lim_{\Delta t \to 0} \Res (f) \\
+&= \lim_{\Delta t \to 0} \sum_{n=0}^{\infty} \left[ e(n \Delta t) \Res (p_{n\Delta t}) \, \Delta t\right] \\
+&= \lim_{\Delta t \to 0} \sum_{n=0}^{\infty} \left[ e(n \Delta t) \Res ( \delta_{n\Delta t} ) \, \Delta t\right] \\ 
+&= \lim_{\Delta t \to 0} \sum_{n=0}^{\infty} \left[ e(n \Delta t) h_{n\Delta t}(t) \, \Delta t\right] \\ 
+&= \lim_{\Delta t \to 0} \sum_{n=0}^{\infty} \left[ e(n \Delta t) h_{0}(t - n\Delta t) \, \Delta t\right] \\ 
+&= \int_{0}^{+\infty} e(\tau)\, h(t - \tau)\mathrm{d}\tau \\ 
+\end{align}
+而 $\forall\ t<0, e(t) = 0$，这样便证明了：
+\begin{equation}
+\Res (e) = \int_{-\infty}^{+\infty} e(\tau)\, h(t - \tau)\mathrm{d}\tau = e(t)*h(t)
+\end{equation}
+对于非零状态的情形，只要将 $e(t)$ 做适当的平移，即可满足零状态，进而可以利用上式。当然，也可以利用“全响应 = 零输入响应 (zero input response) + 零状态响应 (zero state response)”，由卷积求出零状态响应，再加上零输入响应。
+\end{graybox}
 
+另外，由公式 (\ref{for:单位冲激响应})，我们还可以知道：
+\begin{equation}
+\Res(\delta_{t_0}) = \frac{\mathrm{d} \Res(\eta_{t_0})}{\mathrm{d} t}
+\end{equation}
 
+\chapter{正弦电路的稳态分析}\thispagestyle{fancy}
 
+\section{相量法 (Phasor Method)}
+在光学的菲涅尔衍射中，我们已经接触过“相矢量（相量）”的概念，它是一个复数，用来表示振幅和相位。在电路中，相量法是一种十分重要的分析方法，它将正弦激励电路的分析转化为复数域中的运算，大大简化了计算。
 
+我们知道，正弦量的数乘、加减、求导和积分的结果都仍是同频率的正弦量（乘除不可以），因此在线性电路中，如果激励是正弦量，那么当电路到达稳态时，电路中的电压电流都将是同频率的正弦量。这个性质非常重要，因为它使得我们可以用相量来表示电压电流，从而简化计算。
 
+由于本课程中 $i$ 常常表示电流，因此改用 $j$ 来表示 $j = \sqrt{-1}$，并且，本书中讨论的正弦量均为下面的形式：
+\begin{gather}
+i = I_m \sin (\omega t + \phi_i) \text{\ 或\ } i = I_m \cos (\omega t + \phi_i),\quad I_m > 0,\ \phi_i \in (-\pi, \pi) \\ 
+u = U_m \sin (\omega t + \phi_i) \text{\ 或\ } u = U_m \cos (\omega t + \phi_i),\quad U_m > 0,\ \phi_u \in (-\pi, \pi) 
+\end{gather}
+这称为标准正弦/余弦形式，非标准的需先转化为标准形式，再行计算。
 
+正弦形式下的 $i$ 和 $u$ 可表示为：
+\begin{gather}
+i = \Im \left\{ I_me^{\phi_i} \cdot e^{(\omega t)} \right\} \text{\ 或\ } i = \Re \left\{ I_me^{\phi_i} \cdot e^{(\omega t)} \right\} \\ 
+u = \Im \left\{ U_m e^{\phi_u} \cdot e^{(\omega t)} \right\} \text{\ 或\ } u = \Re \left\{ U_m e^{\phi_u} \cdot e^{(\omega t)} \right\}
+\end{gather}
+令 $\vec{I} = I_me^{\phi_i} = I_m \angle \phi_i $ 和 $\vec{U} = U_me^{\phi_u} =  U_m \angle \phi_u$，则在频率 $f$ 已知的情况下（且统一规定了取 $\Im$ 还是 $\Re$），$\vec{I}$ 和 $\vec{U}$ 即可等价地表示出正弦电流和电压。在有的教材中，还会用 $\dot{I} = \frac{I_m}{\sqrt{2}} \angle \phi_i $ 和 $\dot{U} = \frac{U_m}{\sqrt{2}} \angle \phi_u$ 来表示正弦量，考虑到幅值表示更为方便，且为了避免与求导混淆，本书不采用这种记法。需要注意，在我们的记法中，$\vec{I}$ 和 $\vec{U}$ 的模是正弦量的幅度而非有效值。
 
+各元件在相量法下的性质可重写为下表：
+\begin{table}[H]\centering
+    %\renewcommand{\arraystretch}{1.5} % 调整行间距为 1.5 倍
+    %\setlength{\tabcolsep}{1.5mm} % 调整列间距
+    \caption{元件或定理在相量法下的性质}
+    \label{元件在相量法下的性质}
+\begin{tabular}{cccccccccc}\toprule
+    名称 & 原写法 & 相量法 & 导纳 $Y$ & 阻抗 $Z$  \\
+    \midrule
+    电阻 & $u = Ri$ & $\vec{U} = R \vec{I}$ & $\frac{1}{R}$ & $R$  \\
+    电容 & $i = C u'$ & $\vec{I} = j\omega C \,\vec{U}$ & $j \omega C$ & $\displaystyle \frac{1}{j \omega C}$   \\
+    电感 & $u = Li'$ & $\vec{U} = j\omega L \,\vec{I}$ & $\displaystyle \frac{1}{j \omega L}$ & $j \omega L$  \\
+    KVL & $u = \sum u_k$ & $\vec{U} = \sum \vec{U}_k$ & - & - \\ 
+    KCL & $i = \sum i_k$ & $\vec{I} = \sum \vec{I}_k$ & - & - \\ 
+    \bottomrule
+\end{tabular}
+\end{table}
 
+像上面一样做了同构之后，之前电阻电路的几乎所有方法都可以搬用到相量法中，例如分流分压、等效阻抗、戴维南定理、诺顿定理、二端口网络等。
 
+在本节，除了掌握用相量法求解电路稳态，还需要学会使用在计算器上求解复数运算。
 
 
 

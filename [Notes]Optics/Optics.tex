@@ -1,0 +1,685 @@
+% 若编译失败，且生成 .synctex(busy) 辅助文件，可能有两个原因：
+% 1. 需要插入的图片不存在：Ctrl + F 搜索 'figure' 将这些代码注释/删除掉即可
+% 2. 路径/文件名含中文或空格：更改路径/文件名即可
+
+% --------------------- 文章宏包及相关设置 --------------------- %
+% >> ------------------ 文章宏包及相关设置 ------------------ << %
+% 设定文章类型与编码格式
+\documentclass[UTF8]{report}		
+\usepackage{media9}
+%\usepackage{multimedia}
+% 本文特殊宏包
+\usepackage{siunitx} % 埃米单位
+
+% 本文特殊宏定义
+\def\Re{\mathrm{\,Re}\,}
+\def\Im{\mathrm{\,Im}\,}
+\def\sinc{\mathrm{\,sinc}\,}
+\def\Jc{\mathrm{\,Jc}}
+
+% 自定义宏定义
+\def\N{\mathbb{N}}
+\def\F{\mathbb{F}}
+\def\Z{\mathbb{Z}}
+\def\Q{\mathbb{Q}}
+\def\R{\mathbb{R}}
+\def\C{\mathbb{C}}
+\def\T{\mathbb{T}}
+\def\S{\mathbb{S}}
+\def\A{\mathbb{A}}
+\def\I{\mathscr{I}}
+\def\Arg{\mathrm{\,Arg\,}}
+\def\d{\mathrm{d}}
+\def\p{\partial}
+
+
+% 导入基本宏包
+\usepackage[UTF8]{ctex}     % 设置文档为中文语言
+\usepackage{hyperref}  % 宏包：自动生成超链接 (此宏包与标题中的数学环境冲突)
+\hypersetup{
+    colorlinks=true,    % false:边框链接 ; true:彩色链接
+    citecolor={blue},    % 文献引用颜色
+    linkcolor={blue},   % 目录 (我们在目录处单独设置)，公式，图表，脚注等内部链接颜色
+    urlcolor={magenta},    % 网页 URL 链接颜色，包括 \href 中的 text
+    % magenta 洋红色
+    % cyan 浅蓝色 
+    % magenta 洋红色
+    % yellow 黄色
+    % black 黑色
+    % white 白色
+    % red 红色
+    % green 绿色
+    % blue 蓝色
+    % gray 灰色
+    % darkgray 深灰色
+    % lightgray 浅灰色
+    % brown 棕色
+    % lime 石灰色
+    % olive 橄榄色
+    % orange 橙色
+    % pink 粉红色
+    % purple 紫色
+    % teal 蓝绿色
+    % violet 紫罗兰色
+}
+
+% \usepackage{docmute}    % 宏包：子文件导入时自动去除导言区，用于主/子文件的写作方式，\include{./51单片机笔记}即可。注：启用此宏包会导致.tex文件capacity受限。
+\usepackage{amsmath}    % 宏包：数学公式
+\usepackage{mathrsfs}   % 宏包：提供更多数学符号
+\usepackage{amssymb}    % 宏包：提供更多数学符号
+\usepackage{pifont}     % 宏包：提供了特殊符号和字体
+\usepackage{extarrows}  % 宏包：更多箭头符号
+\usepackage{multicol}   % 宏包：支持多栏 
+
+
+% 文章页面margin设置
+\usepackage[a4paper]{geometry}
+    \geometry{top=1in}  % 1 inch= 2.46 cm, 0.75 inch = 1.85 cm
+    \geometry{bottom=1in}
+    \geometry{left=0.75in}
+    \geometry{right=0.75in}   % 设置上下左右页边距
+    \geometry{marginparwidth=1.75cm}    % 设置边注距离（注释、标记等）
+
+% 配置数学环境
+\usepackage{amsthm} % 宏包：数学环境配置
+% theorem-line 环境自定义
+    \newtheoremstyle{MyLineTheoremStyle}% <name>
+        {11pt}% <space above>
+        {11pt}% <space below>
+        {\kaishu}% <body font> 使用默认正文字体
+        {}% <indent amount>
+        {\bfseries}% <theorem head font> 设置标题项为加粗
+        {：}% <punctuation after theorem head>
+        {.5em}% <space after theorem head>
+        {\textbf{#1}\thmnumber{#2}\ \ (\,\textbf{#3}\,)}% 设置标题内容顺序
+    \theoremstyle{MyLineTheoremStyle} % 应用自定义的定理样式
+    \newtheorem{LineTheorem}{Theorem.\,}
+% theorem-block 环境自定义
+    \newtheoremstyle{MyBlockTheoremStyle}% <name>
+        {11pt}% <space above>
+        {11pt}% <space below>
+        {\kaishu}% <body font> 使用默认正文字体
+        {}% <indent amount>
+        {\bfseries}% <theorem head font> 设置标题项为加粗
+        {：\\ \indent}% <punctuation after theorem head>
+        {.5em}% <space after theorem head>
+        {\textbf{#1}\thmnumber{#2}\ \ (\,\textbf{#3}\,)}% 设置标题内容顺序
+    \theoremstyle{MyBlockTheoremStyle} % 应用自定义的定理样式
+    \newtheorem{BlockTheorem}[LineTheorem]{Theorem.\,} % 使用 LineTheorem 的计数器
+% definition 环境自定义
+    \newtheoremstyle{MySubsubsectionStyle}% <name>
+        {11pt}% <space above>
+        {11pt}% <space below>
+        {}% <body font> 使用默认正文字体
+        {}% <indent amount>
+        {\bfseries}% <theorem head font> 设置标题项为加粗
+        {：\\ \indent}% <punctuation after theorem head>
+        {0pt}% <space after theorem head>
+        {\textbf{#3}}% 设置标题内容顺序
+    \theoremstyle{MySubsubsectionStyle} % 应用自定义的定理样式
+    \newtheorem{definition}{}
+
+%宏包：有色文本框（proof环境）及其设置
+\usepackage[dvipsnames,svgnames]{xcolor}    %设置插入的文本框颜色
+\usepackage[strict]{changepage}     % 提供一个 adjustwidth 环境
+\usepackage{framed}     % 实现方框效果
+    \definecolor{graybox_color}{rgb}{0.95,0.95,0.96} % 文本框颜色。修改此行中的 rgb 数值即可改变方框纹颜色，具体颜色的rgb数值可以在网站https://colordrop.io/ 中获得。（截止目前的尝试还没有成功过，感觉单位不一样）（找到喜欢的颜色，点击下方的小眼睛，找到rgb值，复制修改即可）
+    \newenvironment{graybox}{%
+    \def\FrameCommand{%
+    \hspace{1pt}%
+    {\color{gray}\small \vrule width 2pt}%
+    {\color{graybox_color}\vrule width 4pt}%
+    \colorbox{graybox_color}%
+    }%
+    \MakeFramed{\advance\hsize-\width\FrameRestore}%
+    \noindent\hspace{-4.55pt}% disable indenting first paragraph
+    \begin{adjustwidth}{}{7pt}%
+    \vspace{2pt}\vspace{2pt}%
+    }
+    {%
+    \vspace{2pt}\end{adjustwidth}\endMakeFramed%
+    }
+
+% 外源代码插入设置
+% matlab 代码插入设置
+\usepackage{matlab-prettifier}
+    \lstset{style=Matlab-editor}    % 继承 matlab 代码高亮 , 此行不能删去
+\usepackage[most]{tcolorbox} % 引入tcolorbox包 
+\usepackage{listings} % 引入listings包
+    \tcbuselibrary{listings, skins, breakable}
+    \newfontfamily\codefont{Consolas} % 定义需要的 codefont 字体
+    \lstdefinestyle{MatlabStyle_inc}{   % 插入代码的样式
+        language=Matlab,
+        basicstyle=\small\ttfamily\codefont,    % ttfamily 确保等宽 
+        breakatwhitespace=false,
+        breaklines=true,
+        captionpos=b,
+        keepspaces=true,
+        numbers=left,
+        numbersep=15pt,
+        showspaces=false,
+        showstringspaces=false,
+        showtabs=false,
+        tabsize=2,
+        xleftmargin=15pt,   % 左边距
+        %frame=single, % single 为包围式单线框
+        frame=shadowbox,    % shadowbox 为带阴影包围式单线框效果
+        %escapeinside=``,   % 允许在代码块中使用 LaTeX 命令 (此行无用)
+        %frameround=tttt,    % tttt 表示四个角都是圆角
+        framextopmargin=0pt,    % 边框上边距
+        framexbottommargin=0pt, % 边框下边距
+        framexleftmargin=5pt,   % 边框左边距
+        framexrightmargin=5pt,  % 边框右边距
+        rulesepcolor=\color{red!20!green!20!blue!20}, % 阴影框颜色设置
+        %backgroundcolor=\color{blue!10}, % 背景颜色
+    }
+    \lstdefinestyle{MatlabStyle_src}{   % 插入代码的样式
+        language=Matlab,
+        basicstyle=\small\ttfamily\codefont,    % ttfamily 确保等宽 
+        breakatwhitespace=false,
+        breaklines=true,
+        captionpos=b,
+        keepspaces=true,
+        numbers=left,
+        numbersep=15pt,
+        showspaces=false,
+        showstringspaces=false,
+        showtabs=false,
+        tabsize=2,
+    }
+    \newtcblisting{matlablisting}{
+        %arc=2pt,        % 圆角半径
+        % 调整代码在 listing 中的位置以和引入文件时的格式相同
+        top=0pt,
+        bottom=0pt,
+        left=-5pt,
+        right=-5pt,
+        listing only,   % 此句不能删去
+        listing style=MatlabStyle_src,
+        breakable,
+        colback=white,   % 选一个合适的颜色
+        colframe=black!0,   % 感叹号后跟不透明度 (为 0 时完全透明)
+    }
+    \lstset{
+        style=MatlabStyle_inc,
+    }
+
+% table 支持
+\usepackage{booktabs}   % 宏包：三线表
+\usepackage{tabularray} % 宏包：表格排版
+\usepackage{longtable}  % 宏包：长表格
+\usepackage{diagbox}    % 宏包：表头斜线
+
+% figure 设置
+\usepackage{graphicx}  % 支持 jpg, png, eps, pdf 图片 
+\usepackage{svg}       % 支持 svg 图片
+    \svgsetup{
+        % 指向 inkscape.exe 的路径
+        %inkscapeexe = C:/aa_MySame/inkscape/bin/inkscape.exe, 
+        inkscapeexe = C:/aa_MySame/inkscape/bin/inkscape.exe,  
+        % 一定程度上修复导入后图片文字溢出几何图形的问题
+        inkscapelatex = false                 
+    }
+
+% 图表进阶设置
+\usepackage{caption}    % 图注、表注
+    \captionsetup[figure]{name=图}  
+    \captionsetup[table]{name=表}
+    \captionsetup{
+        labelfont=bf, % 设置标签为粗体
+        textfont=bf,  % 设置文本为粗体
+        font=small  
+    }
+\usepackage{float}     % 图表位置浮动设置 
+\usepackage{subcaption} % subfigure 子图支持
+\usepackage{etoolbox} % 用于保证图注表注的数学字符为粗体
+    \AtBeginEnvironment{figure}{\boldmath} % 图注中的数学字符为粗体
+    \AtBeginEnvironment{table}{\boldmath}  % 表注中的数学字符为粗体
+    \AtBeginEnvironment{tabular}{\unboldmath}   % 保证表格中的数学字符不受额外影响
+
+% 圆圈序号自定义
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{\node[shape=circle,draw,inner sep=0.8pt, line width = 0.03em] (char) {\small \bfseries #1};}}   % TikZ solution
+
+% 列表设置
+\usepackage{enumitem}   % 宏包：列表环境设置
+    \setlist[enumerate]{
+        label=(\arabic*) ,   % 设置序号样式为 (1) (2) (3)
+        ref=\arabic*, % 如果需要引用列表项，这将决定引用格式（这里仍然使用数字）
+        itemsep=0pt, parsep=0pt, topsep=0pt, partopsep=0pt, leftmargin=3.5em} 
+    \setlist[itemize]{itemsep=0pt, parsep=0pt, topsep=0pt, partopsep=0pt, leftmargin=3.5em}
+    \newlist{circledenum}{enumerate}{1} % 创建一个新的枚举环境  
+    \setlist[circledenum,1]{  
+        label=\protect\circled{\arabic*}, % 使用 \arabic* 来获取当前枚举计数器的值，并用 \circled 包装它  
+        ref=\arabic*, % 如果需要引用列表项，这将决定引用格式（这里仍然使用数字）
+        itemsep=0pt, parsep=0pt, topsep=0pt, partopsep=0pt, leftmargin=3.5em
+    }  
+
+% 其它设置
+% 脚注设置
+    \usepackage[perpage]{footmisc} % 每页脚注重新计数
+    \renewcommand\thefootnote{\ding{\numexpr171+\value{footnote}}}
+% 参考文献引用设置
+    \bibliographystyle{unsrt}   % 设置参考文献引用格式为unsrt
+    \newcommand{\upcite}[1]{\textsuperscript{\cite{#1}}}     % 自定义上角标式引用
+% 文章序言设置
+    \newcommand{\cnabstractname}{序言}
+    \newenvironment{cnabstract}{%
+        \par\Large
+        \noindent\mbox{}\hfill{\bfseries \cnabstractname}\hfill\mbox{}\par
+        \vskip 2.5ex
+        }{\par\vskip 2.5ex}
+
+% 文章默认字体设置
+\usepackage{fontspec}   % 宏包：字体设置
+    \setmainfont{SimSun}    % 设置中文字体为宋体字体
+    \setCJKmainfont[AutoFakeBold=3]{SimSun} % 设置加粗字体为 SimSun 族，AutoFakeBold 可以调整字体粗细
+    \setmainfont{Times New Roman} % 设置英文字体为 Times New Roman
+
+% 各级标题自定义设置
+\usepackage{titlesec}   
+    % chapter 标题自定义设置
+    \titleformat{\chapter}[hang]{\normalfont\huge\bfseries\centering}{第\,\thechapter\,章}{20pt}{}
+    \titlespacing*{\chapter}{0pt}{-20pt}{20pt} % 控制上方空白的大小
+    % section 标题自定义设置 
+    \titleformat{\section}[hang]{\normalfont\Large\bfseries}{§\,\thesection\,}{8pt}{}
+% subsubsection 标题自定义设置
+%\titleformat{\subsubsection}[hang]{\normalfont\bfseries}{}{8pt}{}
+
+% --------------------- 文章宏包及相关设置 --------------------- %
+% >> ------------------ 文章宏包及相关设置 ------------------ << %
+
+% ------------------------ 文章信息区 ------------------------ %
+% ------------------------ 文章信息区 ------------------------ %
+% 页眉页脚设置
+\usepackage{fancyhdr}   %宏包：页眉页脚设置
+    \pagestyle{fancy}
+    \fancyhf{}
+    \cfoot{\thepage}
+    \renewcommand\headrulewidth{1pt}
+    \renewcommand\footrulewidth{0pt}
+    \usepackage{fontawesome}    % 宏包：更多符号与图标 (用于插入 GitHub 图标等)
+    \lhead{\small
+    \href{https://github.com/YiDingg/LatexNotes}{\color{black}\faGithub\ https://github.com/YiDingg/LatexNotes}
+    } 
+    \chead{Optics Notes}    
+    \rhead{\small dingyi233@mails.ucas.ac.cn}
+%文档信息设置
+\title{光学笔记\\Optics Notes}
+\author{丁毅\\ \footnotesize 中国科学院大学，北京 100049\\ Yi Ding \\ \footnotesize University of Chinese Academy of Sciences, Beijing 100049, China}
+\date{\footnotesize 2024.8 -- 2025.1}
+% ------------------------ 文章信息区 ------------------------ %
+% ------------------------ 文章信息区 ------------------------ %
+
+% 开始编辑文章
+
+\begin{document} 
+\zihao{5}             % 设置全文字号大小, -4 为小四, 5 为五号
+
+% ------------------------ 封面序言与目录 ------------------------ %
+% >> --------------------- 封面序言与目录 --------------------- << %
+% 封面
+\maketitle\newpage  
+\pagenumbering{Roman} % 页码为大写罗马数字
+\thispagestyle{fancy}   % 显示页码、页眉等
+
+% 目录
+\setcounter{tocdepth}{2}                % 目录深度（chapter 下 为 1 时显示到section）
+\tableofcontents                        % 目录页
+\addcontentsline{toc}{chapter}{目录}    % 手动添加此页为目录
+\thispagestyle{fancy}                   % 显示页码、页眉等 
+
+% 收尾工作
+\newpage    
+\pagenumbering{arabic} 
+
+% >> --------------------- 封面序言与目录 --------------------- << %
+% ------------------------ 封面序言与目录 ------------------------ %
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 下面是应直接复制到总文件的内容 %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{偏振}\thispagestyle{fancy}
+在这一章，我们将要讨论光会以什么样的状态（即偏振态）进行传播、合成，如何观察、产生和改变光的偏振态，以及如何利用它。相比于干涉和衍射两章，本章内容较为简短，因为许多介绍性的东西都没有放在这里（抄教材不符合我们的初衷），读者若感兴趣，可阅读文献 \cite{Optics} 的 Page 425-497。
+
+\section{偏振光的性质}
+偏振光可粗略地分为自然光（非偏振光），部分偏振光，（椭）圆偏振和线偏振。其中，线偏振态又记为 $\mathscr{P}$ 态，左圆和右圆分别记为 $\mathscr{L}$ 和 $\mathscr{R}$ 态。
+\subsection{椭圆偏振光}
+由于 $\boldsymbol{E}$ 的矢量性，所有偏振光的电矢量 $\boldsymbol{E}$ 都可以分解为两个互相垂直（正交）的光扰动：
+\begin{equation}
+\boldsymbol{E_x} =  E_{0x} \cos(kz - \omega t) \cdot \hat{i},\quad \boldsymbol{E_y} =  E_{0y} \cos(kz - \omega t + \varepsilon) \cdot \hat{j}
+\end{equation}
+其中 $\hat{i}$ 和 $\hat{j}$ 表示分解的方向，$E_{0x}$ 和 $E_{0y}$ 是分量的振幅（可能是时间的函数），$\varepsilon$ 为相位差（可能是时间的函数）。对于 $E_{0x}$、$E_{0y}$ 和 $\varepsilon$ 都为常量的情况，合成的光多为椭圆偏振光：
+\begin{gather}
+    E_y = E_{0y} \cos(kz - \omega t + \varepsilon) \Longrightarrow 
+    \frac{E_y}{E_{0y}} = 
+    \left[\cos(kz - \omega t) \cos \varepsilon - \sin(kz - \omega t) \sin \varepsilon\right] 
+\end{gather}
+由 $\sin^2 (kz - \omega t) = 1 - \cos^2 (kz - \omega t) = 1 - \frac{E_x^2}{E_{0x}^2}$，可以得到：
+\begin{gather}
+\left( \frac{E_y}{E_{0y}} -  \cos \varepsilon\frac{E_x}{E_{0x}} \right)^2 = \sin^2 \varepsilon \left( 1 - \frac{E_x^2}{E_{0x}^2} \right) \\ 
+\Longrightarrow 
+\frac{E_x^2}{E_{0x}^2} + \frac{E_y^2}{E_{0y}^2} - 2 \frac{E_xE_y}{E_{0x}E_{0y}} \cos \varepsilon = \sin^2 \varepsilon \\ 
+\Longleftrightarrow \frac{E_x^2}{(E_{0x} \sin \varepsilon)^2} + \frac{E_y^2}{(E_{0y} \sin \varepsilon)^2} - 2 \frac{E_xE_y}{(E_{0x} \sin \varepsilon )(E_{0y} \sin \varepsilon)} = 1
+\end{gather}
+由高中的知识可知，当 $\varepsilon \ne k \pi,\  k \in \Z$ 时，这是一个椭圆（或圆）方程，因为 $\Delta = B^2 - 4AC = 4 \cos^2 \varepsilon - 4 < 0$。这样的的偏振光称为椭圆偏振光。
+
+椭圆偏振光也分左旋和右旋，这是因为从观察点向光源看去时（光指向“眼睛”），若 $\varepsilon \in (0, \pi)$，我们“看到”的由 $E_x$ 和 $E_y$ 合成后的 $\boldsymbol{E}$ 在逆时针旋转（左旋）。一个典型的例子是 $\varepsilon = \frac{\pi}{2}$ 时，也即 $E_x$ “领先” $E_y$ 相位 $\frac{\pi}{2}$ :
+\begin{gather}
+\boldsymbol{E_x} = E_{0x} \cos (kz - \omega t) = E_{0x} \cos (\omega t - kz) \cdot \hat{i},\quad \\ 
+\boldsymbol{E_y} = E_{0y} \cos (kz - \omega t + \frac{\pi}{2}) 
+= E_{0y} \sin (\omega t - kz) \cdot \hat{j}
+\end{gather}
+由椭圆的参数方程知道，$\boldsymbol{E} = \boldsymbol{E_x} + \boldsymbol{E_y}$ 的极角 $\theta = (\omega t - kz)$ 随时间 $t$ 增大，$\boldsymbol{E}$ 逆时针旋转，称为左圆光。相反，当 $\varepsilon \in (\pi, 2\pi)$ 时（也可以说是 $(-\pi, 0)$），$\boldsymbol{E}$ 顺时针旋转（右旋），称为右圆光。
+
+随着 $\varepsilon$ 不同，$\boldsymbol{E}$ 的形状和方向也不同，但总的来讲，椭圆主轴夹角满足：
+\begin{gather}
+\tan \left(2 \alpha\right) = 2 \cos \varepsilon \cdot \frac{E_{0x}E_{0y}}{E_{0x}^2 - E_{0y}^2} \\ 
+\Longrightarrow \alpha = \frac{1}{2} \arctan \left(2 \cos \varepsilon \cdot \frac{E_{0x}E_{0y}}{E_{0x}^2 - E_{0y}^2}\right)
+\end{gather}
+主轴，是指长轴，也即 $2E_{0x}$ 和 $2E_{0y}$ 中更长的轴{\color{red} 与对应的 $x$ 或 $y$ 轴夹角}。举个例子，当 $E_{0x} > E_{0y}$ 时，$x$ 为主轴（长轴），$\alpha$ 为长轴与 $x$ 轴的夹角，此时 $\alpha$ 随 $\varepsilon$ 的变化如图 \ref{fig:alpha} (a) 所示；当 $E_{0x} < E_{0y}$ 时，情况则相反，$\alpha$ 是长轴与 $y$ 轴的夹角，如图 \ref{fig:alpha} (b) 所示。
+
+从图中可以看出，随着 $\varepsilon$ 不断变化，椭圆会在主轴附近“摆动”，而不是转动。
+\begin{figure}[H]\centering
+\begin{subfigure}[b]{0.5\columnwidth}\centering
+    \includegraphics[height=175pt]{assets/5/5.1 长轴为 x.pdf}
+    \caption{$E_{0x} > E_{0y}$ 时 $x$ 为主轴}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{0.5\columnwidth}\centering
+    \includegraphics[height=175pt]{assets/5/5.1 长轴为 y.pdf}
+    \caption{$E_{0x} < E_{0y}$ 时 $y$ 为主轴}
+\end{subfigure}
+\caption{$\alpha$ 随 $\varepsilon$ 的变化情况}
+\label{fig:alpha}
+\end{figure}
+\begin{figure}[H]\centering
+    \includegraphics[width=0.9\columnwidth]{assets/5/5.1 主轴为 y.png}
+    \caption{主轴为 $y$ 时椭圆的“摆动”情况}
+\end{figure}
+特别地，我们指出，若 $x$ 为主轴（$E_{0x} > E_{0y}$），则 $\alpha$ 一定在 $(-45^\circ, 45^\circ)$ 之间，这表明椭圆的长轴更“贴近” $x$ 轴，$y$ 的情况也同理。另外，当 $E_{0x} = E_{0y}$ 时，椭圆退化为圆，不存在 $\alpha$ 的概念，但左旋和右旋仍然存在。
+
+\subsection{线偏振光}
+当 $\varepsilon = k \pi,\  k \in \Z$ 时，方程退化为：
+\begin{equation}
+\left( \frac{E_x}{E_{0x}} \pm \frac{E_y}{E_{0y}} \right)^2 = 0 \Longleftrightarrow \frac{E_x}{E_{0x}} \pm \frac{E_y}{E_{0y}} = 0
+\end{equation}
+这是一个直线方程，表示线偏振光。
+
+\subsection{自然光}
+特别地，对于自然光，我们可以用两个振幅相等、非相干（即相位差 $\varepsilon$ 迅速且无规变化）、正交的线偏振光的合成来表示自然光，这是数学上是一种非常方便的处理。
+
+\section{偏振光的数学表示}
+
+偏振光的状态可以用向量来描述，常见的有斯托克斯（四维）参量和琼斯矢量（二维）。前者可以描述所有偏振光（包括完全和不完全）和非偏振光，但参数较多，后者仅可以描述偏振光，但较为简洁。相应地，偏振光器件对偏振光的作用可以用矩阵来表示，分别对应穆勒矩阵（四维）和琼斯矩阵（二维）。
+
+\subsection{斯托克斯参量}
+设想有四个滤波片，它们都只能透过一半（强度）的入射光。第一个是简单各向同性地，允许各个方向的偏振通过；第二个是（通光轴）水平的线偏振器，第三个是（通光轴）$45^\circ$ 的线偏振器；最后一个是右圆起偏器（对 $\mathscr{L}$ 不透明）。
+
+把每个滤光片分别放在要研究的光束的光路上，也即光路上每次只有一个偏振器，测量到的辐照度分别记为 $I_0, I_1, I_2, I_3$，则斯托克斯参量的定义为：
+\begin{gather}
+\delta_0 = 2I_0,\quad 
+\begin{cases}
+    \delta_1 = 2I_1 - \delta_0 \\ 
+    \delta_2 = 2I_2 - \delta_0 \\ 
+    \delta_3 = 2I_3 - \delta_0 
+\end{cases}
+\end{gather}
+$\delta_1, \delta_2, \delta_3$ 直接反映了光束的偏振态。具体而言：
+\begin{enumerate}
+\item $\delta_1$ 反映光束更接近水平 $\mathscr{P}$ 态 ($\delta_1 \to \delta_0$) 还是竖直 $\mathscr{P}$ 态 ($\delta_1 \to -\delta_0$) ；
+\item $\delta_2$ 反映光束更接近 $+45^\circ$ $\mathscr{P}$ 态 ($\delta_2 \to \delta_0$) 还是 $-45^\circ$ $\mathscr{P}$ 态 ($\delta_2 \to -\delta_0$) ;
+\item $\delta_3$ 反映光束更接近右旋 ($\delta_3 \to \delta_0$) 还是左旋 ($\delta_3 \to -\delta_0$) 
+\end{enumerate}
+对于准单色光 $\boldsymbol{E}$，将其分解为 $\boldsymbol{E_x}$ 和 $\boldsymbol{E_y}$，可将斯托克斯参量进一步写为：
+\begin{equation}
+    \delta_0 = \langle E_{0x}^2 \rangle_T + \langle E_{0y}^2 \rangle_T ,\quad 
+    \delta_1 = \langle E_{0x}^2 \rangle_T - \langle E_{0y}^2 \rangle_T \\ 
+    \delta_2 = \langle 2 E_{0x}E_{0y} \cos \varepsilon \rangle_T ,\quad 
+    \delta_3 = \langle 2 E_{0x}E_{0y} \sin \varepsilon \rangle_T 
+\end{equation}
+我们在上式中略去了常数 $\frac{\varepsilon_0c}{2}$，因此这些参量现在正比于辐照度。把每个参量都除以 $\delta_0$ 以归一化常常带来很大的方便，此时 $\delta_{k} \in [-1, 1], \ k = 1, 2, 3$。
+
+描述一束光偏振程度的量，称为偏振度 $\mathbf{V}$，定义为：
+\begin{equation}
+\mathbf{V} = \frac{\sqrt{\delta_1^2 + \delta_2^2 + \delta_3^2}}{\delta_0}
+\end{equation}
+
+对两束{\color{red} 不相干}的光 $(\delta'_0, \delta'_1, \delta'_2, \delta'_3)$ 和 $(\delta''_0, \delta''_1, \delta''_2, \delta''_3)$，在斯托克斯参量下，可以直接将它们的偏振态相加，得到合成的光的偏振态为 $(\delta'_0 + \delta''_0, \delta'_1 + \delta''_1, \delta'_2 + \delta''_2, \delta'_3 + \delta''_3)$，用公式表示为：
+\begin{gather}
+\begin{bmatrix}
+    \delta'_0 \\ 
+    \delta'_1 \\
+    \delta'_2 \\
+    \delta'_3
+\end{bmatrix}
++
+\begin{bmatrix}
+    \delta''_0 \\ 
+    \delta''_1 \\
+    \delta''_2 \\
+    \delta''_3
+\end{bmatrix}
+=
+\begin{bmatrix}
+    \delta'_0 + \delta''_0 \\ 
+    \delta'_1 + \delta''_1 \\
+    \delta'_2 + \delta''_2 \\
+    \delta'_3 + \delta''_3
+\end{bmatrix}
+\end{gather}
+
+\subsection{琼斯矢量}
+
+琼斯矢量是直接用 $E_x$ 和 $E_y$ 来表示光的偏振态，它是一个二维复矢量。对一束光 $\boldsymbol{E} = E_{0x}\cos (kz - \omega t +\varphi_x) \cdot \hat{i} + E_{0y}\cos (kz - \omega t +\varphi_y) \cdot \hat{j}$，它的琼斯矢量定义为：
+\begin{equation}
+\boldsymbol{E} = 
+\begin{bmatrix}
+    E_{0x}e^{i\varphi_x} \\ 
+    E_{0y}e^{i\varphi_y}
+\end{bmatrix} = 
+E_{0x}e^{i\varphi_x}
+\begin{bmatrix}
+    1 \\ 
+    \frac{E_{0y}}{E_{0x}}e^{i\varepsilon}
+\end{bmatrix}
+\end{equation}
+实际应用中常常不需要知道具体的振幅的相位，只需要知道相对相位差 $\varepsilon = \varphi_y - \varphi_x$ 即可，因此琼斯矢量也常用归一化的方式来表达。下图列出了常见偏振态的斯托克斯和琼斯矢量表示：
+\begin{figure}[H]\centering
+    \includegraphics[width=0.95\columnwidth]{assets/5/5.1 琼斯矢量和斯托克斯参量.png}
+    \caption{常见偏振态的斯托克斯和琼斯矢量表示}
+\end{figure}
+上图的圆偏振可以轻松的扩展到椭圆，例如一个右旋椭圆的偏振态可表示为 $\boldsymbol{E} = \frac{1}{\sqrt{5}} \begin{bmatrix}
+    2 \\ 
+    -i
+\end{bmatrix} $。
+
+与斯托克斯参量类似，光偏振态的合成也可以直接在琼斯矢量下进行，即直接将两个琼斯矢量相加即可。例如相同振幅的 $\mathscr{R}$ 态和 $\mathscr{L}$ 态可以合成为水平的 $\mathscr{P}$ 态：
+\begin{equation}
+\boldsymbol{E}_{\mathscr{R}} + \boldsymbol{E}_{\mathscr{L}} =
+\frac{1}{\sqrt{2}}
+\begin{bmatrix}
+    1 \\ 
+    -i
+\end{bmatrix} 
++
+\frac{1}{\sqrt{2}}
+\begin{bmatrix}
+    1 \\ 
+    i
+\end{bmatrix} =
+\sqrt{2}
+\begin{bmatrix}
+    1 \\ 
+    0
+\end{bmatrix}
+\end{equation}
+
+特别地，当两束光的琼斯矢量相互垂直时，称两个偏振态正交。由于琼斯矢量是复矢量，因此正交不是内积而是 Hermitian 内积，即 $\langle \boldsymbol{E_1} \mid \boldsymbol{E_2} \rangle = \boldsymbol{E}_1 \cdot \boldsymbol{E}_2^*$。例如 $\mathscr{R}$ 态和 $\mathscr{L}$ 态是正交的、水平 $\mathscr{P}$ 态 (记作 $\mathscr{H}$) 和垂直 $\mathscr{P}$ 态 (记作 $\mathscr{V}$) 也是正交的：
+\begin{equation}
+\boldsymbol{E_{\mathscr{R}}} \cdot \boldsymbol{E_{\mathscr{L}}^*} =
+\left\langle \begin{bmatrix}
+    1 \\ 
+    -i
+\end{bmatrix} 
+\mid 
+\begin{bmatrix}
+    1 \\ i
+\end{bmatrix}^*
+\right\rangle
+= 1 + i^2 = 0
+,\quad 
+\boldsymbol{E_{\mathscr{H}}} \cdot \boldsymbol{E_{\mathscr{V}}^*} =
+\left\langle \begin{bmatrix}
+    1 \\ 
+    0
+\end{bmatrix}
+\mid
+\begin{bmatrix}
+    0 \\ 1
+\end{bmatrix}^*
+\right\rangle
+= 0
+\end{equation}
+由线性代数的知识知道，任何偏振态（即琼斯矢量）都可以由这样的一组正交偏振态合成得到，这也验证了我们之前对自然光“可分解为相位差迅速随机变化的两线偏振光”表述的合理性。
+
+\subsection{琼斯矩阵和穆勒矩阵}
+偏振器件对光的作用可以直接由矩阵来描述，常记作 $\mathscr{A}$ : 
+\begin{equation}
+\boldsymbol{E_t} = \mathscr{A} \boldsymbol{E_i}
+\end{equation}
+相应地，多个偏振器作用于同一光束时，设第一个通过的是 $\mathscr{A_1}$，按矩阵乘法有：
+\begin{equation}
+    \boldsymbol{E_t} = \mathscr{A}_n\mathscr{A}_{n-1}\cdots\mathscr{A}_{2}\mathscr{A}_{1} \boldsymbol{E_i}
+\end{equation}
+图 \ref{琼斯矩阵} 给出了常见偏振器的琼斯矩阵和穆勒矩阵。需要指出，我们指介绍了矩阵方法较重要的一些内容，对这个专题的完备讨论远远超出了本课程的范围。
+\begin{figure}[H]\centering
+    \includegraphics[width=0.6\columnwidth]{assets/5/5.1 琼斯矩阵和穆勒矩阵.png}
+    \caption{常见偏振器的琼斯矩阵和穆勒矩阵}
+    \label{琼斯矩阵}
+\end{figure}
+
+\section{双折射}
+
+\subsection{双折射现象}
+一些特殊的晶体是光学各向异性的，最直接的表现是双折射。双折射是指光在晶体中传播时，不同偏振态（即不同电矢量）的光有不同的折射率，因此会有不同的折射角。这种具有两个（两套）折射率的性质称为双折射。
+
+这样的晶体一般都有一个特殊方向（称为光轴），当光沿此方向入射时，无论偏振态如何，都不会发生双折射，退化到普通入射现象，称为单轴晶体。当光线的传播方向 $\boldsymbol{k}$ 确定时，与光轴垂直的分量称为 $o$ 光，平行的分量称为 $e$ 光（$o$ 和 $e$ 正交）。对于单轴晶体，$o$ 光和 $e$ 光的折射率是不同的，准确的说，$o$ 光的折射率是一个常数，而 $e$ 光的折射率是与光轴夹角 $\theta$ 的函数（在光轴方向上 $n_e(\theta) = n_o$）。由不同方向上折射率大小构成的曲面是一个椭球面，称为折射率椭球。$n_{e0} < n_o$的单轴晶体称为负晶体（等价于 $v_o < v_e$），$n_{e0} > n_o$（$v_o > v_e$）的称为正晶体。
+
+以光轴为 $z$ 轴，则单轴晶体的折射率椭球可写为：
+\begin{equation}
+\frac{x^2 + y^2}{n_o^2} + \frac{z^2}{n_e^2} = 1
+\end{equation}
+
+为了研究较一般的情况，我们先给出主截面和入射面的概念：
+\begin{enumerate}
+\item 主截面：介质表面法线与光轴共同构成的平面；
+\item 入射面：介质表面法线与入射光线构成的平面。
+\end{enumerate}
+当入射面和主截面重合时（入射光线在主截面）内，折射的 $o$ 光和 $e$ 光都在主截面内，可由惠更斯原理推出 $o$ 光和 $e$ 光各自的折射方向，如下图所示：
+\begin{figure}[H]\centering
+    \includegraphics[width=0.75\columnwidth]{assets/5/5.4 惠更斯作图法.png}
+    \caption{用惠更斯作图法求折射线}
+\end{figure}
+下面讨论几种特殊的情况：
+\begin{enumerate}
+\item 光轴垂直于表面，光线正入射（图 \ref{fig:oe} (a)）：$n_o = n_e(\theta)$，没有发生双折射。
+\item 光轴平行于表面，光线正入射（图 \ref{fig:oe} (b)）：$n_o \ne n_e(\theta)$，尽管两光方向相同，但波速不同（这会引起相位差，将在后文提到），发生了双折射。
+\item 光轴垂直于入射面，光线斜入射（图 \ref{fig:oe} (c)）：$n_o \ne n_e(\theta)$，两光方向和波速都不同。
+\end{enumerate}
+\begin{figure}[H]\centering
+\begin{subfigure}[b]{0.39\columnwidth}\centering
+    \includegraphics[height=100pt]{assets/5/光轴垂直于界面.png}
+    \caption{光轴垂直于介质表面}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{0.34\columnwidth}\centering
+    \includegraphics[height=100pt]{assets/5/光轴平行于界面.png}
+    \caption{光轴平行于介质表面}
+\end{subfigure}
+\begin{subfigure}[b]{0.26\columnwidth}\centering
+    \includegraphics[height=100pt]{assets/5/光轴垂直于入射面.png}
+    \caption{光轴垂直于入射面}
+\end{subfigure}
+\caption{不同情形下 $o$ 光与 $e$ 光的行为}
+\label{fig:oe}
+\end{figure}
+
+
+
+设 $\theta$ 是折射 $o$ 光与光轴的夹角，$\xi$ 是折射 $e$ 光与光轴的夹角，则有法向折射率 $n_N$ : 
+\begin{gather}
+    \cot \xi = \frac{n_e^2}{n_o^2} \cot \theta,\quad  n_N = n_N(\theta) = \sqrt{ \frac{n_o^2n_e^2}{n_o^2\sin^2 \theta + n_e^2\cos^2 \theta} }
+\end{gather}
+由上面两个公式可以分别确定法向折射率 $n$ 和 $\xi$，而 $\xi$ 又可以确定 $e$ 光的折射方向。需要注意，上式中的 $n_N$ 是法向折射率，如图 \ref{fig: e光} (d)，对于正入射，$o$ 光和 $e$ 光的光程差是 $\Delta L =  n_N(\theta)d - n_od$，而不是 $n_N(\theta) \frac{d}{\cos \alpha} - n_od$。后一种应该用射线折射率 $n_r = n_r(\xi)$。
+
+\begin{figure}[H]\centering
+\begin{subfigure}[b]{0.2\columnwidth}\centering
+    \includegraphics[height=120pt]{assets/5/5.4 1.png}
+    \caption{法向速度 $v_N$ 与射线速度 $v_r$}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{0.22\columnwidth}\centering
+    \includegraphics[height=120pt]{assets/5/5.4 2.png}
+    \caption{$e$ 光的射线面与法向面}
+\end{subfigure}
+\begin{subfigure}[b]{0.25\columnwidth}\centering
+    \includegraphics[height=120pt]{assets/5/5.4 3.png}
+    \caption{$v_r$ 夹角 $\xi$ 与 $v_N$ 夹角 $\theta$ 的关系}
+\end{subfigure}
+\begin{subfigure}[b]{0.32\columnwidth}\centering
+    \includegraphics[height=120pt]{assets/5/5.4 4.png}
+    \caption{光线正入射时的相位差}
+\end{subfigure}
+\caption{$e$ 光折射方向与光程差}
+\label{fig: e光}
+\end{figure}
+为了继承原有的惯性思维（沿光线传播方向上的折射率），我们推荐使用 $n_r$ 而不是 $n_N$，如下：
+\begin{equation}
+    \cot \xi = \frac{n_e^2}{n_o^2} \cot \theta,\quad n_r = n_r(\theta) = {\color{red} \cos \alpha}\sqrt{ \frac{n_o^2n_e^2}{n_o^2\sin^2 \theta + n_e^2\cos^2 \theta} } = 
+    {\color{red} \cos (\xi - \theta)}\sqrt{ \frac{n_o^2n_e^2}{n_o^2\sin^2 \theta + n_e^2\cos^2 \theta} } 
+\end{equation}
+此时图 \ref{fig: e光} (d) 中的光程差便是直觉上的 $\Delta L = n_r\frac{d}{\cos \alpha} - n_od$。\footnote{这一节如果不好理解，可以到网址 \href{https://www.bilibili.com/video/BV1VDpUeCEvv}{here} 观看视频的 11:00 - 12:00 部分，在动画的帮助下很快能懂。}
+
+
+\subsection{相位延迟片}
+再回来思考图 \ref{fig:oe} (b) 中发生的情况：$e$ 光和 $o$ 光方向都不变，但是它们的光程却不同，相位延迟片便是这样构成的。$o$ 光相对于 $e$ 光的相位增量是：
+\begin{equation}
+\Delta \phi_o = \phi_o - \phi_e = (n_o - n_e)d
+\end{equation}
+这样便可以用先前的 $\varepsilon$ 来判断相位延迟片（又称波晶片）对偏振态的影响。最常用的波晶片是四分之一波片（简称 $\frac{\lambda}{4}$ 片），对应 $\Delta \phi_o = \frac{\pi}{2}$。
+
+不能混淆的是，一些教材喜欢用“落后”或“领先”来表达这样的相位关系，尽管我们不提倡，但还是要指明，在$(kz - \omega t)$ 的情形中，相位增加 $\Delta \phi_o$（即 $(kz - \omega t + \Delta \phi_o)$）意味着延迟（落后）。
+
+现在我们把各种光经过四分之一波片后偏振态的变化做一个总结，如下图所示：
+\begin{figure}[H]\centering
+    \includegraphics[width=0.7\columnwidth]{assets/5/5.5 四分之一波片.png}
+    \caption{偏振光经过四分之一波片后偏振态的变化}
+\end{figure}
+
+\subsection{偏振光的检验}
+检验入射光到底是哪种偏振态，只需要一个偏振片和一个四分之一波片，具体方法如下图所示：
+\begin{figure}[H]\centering
+    \includegraphics[width=0.7\columnwidth]{assets/5/5.3 偏振光检验.png}
+    \caption{偏振光的检验}
+\end{figure}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 上面是应直接复制到总文件的内容 %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}
+
+
+
+% VScode 常用快捷键：
+
+% F2:                       变量重命名
+% Ctrl + Enter:             行中换行
+% Alt + up/down:            上下移行
+% 鼠标中键 + 移动:           快速多光标
+% Shift + Alt + up/down:    上下复制
+% Ctrl + left/right:        左右跳单词
+% Ctrl + Backspace/Delete:  左右删�

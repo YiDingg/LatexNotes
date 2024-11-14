@@ -1622,57 +1622,190 @@ f(z) e^{ipz} \ \mathrm{d} z = 0
 
 \subsection{计算无穷级数的和（略）}
 
-\chapter{}\thispagestyle{fancy}
+\chapter{积分变换}\thispagestyle{fancy}
 
-\section{拉普拉斯变换}
-
-Laplace Transform 是一种积分变换，它把定义在正实轴 $(0, +\infty)$ 上的函数 $f(t)$ 变换到复平面上的函数 $F(z)$，定义为：
-\begin{equation}
-    F(z) = \mathscr{L}\left\{ f(t), z \right\} = \int_{0}^{+\infty} f(t)e^{-zt} \ \mathrm{d}t,\quad \forall\ z \in \C
-\end{equation}
-上式的 $e^{-zt}$ 称为 Laplace 变换的核，$f$ 称为原函数而 $F$ 称为相函数，通常把拉氏变换及其逆变换简写为：
-\begin{equation}
-    F(z) = \mathscr{L}\left\{ f(t), z \right\} ,\quad f(t) = \mathscr{L}^{-1}\left\{ F(z), t \right\}
-\end{equation} 
-另外，在本书中约定，当 $f(t)$ 在 $t < 0$ 使应理解为 $f(t) \equiv 0$，也即将 $f(t)$ 看作 $\eta(t) f(t)$，其中 $\eta(t)$ 是 Heaviside 单位阶跃函数。相应地，$f(t - t_0)$ 则理解为 $\eta(t - t_0) f(t - t_0)$。
-
-Laplace 变换具有一些性质，如下：
-\begin{gather}
-\mathscr{L}\left\{ f(t - t_0), z \right\} = e^{-zt_0} \mathscr{L}\left\{ f(t), z \right\} \\ 
-\mathscr{L}\left\{ f(at), z \right\} = \frac{1}{a} \mathscr{L}\left\{ f(t), \frac{z}{a} \right\},\quad a > 0 \\
-\mathscr{L}\left\{ f(t), z - z_0 \right\} = \mathscr{L}\left\{ e^{z_0 t} f(t), z \right\} \\
-\end{gather}
-
-需要注意，$f(t)$ 的 Laplace 变化并非对所有 $z$ 都收敛（存在），一个例子是 $ \mathscr{L}\left\{ 1, z \right\} = \int_{0}^{+\infty} e^{-zt} \ \mathrm{d}t = - \frac{1}{z} e^{-zt}\mid_0^{+\infty} = \frac{1}{p},\quad \forall\ \Re z > 0$ 仅在右半平面收敛。
 
 \section{傅里叶变换}
 
-Fourier Transform 把定义在时间域的函数 $f(t)$ 变换到频域，定义为：
-\begin{BlockTheorem}[傅里叶变换]\label{傅里叶变换}
-    设 $f(x)$ 是 $(-\infty, +\infty)$ 上的函数，如果在任意区间上其仅有有限个极值和有限个第一类间断点，且积分 $\int_{min}^{max} f(x) \ \mathrm{d}x$ 绝对收敛，则 $f(x)$ 的傅里叶变换存在，定义为：
+\subsection{定义及性质}
+\begin{BlockTheorem}[Fourier Transformation]\label{Fourier Transformation}
+    Fourier Transformation 把定义在时间域的函数 $f(t)$ 变换到频域，定义为：设 $f(t)$ 是 $(-\infty, +\infty)$ 上的函数，如果在任意区间上其仅有有限个极值和有限个第一类间断点，且积分 $\int_{\infty}^{+\infty} f(t) \ \mathrm{d}t$ 绝对收敛，则 $f(t)$ 的傅里叶变换存在，定义为：
     \begin{equation}
-        F = F(\omega) = \mathscr{F}\left\{ f(x), \omega \right\} = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{+\infty} f(x)e^{-i\omega x} \ \mathrm{d}x,\quad \forall\ \omega \in \R
+        F = F(\omega) = \mathscr{F}\left\{ f(t), \omega \right\} = \int_{-\infty}^{+\infty} e^{-i\omega t}f(t) \ \mathrm{d}t,\quad \forall\ \omega \in \R
     \end{equation}
     而逆变换（反演）是：
 \begin{equation}
-    f(x) = \mathscr{F}^{-1}\left\{ F(\omega), x \right\} = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{+\infty} F(\omega)e^{i\omega x} \ \mathrm{d}\omega,\quad \forall\ x \in \R
+    f(t) = \mathscr{F}^{-1}\left\{ F(\omega), t \right\} = \frac{1}{2\pi} \int_{-\infty}^{+\infty} e^{i\omega t}F(\omega) \ \mathrm{d}\omega,\quad \forall\ t \in \R
 \end{equation}
 一个常见的例子是，$f = f(t)$ 表示随时间变化的信号，$F = F(\omega)$ 是信号的频谱。
 \end{BlockTheorem}
 
-傅里叶变化具有一些性质，如下：
+另外，有的教材中也将傅里叶变换定义为：
 \begin{gather}
-\mathscr{F} \left\{ f'(x), \omega \right\} = i\omega F(\omega),\quad 
-\mathscr{F} \left\{ f''(x), \omega \right\} = -\omega^2 F(\omega) \\
-\mathscr{F} \left\{ f(x - x_0), \omega \right\} = e^{-i\omega x_0} F(\omega) \\
-\mathscr{F} \left\{ e^{i\omega_0 x}, \omega \right\} = 2\pi \delta(\omega - \omega_0) \\
-\mathscr{F} \left\{ \delta(x - x_0), \omega \right\} = e^{-i\omega x_0}
+    F = F(\omega) = \mathscr{F}\left\{ f(t), \omega \right\} = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{+\infty} f(t)e^{-i\omega t} \ \mathrm{d}t,\quad \forall\ \omega \in \R \\ 
+    f(t) = \mathscr{F}^{-1}\left\{ F(\omega), t \right\} = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{+\infty} F(\omega)e^{i\omega t} \ \mathrm{d}\omega,\quad \forall\ t \in \R
 \end{gather}
-以及卷积公式：
+在本书，我们采用 Theorem.\ref{Fourier Transformation} 中的定义。式中的 $F = F(\omega)$ 也常记作 $\tilde{f} = \tilde{f}(\omega)$。
+
+傅里叶变换具有一些不错的性质，如下：
+\begin{gather}
+\begin{aligned}
+&\text{线性定理：} && 
+\begin{cases}
+    \begin{aligned}
+        &\mathscr{F}\left\{ a_1f_1 + a_2f_2 \right\} = a_1\mathscr{F}\left\{ f_1 \right\} + a_2 \mathscr{F}\left\{ f_2 \right\} \\ 
+        &\mathscr{F}^{-1}\left\{ a_1f_1 + a_2f_2 \right\} = a_1\mathscr{F}^{-1}\left\{ f_1 \right\} + a_2 \mathscr{F}^{-1}\left\{ f_2 \right\}
+    \end{aligned}
+\end{cases} \\ 
+& \text{延迟定理：} && \mathscr{F}\left\{  f(t) \right\}  = \mathscr{F}\left\{ e^{i \omega {\color{red} t_0}}f(t - t_0)\right\} \\ 
+& \text{位移定理：} &&  \mathscr{F}\left\{  f, \omega \right\} = \mathscr{F}\left\{e^{-i\omega {\color{red} t}}f, \omega - \omega_0 \right\} \\ 
+& \text{相似定理：} && \mathscr{F}\left\{ f(at), \omega \right\} = \mathscr{F}\left\{ \frac{f(t)}{| a |}, \frac{\omega}{a} \right\} \\ 
+& \text{微分定理：} && \mathscr{F}\left\{ f(t), \omega \right\} = \mathscr{F}\left\{ \frac{1}{i\omega}\,f'(t), \omega\right\} \quad {\color{red} (\text{需要}\ \lim_{| x | \to \infty} f'(t) = 0) },\quad \mathscr{F}\left\{ f(t), \omega \right\} = \mathscr{F}\left\{ \frac{1}{(i\omega)^n}\,f^{(n)}(t), \omega\right\}  \\
+& \text{积分定理：} && \mathscr{F}\left\{ f(t), \omega \right\} =  \mathscr{F}\left\{ i\omega \int_{-\infty}^{t} f(\tau) \ \mathrm{d}\tau, \omega\right\} \\
+& \text{卷积定理：} && 
+\begin{cases}
+    \begin{aligned}
+        &\mathscr{F}\left\{ f_1 * f_2 \right\} = \mathscr{F}\left\{ f_1 \right\} \cdot \mathscr{F}\left\{ f_2 \right\} \\ 
+        &\mathscr{F}\left\{ f_1 \cdot f_2 \right\} = \frac{1}{2\pi}\ \mathscr{F}\left\{ f_1 \right\} * \mathscr{F}\left\{ f_2 \right\}
+    \end{aligned}
+\end{cases} \\ 
+& \text{乘积定理：} && \int_{-\infty}^{+\infty} f_1(t)f_2(t) \ \mathrm{d}t = \frac{1}{2\pi} \int_{-\infty}^{+\infty} F_1^*(\omega) * F_2(\omega) \ \mathrm{d}\omega = \frac{1}{2\pi}\int_{-\infty}^{+\infty} F_1(\omega) * F_2^*(\omega) \ \mathrm{d}\omega \\ 
+& \text{帕塞瓦尔等式：} && 
+\begin{cases}
+    \int_{-\infty}^{+\infty} \left| F(\omega) \right|^2\  \mathrm{d}\omega  = 2\pi \int_{-\infty}^{+\infty} \left| f(t) \right|^2\  \mathrm{d}t \\
+    \int_{-\infty}^{+\infty} F_1(t)F_2^*(t) \ \mathrm{d}t = \frac{1}{2\pi} \int_{-\infty}^{+\infty} f_1(\omega)f_2^*(\omega) \ \mathrm{d}\omega
+\end{cases}
+\end{aligned}
+\end{gather}
+其中，卷积运算 $*$ 定义为：
 \begin{equation}
-\mathscr{F}\left\{ f_1\right\}\cdot \mathscr{F}\left\{ f_2\right\} = \mathscr{F}\left\{ \frac{1}{\sqrt{2\pi} }\int_{-\infty}^{+\infty} f_1(\zeta) f_2(x - \zeta) \ \mathrm{d}\zeta  \right\}
+    f_1 * f_2 =  \int_{-\infty}^{+\infty} f_1(\tau) f_2(t - \tau) \ \mathrm{d}\tau
 \end{equation}
 
+\subsection{常见的傅里叶变换}
+
+常见函数的傅里叶变换如下：
+\begin{gather}
+\begin{aligned}
+&f(t) && \longrightarrow &&   F(\omega) = \mathscr{F}\left\{ f(t), \omega \right\} \\ 
+& 1 && \longrightarrow &&   2\pi \delta(\omega) \\
+& e^{i\omega_0 t} && \longrightarrow &&   2\pi \delta(\omega - \omega_0) \\
+& \delta(t - t_0) && \longrightarrow &&   e^{-i\omega t_0} \\
+\end{aligned}
+\end{gather}
+
+傅里叶对函数性质的要求还是比较严格，比如 $x, \sin x, \cos x$ 和阶跃函数 $\eta(x)$，由于积分不绝对收敛，它们都不存在傅里叶变换（但存在广义傅里叶变换，例如 $\sin t$ 与 $\delta(\omega)$）。
+
+\section{拉普拉斯变换}
+
+\subsection{定义及性质}
+
+\begin{BlockTheorem}[Laplace Transformation]\label{Laplace Transformation}
+    Laplace Transform 是一种积分变换，它把定义在正实轴 $(0, +\infty)$ 上的函数 $f(t)$ 变换到复平面上的函数 $F(z)$，定义为：
+    \begin{gather}
+        L(z) = \mathscr{L}\left\{ f(t), z \right\} = \int_{0}^{+\infty}e^{-zt} f(t) \ \mathrm{d}t,\quad \forall\ z \in \C \\ 
+        f(t) = \mathscr{L}^{-1}\left\{ L(z), t \right\} = 
+        \frac{1}{2 \pi i} \int_{s - i\infty}^{s + i\infty}  e^{zt} L(z)\mathrm{d}z
+    \end{gather}
+    上式的 $e^{-zt}$ 称为 Laplace 变换的核，而 $s \in \R$ 在收敛区域内即可（不影响积分结果），$f(t)$ 称为原函数而 $L(z)$ 称为相函数。通常把拉氏变换及其逆变换简写为：
+    \begin{equation}
+        L(z) = \mathscr{L}\left\{ f(t), z \right\} ,\quad f(t) = \mathscr{L}^{-1}\left\{ L(z), t \right\}
+    \end{equation} 
+    另外，在本书中约定，当 $f(t)$ 在 $t < 0$ 使应理解为 $f(t) \equiv 0$，也即将 $f(t)$ 看作 $\eta(t) f(t)$，其中 $\eta(t)$ 是 Heaviside 单位阶跃函数，在本书，我们常将 $\eta(t - t_0)$ 记作 $\eta_{t_0}$。
+    相应地，$f(t - t_0)$ 则理解为 $\eta_{t_0} f(t - t_0)$。
+\end{BlockTheorem}
+
+
+对函数 $\eta_0 f(t)$ 积分，可以看出 Fourier 变换和 Laplace 变换的关系：
+\begin{gather}
+\mathscr{F}\left\{ \eta_0f(t), \omega \right\} 
+= \int_{-\infty}^{+\infty} e^{-i \omega t}\, \eta_0f(t) \mathrm{d}t 
+= \int_{0}^{+\infty} e^{-(i \omega) t} f(t) \mathrm{d}t 
+= \mathscr{L}\left\{ f(t), i\omega \right\}
+\end{gather}
+也就是说，对于一个 $t <0$ 时为 0 的函数，Fourier 变换得到的结果 $F(\omega) = \mathscr{F}\left\{ \eta_0 f, \omega \right\}$ 其实是 Laplace 变换 $L(z) = \mathscr{L}\left\{ \eta_0 f, z \right\}$ 在虚轴上的值，即 $L(i \omega) = F(\omega)$。
+
+我们指出，Laplace 变换得到的复变函数 $L(z)$ 不一定在全平面收敛（存在）。一个例子是 $ \mathscr{L}\left\{ 1, z \right\} = \int_{0}^{+\infty} e^{-zt} \ \mathrm{d}t = - \frac{1}{z} e^{-zt}\mid_0^{+\infty} = \frac{1}{p},\quad \forall\ \Re z > 0$ 仅在右半平面收敛。下面是一个常用的充分条件：
+\begin{BlockTheorem}[拉氏变换存在定理]\label{拉氏变换存在定理}
+\hspace*{-3em} 若函数 $f(t)$ 满足下列条件：
+\begin{enumerate}
+\item $\forall t < 0,\ f(t) = 0$ 
+\item $\forall t > 0,\ f(t)$ 在任一有限区间上分段连续
+\item $t > 0$ 时，$f(t)$ 的增长不超过指数函数，即存在 $M>0, s_0 >0$ 使得 $| f(t) | < M e^{s_0 t},\ \forall\  t > 0$
+\end{enumerate}
+则 $f(t)$ 的拉氏变换在右半平面 $\Re z > s_0 > 0$ 上存在且解析。
+\end{BlockTheorem}
+
+
+
+由于 Laplace 变换是 Fourier 变换的推广，后者的性质与前者非常类似，列举如下：
+\begin{gather}
+    \begin{aligned}
+    &\text{线性定理：} && 
+    \begin{cases}
+        \begin{aligned}
+            &\mathscr{L}\left\{ a_1f_1 + a_2f_2 \right\} = a_1\mathscr{L}\left\{ f_1 \right\} + a_2 \mathscr{L}\left\{ f_2 \right\} \\ 
+            &\mathscr{L}^{-1}\left\{ a_1f_1 + a_2f_2 \right\} = a_1\mathscr{L}^{-1}\left\{ f_1 \right\} + a_2 \mathscr{L}^{-1}\left\{ f_2 \right\}
+        \end{aligned}
+    \end{cases} \\ 
+    & \text{延迟定理：} && \mathscr{L}\left\{  f(t) , z\right\}  = \mathscr{L}\left\{ e^{z {\color{red} t_0}}f(t - t_0), z\right\},\quad  \mathscr{L}\left\{  f(t + t_0) , z\right\}  = \mathscr{L}\left\{ e^{z {\color{red} t_0}}f(t), z\right\} \quad t_0 > 0 \\ 
+    & \text{位移定理：} &&  \mathscr{L}\left\{  f(t), z \right\} = \mathscr{L}\left\{e^{\alpha {\color{red} t}}f(t), z + \alpha \right\},\quad \mathscr{L}\left\{  e^{\alpha t}f(t), z \right\} = \mathscr{L}\left\{ f(t), z - \alpha \right\},\quad \Re (z - \alpha) > s_0 \\ 
+    & \text{相似定理：} && \mathscr{L}\left\{ f(at), z \right\} = \mathscr{L}\left\{ \frac{f(t)}{| a |}, \frac{z}{a} \right\} \\ 
+    & \text{微分定理：} && 
+    \begin{cases}
+        \mathscr{L}\left\{ f' \right\} = z\, \mathscr{L}\left\{ f \right\} - f(0) \quad {\color{red} (\text{需要 $f'(t)$ 分段连续}) }\\ 
+        \mathscr{L}\left\{ f^{(n)} \right\} = z^n \mathscr{L}\left\{ f \right\} - z^{n-1}f(0) - z^{n-2}f^{(1)}(0) - \cdots - z^{0}f^{(n-1)}(0)
+    \end{cases}
+    \\
+    & \text{积分定理：} && \mathscr{L}\left\{ f \right\} =  \mathscr{L}\left\{ z \int_{0}^{t} f(\tau) \ \mathrm{d}\tau\right\} \\
+    & \text{卷积定理：} && 
+    \begin{cases}
+        \begin{aligned}
+            &\mathscr{L}\left\{ f_1 * f_2 \right\} = \mathscr{L}\left\{ f_1 \right\} \cdot \mathscr{L}\left\{ f_2 \right\} \\ 
+            &\mathscr{L}\left\{ f_1 \cdot f_2 \right\} = \frac{1}{2\pi}\ \mathscr{L}\left\{ f_1 \right\} * \mathscr{L}\left\{ f_2 \right\}
+        \end{aligned}
+    \end{cases} 
+    \end{aligned}
+\end{gather}
+另外，Laplace 变换还有像函数的相关性质，简记 $L(z) = \mathscr{L}\left\{ f(t), z \right\}$，则：
+\begin{gather}
+\begin{aligned}
+&\text{像函数微分定理：} && L^{(n)}(z) = \mathscr{L}\left\{ (-t)^n f(t), z \right\} \\ 
+&\text{像函数积分定理：} && \int_{z}^{+\infty} L(\zeta)\mathrm{d}\zeta = \mathscr{L}\left\{ \frac{f(t)}{t} \right\}
+\end{aligned} 
+\end{gather}
+
+给定函数 $f(t)$ 的 Laplace 变换 $L(z)$，作反演求 $f(t)$，除了用定义外，还常用下面的展开定理：
+\begin{BlockTheorem}[Laplace 展开定理]\label{Laplace 展开定理}
+若 $L(z)$ 在 $\infty$ 处一致趋于零，且 $L(z)$ 仅有有限个有界孤立奇点 $b_k, k = 1, 2, ..., n$（不包括无穷远点），则：
+\begin{equation}
+f(t) = \mathscr{L}^{-1}\left\{ L(z), t \right\} = 
+\sum_{k=1}^{n} \Res \left[ e^{zt}L(z), b_k \right],\quad \forall\ t > 0
+\end{equation}
+\end{BlockTheorem}
+
+
+
+\subsection{常见的拉普拉斯变换}
+
+\begin{table}[H]\centering \everymath{\displaystyle}
+    \renewcommand{\arraystretch}{1.75} % 调整行间距为 1.5 倍
+    %\setlength{\tabcolsep}{1.5mm} % 调整列间距
+    \caption{常见的拉普拉斯变换}
+    \label{常见的拉普拉斯变换}
+\begin{tabular}{cccccccccc}\toprule
+    原函数 $f(t)$ & 像函数 $L(z)$ & 收敛区域  \\
+    \midrule
+    $e^{\alpha t}, \ \alpha \in \R$ & $\frac{1}{z - \alpha}$ & $\Re z > \Re \alpha$  \\
+    $\sin (a t),\ a \in \R$ & $\frac{a}{z^2 + a^2}$ & $\Re z > 0$  \\
+    $\cos (a t),\ a \in \R$ & $\frac{z}{z^2 + a^2}$ & $\Re z > 0$  \\
+    $t^\alpha,\ \Re \alpha > -1$ & $\frac{\Gamma(\alpha + 1)}{z^{\alpha + 1}}$ & $\Re z > 0$ \\ 
+    $t^n, n \in \N$ & $\frac{\Gamma(n + 1)}{z^{n+1}}$ & $\Re z > 0$ \\ 
+    $1$ & $\frac{1}{z}$ & $\Re z > 0$ \\ 
+    $\frac{1}{\sqrt{t}}$ & $\sqrt{\frac{\pi}{z}}$ & $\Re z > 0$ \\ 
+    \bottomrule
+\end{tabular}
+\end{table}
 
 
 

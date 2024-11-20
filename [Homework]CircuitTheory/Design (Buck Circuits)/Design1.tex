@@ -1,0 +1,682 @@
+% 若编译失败，且生成 .synctex(busy) 辅助文件，可能有两个原因：
+% 1. 需要插入的图片不存在：Ctrl + F 搜索 'figure' 将这些代码注释/删除掉即可
+% 2. 路径/文件名含中文或空格：更改路径/文件名即可
+
+% --------------------- 文章宏包及相关设置 --------------------- %
+% >> ------------------ 文章宏包及相关设置 ------------------ << %
+% 设定文章类型与编码格式
+\documentclass[UTF8]{report}		
+
+% 本文专属的宏包
+\usepackage{pdfpages}   % 用于导入 pdf 文件
+\usepackage{titletoc}   % 用于设置 toc
+\titlecontents{chapter}
+              [0em]
+              {\bf}%
+              {}%   % \contentslabel{2.5em} 会显示宽为 2.5em 的章节编号
+              {}%
+              {\hfill \contentspage \vspace{10.5pt}}%
+              []%
+
+
+
+% 本 .tex 专属的宏定义
+    \def\V{\ \mathrm{V}}
+    \def\uV{\ \mu\mathrm{V}}
+    \def\mV{\ \mathrm{mV}}
+    \def\K{\ \mathrm{K}}
+    \def\kV{\ \mathrm{KV}}
+    \def\KV{\ \mathrm{KV}}
+    \def\MV{\ \mathrm{MV}}
+    \def\uA{\ \mu\mathrm{A}}
+    \def\mA{\ \mathrm{mA}}
+    \def\A{\ \mathrm{A}}
+    \def\kA{\ \mathrm{KA}}
+    \def\KA{\ \mathrm{KA}}
+    \def\MA{\ \mathrm{MA}}
+    \def\O{\ \Omega}
+    \def\mO{\ \Omega}
+    \def\kO{\ \mathrm{K}\Omega}
+    \def\KO{\ \mathrm{K}\Omega}
+    \def\MO{\ \mathrm{M}\Omega}
+    \def\Hz{\ \mathrm{Hz}}
+    \def\uF{\ \mu\mathrm{F}}
+    \def\mF{\ \mathrm{mF}}
+    \def\F{\ \mathrm{F}}
+
+% 自定义宏定义
+    \def\N{\mathbb{N}}
+    %\def\F{\mathbb{F}}
+    \def\Z{\mathbb{Z}}
+    \def\Q{\mathbb{Q}}
+    \def\R{\mathbb{R}}
+    \def\C{\mathbb{C}}
+    \def\T{\mathbb{T}}
+    \def\S{\mathbb{S}}
+    \def\A{\mathbb{A}}
+    \def\I{\mathscr{I}}
+    \def\Im{\mathrm{Im\,}}
+    \def\Re{\mathrm{Re\,}}
+    \def\d{\mathrm{d}}
+    \def\p{\partial}
+
+% 导入基本宏包
+    \usepackage[UTF8]{ctex}     % 设置文档为中文语言
+        \usepackage{hyperref}  % 宏包：自动生成超链接 (此宏包与标题中的数学环境冲突)
+    \hypersetup{
+        colorlinks=true,    % false:边框链接 ; true:彩色链接
+        citecolor={blue},    % 文献引用颜色
+        linkcolor={blue},   % 目录 (我们在目录处单独设置)，公式，图表，脚注等内部链接颜色
+        urlcolor={magenta},    % 网页 URL 链接颜色，包括 \href 中的 text
+        % cyan 浅蓝色 
+        % magenta 洋红色
+        % yellow 黄色
+        % black 黑色
+        % white 白色
+        % red 红色
+        % green 绿色
+        % blue 蓝色
+        % gray 灰色
+        % darkgray 深灰色
+        % lightgray 浅灰色
+        % brown 棕色
+        % lime 石灰色
+        % olive 橄榄色
+        % orange 橙色
+        % pink 粉红色
+        % purple 紫色
+        % teal 蓝绿色
+        % violet 紫罗兰色
+    }
+    % \usepackage{docmute}    % 宏包：子文件导入时自动去除导言区，用于主/子文件的写作方式，\include{./51单片机笔记}即可。注：启用此宏包会导致.tex文件capacity受限。
+    \usepackage{amsmath}    % 宏包：数学公式
+    \usepackage{mathrsfs}   % 宏包：提供更多数学符号
+    \usepackage{amssymb}    % 宏包：提供更多数学符号
+    \usepackage{pifont}     % 宏包：提供了特殊符号和字体
+    \usepackage{extarrows}  % 宏包：更多箭头符号
+
+
+% 文章页面margin设置
+    \usepackage[a4paper]{geometry}
+        \geometry{top=1in}
+        \geometry{bottom=1in}
+        \geometry{left=0.75in}
+        \geometry{right=0.75in}   % 设置上下左右页边距
+        \geometry{marginparwidth=1.75cm}    % 设置边注距离（注释、标记等）
+
+% 配置数学环境
+    \usepackage{amsthm} % 宏包：数学环境配置
+    %\everymath{\displaystyle}   % 设置全文数学公式都为展示样式
+    % theorem-line 环境自定义
+        \newtheoremstyle{MyLineTheoremStyle}% <name>
+            {11pt}% <space above>
+            {11pt}% <space below>
+            {\kaishu}% <body font> 使用默认正文字体
+            {}% <indent amount>
+            {\bfseries}% <theorem head font> 设置标题项为加粗
+            {：}% <punctuation after theorem head>
+            {.5em}% <space after theorem head>
+            {\textbf{#1}\thmnumber{#2}\ \ (\,\textbf{#3}\,)}% 设置标题内容顺序
+        \theoremstyle{MyLineTheoremStyle} % 应用自定义的定理样式
+        \newtheorem{LineTheorem}{Theorem.\,}
+    % theorem-block 环境自定义
+        \newtheoremstyle{MyBlockTheoremStyle}% <name>
+            {11pt}% <space above>
+            {11pt}% <space below>
+            {\kaishu}% <body font> 使用默认正文字体
+            {}% <indent amount>
+            {\bfseries}% <theorem head font> 设置标题项为加粗
+            {：\\ \indent}% <punctuation after theorem head>
+            {.5em}% <space after theorem head>
+            {\textbf{#1}\thmnumber{#2}\ \ (\,\textbf{#3}\,)}% 设置标题内容顺序
+        \theoremstyle{MyBlockTheoremStyle} % 应用自定义的定理样式
+        \newtheorem{BlockTheorem}[LineTheorem]{Theorem.\,} % 使用 LineTheorem 的计数器
+    % definition 环境自定义
+        \newtheoremstyle{MySubsubsectionStyle}% <name>
+            {11pt}% <space above>
+            {11pt}% <space below>
+            {}% <body font> 使用默认正文字体
+            {}% <indent amount>
+            {\bfseries}% <theorem head font> 设置标题项为加粗
+            {：\\ \indent}% <punctuation after theorem head>
+            {0pt}% <space after theorem head>
+            {\textbf{#3}}% 设置标题内容顺序
+        \theoremstyle{MySubsubsectionStyle} % 应用自定义的定理样式
+        \newtheorem{definition}{}
+
+%宏包：有色文本框（proof环境）及其设置
+    \usepackage{xcolor}    %设置插入的文本框颜色
+    \usepackage[strict]{changepage}     % 提供一个 adjustwidth 环境
+    \usepackage{framed}     % 实现方框效果
+        \definecolor{graybox_color}{rgb}{0.95,0.95,0.96} % 文本框颜色。修改此行中的 rgb 数值即可改变方框纹颜色，具体颜色的rgb数值可以在网站https://colordrop.io/ 中获得。（截止目前的尝试还没有成功过，感觉单位不一样）（找到喜欢的颜色，点击下方的小眼睛，找到rgb值，复制修改即可）
+        \newenvironment{graybox}{%
+        \def\FrameCommand{%
+        \hspace{1pt}%
+        {\color{gray}\small \vrule width 2pt}%
+        {\color{graybox_color}\vrule width 4pt}%
+        \colorbox{graybox_color}%
+        }%
+        \MakeFramed{\advance\hsize-\width\FrameRestore}%
+        \noindent\hspace{-4.55pt}% disable indenting first paragraph
+        \begin{adjustwidth}{}{7pt}%
+        \vspace{2pt}\vspace{2pt}%
+        }
+        {%
+        \vspace{2pt}\end{adjustwidth}\endMakeFramed%
+        }
+
+% 外源代码插入设置
+    % matlab 代码插入设置
+    \usepackage{matlab-prettifier}
+        \lstset{style=Matlab-editor}    % 继承 matlab 代码高亮 , 此行不能删去
+    \usepackage[most]{tcolorbox} % 引入tcolorbox包 
+    \usepackage{listings} % 引入listings包
+        \tcbuselibrary{listings, skins, breakable}
+        \newfontfamily\codefont{Consolas} % 定义需要的 codefont 字体
+        \lstdefinestyle{MatlabStyle_inc}{   % 插入代码的样式
+            language=Matlab,
+            basicstyle=\small\ttfamily\codefont,    % ttfamily 确保等宽 
+            breakatwhitespace=false,
+            breaklines=true,
+            captionpos=b,
+            keepspaces=true,
+            numbers=left,
+            numbersep=15pt,
+            showspaces=false,
+            showstringspaces=false,
+            showtabs=false,
+            tabsize=2,
+            xleftmargin=15pt,   % 左边距
+            %frame=single, % single 为包围式单线框
+            frame=shadowbox,    % shadowbox 为带阴影包围式单线框效果
+            %escapeinside=``,   % 允许在代码块中使用 LaTeX 命令 (此行无用)
+            %frameround=tttt,    % tttt 表示四个角都是圆角
+            framextopmargin=0pt,    % 边框上边距
+            framexbottommargin=0pt, % 边框下边距
+            framexleftmargin=5pt,   % 边框左边距
+            framexrightmargin=5pt,  % 边框右边距
+            rulesepcolor=\color{red!20!green!20!blue!20}, % 阴影框颜色设置
+            %backgroundcolor=\color{blue!10}, % 背景颜色
+        }
+        \lstdefinestyle{MatlabStyle_src}{   % 插入代码的样式
+            language=Matlab,
+            basicstyle=\small\ttfamily\codefont,    % ttfamily 确保等宽 
+            breakatwhitespace=false,
+            breaklines=true,
+            captionpos=b,
+            keepspaces=true,
+            numbers=left,
+            numbersep=15pt,
+            showspaces=false,
+            showstringspaces=false,
+            showtabs=false,
+            tabsize=2,
+        }
+        \newtcblisting{matlablisting}{
+            %arc=2pt,        % 圆角半径
+            % 调整代码在 listing 中的位置以和引入文件时的格式相同
+            top=0pt,
+            bottom=0pt,
+            left=-5pt,
+            right=-5pt,
+            listing only,   % 此句不能删去
+            listing style=MatlabStyle_src,
+            breakable,
+            colback=white,   % 选一个合适的颜色
+            colframe=black!0,   % 感叹号后跟不透明度 (为 0 时完全透明)
+        }
+        \lstset{
+            style=MatlabStyle_inc,
+        }
+
+% table 支持
+    \usepackage{booktabs}   % 宏包：三线表
+    \usepackage{tabularray} % 宏包：表格排版
+    \usepackage[longtable]{multirow} % 宏包：multi 行列
+    \usepackage{longtable}  % 宏包：长表格
+
+% figure 设置
+    \usepackage{graphicx}  % 支持 jpg, png, eps, pdf 图片 
+    \usepackage{svg}       % 支持 svg 图片
+        \svgsetup{
+            % 指向 inkscape.exe 的路径
+            inkscapeexe = C:/aa_MySame/inkscape/bin/inkscape.exe, 
+            % 一定程度上修复导入后图片文字溢出几何图形的问题
+            inkscapelatex = false                 
+        }
+    \usepackage{subcaption} % 支持子图
+
+% 图表进阶设置
+    \usepackage{caption}    % 图注、表注
+        \captionsetup[figure]{name=图}  
+        \captionsetup[table]{name=表}
+        \captionsetup{
+            labelfont=bf, % 设置标签为粗体
+            textfont=bf,  % 设置文本为粗体
+            font=small  
+            }
+    \usepackage{float}     % 图表位置浮动设置 
+    \usepackage{etoolbox} % 用于保证图注表注的数学字符为粗体
+        \AtBeginEnvironment{figure}{\boldmath} % 图注中的数学字符为粗体
+        \AtBeginEnvironment{table}{\boldmath}  % 表注中的数学字符为粗体
+        \AtBeginEnvironment{tabular}{\unboldmath}   % 保证表格中的数学字符不受额外影响
+% 圆圈序号自定义
+    \newcommand*\circled[1]{\tikz[baseline=(char.base)]{\node[shape=circle,draw,inner sep=0.8pt, line width = 0.03em] (char) {\small \bfseries #1};}}   % TikZ solution
+
+% 列表设置
+    \usepackage{enumitem}   % 宏包：列表环境设置
+        \setlist[enumerate]{
+            label=(\arabic*) ,   % 设置序号样式为加粗的 (1) (2) (3)
+            ref=\arabic*, % 如果需要引用列表项，这将决定引用格式（这里仍然使用数字）
+            itemsep=0pt, parsep=0pt, topsep=0pt, partopsep=0pt, leftmargin=3.5em} 
+        \setlist[itemize]{itemsep=0pt, parsep=0pt, topsep=0pt, partopsep=0pt, leftmargin=3.5em}
+        \newlist{circledenum}{enumerate}{1} % 创建一个新的枚举环境  
+        \setlist[circledenum,1]{  
+            label=\protect\circled{\arabic*}, % 使用 \arabic* 来获取当前枚举计数器的值，并用 \circled 包装它  
+            ref=\arabic*, % 如果需要引用列表项，这将决定引用格式（这里仍然使用数字）
+            itemsep=0pt, parsep=0pt, topsep=0pt, partopsep=0pt, leftmargin=3.5em
+        }  
+    
+
+% 文章默认字体设置
+    \usepackage{fontspec}   % 宏包：字体设置
+        \setmainfont{SimSun}    % 设置中文字体为宋体字体
+        \setCJKmainfont[AutoFakeBold=3]{SimSun} % 设置加粗字体为 SimSun 族，AutoFakeBold 可以调整字体粗细
+        \setmainfont{Times New Roman} % 设置英文字体为Times New Roman
+
+
+% 文章序言设置
+    \newcommand{\cnabstractname}{序言}
+    \newenvironment{cnabstract}{%
+        \par\Large
+        \noindent\mbox{}\hfill{\bfseries \cnabstractname}\hfill\mbox{}\par
+        \vskip 2.5ex
+        }{\par\vskip 2.5ex}
+
+% 参考文献引用设置
+    \bibliographystyle{unsrt}   % 设置参考文献引用格式为unsrt
+    \newcommand{\upcite}[1]{\textsuperscript{\cite{#1}}}     % 自定义上角标式引用
+
+% 各级标题自定义设置
+    \usepackage{titlesec}   
+    % chapter
+        \titleformat{\chapter}[hang]{\normalfont\Large\bfseries\centering\boldmath}{}{10pt}{}
+        %\titleformat{\chapter}[hang]{\normalfont\Large\bfseries\centering\boldmath}{Homework \thechapter :}{10pt}{}
+        \titlespacing*{\chapter}{0pt}{-30pt}{10pt} % 控制上方空白的大小
+    % section
+        \titleformat{\section}[hang]{\normalfont\large\bfseries\boldmath}{\thesection}{8pt}{}
+    % subsection
+        % 设置 subsection 样式为 (1) (2) (3)
+        \renewcommand{\thesubsection}{(\arabic{subsection})}    
+        \titleformat{\subsection}[hang]{\normalfont\bfseries\boldmath}{\thesubsection}{8pt}{}
+
+
+% --------------------- 文章宏包及相关设置 --------------------- %
+% >> ------------------ 文章宏包及相关设置 ------------------ << %
+
+
+% ------------------------ 文章信息区 ------------------------ %
+% >> --------------------- 文章信息区 --------------------- << %
+% 页眉页脚设置
+\usepackage{fancyhdr}   %宏包：页眉页脚设置
+    \pagestyle{fancy}
+    \fancyhf{}
+    \cfoot{\thepage}
+    \renewcommand\headrulewidth{1pt}
+    \renewcommand\footrulewidth{0pt}
+    \chead{电路原理课程作业,\ 丁毅}
+    \usepackage{fontawesome}    % 宏包：更多符号与图标 (用于插入 GitHub 图标等)
+    \lhead{
+    \href{https://github.com/YiDingg/LatexNotes}{\color{black}\faGithub\ https://github.com/YiDingg/LatexNotes}
+    }
+    \rhead{dingyi233@mails.ucas.ac.cn}
+
+%文档信息设置
+\title{电路原理课程作业\\ Homework of Principles of Electric Circuits }
+\author{丁毅\\ \footnotesize 中国科学院大学，北京 100049\\ Yi Ding \\ \footnotesize University of Chinese Academy of Sciences, Beijing 100049, China}
+\date{\footnotesize 2024.8 -- 2025.1}
+% >> --------------------- 文章信息区 --------------------- << %
+% ------------------------ 文章信息区 ------------------------ %
+
+% 开始编辑文章
+
+\begin{document}
+\zihao{5}           % 设置全文字号大小
+
+% ------------------------ 封面序言与目录 ------------------------ %
+% >> --------------------- 封面序言与目录 --------------------- << %
+% 封面
+    \maketitle\newpage  
+    \pagenumbering{Roman} % 页码为大写罗马数字
+    \thispagestyle{fancy}   % 显示页码、页眉等
+
+% 序言
+    \begin{cnabstract}\normalsize 
+        本文为笔者本科时的“电路原理”课程作业（Homework of Principles of Electric Circuits, 2024.9-2025.1）。所有作业课件已上传到网址 \href{https://www.123865.com/s/0y0pTd-R8Kj3}{https://www.123865.com/s/0y0pTd-R8Kj3}（包括 Homework, Simulation 和 Laboratory）。读者可在笔者的个人网站 \href{https://yidingg.github.io/YiDingg/\#/Notes/MajorCourses/CircuitTheoryNotes}{https://yidingg.github.io/YiDingg/\#/Notes/MajorCourses/CircuitTheoryNotes} 上找到课程信息、教材、教辅和作业答案等相关资料。
+
+        由于个人学识浅陋，认识有限，文中难免有不妥甚至错误之处，望读者不吝指正。读者可以将错误发送到我的邮箱 {\color{blue}\ dingyi233@mails.ucas.ac.cn}，也可以到笔者的 \href{https://github.com/YiDingg/LatexNotes}{GitHub (https://github.com/YiDingg/LatexNotes)} 上提 issue，衷心感谢。
+    \end{cnabstract}
+    \addcontentsline{toc}{chapter}{序言} % 手动添加到目录
+
+
+
+%\listoftables
+%\listoffigures
+    \clearpage
+    \setcounter{tocdepth}{0}
+    \tableofcontents\thispagestyle{fancy}   % 显示页码、页眉等  
+    \addcontentsline{toc}{chapter}{目录} % 手动添加到目录
+
+
+
+% 收尾工作
+    \newpage    
+    %\rhead{Homework \thechapter}
+    \pagenumbering{arabic} 
+
+% >> --------------------- 封面序言与目录 --------------------- << %
+% ------------------------ 封面序言与目录 ------------------------ %
+
+
+
+\chapter{Design (Buck Circuits): 2024.11.07 - 2024.12.31} \thispagestyle{fancy}
+
+Buck 电路是一种开关型 DC-DC 变换器，用于将输入的（高）直流电压转换为输出（低）直流电压。在本次，我们将设计一个开关频率和占空比可调的 Buck 电路。其中，开关频率主要影响输出的正弦（三角）纹波大小，占空比可以控制输出电压大小。
+
+需要注意的是，开关频率和占空比都可能影响电路的稳定性（如抗噪性能），实际使用时应做抗干扰测试，或者进一步改进后再使用。
+
+\section{Buck 电路设计}
+
+\subsection{设计要求}
+利用运算放大器 OPA 和 MOSFET 实现 Buck 电路，下面是具体的设计要求：
+\begin{enumerate}
+\item 输出电压 3.3 V，电压输出纹波比 $r = \frac{\Delta U_{\text{o}}}{U_{\text{o, ave}}} < 5\%$，$3.3\ \mathrm{V}\times 5\,\% = 165\ \mathrm{mV}$，相当于 $\pm\, 82.2\ \mathrm{mV}$；
+\item 使用一个 +15 V 电源和一个 -15 V 电源供电；
+\item MOSFET 型号为 2N7000；
+\item 运放型号为 LM258N；
+\item 整流二极管型号为 1N4001；
+\item 电阻电容电感数量不限；最后的滤波电容最大值不超过 470 $\uF$，电感最大值不超过 2 mH，作为最后负载电阻不要小于 2 $\kO$；
+\item 电感非理想，所以需要测试电感的 Q 值和 DCR (Direct Current Resistance)，仿真时将 DCR 考虑进去；
+\item 电容非理想，所以需要测试电容的 ESR (Equivalent Series Resistance) 和；
+\item 实验报告里面包含原理说明、设计的电路图、仿真结果、实际电路照片、实际电路测试结果及分析。
+\end{enumerate}
+
+
+\subsection{Buck 电路原理}
+图 \ref{} 是一个典型的 Buck 电路：
+\begin{figure}[H]\centering
+    %\includegraphics[width=0.4\columnwidth]{}
+    \caption{典型 Buck 电路}
+\end{figure}
+我们只考虑电路达到稳定工作状态时的情况，即输出电压在平均值附近小范围摆动。为了推导其工作原理，先作出一些必要的假设：
+\begin{enumerate}
+\item 经过可接受的启动时间后，电路能够达到稳定输出状态，此时输出电压在均值附近小幅振荡；
+\item MOSFET 可视为 Switch-Resistor Model，且导通电阻极小（相比于 $\KO$ 量级）：这意味着电路其它电阻在 $\kO$ 级别，且 MOSFET 各级电压满足：
+\begin{equation}
+u_{\text{GS}} > U_T \quad \text{and} \quad u_{\text{GD}} > U_T
+\end{equation}
+\item 二极管可视为 Switch-Source-Resistor Model，且导通电阻极小（相比于 $\KO$ 量级）；
+\item MOSFET 开关周期远小于电感时间常量 $\tau$，即 $T \ll \tau$，这等价于开关频率 $f \gg \frac{1}{\tau}$，此时输出纹波可近似视为三角波（或正弦波）；
+\item MOSFET 开关频率不高于 500 KHz，以避免高频状态下元件性能异常，此时可不考虑高频效应。
+\end{enumerate}
+
+~\\
+设脉冲频率为 $f$，占空比为 $k$，一个周期 $T$ 分为高电平 $T_{\text{ON}}$ 和低电平 $T_{\text{OFF}}$。下面作具体的推导。设 $t = 0$ 时，MOSFET 的 G 级接收到高电平脉冲信号，MOSFET 导通，等效电路如图 \ref{} 所示。此时电感电流应为最小值，设其为 $\left(i_L\right)_{\min}$，稳态值是 $ \frac{U_s}{R + R_{\text{L}} + R_{\text{ON}}}$，由三要素法，有：
+\begin{gather}
+i_L(t) = \left(i_L\right)_{\min}\cdot e^{-\frac{t}{\tau_{\text{ON}}}} + \frac{U_s}{R + R_{\text{L}} + R_{\text{ON}}}\cdot\left(1 - e^{-\frac{t}{\tau_{\text{ON}}}}\right) \Longrightarrow \\ 
+i_L(t) = \left[ \left(i_L\right)_{\min} - \frac{U_s}{R + R_{\text{L}} + R_{\text{ON}}} \right]\cdot e^{-\frac{t}{\tau_{\text{ON}}}} + \frac{U_s}{R + R_{\text{L}} + R_{\text{ON}}},\quad \tau_{\text{ON}} = \frac{L}{R + R_{\text{L}} + R_{\text{ON}}}
+\end{gather}
+经过 $T_{\text{ON}}$ 时间，MOSFET 关断，则 $[0,\  T_{\text{ON}}]$ 时间段内的电感电流增量为：
+\begin{equation}
+\left(\Delta i_L\right)_{\text{ON}} = \left[ \left(i_L\right)_{\min} - \frac{U_s}{R + R_{\text{L}} + R_{\text{ON}}} \right]\cdot \left(1 - e^{-\frac{T_{\text{ON}}}{\tau_{\text{ON}}}} \right) ,\quad
+\tau_{\text{ON}} = \frac{L}{R + R_{\text{L}} + R_{\text{ON}}}
+\end{equation}
+类似的思路，设 $t = 0$ 时，MOSFET 的 G 级接收到低电平脉冲信号，MOSFET 关断，等效电路如图 \ref{} 所示。此时电感电流应为最大值，设其为 $\left(i_L\right)_{\max}$，由于二极管存在导通压降 $U_\text{D}$，电流“稳态值”是 $- \frac{U_\text{D}}{R + R_{\text{L}} + R_{\text{D}}}$ ，由三要素法，有：
+\begin{gather}
+    i_L(t) = \left(i_L\right)_{\max}\cdot e^{-\frac{t}{\tau_{\text{OFF}}}} - \frac{U_\text{D}}{R + R_{\text{L}} + R_{\text{D}}}\cdot\left(1 - e^{-\frac{t}{\tau_{\text{OFF}}}}\right) \Longrightarrow \\ 
+    i_L(t) = \left[ \left(i_L\right)_{\max} + \frac{U_\text{D}}{R + R_{\text{L}} + R_{\text{D}}} \right]\cdot e^{-\frac{t}{\tau_{\text{OFF}}}} - \frac{U_\text{D}}{R + R_{\text{L}} + R_{\text{D}}},\quad \tau_{\text{OFF}} = \frac{L}{R + R_{\text{L}} + R_{\text{D}}}
+\end{gather}
+经过 $T_{\text{OFF}}$ 时间，MOSFET 又导通，则 $[0,\  T_{\text{OFF}}]$ 时间段内的电感电流增量为：
+\begin{equation}
+    \left(\Delta i_L\right)_{\text{OFF}} = \left[ \left(i_L\right)_{\max} + \frac{U_\text{D}}{R + R_{\text{L}} + R_{\text{D}}}\right]\cdot \left(1 - e^{-\frac{T_{\text{OFF}}}{\tau_{\text{OFF}}}} \right)
+\end{equation}
+
+电路输出达到稳态，所以应有 $\left(\Delta i_L\right)_{\text{ON}} + \left(\Delta i_L\right)_{\text{OFF}} = 0$，简记 $e_{\text{ON}} = e^{-\frac{T_{\text{ON}}}{\tau_{\text{ON}}}}$ 和 $e_{\text{OFF}} = e^{-\frac{T_{\text{OFF}}}{\tau_{\text{OFF}}}}$，得到：
+\begin{align}
+\left(i_L\right)_{\max} &= \frac{U_s}{R + R_{\text{L}} + R_{\text{ON}}}\cdot \frac{1 - e_{\text{ON}}}{1 - e_{\text{ON}}e_{\text{OFF}}} - \frac{U_\text{D}}{R + R_{\text{L}} + R_{\text{D}}}
+\\
+\left(i_L\right)_{\min} &=  e_{\text{OFF}}\left(i_L\right)_{\max} =  \frac{U_s}{R + R_{\text{L}} + R_{\text{ON}}}\cdot \frac{e_{\text{OFF}} - e_{\text{ON}}e_{\text{OFF}}}{1 - e_{\text{ON}}e_{\text{OFF}}} - \frac{e_{\text{OFF}}U_\text{D}}{R + R_{\text{L}} + R_{\text{D}}}
+\\
+\Delta i_L &= \left(1  -e_{\text{OFF}}\right)\left(i_L\right)_{\max} = \frac{U_s}{R + R_{\text{L}} + R_{\text{ON}}}\cdot \frac{ (1 - e_{\text{ON}})(1 - e_{\text{OFF}}) }{1 - e_{\text{ON}}e_{\text{OFF}}} - \frac{ U_\text{D}(1 - e_{\text{OFF}})}{R + R_{\text{L}} + R_{\text{D}}}
+\end{align}
+%输出电压的波纹比为：
+%\begin{equation}
+%    r = \frac{\Delta U_{\text{o}}}{\left(U_{\text{out}}\right)_%{\text{average}}}  = \frac{\left(\Delta i_L\right)_{\text{ON}}}{\left(i_L\right)_{\text{average}}\cdot T_{\text{ON}}}
+%\end{equation}
+由于功率损耗发生在二极管导通电阻 $R_{\text{D}}$、压降 $U_\text{D}$ 和 MOSFET 导通电阻 $R_{\text{ON}}$ 上，我们可以进一步计算功率损耗和转化效率：
+\begin{align}
+P_{\text{loss}} 
+&= k\left(i_L\right)_{\text{average}}^2R_{\text{ON}} + (1 - k)\left(i_L\right)_{\text{average}}^2R_{\text{D}}
++ (1 - k)\left(i_L\right)_{\text{average}}U_\text{D} 
+\\
+&= \left(i_L\right)_{\text{average}}^2 \left[ k R_{\text{ON}} + (1 - k)R_{\text{D}} \right] \\ 
+\Longrightarrow \eta &= \frac{P_{\text{out}}}{P_{\text{out}} + P_{\text{loss}} } = \frac{\left(u_o\right)_\text{average}}{\left(u_o\right)_\text{average} + \left(i_o\right)_{\text{average}} \left[ k R_{\text{ON}} + (1 - k)R_{\text{D}} + (1 - k)U_\text{D} \right]}
+\end{align}
+如果取近似 $\left(u_o\right)_\text{average} = kU_s$，$\left(i_o\right)_{\text{average}} = \frac{kU_s}{R}$，则转化效率为：
+\begin{equation}
+\eta = \frac{R}{R + kR_{\text{ON}} + (1-k)R_{\text{D}} +  \frac{(1 - k)U_\text{D}}{kU_s} R }
+\end{equation}
+
+
+
+\subsection{Buck 改进方案 1}
+一方面，上面的电路，输出电压纹波比 $r = \frac{\Delta U_{\text{o}}}{U_{\text{o, ave}}}$ 可能较大；另一方面，二极管的导通压降 $U_\text{D}$ 可能使电路效率明显降低（尤其在输出低电平时）。改进方案如下图：
+\begin{figure}[H]\centering
+    %\includegraphics[width=0.4\columnwidth]{}
+    \caption{}
+\end{figure}
+在图 \ref{} 中，一方面，我们在输出加一个较大的电容 $C$，这可以明显降低输出纹波幅度；另一方面，我们用另一个 MOSFET 来替代二极管 D，此 MOSFET 的 G 级由脉冲信号经过反相器得到，这样相当于将二极管的导通压降 $U_\text{D}$ 降低为 $0$，同时将 $R_{\text{D}}$ 换为 $R_{\text{ON}}$，既可以避免压降 $U_{\text{D}}$ 带来的占空比失调，也可以提高电路的转化效率。
+
+
+另外，我们在输出端串联了一个 $0 \Omega$ 电阻，这使得我们可以方便地串入小电阻（示波器测电压）或电流表来测量输出电流。
+
+改进之后，开关 MOS 导通与不导通时的等效电路如下图：
+\begin{figure}[H]\centering
+\begin{subfigure}[b]{0.5\columnwidth}\centering
+    %\includegraphics[height=120pt]{}
+    \caption{}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{0.5\columnwidth}\centering
+    %\includegraphics[height=120pt]{}
+    \caption{}
+\end{subfigure}
+\caption{}
+\end{figure}
+
+稳定工作时，可分为两种状态。记开关 MOS 为下面以输出负端 $u_{o, -}$ 为电压参考点，定性地分析两种状态下的电路行为：
+\begin{enumerate}
+\item 开关 MOS ($T_1$) 导通：此时二极管 MOS ($T_2$) 截止，电路如图 \ref{} (a)。$u_{L, -}$ 维持在 $u_\text{out}$ 附近，电感正端（即 $T_2$ D 极）
+$u_{L, +} = u_{2, \text{DS}}$ 在 $U_S$ 附近小幅下降（近似线性），这使得 $T_1$ 的 DS 电压 $u_{1, \text{DS}}$ 在 0 附近小幅线性上升（从负到正）；
+\item 开关 MOS ($T_1$) 截止：此时二极管 MOS ($T_2$) 导通，电路如图 \ref{} (b)。
+$u_{L, -}$ 仍维持在 $u_\text{out}$ 附近，电感正端（即 $T_2$ D 极）
+$u_{L, +} = u_{2, \text{DS}}$ 在 $0$ 附近小幅线性上升（从负到正），$T_1$ 的 DS 电压 $u_{1, \text{DS}}$ 在 $U_S$ 附近小幅线性下降；
+\end{enumerate}
+作出两种状态下的各元件电压情况，如下图所示：
+
+
+\subsection{Buck 改进方案 2}
+如果想进一步降低输出纹波，可考虑下图所示的改进方案：
+\begin{figure}[H]\centering
+    %\includegraphics[width=0.4\columnwidth]{}
+    \caption{}
+\end{figure}
+与第一种方案相比，这种方案只是将 $LC$ 滤波换为了 $CLC$ $\pi$ 型滤波，看似变化不大，实则从原理层面作了改变。由于二极管 MOS（用于替代二极管的 N-MOSFET）两端并联了较大的电容 $C$，它 DS 间的电压 $u_{\text{DS}}$ 无法发生突变，经过半定量推导可知 $u_{\text{DS}}$ 会在 $u_{\text{out}}$ 附近以锯齿波形小幅振荡，这便需要 MOSFET 在  $u_{\text{DS}} = u_{\text{out}}$ 附近能正常工作，对元件的要求比较高，2N7000 不能满足此要求，需要另选其他型号。
+
+
+
+在此改进方案中，开关 MOS 导通与不导通时的等效电路如下图：
+
+\subsection{脉冲发生器原理}
+为了能产生提供给 MOSFET 的脉冲电压，我们考虑脉冲发生器 (Pulse Generator)，典型的脉冲发生器如下图所示：
+\begin{figure}[H]\centering
+    %\includegraphics[width=0.4\columnwidth]{}
+    \caption{}
+\end{figure}
+为 OPA 提供 $+15 V$ 和 $-15 V$ 电压，记 OPA 饱和电压为 $\pm U_{\text{sat}}$。设 $t = 0$ 时 $u_C < 0$ 位于最小值，处于上升阶段，则此时 $U_o = +U_{\text{sat}}$，当 $u_C$（也即 $u_-$）上升到 $u_+ = \frac{R_f}{R_f + R_1}U_{\text{sat}}$ 并超过它的瞬间，OPA 输出突变为 $-U_{\text{sat}}$，$u_C$ 进入下降阶段。
+
+同理，在下降阶段，$U_o = -U_{\text{sat}}$。当 $u_C$ 下降到 $u_+ = -\frac{R_f}{R_f + R_1}U_{\text{sat}}$ 并低于它的瞬间，OPA 输出突变为 $+U_{\text{sat}}$，$u_C$ 进入上升阶段。如此循环往复，即可得到脉冲信号。由于上升和下降过程完全对称，脉冲占空比恒为 50 \% 不变，且周期为：
+\begin{equation}
+T = 2R_2 C_f \ln \left( 1 + \frac{2R_f}{R_1} \right),\quad f = \frac{1}{T}
+\end{equation}
+为了方便参考，我们也给出 OPA 正负电源分别接 $V_{\text{DD}}$ 和 $V_{\text{SS}}$ 时的脉冲周期：
+\begin{equation}
+T = 2R_2 C_f \ln \left( \frac{1 - \frac{V_{\text{SS}}}{V_{\text{DD}}}\cdot \frac{R_f}{R_f + R_1}}{1 - \frac{R_f}{R_f + R_1}} \right),\quad f = \frac{1}{T}
+\end{equation}
+
+
+\subsection{脉冲发生器改进方案}
+
+显然，占空比恒为 50 \% 会使 Buck 电路输出电压恒为 $0.5 \,U_S$，这无法满足我们的需求，需要改进脉冲发生器。改进方案如下图所示：
+\begin{figure}[H]\centering
+    %\includegraphics[width=0.4\columnwidth]{}
+    \caption{}
+\end{figure}
+在图 \ref{} 中，我们将 $R_f$ 换为滑动变阻器（可调电阻），并在 $R_2$ 与电容之间加入二极管与滑动变阻器 $R_k$ 的并联，这样便可以通过 $R_f$ 调节电容电压振荡的幅度，从而调节脉冲频率，同时又能通过 $R_k$ 与二极管的并联，实现上升下降阶段有不同的时间常量 $\tau$，以此来调节脉冲占空比。
+
+经过改进的脉冲发生器占空比 $k$ 和周期 $T$ 为（为 OPA 提供 $+15 V$ 和 $-15 V$ 电压）：
+\begin{gather}
+k = \frac{1}{1 + \frac{R_2 +  R_\text{D} \parallel R_k}{R_2 + R_k}},\quad 
+T = \left( 2R_2 + R_k + R_\text{D} \parallel R_k \right)C_f \ln \left(1 + \frac{2 R_2}{R_1}\right)
+\end{gather}
+为了直观感受 $R_k$ 对占空比的调节作用和 $R_f$ 对频率的调节作用，我们分别作出 $k = k(R_k)$ 的图像。令 $R_2 = 1\kO,\ R_\text{D} = 10 \Omega$，则占空比如图 \ref{} 所示，再令 $R_k = 2 \KO$，作出频率变化如图 \ref{} 所示。
+\begin{figure}[H]\centering
+\begin{subfigure}[b]{0.5\columnwidth}\centering
+    %\includegraphics[height=120pt]{}
+    \caption{}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{0.5\columnwidth}\centering
+    %\includegraphics[height=120pt]{}
+    \caption{}
+\end{subfigure}
+\caption{}
+\end{figure}
+
+
+\section{仿真电路性能测试}
+如图 \ref{} 搭建仿真电路，各元件的参数见图中标注。下面进行仿真电路的性能测试。
+
+\noindent 3.3 V 工作点性能测试：
+\begin{enumerate}
+\item 输出电压： 3.308 V ($\pm$ 0.766 mV, $r = 0.0232 \,\%$)，见图 \ref{}，此时 $R_k = 2520 \Omega$、$R_f =  3.2\KO$；
+\item 转化效率： 95.2 \%，
+\item 各参数对 $R_k$ 的灵敏度：包括输出电压、波纹比和转化效率见表 \ref{}；
+\item 各参数对 $R_f$ 的灵敏度：见表 \ref{}；
+\item 各参数对 $R$ 的灵敏度：见表 \ref{}；
+\end{enumerate}
+
+\noindent 极限性能测试：
+\begin{enumerate}
+\item 最小输出电压： 1.895 V ($\pm$ 0.27 mV, $r = 0.0451 \,\%$)，见图 \ref{}，此时 $R_k = 0$、$R_f =  5\KO$；
+\item 最大输出电压： 4.252 V ($\pm$ 8.87 mV, $r = 0.2086 \,\%$)，见图 \ref{}，此时 $R_k = 10 \KO$、$R_f =  2.6\KO$；
+\item 最小输出电压纹波比： 0.5 \%，
+\item 最大输出电压纹波比： 4.5 \%，
+\end{enumerate}
+
+\begin{figure}[H]\centering
+\begin{subfigure}[b]{0.5\columnwidth}\centering
+    %\includegraphics[height=120pt]{}
+    \caption{最小输出电压及波纹比}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{0.5\columnwidth}\centering
+    %\includegraphics[height=120pt]{}
+    \caption{最大输出电压及波纹比}
+\end{subfigure}
+\caption{}
+\end{figure}
+
+\section{仿真设计检查}
+查找各元件的的 Data Sheet，依据仿真结果，对照 Data Sheet 判断元件是否能正常工作，如果不能，需要修改设计参数以保证元件正常工作。
+
+\begin{enumerate}
+\item 开关 MOS ：仿真测得的 $u_\text{GS}$ 和 $u_{\text{DS}}$ 如图 \ref{} 所示，$u_{\text{DS}}$ 在 1.9 V 左右小幅振荡。可以大致分为两种情况，第一种，$u_{\text{GS}} = 10 \ \mathrm{V}$，MOS 管导通，依据 Data Sheet，此时 2N7000 的 $I_{\text{D}} = 1.45 \ \mathrm{A}$ 超过了 Absolute Maximun Ratings 中规定的 Maximum Drain Current (Pulsed) 500 mA。
+\end{enumerate}
+
+\begin{table}[H]\centering
+    %\renewcommand{\arraystretch}{1.5} % 调整行间距为 1.5 倍
+    %\setlength{\tabcolsep}{1.5mm} % 调整列间距
+    \caption{元件工作状态检查}
+    \label{元件工作状态检查}
+\begin{tabular}{cccccccccc}\toprule
+     &       & 峰值电压 & 平均电压 & 峰值电流 & 平均电流 \\
+    \midrule
+    开关 MOS &  &  \\
+     &  &   \\
+     &  &   \\
+    \bottomrule
+\end{tabular}
+\end{table}
+\begin{table}[H]\centering
+    %\renewcommand{\arraystretch}{1.5} % 调整行间距为 1.5 倍
+    %\setlength{\tabcolsep}{1.5mm} % 调整列间距
+    \caption{元件 Data Sheet 参数}
+    \label{元件 Data Sheet 参数}
+\begin{tabular}{cccccccccc}\toprule
+     &  &   \\
+    \midrule
+    开关 MOS &  &   \\
+     &  &   \\
+     &  &   \\
+    \bottomrule
+\end{tabular}
+\end{table}
+
+\section{实际电路性能测试}
+
+
+
+\section{最终成品电路}
+
+\section{总结}
+
+% --------------------------- 其它作业 --------------------------- %
+% >> ------------------------ 其它作业 ------------------------ << %
+
+
+
+
+% >> ------------------------ 附录 ------------------------ << %
+% --------------------------- 附录 --------------------------- %
+
+
+\end{document}
+
+
+
+% VScode 常用快捷键：
+
+% F2:                       变量重命名
+% Ctrl + Enter:             行中换行
+% Alt + up/down:            上下移行
+% 鼠标中键 + 移动:           快速多光标
+% Shift + Alt + up/down:    上下复制
+% Ctrl + left/right:        左右跳单词
+% Ctrl + Backspace/Delete:  左右删单词    
+% Shift + Delete:           删除此行
+% Ctrl + J:                 打开 VScode 下栏(输出栏)
+% Ctrl + B:                 打开 VScode 左栏(目录栏)
+% Ctrl + `:                 打开 VScode 终端栏
+% Ctrl + 0:                 定位文件
+% Ctrl + Tab:               切换已打开的文件(切标签)
+% Ctrl + Shift + P:         打开全局命令(设置)
+
+% Latex 常用快捷键
+
+% Ctrl + Alt + J:           由代码定位到PDF
+% 
+
+
+% Git提交规范：
+% update: Linear Algebra 2 notes
+% add: Linear Algebra 2 notes
+% import: Linear Algebra 2 notes
+% delete: Linear Algebra 2 notes

@@ -1809,18 +1809,154 @@ f(t) = \mathscr{L}^{-1}\left\{ L(z), t \right\} =
 
 
 
+\chapter{常微分方程 (ODE) 基础}\thispagestyle{fancy}
+
+\section{分离变量法}
+一些 ODE 可以写成如下形式：
+\begin{equation}
+    \frac{\mathrm{d} y }{\mathrm{d} x } = f(x) g(y)
+\end{equation}
+称为可分离变量的微分方程，对上述方程进行求解，得到：
+\begin{equation}
+\frac{1}{g(y)} \mathrm{d}y = f(x) \mathrm{d}x \Longrightarrow 
+\int \frac{1}{g(y)} \mathrm{d}y = \int f(x) \mathrm{d}x
+\end{equation}44
+特别地，有两类较特殊的方程也可以分离变量，其一是满足 $\frac{\mathrm{d} y }{\mathrm{d} x } = f(ax + by + c)$ 的方程，此时令 $u = ax + by + c$，可以得到：
+\begin{equation}
+\frac{1}{a + b f(u)}\mathrm{d}u = \mathrm{d}x
+\Longrightarrow x = \int \frac{1}{a + b f(u)}\mathrm{d}u 
+\end{equation}
+其二是“齐次”方程，即可写为 $\frac{\mathrm{d} y }{\mathrm{d} x } = f\left( \frac{y}{x} \right)$ 的方程，令 $u = \frac{y}{x}$ 则 $y = ux,\ \frac{\mathrm{d} y }{\mathrm{d} x } = \frac{\mathrm{d} u }{\mathrm{d} x }\cdot x + u$，可以得到：
+\begin{gather}
+\frac{1}{f(u) - u}\ \mathrm{d}u = \frac{1}{x}\ \mathrm{d}x
+\Longrightarrow \ln |x| = \int \frac{1}{f(u) - u}\ \mathrm{d}u,\quad 
+x = \pm \exp \left(\int \frac{1}{f(u) - u}\ \mathrm{d}u\right)
+\end{gather}
+
+\section{一阶线性 ODE}
+我们一般说某某微分方程，指的是：
+\begin{gather}
+\text{(n-order)\ \  (linear/non-linear)\ \ (variable/constant coefficient)} \\ 
+\text{
+    (homogeneous/inhomogeneous) \ \ (ordinary/partial)\ \  diffrential equation}
+\end{gather}
+一阶线性常微分方程具有如下形式：
+\begin{equation}
+    \frac{\mathrm{d} y }{\mathrm{d} x } + p(x) y = q(x)
+\end{equation}
+从齐次、非齐次到变系数，复杂程度逐渐增加。对于常系数的情况，通常考虑齐次解和特解构成全解；对于变系数的情况，先通过常系数得到常系数全解，然后用常数变易法代入求解变系数（是 $x$ 的函数）。
+为了方便参考，我们给出上述方程的通解：
+\begin{equation}
+y = \exp \left(-\int p(x) \ \mathrm{d}x\right)\cdot \left[ \int \left(q \,e^{\int p(x) \ \mathrm{d}x}\right) + C \right] = C \exp \left(-\int p(x) \ \mathrm{d}x\right) + e^{-\int p(x) \ \mathrm{d}x} \cdot \int p(x) \ \mathrm{d}x
+\end{equation}
+上面的定积分中，积分常量已默认取 $0$，仅留 $C$ 一个待定常量。
 
 
 
+\section{全微分方程}
+若微分方程 $u(x,y)\ \mathrm{d}x + v(x,y) \ \mathrm{d}y = 0$ 的左端恰好为某个二元函数 $f(x,y)$ 的全微分，那么方程便等价于 $f(x,y) = C$，称这样的方程为全微分方程（或恰当方程）。
+
+\begin{BlockTheorem}[全微分方程等价条件]\label{全微分方程等价条件}
+设二元实变函数 $u(x,y)$，$v(x,y)$ 在单连通区域 $D$ 内有连续一阶偏导，则一阶微分方程：
+\begin{equation}
+u(x,y) \ \mathrm{d}x + v(x,y) \ \mathrm{d}x = 0
+\end{equation}
+是全微分方程的充要条件是：
+\begin{equation}
+\frac{\partial u }{\partial y } = \frac{\partial v }{\partial x },\quad \forall\ (x,y) \in D
+\end{equation}
+\end{BlockTheorem}
+
+对于可化为全微分方程的情况，直接沿用以前的方法求原函数 $f$ 即可。
+
+\section{二阶线性 ODE}
+二阶线性 ODE 的形式如下：
+\begin{equation}
+y'' + p(x)y' + q(x)y = f(x)
+\end{equation}
+常系数时，齐次解由两个独立的函数构成 $y_h = C_1 y_1(x) + C_2 y_2(x)$（二阶对应二维 $\dim = 2$），其中 $C_1$ 和 $C_2$ 是待定常量，$y_1$ 和 $y_2$ 是两个线性无关的特解，若又求得特解 $y_s$，则全解即为 $y = y_s + y_h$。变系数时，齐次解的形式为 $y = v_1(x)y_1(x) + v_2(x)y_2(x)$，可用常数变易法求解。
+
+我们说一组函数（在区域 $I$ 上）是否线性相关，指的是：若存在不全为 0 的常数 $k_1, k_2, ..., k_n$ 使得：
+\begin{equation}
+k_1 y_1(x) + k_2 y_2(x) + \cdots + k_n y_n(x) = 0,\quad \forall\ x \in I
+\end{equation}
+则称 $y_1, y_2, ..., y_n$ 线性相关；否则线性无关。并且，对于可导函数，我们有定理：
+
+\begin{BlockTheorem}[Wronski Theorem]\label{Wronski Theorem}
+可导函数组 $\{y_1, y_2, ..., y_n\}$ 在 $I$ 上线性相关的充要条件是：
+\begin{equation}
+W(y_1, y_2, ..., y_n)(x) = 0,\quad \forall\ x \in I,\quad 
+W(y_1, y_2, ..., y_n)(x) = \begin{vmatrix}
+y_1(x) & y_2(x) & \cdots & y_n(x) \\
+y_1^{(1)}(x) & y_2^{(1)}(x) & \cdots & y_n^{(1)}(x) \\
+\vdots & \vdots & \ddots & \vdots \\
+y_1^{(n-1)}(x) & y_2^{(n-1)}(x) & \cdots & y_n^{(n-1)}(x) \\
+\end{vmatrix}
+\end{equation}
+行列式 $W(y_1, y_2, ..., y_n)(x)$ 称为 Wronski 行列式。
+\end{BlockTheorem}
+
+二阶常系数齐次线性 ODE 可以由特征法快速求解。特征方程为 $r^2 + pr + q = 0$，解得两个根 $r_1$ 和 $r_2$（可以是复根），则齐次解为：
+\begin{equation}
+y_h = \begin{cases}
+    C_1\, e^{r_1 x} + C_2\, e^{r_2 x}, & r_1 \neq r_2 \\
+    C_1\, e^{r x} + C_2 x\, e^{r x}, & r_1 = r_2 = r
+\end{cases}
+\end{equation}
+特别地，当 $r_1, r_2 \in \C \setminus \R$ 时，是一对共轭复根，此时齐次解空间为 $V = \text{Span}\, \{ e^{(\alpha + i\beta )x},\ e^{(\alpha - i\beta )x} \} = \text{Span}\, \{ e^{\alpha}\cos \beta x,\ e^{\alpha}\sin \beta x \}$，一般我们用后一种基础解系，而不是前一种。
+
+下面讨论几种特殊非齐次情况的特解。$f(x) = P_m(x)e^{rx}$，其中 $P_m(x)$ 为 $m$ 阶多项式时，设 $y_s = Q_n(x)e^{rx}$，代入得到：
+\begin{equation}\label{特解代入}
+Q'' + (2r + p)Q' + (r^2 + pr + q)Q = P_m(x)
+\end{equation}
+于是特解 $y_s = x^k Q_m(x)e^{rx}, k \in \{0, 1, 2\}, Q_m(x) = x^m +a_{m-1}x^{m-1} + \cdots + a_1x_1 + a_0$，$Q_m$ 的系数需要代入公式 (\ref{特解代入}) 求解线性方程组得到，具体而言：
+\begin{equation}
+y_s = \begin{cases}
+    x^0 Q_m(x)e^{rx}, & r \text{ 不是根} \\
+    x^1 Q_m(x)e^{rx}, & r \text{ 是单根} \\
+    x^2 Q_m(x)e^{rx}, & r \text{ 是重根}
+\end{cases}
+\end{equation}
+
+
+第二种情况是 $f(x) = \left[ P_1(x)\cos (\omega x) + P_2(x) \sin (\omega x) \right]e^{rx}$，此时特解为：
+\begin{equation}\label{特解代入2}
+y_s = x^k \left[ Q_1(x)\cos (\omega x) + Q_2(x) \sin (\omega x) \right]e^{rx},\quad k \in \{0, 1\},\quad \deg Q = \max \{\deg P_1, \deg P_2\}
+\end{equation}
+$(r + \omega i)$ 不是特征方程的根时，$k = 0$，否则 $k = 1$。类似地，多项式 $Q_1$ 和 $Q_2$ 的系数需要代入公式 (\ref{特解代入2}) 求解线性方程组得到。
+
+对于 $y'' + py' + q = f(x) + ig(x) $ 的情况，我们有定理：
+\begin{LineTheorem}[复数非齐次]\label{复数非齐次}
+若 $y = y_1 + iy_2$ 是方程 $y'' + py' + q = f(x) + ig(x)$ 的解，那么 $y_1$ 和 $y_2$ 分别是方程 $y'' + py' + q = f(x)$ 和 $y'' + py' + q = g(x)$ 的解。
+\end{LineTheorem}
+
+
+\section{常数变易法}
+
+\section{$n$ 阶齐次线性 ODE}
+讲义 Page 91
+
+\section{常点邻域的幂级数解法}
+在复变域中，由于微分方程系数的解析性就决定了解的解析性，用幂级数法求解微分方程是较普适的，适用范围比较广。
+
+\begin{BlockTheorem}[常点领域内的幂级数解]\label{常点领域内的幂级数解}
+若复变函数 $p(z)$ 和 $q(z)$ 在圆 $| z - z_0 | < R$ 内单值解析，则在此圆中二阶线性齐次 ODE 初值问题：
+\begin{equation}
+\begin{cases}
+    w'' + p(z)w' + q(z)w = 0, & | z - z_0 | < R \\
+    w(z_0) = c_0, & w'(z_0) = c_1
+\end{cases}
+\end{equation}
+的解 $w(z)$ 存在且唯一。$w$ 在该圆内也单值解析，因而具有 Talor 级数形式：
+\begin{equation}
+w(z) = \sum_{n=0}^{\infty} c_n (z - z_0)^n
+\end{equation}
+注意级数中的 $c_0$ 和 $c_1$ 就是初始条件中的 $c_0$ 和 $c_1$。
+\end{BlockTheorem}
 
 
 
-
-
-
-
-
-
+\section{正则奇点邻域的幂级数解法}
 
 
 

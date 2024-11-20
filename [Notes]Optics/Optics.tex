@@ -361,7 +361,8 @@
 \begin{gather}
 \left( \frac{E_y}{E_{0y}} -  \cos \varepsilon\frac{E_x}{E_{0x}} \right)^2 = \sin^2 \varepsilon \left( 1 - \frac{E_x^2}{E_{0x}^2} \right) \\ 
 \Longrightarrow 
-\frac{E_x^2}{E_{0x}^2} + \frac{E_y^2}{E_{0y}^2} - 2 \frac{E_xE_y}{E_{0x}E_{0y}} \cos \varepsilon = \sin^2 \varepsilon \\ 
+\frac{E_x^2}{E_{0x}^2} + \frac{E_y^2}{E_{0y}^2} - 2 \frac{E_xE_y}{E_{0x}E_{0y}} \cos \varepsilon = \sin^2 \varepsilon 
+\\ \label{eq:椭圆偏振光}
 \Longleftrightarrow \frac{E_x^2}{(E_{0x} \sin \varepsilon)^2} + \frac{E_y^2}{(E_{0y} \sin \varepsilon)^2} - 2 \frac{E_xE_y}{(E_{0x} \sin \varepsilon )(E_{0y} \sin \varepsilon)} = 1
 \end{gather}
 由高中的知识可知，当 $\varepsilon \ne k \pi,\  k \in \Z$ 时，这是一个椭圆（或圆）方程，因为 $\Delta = B^2 - 4AC = 4 \cos^2 \varepsilon - 4 < 0$。这样的的偏振光称为椭圆偏振光。
@@ -399,6 +400,16 @@
     \caption{主轴为 $y$ 时椭圆的“摆动”情况}
 \end{figure}
 特别地，我们指出，若 $x$ 为主轴（$E_{0x} > E_{0y}$），则 $\alpha$ 一定在 $(-45^\circ, 45^\circ)$ 之间，这表明椭圆的长轴更“贴近” $x$ 轴，$y$ 的情况也同理。另外，当 $E_{0x} = E_{0y}$ 时，椭圆退化为圆，不存在 $\alpha$ 的概念，但左旋和右旋仍然存在。
+
+为了方便参考，我们给出平面椭圆的一般公式，设椭圆中心为 $(x_0, y_0)$，长轴与 $x$ 轴夹角为 $\alpha$，则椭圆方程为：
+\begin{equation}
+\frac{\left[(x - x_0) \cos \alpha + (y - y_0) \sin \alpha \right]^2}{a^2} + \frac{\left[(x - x_0) \sin \alpha + (y - y_0) \cos \alpha  \right]^2}{b^2} = 1
+\end{equation}
+对比系数，可以得到公式 \ref{eq:椭圆偏振光} 对应椭圆的半长轴 $a$ 和半短轴 $b$ :
+\begin{equation}
+a^2 = \frac{E_{0x}^2E_{0y}^2 \left(\cos^2 \alpha - \sin^2 \alpha\right)}{E_{0y}^2\cos^2 \alpha  -  E_{0x}^2\sin^2 \alpha},\quad 
+b^2 = \frac{E_{0x}^2E_{0y}^2 \left(\cos^2 \alpha - \sin^2 \alpha\right)}{E_{0x}^2\cos^2 \alpha  -  E_{0y}^2\sin^2 \alpha}
+\end{equation}
 
 \subsection{线偏振光}
 当 $\varepsilon = k \pi,\  k \in \Z$ 时，方程退化为：
@@ -545,7 +556,7 @@ E_{0x}e^{i\varphi_x}
 由线性代数的知识知道，任何偏振态（即琼斯矢量）都可以由这样的一组正交偏振态合成得到，这也验证了我们之前对自然光“可分解为相位差迅速随机变化的两线偏振光”表述的合理性。
 
 \subsection{琼斯矩阵和穆勒矩阵}
-偏振器件对光的作用可以直接由矩阵来描述，常记作 $\mathscr{A}$ : 
+偏振器件对光的作用可以直接由矩阵来描述，常记作 $\mathscr{A}$（或 $\boldsymbol{A}$）： 
 \begin{equation}
 \boldsymbol{E_t} = \mathscr{A} \boldsymbol{E_i}
 \end{equation}
@@ -648,7 +659,7 @@ E_{0x}e^{i\varphi_x}
 \end{equation}
 这样便可以用先前的 $\varepsilon$ 来判断相位延迟片（又称波晶片）对偏振态的影响。最常用的波晶片是四分之一波片（简称 $\frac{\lambda}{4}$ 片），对应 $\Delta \phi_o = \frac{\pi}{2}$。
 
-不能混淆的是，一些教材喜欢用“落后”或“领先”来表达这样的相位关系，尽管我们不提倡，但还是要指明，在$(kz - \omega t)$ 的情形中，相位增加 $\Delta \phi_o$（即 $(kz - \omega t + \Delta \phi_o)$）意味着延迟（落后）。
+不能混淆的是，一些教材喜欢用“落后”或“领先”来表达这样的相位关系，尽管我们不提倡，但还是要指明，在$(kz - \omega t)$ 的情形中，相位增加 $\Delta \phi_o$ 意味着延迟（落后），即从 $(kz - \omega t)$ 变为 $(kz - \omega t + \Delta \phi_o)$。
 
 现在我们把各种光经过四分之一波片后偏振态的变化做一个总结，如下图所示：
 \begin{figure}[H]\centering
@@ -663,7 +674,101 @@ E_{0x}e^{i\varphi_x}
     \caption{偏振光的检验}
 \end{figure}
 
+\section{偏振态的计算}
+本小节我们讨论不同偏振态经过不同厚度的波片（相位延迟片）后，会得到怎样的偏振态。一般有矩阵和相位两种方法，前者是利用偏振态和波片的琼斯矢量（矩阵），直接作矩阵乘法，后者是利用波片对 o 光的相位延迟作用。从数学地角度上，前者更直接，计算也更简单，但后者更能体现物理上的直观，有助于对偏振态的理解。
 
+\subsection{矩阵法}
+在玻片平面上建立平面直角坐标系，将光轴所在角度记为 $\phi$，称为波片的方位角。入射光束由琼斯矩阵 $\boldsymbol{E} = \begin{bmatrix}
+    E_{0x} & 
+    E_{0y}
+\end{bmatrix}^T$ 来描述。考虑光线垂直入射到厚度为 $d$ 的波片（光线与光轴垂直），波片对 o 光的相位延迟是 $\Delta \varepsilon = \frac{2\pi}{\lambda}(n_o - n_e) d$，所以其琼斯矩阵 $\boldsymbol{W}$ 可写为：
+\begin{equation}
+\boldsymbol{W} = \boldsymbol{R}^{-1} \boldsymbol{W_0} \boldsymbol{R},\quad \boldsymbol{R} = 
+\begin{bmatrix}
+    \cos \phi & \sin \phi \\ 
+    - \sin \phi & \cos \phi
+\end{bmatrix},\quad \boldsymbol{W} =
+{\color{red} e^{i\varphi}}\begin{bmatrix}
+    e^{i\frac{\Delta \varepsilon}{2}} & 0 \\ 
+    0 & e^{-i\frac{\Delta \varepsilon}{2}}
+\end{bmatrix}
+\end{equation}
+其中 $\boldsymbol{R}$ 是二维旋转矩阵，满足 $\boldsymbol{R}^{-1} = \boldsymbol{R}^T$，而 $\boldsymbol{W_0}$ 是波片在 oe 坐标系下的琼斯矩阵，$\varphi = \frac{1}{2}\cdot \frac{2 \pi }{\lambda} (n_o + n_e) d$ 称为平均相位变化。由于 $e^{i\varphi}$ 一项同时作用在 $E_x$ 和 $E_y$，不会影响出射光的偏振态。在绝大多数情况下，我们仅关心相对相位差 $\varepsilon_0 =  \varepsilon + \Delta \varepsilon$，因此这一项常常被略去，此时波片的琼斯矩阵写为：
+\begin{equation}
+    \boldsymbol{W} = 
+    \begin{bmatrix}
+        \cos \phi & {\color{red} - \sin \phi } \\ 
+         \sin \phi & \cos \phi
+    \end{bmatrix}\cdot 
+    \begin{bmatrix}
+        e^{i\frac{\Delta \varepsilon}{2}} & 0 \\ 
+        0 & e^{-i\frac{\Delta \varepsilon}{2}}
+    \end{bmatrix}
+    \cdot
+    \begin{bmatrix}
+        \cos \phi & \sin \phi \\ 
+        {\color{red} - \sin  \phi} & \cos \phi
+    \end{bmatrix}
+\end{equation}
+
+\subsection{相位法}
+
+利用相位法，可以在脑海中形成偏振态关于 $\varepsilon$ 变化的“动图”，便于理解偏振态的变化过程。下面的讨论都默认波片的  $n_o > n_e$，也即 e 轴是快轴。
+一束光入射波片，分别以玻片的 e 轴、o 轴为 $x$ 和 $y$ 轴建系（注意 e 是横轴），则入射光可在 eo 坐标系下分解为：
+\begin{equation}
+E_e = E_x = E_{0x}\cos (kr - \omega t),\quad E_o = E_y = E_{0y}\cos (kr - \omega t + \varepsilon_0)
+\end{equation}
+注意不要与矩阵法中统一的 $x$、$y$ 轴混淆。波片对光的作用，等价于 o 光发生了相位增量 $\Delta \varepsilon$，出射光变为：
+\begin{equation}
+    E_x = E_{0x}\cos (kr - \omega t ),\quad E_y = E_{0y}\cos (kr - \omega t + \varepsilon_0 + \Delta \varepsilon)
+\end{equation}
+此时相位差 $\varepsilon_0$ 变为 $\varepsilon = \phi_y - \phi_x = \varepsilon_0 + \Delta \varepsilon$，其中 $\Delta \varepsilon = \frac{2 \pi }{\lambda} (n_o - n_e)d$。回到最开始我们讨论 $\varepsilon$ 对偏振态“形状”的影响，这相当于 $\varepsilon$ 在 $[0, 2\pi]$ 上的周期性变化，引起偏振态的周期性变化。
+
+设入射光线是线偏振光（等价于 $\varepsilon_0 = 0$），且与 $x$ 轴（e 轴）夹角为 $\alpha \in [0, \frac{\pi}{2}]$（否则作对称变换），夹角 $\alpha$ 即确定了 $E_{0x}$ 和 $E_{0y}$（准确的说是比值）。当 $E_{0x}E_{0y} \ne 0$ 且 $E_{0x} \ne E_{0y}$ 时，波片对线偏振光的作用，可以用下图来直观表示（以 $E_y > E_x$ 为例）：
+
+\begin{figure}[H]\centering
+\begin{subfigure}[b]{0.24\columnwidth}\centering
+    \includegraphics[height=110pt]{assets/5/5.5/2024-11-20_15-43-12.pdf}
+    \caption{$\varepsilon \in [0, \frac{\pi}{2}]$, Left Rotation}
+\end{subfigure}
+\begin{subfigure}[b]{0.24\columnwidth}\centering
+    \includegraphics[height=110pt]{assets/5/5.5/2024-11-20_15-43-14.pdf}
+    \caption{$\varepsilon \in [\frac{\pi}{2}, \pi]$ , Left Rotation}
+\end{subfigure}
+\begin{subfigure}[b]{0.24\columnwidth}\centering
+    \includegraphics[height=110pt]{assets/5/5.5/2024-11-20_15-43-16.pdf}
+    \caption{$\varepsilon \in [\pi, \frac{3\pi}{2}]$ , Right Rotation}
+\end{subfigure}
+\begin{subfigure}[b]{0.24\columnwidth}\centering
+    \includegraphics[height=110pt]{assets/5/5.5/2024-11-20_15-43-18.pdf}
+    \caption{$\varepsilon \in [\frac{3\pi}{2}, 2\pi]$ , Right Rotation}
+\end{subfigure}
+\caption{波片对线偏振光的作用，$E_y > E_x > 0$}
+\end{figure}
+
+当 $E_{0x}E_{0y} \ne 0$ 且 $E_{0x} = E_{0y}$ 时，随着 $\varepsilon$ 的变化，偏振态依次经过右线、右椭圆、圆、左椭圆、左线，然后又依次返回到右线。且线、椭圆（和圆）都在 $\pm 45^\circ$ 线上，如下图所示：
+
+\begin{figure}[H]\centering
+    \begin{subfigure}[b]{0.24\columnwidth}\centering
+        \includegraphics[height=110pt]{assets/5/5.6/2024-11-20_16-06-30.pdf}
+        \caption{$\varepsilon \in [0, \frac{\pi}{2}]$, Left Rotation}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.24\columnwidth}\centering
+        \includegraphics[height=110pt]{assets/5/5.6/2024-11-20_16-06-32.pdf}
+        \caption{$\varepsilon \in [\frac{\pi}{2}, \pi]$ , Left Rotation}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.24\columnwidth}\centering
+        \includegraphics[height=110pt]{assets/5/5.6/2024-11-20_16-06-34.pdf}
+        \caption{$\varepsilon \in [\pi, \frac{3\pi}{2}]$ , Right Rotation}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.24\columnwidth}\centering
+        \includegraphics[height=110pt]{assets/5/5.6/2024-11-20_16-06-36.pdf}
+        \caption{$\varepsilon \in [\frac{3\pi}{2}, 2\pi]$ , Right Rotation}
+    \end{subfigure}
+    \caption{波片对线偏振光的作用，$E_y = E_x > 0$}
+\end{figure}
+
+特别地，当  $E_{0x}E_{0y} = 0$ 时（至少有一个为零），由于不存在两分量的合成，偏振态不会发生任何变化（除了固有的相位增量）。
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

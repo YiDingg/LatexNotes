@@ -655,7 +655,7 @@ E_{0x}e^{i\varphi_x}
 \subsection{相位延迟片}
 再回来思考图 \ref{fig:oe} (b) 中发生的情况：$e$ 光和 $o$ 光方向都不变，但是它们的光程却不同，相位延迟片便是这样构成的。$o$ 光相对于 $e$ 光的相位增量是：
 \begin{equation}
-\Delta \phi_o = \phi_o - \phi_e = (n_o - n_e)d
+\Delta \phi_o = \phi_o - \phi_e = \frac{2\pi}{\lambda} (n_o - n_e)d
 \end{equation}
 这样便可以用先前的 $\varepsilon$ 来判断相位延迟片（又称波晶片）对偏振态的影响。最常用的波晶片是四分之一波片（简称 $\frac{\lambda}{4}$ 片），对应 $\Delta \phi_o = \frac{\pi}{2}$。
 
@@ -678,10 +678,7 @@ E_{0x}e^{i\varphi_x}
 本小节我们讨论不同偏振态经过不同厚度的波片（相位延迟片）后，会得到怎样的偏振态。一般有矩阵和相位两种方法，前者是利用偏振态和波片的琼斯矢量（矩阵），直接作矩阵乘法，后者是利用波片对 o 光的相位延迟作用。从数学地角度上，前者更直接，计算也更简单，但后者更能体现物理上的直观，有助于对偏振态的理解。
 
 \subsection{矩阵法}
-在玻片平面上建立平面直角坐标系，将光轴所在角度记为 $\phi$，称为波片的方位角。入射光束由琼斯矩阵 $\boldsymbol{E} = \begin{bmatrix}
-    E_{0x} & 
-    E_{0y}
-\end{bmatrix}^T$ 来描述。考虑光线垂直入射到厚度为 $d$ 的波片（光线与光轴垂直），波片对 o 光的相位延迟是 $\Delta \varepsilon = \frac{2\pi}{\lambda}(n_o - n_e) d$，所以其琼斯矩阵 $\boldsymbol{W}$ 可写为：
+在玻片平面上建立平面直角坐标系，将光轴所在角度记为 $\phi$，称为波片的方位角。入射光束由琼斯矩阵 $\boldsymbol{E} = (E_{0x}, E_{0y})$ 来描述。考虑光线垂直入射到厚度为 $d$ 的波片（光线与光轴垂直），波片对 o 光的相位延迟是 $\Delta \varepsilon = \frac{2\pi}{\lambda}(n_o - n_e) d$，所以其琼斯矩阵 $\boldsymbol{W}$ 可写为：
 \begin{equation}
 \boldsymbol{W} = \boldsymbol{R}^{-1} \boldsymbol{W_0} \boldsymbol{R},\quad \boldsymbol{R} = 
 \begin{bmatrix}
@@ -693,7 +690,7 @@ E_{0x}e^{i\varphi_x}
     0 & e^{-i\frac{\Delta \varepsilon}{2}}
 \end{bmatrix}
 \end{equation}
-其中 $\boldsymbol{R}$ 是二维旋转矩阵，满足 $\boldsymbol{R}^{-1} = \boldsymbol{R}^T$，而 $\boldsymbol{W_0}$ 是波片在 oe 坐标系下的琼斯矩阵，$\varphi = \frac{1}{2}\cdot \frac{2 \pi }{\lambda} (n_o + n_e) d$ 称为平均相位变化。由于 $e^{i\varphi}$ 一项同时作用在 $E_x$ 和 $E_y$，不会影响出射光的偏振态。在绝大多数情况下，我们仅关心相对相位差 $\varepsilon_0 =  \varepsilon + \Delta \varepsilon$，因此这一项常常被略去，此时波片的琼斯矩阵写为：
+其中 $\boldsymbol{R}$ 是二维旋转矩阵，满足 $\boldsymbol{R}^{-1} = \boldsymbol{R}^T$，而 $\boldsymbol{W_0}$ 是波片在 oe 坐标系（e 为横轴）下的琼斯矩阵，$\varphi = \frac{1}{2}\cdot \frac{2 \pi }{\lambda} (n_o + n_e) d$ 称为平均相位变化。由于 $e^{i\varphi}$ 一项同时作用在 $E_x$ 和 $E_y$，不会影响出射光的偏振态。在绝大多数情况下，我们仅关心相对相位差 $\varepsilon_0 =  \varepsilon + \Delta \varepsilon$，因此这一项常常被略去，此时波片的琼斯矩阵写为：
 \begin{equation}
     \boldsymbol{W} = 
     \begin{bmatrix}
@@ -770,6 +767,93 @@ E_e = E_x = E_{0x}\cos (kr - \omega t),\quad E_o = E_y = E_{0y}\cos (kr - \omega
 
 特别地，当  $E_{0x}E_{0y} = 0$ 时（至少有一个为零），由于不存在两分量的合成，偏振态不会发生任何变化（除了固有的相位增量）。
 
+\section{旋光性}
+\subsection{旋光性物质}
+按我们之前的理论，一束线偏振光沿石英晶体的光轴传播时，不会发生双折射，因此不会发生偏振态的变化。但实际上，石英晶体具有旋光性的，线偏振光在沿其光轴传播时，振动方向不断转动，这种现象称为光的旋光性，而引起这种现象的物质称为旋光性物质。
+
+旋光分为左旋和右旋，实验表面，振动面旋转的角度 $\delta \psi$ 与旋光晶体的厚度 $d$ 成正比，即 $\delta \psi = \alpha d$，$\alpha$ 称为旋光率，例如石英对 546.1 nm 的光的旋光率为 $25.538^\circ \cdot \ \mathrm{mm^{-1}}$。具体而言，定义逆时针旋转为正（向光源看去），继承之前的思想，我们可以有：
+\begin{equation}\label{旋光性}
+\Delta \psi = {\color{red} \frac{1}{2}}\cdot  \frac{2\pi}{\lambda} (n_R - n_L) d
+\end{equation}
+其中 $n_R$ 是物质对 $\mathscr{R}$ 态的折射率，$n_L$ 是对 $\mathscr{L}$ 态的折射率，所以旋光性也称为“圆双折射”。$n_R >n_L$ 时发生左旋（顺时针转动的光走得慢），$n_R < n_L$ 时发生右旋（逆时针转动的光走得慢）。
+
+由公式 (\ref{旋光性}) 可以看出，系数 $\frac{\pi}{\lambda}$ 是波长的函数。因此，当一束线偏振白光沿光轴入射旋光性物质时，各波长的光转动不同的角度，在观察屏前放一检偏器，不断旋转，即可出现漂亮的色彩，这种现象称为旋光色散。
+
+当然，我们也可以用琼斯矩阵的方法计算旋光，设入射偏振光的琼斯矢量为 $\boldsymbol{E} = (E_{0x}, E_{0y})$，则旋光性晶体的琼斯矩阵为：
+\begin{equation}
+\boldsymbol{W} = 
+\begin{bmatrix}
+    (x - iy) + e^{2 i \Delta \psi} (x + iy)  & 0\\ 
+    -i \left[ (x - iy) - e^{2 i \Delta \psi} (x + iy) \right] & 0
+\end{bmatrix}
+\end{equation}
+由于线性方程组解空间维数限制，上面的写法不唯一。当然，为了方便计算，我们更希望关注下面的结论：
+\begin{equation}
+    \boldsymbol{E'} = 
+    \boldsymbol{W}\cdot\boldsymbol{E} = 
+    \boldsymbol{W}\cdot \begin{bmatrix}
+        E_{0x} \\
+        E_{0y}
+    \end{bmatrix}
+    = 
+    \boldsymbol{W} \cdot\left( a \begin{bmatrix}
+        1 \\
+        i
+    \end{bmatrix} + 
+    b \begin{bmatrix}
+        1 \\
+        -i
+    \end{bmatrix} 
+    \right)
+    = 
+    a \begin{bmatrix}
+        1 \\
+        i
+    \end{bmatrix} +
+    b \, e^{2 i \Delta \psi}\begin{bmatrix}
+        1 \\
+        -i
+    \end{bmatrix}
+\end{equation}
+注意 $e^{2 i \Delta \psi}$ 一项应加在 $\mathscr{R}$ 光上，这是因为 $n_R > n_L$ 时，$v_R < v_L$ 更慢，相当于 $\mathscr{R}$ 发生了延迟。上式中 $a$、$b$ 是 $\boldsymbol{E}$ 在 $\mathscr{R}$、$\mathscr{L}$ 上的投影分量，具体而言：
+\begin{equation}
+a = \frac{E_{0x} - i E_{0y}}{2},\quad b = \frac{E_{0x} + i E_{0y}}{2}
+\end{equation}
+特别地，当 $\boldsymbol{E} = (1, 0)$ 为水平线偏振时：
+\begin{equation}
+a = b = \frac{1}{2},\quad \boldsymbol{E'} = \boldsymbol{W}\cdot \boldsymbol{E} = 
+\begin{bmatrix}
+    \frac{1}{2}\left(e^{2 i \Delta \psi} + 1\right) \\
+    \frac{1}{2i}(e^{2 i \Delta \psi} - 1)
+\end{bmatrix}
+=
+e^{i \Delta \psi}
+\begin{bmatrix}
+    \cos \Delta \psi \\
+    \sin \Delta \psi
+\end{bmatrix}
+\end{equation}
+当 $\boldsymbol{E} = (0, 1)$ 为垂直线偏振时：
+\begin{equation}
+a = -\frac{i}{2},\ b = \frac{i}{2},\quad \boldsymbol{E'} = \boldsymbol{W}\cdot \boldsymbol{E} =
+\begin{bmatrix}
+    \frac{i}{2}\left(e^{2 i \Delta \psi} + 1\right) \\
+    \frac{i}{2i}(e^{2 i \Delta \psi} - 1)
+\end{bmatrix}
+= 
+i\, e^{i \Delta \psi}
+\begin{bmatrix}
+    -\cos \Delta \psi \\
+    \sin \Delta \psi
+\end{bmatrix}
+\end{equation}
+
+\subsection{磁致旋光}
+当光在磁场 $\boldsymbol{B}$ 中，沿磁场方向传播时，同样会出现旋光现象，称为“磁致旋光”或“法拉第旋转效应”，光通过长度为 $l$ 的样品时：
+\begin{equation}
+\Delta \psi = VBl
+\end{equation}
+其中 $V$ 称为韦尔代常量，一般物质的韦尔代常量都很小。在磁场边界放一反射镜，当光线进入磁场、反射、再出磁场时，光的振动面会旋转 $2\Delta \psi$，可以利用这一原理制造光隔离器。
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 上面是应直接复制到总文件的内容 %

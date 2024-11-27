@@ -1061,6 +1061,179 @@ b \in [1.33 \ \mathrm{\mu m}, 1.71 \ \mathrm{\mu m}] \Longrightarrow b_{\min} = 
 \end{figure}
 由图可知，$b_{\min} = 1.33  \ \mathrm{\mu m}$ 时 ($m = 4.5$) ，实际上能看到 7 条明纹，分别是 $0, \pm 1, \pm 2, \pm 3$ 级明纹。
 
+\chapter{第五章作业}\thispagestyle{fancy}
+
+\section{画出图中各情形出射光的偏振状态}
+如图所示：
+\begin{figure}[H]\centering
+    \includegraphics[width=0.9\columnwidth]{assets/5/cdd7fa86a220309cfdc9f9d7115afc61_720.png}
+    \caption{各情形出射光的偏振状态}
+\end{figure}
+
+\section{在一对正交的偏振片之间放一块四分之一波片，以自然光入射，回答下面问题。}
+\subsection{转动四分之一波片的光轴方向时，出射光的强度怎样变化？有无消光现象？}
+可以用 Jones 矩阵来解决这个问题。不妨设第一个偏振片的透光方向水平，第二个偏振片透光方向竖直，四分之一波片的 e 轴（快轴）与水平 $x$ 轴夹角为 $\phi$。则入射光的 Jones 矢量为 $\boldsymbol{E} = (E_x, E_y) = (1, 0)$，四分之一波片的 Jones 矩阵 $\boldsymbol{A_1}$ 和第二个偏振片的 Jones 矩阵 $\boldsymbol{A_2}$ 分别为：
+\begin{gather}
+\boldsymbol{A_1} = \boldsymbol{R}^{-1}(\phi)\cdot \boldsymbol{A_1}|_{\alpha = 0} \cdot\boldsymbol{R}(\phi)
+= 
+\begin{bmatrix}
+    \cos \phi & -\sin \phi \\
+    \sin \phi & \cos \phi
+\end{bmatrix}\cdot
+\begin{bmatrix}
+    1 & 0 \\
+    0 & i
+\end{bmatrix}\cdot
+\begin{bmatrix}
+    \cos \phi & \sin \phi \\
+    -\sin \phi & \cos \phi
+\end{bmatrix}\\ \Longrightarrow 
+\boldsymbol{A_1} = 
+\begin{bmatrix}
+    \cos^2 \phi + i \sin^2 \phi & \cos \phi \sin \phi (1 - i) \\ 
+    \cos \phi \sin \phi (1 - i) & \sin^2 \phi + i \cos^2 \phi
+\end{bmatrix}
+,\quad 
+\boldsymbol{A_2} = 
+\begin{bmatrix}
+    0 & 0 \\
+    0 & 1
+\end{bmatrix}
+\end{gather}
+上式中忽略了 $\boldsymbol{A_1}|_{\alpha = 0}$ 前的系数 $e^{i \frac{\pi}{4}}$，因为它不影响最终光强。光从第一个偏振器射出，依次经过四分之一波片和第二个偏振器，得到出射的 Jones 矢量为：
+\begin{gather}
+\boldsymbol{E'} = \boldsymbol{A_1} \cdot \boldsymbol{E} 
+= 
+\begin{bmatrix}
+    \cos^2 \phi + i \sin^2 \phi \\ \cos \phi \sin \phi (1 - i)
+\end{bmatrix}
+\\
+\boldsymbol{E''} = \boldsymbol{A_2} \cdot \boldsymbol{E'}
+= 
+\begin{bmatrix}
+    0 \\ 
+    \sin \phi \cos \phi (1 - i)
+\end{bmatrix}
+= \frac{\sqrt{2}}{2}\sin 2 \phi 
+\begin{bmatrix}
+    0 \\ 
+    \frac{1 - i}{\sqrt{2}}
+\end{bmatrix}
+\end{gather}
+设介质的绝对介电常量为 $\varepsilon$，光在其中的速率为 $v$，我们有辐照度 $I$ : 
+\begin{equation}
+I = \langle S \rangle_T = \varepsilon v  \langle E^2 \rangle_T = 
+\frac{1}{2}\varepsilon v E_0^2 = \frac{1}{4}\varepsilon v\, \sin^2 (2 \phi)
+\end{equation}
+显然，随着波片的转动，$\phi$ 不断变化，光强也在最大值和最小值（消光）之间周期性变化，因此会出现消光现象。
+
+
+\subsection{如果有强度极大和消光现象，它们在四分之一波片的光轴处于什么方向时出现？这时从四分之一波片射出的光的偏振态如何？}
+做出光强随 $\phi$ 变化的图像，如下图所示：
+\begin{figure}[H]\centering
+    \includegraphics[width=0.95\columnwidth]{assets/5/2024-11-23_23-01-39.pdf}
+    \caption{}
+\end{figure}
+由图可知，当 $\phi = \frac{\pi}{4} + \frac{k\pi}{2}, k \in \Z$ 时，出射光强为极大值，此时出射光为竖直线偏振。当 $\phi = \frac{k\pi}{2}, k \in \Z$ 时，出现消光现象，此时出射光为水平线偏振。
+
+\section{在实验中偏振片和四分之一波片上透振方向和光轴方向都没有标出，而在检验椭圆偏振光的第二步中需要将四分之一波片的光轴对准椭圆的主轴之一。你能设计一个方案，利用两块偏振片和一块四分之一波片做到这一点吗？}
+依次放置偏振片 1、四分之一波片和偏振片 2（此时两个偏振片的透光方向未知），不断转动波片使得出射光光强最大，此时波片快轴要么和偏振片 1 的透光方向平行，要么垂直。固定波片不动，再转动偏振片 2 到恰好消光，此时偏振片 2 的透光方向即与偏振片 1 的透光方向垂直。
+
+固定三个器件的相对角度，当椭圆偏振光入射时，同时转动三个仪器，直到出现消光现象，此时四分之一波片的光轴方向即与椭圆的主轴之一平行。
+
+
+\section{如图入射的线偏振经过二分之一波片后，偏振态如何变化？如果入射的是圆偏振光呢？}
+图 \ref{} (a) 中并没有标明是否有 $E_e \geqslant E_o$，但无论 $E_e \geqslant E_o$ 的大小关系如何，入射光通过二分之一波片后，oe 相位增量 $\Delta \phi = \pi$，所以出射光也为线偏振，如图 \ref{} (b) 所示：
+\begin{figure}[H]\centering
+\begin{subfigure}[b]{0.5\columnwidth}\centering
+    \includegraphics[height=150pt]{assets/5/70d03ee8a05a5bd17b046b52226d661e.png}
+    \caption{入射光的偏振态}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{0.5\columnwidth}\centering
+    \includegraphics[height=150pt]{assets/5/53f93c5aebbefb3c222b5250b2da2139_720.png}
+    \caption{通过二分之一波片后的偏振态}
+\end{subfigure}
+\caption{线偏振经过二分之一波片}
+\end{figure}
+
+\section{两个偏振片中间是冰洲石，两偏振片透振方向互相垂直，冰洲石的光轴方向居于分角线，正入射光波长 589 nm，冰洲石厚度满足什么条件，P2后出射光强最大？($n_o$ = 1.65836, $n_e$ = 1.48541)}
+利用矩阵方法可以很轻松地分析这个问题。不妨设第一个偏振片水平，第二个偏振片竖直，则波片倾角 $\phi = \frac{\pi}{4}$。设冰洲石厚度为 $d$，则相位增量 $\Delta \psi = \frac{2\pi}{\lambda} (n_o - n_e) d$，由此写出波片的 Jones 矩阵 $\boldsymbol{A_1}$ :
+\begin{gather}
+\boldsymbol{A_1}|_{\alpha = 0} = 
+\begin{bmatrix}
+    e^{i\frac{\Delta \psi}{2}} & 0 \\
+    0 & e^{-i\frac{\Delta \psi}{2}}
+\end{bmatrix}
+,\quad \boldsymbol{A_1} = \boldsymbol{R}^{-1}(\frac{\pi}{4})\cdot \boldsymbol{A_1}|_{\alpha = 0} \cdot\boldsymbol{R}(\frac{\pi}{4})
+\\ 
+\Longrightarrow 
+\boldsymbol{A_1}
+= 
+\frac{1}{2}
+\begin{bmatrix}
+    {\mathrm{e}}^{-\frac{\psi \,\mathrm{i}}{2}} +{\mathrm{e}}^{\frac{\psi \,\mathrm{i}}{2}}  & -{\mathrm{e}}^{-\frac{\psi \,\mathrm{i}}{2}} +{\mathrm{e}}^{\frac{\psi \,\mathrm{i}}{2}} \\
+    -{\mathrm{e}}^{-\frac{\psi \,\mathrm{i}}{2}} +{\mathrm{e}}^{\frac{\psi \,\mathrm{i}}{2}}  & {\mathrm{e}}^{-\frac{\psi \,\mathrm{i}}{2}} +{\mathrm{e}}^{\frac{\psi \,\mathrm{i}}{2}} 
+\end{bmatrix}
+\end{gather}
+入射光为 $\boldsymbol{E} = (1, 0)$，依次通过 $\boldsymbol{A_1}$、$\boldsymbol{A_2}$ 之后，出射光为：
+\begin{equation}
+\boldsymbol{E'} = \boldsymbol{A_2} \cdot \boldsymbol{A_1} \cdot \boldsymbol{E} = 
+\frac{1}{2}
+\begin{bmatrix}
+    0 \\
+    e^{\frac{\psi i}{2}} - e^{-\frac{\psi i}{2}}
+\end{bmatrix}
+= 
+\begin{bmatrix}
+    0 \\ 
+    i \sin \frac{\psi}{2}
+\end{bmatrix}
+\end{equation}
+得到出射光强 $I$ :
+\begin{equation}
+I = \frac{1}{2} \varepsilon v \sin^2 \frac{\psi}{2}
+\end{equation}
+当且仅当 $\frac{\psi}{2} = \frac{\pi}{2} + k\pi, k \in \Z$ 时，出射光强最大，这等价于：
+\begin{equation}
+\frac{1}{2}\cdot \frac{2\pi}{\lambda} (n_o - n_e)d = \frac{\pi}{2} + k\pi \Longrightarrow d = \left(\frac{1}{2} + k\right) \cdot \frac{\lambda}{n_o - n_e},\quad k = 0, 1, 2, ...
+\end{equation}
+写成数值形式，即为：
+\begin{equation}
+d = (0.5 + k) \cdot 3.4056 \ \mathrm{\mu m} = 1.7028 \ \mathrm{\mu m},\ 5.1084 \ \mathrm{\mu m},\ 8.5140 \ \mathrm{\mu m}, 11.9196 \ \mathrm{\mu m}, ...
+\end{equation}
+
+\section{两个偏振片中间是两块冰洲石，两偏振片透振方向互相垂直，两冰洲石的光轴方向垂直，分别位于两个分角线，两冰洲石厚度相等，正入射光波长 589 nm，P2 后出射光强如何？}
+与上一题类似，记两个波片的 Jones 矩阵分别为 $\boldsymbol{A_1}$、$\boldsymbol{A_2}$，则有：
+\begin{equation}
+\boldsymbol{A_1} = \frac{1}{2}
+\begin{bmatrix}
+    {\mathrm{e}}^{-\frac{\psi \,\mathrm{i}}{2}} +{\mathrm{e}}^{\frac{\psi \,\mathrm{i}}{2}}  & -{\mathrm{e}}^{-\frac{\psi \,\mathrm{i}}{2}} +{\mathrm{e}}^{\frac{\psi \,\mathrm{i}}{2}} \\
+    -{\mathrm{e}}^{-\frac{\psi \,\mathrm{i}}{2}} +{\mathrm{e}}^{\frac{\psi \,\mathrm{i}}{2}}  & {\mathrm{e}}^{-\frac{\psi \,\mathrm{i}}{2}} +{\mathrm{e}}^{\frac{\psi \,\mathrm{i}}{2}} 
+\end{bmatrix}
+,\quad 
+\boldsymbol{A_2} = \frac{1}{2}
+\begin{bmatrix}
+    {\mathrm{e}}^{-\frac{\psi \,\mathrm{i}}{2}} +{\mathrm{e}}^{\frac{\psi \,\mathrm{i}}{2}}  & {\mathrm{e}}^{-\frac{\psi \,\mathrm{i}}{2}} -{\mathrm{e}}^{\frac{\psi \,\mathrm{i}}{2}} \\
+    {\mathrm{e}}^{-\frac{\psi \,\mathrm{i}}{2}} -{\mathrm{e}}^{\frac{\psi \,\mathrm{i}}{2}}  & {\mathrm{e}}^{-\frac{\psi \,\mathrm{i}}{2}} +{\mathrm{e}}^{\frac{\psi \,\mathrm{i}}{2}}
+\end{bmatrix}
+\end{equation}
+入射光 $\boldsymbol{E} = (1, 0)$，出射光 $\boldsymbol{E'}$ 为：
+\begin{equation}
+\boldsymbol{E'} = \boldsymbol{A_3}\boldsymbol{A_2}\boldsymbol{A_1} \boldsymbol{E} = 
+\begin{bmatrix}
+    0 \\ 
+    0
+\end{bmatrix}
+\end{equation}
+这意味着无论冰洲石的厚度如何，出射光强都恒为 0。
+
+\section{已知水晶对 589 nm 的旋光率 $\alpha$ = 21.75$^\circ\cdot \ \mathrm{mm}^{-1}$，求左、右旋圆偏振光折射率之差。}
+旋光率 $\alpha$ 满足：
+\begin{equation}
+\Delta \psi = \frac{1}{2} \cdot \frac{2\pi}{\lambda}(n_R - n_L) d = \alpha d \Longrightarrow n_R - n_L = \frac{\alpha \lambda}{\pi} = 7.1171 \times 10^{-5}
+\end{equation}
+即左、右旋圆偏振光折射率之差为 $7.1171 \times 10^{-5}$。
+
 % --------------------------- 附录 --------------------------- %
 % >> ------------------------ 附录 ------------------------ << %
 

@@ -2269,7 +2269,19 @@ f(t)*\delta_{t_0}(t) = f(t - t_0)
 
 特别地，当单位冲激作用在电容或电感上时：电压源作用在电容 $C$ 使电压突变 $\Delta u_C = \frac{1}{C}$，电流源作用在电感 $L$ 使电流突变 $\Delta i_L = \frac{1}{L}$。如果不能直接判断突变值，可以列出电路的微分方程，然后由积分关系求解 $t = 0^+$ 的初始值，详见文献 \cite{电路原理习题集} Page 245 例 5.7.3。当然，更简便的方法是先求单位阶跃响应。
 
-
+典型电路中单位冲激带来的突变值如下表所示：
+\begin{table}[H]\centering
+    %\renewcommand{\arraystretch}{1.5} % 调整行间距为 1.5 倍
+    %\setlength{\tabcolsep}{1.5mm} % 调整列间距
+    \caption{单位冲激带来的突变值}
+    \label{单位冲激带来的突变值}
+\begin{tabular}{cccccccccc}\toprule
+    电路 & $R C$ 串联 & $RC$ 并联 & $RL$ 串联 & $RL$ 并联  \\
+    \midrule
+    突变 & $\Delta u_C = \frac{1}{RC}$ & $\Delta u_C = \frac{1}{C}$ & $\Delta i_L = \frac{1}{L}$ & $\Delta i_L = \frac{R}{L}$  \\
+    \bottomrule
+\end{tabular}
+\end{table}
 
 \subsection{任意激励响应}
 实际中的电路输入错综复杂，因此分析任意激励下的电路响应是十分有必要的。理论表面，卷积积分可以解决这个问题。
@@ -2352,7 +2364,9 @@ u = U_m \sin (\omega t + \phi_i) \text{\ 或\ } u = U_m \cos (\omega t + \phi_i)
 i = \Im \left\{ I_me^{\phi_i} \cdot e^{(\omega t)} \right\} \text{\ 或\ } i = \Re \left\{ I_me^{\phi_i} \cdot e^{(\omega t)} \right\} \\ 
 u = \Im \left\{ U_m e^{\phi_u} \cdot e^{(\omega t)} \right\} \text{\ 或\ } u = \Re \left\{ U_m e^{\phi_u} \cdot e^{(\omega t)} \right\}
 \end{gather}
-令 $\vec{I} = I_me^{\phi_i} = I_m \angle \phi_i $ 和 $\vec{U} = U_me^{\phi_u} =  U_m \angle \phi_u$，则在频率 $f$ 已知的情况下（且统一规定了取 $\Im$ 还是 $\Re$），$\vec{I}$ 和 $\vec{U}$ 即可等价地表示出正弦电流和电压。在有的教材中，还会用 $\dot{I} = \frac{I_m}{\sqrt{2}} \angle \phi_i $ 和 $\dot{U} = \frac{U_m}{\sqrt{2}} \angle \phi_u$ 来表示正弦量，考虑到幅值表示更为方便，且为了避免与求导混淆，本书不采用这种记法。需要注意，在我们的记法中，$\vec{I}$ 和 $\vec{U}$ 的模是正弦量的幅度而非有效值。
+令 $\vec{I} = I_me^{\phi_i} = I_m \angle \phi_i $ 和 $\vec{U} = U_me^{\phi_u} =  U_m \angle \phi_u$，则在频率 $f$ 已知的情况下（且统一规定了取 $\Im$ 还是 $\Re$），$\vec{I}$ 和 $\vec{U}$ 即可等价地表示出正弦电流和电压。
+
+在有的教材中，还会用 $\dot{I} = \frac{I_m}{\sqrt{2}} \angle \phi_i $ 和 $\dot{U} = \frac{U_m}{\sqrt{2}} \angle \phi_u$ 来表示正弦量，这种记法在功率分析中具有明显优势。本书将将视情况分别使用这两种记法。
 
 各元件在相量法下的性质可重写为下表：
 \begin{table}[H]\centering
@@ -2376,23 +2390,74 @@ u = \Im \left\{ U_m e^{\phi_u} \cdot e^{(\omega t)} \right\} \text{\ 或\ } u = 
 
 在本节，除了掌握用相量法求解电路稳态，还需要学会使用在计算器上求解复数运算。
 
+\section{正弦稳态电路应用}
+
+\subsection{Maxwell 电桥测实际电感}
+\subsection{回转器构建大电感}
+
+\section{正弦稳态电路的功率}
+\subsection{功率与功率因数的定义}
+正弦稳态电路中有多个功率概念，如下：
+\begin{align}
+\begin{aligned}
+& \text{瞬时功率 (W) :} && p(t) = u(t)i(t) = U_m I_m \cos(\omega t + \psi_u) \cos(\omega t + \psi_i) \\ 
+& && p(t) = \dot{U}\dot{I}\cos \phi - \dot{U}\dot{I} \cos (2 \omega t + \psi_u + \psi_i) \\
+& \text{有功功率 (W) :} && P = UI \cos \phi = I^2\Re \{Z\}\\
+& \text{无功功率 (var) :} && Q = UI \sin \phi = I^2\Im \{Z\}\\
+& \text{复功率 ($V\cdot A$) :} && \dot{S} = \dot{U}\dot{I}^* = P + jQ \\
+& \text{视在功率 ($V\cdot A$) :} && S = UI = \sqrt{P^2 + Q^2} = |\dot{S} | 
+\end{aligned}
+\end{align}
+其中 $\phi = \psi_u - \psi_i$ 称为阻抗角，$\cos \phi = \frac{P}{S} = \frac{P}{UI}$ 称为功率因数。在指明功率因数时，应当指明是 $\phi > 0$ (呈容性) 还是 $\phi < 0$ (呈感性)，例如 $\cos \phi = 0.8\ (\phi > 0)$。
 
 
 
+功率表电路符号及其使用：
+\begin{figure}[H]\centering
+\begin{subfigure}[b]{0.43\columnwidth}\centering
+    \includegraphics[height=80pt]{assets/6/功率表.png}
+    \caption{功率表的电路符号}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{0.55\columnwidth}\centering
+    \includegraphics[height=70pt]{assets/6/功率表测有功功率.png}
+    \caption{用功率表测有功功率}
+\end{subfigure}
+\caption{功率表}
+\end{figure}
+需要注意，除非特别声明，绝大多数的交流电表显示的都是有效值，而不是幅度值。
+
+实际中的负载一般呈容性 ($\phi > 0$)，在容性负载两端并联电容可以减小 $\phi$，进而提高功率因数；同理，感性负载 ($\phi < 0$) 两端并联电感可以增大 $\phi$，进而提高功率因数。
+
+设理想电源 $\dot{U}$ 接有负载 $Z$，有功功率为 $P$。在保持有功功率不变的情况下，为了将功率因数从 $\cos \phi_1$ 提高到 $\cos \phi_2$，应并联的电容为：
+\begin{equation}
+C = \frac{P}{\omega U^2} \left( \tan \phi_1 - \tan \phi_2 \right) = 
+\frac{P}{\omega U^2} \left( \sqrt{\frac{1}{\cos^2 \phi_1} - 1} - \sqrt{\frac{1}{\cos^2 \phi_2} - 1} \right)
+\end{equation}
+有功功率不变时，电容对功率因数的调节，体现在保持 $I \cos \phi$ （$\dot{I}$ 在 $\dot{U}$ 方向上的投影长度）不变的同时使 $\phi$ 减小 ($\cos \phi$ 增大)，使得电流 $I$ 减小。
 
 
+\subsection{最大功率传输}
 
-
-
-
-
-
-
-
-
-
-
-
+考虑实际电源 ($\dot{U_s}$, $Z_s = R_s + j X_s$) 接在负载 $Z = R + jX$ 两端，则有功功率为：
+\begin{equation}
+P = \frac{R}{(R + R_s)^2 + (X + X_s)^2} \cdot U_s^2 
+\end{equation}
+为使负载获得最大有功功率 $P$，有以下几种情况：
+\begin{table}[H]\centering
+    \renewcommand{\arraystretch}{1.5} % 调整行间距为 1.5 倍
+    %\setlength{\tabcolsep}{1.5mm} % 调整列间距
+    \caption{最大功率传输}
+    \label{最大功率传输}
+\begin{tabular}{cccccccccc}\toprule
+    情况 & 满足条件 & 最大功率 $P_{\max}$  \\
+    \midrule
+    仅改变 $X$ & $X = -X_s$ & $\displaystyle \frac{R}{(R+R_s)^2} U_s^2$  \\
+    仅改变 $R$ & $R = \sqrt{R_s^2 + (X + X_s)^2}$ & $\displaystyle \frac{1}{2(R_s + R)} U_s^2$  \\
+    可改变 $X$ 和 $R$ & $Z = Z_s^*$ & $\displaystyle \frac{1}{4R_s} U_s^2$  \\
+    $\arg Z = \varphi_s$ 不变，$| Z |$ 可变 & $| Z | = | Z_s |$ & $\displaystyle \frac{\cos \varphi_s}{2 | Z_s | \left[ 1 - \cos (\varphi_s \varphi) \right]}$   \\
+    \bottomrule
+\end{tabular}
+\end{table}
 
 
 

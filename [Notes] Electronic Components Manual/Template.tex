@@ -1,0 +1,313 @@
+% 若编译失败，且生成 .synctex(busy) 辅助文件，可能有两个原因：
+% 1. 需要插入的图片不存在：Ctrl + F 搜索 'figure' 将这些代码注释/删除掉即可
+% 2. 路径/文件名含中文或空格：更改路径/文件名即可
+
+% --------------------- 文章宏包及相关设置 --------------------- %
+% >> ------------------ 文章宏包及相关设置 ------------------ << %
+% 设定文章类型与编码格式
+\documentclass[UTF8]{report}		
+
+% 本 .tex 专属的宏定义
+    \def\uV{\ \mathrm{uV}}
+    \def\mV{\ \mathrm{mV}}
+    \def\V{\ \mathrm{V}}
+    \def\kV{\ \mathrm{KV}}
+    \def\KV{\ \mathrm{KV}}
+    \def\MV{\ \mathrm{MV}}
+    \def\uF{\ \mathrm{uF}}
+    \def\nF{\ \mathrm{nF}}
+    \def\pF{\ \mathrm{pF}}
+    \def\uA{\ \mathrm{uA}}
+    \def\mA{\ \mathrm{mA}}
+    \def\A{\ \mathrm{A}}
+    \def\kA{\ \mathrm{KA}}
+    \def\KA{\ \mathrm{KA}}
+    \def\MA{\ \mathrm{MA}}
+    \def\uO{\ \mu\Omega}
+    \def\mO{\ \mathrm{m}\Omega}
+    \def\O{\ \Omega}
+    \def\kO{\ \mathrm{K}\Omega}
+    \def\KO{\ \mathrm{K}\Omega}
+    \def\MO{\ \mathrm{M}\Omega}
+    \def\Hz{\ \mathrm{Hz}}
+    \def\Res{\,\mathrm{Res}\,}
+    \def\Im{\,\mathrm{Im}\,}
+    \def\Re{\,\mathrm{Re}\,}
+
+% 自定义宏定义
+    \def\N{\mathbb{N}}
+    \def\F{\mathbb{F}}
+    \def\Z{\mathbb{Z}}
+    \def\Q{\mathbb{Q}}
+    \def\R{\mathbb{R}}
+    \def\C{\mathbb{C}}
+    \def\T{\mathbb{T}}
+    \def\S{\mathbb{S}}
+    %\def\A{\mathbb{A}}
+    \def\I{\mathscr{I}}
+    \def\d{\mathrm{d}}
+    \def\p{\partial}
+
+
+% 导入基本宏包
+    \usepackage[UTF8]{ctex}     % 设置文档为中文语言
+    \usepackage{hyperref}  % 宏包：自动生成超链接 (此宏包与标题中的数学环境冲突)
+    \hypersetup{
+        % 超链接颜色设置
+        colorlinks=true,    % false:边框链接 ; true:彩色链接
+        citecolor={blue},    % 文献引用颜色
+        linkcolor={blue},   % 目录 (我们在目录处单独设置)，公式，图表，脚注等内部链接颜色
+        urlcolor={magenta},    % 网页 URL 链接颜色，包括 \href 中的 text
+        % pdf 相关设置
+        pdfauthor={丁毅},% PDF 作者
+        pdftitle={Notes of Principles of Electric Circuits},% PDF 标题
+        pdfproducer={LaTeX with hyperref}, % PDF 制作软件
+        pdfcreator={xelatex},       % PDF 创建者
+        pdfpagelayout=TwoColumn,    % 双栏布局
+        pdfstartview=FitH,          % 页面宽度适合窗口
+        %pdfpagemode=UseNone,       % 不显示书签 (默认会显示)
+        pdfpagemode=UseOutlines,    % 显示书签
+        pdfnewwindow=true,          % 在新窗口中打开链接
+        pdfencoding=auto,           % 自动编码
+        pdfborder={0 0 0},          % pdf 无边框
+        pdfhighlight=/I,            % 链接高亮样式
+        % magenta 洋红色
+        % cyan 浅蓝色 
+        % magenta 洋红色
+        % yellow 黄色
+        % black 黑色
+        % white 白色
+        % red 红色
+        % green 绿色
+        % blue 蓝色
+        % gray 灰色
+        % darkgray 深灰色
+        % lightgray 浅灰色
+        % brown 棕色
+        % lime 石灰色
+        % olive 橄榄色
+        % orange 橙色
+        % pink 粉红色
+        % purple 紫色
+        % teal 蓝绿色
+        % violet 紫罗兰色
+    }
+    % \usepackage{docmute}    % 宏包：子文件导入时自动去除导言区，用于主/子文件的写作方式，\include{./51单片机笔记}即可。注：启用此宏包会导致.tex文件capacity受限。
+    \usepackage{amsmath}    % 宏包：数学公式
+    \usepackage{mathrsfs}   % 宏包：提供更多数学符号
+    \usepackage{amssymb}    % 宏包：提供更多数学符号
+    \usepackage{pifont}     % 宏包：提供了特殊符号和字体
+    \usepackage{extarrows}  % 宏包：更多箭头符号 
+    \usepackage{multicol}   % 宏包：支持多栏 
+
+% 文章页面margin设置
+    \usepackage[a4paper]{geometry}
+        \geometry{top=0.75in}
+        \geometry{bottom=0.75in}
+        \geometry{left=0.75in}
+        \geometry{right=0.75in}   % 设置上下左右页边距
+        \geometry{marginparwidth=1.75cm}    % 设置边注距离（注释、标记等）
+
+
+% table 支持
+    \usepackage{booktabs}   % 宏包：三线表
+    \usepackage{tabularray} % 宏包：表格排版
+    \usepackage{longtable}  % 宏包：长表格
+
+% figure 设置
+    \usepackage{graphicx}  % 支持 jpg, png, eps, pdf 图片 
+    \usepackage{svg}       % 支持 svg 图片
+        \svgsetup{
+            % 指向 inkscape.exe 的路径
+            inkscapeexe = C:/aa_MySame/inkscape/bin/inkscape.exe, 
+            % 一定程度上修复导入后图片文字溢出几何图形的问题
+            inkscapelatex = false                 
+        }
+    \usepackage{subcaption} % 用于子图和小图注  
+
+% 图表进阶设置
+    \usepackage{caption}    % 图注、表注
+        \captionsetup[figure]{name=图}  
+        \captionsetup[table]{name=表}
+        \captionsetup{
+            labelfont=bf, % 设置标签为粗体
+            textfont=bf,  % 设置文本为粗体
+            font=small  
+        }
+    \usepackage{float}     % 图表位置浮动设置 
+    \usepackage{etoolbox} % 用于保证图注表注的数学字符为粗体
+        \AtBeginEnvironment{figure}{\boldmath} % 图注中的数学字符为粗体
+        \AtBeginEnvironment{table}{\boldmath}  % 表注中的数学字符为粗体
+        \AtBeginEnvironment{tabular}{\unboldmath}   % 保证表格中的数学字符不受额外影响
+
+% 圆圈序号自定义
+    \newcommand*\circled[1]{\tikz[baseline=(char.base)]{\node[shape=circle,draw,inner sep=0.8pt, line width = 0.03em] (char) {\small \bfseries #1};}}   % TikZ solution
+
+% 列表设置
+    \usepackage{enumitem}   % 宏包：列表环境设置
+        \setlist[enumerate]{
+            label=(\arabic*) ,   % 设置序号样式为加粗的 (1) (2) (3)
+            ref=\arabic*, % 如果需要引用列表项，这将决定引用格式（这里仍然使用数字）
+            itemsep=0pt, parsep=0pt, topsep=0pt, partopsep=0pt, leftmargin=3.5em} 
+        \setlist[itemize]{itemsep=0pt, parsep=0pt, topsep=0pt, partopsep=0pt, leftmargin=3.5em}
+        \newlist{circledenum}{enumerate}{1} % 创建一个新的枚举环境  
+        \setlist[circledenum,1]{  
+            label=\protect\circled{\arabic*}, % 使用 \arabic* 来获取当前枚举计数器的值，并用 \circled 包装它  
+            ref=\arabic*, % 如果需要引用列表项，这将决定引用格式（这里仍然使用数字）
+            itemsep=0pt, parsep=0pt, topsep=0pt, partopsep=0pt, leftmargin=3.5em
+        }  
+
+% 其它设置
+    % 脚注设置
+        \renewcommand\thefootnote{\ding{\numexpr171+\value{footnote}}}
+    % 参考文献引用设置
+        \bibliographystyle{unsrt}   % 设置参考文献引用格式为unsrt
+        \newcommand{\upcite}[1]{\textsuperscript{\cite{#1}}}     % 自定义上角标式引用
+    % 文章序言设置
+        \newcommand{\cnabstractname}{序言}
+        \newenvironment{cnabstract}{%
+            \par\Large
+            \noindent\mbox{}\hfill{\bfseries \cnabstractname}\hfill\mbox{}\par
+            \vskip 2.5ex
+            }{\par\vskip 2.5ex}
+
+% 文章默认字体设置
+    \usepackage{fontspec}   % 宏包：字体设置
+        \setmainfont{SimSun}    % 设置中文字体为宋体字体
+        \setCJKmainfont[AutoFakeBold=3]{SimSun} % 设置加粗字体为 SimSun 族，AutoFakeBold 可以调整字体粗细
+        \setmainfont{Times New Roman} % 设置英文字体为Times New Roman
+
+% 各级标题自定义设置
+    \usepackage{titlesec}   
+        % chapter 标题自定义设置
+        \titleformat{\chapter}[hang]{\normalfont\huge\bfseries\centering\boldmath}{第\,\thechapter\,章}{20pt}{}
+        \titlespacing*{\chapter}{0pt}{-20pt}{20pt} % 控制上下间距
+        % section标题自定义设置 
+        \titleformat{\section}[hang]{\normalfont\Large\bfseries\boldmath}{§\,\thesection\,}{8pt}{}
+        % subsubsection标题自定义设置
+        \titlespacing*{\subsubsection}{0pt}{3pt}{0pt} % 控制上下间距
+
+
+% --------------------- 文章宏包及相关设置 --------------------- %
+% >> ------------------ 文章宏包及相关设置 ------------------ << %
+
+% ------------------------ 文章信息区 ------------------------ %
+% ------------------------ 文章信息区 ------------------------ %
+% 页眉页脚设置
+    \usepackage{fancyhdr}   % 宏包：页眉页脚设置
+        \pagestyle{fancy}
+        \fancyhf{}
+        \cfoot{\thepage}
+        \renewcommand\headrulewidth{1pt}
+        \renewcommand\footrulewidth{0pt}
+        \usepackage{fontawesome}    % 宏包：更多符号与图标 (用于插入 GitHub 图标等)
+        \lhead{\small
+        \href{https://github.com/YiDingg/LatexNotes}{\color{black}\faGithub\ https://github.com/YiDingg/LatexNotes}
+        }
+        \chead{Notes of Principles of Electric Circuits}    
+        \rhead{\small dingyi233@mails.ucas.ac.cn}
+
+%文档信息设置
+    \title{电子元件手册\\ Electronic Components Manual}
+    \author{丁毅\\ \footnotesize 中国科学院大学，北京 100049\\ Yi Ding \\ \footnotesize University of Chinese Academy of Sciences, Beijing 100049, China}
+    \date{\footnotesize 2024.11 -- ...}
+% ------------------------ 文章信息区 ------------------------ %
+% ------------------------ 文章信息区 ------------------------ %
+
+% 开始编辑文章
+
+\begin{document} 
+\zihao{5}           % 设置全文字号大小
+
+
+\chapter{Diodes (二极管)}\thispagestyle{fancy}
+二极管分为...
+
+\section{Power/Rectifier/General Diode (功率/整流/通用二极管)}
+\subsection{}
+\subsection{1N4007}
+
+由 GOODWORK (固得沃克, 中国江苏) 生产的 1N4007 是一种功率/整流/通用二极管，常应用于整流电路等（同类型的有 1N4000, 1N4001, ..., 1N4006），可以在 \href{https://item.szlcsc.com/3428711.html}{立创商城} 或 \href{http://www.gk-goodwork.com/cn/product/1n4007.html}{GOODWORK 官网} 上找到它。
+\begin{figure}[H]\centering
+\begin{subfigure}[b]{0.5\columnwidth}\centering
+    \includegraphics[height=180pt]{assets/Diodes/1N4007/正面.png}
+    \caption{The front side}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{0.5\columnwidth}\centering
+    \includegraphics[height=180pt]{assets/Diodes/1N4007/背面.png}
+    \caption{The back side}
+\end{subfigure}
+\caption{1N4007 (GOODWORK)}
+\end{figure}
+
+Data Sheet 中的具体参数我们不再重复了，可到数据手册中自行查找，这里给出 1N4007 在图 \ref{} 电路下的实际 $V$-$I$ 特性曲线。
+
+\begin{center}
+    {\color{red} 这里需要重测，限流电阻由两个 47R 并联，二极管电阻 10R，则最大电流 150 mA。本书中的实测图，除非只有一个，都采用 minor tick + 并排的方式}
+\end{center}
+
+\begin{figure}[H]\centering
+\begin{subfigure}[b]{0.52\columnwidth}\centering
+    \includegraphics[height=115pt]{assets/Diodes/1N4007/Voltage-Current Characteristics.pdf}
+    \caption{Voltage-Current Characteristics}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{0.48\columnwidth}\centering
+    \includegraphics[height=115pt]{assets/Diodes/1N4007/Resistance Characteristics.pdf}
+    \caption{Resistance Characteristics}
+\end{subfigure}
+\caption{Characteristics of 1N4007}
+\end{figure}
+
+\subsection{}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
+
+
+
+% VScode 常用快捷键：
+
+% F2:                       变量重命名
+% Ctrl + Enter:             行中换行
+% Alt + up/down:            上下移行
+% 鼠标中键 + 移动:           快速多光标
+% Shift + Alt + up/down:    上下复制
+% Ctrl + left/right:        左右跳单词
+% Ctrl + Backspace/Delete:  左右删单词    
+% Shift + Delete:           删除此行
+% Ctrl + J:                 打开 VScode 下栏(输出栏)
+% Ctrl + B:                 打开 VScode 左栏(目录栏)
+% Ctrl + `:                 打开 VScode 终端栏
+% Ctrl + 0:                 定位文件
+% Ctrl + Tab:               切换已打开的文件(切标签)
+% Ctrl + Shift + P:         打开全局命令(设置)
+
+% Latex 常用快捷键
+
+% Ctrl + Alt + J:           由代码定位到PDF
+% 
+
+
+% Git提交规范：
+% update: Linear Algebra 2 notes
+% add: Linear Algebra 2 notes
+% import: Linear Algebra 2 notes
+% delete: Linear Algebra 2 notes

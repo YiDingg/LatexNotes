@@ -33,6 +33,8 @@
     \def\Res{\,\mathrm{Res}\,}
     \def\Im{\,\mathrm{Im}\,}
     \def\Re{\,\mathrm{Re}\,}
+    \def\db{\,\mathrm{dB}\,}
+    \def\dB{\,\mathrm{dB}\,}
 
 % 自定义宏定义
     \def\N{\mathbb{N}}
@@ -2459,11 +2461,97 @@ P = \frac{R}{(R + R_s)^2 + (X + X_s)^2} \cdot U_s^2
 \end{tabular}
 \end{table}
 
+\section{频率响应与滤波器}
+
+正弦激励下动态电路的稳态响应随激励频率 $f$（等价于 $\omega$）变化的这种特性就称为电路的“频率响应特性”，简称“频率响应”或“频响”。
+
+\subsection{网络函数与频率响应}
+在正弦稳态电路中，为了突出“响应随频率变化”这一特征，我们定义了网络函数 $H$。设在某一电路的一个端口施加正弦激励 $\dot{E}$，由此产生的稳态响应为 $\dot{R}$，则 $H$ 定义为：
+\begin{equation}
+H = \frac{\dot{R}}{\dot{E}} \Longleftrightarrow \dot{R} = H \dot{E}
+\end{equation}
+其中 $\dot{R}$ 是指 Response，$\dot{E}$ 是指 Excitation。$H = H(\omega)$ 是一个与频率相关的复数，也可以写作 $H = H(j\omega)$，因为 $\omega$ 项总与 $j$ 一起出现。$H$ 是一个复数，其相位关于频率的变化称为相频特性，其模 $|H|$ 称为增益 $A$（或“幅频特性”），并定义一种特殊的单位 dB (分贝) :
+\begin{equation}
+H_{\text{dB}} = 20 \lg |H|
+\end{equation}
+在纯滤波器中 $H \geqslant 1$，常见的是 $-3 \db$ 对应 $| H | \approx \frac{1}{\sqrt{2}}$；在纯放大器中 $H \geqslant 1$，常见的是 $3 \db$ 对应 $| H | \approx \sqrt{2}$、$6 \ \mathrm{dB}$ 对应 $| H | \approx 2$ 以及 $20 \ \mathrm{dB}$ 对应 $| H | \approx 10$。
+\begin{table}[H]\centering
+    %\renewcommand{\arraystretch}{1.5} % 调整行间距为 1.5 倍
+    %\setlength{\tabcolsep}{1.5mm} % 调整列间距
+    \caption{增益与 dB 值的对应关系}
+    \label{增益与 dB 值的对应关系}
+\begin{tabular}{cccccccccc}\toprule
+    $H$ & 0.01 & 0.1 & 0.5 & $\frac{1}{\sqrt{2}}$ & \textbf{1} & $\sqrt{2}$ & 2 & 10 & 100 \\
+    \midrule
+    $H_{\text{dB}}$ & -40 & -20 & -6 & -3 & \textbf{0} & 3 & 6 & 20 & 40 \\
+    \bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{低通与高通滤波器}
+常见一阶滤波器的网络函数 $H$、相频特性 $\varphi(\omega)$ 与截止频率 $\omega_c$ 为：
+\begin{align}
+\begin{aligned}
+&RC \text{低通}, && H = \frac{1}{1 + j \omega CR}, && \varphi = - \arctan \left(\frac{\omega}{\omega_c}\right) &&, \omega_c = RC\\
+&RC \text{高通}, && H = \frac{j \omega CR}{1 + j \omega CR}, && \varphi = 90^\circ - \arctan \left(\frac{\omega}{\omega_c}\right) &&, \omega_c = RC\\
+&RL \text{低通}, && H = \frac{1}{1 + j \omega \frac{R}{L}}, && \varphi = - \arctan \left(\frac{\omega}{\omega_c}\right) &&, \omega_c = \frac{R}{L}\\
+&RL \text{高通}, && H = \frac{j \omega \frac{R}{L}}{1 + j \omega \frac{R}{L}}, && \varphi = 90^\circ - \arctan \left(\frac{\omega}{\omega_c}\right) &&, \omega_c = \frac{R}{L}
+\end{aligned}
+\end{align}
+
+\subsection{带通、带阻、全通滤波器}
+
+实际使用滤波器时，当输出端接入负载电阻，此时输出端无法视为断路，滤波器的滤波特性会发生变化，称为“负载耦合”。可以利用电压跟随器来解决这一问题，例如下面的 $RC$ 带通滤波器：
+\begin{figure}[H]\centering
+    \includegraphics[width=0.5\columnwidth]{assets/6/带通滤波器.png}
+    \caption{$RC$ 带通滤波器}
+\end{figure}
+其网络函数为：
+\begin{align}
+H(\omega) &= \frac{\dot{U}_{\text{out}}}{\dot{U}_{\text{in}}} = \frac{\dot{U}_{\text{out}}}{\dot{U}_{\text{1}}} \times \frac{\dot{U}_{\text{1}}}{\dot{U}_{\text{in}}} = \frac{j \omega R_2 C_2}{1 + j \omega R_2 C_2} \times \frac{1}{1 + j \omega R_1 C_1} \\
+&= \frac{j \omega R_2 C_2}{1 + j \omega (R_1 C_1 + R_2 C_2) - \omega^2 R_1 R_2 C_1 C_2} \\ 
+&= \frac{j \tau_2}{ \left( \frac{1}{\omega} - \tau_1 \tau_2 \  \omega \right) + j\left(\tau_1 + \tau_2\right) } \\ 
+\theta &= \theta_1 + \theta_2 = -\arctan \left(\frac{\omega}{\omega_{c1}}\right) + 90^\circ - \arctan \left(\frac{\omega}{\omega_{c2}}\right)
+\end{align}
+其中心频率 $\omega_0$（事实上是谐振频率）及其对应的最大增益 $| H_m |$ 为：
+\begin{equation}
+\omega_0 = \frac{1}{\sqrt{\tau_1 \tau_2}} ,\quad H_m = \frac{\tau_2}{\tau_1 + \tau_2}
+\end{equation}
+\begin{figure}[H]\centering
+    \includegraphics[width=0.6\columnwidth]{assets/6/带通滤波器频响.png}
+    \caption{$RC$ 带通滤波器的频响}
+    \label{RC 带通滤波器的频响}
+\end{figure}
+作出其幅频曲线与相频曲线，如图 \ref{RC 带通滤波器的频响}。工程上称增益最大的频率 $\omega_0$ 为该电路的中心频率，中心频率两侧直至增益降至 $\frac{1}{\sqrt{2}}$ 的频率范围称为“通频带”或“带宽” BW (band width)。
+
+
+全通滤波器是一种比较特殊的滤波器，具有平坦的幅频特性，主要用来产生相移，例如下面的移相桥：
+\begin{equation}
+H(\omega) = \frac{1}{2}\cdot\frac{j\omega R_0C - 1}{j\omega R_0C + 1},\quad \theta = 180^{\circ} - 2 \arctan \left(\frac{\omega}{\omega_c} \right),\quad \omega_c = R_0C
+\end{equation}
+\begin{figure}[H]\centering
+\begin{subfigure}[b]{0.25\columnwidth}\centering
+    \includegraphics[height=70pt]{assets/6/移相桥.png}
+    \caption{移相桥电路图}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{0.37\columnwidth}\centering
+    \includegraphics[height=70pt]{assets/6/移相桥幅频.png}
+    \caption{幅频特性}
+\end{subfigure}
+\begin{subfigure}[b]{0.37\columnwidth}\centering
+    \includegraphics[height=70pt]{assets/6/移相桥相频.png}
+    \caption{相频特性}
+\end{subfigure}
+\caption{全通滤波器移相桥}
+\end{figure}
 
 
 
+\section{谐振电路}
+\subsection{$LC$ 谐振电路的频响}
+\subsection{品质因数 $Q$}
 
-
+\section{互感和变压器}
 
 
 

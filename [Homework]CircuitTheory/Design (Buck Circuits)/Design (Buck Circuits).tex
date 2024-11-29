@@ -649,6 +649,7 @@ $u_{L, +} = u_{2, \text{DS}}$ 在 $0$ 附近小幅线性上升（从负到正）
     %\renewcommand{\arraystretch}{1.5} % 调整行间距为 1.5 倍
     %\setlength{\tabcolsep}{1.5mm} % 调整列间距
     \caption{方案 1 不同参数下的仿真结果}
+    \vspace*{-3mm}
 \resizebox{\columnwidth}{!}{
     \begin{tabular}{cccccccccc}\toprule
         OPA & $L$ (mH) & $C$ ($\uF$) & $C_f$ (nF) & $u_{\text{out}}$ (V) & $\Delta u_{\text{out}}$ (mV) & $r$ & $R_k$ (10 $\kO$) & $R_f$ (10 $\kO$) & 输出稳定性  \\
@@ -671,15 +672,18 @@ $u_{L, +} = u_{2, \text{DS}}$ 在 $0$ 附近小幅线性上升（从负到正）
 下面是各元件在工作点的电压波形：
 \begin{figure}[H]\centering
     \includegraphics[width=\columnwidth]{assets/Design1/方案 1 仿真波形/image.png}
+    \vspace*{-7mm}
     \caption{输出电压 $u_{\text{out}}$}
     \label{输出电压 1}
 \end{figure}
 \begin{figure}[H]\centering
     \includegraphics[width=\columnwidth]{assets/Design1/方案 1 仿真波形/image copy.png}
+    \vspace*{-7mm}
     \caption{MOS $T_1$ 电压}
 \end{figure}
 \begin{figure}[H]\centering
     \includegraphics[width=\columnwidth]{assets/Design1/方案 1 仿真波形/image copy 2.png}
+    \vspace*{-7mm}
     \caption{MOS $T_2$ 电压}
 \end{figure}
 \begin{figure}[H]\centering
@@ -784,15 +788,18 @@ $u_{L, +} = u_{2, \text{DS}}$ 在 $0$ 附近小幅线性上升（从负到正）
 
 \subsection{设计修改}
 
-需要注意，由于设计要求中的运放 LM258N 是单电源运放，电源输入为 VCC 和 GND，而我们上面的设计中使用了双电源运放，电源输入为 +VCC 和 -VCC，需要对 Pulse Generator 进行修改。如图 \ref{Pulse Generator (Single Source)} 所示，创建电压为 0.5 VCC 的“虚地”，这时运放的输出是介于 0 和 VCC 之间的脉冲电压，仍可以直接用于驱动 MOSFET，无需其它修改。
-
-虽然电容的上下突变点发生了变化（幅度变为原来的一半），但其变化速度同样变为了原来的一半。如果运放的正负输出完全对称，正负饱和电压也相等，那么数学上可以知道，修改之后不会对 Buck 电路产生任何影响。但是，实际运放的正负输出并不对称，正负饱和电压也不一定相等，会对 Buck 电路产生一定的影响，所以我们需要重新测定电路工作点参数及性能。
+需要注意，由于设计要求中的运放 LM258N 是单电源运放，电源输入为 VCC 和 GND，而我们上面的设计中使用了双电源运放，电源输入为 +VCC 和 -VCC，需要对 Pulse Generator 进行修改。
 
 \begin{figure}[H]\centering
     \includegraphics[width=0.6\columnwidth]{assets/Design1/Pulse Generator (Single Source).pdf}
     \caption{利用了虚地的 Pulse Generator (Single Source)}
     \label{Pulse Generator (Single Source)}
 \end{figure}
+
+如图 \ref{Pulse Generator (Single Source)} 所示，创建电压为 0.5 VCC 的“虚地”，这时运放的输出是介于 0 和 VCC 之间的脉冲电压，仍可以直接用于驱动 MOSFET，无需其它修改。
+
+虽然电容的上下突变点发生了变化（幅度变为原来的一半），但其变化速度同样变为了原来的一半。如果运放的正负输出完全对称，正负饱和电压也相等，那么数学上可以知道，修改之后不会对 Buck 电路产生任何影响。但是，实际运放的正负输出并不对称，正负饱和电压也不一定相等，会对 Buck 电路产生一定的影响，所以我们需要重新测定电路工作点参数及性能。
+
 
 \subsection{单电源 (虚地) 仿真测试}
 

@@ -204,12 +204,12 @@
         \lhead{\small
         \href{https://github.com/YiDingg/LatexNotes}{\color{black}\faGithub\ https://github.com/YiDingg/LatexNotes}
         }
-        \chead{Notes of Principles of Electric Circuits}    
+        \chead{Electronic Components Manual}
         \rhead{\small dingyi233@mails.ucas.ac.cn}
 
 %文档信息设置
     \title{电子元件手册\\ Electronic Components Manual}
-    \author{丁毅\\ \footnotesize 中国科学院大学，北京 100049\\ Yi Ding \\ \footnotesize University of Chinese Academy of Sciences, Beijing 100049, China}
+    \author{丁毅\\ \footnotesize {\kaishu (中国科学院大学，北京 100049)} \\ Yi Ding \\ \footnotesize \textit{(University of Chinese Academy of Sciences, Beijing 100049, China)}}
     \date{\footnotesize 2024.11 -- ...}
 % ------------------------ 文章信息区 ------------------------ %
 % ------------------------ 文章信息区 ------------------------ %
@@ -228,12 +228,17 @@
 
 % 序言
 \begin{cnabstract}\normalsize 
-本文为笔者本科时的电子元件手册，不仅对学习过程中接触较多的元件作了系统性的介绍和总结，还对部分元件进行了仿真或实际电路测试，给出了相应的参数曲线或波形图。
+本文为笔者本科时的电子元件手册，对学习过程中接触较多的元件作了系统性的介绍和总结，同时对部分元件进行了仿真或实际电路测试，给出了相应的参数曲线或波形图。
 
 随着学习的不断深入，笔者对某些元件的认识一定会更加深刻，也会认识新的元件。因此，笔者打算将本手册作为一份长期更新的（真的很长期）电子元件手册，既是我个人对元件知识的总结，也是便于以后自己参考。读者可到我的 GitHub 下载手册的最新版本 \href{https://github.com/YiDingg/LatexNotes}{https://github.com/YiDingg/LatexNotes}，也可以在我的个人网站 \href{URL}{待更新}  上找到相关资料，包括各元件的 Data Sheet、学习电子元件及其相关电路的优秀网站等（例如 \href{https://www.electronics-tutorials.ws/}{Electornics Tutorials}）。
 
-另外，有相当一部分元件（例如 Operational Amplifier）其实是基础元件所构成的模块化电路。在本书，我们不会详谈如何通过基本元件搭建出这些进阶元件，而是讨论如何对这些元件（模块化的电路）建立正确的认识，探究在不同情况下应该选用怎样的模型进行分析，以达到足够高的精度，同时尽可能地降低模型复杂度。实现它们的具体电路，会放到另一本书“电子电路手册”中，读者可到网址 \href{URL}{待更新} 自行下载。
-
+另外，有相当一部分元件（例如 Operational Amplifier）其实是基础元件所构成的模块化电路。在本书，我们不会详谈如何通过基本元件搭建出这些进阶元件，而是讨论如何对这些元件（模块化的电路）建立正确的认识，探究在不同情况下应该选用怎样的模型进行分析，以达到足够高的精度，同时尽可能地降低模型复杂度。实现它们的具体电路，以及 Oscillators、Amplifiers 和 Power Supplies 等模块化电路，会放到另一本书“电子电路手册”中，读者可到网址 \href{URL}{待更新} 自行下载和阅读。为了提高读者的自学效率，笔者在这里推荐几个免费且优秀的电子学习网站：
+\begin{enumerate}
+\item \href{https://www.electronics-tutorials.ws/}{Electornics Tutorials} : 这个网站提供了丰富的电子学习资料，包括 Transistors、Amplifiers、Diodes、Filters 等，还提供了很多实用的电子工程师工具，例如在线电阻电感电容计算器等；
+\item \href{https://www.learnabout-electronics.org/}{https://www.learnabout-electronics.org/} : 这个网站提供了电子学习的基础和进阶知识，包括 Semiconductors, Amplifiers, Oscillators, Power Supplies 等，最令人惊喜的是几乎所有资料都提供了 PDF 下载，方便读者下载后自行学习；
+\item \href{https://www.electronics-lab.com}{https://www.electronics-lab.com} : 这个网站不仅开源了很多电子电路设计实例，包括基础电路、模拟电路、数字电路等，还提供了丰富的学习资源（文章）在 \href{https://www.electronics-lab.com/articles/}{here}；
+\item \href{https://developerhelp.microchip.com/}{https://developerhelp.microchip.com/} : 这是 Microchip 官方的开发者帮助网站，提供了大量的电子元件的 Data Sheet、Application Notes、Reference Manuals 等，是学习 Microchip 产品的重要参考网站，当然，在这里也可以找到与模拟电路、数字电路相关的的学习资料；
+\end{enumerate}
 
 
 由于个人学识浅陋，认识有限，文中难免有不妥甚至错误之处，望读者不吝指正。读者可以将错误发送到我的邮箱 {\color{blue}\ dingyi233@mails.ucas.ac.cn}，也可以到笔者的 \href{https://github.com/YiDingg/LatexNotes}{GitHub (https://github.com/YiDingg/LatexNotes)} 上提 issue，衷心感谢。
@@ -279,20 +284,19 @@
 二极管分为...
 
 \section{Power/Rectifier/General Diode (功率/整流/通用二极管)}
-\subsection{}
-\subsection{1N4007}
+\subsection{1N4007 [GOODWORK (固得沃克)]}
 
 由 GOODWORK (固得沃克, 中国江苏) 生产的 1N4007 是一种功率/整流/通用二极管，常应用于整流电路等（同类型的有 1N4000, 1N4001, ..., 1N4006），可以在 \href{https://item.szlcsc.com/3428711.html}{立创商城} 或 \href{http://www.gk-goodwork.com/cn/product/1n4007.html}{GOODWORK 官网} 上找到它。
 \begin{figure}[H]\centering
 \begin{subfigure}[b]{0.5\columnwidth}\centering
-    \includegraphics[height=180pt]{assets/Diodes/1N4007/正面.png}
+    \includegraphics[height=180pt]{assets/Diodes/1N4007 [GOODWORK (固得沃克)]/1N4007 正面.png}
     \caption{The front side}
 \end{subfigure}\hfill
 \begin{subfigure}[b]{0.5\columnwidth}\centering
-    \includegraphics[height=180pt]{assets/Diodes/1N4007/背面.png}
+    \includegraphics[height=180pt]{assets/Diodes/1N4007 [GOODWORK (固得沃克)]/1N4007 背面.png}
     \caption{The back side}
 \end{subfigure}
-\caption{1N4007 (GOODWORK)}
+\caption{1N4007 [GOODWORK (固得沃克)]}
 \end{figure}
 
 Data Sheet 中的具体参数我们不再重复了，可到数据手册中自行查找，这里给出 1N4007 在图 \ref{} 电路下的实际 $V$-$I$ 特性曲线。
@@ -302,49 +306,102 @@ Data Sheet 中的具体参数我们不再重复了，可到数据手册中自行
 \end{center}
 
 \begin{figure}[H]\centering
-\begin{subfigure}[b]{0.52\columnwidth}\centering
-    \includegraphics[height=115pt]{assets/Diodes/1N4007/Voltage-Current Characteristics.pdf}
+\begin{subfigure}[b]{0.5\columnwidth}\centering
+    \includegraphics[height=175pt]{assets/Diodes/1N4007 [GOODWORK (固得沃克)]/1N4007 Voltage-Current Characteristics.pdf}
     \caption{Voltage-Current Characteristics}
 \end{subfigure}\hfill
-\begin{subfigure}[b]{0.48\columnwidth}\centering
-    \includegraphics[height=115pt]{assets/Diodes/1N4007/Resistance Characteristics.pdf}
+\begin{subfigure}[b]{0.5\columnwidth}\centering
+    \includegraphics[height=175pt]{assets/Diodes/1N4007 [GOODWORK (固得沃克)]/1N4007 Resistance Characteristics.pdf}
     \caption{Resistance Characteristics}
 \end{subfigure}
 \caption{Characteristics of 1N4007}
 \end{figure}
-
-\subsection{}
-
 
 
 
 
 
 \section{Voltage regulator diode (稳压二极管)}
-\section{Light Emitting Diode (发光二极管)}
+\section{LED (Light Emitting Diode) (发光二极管)}
+\subsection{204-10SYGD/S530-E3}
+\subsection{某宝常见 LED}
+在某宝中购买大小和外观与 204-10SYGD/S530-E3 相同的 LED，其电气特性如下：
+\begin{figure}[H]\centering
+    \includegraphics[width=0.9\columnwidth]{assets/Diodes/LED (Taobao)/Voltage-Current Characteristics.pdf}
+    \caption{Voltage-Current Characteristics}
+\end{figure}
+\begin{figure}[H]\centering
+    \includegraphics[width=0.9\columnwidth]{assets/Diodes/LED (Taobao)/Equivalent Conductance Characteristics.pdf}
+    \caption{Equivalent Conductance Characteristics}
+\end{figure}
+由图可以看到，黄绿红三色导通电压 $V_\text{th}$ 和 20 mA 工作压降 $V_\text{D}$ 分别为：
+\begin{equation}
+\boldmath
+V_\text{th} = 1.8 \ \mathrm{V},\quad V_\text{D} = 2.3 \ \mathrm{V} \quad (\text{Yellow, Green, Red})
+\end{equation}
+而蓝色和白色 LED 的导通电压 $V_\text{th}$ 和 20 mA 工作压降 $V_\text{D}$ 分别为：
+\begin{equation}
+\boldmath
+V_\text{th} = 2.5 \ \mathrm{V},\quad V_\text{D} = 3.2 \ \mathrm{V} \quad (\text{Blue, White})
+\end{equation}
+
 \section{Schottky Diode (肖特基二极管)}
 
 \chapter{Transistors (晶体管)}\thispagestyle{fancy}
-\section{Bipolar Transistor Junction (BTJ) (双极型晶体管)}
-\section{Junction Field Effect Transistor (JFET) (结型场效应晶体管)}
-\section{Metal-Oxide -Semiconductor Field Effect Transistor (MOSFET) (金属氧化物半导体场效应晶体管)}
-\section{Darlington Transistors (达林顿晶体管)}
+\section{BTJ (Bipolar Transistor Junction) (双极型晶体管)}
+\section{JFET (Junction Field Effect Transistor) (结型场效应晶体管)}
+\section{MOSFET (Metal-Oxide -Semiconductor Field Effect Transistor) (金属氧化物半导体场效应晶体管)}
 
-\subsection{2N7000}
 
-可以在 \href{https://item.szlcsc.com/232636.html}{立创商城} 或  \href{https://www.GOODWORK.com/products/discrete-power-modules/mosfets/small-signal-mosfets/1N4007}{GOODWORK 官网} 上找到它。其实物图如下：
+\subsection{2N7000 [onsemi (安森美)]}
+
+2N7000 [onsemi (安森美)] 是由 onsemi 公司生产的 N-Channel Enhancement Mode Field Effect Transistor (N-Channel Enhancement MOSFET)，可以在 \href{https://item.szlcsc.com/232636.html}{立创商城} 或  \href{https://www.GOODWORK.com/products/discrete-power-modules/mosfets/small-signal-mosfets/1N4007}{GOODWORK 官网} 上找到它。其实物图如下：
 
 \begin{figure}[H]\centering
     \begin{subfigure}[b]{0.5\columnwidth}\centering
-        \includegraphics[height=180pt]{assets/Transistors/2N7000/2N7000 正面.png}
+        \includegraphics[height=150pt]{assets/Transistors/2N7000 [onsemi (安森美)]/2N7000 正面.png}
         \caption{The front side}
     \end{subfigure}\hfill
     \begin{subfigure}[b]{0.5\columnwidth}\centering
-        \includegraphics[height=180pt]{assets/Transistors/2N7000/2N7000 背面.png}
+        \includegraphics[height=150pt]{assets/Transistors/2N7000 [onsemi (安森美)]/2N7000 背面.png}
         \caption{The back side}
     \end{subfigure}
-    \caption{2N7000 (GOODWORK)}
-    \end{figure}
+    \caption{2N7000 [onsemi (安森美)]}
+\end{figure}
+
+
+用经典反相器结构，取合适的电阻 $R_L$ 用作电流表（我们这里取 $R_L = 5.2 \Omega$），固定 $V_\text{GS}$，同时改变 $V_\text{DS}$，可以得到 MOS 的工作特性 (Operation Characteristics) $I_\text{DS} = I_\text{DS}(V_\text{DS})$，这包括了导通特性 (On-Region Characteristics) 和体二极管特性 (Body Diode Characteristics)。
+\begin{figure}[H]\centering
+    \includegraphics[width=0.9\columnwidth]{assets/Transistors/2N7000 [onsemi (安森美)]/2N7000 Operation Characteristics.pdf}
+    \caption{Operation Characteristics of 2N7000}
+\end{figure}
+依据实际测得的数据，可以计算出 MOS 的等效电导特性 (Equivalent Conductance Characteristics)，如下图所示：
+\begin{figure}[H]\centering
+    \includegraphics[width=0.9\columnwidth]{assets/Transistors/2N7000 [onsemi (安森美)]/2N7000 Cunductance Characteristics.pdf}
+    \caption{Equivalent Conductance Characteristics of 2N7000}
+\end{figure}
+\begin{figure}[H]\centering
+    \includegraphics[width=0.9\columnwidth]{assets/Transistors/2N7000 [onsemi (安森美)]/2N7000 Cunductance Characteristics (filtered).pdf}
+    \caption{Filtered Equivalent Conductance Characteristics of 2N7000}
+\end{figure}
+
+固定 $V_{\text{DS}}$，改变 $V_\text{GS}$，串联万用表以测量 $I_\text{DS}$，得到 2N7000 的转移特性曲线 $I_\text{DS} = I_\text{DS}(V_\text{GS})$ 如下：
+\begin{figure}[H]\centering
+    \includegraphics[width=0.9\columnwidth]{assets/Transistors/2N7000 [onsemi (安森美)]/2N7000 Transfer Characteristics.pdf}
+    \caption{Transfer Characteristics of 2N7000}
+\end{figure}
+上图中 $V_\text{DS} = 15$ V 时仅测到 $V_\text{GS} = 2.7$ V，这是因为往后 MOS 管发热严重，温度不断上升，无法得到稳定示数。用 $V_\text{DS} = 15$ V 时测得的数据拟合饱和电流公式 $I_\text{DS} = \frac{K}{2} \left( V_\text{GS} - V_\text{T} \right)^2$，其中 $K$ 和 $V_\text{T}$ 是待定参量，得到：
+\begin{equation}
+\boldmath V_\text{T} = 2.109 \ \mathrm{V},\quad K = 0.182 \ \mathrm{A\cdot V^{-2}} = 182 \ \mathrm{mA\cdot V^{-2}}
+\end{equation}
+
+\begin{figure}[H]\centering
+    \includegraphics[width=0.9\columnwidth]{assets/Transistors/2N7000 [onsemi (安森美)]/2N7000 拟合 K 值与 V_T.png}
+    \caption{Threshold Voltage of 2N7000}
+\end{figure}
+
+\section{MODFET (Modulation Doped Field Effect Transistor) (调制掺杂场效应晶体管) }
+\section{Darlington Transistors (达林顿晶体管)}
 
 \chapter{Amplifiers}\thispagestyle{fancy}
 \section{Common Emitter Amplifier (共射极放大器)}

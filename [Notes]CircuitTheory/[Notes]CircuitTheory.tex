@@ -30,6 +30,10 @@
     \def\KO{\ \mathrm{K}\Omega}
     \def\MO{\ \mathrm{M}\Omega}
     \def\Hz{\ \mathrm{Hz}}
+    \def\kHz{\ \mathrm{kHz}}
+    \def\KHz{\ \mathrm{KHz}}
+    \def\mHz{\ \mathrm{MHz}}
+    \def\MHz{\ \mathrm{MHz}}
     \def\Res{\,\mathrm{Res}\,}
     \def\Im{\,\mathrm{Im}\,}
     \def\Re{\,\mathrm{Re}\,}
@@ -2470,32 +2474,16 @@ P = \frac{R}{(R + R_s)^2 + (X + X_s)^2} \cdot U_s^2
 \begin{equation}
 H = \frac{\dot{R}}{\dot{E}} \Longleftrightarrow \dot{R} = H \dot{E}
 \end{equation}
-其中 $\dot{R}$ 是指 Response，$\dot{E}$ 是指 Excitation。$H = H(\omega)$ 是一个与频率相关的复数，也可以写作 $H = H(j\omega)$，因为 $\omega$ 项总与 $j$ 一起出现。$H$ 是一个复数，其相位关于频率的变化称为相频特性，其模 $|H|$ 称为增益 $A$（或“幅频特性”），并定义一种特殊的单位 dB (分贝) :
-\begin{equation}
-H_{\text{dB}} = 20 \lg |H|
-\end{equation}
-在纯滤波器中 $H \geqslant 1$，常见的是 $-3 \db$ 对应 $| H | \approx \frac{1}{\sqrt{2}}$；在纯放大器中 $H \geqslant 1$，常见的是 $3 \db$ 对应 $| H | \approx \sqrt{2}$、$6 \ \mathrm{dB}$ 对应 $| H | \approx 2$ 以及 $20 \ \mathrm{dB}$ 对应 $| H | \approx 10$。
-\begin{table}[H]\centering
-    %\renewcommand{\arraystretch}{1.5} % 调整行间距为 1.5 倍
-    %\setlength{\tabcolsep}{1.5mm} % 调整列间距
-    \caption{增益与 dB 值的对应关系}
-    \label{增益与 dB 值的对应关系}
-\begin{tabular}{cccccccccc}\toprule
-    $H$ & 0.01 & 0.1 & 0.5 & $\frac{1}{\sqrt{2}}$ & \textbf{1} & $\sqrt{2}$ & 2 & 10 & 100 \\
-    \midrule
-    $H_{\text{dB}}$ & -40 & -20 & -6 & -3 & \textbf{0} & 3 & 6 & 20 & 40 \\
-    \bottomrule
-\end{tabular}
-\end{table}
+其中 $\dot{R}$ 是指 Response，$\dot{E}$ 是指 Excitation。$H = H(\omega)$ 是一个与频率相关的复数，也可以写作 $H = H(j\omega)$，因为 $\omega$ 项总与 $j$ 一起出现。$H$ 是一个复数，其相位关于频率的变化称为相频特性，其模 $|H|$ 称为增益 $A$，增益 $|H|$ 关于频率的变化称为幅频特性。
 
 \subsection{低通与高通滤波器}
 常见一阶滤波器的网络函数 $H$、相频特性 $\varphi(\omega)$ 与截止频率 $\omega_c$ 为：
 \begin{align}
 \begin{aligned}
-&RC \text{低通}, && H = \frac{1}{1 + j \omega CR}, && \varphi = - \arctan \left(\frac{\omega}{\omega_c}\right) &&, \omega_c = RC\\
-&RC \text{高通}, && H = \frac{j \omega CR}{1 + j \omega CR}, && \varphi = 90^\circ - \arctan \left(\frac{\omega}{\omega_c}\right) &&, \omega_c = RC\\
-&RL \text{低通}, && H = \frac{1}{1 + j \omega \frac{R}{L}}, && \varphi = - \arctan \left(\frac{\omega}{\omega_c}\right) &&, \omega_c = \frac{R}{L}\\
-&RL \text{高通}, && H = \frac{j \omega \frac{R}{L}}{1 + j \omega \frac{R}{L}}, && \varphi = 90^\circ - \arctan \left(\frac{\omega}{\omega_c}\right) &&, \omega_c = \frac{R}{L}
+&RC \text{低通}, && H = \frac{1}{1 + j \omega CR}, && \varphi = - \arctan \left(\frac{\omega}{\omega_c}\right) &&, \omega_c = \frac{1}{\tau} = \frac{1}{RC}, && \tau = RC\\
+&RC \text{高通}, && H = \frac{j \omega CR}{1 + j \omega CR}, && \varphi = 90^\circ - \arctan \left(\frac{\omega}{\omega_c}\right) &&, \omega_c = \frac{1}{\tau} = \frac{1}{RC}, && \tau = RC\\
+&RL \text{低通}, && H = \frac{1}{1 + j \omega \frac{R}{L}}, && \varphi = - \arctan \left(\frac{\omega}{\omega_c}\right) &&, \omega_c = \frac{1}{\tau} = \frac{R}{L}, && \tau = \frac{L}{R}\\
+&RL \text{高通}, && H = \frac{j \omega \frac{R}{L}}{1 + j \omega \frac{R}{L}}, && \varphi = 90^\circ - \arctan \left(\frac{\omega}{\omega_c}\right) &&, \omega_c = \frac{1}{\tau} = \frac{R}{L}, && \tau = \frac{L}{R}
 \end{aligned}
 \end{align}
 
@@ -2545,6 +2533,109 @@ H(\omega) = \frac{1}{2}\cdot\frac{j\omega R_0C - 1}{j\omega R_0C + 1},\quad \the
 \caption{全通滤波器移相桥}
 \end{figure}
 
+\subsection{波特图、极点和零点}
+
+在上面的几个小节，我们所作出的频响曲线都采用了对数横坐标，这是因为频率响应的变化范围很大，采用对数坐标可以使得频率响应的变化更加直观。特别地，我们也可以对增益 $| H |$ 取对数，即横坐标为 $\log f$，纵坐标为 $20 \lg | H |$，这样的图称为“波特图”。由此定义一种特殊的单位 dB (分贝) :
+\begin{equation}
+H_{\text{dB}} = 20\, \lg |H|
+\end{equation}
+在纯滤波器中 $H \geqslant 1$，常见的是 $-3 \db$ 对应 $| H | \approx \frac{1}{\sqrt{2}}$；在纯放大器中 $H \geqslant 1$，常见的是 $3 \db$ 对应 $| H | \approx \sqrt{2}$、$6 \ \mathrm{dB}$ 对应 $| H | \approx 2$ 以及 $20 \ \mathrm{dB}$ 对应 $| H | \approx 10$。
+\begin{table}[H]\centering
+    %\renewcommand{\arraystretch}{1.5} % 调整行间距为 1.5 倍
+    %\setlength{\tabcolsep}{1.5mm} % 调整列间距
+    \caption{增益与 dB 值的对应关系}
+    \label{增益与 dB 值的对应关系}
+\begin{tabular}{cccccccccc}\toprule
+    $H$ & 0.01 & 0.1 & 0.5 & $\frac{1}{\sqrt{2}}$ & \textbf{1} & $\sqrt{2}$ & 2 & 10 & 100 \\
+    \midrule
+    $H_{\text{dB}}$ & -40 & -20 & -6 & -3 & \textbf{0} & 3 & 6 & 20 & 40 \\
+    \bottomrule
+\end{tabular}
+\end{table}
+
+作为一个例子，我们分别作出 $RC$ 低通滤波器 $H = \frac{1}{1 + j \frac{\omega}{\omega_c}} = \frac{1}{1 + j \omega RC}$ 的幅频特性和波特图，也即纵坐标分别为  $| H | $ 和 $H_{\text{dB}} = 20\, \lg | H |$。为了方便对照，也同时作出其相频特性。令 $\omega_c = 1 \KHz$，$\omega \in [1 \ \mathrm{Hz}, 1 \mHz]$，可以得到：
+\begin{figure}[H]\centering
+\begin{subfigure}[b]{0.5\columnwidth}\centering
+    \includegraphics[height=170pt]{assets/6/RC 低通 幅频特性.pdf}
+    \caption{幅频特性 $A = | H |$}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{0.5\columnwidth}\centering
+    \includegraphics[height=170pt]{assets/6/RC 低通 波特图.pdf}
+    \caption{波特图 $H_{\text{dB}} = 20 \lg | H |$}
+\end{subfigure}
+\caption{$RC$ 低通滤波器的幅频特性和波特图}
+\end{figure}
+我们称此时的 $\omega_c = 1 \KHz$ 为极点。对相位 $\theta$ 而言，$0.1 \omega_c$ 处 $\Delta \theta = 0$，$\omega_c$ 处的 $\Delta \theta = -45^\circ$ 而 $10\omega_c$ 处的 $\Delta \theta = -90^\circ$；对波特图而言，$\omega_c$ 处对应的 $\Delta H_{\text{dB}} = -3$，并且在极点 $\omega_c$ 之后，波特图斜率 $k$ 有增量 $\Delta k = -20 \ \mathrm{dB / dec}$。
+
+零点与极点类似只是增量为正而不是负，我们直接给出两者的定义：对于给定的网络函数 $H = H(j\omega)$，将 $j \omega$ 替换为 $s$，得到拉式域中的表达式 $H = H(s)$，$H(s)$ 的分子分母都是 $s$ 的多项式，使分子为零的 $s$ （的绝对值）称为零点，使分母为零的 $s$ （的绝对值）称为极点。分母中 $s$ 的多项式的阶数称为“滤波器阶数”。
+
+设零点为 $\omega_0$，则它具有以下特征：
+\begin{enumerate}
+\item 对波特图 $H_{\text{dB}}$ ：若零点 $\omega_0 = 0$，则 $H_{\text{dB}}(0) = -\infty$，且初始点之后斜率 $k$ 增加 $\Delta k = 20 \ \mathrm{dB / dec}$；至于 $H_{\text{dB}}$ 何时上升到正常值，只需给 $\omega$ 赋一个值，求出此点 $(\omega, H_{\text{dB}})$，然后结合斜率画出曲线即可；若零点 $\omega_0 \ne 0$，则只发生斜率增量 $\Delta k = 20 \ \mathrm{dB / dec}$；
+
+\item 对相位 $\theta$ ：若 $\omega_0 = 0$，则无影响；若 $\omega_0 \neq 0$，则相比于角频率远小于 $\omega_0$ 的相位，$0.1 \omega_0$ 、$\omega_0$ 和 $10 \, \omega_0$ 处的相位分别增加 $\Delta \theta = 0$、$45^\circ$ 和 $90^\circ$。
+\end{enumerate}
+类似地，设极点为 $\omega_0$，则它具有以下特征：
+\begin{enumerate}
+\item 对波特图 $H_{\text{dB}}$ ：若极点 $\omega_0 = 0$，则 $H_{\text{dB}}(0) = +\infty$，且初始点之后斜率 $k$ 增加 $\Delta k = -20 \ \mathrm{dB / dec}$；至于 $H_{\text{dB}}$ 何时下降到正常值，只需给 $\omega$ 赋一个值，求出此点 $(\omega, H_{\text{dB}})$，然后结合斜率画出曲线即可；若极点 $\omega_0 \ne 0$，则只发生斜率增量 $\Delta k = -20 \ \mathrm{dB / dec}$；
+\item 对相位 $\theta$ ：若 $\omega_0 = 0$，则无影响；若 $\omega_0 \neq 0$，则相比于角频率远大于 $\omega_0$ 的相位，$0.1 \omega_0$ 、$\omega_0$ 和 $10 \, \omega_0$ 处的相位增量分别为 $\Delta \theta = 0$、$-45^\circ$ 和 $-90^\circ$。
+\end{enumerate}
+
+\subsection{常见滤波器的波特图}
+
+以 $RC$ 高通滤波器为例，其网络函数 $H = H(\omega)$ 为：
+\begin{equation}
+H = \frac{j \omega R C}{1 + j \omega R C}
+\end{equation}
+有唯一零点 $\omega_0 = 0$ 和唯一极点 $\omega_1 = \frac{1}{RC}$。先考虑其波特图，初始增益为 1，因此分贝为 0 dB，斜率 $k$ 的初始值为 0。$\omega$ 从 0 开始，遇到零点 $\omega_0 = 0$ 时分贝变为 $0 + (-60 \ \mathrm{dB}) = -60 \ \mathrm{dB}$，斜率 $k' = k + \Delta k = 20 \ \mathrm{dB/dec}$，$\omega$ 继续增大，直至遇到极点 $\omega_1 = \frac{1}{RC}$，此时 $k'' = k' + \Delta k = 20 + (- 20) = 0$，之后 $k$ 保持不变。
+
+再考虑相频特性，相位初始值为 $\theta = 90^{\circ}$（也即 $\lim_{\omega \to 0^+}$ 时的相位）。零点处 $\omega_0 = 0$，不影响相位，随着 $\omega$ 的增大，在 $0.1 \omega_1$ 时开始下降，在极点 $\omega_1$ 处增量 $-45^{\circ}$，此时 $\theta$ 下降到 $90^\circ + (-45^\circ) = 45^\circ$，直至 $10\omega_1$ 时下降到零。作出实际的波特图和相频曲线，如图 \ref{$RC$ 高通滤波器的波特图}，结果与我们预测的一致。
+\begin{figure}[H]\centering
+    \includegraphics[width=0.9\columnwidth]{assets/6/RC 高通 波特图.pdf}
+    \caption{$RC$ 高通滤波器的波特图与相频特性}
+    \label{$RC$ 高通滤波器的波特图}
+\end{figure}
+
+
+\begin{figure}[H]\centering
+\begin{subfigure}[b]{0.55\columnwidth}\centering
+    \includegraphics[height=140pt]{assets/6/两级 RC 低通滤波.pdf}
+    \caption{两个 $RC$ 低通滤波器隔离后级联}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{0.45\columnwidth}\centering
+    \includegraphics[height=145pt]{assets/6/两级 RC 低通 波特图.pdf}
+    \caption{两级 $RC$ 复合低通滤波器的波特图}
+\end{subfigure}
+\caption{两级 $RC$ 复合低通滤波器}
+\label{两级 RC 低通滤波器}
+\end{figure}
+用上面的方法，我们可以分析各种滤波器的波特图和相频特性。图 \ref{两级 RC 低通滤波器} (a) 是由两个低通滤波器（经过隔离后）级联得到的复合低通滤波器。设两个滤波器的截止频率分别为 $\omega_1$ 和 $\omega_2$，则复合网络函数为：
+\begin{equation}
+H = H_1 \cdot H_2 = \frac{1}{1 + j \frac{\omega}{\omega_1} } \cdot \frac{1}{1 + j \frac{\omega}{\omega_2} }
+\end{equation}
+
+有唯二极点 $\omega = \omega_1,\ \omega_2$，没有零点。令 $\omega_1 = 10^2 \Hz$，$\omega_2 = 10^4 \Hz$，波特图与相频如图 \ref{两级 RC 低通滤波器} (b) 所示。
+
+
+
+
+考虑图 \ref{RC 带通滤波器} (a) 中由 $RC$ 低通和 $RC$ 高通（经过隔离后）级联得到的带通滤波器。设两个滤波器的截止频率分别为 $\omega_1$ 和 $\omega_2$，则复合后的网络函数为：
+\begin{equation}
+H = H_1 \cdot H_2 = \frac{1}{1 + j \frac{\omega}{\omega_1} } \cdot \frac{j \frac{\omega}{\omega_2} }{1 + j \frac{\omega}{\omega_2} }
+\end{equation}
+有唯一零点 $\omega_0 = 0$ 和唯二极点 $\omega = \omega_1, \ \omega_2$。令 $\omega_1 = 10^4 \Hz$，$\omega_2 = 10^2 \Hz$（高通截止频率更小才有重合区），则波特图与相频特性如图 \ref{RC 带通滤波器} (b) 所示。
+\begin{figure}[H]\centering
+\begin{subfigure}[b]{0.5\columnwidth}\centering
+    \includegraphics[height=140pt]{assets/6/RC 带通滤波器.pdf}
+    \caption{$RC$ 低通和 $RC$ 高通隔离后级联}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{0.5\columnwidth}\centering
+    \includegraphics[height=145pt]{assets/6/RC 带通 bode plot.pdf}
+    \caption{$RC$ 带通滤波器的波特图}
+\end{subfigure}
+\caption{$RC$ 带通滤波器}
+\label{RC 带通滤波器}
+\end{figure}
 
 
 \section{谐振电路}

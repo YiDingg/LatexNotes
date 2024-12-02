@@ -1347,12 +1347,12 @@ N-Channel Enhancement-Type MOSFET 的外特性总结如下：
 \item 绝缘性：栅极 G 与其它电极绝缘，有 $i_{\text{GS}} = i_{\text{GD}} = 0$。
 \item 最大电流 $i_{\text{DS},\text{max}}$：在非开路情况下，$i_{\text{DS},\text{max}} = \frac{K}{2}(u_{\text{GS}} - U_T)^2$，其中 $K$ 为常数（典型值 1 $\mathrm{mA\cdot V^{-2}}$）。
 \item 导通电阻 $R_{\text{ON}}$: 在线性区时，MOS 管在 D-S 端体现出的电阻大小，$R = \frac{2}{K(u_{\text{GS} - U_T})}$ 通常为几百欧。
-\item 电流特性 $i_{\text{DS}}$: MOS 管的电流特性可采取如下近似模型\footnote{更精确的模型详见参考文献 \cite{电路原理导学导教} Page 30.}
+\item 电流特性 $i_{\text{DS}}$: MOS 管的电流特性可采取如下模型\footnote{模型的推导详见参考文献 \cite{电路原理导学导教} Page 30.}
 \begin{equation}
 i_{\text{DS}} = 
 \begin{cases}
     0 &, u_{\text{GS}} < U_T \\
-    \frac{K}{2}(u_{\text{GS}} - U_T)^2\cdot \frac{u_{\text{DS}}}{(u_{\text{GS}} - U_T)} &, u_{\text{GS}} \geq U_T\ \& \ u_{\text{DS}} < u_{\text{GS}} - U_T \\ 
+    K \left[ (u_{\text{GS}} - U_T)\cdot u_{\text{DS}} - \frac{u_{\text{DS}}^2}{2} \right] &, u_{\text{GS}} \geq U_T\ \& \ u_{\text{DS}} < u_{\text{GS}} - U_T \\ 
     \frac{K}{2}(u_{\text{GS}} - U_T)^2 &, u_{\text{GS}} \geq U_T\ \& \ u_{\text{DS}} \geqslant u_{\text{GS}} - U_T \\ 
 \end{cases}
 \end{equation}

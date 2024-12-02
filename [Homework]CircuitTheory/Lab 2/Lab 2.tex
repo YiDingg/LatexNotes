@@ -1,0 +1,695 @@
+% 若编译失败，且生成 .synctex(busy) 辅助文件，可能有两个原因：
+% 1. 需要插入的图片不存在：Ctrl + F 搜索 'figure' 将这些代码注释/删除掉即可
+% 2. 路径/文件名含中文或空格：更改路径/文件名即可
+
+% --------------------- 文章宏包及相关设置 --------------------- %
+% >> ------------------ 文章宏包及相关设置 ------------------ << %
+% 设定文章类型与编码格式
+\documentclass[UTF8]{article}		
+
+% 本文所需的特殊宏包
+
+% 本 .tex 专属的宏定义
+    \def\V{\ \mathrm{V}}
+    \def\uV{\ \mu\mathrm{V}}
+    \def\mV{\ \mathrm{mV}}
+    \def\K{\ \mathrm{K}}
+    \def\kV{\ \mathrm{KV}}
+    \def\KV{\ \mathrm{KV}}
+    \def\MV{\ \mathrm{MV}}
+    \def\uA{\ \mu\mathrm{A}}
+    \def\mA{\ \mathrm{mA}}
+    \def\A{\ \mathrm{A}}
+    \def\kA{\ \mathrm{KA}}
+    \def\KA{\ \mathrm{KA}}
+    \def\MA{\ \mathrm{MA}}
+    \def\O{\ \Omega}
+    \def\mO{\ \Omega}
+    \def\kO{\ \mathrm{K}\Omega}
+    \def\KO{\ \mathrm{K}\Omega}
+    \def\MO{\ \mathrm{M}\Omega}
+    \def\Hz{\ \mathrm{Hz}}
+    \def\uF{\ \mu\mathrm{F}}
+    \def\mF{\ \mathrm{mF}}
+    \def\nF{\ \mathrm{nF}}
+    \def\pF{\ \mathrm{pF}}
+    \def\F{\ \mathrm{F}}
+    \def\Re{\mathrm{\,Re}\,}
+    \def\Im{\mathrm{\,Im}\,}
+    \def\sinc{\mathrm{\,sinc}\,}
+
+% 自定义宏定义
+    \def\N{\mathbb{N}}
+    \def\F{\mathbb{F}}
+    \def\Z{\mathbb{Z}}
+    \def\Q{\mathbb{Q}}
+    \def\R{\mathbb{R}}
+    \def\C{\mathbb{C}}
+    \def\T{\mathbb{T}}
+    \def\S{\mathbb{S}}
+    %\def\A{\mathbb{A}}
+    \def\I{\mathscr{I}}
+    \def\d{\mathrm{d}}
+    \def\p{\partial}
+
+    
+% 本 .tex 专属的宏定义
+\def\V{\ \mathrm{V}}
+\def\uV{\ \mu\mathrm{V}}
+\def\mV{\ \mathrm{mV}}
+\def\K{\ \mathrm{K}}
+\def\kV{\ \mathrm{KV}}
+\def\KV{\ \mathrm{KV}}
+\def\MV{\ \mathrm{MV}}
+\def\uA{\ \mu\mathrm{A}}
+\def\mA{\ \mathrm{mA}}
+\def\A{\ \mathrm{A}}
+\def\kA{\ \mathrm{KA}}
+\def\KA{\ \mathrm{KA}}
+\def\MA{\ \mathrm{MA}}
+\def\O{\ \Omega}
+\def\mO{\ \Omega}
+\def\kO{\ \mathrm{K}\Omega}
+\def\KO{\ \mathrm{K}\Omega}
+\def\MO{\ \mathrm{M}\Omega}
+\def\Hz{\ \mathrm{Hz}}
+\def\uF{\ \mu\mathrm{F}}
+\def\mF{\ \mathrm{mF}}
+\def\F{\ \mathrm{F}}
+
+% 自定义宏定义
+\def\N{\mathbb{N}}
+%\def\F{\mathbb{F}}
+\def\Z{\mathbb{Z}}
+\def\Q{\mathbb{Q}}
+\def\R{\mathbb{R}}
+\def\C{\mathbb{C}}
+\def\T{\mathbb{T}}
+\def\S{\mathbb{S}}
+\def\A{\mathbb{A}}
+\def\I{\mathscr{I}}
+\def\Im{\mathrm{Im\,}}
+\def\Re{\mathrm{Re\,}}
+\def\d{\mathrm{d}}
+\def\p{\partial}
+
+
+% 导入基本宏包
+    \usepackage[UTF8]{ctex}     % 设置文档为中文语言
+    \usepackage{hyperref}  % 宏包：自动生成超链接 (此宏包与标题中的数学环境冲突)
+    \hypersetup{
+        colorlinks=true,    % false:边框链接 ; true:彩色链接
+        citecolor={blue},    % 文献引用颜色
+        linkcolor={blue},   % 目录 (我们在目录处单独设置)，公式，图表，脚注等内部链接颜色
+        urlcolor={magenta},    % 网页 URL 链接颜色，包括 \href 中的 text
+        % cyan 浅蓝色 
+        % magenta 洋红色
+        % yellow 黄色
+        % black 黑色
+        % white 白色
+        % red 红色
+        % green 绿色
+        % blue 蓝色
+        % gray 灰色
+        % darkgray 深灰色
+        % lightgray 浅灰色
+        % brown 棕色
+        % lime 石灰色
+        % olive 橄榄色
+        % orange 橙色
+        % pink 粉红色
+        % purple 紫色
+        % teal 蓝绿色
+        % violet 紫罗兰色
+    }
+    % \usepackage{docmute}    % 宏包：子文件导入时自动去除导言区，用于主/子文件的写作方式，\include{./51单片机笔记}即可。注：启用此宏包会导致.tex文件capacity受限。
+    \usepackage{amsmath}    % 宏包：数学公式
+    \usepackage{mathrsfs}   % 宏包：提供更多数学符号
+    \usepackage{amssymb}    % 宏包：提供更多数学符号
+    \usepackage{pifont}     % 宏包：提供了特殊符号和字体
+    \usepackage{extarrows}  % 宏包：更多箭头符号 
+    \usepackage{multicol}   % 宏包：支持多栏 
+
+% 文章页面margin设置
+    \usepackage[a4paper]{geometry}
+        \geometry{top=0.75in}
+        \geometry{bottom=0.75in}
+        \geometry{left=0.75in}
+        \geometry{right=0.75in}   % 设置上下左右页边距
+        \geometry{marginparwidth=1.75cm}    % 设置边注距离（注释、标记等）
+
+% 配置数学环境
+    \usepackage{amsthm} % 宏包：数学环境配置
+    % theorem-line 环境自定义
+        \newtheoremstyle{MyLineTheoremStyle}% <name>
+            {11pt}% <space above>
+            {11pt}% <space below>
+            {\kaishu}% <body font> 默认使用正文字体, \kaishu 为楷体
+            {}% <indent amount>
+            {\bfseries}% <theorem head font> 设置标题项为加粗
+            {:\ \ }% <punctuation after theorem head>
+            {.5em}% <space after theorem head>
+            {\textbf{#1}\thmnumber{#2}\ \ (\,\textbf{#3}\,)}% 设置标题内容顺序
+        \theoremstyle{MyLineTheoremStyle} % 应用自定义的定理样式
+        \newtheorem{LineTheorem}{Theorem.\,}
+    % theorem-block 环境自定义
+        \newtheoremstyle{MyBlockTheoremStyle}% <name>
+            {11pt}% <space above>
+            {11pt}% <space below>
+            {\kaishu}% <body font> 使用默认正文字体
+            {}% <indent amount>
+            {\bfseries}% <theorem head font> 设置标题项为加粗
+            {：\\ \indent}% <punctuation after theorem head>
+            {.5em}% <space after theorem head>
+            {\textbf{#1}\thmnumber{#2}\ \ (\,\textbf{#3}\,)}% 设置标题内容顺序
+        \theoremstyle{MyBlockTheoremStyle} % 应用自定义的定理样式
+        \newtheorem{BlockTheorem}[LineTheorem]{Theorem.\,} % 使用 LineTheorem 的计数器
+    % definition 环境自定义
+        \newtheoremstyle{MySubsubsectionStyle}% <name>
+            {11pt}% <space above>
+            {11pt}% <space below>
+            {}% <body font> 使用默认正文字体
+            {}% <indent amount>
+            {\bfseries}% <theorem head font> 设置标题项为加粗
+            {：\\ \indent}% <punctuation after theorem head>
+            {0pt}% <space after theorem head>
+            {\textbf{#3}}% 设置标题内容顺序
+        \theoremstyle{MySubsubsectionStyle} % 应用自定义的定理样式
+        \newtheorem{definition}{}
+
+%宏包：有色文本框（proof环境）及其设置
+    \usepackage{xcolor}    %设置插入的文本框颜色
+    \usepackage[strict]{changepage}     % 提供一个 adjustwidth 环境
+    \usepackage{framed}     % 实现方框效果
+        \definecolor{graybox_color}{rgb}{0.95,0.95,0.96} % 文本框颜色。修改此行中的 rgb 数值即可改变方框纹颜色，具体颜色的rgb数值可以在网站https://colordrop.io/ 中获得。（截止目前的尝试还没有成功过，感觉单位不一样）（找到喜欢的颜色，点击下方的小眼睛，找到rgb值，复制修改即可）
+        \newenvironment{graybox}{%
+        \def\FrameCommand{%
+        \hspace{1pt}%
+        {\color{gray}\vrule width 2pt}%
+        {\color{graybox_color}\vrule width 4pt}%
+        \colorbox{graybox_color}%
+        }%
+        \MakeFramed{\advance\hsize-\width\FrameRestore}%
+        \noindent\hspace{-4.55pt}% disable indenting first paragraph
+        \begin{adjustwidth}{}{7pt}%
+        \vspace{2pt}\vspace{2pt}%
+        }
+        {%
+        \vspace{2pt}\end{adjustwidth}\endMakeFramed%
+        }
+
+% 外源代码插入设置
+    % matlab 代码插入设置
+    \usepackage{matlab-prettifier}
+        \lstset{style=Matlab-editor}    % 继承 matlab 代码高亮 , 此行不能删去
+    \usepackage[most]{tcolorbox} % 引入tcolorbox包 
+    \usepackage{listings} % 引入listings包
+        \tcbuselibrary{listings, skins, breakable}
+        \newfontfamily\codefont{Consolas} % 定义需要的 codefont 字体
+        \lstdefinestyle{MatlabStyle_inc}{   % 插入代码的样式
+            language=Matlab,
+            basicstyle=\footnotesize\ttfamily\codefont,    % ttfamily 确保等宽 
+            breakatwhitespace=false,
+            breaklines=true,
+            captionpos=b,
+            keepspaces=true,
+            numbers=left,
+            numbersep=15pt,
+            showspaces=false,
+            showstringspaces=false,
+            showtabs=false,
+            tabsize=2,
+            xleftmargin=15pt,   % 左边距
+            %frame=single, % single 为包围式单线框
+            frame=shadowbox,    % shadowbox 为带阴影包围式单线框效果
+            %escapeinside=``,   % 允许在代码块中使用 LaTeX 命令 (此行无用)
+            %frameround=tttt,    % tttt 表示四个角都是圆角
+            framextopmargin=0pt,    % 边框上边距
+            framexbottommargin=0pt, % 边框下边距
+            framexleftmargin=5pt,   % 边框左边距
+            framexrightmargin=5pt,  % 边框右边距
+            rulesepcolor=\color{red!20!green!20!blue!20}, % 阴影框颜色设置
+            %backgroundcolor=\color{blue!10}, % 背景颜色
+        }
+        \lstdefinestyle{MatlabStyle_src}{   % 插入代码的样式
+            language=Matlab,
+            basicstyle=\small\ttfamily\codefont,    % ttfamily 确保等宽 
+            breakatwhitespace=false,
+            breaklines=true,
+            captionpos=b,
+            keepspaces=true,
+            numbers=left,
+            numbersep=15pt,
+            showspaces=false,
+            showstringspaces=false,
+            showtabs=false,
+            tabsize=2,
+        }
+        \newtcblisting{matlablisting}{
+            %arc=2pt,        % 圆角半径
+            % 调整代码在 listing 中的位置以和引入文件时的格式相同
+            top=0pt,
+            bottom=0pt,
+            left=-5pt,
+            right=-5pt,
+            listing only,   % 此句不能删去
+            listing style=MatlabStyle_src,
+            breakable,
+            colback=white,   % 选一个合适的颜色
+            colframe=black!0,   % 感叹号后跟不透明度 (为 0 时完全透明)
+        }
+        \lstset{
+            style=MatlabStyle_inc,
+        }
+
+% table 支持
+    \usepackage{booktabs}   % 宏包：三线表
+    \usepackage{tabularray} % 宏包：表格排版
+    \usepackage{longtable}  % 宏包：长表格
+
+% figure 设置
+    \usepackage{graphicx}  % 支持 jpg, png, eps, pdf 图片 
+    \usepackage{svg}       % 支持 svg 图片
+        \svgsetup{
+            % 指向 inkscape.exe 的路径
+            inkscapeexe = C:/aa_MySame/inkscape/bin/inkscape.exe, 
+            % 一定程度上修复导入后图片文字溢出几何图形的问题
+            inkscapelatex = false                 
+        }
+    \usepackage{subcaption} % 用于子图和小图注  
+
+% 图表进阶设置
+    \usepackage{caption}    % 图注、表注
+        \captionsetup[figure]{name=图}  
+        \captionsetup[table]{name=表}
+        \captionsetup{
+            labelfont=bf, % 设置标签为粗体
+            textfont=bf,  % 设置文本为粗体
+            font=small  
+        }
+    \usepackage{float}     % 图表位置浮动设置 
+    \usepackage{etoolbox} % 用于保证图注表注的数学字符为粗体
+        \AtBeginEnvironment{figure}{\boldmath} % 图注中的数学字符为粗体
+        \AtBeginEnvironment{table}{\boldmath}  % 表注中的数学字符为粗体
+        \AtBeginEnvironment{tabular}{\unboldmath}   % 保证表格中的数学字符不受额外影响
+
+% 圆圈序号自定义
+    \newcommand*\circled[1]{\tikz[baseline=(char.base)]{\node[shape=circle,draw,inner sep=0.8pt, line width = 0.03em] (char) {\bfseries #1};}}   % TikZ solution
+
+% 列表设置
+    \usepackage{enumitem}   % 宏包：列表环境设置
+        \setlist[enumerate]{
+            label=(\arabic*) ,   % 设置序号样式为加粗的 (1) (2) (3)
+            ref=\arabic*, % 如果需要引用列表项，这将决定引用格式（这里仍然使用数字）
+            itemsep=0pt, parsep=0pt, topsep=0pt, partopsep=0pt, leftmargin=3.5em} 
+        \setlist[itemize]{itemsep=0pt, parsep=0pt, topsep=0pt, partopsep=0pt, leftmargin=3.5em}
+        \newlist{circledenum}{enumerate}{1} % 创建一个新的枚举环境  
+        \setlist[circledenum,1]{  
+            label=\protect\circled{\arabic*}, % 使用 \arabic* 来获取当前枚举计数器的值，并用 \circled 包装它  
+            ref=\arabic*, % 如果需要引用列表项，这将决定引用格式（这里仍然使用数字）
+            itemsep=0pt, parsep=0pt, topsep=0pt, partopsep=0pt, leftmargin=3.5em
+        }  
+
+% 其它设置
+    % 脚注设置
+        \renewcommand\thefootnote{\ding{\numexpr171+\value{footnote}}}
+    % 参考文献引用设置
+        \bibliographystyle{unsrt}   % 设置参考文献引用格式为unsrt
+        %\bibliographystyle{ieeetr}   % 设置参考文献引用格式为unsrt
+        \newcommand{\upcite}[1]{\textsuperscript{\cite{#1}}}     % 自定义上角标式引用
+    % 文章序言设置
+        \newcommand{\cnabstractname}{序言}
+        \newenvironment{cnabstract}{%
+            \par\Large
+            \noindent\mbox{}\hfill{\bfseries \cnabstractname}\hfill\mbox{}\par
+            \vskip 2.5ex
+            }{\par\vskip 2.5ex}
+
+% 文章默认字体设置
+    \usepackage{fontspec}   % 宏包：字体设置
+        \setmainfont{SimSun}    % 设置中文字体为宋体字体
+        \setCJKmainfont[AutoFakeBold=3]{SimSun} % 设置加粗字体为 SimSun 族，AutoFakeBold 可以调整字体粗细
+        \setmainfont{Times New Roman} % 设置英文字体为Times New Roman
+
+% 各级标题自定义设置
+    \usepackage{titlesec}   
+        % section标题自定义设置 
+        \titleformat{\section}[hang]{\normalfont\Large\bfseries\boldmath}{\thesection}{8pt}{}
+        % subsection 标题自定义设置
+        \titleformat{\subsection}[hang]{\normalfont\large\bfseries\boldmath}{\thesubsection}{8pt}{}
+        \titlespacing*{\subsection}{0pt}{10pt}{6pt} % 控制上下间距
+
+
+% --------------------- 文章宏包及相关设置 --------------------- %
+% >> ------------------ 文章宏包及相关设置 ------------------ << %
+
+
+% ------------------------ 文章信息区 ------------------------ %
+% ------------------------ 文章信息区 ------------------------ %
+% 页眉页脚设置
+\usepackage{fancyhdr}   %宏包：页眉页脚设置
+\usepackage{fontawesome}    % 宏包：更多符号与图标 (用于插入 GitHub 图标等)
+    \pagestyle{fancy}
+    \fancyhf{}
+    \cfoot{\thepage}
+    \renewcommand\headrulewidth{1pt}
+    \renewcommand\footrulewidth{0pt}
+    \chead{Lab 2: 2024.11.21 - 2024.12.12, 丁毅}
+    \lhead{\small
+    \href{https://github.com/YiDingg/LatexNotes}{\color{black}\faGithub\ https://github.com/YiDingg/LatexNotes}
+    }
+    \rhead{dingyi233@mails.ucas.ac.cn}
+
+% 开始编辑文章
+
+\begin{document}
+\begin{center}\large
+    \vspace*{-0.8cm}
+    \noindent{\huge\bfseries Laboratory \ \ 2 :\ \  2024.11.21 - 2024.12.12}\\\vspace{0.2cm}
+    \noindent{\Large\bfseries 《\ 电\ 路\ 原\ 理》\ \ \ 实\ 验\ 报\ 告 }\\
+    %\noindent{\large\bfseries 2024.11.07 - 2024.12.31}
+\end{center}
+\vspace{-0.5cm}
+\noindent\rule{\textwidth}{0.075em}   % 分割线
+\vspace{-1.0cm}
+
+% 目录
+%\setcounter{tocdepth}{2}  % 目录深度为 2（不显示 subsubsection）
+%\noindent\tableofcontents\thispagestyle{fancy}   % 显示页码、页眉等
+%\newpage
+% ------------------------ 文章信息区 ------------------------ %
+% ------------------------ 文章信息区 ------------------------ %
+
+
+%% 下面是正文内容
+
+\captionsetup[figure]{name=Figure}  
+\captionsetup[table]{name=Table}
+
+\section{Pre-Lab}
+
+\subsection{Voltage-Voltage Characteristics of Inverting Amplifier}
+The output voltage $V_{\text{out}}$ as a function of input voltage $V_\text{in}$ is shown in Fig.\ref{Voltage-Voltage Characteristics}, where $V_\text{T}$ is the threshold voltage of teh MOSFET.
+\begin{figure}[H]\centering
+    \includegraphics[width=0.7\columnwidth]{assets/Voltage-Voltage Characteristics of Inverting Amplifier.pdf}
+    \caption{Voltage-Voltage Characteristics of Inverting Amplifier}
+    \label{Voltage-Voltage Characteristics}
+\end{figure}
+For easy reference, we summarize the formula as:
+\begin{gather}
+V_{\text{out}} = 
+\begin{cases}
+\begin{aligned}
+    &V_\text{S}, && V_\text{GS} \in [0, V_\text{T}) && \text{(Cut-Off Region)} \\ 
+    &V_S - \frac{KR_L}{2}\left(V_\text{GS} - V_\text{T}\right)^2, && V_\text{GS} \in [V_\text{T}, V_0) &&\text{(Saturation Region)} \\ 
+    &V_\text{GS} - V_\text{T} + \frac{1 - \sigma}{KR_L}, && V_\text{GS} \in [V_0, V_0 + \Delta V) &&\text{(Transition Region)} \\ 
+    &\frac{V_\text{S}}{KR_L (V_\text{GS} - V_\text{T})},\quad && V_\text{GS} \in [V_0 + \Delta V, V_{\max}] &&\text{(Linear Region)} \\
+\end{aligned}
+\end{cases}
+\end{gather}
+Where $V_0$ is the second solution $V_{\text{GS}, 2}$ of equations:
+\begin{equation}
+\begin{cases}
+    V_\text{GS} = V_S - \frac{KR_L}{2}\left(V_\text{GS} - V_\text{T}\right)^2 \\ 
+    V_\text{GD} = V_\text{T}
+\end{cases}\Longrightarrow 
+V_0 = \frac{\sqrt{ 2KR_LV_S + 1 } + KR_L V_T - 1}{K R_L}
+\end{equation}
+And $\sigma$ is the discriminant of the quadratic equation:
+\begin{equation}
+\sigma = \sqrt{
+K^2R_L^2 V_\text{GS}^2 + 2KR_L\left(1 - KR_L V_T\right) V_\text{GS} + \left[ K^2R_L^2 V_\text{T}^2 - 2KR_L( V_\text{T} + V_\text{S}) + 1\right] 
+}
+\end{equation}
+When the input voltage $V_\text{in} (V_{\text{GS}}) > V_0$ is large enough, i.e. $V_\text{in} \geqslant V_0 + \Delta V$, an approximation can be made:
+\begin{equation}
+I_\text{DS} \approx K \left(V_\text{GS} - V_\text{T} \right) V_\text{DS} \Longrightarrow V_{\text{out}} = \frac{V_S}{KR_L (V_\text{GS} - V_\text{T})}
+\end{equation}
+
+
+\subsection{Small Voltage Gain of Inverting Amplifier}
+We have alread driven the small signal voltage gain during the last homework. Assuming the small AC input voltage is $u_{\text{in}}$, and MOS is biased into saturation region, it follows that:
+\begin{equation}
+A = \frac{u_{\text{out}}}{u_{\text{in}}} = -g_m R_L = - K \left(V_\text{GS} - V_\text{T}\right)R_L
+\end{equation}
+
+
+\subsection{RC Transient Process}
+By the three-element method, we can obtain:
+\begin{equation}
+V_\text{out} = \frac{R_2 V_\text{I}}{R_1 + R_2} \left( 1 - e^{-\frac{t}{\tau}}\right),\quad \tau = \left(R_1 \parallel R_2 \right) C = \frac{R_1 R_2}{R_1 + R_2} C
+\end{equation}
+\subsection{Transient Time}
+Given $V_\text{T}$ in the range $[0, V_\text{S}]$ ($ V_\text{S} = \frac{R_2 V_{\text{I}}}{R_1 + R_2}$), the time where $V_\text{out}$ reaches $V_\text{T}$ is:
+\begin{equation}
+\Delta t = \tau \,\ln \left( \frac{V_\text{S}}{V_\text{S} - V_\text{T}} \right),\quad \tau = \frac{R_1 R_2}{R_1 + R_2} C,\ \ V_\text{S} = \frac{R_2 V_{\text{I}}}{R_1 + R_2}
+\end{equation}
+
+\section{In-Lab}
+\subsection{Static Input-Output Relationship of Inverting Amplifier}
+\subsubsection{Measure In-Out Voltage Relationship}\label{sec.voltage}
+Construct the circuit in Fig.\ref{In-Lab 2-1}, then we can obtain the voltage relationship shown in Fig.\ref{Operational Characteristics}.
+\begin{figure}[H]\centering
+    \includegraphics[width=0.45\columnwidth]{assets/In-Lab 2-1.png}
+    \caption{Measure In-Out Voltage Relationship}
+    \label{In-Lab 2-1}
+\end{figure}
+\begin{figure}[H]\centering
+    \includegraphics[width=0.9\columnwidth]{assets/Voltage-Voltage Characteristics of Inverting Amplifier (Experimental) 2.pdf}
+    \caption{Operational Characteristics of Inverting Amplifier}
+    \label{Operational Characteristics}
+\end{figure}
+
+\subsubsection{The Threshold of The MOSFET}
+With $V_\text{S} = 5.0185 \ \mathrm{V},\ R_L = 1 \KO\ (998\ \Omega)$ and the data obtained in the last section, we can get the threshold voltage of the MOSFET:
+\begin{gather}
+\boldmath
+V_T = 1.85 \ \mathrm{V},\quad V_0 = 2.3934 \ \mathrm{V},\quad \Delta V = 0.2066 \ \mathrm{V}
+\end{gather}
+
+\subsubsection{Tables of Input-Output Voltage}
+\begin{table}[H]\centering
+    %\renewcommand{\arraystretch}{1.5} % 调整行间距为 1.5 倍
+    %\setlength{\tabcolsep}{1.5mm} % 调整列间距
+    \caption{Input-Output Voltage Relationship}
+    \label{Input-Output Voltage Relationship}
+\begin{tabular}{cccccccccc}\toprule
+    Output (V) & 5 & 4 & 3 & 2 & 1 & 0.0116\\
+    \midrule
+    Input (V) & 0.2765 & 2.1767 & 2.2686 & 2.3238 & 2.3712 & 4.9599 \\
+    \bottomrule
+\end{tabular}
+\end{table}
+
+
+\subsection{Small Signal Voltage Gain}
+\subsubsection{Voltage Gain of Inverting Amplifier}\label{sec.voltage gain}
+With the data measured in section \ref{sec.voltage}, we can derived the voltage gain $A_v = \frac{\mathrm{d} V_\text{DS} }{\mathrm{d} V_\text{GS} }$ via matrix difference (see Fig.\ref{Voltage Gain}).
+\begin{figure}[H]\centering
+    \includegraphics[width=0.9\columnwidth]{assets/Voltage Gain of Inverting Amplifier.pdf}
+    \caption{Small Signal Voltage Gain of Inverting Amplifier}
+    \label{Voltage Gain}
+\end{figure}
+Since transconductance satisfies $A = -g_m R_L$, we can also get the transconductance by dividing the limiting resistance $R_L = 1 \KO$ (998 $\Omega$).
+
+Construct the circuit to measure the voltage gain where the output voltage is 2 V and the sine wave has 50 mV amplitude (from -50 mV to + 50 mV). The measured result and the data in Fig.\ref{Voltage Gain} is:
+\begin{equation}
+\left(A_v\right)_{\text{meas}} = \frac{-1.0056 \ \mathrm{V}}{50 \ \mathrm{mV}} = -20.1120,\quad \left(A_v\right)_{\text{fig}}  = -20.1513
+\end{equation}
+As we can see, almost no deviation.
+
+\subsubsection{Clipping Distortion}
+Set the amplitude of sine wave to 50 mV ($[-50 \ \mathrm{mV}, +50 \ \mathrm{mV}]$), the lower and upper bias limits are (see Fig.\ref{The Lower Limit} and Fig.\ref{The Upper Limit}):
+\begin{equation}
+V_{\text{bias}, \min} = 2.00 \ \mathrm{V},\quad V_{\text{bias}, \max} = 2.39 \ \mathrm{V}
+\end{equation}
+\begin{figure}[H]\centering
+    \includegraphics[width=0.99\columnwidth]{assets/lower bias limit.png}
+    \caption{The Lower Limit of The Input Bias Voltage}
+    \label{The Lower Limit}
+\end{figure}
+\begin{figure}[H]\centering
+    \includegraphics[width=0.99\columnwidth]{assets/upper bias limit.png}
+    \caption{The Upper Limit of The Input Bias Voltage}
+    \label{The Upper Limit}
+\end{figure}
+
+\subsection{The Delay of Inverting Amplifier as a Digital Inverter}
+\subsubsection{Measure The Gate to Source Capacitance of Inverting Amplifier}
+Use a 500 $\KO$ resistor and a 30 $\KO$ resistor to measure the gate to source capacitance $C_{\text{GS}}$ of the MOSFET, respectively. The measured results are:
+\begin{gather}
+R_L = 500 \KO ,\quad \lim_{t \to 0^+} \frac{\mathrm{d} V_{\text{out}} }{\mathrm{d} t } = 57070.3 \ \mathrm{V\cdot s^{-1}},\quad V_{\text{steady}} =  3.3198 \ \mathrm{V} 
+\Longrightarrow C = \frac{V_0}{R_L k_{0^+}} = 116.3407 \pF
+\\
+R_L = 30.0 \KO ,\lim_{t \to 0^+} \frac{\mathrm{d} V_{\text{out}} }{\mathrm{d} t } = 948889.8 \ \mathrm{V\cdot s^{-1}},\quad V_{\text{steady}} = 4.9032 \ \mathrm{V} 
+\Longrightarrow C = \frac{V_0}{R_L k_{0^+}} = 172.2434 \pF
+\end{gather}
+\begin{figure}[H]\centering
+    \includegraphics[width=0.88\columnwidth]{assets/C_GS, 500 KOhm.png}
+    \caption{Gate to Source Capacitance of 2N7000, $R_L = 500 \KO$}
+    \label{500 KOhm}
+\end{figure}
+\begin{figure}[H]\centering
+    \includegraphics[width=0.88\columnwidth]{assets/C_GS, 30.0 KOhm.png}
+    \caption{Gate to Source Capacitance of 2N7000, $R_L = 30 \KO$}
+\end{figure}
+It is puzzling that $C = $ with $R_L = 500 \KO$. Actually, with the resistance $R_L = 500 \KO$, the steady voltage $V_0$ is limited to 3.3198 V (see Fig.\ref{500 KOhm}), which is not the expected value. Why is it like that? Because the oscilloscope input resistance is not large enough. We keep this to the Post-Lab, 
+
+\begin{figure}[H]\centering
+\begin{subfigure}[b]{0.5\columnwidth}\centering
+    \includegraphics[height=175pt]{assets/C_GS, 30.0 KOhm Circuit.png}
+    \caption{The Gate to Source Capacitance of Inverting Amplifier}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{0.5\columnwidth}\centering
+    \includegraphics[height=175pt]{assets/Delay.png}
+    \caption{The Delay of Inverting Amplifier as a Digital Inverter}
+\end{subfigure}
+\caption{In-Lab 3.1 and In-Lab 3.2}
+\label{In-Lab 3.1 and In-Lab 3.2}
+\end{figure}
+
+\subsubsection{Measure The Delay of Inverting Amplifier}
+With $R_{L, 1} = 30 \KO$ and $R_{L, 2} = 1 \KO$, construct the circuit in Fig.\ref{In-Lab 3.1 and In-Lab 3.2} (b), obtain the delay time of the inverting amplifier as a digital inverter (see Fig.\ref{Starts to Fall} and Fig.\ref{Reaches to Low}).
+\begin{equation}
+\text{start to fall:\ \ } \Delta t_1 = 1.504 \ \mathrm{\mu s},\quad \text{reach low:\ \ } \Delta t_2 = 3.799 \ \mathrm{\mu s}
+\end{equation}
+\begin{figure}[H]\centering
+    \includegraphics[width=\columnwidth]{assets/Start to fall.png}
+    \caption{The Output Voltage Starts to Fall}
+    \label{Starts to Fall}
+\end{figure}
+\begin{figure}[H]\centering
+    \includegraphics[width=\columnwidth]{assets/Reach low.png}
+    \caption{The Output Voltage Reaches to Low}
+    \label{Reaches to Low}
+\end{figure}
+
+It is interesting that resonance phenomena occurs, see Fig.\ref{Resonance 1} and Fig.\ref{Resonance 2}.
+\begin{figure}[H]\centering
+    \includegraphics[width=\columnwidth]{assets/Resonance 1.png}
+    \caption{Input Voltage (Yellow) and Output Voltage (Blue) of The First MOS}
+    \label{Resonance 1}
+\end{figure}
+\begin{figure}[H]\centering
+    \includegraphics[width=\columnwidth]{assets/Resonance 2.png}
+    \caption{Input Voltage (Yellow) and Output Voltage (Blue) of The Second MOS}
+    \label{Resonance 2}
+\end{figure}
+
+\section{Post-Lab}
+\subsection{Voltage-Voltage Characteristics Comparison}
+\subsubsection{Transconductance Sensitivity $K$}
+
+Use the voltage-voltage characteristics data in section \ref{sec.voltage} to calculate the transconductance sensitivity $K$ of the MOSFET:
+\begin{equation}
+    \begin{cases}
+        I_\text{DS} = \frac{K}{2} \left(V_\text{GS} - V_\text{T}\right)^2 \\ 
+        V_\text{DS} = V_\text{S} - I_\text{DS} R_L
+    \end{cases}
+\Longrightarrow K = \frac{2 \left(V_\text{S} - V_\text{DS}\right)}{R_L \left(V_\text{GS} - V_\text{T}\right)^2}
+\end{equation}
+Where $V_\text{T} = 1.85 \ \mathrm{V}$, $R_L = 1 \KO\ (998\ \Omega)$ and $V_\text{S} = 5.0185 \ \mathrm{V}$. Plot the curve $K = K(V_\text{GS})$, as shown in Fig.\ref{Transconductance Sensitivity} (a):
+\begin{figure}[H]\centering
+\begin{subfigure}[b]{0.5\columnwidth}\centering
+    \includegraphics[height=175pt]{assets/K.pdf}
+    \caption{Transconductance Sensitivity $K$ as a Function of $V_\text{GS}$}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{0.5\columnwidth}\centering
+    \includegraphics[height=175pt]{assets/I_DS-V_GS fit K.pdf}
+    \caption{Drain to Source Current as a Function of $V_\text{GS}$ }
+\end{subfigure}
+\caption{Transconductance Sensitivity}
+\label{Transconductance Sensitivity}
+\end{figure}
+As we can see, $K$ is not a ideal constant value. So we try fitting $I_\text{DS}$ as a function of $V_\text{DS}$, and the result is shown in Fig.\ref{Transconductance Sensitivity} (b), $R^2 = 0.9511$.
+\begin{equation}
+I_\text{DS} = \frac{K}{2}\left(V_\text{GS} - V_\text{T}\right)^2,\quad \mathbf{K = 0.02572 \ A\cdot V^{-2}},\quad V_\text{T} = 1.85 \ \mathrm{V}
+\end{equation}
+It is funny that the fitting result is exllecent if we use $I_\text{DS} = \frac{K}{2}\left(V_\text{GS} - V_\text{T}\right)^3$, which has a high $R^2$ = 0.9977.
+
+\subsubsection{Comparison of Operational Characteristics}
+
+With the four parameters $V_T = 1.85 \ \mathrm{V}$, $K = 0.02572 \ \mathrm{A\cdot V^{-2}}$, $V_\text{S} = 5 \ \mathrm{V}$ and $R_L = 1 \KO\ (998 \ \Omega)$, we can compute and plot the theoretical operational characteristics of the inverting amplifier, as shown in Fig.\ref{Operational Characteristics Comparison}. Below are the other parameters for our theoretical model:
+\begin{gather}
+V_0 = \frac{\sqrt{ 2KR_LV_S + 1 } + KR_L V_T - 1}{K R_L} = 2.4376 \ \mathrm{V},\quad \Delta V = 1.5\, (V_0 - V_\text{T}) = 0.8814 \mathrm{V}
+\end{gather}
+\begin{figure}[H]\centering
+    \includegraphics[width=0.9\columnwidth]{assets/Theoretical model.pdf}
+    \caption{Operational Characteristics Comparison}
+    \label{Operational Characteristics Comparison}
+\end{figure}
+
+
+\subsection{Small Signal Voltage Gain}
+The voltage gain $A_v$ measured during In-Lab 2-2 (section \ref{sec.voltage gain}), by the operational characteristics obtained in In-Lab 2-1 (section \ref{sec.voltage}) and the theoretical module from Pre-Lab are respectively (at Output $V_\text{GS} = 2 \ \mathrm{V}$):
+\begin{table}[H]\centering
+    %\renewcommand{\arraystretch}{1.5} % 调整行间距为 1.5 倍
+    %\setlength{\tabcolsep}{1.5mm} % 调整列间距
+    \caption{Voltage Gain at Output 2 V by Different Methods}
+    \label{Voltage Gain by Different Methods}
+\begin{tabular}{cccccccccc}\toprule
+    By Experimental Measurement & By Operational Characteristics & By Theoretical Op Characteristics \\
+    \midrule
+    -20.1120 & -20.1513 & -12.1670  \\
+    \bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Capacitance and Delay Analysis}
+\subsubsection{Total Input Capacitance}
+In Fig.\ref{500 KOhm}, we have seen that the output voltage drops to 3.3198 V, when $R_L = 500 \KO$ and $V_\text{S} = 5$ V. It follows that:
+\begin{equation}
+V_\text{out} = \frac{R_{\text{osci}}}{R_{\text{osci}} + R_L}V_\text{S} \Longrightarrow R_{\text{osci}} = \frac{R_L}{\frac{V_\text{S}}{V_\text{out}} - 1} = 987.9 \KO \approx 1 \mathrm{M}\Omega
+\end{equation}
+Assuming $V_\text{source} = 5$ V, we can obtain the total input capacitance, including GS capacitance $C_{\text{GS}}$ and oscilloscope input capacitance $C_{\text{osci}}$:
+\begin{equation}
+    \begin{cases}
+        k_{0^+} = \frac{V_\text{steady}}{\tau}\\
+        V_\text{steady} = \frac{R_{\text{osci}}}{R_{\text{osci}} + R_L}\cdot V_\text{source}\\
+        \tau = \left( R_{\text{osci}} \parallel R_L \right) \left(C_{\text{GS}} + C_{\text{osci}} \right)
+    \end{cases}
+    \Longrightarrow 
+    C_{\text{GS}} + C_{\text{osci}}= \frac{V_\text{S}}{k_{0^+}R_L} = 175.2225 \pF
+\end{equation}
+If oscilloscope input capacitance $C_{\text{osci}}$ is about 15 pF, then we have $C_{\text{GS}} \approx 160 \pF$.
+
+\subsubsection{The Delay Used as a Digital Inverter} 
+Let $C_{\text{GS}} \approx 160 \pF$, $V_\text{T} = 1.85 \ \mathrm{V}$, $V_0 + \Delta V = 3.22 \ \mathrm{V}$ $V_\text{I} = 5 \ \mathrm{V}$,  yielding:
+\begin{equation}
+    \begin{cases}
+        \Delta t = \tau \,\ln \left(\frac{V_\text{S}}{V_\text{S}} - V_\text{T}\right) \\ 
+        \tau = \frac{R_1 R_2}{R_1 + R_2} C \\ 
+        V_\text{S} = \frac{R_2}{R_1 + R_2} \cdot V_\text{I}
+    \end{cases}\Longrightarrow 
+\text{start to fall:\ } \Delta t_1 = 0.1287 \mathrm{\mu s},\quad \text{reach low:\ } \Delta t_2 = 1.3040  \mathrm{\mu s}
+\end{equation}
+
+\captionsetup[figure]{name=图}  
+\captionsetup[table]{name=表}
+
+
+
+\end{document}
+
+% VScode 常用快捷键：
+
+% F2:                       变量重命名
+% Ctrl + Enter:             行中换行
+% Alt + up/down:            上下移行
+% 鼠标中键 + 移动:           快速多光标
+% Shift + Alt + up/down:    上下复制
+% Ctrl + left/right:        左右跳单词
+% Ctrl + Backspace/Delete:  左右删单词    
+% Shift + Delete:           删除此行
+% Ctrl + J:                 打开 VScode 下栏(输出栏)
+% Ctrl + B:                 打开 VScode 左栏(目录栏)
+% Ctrl + `:                 打开 VScode 终端栏
+% Ctrl + 0:                 定位文件
+% Ctrl + Tab:               切换已打开的文件(切标签)
+% Ctrl + Shift + P:         打开全局命令(设置)
+
+% Latex 常用快捷键：
+
+% Ctrl + Alt + J:           由代码定位到PDF
+
+

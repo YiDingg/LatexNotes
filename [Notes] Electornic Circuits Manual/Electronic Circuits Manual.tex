@@ -10,6 +10,7 @@
 % 本 .tex 专属的宏包
 \usepackage{circledsteps} % 宏包：圆圈序号, 圆圈字母等 \Circled{1}, \CircledTop{2}
 \usepackage[english]{babel} % 宏包：用于将“目录”标题换为英文 Contents
+%\usepackage{natbib} % 宏包：用于 fullcite 文献
 
 % 本 .tex 专属的宏定义、newcommand 等
     %\renewcommand{\contentsname}{目录}    % 修改目录
@@ -321,8 +322,49 @@
     \pagenumbering{arabic} 
 
 
-% >> --------------------- 封面序言与目录 --------------------- << %
-% ------------------------ 封面序言与目录 ------------------------ %
+
+
+
+\chapter{Capacitance}\thispagestyle{fancy}
+\section{Large Capacitor}
+\subsection{Capacitance Multiplier}
+
+This part refers to references \cite{Bonteanu_2018_ReviewCapacitanceMultiplication} and \cite{Padilla-Cantoya_2018_CapacitanceMultiplierLarge}. Below are two basic concepts for capacitance multiplication:
+\begin{figure}[H]\centering
+    \includegraphics[width=0.5\columnwidth]{assets/Capacitance/Cap Multiplier/Basic Concepts of Capacitance Multiplier.pdf}
+    \caption{Basic Capacitance Multiplier Circuits}
+\end{figure}
+Thus, we obtain the equivalent capacitance as:
+\begin{align}
+    &\text{Current Mode: \ } C_{\text{eq}} = (1 + K)C \Longrightarrow 
+    \begin{cases}
+        C_{\text{eq}}> C, & K > 0 \\
+        C_{\text{eq}}< C, & K < 0
+    \end{cases}\\ 
+    &\text{Voltage Mode: \ } C_{\text{eq}} = \frac{C}{1 + K}\Longrightarrow 
+    \begin{cases}
+        C_{\text{eq}}< C, & K > 0 \\
+        C_{\text{eq}}> C, & K < 0
+    \end{cases}
+\end{align}
+A simple implementation of cap multiplier, depicted in Fig.\ref{fig:Capacitance Multiplier}, combining a unit-gain buffer (voltage fllower) and a inverting amplifier, is a voltage mode circuit. yielding the equivalent capacitance:
+\begin{equation}
+C_{\text{eq}} = \frac{C}{1 + K} = \frac{1}{1 - \frac{R_2}{R_1}}  =  \frac{R_1}{R_1 - R_2}C 
+\end{equation}
+where $K = -\frac{R_2}{R_1}$ is the closed-loop gain of the inverting amplifier. Since inverting amplifier has a low input impedance, the unit-gain buffer is a necessary. To change it into a two-terminal element, just replace GND with the negtive terminal of the input voltage, e.g. $V_{\text{in}, -}$.
+\begin{figure}[H]\centering
+    \includegraphics[width=0.45\columnwidth]{assets/Capacitance/Cap Multiplier/[ECirM] Cap Multiplier.pdf}
+    \caption{A Simple Implementation of Capacitance Multiplier}
+    \label{fig:Capacitance Multiplier}
+\end{figure}
+
+
+\section{Small Capacitor}
+\section{Variable Capacitor}
+
+
+
+\chapter{Inductance}\thispagestyle{fancy}
 
 
 
@@ -341,6 +383,17 @@
 
 
 
+
+
+
+
+
+
+\renewcommand{\bibname}{Reference}  % 将参考文献标题从 bibliography 改为 Reference
+\nocite{*}
+\bibliography{bibtex}
+\thispagestyle{fancy} 
+\addcontentsline{toc}{chapter}{Reference}
 
 
 

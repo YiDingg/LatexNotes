@@ -290,7 +290,7 @@
 
 随着学习的不断深入，笔者对某些元件的认识一定会更加深刻，也会认识新的元件。因此，笔者打算将本手册作为一份长期更新的（真的很长期）电子元件手册，既是我个人对元件知识的总结，也是便于以后自己参考。读者可到我的 GitHub 下载手册的最新版本 \href{https://github.com/YiDingg/LatexNotes}{https://github.com/YiDingg/LatexNotes}，也可以在我的个人网站 \href{URL}{待更新}  上找到相关资料。
 
-另外，有相当一部分元件（例如 Operational Amplifier）其实是基础元件所构成的模块化电路。在本书，我们不会详谈如何通过基本元件搭建出这些进阶元件，而是讨论如何对这些元件（模块化的电路）建立正确的认识，探究在不同情况下应该选用怎样的模型进行分析，以达到足够高的精度，同时尽可能地降低模型复杂度。实现它们的具体电路，以及 Oscillators、Amplifiers 和 Power Supplies 等模块化电路，会放到另一本书“电子电路手册”中，读者可到网址 \href{URL}{待更新} 自行下载和阅读。为了提高读者的自学效率，笔者在这里推荐几个免费且优秀的电子学习网站：
+另外，有相当一部分元件（例如 Operational Amplifier）其实是基础元件所构成的模块化电路。在本书，我们不会详谈如何通过基本元件搭建出这些进阶元件，而是讨论如何对这些元件（模块化的电路）建立正确的认识，探究在不同情况下应该选用怎样的模型进行分析，以达到足够高的精度，同时尽可能地降低模型复杂度。实现它们的具体电路，以及 Oscillators、Amplifiers 和 Power Supplies 等模块化电路，会放到另一本书{\kaishu 《电子电路手册》}中，读者可到网址 \href{https://github.com/YiDingg/LatexNotes/tree/main/%5BNotes%5D%20Electornic%20Circuits%20Manual}{GitHub {\color{black} (https://github.com/YiDingg/LatexNotes/tree/main/[Notes] Electornic Circuits Manual)}} 自行下载和阅读。为了提高读者的自学效率，笔者在这里推荐几个免费而优秀的电子学习网站：
 \begin{enumerate}
 \item \href{https://www.electronics-tutorials.ws/}{Electornics Tutorials} : 这个网站提供了丰富的电子学习资料，包括 Transistors、Amplifiers、Diodes、Filters 等，还提供了很多实用的电子工程师工具，例如在线电阻电感电容计算器等；
 \item \href{https://www.learnabout-electronics.org/}{Learn About Electronics} : 这个网站提供了电子学习的基础和进阶知识，包括 Semiconductors, Amplifiers, Oscillators, Power Supplies 等，最令人惊喜的是几乎所有资料都提供了 PDF 下载，方便读者下载后自行学习；
@@ -314,7 +314,7 @@
     As the study progresses, my understanding of certain components will certainly become more profound, and new components will be encountered, too. Therefore, I plans to use this manual as a long-term (very long-term) electronic components manual, both as personal notes of my knowledge of components and as a reference for my reference manual in the future. Readers can freely download the latest version of the manual from my \href{https://github.com/YiDingg/LatexNotes}{  GitHub  {\color{black} (https://github.com/YiDingg/LatexNotes)}}, or find related materials on my personal website \href{URL}{to be updated}.
 
 
-    Additionally, there are a considerable number of components (such as Operational Amplifier) that are actually modular circuits composed of basic components. In this book, we will not delve into how to build these advanced components using basic components, but rather discuss how to properly understand these components (modular circuits), and explore the models that should be used for analysis in different situations to achieve sufficient accuracy, while minimizing model complexity. The specific circuits for constructing these components, such as oscillators, amplifiers, power supplies etc., will be included in another book ``\textit{Electronic Circuits Manual}'', which can also be found on my GitHub \href{URL}{to be updated}. 
+    Additionally, there are a considerable number of components (such as Operational Amplifier) that are actually modular circuits composed of basic components. In this book, we will not delve into how to build these advanced components using basic components, but rather discuss how to properly understand these components (modular circuits), and explore the models that should be used for analysis in different situations to achieve sufficient accuracy, while minimizing model complexity. The specific circuits for constructing these components, such as oscillators, amplifiers, power supplies etc., will be included in another book \textit{``Electronic Circuits Manual''} which can also be found on my \href{https://github.com/YiDingg/LatexNotes/tree/main/%5BNotes%5D%20Electornic%20Circuits%20Manual}{GitHub {\color{black} (https://github.com/YiDingg/LatexNotes/tree/main/[Notes] Electornic Circuits Manual)}}. 
     
     In order to better enhance the reader's self-study efficiency, I recommends several free and excellent online learning websites here: 
     \begin{enumerate}
@@ -371,15 +371,13 @@
 \section{Introduction}
 Diodes are the most famous semiconductor devices, widely used in various circuits. They are made of semiconductor materials, mainly silicon (used to be selenium and germanium), and various compounds and metals are added according to the required functions.
 
-Briefly speaking, diodes have unidirectional conductivity, allowing current to flow in only one direction.
-
-\begin{center}
-\noindent\begin{minipage}{0.55\columnwidth}
-    According to different principles, diodes can be divided into the following types:
-    \begin{enumerate}
-    \item PN junction diode (PN 结二极管)
+Briefly speaking, diodes have unidirectional conductivity, allowing current to flow in only one direction. Fig.\ref{Diodes Circuit Symbols} are the circuit symbols of diodes.
+Classified  by different principles, diodes can be divided into the following types:
+\begin{enumerate}
+    \item PN junction diode (general diode, PN 结二极管, 通用二极管)
     \item Schottky diode (肖特基二极管)
     \item Zener diode (齐纳二极管)
+    \item tunnel diode (隧道二极管)
     \item LED (light-emitting diode, 发光二极管)
     \item photo diode (光电二极管)
     \end{enumerate}
@@ -394,20 +392,54 @@ Briefly speaking, diodes have unidirectional conductivity, allowing current to f
     \item LED (light-emitting diode, 发光二极管)
     \item varible capacity diode (varicap diode, 变容二极管)
     \item TVS (Transient Voltage Suppressor, 瞬态抑制二极管)
-    \end{enumerate}
-\end{minipage}\hfill\begin{minipage}{0.42\columnwidth}
+\end{enumerate}
 \begin{figure}[H]\centering
-    \includegraphics[width=\columnwidth]{assets/Diodes/Intro/image.png}
-    \caption{Some Common Diodes}
-    \label{Some Common Diodes}
+    \includegraphics[width=0.82\columnwidth]{assets/Diodes/Intro/EComM_Diodes Symbols.pdf}
+    \caption{Diodes Circuit Symbols}
+    \label{Diodes Circuit Symbols}
 \end{figure}
-\end{minipage}\end{center}
-Fig.\ref{Some Common Diodes} shows several common diodes, where $\Circled{1}$ are three kinds of power rectifiers, $\Circled{2}$ are small signal diodes and Zener diodes respectively, 
 
-\section{Power/Rectifier/General Diode (功率/整流/通用二极管)}
+\begin{center}
+\noindent\begin{minipage}{0.63\columnwidth}
+    Fig.\ref{Some Common Diodes} shows several common diodes and they are respectively:
+    \begin{enumerate}
+    \item Three kinds of power rectifiers.
+    \item A point contact diode (glass encapsulation) and a Schottky diode.
+    \item A small signal silicon diode.
+    \item Zener Diodes with glass or black resin encapsulation (树脂封装).
+    \item A selection of light emitting diodes.
+    \end{enumerate}
+\end{minipage}\hfill\begin{minipage}{0.3\columnwidth}
+    \begin{figure}[H]\centering
+        \includegraphics[width=0.87\columnwidth]{assets/Diodes/Intro/image.png}
+        \caption{Some Common Diodes}
+        \label{Some Common Diodes}
+    \end{figure}
+    
+\end{minipage}\end{center}
+
+
+
+
+\section{General Diode (通用二极管)}
 
 \subsection{Concepts and Models}
 
+The current flowing through a general diode (PN junction diode) satisfis:
+\begin{equation}\label{eq:Diode Current}
+I_{\text{D}} = I_\text{S} \left( \exp \frac{V_\text{D}}{V_\text{T}} - 1 \right)
+\end{equation}
+Where $I_\text{S}$ is the saturation current (bewteen 1 nA and 100 nA, typically 7 nA), $V_\text{T} = \frac{k_BT}{q_e} \approx 26 \mV$ at 300 K, and $V_\text{D}$ is the diode forward voltage.
+
+Equation (\ref{eq:Diode Current}) is called the expotential model of diode, which is a good approximation for most situations, but too complicated for circuit analysis (especially if there are a lot of components). Therefore, we prefer to use some more simple models. 
+
+Fig.\ref{} shows several common models of diodes, including ideal diode model, constant voltage drop model, and piecewise linear model. Here are some tips for choosing the right model:
+\begin{enumerate}
+\item To gain a intuition into the circuit, ideal mode could be a great choice, e.g. Fig.\ref{} (a).
+\item To analysis the exact behavior of the circuit, Fig.\ref{} (b) constant voltage drop model is a better choice. 
+\item Fig.\ref{} (c) is an alternative to replace the expotential diode, which is called piecewise linear model.
+
+\end{enumerate}
 
 
 \subsection{1N4007 [GOODWORK (固得沃克)]}
@@ -447,7 +479,7 @@ Data Sheet 中的具体参数我们不再重复了，可到数据手册中自行
 
 
 
-\section{Voltage regulator diode (稳压二极管)}
+\section{Zener Diode (齐纳二极管)}
 \section{LED (Light Emitting Diode, 发光二极管)}
 \subsection{XL-302 [XINGLIGHT (成兴光)]}
 XL-302SURD (red)、XL-302SURC (white)、XL-302UYD (yellow)、XL-302UYC (green)、是由 XINGLIGHT (成兴光, 中国广东) 生产的 LED，可以在 \href{https://so.szlcsc.com/global.html?k=XL-302U}{立创商城} 或 \href{http://www.xinglight.cn/index.php?s=cpzx&c=search&keyword=XL-302}{XINGLIGHT 官网} 上找到它们。其实物图如下：
@@ -523,10 +555,17 @@ V_\text{th} = 2.5 \ \mathrm{V},\quad V_\text{D} = 3.2 \ \mathrm{V} \quad (\text{
 \boldmath V_\text{T} = 2.109 \ \mathrm{V},\quad K = 0.182 \ \mathrm{A\cdot V^{-2}} = 182 \ \mathrm{mA\cdot V^{-2}}
 \end{equation}
 
+
 \begin{figure}[H]\centering
     \includegraphics[width=0.9\columnwidth]{assets/Transistors/2N7000 [onsemi (安森美)]/2N7000 拟合 K 值与 V_T.png}
     \caption{Threshold Voltage of 2N7000}
 \end{figure}
+
+用 $V_\text{DS} = 5$ V 时的数据，拟合得到
+\begin{equation}
+    \boldmath 
+    V_\text{T} = 2.156 \ \mathrm{V},\quad K = 0.1742 \ \mathrm{A\cdot V^{-2}} = 174.2 \ \mathrm{mA\cdot V^{-2}}
+\end{equation}
 
 \subsection{FinFET (Fin Field-Effect Transistor, 鳍式场效应晶体管)}
 
@@ -535,9 +574,9 @@ V_\text{th} = 2.5 \ \mathrm{V},\quad V_\text{D} = 3.2 \ \mathrm{V} \quad (\text{
 
 \chapter{Amplifiers}\thispagestyle{fancy}
 \section{Common Emitter Amplifier (共射极放大器)}
-\section{Common Base Amplifier (共基极放大器)}
-\section{Common Collector Amplifier (共集极放大器)}
-\section{Common Source Amplifier (共源极放大器)}
+\section{Common Base Amplifier (共基放大器)}
+\section{Common Collector Amplifier (共集放大器)}
+\section{Common Source Amplifier (共源放大器)}
 \section{MOSFET Amplifier (MOSFET 放大器)}
 
 \subsection{LM258P}
@@ -564,6 +603,11 @@ V_\text{th} = 2.5 \ \mathrm{V},\quad V_\text{D} = 3.2 \ \mathrm{V} \quad (\text{
 
 
 
+\renewcommand{\bibname}{Reference}  % 将参考文献标题从 bibliography 改为 Reference
+\nocite{*}
+\bibliography{bibtex}
+\thispagestyle{fancy} 
+\addcontentsline{toc}{chapter}{Reference}
 
 
 \end{document}

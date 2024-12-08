@@ -38,6 +38,8 @@
     \def\KO{\ \mathrm{K}\Omega}
     \def\MO{\ \mathrm{M}\Omega}
     \def\Hz{\ \mathrm{Hz}}
+    \def\KHz{\ \mathrm{KHz}}
+    \def\MHz{\ \mathrm{MHz}}
     \def\Res{\,\mathrm{Res}\,}
     \def\Im{\,\mathrm{Im}\,}
     \def\Re{\,\mathrm{Re}\,}
@@ -323,12 +325,15 @@
     \pagenumbering{arabic} 
 
 
-
-
+% 重定义 \rightmark
+\renewcommand{\sectionmark}[1]{%
+  \markright{\MakeUppercase{\thesection\ #1}}}%
+\chead{\nouppercase{\leftmark}}   % \leftmark 是 chapter 标题
+\rhead{\nouppercase{\rightmark}}  % \rightmark 是 section 标题
 
 
 \subfile{contents/Chapter on Capacitance/Electronic Circuits Manual (Capacitance).tex}
-
+\subfile{contents/Chapter on Osillators/Electronic Circuits Manual (Osillators).tex}
 
 
 
@@ -355,6 +360,7 @@
 \bibliography{bibtex}
 \thispagestyle{fancy} 
 \addcontentsline{toc}{chapter}{Reference}
+\rhead{\small dingyi233@mails.ucas.ac.cn}
 
 
 

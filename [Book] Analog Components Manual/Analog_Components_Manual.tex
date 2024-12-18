@@ -190,7 +190,7 @@
         \AtBeginEnvironment{tabular}{\unboldmath}   % 保证表格中的数学字符不受额外影响
 
 % 圆圈序号自定义
-    \newcommand*\circled[1]{\tikz[baseline=(char.base)]{\node[shape=circle,draw,inner sep=0.8pt, line width = 0.03em] (char) {\small \bfseries #1};}}   % TikZ solution
+    \newcommand*\circled[1]{\tikz[baseline=(char.base)]{\node[shape=circle, draw, inner sep=0.8pt, line width = 0.03em] (char) {\small \bfseries #1};}}   % TikZ solution
 
 % 列表设置
     \usepackage{enumitem}   % 宏包：列表环境设置
@@ -235,7 +235,7 @@
 % 各级标题自定义设置
     \usepackage{titlesec}   
         % chapter 标题自定义设置
-        \titleformat{\chapter}[hang]{\normalfont\huge\bfseries\centering\boldmath\color{stc}}{Chapter\ \thechapter}{20pt}{}
+        \titleformat{\chapter}[hang]{\normalfont\huge\bfseries\centering\boldmath\color{stc}}{Chapter \ \thechapter}{20pt}{}
         \titlespacing*{\chapter}{0pt}{-20pt}{20pt} % 控制上下间距
         % section标题自定义设置 
         \titleformat{\section}[hang]{\normalfont\Large\bfseries\boldmath\color{stc}}{\thesection}{8pt}{}
@@ -262,11 +262,11 @@
         \lhead{\small
         \href{https://github.com/YiDingg/LatexNotes}{\color{black}\faGithub\ https://github.com/YiDingg/LatexNotes}
         }
-        \chead{Electronic Components Manual}
+        \chead{Analog Components Manual}
         \rhead{\small dingyi233@mails.ucas.ac.cn}
 
 %文档信息设置
-    \title{电子元件手册\\ Electronic Components Manual}
+    \title{模拟电路元件手册\\ Analog Components Manual}
     \author{丁毅\\ \footnotesize {\kaishu (中国科学院大学，北京 100049)} \\ Yi Ding \\ \footnotesize \textit{(University of Chinese Academy of Sciences, Beijing 100049, China)}}
     \date{\footnotesize 2024.11 -- ...}
 % ------------------------ 文章信息区 ------------------------ %
@@ -290,19 +290,20 @@
 
 % 序言
 \begin{cnabstract}\normalsize 
-本文为笔者本科时的电子元件手册，对学习过程中接触较多的元件作了系统性的介绍和总结，同时对部分元件进行了仿真或实际电路测试，给出了相应的参数曲线或波形图。
+本文为笔者本科时的模拟电路元件手册，对学习过程中接触较多的元件作了系统性的介绍和总结，同时对部分元件进行了仿真或实际电路测试，给出了相应的参数曲线或波形图。
 
-随着学习的不断深入，笔者对某些元件的认识一定会更加深刻，也会认识新的元件。因此，笔者打算将本手册作为一份长期更新的（真的很长期）电子元件手册，既是我个人对元件知识的总结，也是便于以后自己参考。读者可到我的 GitHub 下载手册的最新版本 \href{https://github.com/YiDingg/LatexNotes}{https://github.com/YiDingg/LatexNotes}，也可以在我的个人网站 \href{URL}{待更新}  上找到相关资料。
+随着学习的不断深入，笔者对某些元件的认识一定会更加深刻，也会认识新的元件。因此，笔者打算将本手册作为一份长期更新的（真的很长期）模拟电路元件手册，既是我个人对元件知识的总结，也是便于以后自己参考。读者可到我的 GitHub 下载手册的最新版本 \href{https://github.com/YiDingg/LatexNotes}{https://github.com/YiDingg/LatexNotes}，也可以在我的个人网站 \href{URL}{待更新}  上找到相关资料。
 
-另外，有相当一部分元件（例如 Operational Amplifier）其实是基础元件所构成的模块化电路。在本书，我们不会详谈如何通过基本元件搭建出这些进阶元件，而是讨论如何对这些元件（模块化的电路）建立正确的认识，探究在不同情况下应该选用怎样的模型进行分析，以达到足够高的精度，同时尽可能地降低模型复杂度。实现它们的具体电路，以及 Oscillators、Amplifiers 和 Power Supplies 等模块化电路，会放到另一本书{\kaishu 《电子电路手册》}中，读者可到网址 \href{https://github.com/YiDingg/LatexNotes/tree/main/%5BNotes%5D%20Electornic%20Circuits%20Manual}{GitHub {\color{black} (https://github.com/YiDingg/LatexNotes/tree/main/[Notes] Electornic Circuits Manual)}} 自行下载和阅读。为了提高读者的自学效率，笔者在这里推荐几个免费而优秀的电子学习网站：
+另外，有相当一部分元件（例如 Operational Amplifier ）其实是基础元件所构成的模块化电路。在本书，我们不会详谈如何通过基本元件搭建出这些进阶元件，而是讨论如何对这些元件（模块化的电路）建立正确的认识，探究在不同情况下应该选用怎样的模型进行分析，以达到足够高的精度，同时尽可能地降低模型复杂度。实现它们的具体电路，以及 Oscillators, Amplifiers 和 Power Supplies 等模块化电路，会放到另一本书{\kaishu 《模拟电路手册》}中，读者可到网址 \href{https://github.com/YiDingg/LatexNotes/tree/main/%5BNotes%5D%20Electornic%20Circuits%20Manual}{GitHub {\color{black} (https://github.com/YiDingg/LatexNotes/tree/main/[Notes] Electornic Circuits Manual)}} 自行下载和阅读。为了提高读者的自学效率，笔者在这里推荐几个免费而优秀的电子学习网站：
 \begin{enumerate}
-\item \href{https://www.electronics-tutorials.ws/}{Electornics Tutorials} : 这个网站提供了丰富的电子学习资料，包括 Transistors、Amplifiers、Diodes、Filters 等，还提供了很多实用的电子工程师工具，例如在线电阻电感电容计算器等；
+\item \href{https://www.electronics-tutorials.ws/}{Electornics Tutorials} : 这个网站提供了丰富的电子学习资料，包括 Transistors, Amplifiers, Diodes, Filters 等，还提供了很多实用的电子工程师工具，例如在线电阻电感电容计算器等；
 \item \href{https://www.learnabout-electronics.org/}{Learn About Electronics} : 这个网站提供了电子学习的基础和进阶知识，包括 Semiconductors, Amplifiers, Oscillators, Power Supplies 等，最令人惊喜的是几乎所有资料都提供了 PDF 下载，方便读者下载后自行学习；
 \item \href{https://www.electronics-lab.com}{Electronics Lab} : 这个网站不仅开源了很多电子电路设计实例，包括基础电路、模拟电路、数字电路等，还提供了丰富的学习资源（文章）在 \href{https://www.electronics-lab.com/articles/}{here}；
-\item \href{https://developerhelp.microchip.com/}{Microchip} : 这是 Microchip 官方的开发者帮助网站，提供了大量的电子元件的 Data Sheet、Application Notes、Reference Manuals 等，是学习 Microchip 产品的重要参考网站，当然，在这里也可以找到与模拟电路、数字电路相关的的学习资料；
+\item \href{https://developerhelp.microchip.com/}{Microchip} : 这是 Microchip 官方的开发者帮助网站，提供了大量的电子元件的 Data Sheet, Application Notes, Reference Manuals 等，是学习 Microchip 产品的重要参考网站，当然，在这里也可以找到与模拟电路、数字电路相关的的学习资料；
+\item \href{https://wiki.analog.com/university/courses/tutorials/index}{Analog Devices {\color{black}(https://wiki.analog.com/university/courses/tutorials/index)}} : 这是 Analog Devices 官方的 Wiki 网站，提供了大量的电子学习资料，包括 Analog Electronics, Mixed Signal Electronics (Systems), Signals and Systems 以及 some e-books in PDF ，是学习模拟电路的优秀网站。
 \end{enumerate}
 
-由于个人学识浅陋，认识有限，文中难免有不妥甚至错误之处，望读者不吝指正。读者可以将错误发送到我的邮箱 {\color{blue}\ dingyi233@mails.ucas.ac.cn}，也可以到笔者的 \href{https://github.com/YiDingg/LatexNotes}{GitHub (https://github.com/YiDingg/LatexNotes)} 上提 issue，衷心感谢。
+由于个人学识浅陋，认识有限，文中难免有不妥甚至错误之处，望读者不吝指正。读者可以将错误发送到我的邮箱 {\color{blue}\ dingyi233@mails.ucas.ac.cn}，也可以到笔者的 \href{https://github.com/YiDingg/LatexNotes}{GitHub (https://github.com/YiDingg/LatexNotes)} 上提 issue ，衷心感谢。
 
 \end{cnabstract}
 \addcontentsline{toc}{chapter}{序言} % 手动添加为目录
@@ -313,22 +314,24 @@
 \newpage
 \begin{enabstract}
     \zihao{5}
-    This is an electronic components manual that I wrote during my undergraduate studies. It provide a systematic introduction and summary of the components that I encountered frequently during my studies, also includes simulations or actual circuit tests for part of the components, along with corresponding characteristics curves and waveform graphs.
+    This is an analog components manual that I wrote during my undergraduate studies. It provides a systematic introduction and summary of the components that I encountered frequently during my studies, also includes simulations or actual circuit tests for part of the components, along with corresponding characteristics curves and waveform graphs.
 
-    As the study progresses, my understanding of certain components will certainly become more profound, and new components will be encountered, too. Therefore, I plans to use this manual as a long-term (very long-term) electronic components manual, both as personal notes of my knowledge of components and as a reference for my reference manual in the future. Readers can freely download the latest version of the manual from my \href{https://github.com/YiDingg/LatexNotes}{  GitHub  {\color{black} (https://github.com/YiDingg/LatexNotes)}}, or find related materials on my personal website \href{URL}{to be updated}.
+    As the study progresses, my understanding of certain components will certainly become more profound, and new components will be encountered, too. Therefore, I plan to use this manual as a long-term (very long-term) analog components manual, both as personal notes of my knowledge of components and as a reference for my reference manual in the future. Readers can freely download the latest version of the manual from my \href{https://github.com/YiDingg/LatexNotes}{  GitHub  {\color{black} (https://github.com/YiDingg/LatexNotes)}}, or find related materials on my personal website \href{URL}{to be updated}.
 
 
-    Additionally, there are a considerable number of components (such as Operational Amplifier) that are actually modular circuits composed of basic components. In this book, we will not delve into how to build these advanced components using basic components, but rather discuss how to properly understand these components (modular circuits), and explore the models that should be used for analysis in different situations to achieve sufficient accuracy, while minimizing model complexity. The specific circuits for constructing these components, such as oscillators, amplifiers, power supplies etc., will be included in another book \textit{``Electronic Circuits Manual''} which can also be found on my \href{https://github.com/YiDingg/LatexNotes/tree/main/%5BNotes%5D%20Electornic%20Circuits%20Manual}{GitHub {\color{black} (https://github.com/YiDingg/LatexNotes/tree/main/[Notes] Electornic Circuits Manual)}}. 
+    Additionally, there are a considerable number of components (such as Operational Amplifier) that are actually modular circuits composed of basic components. In this book, we will not delve into how to build these advanced components using basic components, but rather discuss how to properly understand these components (modular circuits), and explore the models that should be used for analysis in different situations to achieve sufficient accuracy, while minimizing model complexity. The specific circuits for constructing these components, such as oscillators, amplifiers, power supplies etc., will be included in another book \textit{``analog Circuits Manual''} which can also be found on my \href{https://github.com/YiDingg/LatexNotes/tree/main/%5BNotes%5D%20Electornic%20Circuits%20Manual}{GitHub {\color{black} (https://github.com/YiDingg/LatexNotes/tree/main/[Notes] Electornic Circuits Manual)}}. 
     
-    In order to better enhance the reader's self-study efficiency, I recommends several free and excellent online learning websites here: 
+    In order to better enhance the reader's self-study efficiency, I recommend several free and excellent online learning websites here: 
     \begin{enumerate}
-    \item \href{https://www.electronics-tutorials.ws}{Electornics Tutorials {\color{black} (https://www.electronics-tutorials.ws)}}: This website provides a wealth of electronic learning resources, including Transistors, Amplifiers, Diodes, Filters, and many practical tools for electronic engineers, such as an online resistor, inductor, and capacitor calculator.
+    \item \href{https://www.electronics-tutorials.ws}{Electronics Tutorials {\color{black} (https://www.electronics-tutorials.ws)}}: This website provides a wealth of electronic learning resources, including Transistors, Amplifiers, Diodes, Filters, and many practical tools for electronic engineers, such as an online resistor, inductor, and capacitor calculator.
     
     \item \href{https://www.learnabout-electronics.org}{  Learn About Electronics  {\color{black} (https://www.learnabout-electronics.org)}}: The website provides basic and advanced knowledge of electronics, including Semiconductors, Amplifiers, Oscillators, Power Supplies, and the best part is that almost all the materials are provided in PDF format for easy download and offline learning.
     
-    \item \href{https://www.electronics-lab.com}{  Electronics Lab  {\color{black} (https://www.electronics-lab.com)}}: This website not only opensource many electronic circuit design examples, including basic circuits, analog circuits, and digital circuits, but also provides a wealth of learning resources and articles \href{https://www.electronics-lab.com/articles/}{here {\color{black} (https://www.electronics-lab.com/articles)}}.
+    \item \href{https://www.electronics-lab.com}{  Electronics Lab  {\color{black} (https://www.electronics-lab.com)}}: This website not only open-source many electronic circuit design examples, including basic circuits, analog circuits, and digital circuits, but also provides a wealth of learning resources and articles \href{https://www.electronics-lab.com/articles/}{here {\color{black} (https://www.electronics-lab.com/articles)}}.
 
     \item \href{https://developerhelp.microchip.com}{  Microchip  {\color{black} (https://developerhelp.microchip.com)}}: This is Microchip's official developer help website which provides a wealth of data sheets, application notes, and reference manuals for electronic components. It is an important reference website for learning about Microchip products, and of course, you can also find learning materials related to analog circuits and digital circuits here. 
+    
+    \item \href{https://wiki.analog.com/university/courses/tutorials/index}{Analog Devices {\color{black}(https://wiki.analog.com/university/courses/tutorials/index)}} : This is Analog Devices' official Wiki website, which provides a wealth of electronic learning materials, including Analog Electronics, Mixed Signal Electronics (Systems), Signals and Systems, and some eBooks in PDF, which is an excellent website for learning analog circuits.
 \end{enumerate}
     
     Due to my own limited knowledge and understanding, there may be inappropriate or even incorrect parts in this article. I sincerely hope readers will point out any errors or inaccuracies. Readers can send errors to my email address {\color{blue} dingyi233@mails.ucas.ac.cn}, or report issues on my \href{https://github.com/YiDingg/LatexNotes}{GitHub {\color{black} (https://github.com/YiDingg/LatexNotes)}} with my utmost gratitude.
@@ -369,8 +372,8 @@
 
 
 
-\subfile{contents/Chapter on Diodes/Electronic Components Manual (Diodes).tex}
-\subfile{contents/Chapter on Transistors/Electronic Components Manual (Transistors).tex}
+\subfile{contents/Chapter on Diodes/Analog_Components_Manual (Diodes).tex}
+\subfile{contents/Chapter on Transistors/Analog_Components_Manual (Transistors).tex}
 
 %\chapter{Amplifiers}\thispagestyle{fancy}
 %\section{Common Emitter Amplifier (共射极放大器)}

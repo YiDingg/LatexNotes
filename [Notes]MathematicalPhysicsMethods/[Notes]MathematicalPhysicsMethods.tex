@@ -1932,6 +1932,24 @@ $(r + \omega i)$ 不是特征方程的根时，$k = 0$，否则 $k = 1$。类似
 
 
 \section{常数变易法}
+对常系数非齐次二阶线性 ODE 如下：
+\begin{equation}
+u'' + pu' + qu = f(t)
+\end{equation}
+设方程齐次解的两个独立解为 $u_1(t)$ 和 $u_2(t)$，则原方程的解为：
+\begin{equation}
+u = C_1u_1(t) + C_2u_2(t) + u_2\int_{0}^{t} \frac{u_1(t)f(t)}{W(t)}\ \mathrm{d}t - u_1\int_{0}^{t} \frac{u_2(t)f(t)}{W(t)}\ \mathrm{d}t
+\end{equation}
+其中 $C_1$, $C_2$ 为待定常量，$W(t)$ 为 Wrondski 行列式：
+\begin{equation}
+W(t)= 
+\begin{vmatrix}
+u_1(t) & u_2(t) \\
+u_1'(t) & u_2'(t) \\
+\end{vmatrix}
+= u_1(t)u_2'(t) - u_2(t)u_1'(t)
+\end{equation}
+
 
 \section{$n$ 阶齐次线性 ODE}
 讲义 Page 91 和 
@@ -1986,25 +2004,154 @@ w(z) = \sum_{n=0}^{\infty} c_n (z - z_0)^n
 
 
 \chapter{分离变量法}\thispagestyle{fancy}
-\section{波动方程 $u(x, t)$}
-\section{热传导方程 $u(x, t)$}
-\section{拉普拉斯方程 $u(x, y)$}
+
+各方法的运用情景如下：
+
+
+\section{分离变量法}
+定解问题（齐次方程且齐次边界条件）的本征值及其对应的本征函数：
+\begin{gather*}
+\text{波动方程：} \frac{\partial^2 u }{\partial t^2 } = a^2 \frac{\partial^2 u }{\partial x^2 }
+\Longrightarrow 
+\frac{1}{a^2}\cdot \frac{T''}{T} = \frac{X''}{X} = - \lambda 
+\\
+\begin{cases}
+    \begin{aligned}
+        &u|_{x = 0} = u|_{x = l} = 0: && 
+        {\color{red} l \sqrt{\lambda} = n \pi},&&
+        u = \sum_{n=1}^{\infty} \left[A_n 
+        \cos \left(a \sqrt{\lambda_n} t \right) + B_n \sin \left(a \sqrt{\lambda_n} t \right)\right]\sin \left(\sqrt{\lambda_n} x\right) 
+        \\ \vspace*{9mm}
+        &u|_{x = 0} = {\color{red} u_x'}|_{x = l} = 0: &&
+        {\color{red} l \sqrt{\lambda} = n \pi -\frac{\pi}{2}},&&
+        u = \sum_{n=1}^{\infty} \left[A_n 
+        \cos \left(a \sqrt{\lambda_n} t \right) + B_n \sin \left(a \sqrt{\lambda_n} t \right)\right]\sin \left(\sqrt{\lambda_n} x\right)  
+        \\ \vspace*{9mm}
+        &{\color{red} u_x'}|_{x = 0} = {\color{red} u_x'}|_{x = l} = 0: &&
+        {\color{red} l \sqrt{\lambda} = 0,\ n \pi},&&
+        u = {\color{red}  (Ct + D) }+  \sum_{n=1}^{\infty} \left[A_n 
+        \cos \left(a \sqrt{\lambda_n} t \right) + B_n \sin \left(a \sqrt{\lambda_n} t \right)\right]{\color{red} \cos} \left(\sqrt{\lambda_n} x\right) 
+    \end{aligned} 
+\end{cases}
+\end{gather*}
+
+\begin{gather*}
+    \text{扩散方程：} \frac{\partial u }{\partial t } = a^2 \frac{\partial^2 u }{\partial x^2 }
+    \Longrightarrow 
+    \frac{1}{a^2}\cdot \frac{T'}{T} = \frac{X''}{X} = - \lambda 
+    \\
+    \begin{cases}
+        \begin{aligned}
+            &u|_{x = 0} = u|_{x = l} = 0: && 
+            l \sqrt{\lambda} = n \pi,&&
+            u = \sum_{n=1}^{\infty} A_n \exp \left(-a^2 \lambda_n t\right)\sin \left(\sqrt{\lambda_n} x\right) 
+            \\ \vspace*{9mm}
+            &u|_{x = 0} = {\color{red} u_x'}|_{x = l} = 0: &&
+            l \sqrt{\lambda} = n \pi - \frac{\pi}{2},&&
+            u = \sum_{n=1}^{\infty} A_n \exp \left(-a^2 \lambda_n t\right)\sin \left(\sqrt{\lambda_n} x\right) 
+            \\ \vspace*{9mm}
+            &{\color{red} u_x'}|_{x = 0} = {\color{red} u_x'}|_{x = l} = 0: &&
+            l \sqrt{\lambda} = 0,\ n \pi,&&
+            u = {\color{red}  C } +  \sum_{n=1}^{\infty} A_n \exp \left(-a^2 \lambda_n t\right) {\color{red} \cos} \left(\sqrt{\lambda_n} x\right) 
+        \end{aligned} 
+    \end{cases}
+\end{gather*}
+
+\begin{gather*}
+    \text{稳定方程 (将 $Y$ 看作原 $T$) : } \frac{\partial^2 u }{\partial y^2 } + \frac{\partial^2 u }{\partial x^2 } = 0
+    \Longrightarrow 
+    - \frac{Y''}{Y} = \frac{X''}{X} = - \lambda 
+    \\
+    \begin{cases}
+        \begin{aligned}
+            &u|_{x = 0} = u|_{x = l} = 0: && 
+            l \sqrt{{\color{red}  - \lambda}} = n \pi,&&
+            u = A_n \sum_{n=1}^{\infty} \left(A_n e^{\sqrt{-\lambda} y} + B_n e^{- \sqrt{-\lambda} y}\right) \sin \left(\sqrt{-\lambda_n} x\right)
+            \\ \vspace*{9mm}
+            &u|_{x = 0} = {\color{red} u_x'}|_{x = l} = 0: &&
+            l \sqrt{-\lambda} = n \pi - \frac{\pi}{2},&&
+            u = A_n \sum_{n=1}^{\infty} \left(A_n e^{\sqrt{-\lambda} y} + B_n e^{- \sqrt{-\lambda} y}\right) \sin \left(\sqrt{-\lambda_n} x\right)
+            \\ \vspace*{9mm}
+            &{\color{red} u_x'}|_{x = 0} = {\color{red} u_x'}|_{x = l} = 0: &&
+            l \sqrt{-\lambda} = 0,\ n \pi,&&
+            u = {\color{red}  C y + D } +  A_n \sum_{n=1}^{\infty} \left(A_n e^{\sqrt{-\lambda} y} + B_n e^{- \sqrt{-\lambda} y}\right) \sin \left(\sqrt{-\lambda_n} x\right)
+        \end{aligned} 
+    \end{cases}
+\end{gather*}
+    
+
+\section{辅助函数法}
+
+对方程齐次，但是边界项非齐次的情况，设 $u = v + \omega$，其中 $v(x, t) = f(x)\varphi(t)$ 满足方程和非齐次边界条件。这样，$\omega(x, t)$ 就满足齐次方程且齐次边界条件，可以利用分离变量法求解。$v(x, t)$ 可以设为为：
+\begin{equation}
+    u|_{x = 0} = \varphi(t),\ u|_{x = l} = \psi(t) \Longrightarrow v = f(x) \varphi(t) + g(x)\psi(t)
+\end{equation}
+上面的 $u$ 换为 $u_x'$ 也是一样的。
+
+方程非齐次时，边界条件一般是齐次的。这时设 $u = v(x) + \omega(x, t)$，其中 $v(x)$ 满足非齐次方程和边界条件，解出 $v(x)$ 即可。这样，$\omega(x, t)$ 就满足齐次方程且齐次边界条件，可以利用分离变量法求解。
+
+\section{本征函数展开法}
+此方法适用于非齐次方程+齐次边界的情况。将方程右端的非齐次项 $f(x,t)$ 展开为：
+\begin{equation}
+    f(x,t) = \sum_{n=1}^{\infty} g_n(t) X_n(x),\quad g_n(t) = \frac{2}{l}\int_{0}^{l} f(x,t)X_n(x) \mathrm{d}x
+\end{equation}
+其中 $X_n$ 是齐次情形下的本征函数族，由正交性可知 $g_n(t) = \frac{2}{l}\int_{0}^{l} f(x,t)X_n(x) \mathrm{d}x$，这样 $g_n(t)$ 便是已知的了。再将要求的 $u(x,t)$ 也展开为 $u = \sum_{n=1}^{\infty} T_n(t)X_n(x)$，其中 $T_n$ 待定。将 $u$ 代入原方程（非齐次），用齐次形式下分离变量法得到的 $X'' = - \lambda X$ 消去 $X''$，由系数的一致性得到 $T_n$ 满足常的微分方程，由此求得 $T_n$，也便求出了 $u(x,t) =  = \sum_{n=1}^{\infty} T_n(t)X_n(x)$
+
+对于非齐次边界的情况，如果想使用本征函数法，只需设 $u = v + w$，其中 $v$ 满足非齐次边界条件即可。特别地，选取 $v$ 为如下边界条件可以使方程更容易求解：
+\begin{gather}
+\begin{aligned}
+    &u|_{x = 0} = \varphi_0(t),\ u|_{x = l} = \varphi_l(t) \Longrightarrow&& v = \varphi_0 \left(1 - \frac{x}{l}\right)^2 + \varphi_l \left(\frac{x}{l}\right)^2 \\ 
+    &u|_{x = 0} = \varphi_0(t),\ u_x'|_{x = l} = \varphi_l(t) \Longrightarrow&& v = \varphi_0 + \varphi_l x \\ 
+    &u_x'|_{x = 0} = \varphi_0(t),\ u_x'|_{x = l} = \varphi_l(t) \Longrightarrow&& v = \varphi_0 + \varphi_l (x - l)x \\ 
+    &u_x'|_{x = 0} = \varphi_0(t),\ u|_{x = l} = \varphi_l(t) \Longrightarrow&& v = \frac{\varphi_l - \varphi_0}{2l}\,x^2 + \varphi_0 x
+\end{aligned}
+\end{gather}
+
+\chapter{积分变换法}\thispagestyle{fancy}
+
+\section{Laplace 变换法}
+Laplace 变换可用于求解含时间的微分方程定解问题（包括ODE和PDE）。对于系数与 $t$ 无关的微分方程，变换后自变量的个数比原来减少一个，从而化为常微分方程或普通常量方程。例如，原来是 $x$ 和 $t$ 两个自变量的PDE问题，变换后成为变量 $x$ 的ODE，求此ODE后作反演，即可得到原始问题的解。
+
+为了方便参考，我们再叙述一遍 Laplace 变换的常见性质。设函数 $f = f(t)$，则有：
+\begin{gather}
+\begin{aligned}
+& f(t) &&\overset{\mathscr{F}}{\longrightarrow} && L(s) \\
+& f(a t) &&\overset{\mathscr{F}}{\longrightarrow} && \frac{1}{|\alpha|} L(\frac{s}{a})\\
+& f(t + a t_0) &&\overset{\mathscr{F}}{\longrightarrow} && e^{s (at_0)}L(s)\\
+& e^{t(\alpha s_0)} f(t) &&\overset{\mathscr{F}}{\longrightarrow} && L(s - \alpha s_0)\\
+& f^{(n)}(t) &&\overset{\mathscr{F}}{\longrightarrow} && s^n L(s) - s^{n-1}f(0) -  s^{n-2}f'(0) - \cdots - z^0 f^{(n-1)}(0)\\
+& t f(t) - L(0) && \overset{\mathscr{F}}{\longrightarrow} && L'(s)\\
+& \int_{0}^{t} f(\xi) \mathrm{d}\xi &&\overset{\mathscr{F}}{\longrightarrow} && \frac{L(s)}{s}\\
+& \frac{f(t)}{t} &&\overset{\mathscr{F}}{\longrightarrow} && \int_{0}^{s} L(\xi) \mathrm{d}\xi\\
+& f_1(t)\cdot f_2(t) &&\overset{\mathscr{F}}{\longrightarrow} && L_1(s) * L_2(s)\\
+& f_1(t) * f_2(t)  &&\overset{\mathscr{F}}{\longrightarrow} && L_1(s) \cdot L_2(s)
+\end{aligned}
+\end{gather}
+
+\section{Fourier 变换法}
+
+为了方便参考，我们再叙述一遍 Fourier 变换的常见性质。设函数 $f = f(t)$，对于大多数结论，只需将 Laplace 中的 $s$ 替换为 $j \omega$，即可得到：
+\begin{gather}
+\begin{aligned}
+& f(t) &&\overset{\mathscr{F}}{\longrightarrow} && F(\omega) \\
+& f(a t) &&\overset{\mathscr{F}}{\longrightarrow} && \frac{1}{|\alpha|} F(\frac{\omega}{a})\\
+& f(t + a t_0) &&\overset{\mathscr{F}}{\longrightarrow} && e^{i \omega (at_0)}F(\omega)\\
+& e^{it (b \omega_0)} f(t) &&\overset{\mathscr{F}}{\longrightarrow} && F(\omega - b \omega_0)\\
+& f^{(n)}(t) &&\overset{\mathscr{F}}{\longrightarrow} && (i \omega)^n F(\omega)\\
+& (-i t)^n f(t) &&\overset{\mathscr{F}}{\longrightarrow} &&  F^{(n)}(\omega)\\
+& \int_{-\infty}^{t} f(\xi) \mathrm{d}\xi &&\overset{\mathscr{F}}{\longrightarrow} && \pi F(0) \delta_0(\omega) + \frac{F(\omega)}{i \omega}\\
+& \pi f(0) \delta_0(t) + \frac{f(t)}{i t} &&\overset{\mathscr{F}}{\longrightarrow} && \int_{-\infty}^{\omega} F(\xi) \mathrm{d}\xi\\
+& f_1(t)\cdot f_2(t) &&\overset{\mathscr{F}}{\longrightarrow} && F_1(\omega) * F_2(\omega)\\
+& f_1(t) * f_2(t)  &&\overset{\mathscr{F}}{\longrightarrow} && F_1(\omega) \cdot F_2(\omega)
+\end{aligned}
+\end{gather}
+
+
+对于二元函数 $u(x, t)$，Fourier 变换是对变量 $x$ 作变换，将 $u(x, t)$ 变为 $\hat{u}(\omega, t) = \hat{u}(t)$，化为一元函数，也就是上面的结论应该以 $x$ 作为自变量。
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+\chapter{格林函数法}\thispagestyle{fancy}
 
 
 

@@ -1,0 +1,1 @@
+{"rule":"WIEN","sentence":"^\\QWien Bridge Oscillator Equivalent Circuit of Wien Bridge Osillator Wien Bridge Osillator and Its Equivalent Circuit Since a noinverting amplifier has extreme high input impedance and low output impedance, the coupling effect of the two circuits is negligible.\\E$"}

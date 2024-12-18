@@ -2639,8 +2639,142 @@ H = H_1 \cdot H_2 = \frac{1}{1 + j \frac{\omega}{\omega_1} } \cdot \frac{j \frac
 
 
 \section{谐振电路}
-\subsection{$LC$ 谐振电路的频响}
+一个含电感和电容的无源线性电路，其输入阻抗是 $\omega$ 的函数，在某一角频率 $\omega_0$ 时，电路（输入）阻抗 $Z$（或导纳 $Y$）的模长达到极小值（甚至最小值），我们就说该电路发生了谐振 (resonance)。显然，电路要发生谐振，必须同时含有电感和电容，且外加电源频率为电路的谐振频率 $\omega_0$ (resonance frequency)。
+
+
+谐振电路有两种：串联谐振电路和并联谐振电路。前者指（输入）阻抗 $Z$ 的模长极小，后者指（输入）导纳 $Y$ 的模长极小（这相当于 $Z$ 极大）。对于一些简单的串并联电路（比如教材上的例题或期末考试题目），发生谐振（无论是串联或并联）会使电路表现为纯电阻（或纯电导），同时带来其它的一些性质。下面以 $RLC$ 电路为例，分别讨论简单的串联谐振和并联谐振。
+
+\subsection{$RLC$ 谐振电路}
+$RLC$ 串联电路的输入阻抗 $Z$ 和网络函数 $H$（激励 $\dot{U}_S$，响应 $\dot{U}_{R}$）分别为：
+\begin{equation}
+Z = R + j \left(\omega L - \frac{1}{\omega C}\right),\quad 
+H(\j\omega) = \frac{\dot{U}_R}{\dot{U}_S} = \frac{R}{Z} = \frac{R}{R + j \left(\omega L - \frac{1}{\omega C}\right)}
+\end{equation}
+当输入角频率为 $\omega_0 = \frac{1}{\sqrt{LC}}$ 时，$\Im \{Z\} = 0$，$|Z| = R$ 为极小值，电路发生串联谐振。此时电路输入阻抗等效为一个纯电阻 $R$。另外，对 $H(j\omega)$ 来讲，$H$ 在 $\omega_0$ 处的增益最大（为 1）。另外，$RLC$ 串联电路发生谐振时，具有如下特点：
+\begin{enumerate}
+\item $\dot{U}_S$ 和 $\dot{I}$ 同相，入端阻抗 $Z$ 表现为纯电阻，且模长最小；
+\item 在 $\dot{U}_S$ 作为激励下，电流 $\dot{I}$ 达到最大值，响应 $\dot{U}_R$ 达到最大值；
+\item 电容和电感电压的幅值都是 $U_S$ 的 $Q$ 倍，且相位相反，即 $\dot{U}_L = -\dot{U}_C = Q \dot{U}_S$，$Q = \frac{\omega_0 L}{R} = \frac{1}{\omega_0 CR} = \frac{1}{R}\sqrt{\frac{L}{C}}$ 为品质因数
+\item 电源无功功率为 0，只发出有功功率，且完全被电阻消耗；电感与电容之间进行能量交换，与电源没有能量交换。
+\end{enumerate}
+
+
+类似地，$RLC$ 并联电路的输入导纳 $Y$ 和网络函数 $H$（激励 $\dot{I}_S$，响应 $\dot{I}_{G}$）分别为：
+\begin{equation}
+Y = G + j \left(\omega C - \frac{1}{\omega L}\right),\quad
+H(\j\omega) = \frac{\dot{I}_R}{\dot{I}_S} = \frac{G}{Y} = \frac{G}{G + j \left(\omega C - \frac{1}{\omega L}\right)}
+\end{equation}
+当输入角频率为 $\omega_0 = \frac{1}{\sqrt{LC}}$ 时，$\Im \{Y\} = 0$，$|Y| = G$ 为极小值，电路发生并联谐振。此时电路输入导纳等效为一个纯电导 $G$。对 $H(j\omega)$ 来讲，$H$ 在 $\omega_0$ 处的增益最大（为 1）。另外，$RLC$ 并联电路发生谐振时，具有如下特点：
+\begin{enumerate}
+\item $\dot{U}$ 和 $\dot{I}_S$ 同相，入端导纳 $Y$ 表现为纯电导，且模长最小；
+\item 在 $\dot{I}_S$ 作为激励下，电压 $\dot{U}$ 达到最大值，响应 $\dot{U}_R$ 达到最大值；
+\item 电容和电感电流的幅值都是 $I_S$ 的 $Q$ 倍，且相位相反，即 $\dot{I}_L = -\dot{I}_C = Q \dot{I}_S$，$Q = \omega_0 C R = \frac{R}{\omega_0 L} = R\sqrt{\frac{C}{L}}$ 为品质因数；
+\item 电源无功功率为 0，只发出有功功率，且完全被电阻消耗；电感与电容之间进行能量交换，与电源没有能量交换。
+\end{enumerate}
+
+
+
+
 \subsection{品质因数 $Q$}
+电路与元件的品质因数具有不同的意义。对电路而言，准确地说是振荡器或谐振电路，quality factor Q 是描述电路能量效率的无量纲参数，Q 值越高，代表电路的能量损耗越小，能量储存能力越强，效率也越高。谐振电路品质因数 $Q$ 的一个常见定义是：
+\begin{equation}\label{品质因数定义}
+Q = 2\pi \cdot \left(\frac{\text{stored energy in one cycle}}{\text{lost  energy in one cycle}}\right)_{\text{at the resonance frequency}}
+\end{equation}
+
+例如，对 $RLC$ 串联电路，谐振时 $\omega = \omega_0 = \frac{1}{\sqrt{LC}}$，我们有：
+\begin{gather}
+\dot{U}_C = \frac{1}{j \omega_0 C} I_C = - j \omega_0 L I \Longrightarrow  U_C = \omega_0 L I \\
+Q = 2 \pi \cdot \frac{ \frac{1}{2}L I_L^2  + \frac{1}{2}C U_C^2}{I_R^2 R T_0} = 2 \pi \cdot \frac{\frac{1}{2}L I^2 + \frac{1}{2} C \omega_0^2 L^2 I^2  }{I^2 R \frac{2 \pi }{\omega_0}} = \frac{LI^2}{I^2R\frac{1}{\omega_0}}\\ 
+\Longrightarrow Q = \frac{\omega_0 L}{R} = \frac{1}{\omega_0 CR} = \frac{1}{R}\sqrt{\frac{L}{C}}
+\end{gather}
+同理，对 $RLC$ 并联电路，我们有：
+\begin{gather}
+Q = \frac{R}{\omega_0 L} = R\sqrt{\frac{C}{L}}
+\end{gather}
+
+
+很多时候，我们并不关心电路在某个频率下的响应幅值，而是关心所有频率下，输出响应的相对幅值，这便引出了归一化频率特性，也称通用频率特性。以 $RLC$ 串联电路为例，借助品质因数 $Q$ 的概念，我们可以写出响应电流 $I$ 的幅值：
+\begin{equation}
+I_\text{norm} = \frac{I(\eta \, \omega_0)}{I(\omega_0)} = \frac{1}{\sqrt{ 1 + Q^2 \left(\eta - \frac{1}{\eta}\right)^2 }},\quad \eta = \frac{\omega}{\omega_0}
+\end{equation}
+其中 $I_\text{normalized}$ 称为归一化电流，$\eta$ 称为归一化频率。在不同的 $Q$ 值下，上式得到的归一化频响也不同，如图 \ref{不同品质因数下的归一化频率响应} 所示：
+\begin{figure}[H]\centering
+    \includegraphics[width=0.4\columnwidth]{assets/6/Q factor.png}
+    \caption{不同品质因数下的归一化频率响应}
+    \label{不同品质因数下的归一化频率响应}
+\end{figure}
+从图像可以看出，$Q$ 值越大，谐振频率附近的幅值越大，且带宽越小（这对某些滤波器而言是优点）。无论是 $RLC$ 串联还是并联，由于它们的归一化频响都具有相同的表达式，令式中 $I_{\text{norm}} = \frac{1}{\sqrt{2}}$，可以得到：
+\begin{equation}
+\text{WB} = \frac{\omega_0}{Q} 
+\end{equation}
+因此 $Q$ 越大，带宽 WB 越小，这是简单的谐振电路的一个重要推论。
+
+
+不同的谐振电路，归一化频响公式也许不同，电路中各元件的参数也千变万化，但品质因数 $Q$ 的存在为我们研究电路最佳频响和最佳参数提供了便利。
+
+\subsection{实际电感和实际电容的品质因数}
+对元件而言，品质因数的定义与式 (\ref{品质因数定义}) 类似，只是取消了 ``at the resonance frequency'' 的限制，并且分子是“一个周期内的最大存储能量”，也即：
+\begin{equation}\label{电容电感品质因数}
+Q = 2 \pi \cdot  \frac{\text{maximum stored energy in one cycle}}{\text{lost energy in one cycle}}
+\end{equation}
+
+
+实际电感模型如图 \ref{实际电感与实际电容} (a) 所示，其总阻抗 $Z$ 为：
+\begin{equation}
+Z = R_{\text{dc}} + \frac{1}{j \omega C_{\text{p}} + \frac{1}{j \omega L}} =  R_{\text{dc}} + \frac{j \omega L}{1 - \omega^2 C_\text{p}L } = \frac{R_\text{dc} + j \omega L - R_\text{dc}C_\text{p}L \omega^2}{1 - \omega^2 C_\text{p}L}
+\end{equation}
+由上式可知，在 $\omega_0 = \frac{1}{\sqrt{C_{\text{p}}L}}$ 处，阻抗 $Z = \infty$，称 $\omega_0$ 为自谐振频率 (Self resonant frequency)。例如，我们令 $L = 2 \mathrm{mH},\ R_{\text{dc}} = 2 \ \Omega, \ C_{\text{p}} = 2 \nF$，此时电感的（并联）谐振频率为 $\omega_0 = 0.5 \mathrm{MHz}$，作出阻抗 $Z$ 关于 $\omega$ 的变化情况，如图 \ref{实际电感的阻抗表现}。
+
+
+\begin{figure}[H]\centering
+    \begin{subfigure}[b]{0.5\columnwidth}\centering
+        \includegraphics[height=80pt]{assets/6/[EComM] actual capacitor and inductor.pdf}
+        \caption{实际电感模型}
+    \end{subfigure}\hfill
+    \begin{subfigure}[b]{0.5\columnwidth}\centering
+        \includegraphics[height=80pt]{assets/6/[EComM] actual capacitor 2.pdf}
+        \caption{实际电容模型}
+    \end{subfigure}
+    \caption{实际电感与实际电容}
+    \label{实际电感与实际电容}
+\end{figure}
+
+    只考虑 $R_{\text{dc}}$ 带来的损耗，由公式 (\ref{电容电感品质因数}) 可求出电感的品质因数为：
+    \begin{equation}
+    Q = Q(\omega) = \frac{\omega L}{R_{\text{dc}}}
+    \end{equation}
+    显然，$Q$ 是 $\omega$ 的函数，因此在说某个电感的品质因数时，应该指明是在哪个频率下的品质因数。
+
+
+\begin{figure}[H]\centering
+    \includegraphics[width=\columnwidth]{assets/6/L = 2mH, Rdc = 2 Ohm, C_p = 2 nF, R_ac = infty.pdf}
+    \caption{实际电感的阻抗表现 ($L = 2\ \mathrm{mH},\ \mathrm{R_{\text{dc}}} = 2 \ \Omega,\ C_\text{p} = 2 \nF$)}
+    \label{实际电感的阻抗表现}
+\end{figure}
+
+
+类似地，实际电容模型如图 \ref{实际电感与实际电容} (b) 所示，其总阻抗 $Z$ 为：
+\begin{equation}
+Z = \frac{1}{j \omega C} + j \omega L_{\text{esl}} + R_{\text{esr}} = j \left( \omega L_\text{esl} - \frac{1}{\omega C} \right) +  R_{\text{esr}}
+\end{equation}
+作出实际电容的阻抗曲线，如图 \ref{实际电容的阻抗表现} 所示。
+
+
+
+
+\begin{figure}[H]\centering
+    \includegraphics[width=\columnwidth]{assets/6/C = 10 uF, L_esr = 2 nH, R_esr = 1 Ohm.pdf}
+    \caption{实际电容的阻抗表现 ($C = 10 \ \mu \mathrm{F},\ L_{\text{esr}} = 2 \ \mathrm{nH},\ R_{\text{esr}} = 1 \ \Omega$)}
+    \label{实际电容的阻抗表现}
+\end{figure}
+
+与电感类似，只考虑 $R_{\text{esr}}$ 带来的损耗，由公式 (\ref{电容电感品质因数}) 可求出电容的品质因数为：
+\begin{equation}
+Q = \frac{1}{\omega \,C R_{\text{esr}}}
+\end{equation}
+
+绝大多数电感的 DCR 和电容的 ESR 都是 $\omega$ 的函数，具体的阻抗曲线应参考数据手册。
+
 
 \section{互感和变压器}
 

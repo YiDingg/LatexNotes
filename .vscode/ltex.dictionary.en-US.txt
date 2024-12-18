@@ -1,0 +1,9 @@
+noninverting
+Wien
+Multisim
+nF
+mV
+pF
+uF
+uA
+mA

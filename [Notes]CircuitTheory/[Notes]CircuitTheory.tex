@@ -1214,6 +1214,20 @@ u_o =
 \caption{ 参数矩阵间的关系与等效电路}\label{参数矩阵间的关系与等效电路}
 \end{figure}
 
+对一个对称的二端口网络 N 而言，当 $u_1, i_1, u_2, i_2$ 已知时，其个参数的计算公式如下：
+\begin{equation}
+\boldsymbol{T} = 
+\begin{bmatrix}
+    A & B \\ 
+    C & D
+\end{bmatrix}
+=
+\begin{bmatrix}
+    \frac{i_1}{i_2} & \frac{u_1}{i_2} \\ 
+    \frac{AD - 1}{B} & \frac{i_1}{i_2}
+\end{bmatrix}
+\end{equation}
+
 \subsection{二端口的常见联接方式}
 
 必须指出的是，在二端口进行联接时，子二端口的端口条件可能被破坏，称为非正规联接，此时不能应用下面的结论计算电路参数。级联一定是正规联接，但其它联接方法是否正规，需要进行判断。若为白箱，可通过推导判断，若为黑箱，需通过实验验证端口条件，具体的验证方法见参考文献 \cite{电路原理导学导教} 的 Page 23，我们不多赘述。
@@ -2148,9 +2162,9 @@ y'' + 2\beta y' + \omega_0 y = f(x)
 考虑它的齐次解 $y_h$，我们直接给出结论：
 \begin{gather}
 \begin{aligned}
-    &\text{欠阻尼：} &&\beta < \omega_0, &&y(t) = e^{-\beta t} A\sin \left( \omega t + \phi \right) \\ 
-    &\text{临界阻尼：} &&\beta = \omega_0, &&y(t) = e^{-\beta t} (A + Bt) \\
-    &\text{过阻尼：} &&\beta > \omega_0, &&y(t) = e^{-\beta t}\left( A\,e^{\omega t} + B\,e^{-\omega t}\right)
+    &\text{欠阻尼：} &&\beta < \omega_0, &&y_\text{h}(t) = e^{-\beta t} A\sin \left( \omega t + \phi \right) \\ 
+    &\text{临界阻尼：} &&\beta = \omega_0, &&y_\text{h}(t) = e^{-\beta t} (A + Bt) \\
+    &\text{过阻尼：} &&\beta > \omega_0, &&y_\text{h}(t) = e^{-\beta t}\left( A\,e^{\omega t} + B\,e^{-\omega t}\right)
 \end{aligned}
 \end{gather}
 设其稳态解（特解）为\textbf{常数} $y_s$（非常数的情况在下一章会谈），在电路中即为 $y_\infty$，则有全解：
@@ -2654,7 +2668,7 @@ H(\j\omega) = \frac{\dot{U}_R}{\dot{U}_S} = \frac{R}{Z} = \frac{R}{R + j \left(\
 \begin{enumerate}
 \item $\dot{U}_S$ 和 $\dot{I}$ 同相，入端阻抗 $Z$ 表现为纯电阻，且模长最小；
 \item 在 $\dot{U}_S$ 作为激励下，电流 $\dot{I}$ 达到最大值，响应 $\dot{U}_R$ 达到最大值；
-\item 电容和电感电压的幅值都是 $U_S$ 的 $Q$ 倍，且相位相反，即 $\dot{U}_L = -\dot{U}_C = Q \dot{U}_S$，$Q = \frac{\omega_0 L}{R} = \frac{1}{\omega_0 CR} = \frac{1}{R}\sqrt{\frac{L}{C}}$ 为品质因数
+\item 电容和电感电压的幅值都是 $U_S$ 的 $Q$ 倍，且相位相反，即 $\dot{U}_L = -\dot{U}_C = Q \dot{U}_S$，$Q = \frac{\omega_0 L}{R} = \frac{1}{\omega_0 CR} = \frac{1}{R}\sqrt{\frac{L}{C}}$ 为品质因数；
 \item 电源无功功率为 0，只发出有功功率，且完全被电阻消耗；电感与电容之间进行能量交换，与电源没有能量交换。
 \end{enumerate}
 
@@ -2778,52 +2792,243 @@ Q = \frac{1}{\omega \,C R_{\text{esr}}}
 
 \section{互感和变压器}
 
+\subsection{互感}
+
+图 \ref{互感线圈} 所示端口的电压电流关系为：
+\begin{equation}
+\text{(a)\ } 
+\begin{cases}
+u_1 = L_1 \frac{\mathrm{d} i_1}{\mathrm{d} t} + M \frac{\mathrm{d} i_2}{\mathrm{d} t} \\
+u_2 = M \frac{\mathrm{d} i_1}{\mathrm{d} t} + L_2 \frac{\mathrm{d} i_2}{\mathrm{d} t}
+\end{cases}
+,\quad 
+\text{(b)\ }
+\begin{cases}
+u_1 = L_1 \frac{\mathrm{d} i_1}{\mathrm{d} t} - M \frac{\mathrm{d} i_2}{\mathrm{d} t} \\
+u_2 = M \frac{\mathrm{d} i_1}{\mathrm{d} t} - L_2 \frac{\mathrm{d} i_2}{\mathrm{d} t}
+\end{cases}
+\end{equation}
+\begin{figure}[H]\centering
+    \includegraphics[width=0.5\columnwidth]{assets/6/互感/image.png}
+    \caption{互感线圈}
+    \label{互感线圈}
+\end{figure}
+对于正弦激励，可以写成相量形式：
+\begin{equation}
+\text{(a)\ }
+\begin{cases}
+\dot{U}_1 = j \omega L_1 \dot{I}_1 + j \omega M \dot{I}_2 \\
+\dot{U}_2 = j \omega M \dot{I}_1 + j \omega L_2 \dot{I}_2
+\end{cases}
+,\quad
+\text{(b)\ }
+\begin{cases}
+\dot{U}_1 = j \omega L_1 \dot{I}_1 - j \omega M \dot{I}_2 \\
+\dot{U}_2 = j \omega M \dot{I}_1 - j \omega L_2 \dot{I}_2
+\end{cases}
+\end{equation}
+可以证明，无论同名端、电流电压参考方向如何，我们有以下结论：
+\begin{enumerate}
+\item 电流流入同名端，则为正，流出则为负；
+\item 电压正端在同名端，则无需取反，反之需取反；
+\end{enumerate}
+上面的结论对多个线圈的互感也适用。
+
+\subsection{去耦等效}
+
+部分互耦电感可以等效为理想电感，有时这可以极大地简化电路分析。最普遍的 $T$ 型互感等效如图 \ref{电感去耦等效} 所示，也即有公共端的互感线圈。
+\begin{gather}
+u_1 = L_1 \frac{\mathrm{d} i_1}{\mathrm{d} t} + M \frac{\mathrm{d} i_2}{\mathrm{d} t} 
+= (L_1 - M) \frac{\mathrm{d} i_1}{\mathrm{d} t} + M \frac{\mathrm{d} i}{\mathrm{d} t} \\ 
+u_2 = M \frac{\mathrm{d} i_1}{\mathrm{d} t} + L_2 \frac{\mathrm{d} i_2}{\mathrm{d} t} 
+= (L_2 - M) \frac{\mathrm{d} i_2}{\mathrm{d} t} + M \frac{\mathrm{d} i}{\mathrm{d} t}
+\end{gather}
+\begin{figure}[H]\centering
+    \includegraphics[width=0.5\columnwidth]{assets/6/互感/image copy.png}
+    \caption{电感去耦等效}
+    \label{电感去耦等效}
+\end{figure}
+如果同名端在异测，只需将 $M$ 替换为 $-M$ 即可。需要注意，在利用去耦等效计算某电感两端的电压时，电感电压参考端会发生移动，不要忽略了这一点。由图 \ref{电感去耦等效} 的结论，我们可以推出串联和并联下的情况：
+\begin{gather}
+\begin{cases}
+\text{同侧串联：} L_{\text{eq}} = L_1 + L_2 + 2M \\
+\text{异侧串联：} L_{\text{eq}} = L_1 + L_2 - 2M
+\end{cases} 
+\begin{cases}
+\text{同侧并联：} L_{\text{eq}} = M + (L_1 - M)\parallel(L_2 - M)\\
+\text{异侧并联：} L_{\text{eq}} = -M + (L_1 + M)\parallel(L_2 + M)
+\end{cases}
+\end{gather}
+
+特别地，对于多重电感耦合，即多个电感耦合在一起的情况，可以证明耦合具有独立性，仍可以分别处理。也就是说，在电路中, 若含有多个电感的多重耦合，可以只对其中某一个或某几个互感进行去耦变换，保留其它耦合不变，则变换后的电路与原电路等效。
+
+对于电感没有公共端的情况，无法做去耦等效（或很复杂从而不值得），此时将电感视为受控电压源，列出其“受控”电压表达式来做会更简单。
+
+\subsection{变压器}
+
+考虑图 \ref{非理想变压器等效} 所示的（非理想）变压器模型，第一种分析方法是利用上面的去耦等效，我们不多赘述。第二种方法是通过引入阻抗，得到原边和副边的等效电路，如图 \ref{非理想变压器等效} 所示。这样做的好处是可以将目光聚焦在单边电路，把握主要矛盾。
+\begin{equation}
+    \dot{I}_1 = \frac{\dot{U}_1}{Z_1 + \frac{(\omega M)^2}{Z_2}}, \quad \dot{I}_2 = - \frac{\dot{U}_2}{Z_2 + \frac{(\omega M)^2}{Z_2}}
+\end{equation}
+\begin{figure}[H]\centering
+    \includegraphics[width=0.9\columnwidth]{assets/6/互感/非理想变压器 2.pdf}
+    \caption{非理想变压器的等效}
+    \label{非理想变压器等效}
+\end{figure}
+
+当耦合系数 $k = \frac{M}{\sqrt{L_1 L_2}} = 1$ 时，称为全耦合，此时将变压器看作二端口网络，则有：
+\begin{equation}
+\begin{cases}
+\dot{U}_1 = n \dot{U}_2 \\ 
+\dot{I}_1 = \frac{\dot{U}_1}{j \omega L_1} + \frac{1}{n} (- \dot{I}_2)
+\end{cases}
+,\quad 
+\begin{bmatrix}
+    \dot{U}_1 \\ \dot{I}_1 
+\end{bmatrix}
+= 
+\begin{bmatrix}
+    n & 0 \\ 
+    \frac{1}{j \omega L_1} & \frac{1}{n} 
+\end{bmatrix}
+\begin{bmatrix}
+    \dot{U}_2 \\ 
+    - \dot{I}_2
+\end{bmatrix}
+\Longrightarrow 
+T = 
+\begin{bmatrix}
+    n & 0 \\ 
+    \frac{1}{j \omega L_1} & \frac{1}{n} 
+\end{bmatrix}
+\end{equation}
+上面的变压器称为全耦合变压器，其中 $n \propto \sqrt{\frac{L_1}{L_2}}$。特别地，当 $L_1$ 足够大时，$\frac{\dot{U}_1}{j\omega L_1}$ 一项可以忽略，此时有：
+\begin{equation}
+    \dot{U}_1 = n \dot{U}_2,\quad \dot{I}_1 =  - \frac{1}{n} \dot{I}_2
+\end{equation}
+即为喜闻乐见的理想变压器。理想变压器具有负载“放大”功能，设原线圈比幅线圈为 $n$，则在原线圈中有：
+\begin{equation}
+Z_{\text{eq}} = n^{2} Z
+\end{equation}
+这种阻抗变换功能在电子电路设计中被广泛使用。作为一个经验定律，当耦合系数 $k = 1$，且负载电阻满足以下关系时，可以视为理想变压器：
+\begin{equation}
+Z_L \leqslant \frac{\omega L_1}{n^2} \text{\ \ or \ \ } Z_L < \frac{1}{100} \cdot \frac{\omega L_1}{n^2}
+\end{equation}
 
 
+实际应用中，多考虑半耦合变压器\footnote{即非理想变压器，也称为空心变压器。}和理想变压器模型，全耦合模型带来的价值不大，使用较少。
 
 
+\subsection{理想变压器的应用}
+中间抽头变压器 (central-tapped transformer) 应用广泛，如抽头变压器全波整流、抽头变压器移相桥等。由于其电压变换作用可以用运算放大器等效，因此为了减小电路体积和重量，目前已广泛利用差动放大器组合（多级运放构成的集成电路）产生不同极性所需的电流，从而取代互感线圈，系统的工作原理几乎不变。
+
+\section{三相电路}
+
+\subsection{对称三相电路}
+
+\begin{figure}[H]\centering
+    \includegraphics[width=0.25\columnwidth]{assets/6/三相电路/image.png}
+    \caption{三相电路的线序}
+\end{figure}
 
 
+\begin{gather}
+    \text{$\Delta$ 型负载：}
+    \begin{cases}
+        \dot{I}_A = \sqrt{3} \, \dot{I}_{AB} \angle -30^\circ \\
+        \dot{I}_B = \sqrt{3} \, \dot{I}_{BC} \angle -30^\circ \\
+        \dot{I}_C = \sqrt{3} \, \dot{I}_{CA} \angle -30^\circ
+    \end{cases}
+    ,\quad 
+    \text{Y 型负载：}
+    \begin{cases}
+        \dot{U}_{AB} = \sqrt{3} \, \dot{U}_{AN} \angle 30^\circ \\
+        \dot{U}_{BC} = \sqrt{3} \, \dot{U}_{BN} \angle 30^\circ \\
+        \dot{U}_{CA} = \sqrt{3} \, \dot{U}_{CN} \angle 30^\circ
+    \end{cases}
+    \end{gather}
+    
+\begin{figure}[H]\centering
+\begin{subfigure}[b]{0.5\columnwidth}\centering
+    \includegraphics[height=90pt]{assets/6/三相电路/image copy.png}
+    \caption{$\Delta$ 型负载}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{0.5\columnwidth}\centering
+    \includegraphics[height=100pt]{assets/6/三相电路/image copy 2.png}
+    \caption{Y 型负载}
+\end{subfigure}
+\caption{对称负载三相电路}
+\end{figure}
+
+$\Delta$ 型电源和$\Delta$ 型负载变换为 $Y$ 型：
+\begin{equation}
+\begin{cases}
+\dot{U}_{AN} = \frac{1}{\sqrt{3}} \dot{U}_{AB} \angle -30^\circ \\
+\dot{U}_{BN} = \frac{1}{\sqrt{3}} \dot{U}_{BC} \angle -30^\circ \\
+\dot{U}_{CN} = \frac{1}{\sqrt{3}} \dot{U}_{CA} \angle -30^\circ
+\end{cases},\quad 
+Z_{Y} = \frac{Z_{\Delta}}{3}
+\end{equation}
+对称负载 $\dot{U}_{N'N} \equiv 0$，$\dot{I}_{N'N} \equiv 0$，$Z_N$ 对电路没有影响（虚短+虚断）。
+
+\subsection{非对称三相电路}
+
+负载不对称时，需要区分有没有中线。如果存在中线（$Z_N = 0$），负载电压仍等于相电压，直接抽单相计算即可；如果不存在中线（$Z_N = \infty$），：
+\begin{gather}
+\dot{U}_{N'N} = \frac{ \frac{\dot{U}_{AN}}{Z_A} + \frac{\dot{U}_{BN}}{Z_B} + \frac{\dot{U}_{CN}}{Z_C}  }{ \frac{1}{Z_A} + \frac{1}{Z_B} + \frac{1}{Z_C} } \\
+\dot{I}_{A} = \frac{\dot{U}_{AN} - \dot{U}_{N'N} }{Z_A}, \quad 
+\dot{I}_{B} = \frac{\dot{U}_{BN} - \dot{U}_{N'N} }{Z_B}, \quad
+\dot{I}_{C} = \frac{\dot{U}_{CN} - \dot{U}_{N'N} }{Z_C}
+\end{gather}
+
+\subsection{三相电路的功率}
+
+将相电压、相电流的下标用 p 表示 (phase)，将线电压、线电流的下标用 l 表示 (line)，则对称三相电路的各功率为：
+\begin{equation}
+P = 3 U_p I_p \cos \varphi,\quad 
+Q = 3 U_p I_p \sin \varphi,\quad
+S = 3 U_p I_p
+\hat{S} = 3 \dot{U}_p \dot{I}_p^*
+\end{equation}
+可以推出，对称三相电路的瞬时功率 $p \equiv 3 U_p I_p \cos \varphi = P$。两表法测三相电路功率的示意图如下：
+\begin{figure}[H]\centering
+    \includegraphics[width=0.7\columnwidth]{assets/6/三相电路/image copy 5.png}
+    \caption{两表法测三相电路功率}
+\end{figure}
+
+以共 C 接法为例，两表的功率示数为：
+\begin{equation}
+P_1 = U_{AC} I_A \cos (\varphi_{u_{AC}} - \varphi_{i_A}), \quad 
+P_2 = U_{BC} I_B \cos (\varphi_{u_{BC}} - \varphi_{i_B})
+\end{equation}
+
+\subsection{提高功率因数}
+
+为提高功率因数，同时考虑到安全性，通常对感性电路（$\varphi > 0$，电压带动电流）并联 Y 型电容组，对容性电路（$\varphi < 0$，电流带动电压）并联 Y 型电感组。并联电容时计算公式如下：
+\begin{equation}
+\varphi > 0,\quad \text{感性：}
+C = \frac{P(\tan \varphi_1 - \tan \varphi_2)}{3\,\omega U^2}
+\end{equation}
+如果上式计算出 $C < 0$，则需要并联电感，计算公式为：
+\begin{equation}
+\varphi < 0,\quad \text{容性：}
+L = \frac{3 U^2}{\omega \, P (\tan \varphi_2 - \tan \varphi_1)}
+\end{equation}
+等价地讲，为了将一个 $\varphi_1$ 变换到 $\varphi_2$，需要并联的电抗 $X$ 为：
+\begin{equation}
+X = \frac{3 U^2}{P (\tan \varphi_2 - \tan \varphi_1)},\quad 
+Z = j X = j \frac{3 U^2}{P (\tan \varphi_2 - \tan \varphi_1)} 
+\end{equation}
+
+也可以考虑并联 $\Delta$ 型电容，但 Y 型时电容承受相电压，$\Delta$ 型承受线电压（通常更大），后者耐压要求更高。
 
 
+\section{周期性非正弦激励的电路稳态分析}
+
+通常是计算非正弦激励下的电压、电流或功率，只需分解为多个频率量，分别计算后利用叠加定理相加即可。注意不同频率下元件的阻抗不同，灵活运用串联、并联谐振以简化分析。功率之所以可以直接相加，是因为其为“不同频率“激励下的功率，而不是早先讨论的纯直流激励下的功率，前者互不影响，后者不能直接相加。
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+需要注意，若已知非正弦激励下的电压有效值和电流有效值，不能简单的用 $P = U I \cos \varphi$ 来求有功功率 $P$，因为不同频率分量的 $\varphi$ 不同。需要分别计算后将它们相加才可。
 
 
 

@@ -1,0 +1,427 @@
+% 若编译失败，且生成 .synctex(busy) 辅助文件，可能有两个原因：
+% 1. 需要插入的图片不存在：Ctrl + F 搜索 'figure' 将这些代码注释/删除掉即可
+% 2. 路径/文件名含中文或空格：更改路径/文件名即可
+
+% --------------------- 文章宏包及相关设置 --------------------- %
+% >> ------------------ 文章宏包及相关设置 ------------------ << %
+% 设定文章类型与编码格式
+\documentclass[UTF8]{report}		
+
+% 本 .tex 专属的宏包
+\usepackage{circledsteps} % 宏包：圆圈序号, 圆圈字母等 \Circled{1}, \CircledTop{2}
+\usepackage[english]{babel} % 宏包：用于将“目录”标题换为英文 Contents
+%\usepackage{natbib} % 宏包：用于 fullcite 文献
+
+% 本 .tex 专属的宏定义、newcommand 等
+    %\renewcommand{\contentsname}{目录}    % 修改目录
+    % rgb(4, 9, 103), rgb(4, 10, 118)
+    \definecolor{stc}{RGB}{4, 10, 118}
+    \def\uV{\ \mathrm{uV}}
+    \def\mV{\ \mathrm{mV}}
+    \def\V{\ \mathrm{V}}
+    \def\kV{\ \mathrm{KV}}
+    \def\KV{\ \mathrm{KV}}
+    \def\MV{\ \mathrm{MV}}
+    \def\uF{\ \mathrm{uF}}
+    \def\nF{\ \mathrm{nF}}
+    \def\pF{\ \mathrm{pF}}
+    \def\uA{\ \mathrm{uA}}
+    \def\mA{\ \mathrm{mA}}
+    \def\A{\ \mathrm{A}}
+    \def\kA{\ \mathrm{KA}}
+    \def\KA{\ \mathrm{KA}}
+    \def\MA{\ \mathrm{MA}}
+    \def\uO{\ \mu\Omega}
+    \def\mO{\ \mathrm{m}\Omega}
+    \def\O{\ \Omega}
+    \def\kO{\ \mathrm{K}\Omega}
+    \def\KO{\ \mathrm{K}\Omega}
+    \def\MO{\ \mathrm{M}\Omega}
+    \def\Hz{\ \mathrm{Hz}}
+    \def\KHz{\ \mathrm{KHz}}
+    \def\MHz{\ \mathrm{MHz}}
+    \def\Res{\,\mathrm{Res}\,}
+    \def\Im{\,\mathrm{Im}\,}
+    \def\Re{\,\mathrm{Re}\,}
+
+% 自定义宏定义
+    \def\N{\mathbb{N}}
+    \def\F{\mathbb{F}}
+    \def\Z{\mathbb{Z}}
+    \def\Q{\mathbb{Q}}
+    \def\R{\mathbb{R}}
+    \def\C{\mathbb{C}}
+    \def\T{\mathbb{T}}
+    \def\S{\mathbb{S}}
+    %\def\A{\mathbb{A}}
+    \def\I{\mathscr{I}}
+    \def\d{\mathrm{d}}
+    \def\p{\partial}
+
+
+% 导入基本宏包
+    \usepackage[UTF8]{ctex}     % 设置文档为中文语言
+    \usepackage{hyperref}  % 宏包：自动生成超链接 (此宏包与标题中的数学环境冲突)
+    \hypersetup{
+        % 超链接颜色设置
+        colorlinks=true,    % false:边框链接 ; true:彩色链接
+        citecolor={blue},    % 文献引用颜色
+        linkcolor={blue},   % 目录 (我们在目录处单独设置)，公式，图表，脚注等内部链接颜色
+        urlcolor={magenta},    % 网页 URL 链接颜色，包括 \href 中的 text
+        % pdf 相关设置
+        pdfauthor={丁毅},% PDF 作者
+        pdftitle={Notes of Principles of Electric Circuits},% PDF 标题
+        pdfproducer={LaTeX with hyperref}, % PDF 制作软件
+        pdfcreator={xelatex},       % PDF 创建者
+        pdfpagelayout=TwoColumn,    % 双栏布局
+        pdfstartview=FitH,          % 页面宽度适合窗口
+        %pdfpagemode=UseNone,       % 不显示书签 (默认会显示)
+        pdfpagemode=UseOutlines,    % 显示书签
+        pdfnewwindow=true,          % 在新窗口中打开链接
+        pdfencoding=auto,           % 自动编码
+        pdfborder={0 0 0},          % pdf 无边框
+        pdfhighlight=/I,            % 链接高亮样式
+        % magenta 洋红色
+        % cyan 浅蓝色 
+        % magenta 洋红色
+        % yellow 黄色
+        % black 黑色
+        % white 白色
+        % red 红色
+        % green 绿色
+        % blue 蓝色
+        % gray 灰色
+        % darkgray 深灰色
+        % lightgray 浅灰色
+        % brown 棕色
+        % lime 石灰色
+        % olive 橄榄色
+        % orange 橙色
+        % pink 粉红色
+        % purple 紫色
+        % teal 蓝绿色
+        % violet 紫罗兰色
+        % \textcolor{white}{白色}\
+        % \textcolor{linen}{亚麻色}\​
+        % \textcolor{black}{黑色}\
+        % \textcolor{grey}{灰色}\
+        % \textcolor{lightgrey}{浅灰色}\
+        % \textcolor{darkgrey}{深灰色}\​
+        % \textcolor{red}{红色}\
+        % \textcolor{crimson}{深红色}\
+        % \textcolor{darkred}{暗红色}\
+        % \textcolor{brown}{褐色}\
+        % \textcolor{maroon}{褐红色}\
+        % \textcolor{salmon}{鲑红色}\
+        % \textcolor{pink}{粉色}\
+        % \textcolor{coral}{珊瑚色}\
+        % \textcolor{orangered}{橙红色}\
+        % \textcolor{orange}{橙色}\
+        % ​\textcolor{blue}{蓝色}\
+        % \textcolor{skyblue}{天蓝色}\
+        % \textcolor{aquamarine}{海蓝色}\
+        % \textcolor{navy}{深蓝色}\​
+        % \textcolor{green}{绿色}\
+        % \textcolor{darkgreen}{深绿色}\
+        % \textcolor{seagreen}{海绿色}\
+        % \textcolor{springgreen}{春绿色}\
+        % \textcolor{forestgreen}{森林绿色}\
+        % \textcolor{greenyellow}{绿黄色}\
+        % \textcolor{yellowgreen}{黄绿色}\
+        % ​\textcolor{yellow}{黄色}\
+        % \textcolor{khaki}{卡其色}\
+        % \textcolor{gold}{金色}\
+        % \textcolor{beige}{米黄色}\
+        % ​\textcolor{olive}{橄榄色}\
+        % \textcolor{purple}{紫色}\
+        % \textcolor{indigo}{靛青色}\
+        % \textcolor{plum}{紫红色}\
+        % \textcolor{violet}{紫罗兰色}\
+        % \textcolor{blueviolet}{蓝紫色}\
+        % \textcolor{magenta}{洋红色}\
+        % ​\textcolor{cyan}{青色}\
+        % \textcolor{turquoise}{青绿色}\
+        % \textcolor{teal}{蓝绿色}\
+        % \textcolor{tan}{棕褐色}\
+    }
+    % \usepackage{docmute}    % 宏包：子文件导入时自动去除导言区，用于主/子文件的写作方式，\include{./51单片机笔记}即可。注：启用此宏包会导致.tex文件capacity受限。
+    \usepackage{amsmath}    % 宏包：数学公式
+    \usepackage{mathrsfs}   % 宏包：提供更多数学符号
+    \usepackage{amssymb}    % 宏包：提供更多数学符号
+    \usepackage{pifont}     % 宏包：提供了特殊符号和字体
+    \usepackage{extarrows}  % 宏包：更多箭头符号 
+    \usepackage{multicol}   % 宏包：支持多栏 
+
+% 文章页面margin设置
+    \usepackage[a4paper]{geometry}
+        \geometry{top=0.75in}
+        \geometry{bottom=0.75in}
+        \geometry{left=0.75in}
+        \geometry{right=0.75in}   % 设置上下左右页边距
+        \geometry{marginparwidth=1.75cm}    % 设置边注距离（注释、标记等）
+
+
+% table 支持
+    \usepackage{booktabs}   % 宏包：三线表
+    \usepackage{tabularray} % 宏包：表格排版
+    \usepackage{longtable}  % 宏包：长表格
+
+% figure 设置
+    \usepackage{graphicx}  % 支持 jpg, png, eps, pdf 图片 
+    \usepackage{svg}       % 支持 svg 图片
+        \svgsetup{
+            % 指向 inkscape.exe 的路径
+            inkscapeexe = C:/aa_MySame/inkscape/bin/inkscape.exe, 
+            % 一定程度上修复导入后图片文字溢出几何图形的问题
+            inkscapelatex = false                 
+        }
+    \usepackage{subcaption} % 用于子图和小图注  
+
+% 图表进阶设置
+    \usepackage{caption}    % 图注、表注
+        \captionsetup[figure]{name=Figure}  
+        \captionsetup[table]{name=Table}
+        \captionsetup{
+            labelfont=bf, % 设置标签为粗体
+            textfont=bf,  % 设置文本为粗体
+            font=small  
+        }
+    \usepackage{float}     % 图表位置浮动设置 
+    \usepackage{etoolbox} % 用于保证图注表注的数学字符为粗体
+        \AtBeginEnvironment{figure}{\boldmath} % 图注中的数学字符为粗体
+        \AtBeginEnvironment{table}{\boldmath}  % 表注中的数学字符为粗体
+        \AtBeginEnvironment{tabular}{\unboldmath}   % 保证表格中的数学字符不受额外影响
+
+% 圆圈序号自定义
+    \newcommand*\circled[1]{\tikz[baseline=(char.base)]{\node[shape=circle,draw,inner sep=0.8pt, line width = 0.03em] (char) {\small \bfseries #1};}}   % TikZ solution
+
+% 列表设置
+    \usepackage{enumitem}   % 宏包：列表环境设置
+        \setlist[enumerate]{
+            label=(\arabic*) ,   % 设置序号样式为加粗的 (1) (2) (3)
+            ref=\arabic*, % 如果需要引用列表项，这将决定引用格式（这里仍然使用数字）
+            itemsep=0pt, parsep=0pt, topsep=0pt, partopsep=0pt, leftmargin=3.5em} 
+        \setlist[itemize]{itemsep=0pt, parsep=0pt, topsep=0pt, partopsep=0pt, leftmargin=3.5em}
+        \newlist{circledenum}{enumerate}{1} % 创建一个新的枚举环境  
+        \setlist[circledenum,1]{  
+            label=\protect\circled{\arabic*}, % 使用 \arabic* 来获取当前枚举计数器的值，并用 \circled 包装它  
+            ref=\arabic*, % 如果需要引用列表项，这将决定引用格式（这里仍然使用数字）
+            itemsep=0pt, parsep=0pt, topsep=0pt, partopsep=0pt, leftmargin=3.5em
+        }  
+
+%宏包：有色文本框（proof环境）及其设置
+\usepackage{xcolor}    %设置插入的文本框颜色
+\usepackage[strict]{changepage}     % 提供一个 adjustwidth 环境
+\usepackage{framed}     % 实现方框效果
+    \definecolor{graybox_color}{rgb}{0.95,0.95,0.96} % 文本框颜色。修改此行中的 rgb 数值即可改变方框纹颜色，具体颜色的rgb数值可以在网站https://colordrop.io/ 中获得。（截止目前的尝试还没有成功过，感觉单位不一样）（找到喜欢的颜色，点击下方的小眼睛，找到rgb值，复制修改即可）
+    \newenvironment{graybox}{%
+    \def\FrameCommand{%
+    \hspace{1pt}%
+    {\color{gray}\small \vrule width 2pt}%
+    {\color{graybox_color}\vrule width 4pt}%
+    \colorbox{graybox_color}%
+    }%
+    \MakeFramed{\advance\hsize-\width\FrameRestore}%
+    \noindent\hspace{-4.55pt}% disable indenting first paragraph
+    \begin{adjustwidth}{}{7pt}%
+    \vspace{2pt}\vspace{2pt}%
+    }
+    {%
+    \vspace{2pt}\end{adjustwidth}\endMakeFramed%
+    }
+
+% 其它设置
+    % 脚注设置
+        \renewcommand\thefootnote{\ding{\numexpr171+\value{footnote}}}
+    % 参考文献引用设置
+        \bibliographystyle{unsrt}   % 设置参考文献引用格式为unsrt
+        \newcommand{\upcite}[1]{\textsuperscript{\cite{#1}}}     % 自定义上角标式引用
+    % 文章序言设置
+        \newcommand{\cnabstractname}{序言}
+        \newenvironment{cnabstract}{%
+            \par\Large
+            \noindent\mbox{}\hfill{\bfseries \cnabstractname}\hfill\mbox{}\par
+            \vskip 2.0ex
+            }{\par\vskip 2.5ex}
+        \newcommand{\enabstractname}{Preface}
+        \newenvironment{enabstract}{%
+            \par\Large
+            \noindent\mbox{}\hfill{\bfseries \enabstractname}\hfill\mbox{}\par
+            \vskip 1.8ex
+            }{\par\vskip 2.5ex}
+
+% 文章默认字体设置
+    \usepackage{fontspec}   % 宏包：字体设置
+        \setmainfont{SimSun}    % 设置中文字体为宋体字体
+        \setCJKmainfont[AutoFakeBold=3]{SimSun} % 设置加粗字体为 SimSun 族，AutoFakeBold 可以调整字体粗细
+        \setmainfont{Times New Roman} % 设置英文字体为Times New Roman
+
+% 各级标题自定义设置
+    \usepackage{titlesec}   
+        % chapter 标题自定义设置
+        \titleformat{\chapter}[hang]{\normalfont\huge\bfseries\centering\boldmath\color{stc}}{Chapter\ \thechapter}{20pt}{}
+        \titlespacing*{\chapter}{0pt}{-20pt}{20pt} % 控制上下间距
+        % section标题自定义设置 
+        \titleformat{\section}[hang]{\normalfont\Large\bfseries\boldmath\color{stc}}{\thesection}{8pt}{}
+        % subsection标题自定义设置 
+        \titleformat{\subsection}[hang]{\normalfont\large\bfseries\boldmath\color{stc}}{\thesubsection}{6pt}{}
+        % subsubsection标题自定义设置
+        \titleformat{\subsubsection}[hang]{\normalfont\bfseries\boldmath\color{stc}}{\thesubsubsection}{4pt}{}
+        \titlespacing*{\subsubsection}{0pt}{3pt}{0pt} % 控制上下间距
+
+% 定义urlblack命令, 带 () 括号
+%\newcommand{\urlblack}[1]{\hyperlink{#1}{\textcolor{black}{(#1)}}}
+\newcommand{\urlblack}[1]{\href{#1}{\footnotesize \textcolor{black}{(#1)}}}
+
+
+
+% --------------------- 文章宏包及相关设置 --------------------- %
+% >> ------------------ 文章宏包及相关设置 ------------------ << %
+
+% ------------------------ 文章信息区 ------------------------ %
+% ------------------------ 文章信息区 ------------------------ %
+% 页眉页脚设置
+    \usepackage{fancyhdr}   % 宏包：页眉页脚设置
+        \pagestyle{fancy}
+        \fancyhf{}
+        \cfoot{\thepage}
+        \renewcommand\headrulewidth{1pt}
+        \renewcommand\footrulewidth{0pt}
+        \usepackage{fontawesome}    % 宏包：更多符号与图标 (用于插入 GitHub 图标等)
+        \lhead{\small
+        \href{https://github.com/YiDingg/LatexNotes}{\color{black}\faGithub\ https://github.com/YiDingg/LatexNotes}
+        }
+        \chead{Analog Circuits Handbook}
+        \rhead{\small dingyi233@mails.ucas.ac.cn}
+
+%文档信息设置
+    \title{Analog Circuits Handbook\\ 模拟电路手册}
+    \author{Yi Ding \\ \footnotesize \textit{(University of Chinese Academy of Sciences, Beijing 100049, China)} \vspace*{2mm}\\ 丁毅\\ \footnotesize {\kaishu (中国科学院大学，北京 100049)} }
+    \date{\footnotesize 2024.11 -- ...}
+% ------------------------ 文章信息区 ------------------------ %
+% ------------------------ 文章信息区 ------------------------ %
+
+% 开始编辑文章
+
+\usepackage{subfiles}  % 宏包：分文件编译
+\begin{document} 
+\zihao{5}           % 设置全文字号大小
+
+% ------------------------ 封面序言与目录 ------------------------ %
+% >> --------------------- 封面序言与目录 --------------------- << %
+% 封面
+    \maketitle\newpage  
+    \pagenumbering{Roman} % 页码为大写罗马数字
+    \thispagestyle{fancy}   % 显示页码、页眉等
+
+% 序言
+\begin{cnabstract}\normalsize 
+
+\end{cnabstract}
+\addcontentsline{toc}{chapter}{序言} % 手动添加为目录
+
+
+
+
+\newpage
+\begin{enabstract}
+
+\end{enabstract}
+\addcontentsline{toc}{chapter}{Preface} % 手动添加为目录
+
+
+
+% 目录
+    \setcounter{tocdepth}{2}    % 目录深度 (为 1 时显示到 section)
+    % 目录页
+        \tableofcontents
+        \addcontentsline{toc}{chapter}{Contents}
+        \thispagestyle{fancy}                   % 显示页码、页眉等
+    % 插图页
+        %\cleardoublepage\listoffigures
+        %\addcontentsline{toc}{chapter}{插图}
+        %\thispagestyle{fancy}                   % 显示页码、页眉等
+    % 表格页
+        %\cleardoublepage\listoftables
+        %\addcontentsline{toc}{chapter}{表格}
+        %\thispagestyle{fancy}                   % 显示页码、页眉等 
+
+% 收尾工作
+    \newpage    
+    \pagenumbering{arabic} 
+
+
+% 重定义 \rightmark
+\renewcommand{\sectionmark}[1]{%
+  \markright{\MakeUppercase{\thesection\ #1}}}%
+\chead{\nouppercase{\leftmark}}   % \leftmark 是 chapter 标题
+\rhead{\nouppercase{\rightmark}}  % \rightmark 是 section 标题
+
+
+\subfile{contents/Chapter on Measurement Methods/Analog_Circuits_Handbook (Measurement Methods).tex}
+\subfile{contents/Chapter on Capacitors/Analog_Circuits_Handbook (Capacitors).tex}
+\subfile{contents/Chapter on Inductors/Analog_Circuits_Handbook (Inductors).tex}
+\subfile{contents/Chapter on Oscillators/Analog_Circuits_Handbook (Oscillators).tex}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\renewcommand{\bibname}{Reference}  % 将参考文献标题从 bibliography 改为 Reference
+\nocite{*}
+\bibliography{bibtex}
+\thispagestyle{fancy} 
+\addcontentsline{toc}{chapter}{Reference}
+\rhead{\small dingyi233@mails.ucas.ac.cn}
+
+
+
+
+\end{document}
+
+
+
+% VScode 常用快捷键：
+
+% F2:                       变量重命名
+% Ctrl + Enter:             行中换行
+% Alt + up/down:            上下移行
+% 鼠标中键 + 移动:           快速多光标
+% Shift + Alt + up/down:    上下复制
+% Ctrl + left/right:        左右跳单词
+% Ctrl + Backspace/Delete:  左右删单词    
+% Shift + Delete:           删除此行
+% Ctrl + J:                 打开 VScode 下栏(输出栏)
+% Ctrl + B:                 打开 VScode 左栏(目录栏)
+% Ctrl + `:                 打开 VScode 终端栏
+% Ctrl + 0:                 定位文件
+% Ctrl + Tab:               切换已打开的文件(切标签)
+% Ctrl + Shift + P:         打开全局命令(设置)
+
+% Latex 常用快捷键
+
+% Ctrl + Alt + J:           由代码定位到PDF
+% 
+
+
+% Git提交规范：
+% update: Linear Algebra 2 notes
+% add: Linear Algebra 2 notes
+% import: Linear Algebra 2 notes
+% delete: Linear Algebra 2 notes

@@ -1,6 +1,9 @@
-% 若编译失败，且生成 .synctex(busy) 辅助文件，可能有两个原因：
-% 1. 需要插入的图片不存在：Ctrl + F 搜索 'figure' 将这些代码注释/删除掉即可
-% 2. 路径/文件名含中文或空格：更改路径/文件名即可
+% 若编译失败，且生成 .synctex(busy) 辅助文件，可能下面几种原因：
+
+% - PDF 文件在外部被打开 (例如 Adobe Acrobat), 将其关闭即可
+% - \includegraphics{} 需要插入的图片不存在：Ctrl + F 将这些代码注释/删除掉即可
+% - 路径/文件名含中文或空格：更改路径/文件名即可
+
 
 % --------------------- 文章宏包及相关设置 --------------------- %
 % >> ------------------ 文章宏包及相关设置 ------------------ << %
@@ -10,6 +13,8 @@
 \usepackage{circledsteps} % 宏包：圆圈序号, 圆圈字母等 \Circled{1}, \CircledTop{2}
 \usepackage[english]{babel} % 宏包：用于将“目录”标题换为英文 Contents
 %\usepackage{natbib} % 宏包：用于 fullcite 文献
+\usepackage{etoolbox} % 用于调整某些环境的布局、间距等
+\AtBeginEnvironment{graybox}{\vspace*{-5mm}}
 
 % 本 .tex 专属的宏定义、newcommand 等
     %\renewcommand{\contentsname}{目录}    % 修改目录

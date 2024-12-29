@@ -204,16 +204,16 @@
 
 % 字体字号
     % \fontsize{}{} 第一项表示字号，第二项表示行距, 例如 0.7 倍行距是 \fontsize{7pt}{4.9pt}
-    \renewcommand{\Large}{\fontsize{8pt}{8pt}\selectfont}
-    \renewcommand{\large}{\fontsize{7pt}{7pt}\selectfont}
-    \renewcommand{\normalsize}{\fontsize{6pt}{4.2pt}\selectfont}
-    \renewcommand{\small}{\fontsize{5pt}{3.5pt}\selectfont}
-    \renewcommand{\footnotesize}{\fontsize{4.5pt}{3.15pt}\selectfont}
+    \renewcommand{\Large}{\fontsize{11pt}{11pt}\selectfont}
+    \renewcommand{\large}{\fontsize{9pt}{9pt}\selectfont}
+    \renewcommand{\normalsize}{\fontsize{7.8pt}{5.0pt}\selectfont}
+    \renewcommand{\small}{\fontsize{6pt}{4pt}\selectfont}
+    \renewcommand{\footnotesize}{\fontsize{5pt}{3.5pt}\selectfont}
 
 % 设置页眉页脚  
     \pagestyle{fancy}  
     \fancyhf{}                                % 清除现有页眉页脚设置  
-    \fancyhead[L]{\normalsize 2025.1}                     % 左侧页眉  
+    \fancyhead[L]{\normalsize 2025.1,\ \  \href{https://github.com/YiDingg/LatexNotes}{    {\color{black} https://github.com/YiDingg/LatexNotes}}}                     % 左侧页眉  
     \fancyhead[R]{\normalsize dingyi233@mails.ucas.ac.cn} % 右侧页眉  
     \fancyhead[C]{\normalsize Cheat Sheet of Principles of Electornic Circuits} % 居中页眉  
     \fancyfoot[C]{\normalsize\thepage}              % 页脚中心显示页码  
@@ -243,7 +243,7 @@
         \AtBeginEnvironment{align*}{\footnotesize} 
         \AtBeginEnvironment{cases}{\footnotesize} 
     % 设置数学环境本身、环境与文本之间的间距
-        \setlength{\abovedisplayskip}{0.6pt}    % 与上文本的间距
+        \setlength{\abovedisplayskip}{1.8pt}    % 与上文本的间距
         \setlength{\belowdisplayskip}{0.6pt}    % 与下文本的间距
         \setlength{\jot}{0.4pt}   % 数学环境中的行间距
 % 设置图、表等浮动体与文本之间的间距
@@ -282,26 +282,39 @@
     f_{\infty}(t) \\ 
     \tau = RC,\ \frac{L}{R}
 \end{cases}
-\Longrightarrow 
+\Longrightarrow \\
 f(t) = [f(0^+) - f_{\infty}(0)] \cdot e^{-\frac{t}{\tau}}  + f_\infty(t),\quad 
-{\color{red} \forall\ t \geqslant 0^+} \\ 
+{\boldmath\color{red} \forall\ t \geqslant 0^+} \\ 
 \text{线性电路满足： 全响应 = 零输入响应  + 零状态响应}
 \end{gather}
+特别地，当 $f_{\infty}$ 为常量时，$f_{\infty}(0) \equiv f_{\infty}(t)$，有：
+\begin{equation}
+    f = f(t) = f_{0^+}\cdot e^{-\frac{t}{\tau}} + f_{\infty}(0)\cdot \left[ 1 - e^{-\frac{t}{\tau}} \right]
+\end{equation}
 
 MOSFET 缓冲器的传播延迟：
 \begin{gather}
     t_\text{pd, $0\to 1$} = R_{\text{ON}} C_{\text{GS}}\cdot 
-    \ln \left(\frac{V_{\text{DD}}}{V_\text{TH}}\right) \quad 
+    \ln \left(\frac{V_{\text{DD}}}{V_\text{TH}}\right) \\
     t_\text{pd, $1\to 0$} = R_{\text{D}} C_{\text{GS}}\cdot \ln \left(\frac{V_{\text{DD}}}{V_{\text{DD}} - V_\text{TH}}\right)
 \end{gather}
 $t_{\text{pd}, \text{out} 0 \to 1}$ 过程：$T_1$ 导通，$C_{\text{GS, 2}}$ 放电，从 $V_S$ 放电到 $\frac{R_{\text{ON}}}{R_{\text{ON}} + R_{D}}\cdot V_S \approx 0$，三要素法得：
-\begin{gather}
+\begin{gather*}
     u_{o1}(0^+) = V_S,\  u_{o1, \infty} = 0,\ \tau = (R_D \parallel R_{\text{ON}}) C_{GS, 2}\approx R_{\text{ON}}C_{GS, 2} \\ 
     \Longrightarrow 
     u_{o1}(t) = V_S \cdot e^{-\frac{t}{\tau}} = V_{TH} \Longrightarrow t_{\text{pd}, \text{out} 0 \to 1}
-\end{gather}
+\end{gather*}
+\begin{figure}[H]\centering
+    \includegraphics[width=\columnwidth]{assets/反相器的传播延迟.png}
+\end{figure}
 
 \subsection{二阶动态电路}
+
+\begin{figure}[H]\centering
+    \includegraphics[width=0.8\columnwidth]{assets/RLC.pdf}
+    \caption{$RCL$ 电路，左串右并}
+\end{figure}
+
 \begin{equation}
 y'' + 2\beta y' + \omega_0 y = 0
 \end{equation}
@@ -312,7 +325,7 @@ y'' + 2\beta y' + \omega_0 y = 0
         &     
         \begin{cases}
         y_s = 0 \Longrightarrow 
-        t = \frac{\omega}{\beta + \frac{y'(0)}{y(0)}} \ {\color{red} (\text{可能为负})},\quad A = y(0)\cdot \frac{\sqrt{1 + t^2}}{t},\quad \phi = \arctan t 
+        t = \frac{\omega}{\beta + \frac{y'(0)}{y(0)}} \ {\color{red} (\text{可负})},\quad A = y(0)\cdot \frac{\sqrt{1 + t^2}}{t},\quad \phi = \arctan t 
         \\
         y_0 = y_s = 0 \Longrightarrow
         A = \frac{y'(0)}{\omega},\quad \phi = 0
@@ -398,6 +411,7 @@ P = \frac{R}{(R + R_s)^2 + (X + X_s)^2} \cdot U_s^2
 为使负载获得最大有功功率 $P$，有以下几种情况：
 \vspace*{-3mm}
 \begin{table}[H]\centering
+    \renewcommand{\arraystretch}{3} % 调整行间距为 1.5 倍
 \resizebox{\columnwidth}{!}{
     \begin{tabular}{cccccccccc}\toprule
         情况 & 满足条件 & 最大功率 $P_{\max}$  \\
@@ -411,15 +425,21 @@ P = \frac{R}{(R + R_s)^2 + (X + X_s)^2} \cdot U_s^2
 }
 \end{table}
 
+
+
 \subsection{频率响应}
 
 常见一阶滤波器的网络函数 $H$、相频特性 $\varphi(\omega)$ 与截止频率 $\omega_c$ 为：
 \begin{align*}
 \begin{aligned}
-&RC \text{低通}, && H = \frac{1}{1 + j \omega CR}, && \varphi = - \arctan \left(\frac{\omega}{\omega_c}\right) &&, \omega_c = \frac{1}{\tau} = \frac{1}{RC}\\
-&RC \text{高通}, && H = \frac{j \omega CR}{1 + j \omega CR}, && \varphi = 90^\circ - \arctan \left(\frac{\omega}{\omega_c}\right) &&, \omega_c = \frac{1}{\tau} = \frac{1}{RC}\\
-&RL \text{低通}, && H = \frac{1}{1 + j \omega \frac{R}{L}}, && \varphi = - \arctan \left(\frac{\omega}{\omega_c}\right) &&, \omega_c = \frac{1}{\tau} = \frac{R}{L}\\
-&RL \text{高通}, && H = \frac{j \omega \frac{R}{L}}{1 + j \omega \frac{R}{L}}, && \varphi = 90^\circ - \arctan \left(\frac{\omega}{\omega_c}\right) &&, \omega_c = \frac{1}{\tau} = \frac{R}{L}
+&RC \text{低通}, H = \frac{1}{1 + j \omega CR}, 
+\varphi = - \arctan \left(\frac{\omega}{\omega_c}\right) &&, \omega_c = \frac{1}{\tau} = \frac{1}{RC}\\
+&RC \text{高通}, H = \frac{j \omega CR}{1 + j \omega CR}, 
+\varphi = 90^\circ - \arctan \left(\frac{\omega}{\omega_c}\right) &&, \omega_c = \frac{1}{\tau} = \frac{1}{RC}\\
+&RL \text{低通}, H = \frac{1}{1 + j \omega \frac{R}{L}}, 
+\varphi = - \arctan \left(\frac{\omega}{\omega_c}\right) &&, \omega_c = \frac{1}{\tau} = \frac{R}{L}\\
+&RL \text{高通}, H = \frac{j \omega \frac{R}{L}}{1 + j \omega \frac{R}{L}}, 
+\varphi = 90^\circ - \arctan \left(\frac{\omega}{\omega_c}\right) &&, \omega_c = \frac{1}{\tau} = \frac{R}{L}
 \end{aligned}
 \end{align*}
 
@@ -442,26 +462,25 @@ $|Z|$ 极小为串联谐振，$|Z|$ 极大为并联谐振。$RLC$ 串联电路�
 \begin{enumerate}
 \item $\dot{U}_S$ 和 $\dot{I}$ 同相，入端阻抗 $Z$ 表现为纯电阻，且模长最小；
 \item 在 $\dot{U}_S$ 作为激励下，电流 $\dot{I}$ 达到最大值，响应 $\dot{U}_R$ 达到最大值；
-\item 电容和电感电压的幅值都是 $U_S$ 的 $Q$ 倍，且相位相反，即 $\dot{U}_L = -\dot{U}_C = Q \dot{U}_S$，$Q = \frac{\omega_0 L}{R} = \frac{1}{\omega_0 CR} = \frac{1}{R}\sqrt{\frac{L}{C}}$ 为品质因数；
+\item 电容和电感电压的幅值都是 $U_S$ 的 $Q$ 倍，且相位相反，即 $\dot{U}_L = -\dot{U}_C = j Q \dot{U}_S$，$Q = \frac{\omega_0 L}{R} = \frac{1}{\omega_0 CR} = \frac{1}{R}\sqrt{\frac{L}{C}}$ 为品质因数；
 \item 电源无功功率为 0，只发出有功功率，且完全被电阻消耗；电感与电容之间进行能量交换，与电源没有能量交换。
 \end{enumerate}
 
 
-$RLC$ 并联电路发生谐振时，具有如下特点：
+\noindent $RLC$ 并联电路发生谐振时，具有如下特点：
 \begin{enumerate}
 \item $\dot{U}$ 和 $\dot{I}_S$ 同相，入端导纳 $Y$ 表现为纯电导，且模长最小；
 \item 在 $\dot{I}_S$ 作为激励下，电压 $\dot{U}$ 达到最大值，响应 $\dot{U}_R$ 达到最大值；
-\item 电容和电感电流的幅值都是 $I_S$ 的 $Q$ 倍，且相位相反，即 $\dot{I}_L = -\dot{I}_C = Q \dot{I}_S$，$Q = \omega_0 C R = \frac{R}{\omega_0 L} = R\sqrt{\frac{C}{L}}$ 品质因数；
+\item 电容和电感电流的幅值都是 $I_S$ 的 $Q$ 倍，且相位相反，即 $\dot{I}_L = -\dot{I}_C = jQ \dot{I}_S$，$Q = \omega_0 C R = \frac{R}{\omega_0 L} = R\sqrt{\frac{C}{L}}$ 品质因数；
 \item 电源无功功率为 0，只发出有功功率，且完全被电阻消耗；电感与电容之间进行能量交换，与电源没有能量交换。
 \end{enumerate}
 
 \subsection{品质因数}
 \begin{gather}
-RLC \text{\ 串联：} Q = \frac{\omega_0 L}{R} = \frac{1}{\omega_0 CR} = \frac{1}{R}\sqrt{\frac{L}{C}} \\ 
+RLC \text{\ 串联：} Q = \frac{\omega_0 L}{R} = \frac{\rho}{R} = \frac{1}{\omega_0 CR} = \frac{1}{R}\sqrt{\frac{L}{C}} \\ 
 RLC \text{\ 并联：} Q = \frac{R}{\omega_0 L} = \omega_0 C R =  R\sqrt{\frac{C}{L}}
 \end{gather}
-
-$RLC$ 串并联电路的归一化频响：
+其中$\rho = \omega_0 L$ 是特性阻抗。$RLC$ 串并联电路归一化频响：
 \begin{equation}
 I_\text{norm} = \frac{I(\eta \, \omega_0)}{I(\omega_0)} = \frac{1}{\sqrt{ 1 + Q^2 \left(\eta - \frac{1}{\eta}\right)^2 }},\quad \eta = \frac{\omega}{\omega_0}
 \end{equation}
@@ -474,7 +493,15 @@ Q_L = \frac{\omega L}{R\text{dcr}},\quad
 Q_C = \frac{1}{\omega C R_{\text{esr}}}
 \end{equation}
 
-
+$Q$ 的三种物理意义角度：
+\begin{gather}
+\begin{cases}
+    \text{电压电流 amptitude 角度：} \text{串联\ } U_L = U_C = Q U_S,\
+    \text{并联\ } I_L = I_C = Q I_S \\
+    \text{能量角度：} \text{$Q$ 大时，存储能量多，损耗能量小} \\
+    \text{频率响应角度： 归一化频响曲线} 
+\end{cases}
+\end{gather}
 
 \subsection{互感}
 
@@ -486,7 +513,7 @@ Q_C = \frac{1}{\omega C R_{\text{esr}}}
 上面的结论对多个线圈的互感也适用。
 
 \begin{figure}[H]\centering
-    \includegraphics[width=0.7\columnwidth]{assets/电感去耦等效.png}
+    \includegraphics[width=0.8\columnwidth]{assets/电感去耦等效.png}
     \caption{电感去耦等效}
     \label{电感去耦等效}
 \end{figure}
@@ -510,6 +537,10 @@ Q_C = \frac{1}{\omega C R_{\text{esr}}}
     \caption{非理想变压器的等效}
     \label{非理想变压器等效}
 \end{figure}
+\begin{figure}[H]\centering
+    \includegraphics[width=\columnwidth]{assets/非理想变压器 2 copy.pdf}
+\end{figure}
+
 \begin{gather}
 \text{原边引入阻抗：} \frac{(\omega M)^2}{Z_2} \\
 \text{副边引入阻抗：} \frac{(\omega M)^2}{Z_1},\quad 
@@ -517,7 +548,7 @@ Q_C = \frac{1}{\omega C R_{\text{esr}}}
 \end{gather}
 
 当耦合系数 $k = \frac{M}{\sqrt{L_1 L_2}} = 1$ 时，称为全耦合，此时将变压器看作二端口网络，则有：
-\begin{equation*}
+\begin{gather}
 \begin{cases}
 \dot{U}_1 = n \dot{U}_2 \\ 
 \dot{I}_1 = \frac{\dot{U}_1}{j \omega L_1} + \frac{1}{n} (- \dot{I}_2)
@@ -534,14 +565,14 @@ Q_C = \frac{1}{\omega C R_{\text{esr}}}
 \begin{bmatrix}
     \dot{U}_2 \\ 
     - \dot{I}_2
-\end{bmatrix}
+\end{bmatrix} \\
 \Longrightarrow 
 T = 
 \begin{bmatrix}
     n & 0 \\ 
     \frac{1}{j \omega L_1} & \frac{1}{n} 
 \end{bmatrix}
-\end{equation*}
+\end{gather}
 上面的变压器称为全耦合变压器，其中 $n \propto \sqrt{\frac{L_1}{L_2}}$。特别地，当 $L_1$ 足够大时，$\frac{\dot{U}_1}{j\omega L_1}$ 一项可以忽略，此时有：
 \begin{equation}
     \dot{U}_1 = n \dot{U}_2,\quad \dot{I}_1 =  - \frac{1}{n} \dot{I}_2
@@ -553,27 +584,27 @@ Z_{\text{eq}} = n^{2} Z
 
 \subsection{三相电路}
 
-\begin{figure}[H]\centering
-    \includegraphics[width=0.35\columnwidth]{assets/三相电路/image.png}
-    \caption{三相电路的线序}
-\end{figure}
+%\begin{figure}[H]\centering
+%    \includegraphics[width=0.35\columnwidth]{assets/三相电路/image.png}
+%    \caption{三相电路的线序}
+%\end{figure}
 
 
-\begin{gather*}
+\begin{gather}
     \text{$\Delta$ 型负载：}
     \begin{cases}
         \dot{I}_A = \sqrt{3} \, \dot{I}_{AB} \angle -30^\circ \\
         \dot{I}_B = \sqrt{3} \, \dot{I}_{BC} \angle -30^\circ \\
         \dot{I}_C = \sqrt{3} \, \dot{I}_{CA} \angle -30^\circ
     \end{cases}
-    ,\quad 
+    \\
     \text{Y 型负载：}
     \begin{cases}
         \dot{U}_{AB} = \sqrt{3} \, \dot{U}_{AN} \angle 30^\circ \\
         \dot{U}_{BC} = \sqrt{3} \, \dot{U}_{BN} \angle 30^\circ \\
         \dot{U}_{CA} = \sqrt{3} \, \dot{U}_{CN} \angle 30^\circ
     \end{cases}
-\end{gather*}
+\end{gather}
 
 \begin{figure}[H]\centering
 \begin{subfigure}[b]{0.5\columnwidth}\centering
@@ -604,8 +635,7 @@ Z_{Y} = \frac{Z_{\Delta}}{3}
 \begin{gather}
 \dot{U}_{N'N} = \frac{ \frac{\dot{U}_{AN}}{Z_A} + \frac{\dot{U}_{BN}}{Z_B} + \frac{\dot{U}_{CN}}{Z_C}  }{ \frac{1}{Z_A} + \frac{1}{Z_B} + \frac{1}{Z_C} } \\
 \dot{I}_{A} = \frac{\dot{U}_{AN} - \dot{U}_{N'N} }{Z_A}, \quad 
-\dot{I}_{B} = \frac{\dot{U}_{BN} - \dot{U}_{N'N} }{Z_B}, \quad
-\dot{I}_{C} = \frac{\dot{U}_{CN} - \dot{U}_{N'N} }{Z_C}
+\dot{I}_{B} = \frac{\dot{U}_{BN} - \dot{U}_{N'N} }{Z_B}
 \end{gather}
 
 \subsection{三相电路的功率}
@@ -619,21 +649,31 @@ S = 3 U_p I_p
 \end{equation}
 可以推出，对称三相电路的瞬时功率 $p \equiv 3 U_p I_p \cos \varphi = P$。两表法测三相电路功率的示意图如下：
 \begin{figure}[H]\centering
-    \includegraphics[width=0.85\columnwidth]{assets/三相电路/image copy 5.png}
+    \includegraphics[width=\columnwidth]{assets/三相电路/image copy 5.png}
     \caption{两表法测三相电路功率}
 \end{figure}
 
 以共 C 接法为例，两表的功率示数为：
-\begin{equation}
-P_1 = U_{AC} I_A \cos (\varphi_{u_{AC}} - \varphi_{i_A}), \quad 
+\begin{gather}
+P_1 = U_{AC} I_A \cos (\varphi_{u_{AC}} - \varphi_{i_A})\\
 P_2 = U_{BC} I_B \cos (\varphi_{u_{BC}} - \varphi_{i_B})
-\end{equation}
+\end{gather}
 设 $Y$ 型电源下的 $\dot{U}_A$，$\dot{I}_A$ 已知，则 $\dot{U_{AB}} = \sqrt{3} U_A \angle 30^\circ$，设功率因数为 $\varphi$，则两表读数为：
-\begin{equation}
+\begin{gather}
 P_1 = \sqrt{3} U_A I_A \cos (\varphi - 30^\circ)
-,\quad 
 P_1 = \sqrt{3} U_A I_A \cos (\varphi + 30^\circ)
-\end{equation}
+\end{gather}
+
+用单个功率表测对称电路的无功功率：
+\begin{figure}[H]\centering
+    \includegraphics[width=0.55\columnwidth]{assets/QQ_1735491515790.png}
+\end{figure}
+\begin{figure}[H]\centering
+    \includegraphics[width=0.7\columnwidth]{assets/image copy 3.png}
+\end{figure}
+
+
+
 
 
 \subsection{提高功率因数}
@@ -659,7 +699,7 @@ Z = j X = j \frac{3 U^2}{P (\tan \varphi_2 - \tan \varphi_1)}
 
 \subsection{周期性非正弦激励的电路稳态分析}
 
-通常是计算非正弦激励下的电压、电流或功率，只需分解为多个频率量，分别计算后利用叠加定理相加即可。注意不同频率下元件的阻抗不同，灵活运用串联、并联谐振以简化分析。功率之所以可以直接相加，是因为其为“不同频率“激励下的功率，而不是早先讨论的纯直流激励下的功率，前者互不影响，后者不能直接相加。需要注意，若已知非正弦激励下的电压有效值和电流有效值，{\color{red} 不能简单的用 $P = U I \cos \varphi$ 来求有功功率 $P$}，因为不同频率分量的 $\varphi$ 不同。需要分别计算后将它们相加才可。{\color{red} 注意变压器在 DC 不起作用}。
+通常是计算非正弦激励下的电压、电流或功率，只需分解为多个频率量，分别计算后利用叠加定理相加即可。注意不同频率下元件的阻抗不同，灵活运用串联、并联谐振以简化分析。功率之所以可以直接相加，是因为其为“不同频率“激励下的功率，而不是早先讨论的纯直流激励下的功率，前者互不影响，后者不能直接相加。需要注意，若已知非正弦激励下的电压有效值和电流有效值，{\color{red} 不能简单的用 $P = U I \cos \varphi$ 来求有功功率 $P$}，因为不同频率分量的 $\varphi$ 不同。需要分别计算后将它们相加。{\color{red} 注意变压器在 DC 不起作用}。
 
 
 \section{其它}
@@ -669,8 +709,8 @@ Z = j X = j \frac{3 U^2}{P (\tan \varphi_2 - \tan \varphi_1)}
     \begin{matrix}
         \text{由 Y 求 $\Delta$ :}\quad R_{12}= R_1 + R_2 + \frac{R_1R_2}{R_3}, \quad
         R_{13}=R_1 + R_3 + \frac{R_1R_3}{R_2} \\
-        \text{由 $\Delta$ 求 Y :}\quad R_{1}=\frac{R_{12}R_{13}}{R_0}, \quad
-        R_{2}=\frac{R_{21}R_{23}}{R_0}, \quad
+        \text{由 $\Delta$ 求 Y :}\  R_{1}=\frac{R_{12}R_{13}}{R_0},\ 
+        R_{2}=\frac{R_{21}R_{23}}{R_0},\ 
         R_0 = R_{12}+R_{13}+R_{23} 
     \end{matrix}
 \end{gather}
@@ -748,8 +788,82 @@ T =
 \item 感性 $\varphi = 40^\circ $，$\dot{U} = 220 \angle 0$，则 $\dot{I} = 10 \angle {\color{red} -40^\circ}$；
 \item 家用电频率、工频 50 Hz；
 \item {\color{red} 注意变压器在 DC 不起作用}；
-\end{enumerate}
+\item 相电压相电流：
 
+\begin{gather}
+\text{线电压：} \dot{U}_{AB}, \quad \text{线电流：} \dot{I}_A \\
+\text{相电压：} \dot{U}_A, \quad \text{相电流：} \dot{I}_{AB}
+\end{gather}
+\begin{figure}[H]\centering
+\begin{subfigure}[b]{0.5\columnwidth}\centering
+    \includegraphics[height=95pt]{assets/相电压线电压电流 - 副本 (2).pdf}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{0.5\columnwidth}\centering
+    \includegraphics[height=95pt]{assets/相电压线电压电流 - 副本.pdf}
+\end{subfigure}
+\end{figure}
+
+\item 三相电路的戴维南等效，先求开路电压 $U_{\text{oc}}$，然后置零，求端口电阻：
+\begin{equation}
+Z_{\text{eq}} = 2 \left( Z_1 \parallel Z_2 \right) = 2 \left( r \parallel Z \right)
+\end{equation}
+\begin{figure}[H]\centering
+    \includegraphics[width=0.7\columnwidth]{assets/image copy.png}
+\end{figure}
+\begin{figure}[H]\centering
+    \includegraphics[width=0.7\columnwidth]{assets/image copy 2.png}
+\end{figure}
+
+\item $RC$ 低通滤波器的波特图：
+\begin{figure}[H]\centering
+    \includegraphics[width=\columnwidth]{assets/波特图/RC 低通 波特图.pdf}
+\end{figure} 
+
+\item 全通滤波器（移相桥）:
+
+全通滤波器是一种比较特殊的滤波器，具有平坦的幅频特性，主要用来产生相移，例如下面的移相桥：
+\begin{gather}
+H(\omega) = \frac{1}{2}\cdot\frac{j\omega R_0C - 1}{j\omega R_0C + 1},\quad \theta = 180^{\circ} - 2 \arctan \left(\frac{\omega}{\omega_c} \right)\\
+\omega_c = R_0C
+\end{gather}
+\begin{figure}[H]\centering
+\begin{subfigure}[b]{\columnwidth}\centering
+    \includegraphics[height=45pt]{assets/移相桥.png}
+    \caption{移相桥电路图}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{\columnwidth}\centering
+    \includegraphics[height=45pt]{assets/移相桥幅频.png}
+    \caption{幅频特性}
+\end{subfigure}
+\begin{subfigure}[b]{\columnwidth}\centering
+    \includegraphics[height=45pt]{assets/移相桥相频.png}
+    \caption{相频特性}
+\end{subfigure}
+\caption{全通滤波器移相桥}
+\end{figure}
+
+\item dB 单位转换：
+\begin{table}[H]\centering
+    %\renewcommand{\arraystretch}{1.5} % 调整行间距为 1.5 倍
+    %\setlength{\tabcolsep}{1.5mm} % 调整列间距
+    \caption{增益与 dB 值的对应关系}
+    \label{增益与 dB 值的对应关系}
+\resizebox{\columnwidth}{!}{
+    \begin{tabular}{cccccccccc}\toprule
+        $H$ & 0.01 & 0.1 & 0.5 & $\frac{1}{\sqrt{2}}$ & \textbf{1} & $\sqrt{2}$ & 2 & 10 & 100 \\
+        \midrule
+        $H_{\text{dB}}$ & -40 & -20 & -6 & -3 & \textbf{0} & 3 & 6 & 20 & 40 \\
+        \bottomrule
+    \end{tabular}
+}
+\end{table}
+
+\item 识别变压器同名端：
+\begin{figure}[H]\centering
+    \includegraphics[width=\columnwidth]{assets/0a2707b2610d952a8f63f9bcfc51616f.png}
+\end{figure}
+
+\end{enumerate}
 % --------------------------------------------------------- %
 % --------------------------------------------------------- %
 \end{multicols*}  

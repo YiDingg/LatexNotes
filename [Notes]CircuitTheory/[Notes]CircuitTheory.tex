@@ -2652,6 +2652,8 @@ H = H_1 \cdot H_2 = \frac{1}{1 + j \frac{\omega}{\omega_1} } \cdot \frac{j \frac
 \end{figure}
 
 
+
+
 \section{谐振电路}
 一个含电感和电容的无源线性电路，其输入阻抗是 $\omega$ 的函数，在某一角频率 $\omega_0$ 时，电路（输入）阻抗 $Z$（或导纳 $Y$）的模长达到极小值（甚至最小值），我们就说该电路发生了谐振 (resonance)。显然，电路要发生谐振，必须同时含有电感和电容，且外加电源频率为电路的谐振频率 $\omega_0$ (resonance frequency)。
 
@@ -2668,7 +2670,7 @@ H(\j\omega) = \frac{\dot{U}_R}{\dot{U}_S} = \frac{R}{Z} = \frac{R}{R + j \left(\
 \begin{enumerate}
 \item $\dot{U}_S$ 和 $\dot{I}$ 同相，入端阻抗 $Z$ 表现为纯电阻，且模长最小；
 \item 在 $\dot{U}_S$ 作为激励下，电流 $\dot{I}$ 达到最大值，响应 $\dot{U}_R$ 达到最大值；
-\item 电容和电感电压的幅值都是 $U_S$ 的 $Q$ 倍，且相位相反，即 $\dot{U}_L = -\dot{U}_C = Q \dot{U}_S$，$Q = \frac{\omega_0 L}{R} = \frac{1}{\omega_0 CR} = \frac{1}{R}\sqrt{\frac{L}{C}}$ 为品质因数；
+\item 电容电压 $\dot{U}_C$ 和电感电压 $\dot{U}_C$ 的幅值都是 $U_S$ 的 $Q$ 倍，且它们俩相位相反，即 $\dot{U}_L = -\dot{U}_C = j Q \dot{U}_S$，$Q = \frac{\omega_0 L}{R} = \frac{1}{\omega_0 CR} = \frac{1}{R}\sqrt{\frac{L}{C}}$ 为品质因数；
 \item 电源无功功率为 0，只发出有功功率，且完全被电阻消耗；电感与电容之间进行能量交换，与电源没有能量交换。
 \end{enumerate}
 
@@ -2682,7 +2684,7 @@ H(\j\omega) = \frac{\dot{I}_R}{\dot{I}_S} = \frac{G}{Y} = \frac{G}{G + j \left(\
 \begin{enumerate}
 \item $\dot{U}$ 和 $\dot{I}_S$ 同相，入端导纳 $Y$ 表现为纯电导，且模长最小；
 \item 在 $\dot{I}_S$ 作为激励下，电压 $\dot{U}$ 达到最大值，响应 $\dot{U}_R$ 达到最大值；
-\item 电容和电感电流的幅值都是 $I_S$ 的 $Q$ 倍，且相位相反，即 $\dot{I}_L = -\dot{I}_C = Q \dot{I}_S$，$Q = \omega_0 C R = \frac{R}{\omega_0 L} = R\sqrt{\frac{C}{L}}$ 为品质因数；
+\item 电容和电感电流的幅值都是 $I_S$ 的 $Q$ 倍，且相位相反，即 $\dot{I}_L = -\dot{I}_C = jQ \dot{I}_S$，$Q = \omega_0 C R = \frac{R}{\omega_0 L} = R\sqrt{\frac{C}{L}}$ 为品质因数；
 \item 电源无功功率为 0，只发出有功功率，且完全被电阻消耗；电感与电容之间进行能量交换，与电源没有能量交换。
 \end{enumerate}
 

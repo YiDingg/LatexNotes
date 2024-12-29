@@ -1618,7 +1618,7 @@ $z_0 = 0$ 为三阶极点，因此：
 
 \section{计算下列有理三角积分}
 
-\subsection{$\displaystyle \int_{0}^{2\pi}\frac{1}{a + b\cos \theta}\ \mathrm{d}\theta$}
+\subsection{$\displaystyle \int_{0}^{2\pi}\frac{1}{a + b\cos \theta}\ \mathrm{d}\theta, \ a > b > 0$}
 
 作三角换元 $z = e^{i \theta}$，则 $\cos \theta = \frac{z^2 + 1}{2z}$，$\ \mathrm{d} \theta = \frac{1}{iz} \ \mathrm{d}z$，有：
 \begin{equation}
@@ -1648,7 +1648,7 @@ I = \int_{0}^{\pi} \frac{1}{\left(1 + \frac{1 - \cos 2\theta}{2}\right)^2} \ \ma
     & \boxed{= \frac{3\sqrt{2}}{8}\pi}
 \end{align}
 
-\subsection{$\displaystyle \int_{0}^{\frac{\pi}{2}} \frac{1}{a + \sin^2 \theta} \ \mathrm{d}\theta$}
+\subsection{$\displaystyle \int_{0}^{\frac{\pi}{2}} \frac{1}{a + \sin^2 \theta} \ \mathrm{d}\theta, \ a >0$}
 将其转化为第 (1) 小问中的形式：
 \begin{equation}
 I = \int_{0}^{\pi} \frac{1}{(2a+1) - \cos \theta} \ \mathrm{d}\theta
@@ -1686,7 +1686,7 @@ I' &= 2\pi i \cdot \left[ \left(\frac{z_1^2 + 1}{4z_1^3}\right) +  \left(\frac{z
 \subsection{$\displaystyle \int_{0}^{+\infty}  \frac{x^2}{x^4 + 6x^2 + 13}  \ \mathrm{d}x$}
 与上题类似，作半圆积分围道，也即从 $(-R, 0)$ 到 $(R, 0)$ 的直线，以及半径为 $R$ 的上半圆 $L_R = \{| z | = R \mid \Im z > 0\}$ 构成的闭合围道 $C$。令 $f(z) = \frac{z^2}{z^4 + 6z^2 + 13}$，则 $zf(z)$ 在 $z \to \infty$ 时一致趋于 0，由大圆弧定理，$\lim_{R \to \infty}\int_{L_R} f(z) \ \mathrm{d}z = 0$，于是：
 \begin{equation}
-    I = \frac{1}{2} \int_{-\infty}^{+\infty}\frac{x^2 + 1}{x^4 + 1}\ \mathrm{d}x
+    I = \frac{1}{2} \int_{-\infty}^{+\infty}  \frac{x^2}{x^4 + 6x^2 + 13}  \ \mathrm{d}x
     \Longrightarrow 
     I' = \lim_{R \to \infty}\oint_{C} f(z) \ \mathrm{d}z = 
     2 I + \lim_{R \to \infty}\int_{L_R} f(z) \ \mathrm{d}z
@@ -1733,7 +1733,7 @@ I = \frac{1}{2}I' = \frac{7\pi}{16e}
 \end{align}
 
 \subsection{$\displaystyle \int_{0}^{+\infty} \frac{x\sin ax}{x^2 + b^2} \ \mathrm{d}x,\quad a, b \in \R_+ $}
-令 $f(z) = \frac{z}{z^2 + b^2}$，作半圆型闭合积分围道 $C$，其中半圆记作 $L_R$，则 $zf(z)$ 在 $z \to \infty$ 时一致趋于 0，由 Jordan 引理，$\lim_{R \to \infty}\int_{L_R} f(z)e^{iz} \ \mathrm{d}z = 0$，于是
+令 $f(z) = \frac{z}{z^2 + b^2}$，作半圆型闭合积分围道 $C$，其中半圆记作 $L_R$，则 $zf(z)$ 在 $z \to \infty$ 时一致趋于 0，由 Jordan 引理，$\lim_{R \to \infty}\int_{L_R} f(z)e^{ipz} \ \mathrm{d}z = 0\ (p > 0)$，于是：
 \begin{gather}
 I' = \lim_{R \to \infty}\oint_{C} f(z)e^{iaz} \ \mathrm{d}z = \int_{-\infty}^{+\infty}f(x)\cos ax \ \mathrm{d}x + i \int_{-\infty}^{+\infty}f(x)\sin ax \ \mathrm{d}x +  \lim_{R \to \infty}\oint_{L_R} f(z)e^{iz} \ \mathrm{d}z \\
 I = \frac{1}{2}\int_{-\infty}^{+\infty}  \frac{\sin ax}{\left(1 + x^2\right)^3}  \ \mathrm{d}x \Longrightarrow I' = 0 + 2i\cdot I + 0 

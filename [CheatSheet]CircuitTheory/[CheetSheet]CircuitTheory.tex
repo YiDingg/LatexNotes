@@ -215,7 +215,7 @@
     \fancyhf{}                                % 清除现有页眉页脚设置  
     \fancyhead[L]{\normalsize 2025.1,\ \  \href{https://github.com/YiDingg/LatexNotes}{    {\color{black} https://github.com/YiDingg/LatexNotes}}}                     % 左侧页眉  
     \fancyhead[R]{\normalsize dingyi233@mails.ucas.ac.cn} % 右侧页眉  
-    \fancyhead[C]{\normalsize Cheat Sheet of Principles of Electornic Circuits} % 居中页眉  
+    \fancyhead[C]{\normalsize Cheat Sheet of Principles of Electronic Circuits} % 居中页眉  
     \fancyfoot[C]{\normalsize\thepage}              % 页脚中心显示页码  
     \renewcommand{\headrulewidth}{0.4pt} % 页眉线宽度  
     \renewcommand{\footrulewidth}{0.4pt} % 页脚线宽度  
@@ -358,13 +358,13 @@ f'' + \frac{f'}{RC} + \frac{f}{LC} = h(t)
     \delta_0 = \frac{\mathrm{d} \eta_0 }{\mathrm{d} t } ,\quad 
     \text{冲激响应}\  h(t) = \frac{\mathrm{d} s(t)}{\mathrm{d} t},\quad s(t) \text{\ 为阶跃响应}
 \end{gather}
-注意冲激 $\delta_0$ 前的系数是多少，响应的 $\eta_0$ 也要乘上这个系数。单位冲激 $U_s = \delta_0$ 下的响应为：
+注意冲激 $\delta_0$ 前的系数是多少，响应的 $\eta_0$ 也要乘上这个系数。{\color{red} 单位冲激 $U_s = \delta_0$ 下的响应}为：
 \begin{table}[H]\centering
 \resizebox{\columnwidth}{!}{
     \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}\hline
         类型 & $RC$ 串 & $RC$ 并 & $RL$ 串 & $RL$ 并  \\
         \hline
-        突变 & $\Delta u_C = 1/RC$ & $\delta u_C = 1/C$ & $\Delta i_L=  1/L$ & $\Delta i_L = R/L$  \\
+        突变 & $\Delta u_C = 1/RC$ & $\Delta u_C = 1/C$ & $\Delta i_L=  1/L$ & $\Delta i_L = R/L$  \\
         \hline
     \end{tabular}
 }
@@ -391,16 +391,16 @@ H(t) = e(t) * h(t) = \int_{-\infty}^{+\infty} e(\tau)h(t - \tau) \mathrm{d} \tau
 
 保持有功功率 $P$ 不变，将阻抗角从 $\varphi_1$ 改变到 $\varphi_2$ (仅影响无功功率 $Q$)，需要并联的电抗 $j X$ 为：
 \begin{equation}
-X = \frac{3 U^2}{P \left(\tan \varphi_2 - \tan \varphi_1\right)}
+X = \frac{U^2}{P \left(\tan \varphi_2 - \tan \varphi_1\right)}
 \end{equation}
 特别地：
-\begin{equation}
+\begin{gather}
     \text{感性：} \varphi > 0 ,\quad 
-    C = \frac{P \left(\tan \varphi_1 - \tan \varphi_2\right)}{3 \omega U^2}
+    C = \frac{P \left(\tan \varphi_1 - \tan \varphi_2\right)}{\omega U^2}
     \\ 
     \text{容性：} \varphi < 0 , \quad 
-    L = \frac{3 U^2}{\omega P \left(\tan \varphi_2 - \tan \varphi_1\right)}
-\end{equation}
+    L = \frac{U^2}{\omega P \left(\tan \varphi_2 - \tan \varphi_1\right)}
+\end{gather}
 
 
 \subsection{最大功率传输}
@@ -533,12 +533,12 @@ $Q$ 的三种物理意义角度：
 \subsection{变压器}
 非理想变压器等效：
 \begin{figure}[H]\centering
-    \includegraphics[width=\columnwidth]{assets/非理想变压器 2.pdf}
+    \includegraphics[width=0.8\columnwidth]{assets/非理想变压器 2.pdf}
     \caption{非理想变压器的等效}
     \label{非理想变压器等效}
 \end{figure}
 \begin{figure}[H]\centering
-    \includegraphics[width=\columnwidth]{assets/非理想变压器 2 copy.pdf}
+    \includegraphics[width=0.8\columnwidth]{assets/非理想变压器 (2).pdf}
 \end{figure}
 
 \begin{gather}
@@ -629,7 +629,7 @@ Z_{Y} = \frac{Z_{\Delta}}{3}
 \end{equation}
 对称负载 $\dot{U}_{N'N} \equiv 0$，$\dot{I}_{N'N} \equiv 0$，$Z_N$ 对电路没有影响（虚短+虚断）。
 
-\subsubsection{非对称三相电路}
+\subsection{非对称三相电路}
 
 负载不对称时，需要区分有没有中线。如果存在中线（$Z_N = 0$），负载电压仍等于相电压，直接抽单相计算即可；如果不存在中线（$Z_N = \infty$），：
 \begin{gather}
@@ -666,10 +666,10 @@ P_1 = \sqrt{3} U_A I_A \cos (\varphi + 30^\circ)
 
 用单个功率表测对称电路的无功功率：
 \begin{figure}[H]\centering
-    \includegraphics[width=0.55\columnwidth]{assets/QQ_1735491515790.png}
+    \includegraphics[width=0.4\columnwidth]{assets/QQ_1735491515790.png}
 \end{figure}
 \begin{figure}[H]\centering
-    \includegraphics[width=0.7\columnwidth]{assets/image copy 3.png}
+    \includegraphics[width=0.4\columnwidth]{assets/image copy 3.png}
 \end{figure}
 
 
@@ -796,10 +796,10 @@ T =
 \end{gather}
 \begin{figure}[H]\centering
 \begin{subfigure}[b]{0.5\columnwidth}\centering
-    \includegraphics[height=95pt]{assets/相电压线电压电流 - 副本 (2).pdf}
+    \includegraphics[height=85pt]{assets/相电压线电压电流 - 副本 (2).pdf}
 \end{subfigure}\hfill
 \begin{subfigure}[b]{0.5\columnwidth}\centering
-    \includegraphics[height=95pt]{assets/相电压线电压电流 - 副本.pdf}
+    \includegraphics[height=85pt]{assets/相电压线电压电流 - 副本.pdf}
 \end{subfigure}
 \end{figure}
 
@@ -808,15 +808,15 @@ T =
 Z_{\text{eq}} = 2 \left( Z_1 \parallel Z_2 \right) = 2 \left( r \parallel Z \right)
 \end{equation}
 \begin{figure}[H]\centering
-    \includegraphics[width=0.7\columnwidth]{assets/image copy.png}
+    \includegraphics[width=0.6\columnwidth]{assets/image copy.png}
 \end{figure}
 \begin{figure}[H]\centering
-    \includegraphics[width=0.7\columnwidth]{assets/image copy 2.png}
+    \includegraphics[width=0.6\columnwidth]{assets/image copy 2.png}
 \end{figure}
 
 \item $RC$ 低通滤波器的波特图：
 \begin{figure}[H]\centering
-    \includegraphics[width=\columnwidth]{assets/波特图/RC 低通 波特图.pdf}
+    \includegraphics[width=0.80\columnwidth]{assets/波特图/RC 低通 波特图.pdf}
 \end{figure} 
 
 \item 全通滤波器（移相桥）:
@@ -826,21 +826,22 @@ Z_{\text{eq}} = 2 \left( Z_1 \parallel Z_2 \right) = 2 \left( r \parallel Z \rig
 H(\omega) = \frac{1}{2}\cdot\frac{j\omega R_0C - 1}{j\omega R_0C + 1},\quad \theta = 180^{\circ} - 2 \arctan \left(\frac{\omega}{\omega_c} \right)\\
 \omega_c = R_0C
 \end{gather}
-\begin{figure}[H]\centering
-\begin{subfigure}[b]{\columnwidth}\centering
-    \includegraphics[height=45pt]{assets/移相桥.png}
-    \caption{移相桥电路图}
-\end{subfigure}\hfill
-\begin{subfigure}[b]{\columnwidth}\centering
-    \includegraphics[height=45pt]{assets/移相桥幅频.png}
-    \caption{幅频特性}
-\end{subfigure}
-\begin{subfigure}[b]{\columnwidth}\centering
-    \includegraphics[height=45pt]{assets/移相桥相频.png}
-    \caption{相频特性}
-\end{subfigure}
-\caption{全通滤波器移相桥}
-\end{figure}
+
+%\begin{figure}[H]\centering
+%\begin{subfigure}[b]{\columnwidth}\centering
+%    \includegraphics[height=45pt]{assets/移相桥.png}
+%    \caption{移相桥电路图}
+%\end{subfigure}\hfill
+%\begin{subfigure}[b]{\columnwidth}\centering
+%    \includegraphics[height=45pt]{assets/移相桥幅频.png}
+%    \caption{幅频特性}
+%\end{subfigure}
+%\begin{subfigure}[b]{\columnwidth}\centering
+%    \includegraphics[height=45pt]{assets/移相桥相频.png}
+%    \caption{相频特性}
+%\end{subfigure}
+%\caption{全通滤波器移相桥}
+%\end{figure}
 
 \item dB 单位转换：
 \begin{table}[H]\centering
@@ -860,7 +861,11 @@ H(\omega) = \frac{1}{2}\cdot\frac{j\omega R_0C - 1}{j\omega R_0C + 1},\quad \the
 
 \item 识别变压器同名端：
 \begin{figure}[H]\centering
-    \includegraphics[width=\columnwidth]{assets/0a2707b2610d952a8f63f9bcfc51616f.png}
+    \includegraphics[width=0.85\columnwidth]{assets/0a2707b2610d952a8f63f9bcfc51616f.png}
+\end{figure}
+
+\begin{figure}[H]\centering
+    \includegraphics[height=\columnwidth, angle=-90]{assets/扫描全能王 2024-12-30 21.25.pdf}
 \end{figure}
 
 \end{enumerate}

@@ -1,8 +1,13 @@
-
+# 忽略 .pages 文件夹 (用于存放 pdf 页面)
+*.pages
 **/assets/
 NotabilityNotes
 **/contents/
+Reference
+figures
 
+# 不忽略仓库 assets 文件夹
+!.assets/
 
 # .gitignore for Latex
 

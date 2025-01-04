@@ -2100,10 +2100,10 @@ w(z) = \sum_{n=0}^{\infty} c_n (z - z_0)^n
 对于非齐次边界的情况，如果想使用本征函数法，只需设 $u = v + w$，其中 $v$ 满足非齐次边界条件即可。特别地，选取 $v$ 为如下边界条件可以使方程更容易求解：
 \begin{gather}
 \begin{aligned}
-    &u|_{x = 0} = \varphi_0(t),\ u|_{x = l} = \varphi_l(t) \Longrightarrow&& v = \varphi_0 \left(1 - \frac{x}{l}\right)^2 + \varphi_l \left(\frac{x}{l}\right)^2 \\ 
+    &u|_{x = 0} = \varphi_0(t),\ u|_{x = l} = \varphi_l(t) \Longrightarrow&& v = \varphi_0 \left(1 - \frac{x}{l}\right) + \varphi_l \,\frac{x}{l} \\ 
     &u|_{x = 0} = \varphi_0(t),\ u_x'|_{x = l} = \varphi_l(t) \Longrightarrow&& v = \varphi_0 + \varphi_l x \\ 
-    &u_x'|_{x = 0} = \varphi_0(t),\ u_x'|_{x = l} = \varphi_l(t) \Longrightarrow&& v = \varphi_0 + \varphi_l (x - l)x \\ 
-    &u_x'|_{x = 0} = \varphi_0(t),\ u|_{x = l} = \varphi_l(t) \Longrightarrow&& v = \frac{\varphi_l - \varphi_0}{2l}\,x^2 + \varphi_0 x
+    &u_x'|_{x = 0} = \varphi_0(t),\ u_x'|_{x = l} = \varphi_l(t) \Longrightarrow&& v = \varphi_0 (x - l) + \varphi_l \\ 
+    &u_x'|_{x = 0} = \varphi_0(t),\ u|_{x = l} = \varphi_l(t) \Longrightarrow&& v =  \varphi_0 x + \frac{\varphi_l - \varphi_0}{2l}\,x^2
 \end{aligned}
 \end{gather}
 
@@ -2115,16 +2115,16 @@ Laplace 变换可用于求解含时间的微分方程定解问题（包括ODE和
 为了方便参考，我们再叙述一遍 Laplace 变换的常见性质。设函数 $f = f(t)$，则有：
 \begin{gather}
 \begin{aligned}
-& f(t) &&\overset{\mathscr{F}}{\longrightarrow} && L(s) \\
-& f(a t) &&\overset{\mathscr{F}}{\longrightarrow} && \frac{1}{|\alpha|} L(\frac{s}{a})\\
-& f(t + a t_0) &&\overset{\mathscr{F}}{\longrightarrow} && e^{s (at_0)}L(s)\\
-& e^{t(\alpha s_0)} f(t) &&\overset{\mathscr{F}}{\longrightarrow} && L(s - \alpha s_0)\\
-& f^{(n)}(t) &&\overset{\mathscr{F}}{\longrightarrow} && s^n L(s) - s^{n-1}f(0) -  s^{n-2}f'(0) - \cdots - z^0 f^{(n-1)}(0)\\
-& t f(t) - L(0) && \overset{\mathscr{F}}{\longrightarrow} && L'(s)\\
-& \int_{0}^{t} f(\xi) \mathrm{d}\xi &&\overset{\mathscr{F}}{\longrightarrow} && \frac{L(s)}{s}\\
-& \frac{f(t)}{t} &&\overset{\mathscr{F}}{\longrightarrow} && \int_{0}^{s} L(\xi) \mathrm{d}\xi\\
-& f_1(t)\cdot f_2(t) &&\overset{\mathscr{F}}{\longrightarrow} && L_1(s) * L_2(s)\\
-& f_1(t) * f_2(t)  &&\overset{\mathscr{F}}{\longrightarrow} && L_1(s) \cdot L_2(s)
+& f(t) &&\overset{\mathscr{L}}{\longrightarrow} && L(s) \\
+& f(a t) &&\overset{\mathscr{L}}{\longrightarrow} && \frac{1}{|\alpha|} L(\frac{s}{a})\\
+& f(t + a t_0) &&\overset{\mathscr{L}}{\longrightarrow} && e^{s (at_0)}L(s)\\
+& e^{t(\alpha s_0)} f(t) &&\overset{\mathscr{L}}{\longrightarrow} && L(s - \alpha s_0)\\
+& f^{(n)}(t) &&\overset{\mathscr{L}}{\longrightarrow} && s^n L(s) - s^{n-1}f(0) -  s^{n-2}f'(0) - \cdots - z^0 f^{(n-1)}(0)\\
+& t f(t) - L(0) && \overset{\mathscr{L}}{\longrightarrow} && L'(s)\\
+& \int_{0}^{t} f(\xi) \mathrm{d}\xi &&\overset{\mathscr{L}}{\longrightarrow} && \frac{L(s)}{s}\\
+& \frac{f(t)}{t} &&\overset{\mathscr{L}}{\longrightarrow} && \int_{0}^{s} L(\xi) \mathrm{d}\xi\\
+& f_1(t)\cdot f_2(t) &&\overset{\mathscr{L}}{\longrightarrow} && L_1(s) * L_2(s)\\
+& f_1(t) * f_2(t)  &&\overset{\mathscr{L}}{\longrightarrow} && L_1(s) \cdot L_2(s)
 \end{aligned}
 \end{gather}
 

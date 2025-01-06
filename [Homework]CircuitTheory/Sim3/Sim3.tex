@@ -1,0 +1,308 @@
+%%% 子文件 Chapter 1.tex %%%
+
+\documentclass[D:/a_RemoteRepo/GH.LatexNotes/.demo/Analog_Circuits_Handbook.tex]{subfiles}
+%为了能正常分文档编译，主文件的文件名不能含有中文或空格，否则会报错
+%在子文件中，指定主文件的正确路径应为 ../../main.tex, 但这样每次 ctrl+s 编译子文件时会弹出文件编译选择框, 比较麻烦。经过测试发现路径设置为 ../main.tex 时不仅能正常编译子文件（正常引入导言区），而且不会弹出文件编译选择框
+\graphicspath{{\subfix{../}}}
+
+\definecolor{stc}{RGB}{0, 0, 0}
+% chapter 标题自定义设置
+    \titleformat{\chapter}[hang]{\normalfont\Large\bfseries\centering\boldmath}{}{10pt}{}
+    \titlespacing*{\chapter}{0pt}{-30pt}{10pt} % 控制上方空白的大小
+    % section
+    \titleformat{\section}[hang]{\normalfont\large\bfseries\boldmath}{\thesection}{8pt}{}
+    % subsection
+        % 设置 subsection 样式为 (1) (2) (3)
+        \renewcommand{\thesubsection}{(\arabic{subsection})}    
+        \titleformat{\subsection}[hang]{\normalfont\bfseries\boldmath}{\thesubsection}{8pt}{}
+
+\begin{document}
+\chapter{Simulation 3: 2024.11.26 - 2024.12.17}\thispagestyle{fancy}
+\rhead{Simulation 3: 2024.11.26 - 2024.12.17}
+\chead{电路原理课程作业, 丁毅}
+
+%\rhead{\nouppercase{\rightmark}}  % \rightmark 是 section 标题
+
+\setcounter{page}{51}
+\setcounter{chapter}{12}
+
+\section{Capacitance Multiplier}
+
+\begin{graybox}
+\textbf{Relevant resources: }
+\begin{enumerate}
+\item A Review of Capacitance Multiplication Techniques 
+\urlblack{https://ieeexplore.ieee.org/document/8678969}
+
+\item Capacitance Multiplier with Large Multiplication Factor and High Accuracy \\
+\urlblack{https://www.jstage.jst.go.jp/article/elex/15/3/15\_15.20171191/\_article}
+
+\item Active Capacitor Multiplier in Miller-compensated Circuits 
+\urlblack{https://ieeexplore.ieee.org/document/818917}
+
+\item The Capacitance Multiplier 
+\urlblack{https://audioxpress.com/article/the-capacitance-multiplier}
+\end{enumerate}
+\end{graybox}
+
+\subsection{Basic Circuits and Principles}
+
+Below are two basic concepts for capacitance multiplication:
+\begin{figure}[H]\centering
+\begin{subfigure}[b]{0.5\columnwidth}\centering
+    \includegraphics[height=90pt]{assets/Capacitance/Cap Multiplier/[ECirM] Voltage Mode.pdf}
+    \caption{Voltage Mode}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{0.5\columnwidth}\centering
+    \includegraphics[height=90pt]{assets/Capacitance/Cap Multiplier/[ECirM] Current Mode.pdf}
+    \caption{Current Mode}
+\end{subfigure}
+\caption{Basic Two Concepts for Capacitance Multiplier}
+\end{figure}
+
+Thus, we obtain the equivalent capacitance as:
+\begin{align}
+   &\text{voltage mode:}\quad  C_{\text{eq}} = \frac{I_\text{n}}{SV_\text{n}} = \frac{I_C}{S\frac{V_C}{1 + K}} = (1 + K)\, C,\quad K > 0 \\ 
+    &\text{current mode:}\quad  C_{\text{eq}} = \frac{I_\text{n}}{SV_\text{n}} = \frac{(1 + K) I_C}{S V_C} = (1 + K) \, C,\quad K > 0
+\end{align}
+
+A simple implementation of cap multiplier, depicted in Fig.\ref{fig: Capacitance Multiplier} (a), combining a unit-gain buffer (voltage fllower) and an inverting amplifier, uses a voltage mode. yielding the equivalent capacitance:
+\begin{equation}
+A = - \frac{R_2}{R_1} = - K \Longrightarrow  C_{\text{eq}} = \left(1 + \frac{R_2}{R_1}\right) \,C
+\end{equation}
+where $A = -\frac{R_2}{R_1}$ is the closed-loop gain of the inverting amplifier. 
+Since inverting amplifier has a low input impedance, the unit-gain buffer is a necessary. 
+To change it into a two-terminal element, just replace GND with the negtive terminal of the input voltage, e.g. $V_{\text{in}, -}$, as shown in Fig.\ref{fig: Capacitance Multiplier} (b).
+
+\begin{figure}[H]\centering
+\begin{subfigure}[b]{0.5\columnwidth}\centering
+    \includegraphics[height=80pt]{assets/Capacitance/Cap Multiplier/[ECirM] one terminal.pdf}
+    \caption{One-terminal Cap Multiplier}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{0.5\columnwidth}\centering
+    \includegraphics[height=80pt]{assets/Capacitance/Cap Multiplier/[ECirM] tow terminals.pdf}
+    \caption{Two-terminal Cap Multiplier}
+\end{subfigure}
+\caption{A Simple Implementation of Capacitance Multiplier}
+\label{fig: Capacitance Multiplier}
+\end{figure}
+
+
+\subsection{Multisim Simulation}
+Considering Figure \ref{fig: Capacitance Multiplier} (b), set the parameters as Table \ref{tab: Simulation Parameters of Capacitance Multiplier}. 
+Then we connect it to the RC series circuit to perform an AC sweep to test the capacitance value. The Simulation Circuit is shown in Figure \ref{fig: Simulation Circuit of Cap Multiplier}.
+
+\begin{table}[H]\centering
+    %\renewcommand{\arraystretch}{1.5} % 调整行间距为 1.5 倍
+    %\setlength{\tabcolsep}{1.5mm} % 调整列间距
+    \caption{Simulation Parameters of Capacitance Multiplier}
+    \label{tab: Simulation Parameters of Capacitance Multiplier}
+\begin{tabular}{cccccccccc}\toprule
+    $C$ & $R_1$ & $R_2$ & Operation Amplifier  \\
+    \midrule
+    10 nF& 1 $\KO$ & 11 $\KO$ & LM258P  \\
+    \bottomrule
+\end{tabular}
+\end{table}
+
+
+\begin{figure}[H]\centering
+    \includegraphics[width=\columnwidth]{assets/Capacitance/Cap Multiplier/Cap Multiplier.pdf
+    }
+    \caption{Simulation Circuit of Cap Multiplier}
+    \label{fig: Simulation Circuit of Cap Multiplier}
+\end{figure}
+
+Export the simulation data and plot the frequency response (bode plot) of the series $RC$ circuit, as shown in Figure \ref{fig: AC Sweep of the Cap Multiplier}. The theoretical value of the capacitance of the cap multiplier is 110 nF, and the simulation result confirmed this point.
+\begin{figure}[H]\centering
+    \includegraphics[width=\columnwidth]{assets/Capacitance/Cap Multiplier/ac sweep.pdf}
+    \caption{AC Sweep of the Cap Multiplier}
+    \label{fig: AC Sweep of the Cap Multiplier}
+\end{figure}
+
+
+\section{The Wien Bridge Oscillator}
+
+You must have seen that a number of resistors and capacitors can be connected together with an inverting amplifier to produce an oscillating circuit. Wien bridge oscillator is one of the simplest sine wave oscillators which uses an RC network in place of the conventional LC tuned tank circuit to produce a sinusoidal output waveform.
+
+The Wien Bridge Oscillator is based on a noninverting amplifier, using a series RC circuit connected with a parallel RC of the same component values as a feedback circuit. 
+
+\subsection{Basic Circuit and Principles}
+
+Consider the RC circuit in Figure \ref{fig: Wien Bridge Oscillator Feedback Circuit} (a), the voltage gain $H$ of the series RC circuit is:
+\begin{equation}
+H(j\omega) = \frac{R \parallel (\frac{1}{j \omega C})}{R + \frac{1}{j \omega C} + R \parallel (\frac{1}{j \omega C})} = \frac{1}{1 + \frac{\left(R^2 - \frac{1}{\omega^2C^2}\right) + \frac{2R}{j \omega C}}{\frac{R}{j \omega C}}},\quad H|_{\omega = \frac{1}{RC}} = \frac{1}{1 + \frac{\frac{2R}{j \omega C}}{\frac{R}{j \omega C}}} = \frac{1}{3}
+\end{equation}
+Defined to obtain a $0^\circ$ phase shift, the resonant frequency $f_0$ is the key to Wien bridge oscillator. And at the point we have $H = \frac{1}{3}$. Let's set $R = 10 \KO$, $C = 10 \nF$ and sketch the bode plot of this RC circuit in Figure \ref{fig: Wien Bridge Oscillator Feedback Circuit} (b).
+
+\begin{figure}[H]\centering
+\begin{subfigure}[b]{0.47\columnwidth}\centering
+    \includegraphics[height=160pt]{assets/Oscillators/Wien Bridge Oscillator/[ECirM] Wien Bridge Oscillator's Feedback Circuit.pdf}
+    \caption{RC Feedback Circuit}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{0.53\columnwidth}\centering
+    \includegraphics[height=170pt]{assets/Oscillators/Wien Bridge Oscillator/bode plot.pdf}
+    \caption{Bode Plot of the RC Circuit}
+\end{subfigure}
+\caption{Wien Bridge Oscillator's Feedback Circuit}
+\label{fig: Wien Bridge Oscillator Feedback Circuit}
+\end{figure}
+
+
+\begin{figure}[H]\centering
+\begin{subfigure}[b]{0.5\columnwidth}\centering
+    \includegraphics[height=145pt]{assets/Oscillators/Wien Bridge Oscillator/[ECirM] Wien Bridge Oscillator.pdf}
+    \caption{Wien Bridge Oscillator}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{0.5\columnwidth}\centering
+    \includegraphics[height=145pt]{assets/Oscillators/Wien Bridge Oscillator/[ECirM] Wien Bridge Oscillator equal.pdf}
+    \caption{Equivalent Circuit of Wien Bridge Oscillator}
+\end{subfigure}
+\caption{Wien Bridge Oscillator and Its Equivalent Circuit}
+\label{fig: Wien Bridge Oscillator}
+\end{figure}
+Since a noninverting amplifier has extreme high input impedance and low output impedance, the coupling effect of the two circuits is negligible. In other words, the output impedance of noninverting amplifier (combing with the input impedance of feedback circuit), and the output impedance of feedback circuit (combing with input impedance of noninverting amplifier) can be ignored. Thus, the Wien bridge oscillator, depicted in Figure \ref{fig: Wien Bridge Oscillator} (a), has the equivalent circuit shown in Figure \ref{fig: Wien Bridge Oscillator} (b). 
+
+
+
+\textbf{The oscillation frequency} $f_0$ of the Wien Bridge Oscillator is given by:
+\begin{equation}
+\omega_0 = \frac{1}{RC},\quad  f_0 = \frac{1}{2 \pi RC}
+\end{equation}
+As the voltage gain of noninverting amplifier is:
+\begin{equation}
+A_v = 1 + \frac{R_2}{R_1}
+\end{equation}
+yielding \textbf{the start-oscillation condition}:
+\begin{equation}
+    A_v > 3 \Longleftrightarrow  R_2 > 2 R_1
+\end{equation}
+Assuming $R_2$ is slightly greater than $2R_1$, and there is a noise signal consists of a series of frequency, including $f_0 = \frac{1}{2 \pi RC}$. Then at the selected resonant frequency $f_0$, $\frac{1}{3}A_v > 1$, so the positive feedback will cancel out the negative feedback signal, causing the circuit to oscillate, until it reaches a voltage saturation (dependent on power supply). 
+However, at the other frequency, $\frac{1}{3}A_v < 1$ so the negative feedback will cancel out the positive, resulting other frequency signal fading away.
+
+The closer the ratio $\frac{R_2}{R_1}$ is to $2^+$, the better the waveform, but the longer the start-up time. Define $a = \frac{1}{3}\left(1 + \frac{R_2}{R_1}\right)$ as the periodic gain, a not-bad approximation for the start-up time is:
+\begin{equation}
+t_{\text{start}} = \frac{1}{f} \log_{a^3}\left(\frac{V_\text{limit}}{V_\text{noise}}\right) - 0.02
+\end{equation}
+where the unit of $t$ is seconds, $V_{\text{limit}}$ is the limit amplitude of output voltage, $V_{\text{noise}}$ is the amplitude of noise.
+
+By the way, if $R_2$ exceeds $2 R_1$ too much, for example $R_2 = 3 R_1$, the output waveform will be seriously distorted. 
+Also, due to the slew rate limitations of operational amplifiers, frequencies above 1 MHz are unachievable without the use of special high frequency op-amps.
+
+
+
+\subsection{Multisim Simulation of the Basic Circuit}
+Set the parameters in Figure \ref{fig: Wien Bridge Oscillator} (a) as below, and run the simulation. 
+\begin{table}[H]\centering
+    %\renewcommand{\arraystretch}{1.5} % 调整行间距为 1.5 倍
+    %\setlength{\tabcolsep}{1.5mm} % 调整列间距
+    \caption{Simulation Parameters of Wien Bridge Oscillator}
+    \label{tab: Simulation Parameters of Wien Bridge Oscillator}
+\begin{tabular}{cccccccccc}\toprule
+    $R$ & $C$ & $R_1$ & $R_2$ & Operation Amplifier & VCC \\
+    \midrule
+    10 $\KO$ & 10 nF & 10 $\KO$ & 20.1 $\KO$ & LM258P & $\pm$ 12 V \\
+    \bottomrule
+\end{tabular}
+\end{table}
+The start-up time is about 570 ms, shown in Figure \ref{fig: Start-up Time of Wien Bridge Oscillator}.
+\begin{figure}[H]\centering
+    \includegraphics[width=0.9\columnwidth]{assets/Oscillators/Wien Bridge Oscillator/Basic start-up time.pdf}
+    \caption{Start-up Time of Wien Bridge Oscillator}
+    \label{fig: Start-up Time of Wien Bridge Oscillator}
+\end{figure}
+
+Export the simulation data, and perform a spectrum and distortion analysis in Matlab. Then we obtain the waveform and spectrum shown in Figure \ref{fig: Spectrum Analysis of the Simulation Circuit}.
+\begin{figure}[H]\centering
+    \includegraphics[width=\columnwidth]{assets/Oscillators/Wien Bridge Oscillator/Spectrum Analysis.pdf}
+    \caption{Spectrum Analysis of the Simulation Circuit}
+    \label{fig: Spectrum Analysis of the Simulation Circuit}
+\end{figure}
+
+\begin{center}
+\noindent\begin{minipage}{0.49\columnwidth}
+    As we can see, the main output waveform is a sine wave at the resonant frequency $f_0$, the simulated oscillation frequency is:
+    \begin{equation}
+    \begin{aligned}
+        &f_{\text{simu}} = 1.5758 \KHz \\ 
+        &f_{\text{theo}} = 1.5915 \KHz \\
+        &\eta = \frac{f_{\text{simu}} - f_{\text{theo}}}{f_{\text{theo}}} = -0.98 \ \%
+    \end{aligned}
+    \end{equation}
+\end{minipage}\hfill\begin{minipage}{0.45\columnwidth}
+    \begin{figure}[H]\centering
+        \includegraphics[width=\columnwidth]{assets/Oscillators/Wien Bridge Oscillator/Wien Bridge Oscillator (Basic).pdf}
+        \caption{Simulation Circuit of Wien Bridge Oscillator}
+    \end{figure}
+    
+\end{minipage}\end{center}
+
+
+
+
+
+\subsection{Decrease the Start-up Time}
+We have noted that the output waveform is distorted when $R_2$ exceeds $2 R_1$ too much, but the start-up time is too long when $R_2$ is too closed to $2 R_1$. Therefore, we need to optimize the circuit to achieve a better waveform and shorter start-up time, exemplified in Figure \ref{fig: Optimize the Start-up Time of Wien Bridge Oscillator}.
+
+In Figure \ref{fig: Optimize the Start-up Time of Wien Bridge Oscillator} (a), we added a resistance $R_3$ and two diodes $D_1$ and $D_2$. 
+When the output voltage amplitude is less than the threshold voltage of diodes $V_{\text{D}}$, the diodes are off, and the circuit is the same as the basic circuit. 
+When the output is greater than $V_{\text{D}}$, the diodes are on, and the resistance of $R_3$ is added to the circuit (parallel with $R_2$), which reduces the gain of amplifier.
+
+\begin{figure}[H]\centering
+\begin{subfigure}[b]{0.5\columnwidth}\centering
+    \includegraphics[height=145pt]{assets/Oscillators/Wien Bridge Oscillator/[ECirM] Wien Bridge Oscillator (optimize start-up time).pdf}
+    \caption{Optimized Circuit}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{0.5\columnwidth}\centering
+    \includegraphics[height=145pt]{assets/Oscillators/Wien Bridge Oscillator/Wien Bridge Oscillator (optimize start-up time).pdf}
+    \caption{Simulation Circuit}
+\end{subfigure}
+\caption{Optimize the Start-up Time of Wien Bridge Oscillator}
+\label{fig: Optimize the Start-up Time of Wien Bridge Oscillator}
+\end{figure}
+
+
+Simulation circuit is shown in Figure \ref{fig: Optimize the Start-up Time of Wien Bridge Oscillator} (b), 
+the start-up time is reduced to about 10 ms (see Figure \ref{fig: Optimized Start-up Time}), and the output waveform is shown in Figure \ref{fig: Spectrum Analysis of Optimized Circuit}.
+
+\begin{figure}[H]\centering
+    \includegraphics[width=\columnwidth]{assets/Oscillators/Wien Bridge Oscillator/optimize startup time.pdf}
+    \caption{Optimized Start-up Time}
+    \label{fig: Optimized Start-up Time}
+\end{figure}
+
+\begin{figure}[H]\centering
+    \includegraphics[width=\columnwidth]{assets/Oscillators/Wien Bridge Oscillator/Spectrum Analysis for optimize start-up time.pdf}
+    \caption{Spectrum Analysis of Optimized Circuit}
+    \label{fig: Spectrum Analysis of Optimized Circuit}
+\end{figure}
+
+
+Although the output frequency still focuses on $f_0$ and the distortion completely disappears, we have to note that the amplitude of the output waveform is significantly reduced. 
+If larger amplitudes are desired, a resistor can be added to divide $V_{\text{out}}$ to a suitable level, leading to a larger output amplitude. Refer to \textit{Fundamentals of Microelectornics} (3rd edition) (Behzad Razavi) page 661 for more detials.
+For more alternative methods to optimize the start-up time, see \url{https://blog.csdn.net/qq_29356039/article/details/132611987}.
+
+
+
+\subsection{Generate a Square Wave}
+An $R_2$ greater than $2 R_1$ will result in the output waveform being clipped at the output voltage limitations. In other words, if we let $R_2 \gg 2R_1$, the waveform becomes a square wave. To prove our surmise, reset $R_1 = 1 \KO, R_2 = 30 \KO$ in Table \ref{tab: Simulation Parameters of Wien Bridge Oscillator}, without changing the other parameters. We obtain the output waveform shown in Figure \ref{fig: Square Wave Output of Wien Bridge Oscillator}.
+
+\begin{figure}[H]\centering
+    \includegraphics[width=\columnwidth]{assets/Oscillators/Wien Bridge Oscillator/Squre wave.pdf}
+    \caption{Square Wave Output of Wien Bridge Oscillator}
+    \label{fig: Square Wave Output of Wien Bridge Oscillator}
+\end{figure}
+
+Since the frequency of the square wave is difficult to calculate and control, the Wien Bridge Oscillator is not suitable for generating square waves in practical applications. To obtain an output signal with DC offset, see \url{https://blog.csdn.net/qq_29356039/article/details/132611987} for more details.
+
+
+
+
+%\section{Capacitance Measurement}
+
+%\section{Varible Capacitance}
+
+
+
+
+\end{document}

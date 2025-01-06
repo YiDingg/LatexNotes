@@ -1,0 +1,143 @@
+% 设定文章类型与编码格式
+\documentclass[UTF8]{report}		
+\input{D:/a_RemoteRepo/GH.LatexNotes/.config/ConfigForBooks.tex}  % 引用导言区设置
+
+
+% ------------------------ 文章信息区 ------------------------ %
+% ------------------------ 文章信息区 ------------------------ %
+\lhead{\small
+\href{https://github.com/YiDingg/LatexNotes}{\color{black}\faGithub\ https://github.com/YiDingg/LatexNotes}
+}
+\chead{Analog Circuits Handbook}
+\rhead{\small dingyi233@mails.ucas.ac.cn}
+
+%文档信息设置
+\title{Analog Circuits Handbook\\ 模拟电路手册}
+\author{Yi Ding \\ \footnotesize \textit{(University of Chinese Academy of Sciences, Beijing 100049, China)} \vspace*{2mm}\\ 丁毅\\ \footnotesize {\kaishu (中国科学院大学，北京 100049)} }
+\date{\footnotesize 2024.11 -- ...}
+% ------------------------ 文章信息区 ------------------------ %
+% ------------------------ 文章信息区 ------------------------ %
+
+% 开始编辑文章
+
+\begin{document} 
+\zihao{5}           % 设置全文字号大小
+
+% ------------------------ 封面序言与目录 ------------------------ %
+% >> --------------------- 封面序言与目录 --------------------- << %
+% 封面
+    \maketitle\newpage  
+    \pagenumbering{Roman} % 页码为大写罗马数字
+    \thispagestyle{fancy}   % 显示页码、页眉等
+
+% 序言
+\begin{cnabstract}\normalsize 
+    to be completed
+\end{cnabstract}
+\addcontentsline{toc}{chapter}{序言} % 手动添加为目录
+
+
+
+
+\newpage
+\begin{enabstract}\normalsize 
+    to be completed
+\end{enabstract}
+\addcontentsline{toc}{chapter}{Preface} % 手动添加为目录
+
+
+
+% 目录
+    \setcounter{tocdepth}{1}    % 目录深度 (为 1 时显示到 section)
+    % 目录页
+        \tableofcontents
+        \addcontentsline{toc}{chapter}{Contents}
+        \thispagestyle{fancy}                   % 显示页码、页眉等
+    % 插图页
+        %\cleardoublepage\listoffigures
+        %\addcontentsline{toc}{chapter}{插图}
+        %\thispagestyle{fancy}                   % 显示页码、页眉等
+    % 表格页
+        %\cleardoublepage\listoftables
+        %\addcontentsline{toc}{chapter}{表格}
+        %\thispagestyle{fancy}                   % 显示页码、页眉等 
+
+% 收尾工作
+    \newpage    
+    \pagenumbering{arabic} 
+
+
+% 重定义 \rightmark
+\renewcommand{\sectionmark}[1]{%
+  \markright{\MakeUppercase{\thesection\ #1}}}%
+\chead{\nouppercase{\leftmark}}   % \leftmark 是 chapter 标题
+\rhead{\nouppercase{\rightmark}}  % \rightmark 是 section 标题
+
+
+\subfile{contents/Chapter on Measurement Methods/Analog_Circuits_Handbook (Measurement Methods).tex}
+\subfile{contents/Chapter on Capacitors/Analog_Circuits_Handbook (Capacitors).tex}
+\subfile{contents/Chapter on Inductors/Analog_Circuits_Handbook (Inductors).tex}
+\subfile{contents/Chapter on Oscillators/Analog_Circuits_Handbook (Oscillators).tex}
+\subfile{contents/Chapter on Current Source/Analog_Circuits_Handbook (Current Source).tex}
+\subfile{contents/Chapter on Voltage Source/Analog_Circuits_Handbook (Voltage Source).tex}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\renewcommand{\bibname}{Reference}  % 将参考文献标题从 bibliography 改为 Reference
+\nocite{*}
+\bibliography{bibtex}
+\thispagestyle{fancy} 
+\addcontentsline{toc}{chapter}{Reference}
+\rhead{\small dingyi233@mails.ucas.ac.cn}
+
+
+
+
+\end{document}
+
+
+
+% VScode 常用快捷键：
+
+% F2:                       变量重命名
+% Ctrl + Enter:             行中换行
+% Alt + up/down:            上下移行
+% 鼠标中键 + 移动:           快速多光标
+% Shift + Alt + up/down:    上下复制
+% Ctrl + left/right:        左右跳单词
+% Ctrl + Backspace/Delete:  左右删单词    
+% Shift + Delete:           删除此行
+% Ctrl + J:                 打开 VScode 下栏(输出栏)
+% Ctrl + B:                 打开 VScode 左栏(目录栏)
+% Ctrl + `:                 打开 VScode 终端栏
+% Ctrl + 0:                 定位文件
+% Ctrl + Tab:               切换已打开的文件(切标签)
+% Ctrl + Shift + P:         打开全局命令(设置)
+
+% Latex 常用快捷键
+
+% Ctrl + Alt + J:           由代码定位到PDF
+% 
+
+
+% Git提交规范：
+% update: Linear Algebra 2 notes
+% add: Linear Algebra 2 notes
+% import: Linear Algebra 2 notes
+% delete: Linear Algebra 2 notes

@@ -5,9 +5,20 @@
 % --------------------- 文章宏包及相关设置 --------------------- %
 % >> ------------------ 文章宏包及相关设置 ------------------ << %
 % 设定文章类型与编码格式
-\documentclass[UTF8]{article}		
+\documentclass[UTF8]{report}		
 
-% 本文所需的特殊宏包
+% 本文专属的宏包
+\usepackage{pdfpages}   % 用于导入 pdf 文件
+\usepackage{titletoc}   % 用于设置 toc
+\titlecontents{chapter}
+              [0em]
+              {\bf}%
+              {}%   % \contentslabel{2.5em} 会显示宽为 2.5em 的章节编号
+              {}%
+              {\hfill \contentspage \vspace{10.5pt}}%
+              []%
+
+
 
 % 本 .tex 专属的宏定义
     \def\V{\ \mathrm{V}}
@@ -29,74 +40,30 @@
     \def\KO{\ \mathrm{K}\Omega}
     \def\MO{\ \mathrm{M}\Omega}
     \def\Hz{\ \mathrm{Hz}}
-    \def\uF{\ \mu\mathrm{F}}
+    \def\pF{\ \mu\mathrm{pF}}
+    \def\uF{\ \mu\mathrm{uF}}
     \def\mF{\ \mathrm{mF}}
-    \def\nF{\ \mathrm{nF}}
-    \def\pF{\ \mathrm{pF}}
     \def\F{\ \mathrm{F}}
-    \def\Re{\mathrm{\,Re}\,}
-    \def\Im{\mathrm{\,Im}\,}
-    \def\sinc{\mathrm{\,sinc}\,}
 
 % 自定义宏定义
     \def\N{\mathbb{N}}
-    \def\F{\mathbb{F}}
+    %\def\F{\mathbb{F}}
     \def\Z{\mathbb{Z}}
     \def\Q{\mathbb{Q}}
     \def\R{\mathbb{R}}
     \def\C{\mathbb{C}}
     \def\T{\mathbb{T}}
     \def\S{\mathbb{S}}
-    %\def\A{\mathbb{A}}
+    \def\A{\mathbb{A}}
     \def\I{\mathscr{I}}
+    \def\Im{\mathrm{Im\,}}
+    \def\Re{\mathrm{Re\,}}
     \def\d{\mathrm{d}}
     \def\p{\partial}
 
-    
-% 本 .tex 专属的宏定义
-\def\V{\ \mathrm{V}}
-\def\uV{\ \mu\mathrm{V}}
-\def\mV{\ \mathrm{mV}}
-\def\K{\ \mathrm{K}}
-\def\kV{\ \mathrm{KV}}
-\def\KV{\ \mathrm{KV}}
-\def\MV{\ \mathrm{MV}}
-\def\uA{\ \mu\mathrm{A}}
-\def\mA{\ \mathrm{mA}}
-\def\A{\ \mathrm{A}}
-\def\kA{\ \mathrm{KA}}
-\def\KA{\ \mathrm{KA}}
-\def\MA{\ \mathrm{MA}}
-\def\O{\ \Omega}
-\def\mO{\ \Omega}
-\def\kO{\ \mathrm{K}\Omega}
-\def\KO{\ \mathrm{K}\Omega}
-\def\MO{\ \mathrm{M}\Omega}
-\def\Hz{\ \mathrm{Hz}}
-\def\uF{\ \mu\mathrm{F}}
-\def\mF{\ \mathrm{mF}}
-\def\F{\ \mathrm{F}}
-
-% 自定义宏定义
-\def\N{\mathbb{N}}
-%\def\F{\mathbb{F}}
-\def\Z{\mathbb{Z}}
-\def\Q{\mathbb{Q}}
-\def\R{\mathbb{R}}
-\def\C{\mathbb{C}}
-\def\T{\mathbb{T}}
-\def\S{\mathbb{S}}
-\def\A{\mathbb{A}}
-\def\I{\mathscr{I}}
-\def\Im{\mathrm{Im\,}}
-\def\Re{\mathrm{Re\,}}
-\def\d{\mathrm{d}}
-\def\p{\partial}
-
-
 % 导入基本宏包
     \usepackage[UTF8]{ctex}     % 设置文档为中文语言
-    \usepackage{hyperref}  % 宏包：自动生成超链接 (此宏包与标题中的数学环境冲突)
+        \usepackage{hyperref}  % 宏包：自动生成超链接 (此宏包与标题中的数学环境冲突)
     \hypersetup{
         colorlinks=true,    % false:边框链接 ; true:彩色链接
         citecolor={blue},    % 文献引用颜色
@@ -127,27 +94,28 @@
     \usepackage{mathrsfs}   % 宏包：提供更多数学符号
     \usepackage{amssymb}    % 宏包：提供更多数学符号
     \usepackage{pifont}     % 宏包：提供了特殊符号和字体
-    \usepackage{extarrows}  % 宏包：更多箭头符号 
-    \usepackage{multicol}   % 宏包：支持多栏 
+    \usepackage{extarrows}  % 宏包：更多箭头符号
+
 
 % 文章页面margin设置
     \usepackage[a4paper]{geometry}
-        \geometry{top=0.75in}
-        \geometry{bottom=0.75in}
+        \geometry{top=1in}
+        \geometry{bottom=1in}
         \geometry{left=0.75in}
         \geometry{right=0.75in}   % 设置上下左右页边距
         \geometry{marginparwidth=1.75cm}    % 设置边注距离（注释、标记等）
 
 % 配置数学环境
     \usepackage{amsthm} % 宏包：数学环境配置
+    %\everymath{\displaystyle}   % 设置全文数学公式都为展示样式
     % theorem-line 环境自定义
         \newtheoremstyle{MyLineTheoremStyle}% <name>
             {11pt}% <space above>
             {11pt}% <space below>
-            {\kaishu}% <body font> 默认使用正文字体, \kaishu 为楷体
+            {\kaishu}% <body font> 使用默认正文字体
             {}% <indent amount>
             {\bfseries}% <theorem head font> 设置标题项为加粗
-            {:\ \ }% <punctuation after theorem head>
+            {：}% <punctuation after theorem head>
             {.5em}% <space after theorem head>
             {\textbf{#1}\thmnumber{#2}\ \ (\,\textbf{#3}\,)}% 设置标题内容顺序
         \theoremstyle{MyLineTheoremStyle} % 应用自定义的定理样式
@@ -185,7 +153,7 @@
         \newenvironment{graybox}{%
         \def\FrameCommand{%
         \hspace{1pt}%
-        {\color{gray}\vrule width 2pt}%
+        {\color{gray}\small \vrule width 2pt}%
         {\color{graybox_color}\vrule width 4pt}%
         \colorbox{graybox_color}%
         }%
@@ -208,7 +176,7 @@
         \newfontfamily\codefont{Consolas} % 定义需要的 codefont 字体
         \lstdefinestyle{MatlabStyle_inc}{   % 插入代码的样式
             language=Matlab,
-            basicstyle=\footnotesize\ttfamily\codefont,    % ttfamily 确保等宽 
+            basicstyle=\small\ttfamily\codefont,    % ttfamily 确保等宽 
             breakatwhitespace=false,
             breaklines=true,
             captionpos=b,
@@ -265,6 +233,7 @@
 % table 支持
     \usepackage{booktabs}   % 宏包：三线表
     \usepackage{tabularray} % 宏包：表格排版
+    \usepackage[longtable]{multirow} % 宏包：multi 行列
     \usepackage{longtable}  % 宏包：长表格
 
 % figure 设置
@@ -276,7 +245,7 @@
             % 一定程度上修复导入后图片文字溢出几何图形的问题
             inkscapelatex = false                 
         }
-    \usepackage{subcaption} % 用于子图和小图注  
+    \usepackage{subcaption} % 支持子图
 
 % 图表进阶设置
     \usepackage{caption}    % 图注、表注
@@ -286,15 +255,14 @@
             labelfont=bf, % 设置标签为粗体
             textfont=bf,  % 设置文本为粗体
             font=small  
-        }
+            }
     \usepackage{float}     % 图表位置浮动设置 
     \usepackage{etoolbox} % 用于保证图注表注的数学字符为粗体
         \AtBeginEnvironment{figure}{\boldmath} % 图注中的数学字符为粗体
         \AtBeginEnvironment{table}{\boldmath}  % 表注中的数学字符为粗体
         \AtBeginEnvironment{tabular}{\unboldmath}   % 保证表格中的数学字符不受额外影响
-
 % 圆圈序号自定义
-    \newcommand*\circled[1]{\tikz[baseline=(char.base)]{\node[shape=circle,draw,inner sep=0.8pt, line width = 0.03em] (char) {\bfseries #1};}}   % TikZ solution
+    \newcommand*\circled[1]{\tikz[baseline=(char.base)]{\node[shape=circle,draw,inner sep=0.8pt, line width = 0.03em] (char) {\small \bfseries #1};}}   % TikZ solution
 
 % 列表设置
     \usepackage{enumitem}   % 宏包：列表环境设置
@@ -309,69 +277,72 @@
             ref=\arabic*, % 如果需要引用列表项，这将决定引用格式（这里仍然使用数字）
             itemsep=0pt, parsep=0pt, topsep=0pt, partopsep=0pt, leftmargin=3.5em
         }  
-
-% 其它设置
-    % 脚注设置
-        \renewcommand\thefootnote{\ding{\numexpr171+\value{footnote}}}
-    % 参考文献引用设置
-        \bibliographystyle{unsrt}   % 设置参考文献引用格式为unsrt
-        %\bibliographystyle{ieeetr}   % 设置参考文献引用格式为unsrt
-        \newcommand{\upcite}[1]{\textsuperscript{\cite{#1}}}     % 自定义上角标式引用
-    % 文章序言设置
-        \newcommand{\cnabstractname}{序言}
-        \newenvironment{cnabstract}{%
-            \par\Large
-            \noindent\mbox{}\hfill{\bfseries \cnabstractname}\hfill\mbox{}\par
-            \vskip 2.5ex
-            }{\par\vskip 2.5ex}
-
+    
+        
 % 文章默认字体设置
     \usepackage{fontspec}   % 宏包：字体设置
         \setmainfont{SimSun}    % 设置中文字体为宋体字体
         \setCJKmainfont[AutoFakeBold=3]{SimSun} % 设置加粗字体为 SimSun 族，AutoFakeBold 可以调整字体粗细
         \setmainfont{Times New Roman} % 设置英文字体为Times New Roman
 
+
+% 文章序言设置
+    \newcommand{\cnabstractname}{序言}
+    \newenvironment{cnabstract}{%
+        \par\Large
+        \noindent\mbox{}\hfill{\bfseries \cnabstractname}\hfill\mbox{}\par
+        \vskip 2.5ex
+        }{\par\vskip 2.5ex}
+
+% 参考文献引用设置
+    \bibliographystyle{unsrt}   % 设置参考文献引用格式为unsrt
+    \newcommand{\upcite}[1]{\textsuperscript{\cite{#1}}}     % 自定义上角标式引用
+
 % 各级标题自定义设置
     \usepackage{titlesec}   
-        % section标题自定义设置 
-        \titleformat{\section}[hang]{\normalfont\Large\bfseries\boldmath}{\thesection}{8pt}{}
-        % subsection 标题自定义设置
-        \titleformat{\subsection}[hang]{\normalfont\large\bfseries\boldmath}{\thesubsection}{8pt}{}
-        \titlespacing*{\subsection}{0pt}{10pt}{6pt} % 控制上下间距
+    % chapter
+        \titleformat{\chapter}[hang]{\normalfont\Large\bfseries\centering\boldmath}{}{10pt}{}
+        %\titleformat{\chapter}[hang]{\normalfont\Large\bfseries\centering\boldmath}{Homework \thechapter :}{10pt}{}
+        \titlespacing*{\chapter}{0pt}{-30pt}{10pt} % 控制上方空白的大小
+    % section
+        \titleformat{\section}[hang]{\normalfont\large\bfseries\boldmath}{\thesection}{8pt}{}
+    % subsection
+        % 设置 subsection 样式为 (1) (2) (3)
+        \renewcommand{\thesubsection}{(\arabic{subsection})}    
+        \titleformat{\subsection}[hang]{\normalfont\bfseries\boldmath}{\thesubsection}{8pt}{}
 
 
 % --------------------- 文章宏包及相关设置 --------------------- %
 % >> ------------------ 文章宏包及相关设置 ------------------ << %
 
 
+
 % ------------------------ 文章信息区 ------------------------ %
-% ------------------------ 文章信息区 ------------------------ %
+% >> --------------------- 文章信息区 --------------------- << %
 % 页眉页脚设置
 \usepackage{fancyhdr}   %宏包：页眉页脚设置
-\usepackage{fontawesome}    % 宏包：更多符号与图标 (用于插入 GitHub 图标等)
     \pagestyle{fancy}
     \fancyhf{}
     \cfoot{\thepage}
     \renewcommand\headrulewidth{1pt}
     \renewcommand\footrulewidth{0pt}
-    \chead{Lab 2: 2024.11.21 - 2024.12.12, 丁毅}
-    \lhead{\small
+    \chead{电路原理课程作业,\ 丁毅}
+    \usepackage{fontawesome}    % 宏包：更多符号与图标 (用于插入 GitHub 图标等)
+    \lhead{
     \href{https://github.com/YiDingg/LatexNotes}{\color{black}\faGithub\ https://github.com/YiDingg/LatexNotes}
     }
     \rhead{dingyi233@mails.ucas.ac.cn}
 
-% 开始编辑文章
-
 \begin{document}
-\begin{center}\large
-    \vspace*{-0.8cm}
-    \noindent{\huge\bfseries Laboratory \ \ 2 :\ \  2024.11.21 - 2024.12.12}\\\vspace{0.2cm}
-    \noindent{\Large\bfseries 《\ 电\ 路\ 原\ 理》\ \ \ 实\ 验\ 报\ 告 }\\
-    %\noindent{\large\bfseries 2024.11.07 - 2024.12.31}
-\end{center}
-\vspace{-0.5cm}
-\noindent\rule{\textwidth}{0.075em}   % 分割线
-\vspace{-1.0cm}
+%\begin{center}\large
+%    \vspace*{-0.8cm}
+%    \noindent{\huge\bfseries Laboratory \ \ 2 :\ \  2024.11.21 - 2024.12.12}\\\vspace{0.2cm}
+%    \noindent{\Large\bfseries 《\ 电\ 路\ 原\ 理》\ \ \ 实\ 验\ 报\ 告 }\\
+%    %\noindent{\large\bfseries 2024.11.07 - 2024.12.31}
+%\end{center}
+%\vspace{-0.5cm}
+%\noindent\rule{\textwidth}{0.075em}   % 分割线
+%\vspace{-1.0cm}
 
 % 目录
 %\setcounter{tocdepth}{2}  % 目录深度为 2（不显示 subsubsection）
@@ -383,8 +354,13 @@
 
 %% 下面是正文内容
 
+\chapter{Laboratory 2: 2024.11.21 - 2024.12.12}\thispagestyle{fancy}
+
 \captionsetup[figure]{name=Figure}  
 \captionsetup[table]{name=Table}
+
+\setcounter{page}{68}
+\setcounter{chapter}{14}
 
 \section{Pre-Lab}
 

@@ -1,5 +1,5 @@
-# 忽略 .pages 文件夹 (用于存放 pdf 页面)
-*.pages
+# 忽略 pdfs 文件夹 (用于存放 splited pdf 页面)
+**/pdfs/
 **/assets/
 NotabilityNotes
 **/contents/

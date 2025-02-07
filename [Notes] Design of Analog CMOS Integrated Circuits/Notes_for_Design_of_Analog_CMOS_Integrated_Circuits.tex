@@ -3,7 +3,7 @@
 
 \documentclass[UTF8]{report}		
 \input{D:/a_RemoteRepo/GH.LatexNotes/.config/ConfigForNotes_TwoColumns.tex}  % 引用导言区设置
-\graphicspath{{\subfix{../}}}   % 修改主文件图像路径，使得子文件能够直接使用相对路径，而不是从 assets 开始索引
+
 
 
 
@@ -17,11 +17,11 @@
 \rhead{\small dingyi233@mails.ucas.ac.cn}
 
 %文档信息设置
-\title{
-    Notes for \textit{Design of Analog CMOS Integrated Circuits}\\ ~ \\ 
-    CMOS 模拟集成电路设计笔记}
-\author{Yi Ding \\ \footnotesize \textit{(University of Chinese Academy of Sciences, Beijing 100049, China)} \\ ~ \\ 丁毅\\ \footnotesize {\kaishu (中国科学院大学，北京 100049)} }
-\date{\footnotesize 2024.11 -- ...}
+%\title{
+%    Notes for \textit{Design of Analog CMOS Integrated Circuits}\\ ~ \\ 
+%    《模拟 CMOS 集成电路设计》笔记}
+%\author{Yi Ding \\ \footnotesize \textit{(University of Chinese Academy of Sciences, Beijing 100049, China)} \\ ~ \\ 丁毅\\ \footnotesize {\kaishu (中国科学院大学，北京 100049)} }
+%\date{\footnotesize 2024.11 -- ...}
 
 % ------------------------ 文章信息区 ------------------------ %
 % ------------------------ 文章信息区 ------------------------ %
@@ -47,7 +47,7 @@
 {\huge 
     Notes for \textit{Design of Analog CMOS Integrated Circuits}
     \\ ~ \\
-    CMOS 模拟集成电路设计笔记
+    《模拟 CMOS 集成电路设计》笔记
 }
 \\\vspace*{1.2cm}
 % 作者
@@ -85,15 +85,15 @@
         %\setlength{\tabcolsep}{1.5mm} % 调整列间距
         \caption{Learning Plan}
         %\label{}
-    \begin{tabular}{cccccccccc}\toprule
+    \begin{tabular}{cccc}\toprule
         Task & Week & Date & Planned Pages (actual) \\
         \midrule
-        \faCheckSquareO & 1 & 2025.01.13  -  2025.01.19 & 7 - 46 () \\ 
-         & 2 & 2025.01.20  -  2025.01.26 & 47 -  \\ 
-         & 3 & 2025.01.27  -  2025.02.02 & 87 -  \\ 
-         & 4 & 2025.02.03  -  2025.02.09 & 127 -  \\ 
-         & 5 & 2025.02.10  -  2025.02.16 & 167 -  \\ 
-         & 6 & 2025.02.17  -  2025.02.23 & 207 -  \\ 
+        \faCheckSquareO & 1 & 2025.01.13  -  2025.01.19 & 007 - 046 (007-044) \\ 
+        \faCheckSquareO & 2 & 2025.01.20  -  2025.01.26 & 047 - 086 (045-064) \\ 
+        \faCheckSquareO & 3 & 2025.01.27  -  2025.02.02 & 087 - 126 (065-104) \\ 
+         & 4 & 2025.02.03  -  2025.02.09 & 127 - 166 (105-000) \\ 
+         & 5 & 2025.02.10  -  2025.02.16 & 167 - 206 (000-000) \\ 
+         & 6 & 2025.02.17  -  2025.02.23 & 207 - 246 (000-000) \\ 
         \bottomrule
     \end{tabular}
     \end{table}
@@ -143,7 +143,8 @@
 \rhead{\nouppercase{\rightmark}}  % \rightmark 是 section 标题
 \subfile{contents/Chapter 1 Introduction to Analog Design/Notes for Razavi CMOS (Chapter 1).tex}
 \subfile{contents/Chapter 2 Basic MOS Device Physics/Notes for Razavi CMOS (Chapter 2).tex}
-
+\subfile{contents/Chapter 3 Single-Stage Amplifiers/Notes for Razavi CMOS (Chapter 3).tex}
+\subfile{contents/Chapter 4 Differential Amplifiers/Notes for Razavi CMOS (Chapter 4).tex}
 
 \renewcommand{\bibname}{Reference}  % 将参考文献标题从 bibliography 改为 Reference
 \nocite{*}

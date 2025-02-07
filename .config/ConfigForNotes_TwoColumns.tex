@@ -157,6 +157,8 @@
     %\usepackage{natbib} % 宏包：用于 fullcite 文献
     \usepackage{etoolbox} % 用于调整某些环境的布局、间距等
         %\AtBeginEnvironment{graybox}{\vspace*{-5mm}}
+        \AtBeginEnvironment{multicols*}{\vspace*{-5mm}} % 调整 chapter 标题与内容的间距
+        %\AtEndEnvironment{multicols*}{\vspace*{-50mm}}
     %\usepackage{gensymb}  % 埃米符号 \angstrom 等
     %\usepackage{textcomp}
     %\newcommand{\myangstrom}{\mbox{\normalfont\AA}}
@@ -223,17 +225,57 @@
 
 %宏包：有色文本框（proof环境）及其设置
 \usepackage{xcolor}    %设置插入的文本框颜色
-    % rgb(4, 9, 103), rgb(4, 10, 118)
+    % rgb(4, 9, 103), rgb(5, 13, 164)
+    % rgb(124, 131, 255), rgb(231, 232, 255)
+    % rgb(255, 190, 190), rgb(255, 70, 70)
     \definecolor{stc}{RGB}{4, 10, 118}  % 设置各级标题结构颜色
 \usepackage[strict]{changepage}     % 提供一个 adjustwidth 环境
 \usepackage{framed}     % 实现方框效果
-    \definecolor{graybox_color}{rgb}{0.95,0.95,0.96} % 文本框颜色。修改此行中的 rgb 数值即可改变方框纹颜色，具体颜色的rgb数值可以在网站https://colordrop.io/ 中获得。（截止目前的尝试还没有成功过，感觉单位不一样）（找到喜欢的颜色，点击下方的小眼睛，找到rgb值，复制修改即可）
+    % rgb(0, 0, 0), rgb(100, 100, 100)
+    \definecolor{graybox_color}{rgb}{0.95, 0.95, 0.95} % 这里的 rbg 范围是 [0, 1]
+    % 文本框颜色。修改此行中的 rgb 数值即可改变方框纹颜色，具体颜色的rgb数值可以在网站https://colordrop.io/ 中获得。（截止目前的尝试还没有成功过，感觉单位不一样）（找到喜欢的颜色，点击下方的小眼睛，找到rgb值，复制修改即可）
     \newenvironment{graybox}{%
     \def\FrameCommand{%
     \hspace{1pt}%
     {\color{gray}\small \vrule width 2pt}%
     {\color{graybox_color}\vrule width 4pt}%
     \colorbox{graybox_color}%
+    }%
+    \MakeFramed{\advance\hsize-\width\FrameRestore}%
+    \noindent\hspace{-4.55pt}% disable indenting first paragraph
+    \begin{adjustwidth}{}{7pt}%
+    \vspace{2pt}\vspace{2pt}%
+    }
+    {%
+    \vspace{2pt}\end{adjustwidth}\endMakeFramed%
+    }
+
+    \definecolor{bluebox_ruleColor}{rgb}{0.49, 0.51, 1} % 文本框颜色。修改此行中的 rgb 数值即可改变方框纹颜色，具体颜色的rgb数值可以在网站https://colordrop.io/ 中获得。（截止目前的尝试还没有成功过，感觉单位不一样）（找到喜欢的颜色，点击下方的小眼睛，找到rgb值，复制修改即可）
+    \definecolor{bluebox_backgroundColor}{rgb}{0.93, 0.93, 1}
+    \newenvironment{bluebox}{%
+    \def\FrameCommand{%
+    \hspace{1pt}%
+    {\color{bluebox_ruleColor}\small \vrule width 2pt}%
+    {\color{bluebox_backgroundColor}\vrule width 4pt}% 4pt 缩进比较合适
+    \colorbox{bluebox_backgroundColor}%
+    }%
+    \MakeFramed{\advance\hsize-\width\FrameRestore}%
+    \noindent\hspace{-4.55pt}% disable indenting first paragraph
+    \begin{adjustwidth}{}{7pt}%
+    \vspace{2pt}\vspace{2pt}%
+    }
+    {%
+    \vspace{2pt}\end{adjustwidth}\endMakeFramed%
+    }
+
+    \definecolor{redbox_ruleColor}{rgb}{1, 0.27, 0.27} % 文本框颜色。修改此行中的 rgb 数值即可改变方框纹颜色，具体颜色的rgb数值可以在网站https://colordrop.io/ 中获得。（截止目前的尝试还没有成功过，感觉单位不一样）（找到喜欢的颜色，点击下方的小眼睛，找到rgb值，复制修改即可）
+    \definecolor{redbox_backgroundColor}{rgb}{1, 0.90, 0.90}
+    \newenvironment{redbox}{%
+    \def\FrameCommand{%
+    \hspace{1pt}%
+    {\color{redbox_ruleColor}\small \vrule width 2pt}%
+    {\color{redbox_backgroundColor}\vrule width 4pt}% 4pt 缩进比较合适
+    \colorbox{redbox_backgroundColor}%
     }%
     \MakeFramed{\advance\hsize-\width\FrameRestore}%
     \noindent\hspace{-4.55pt}% disable indenting first paragraph
@@ -302,5 +344,9 @@
 % 设置行间距为18pt
 \linespread{1}
 
+\graphicspath{{\subfix{../}}}   % 修改主文件图像路径，使得子文件能够直接使用相对路径，而不是从 assets 开始索引
+
 % --------------------- 文章宏包及相关设置 --------------------- %
 % >> ------------------ 文章宏包及相关设置 ------------------ << %
+
+\graphicspath{{\subfix{../}}}   % 修改主文件图像路径，使得子文件能够直接使用相对路径，而不是从 assets 开始索引

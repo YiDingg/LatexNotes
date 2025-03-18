@@ -1,0 +1,165 @@
+% 设定文章类型与编码格式
+% 主文件和 input 的文件都不能含空格或中文
+
+\documentclass[UTF8]{report}		
+\input{D:/a_RemoteRepo/GH.LatexNotes/.config/ConfigForNotes_TwoColumns.tex}  % 引用导言区设置
+
+
+
+
+% ------------------------ 文章信息区 ------------------------ %
+% ------------------------ 文章信息区 ------------------------ %
+
+\lhead{\small
+\href{https://github.com/YiDingg/LatexNotes}{\footnotesize \color{black}\faGithub\ https://github.com/YiDingg/LatexNotes}
+}
+\chead{Notes for \textit{Fundamentals of Microelectronics (Razavi)}}
+\rhead{\small dingyi233@mails.ucas.ac.cn}
+
+
+% ------------------------ 文章信息区 ------------------------ %
+% ------------------------ 文章信息区 ------------------------ %
+
+
+% 开始编辑文章
+\begin{document} 
+\zihao{5}           % 设置全文字号大小
+
+
+% ------------------------ 封面序言与目录 ------------------------ %
+% >> --------------------- 封面序言与目录 --------------------- << %
+% 封面
+%\maketitle
+\begin{titlepage}
+\begin{center}
+\topskip0pt % 创建垂直居中环境
+\vspace*{\fill}
+
+
+
+% 标题
+{\huge 
+    Notes for \textit{Fundamentals of Microelectronics \\ (Razavi) (2nd edition, 2014)}
+    \\ ~ \\
+    《微电子基础》笔记
+}
+\\\vspace*{1.2cm}
+% 作者
+{\large Yi Ding \\ \small\textit{(University of Chinese Academy of Sciences, Beijing 100049, China)} \\ ~ \\ 丁毅\\ \small {\kaishu (中国科学院大学，北京 100049)} }
+\\\vspace*{0.8cm}
+% 日期
+{\small
+2024.11 -- ...
+}
+\end{center}
+% 封面图
+\vspace*{1cm}
+\begin{figure}[H]\centering
+    %\includegraphics[width=0.75\columnwidth]{[Notes] Design of Analog CMOS Integrated Circuits/assets/Chapter 1/(Page-25) Razavi CMOS (2nd edition, 2015).pdf}
+\end{figure}
+\vspace*{5mm}
+\begin{figure}[H]\centering
+    %\includegraphics[width=0.75\columnwidth]{[Notes] Design of Analog CMOS Integrated Circuits/assets/Chapter 2/2.1/(Page-27) Razavi CMOS (2nd edition, 2015).pdf}
+\end{figure}
+
+
+\vspace*{\fill}
+%
+\end{titlepage}
+    \newpage  
+    \pagenumbering{Roman} % 页码为大写罗马数字
+    \thispagestyle{fancy}   % 显示页码、页眉等
+
+% 序言
+\begin{enabstract} \normalsize
+    to be completed
+\end{enabstract}
+\addcontentsline{toc}{chapter}{Preface} % 手动添加为目录
+
+
+
+
+\newpage
+\begin{cnabstract}\normalsize 
+    待完成
+\end{cnabstract}
+\addcontentsline{toc}{chapter}{序言} % 手动添加为目录
+
+
+
+% 目录
+    \setcounter{tocdepth}{2}    % 目录深度 (为 1 时显示到 section)
+    % 目录页
+        \tableofcontents
+        \addcontentsline{toc}{chapter}{Contents}
+        \thispagestyle{fancy}                   % 显示页码、页眉等
+    % 插图页
+        %\cleardoublepage\listoffigures
+        %\addcontentsline{toc}{chapter}{插图}
+        %\thispagestyle{fancy}                   % 显示页码、页眉等
+    % 表格页
+        %\cleardoublepage\listoftables
+        %\addcontentsline{toc}{chapter}{表格}
+        %\thispagestyle{fancy}                   % 显示页码、页眉等 
+
+% 收尾工作
+    \newpage    
+    \pagenumbering{arabic} 
+
+
+% >> --------------------- 封面序言与目录 --------------------- << %
+% ------------------------ 封面序言与目录 ------------------------ %
+
+% >> --------------------- 下面是正文 --------------------- << %
+% ------------------------ 下面是正文 ------------------------ %
+
+
+
+
+\rhead{\nouppercase{\rightmark}}  % \rightmark 是 section 标题
+\subfile{contents/Chapter 1 Intro/Notes for Microelectronics (Chapter 1).tex}
+\subfile{contents/Chapter 2 Semiconductors/Notes for Microelectronics (Chapter 2).tex}
+\subfile{contents/Chapter 3 Diode Circuits/Notes for Microelectronics (Chapter 3).tex}
+\subfile{contents/Chapter 4 Physics of BJT/Notes for Microelectronics (Chapter 4).tex}
+\subfile{contents/Chapter 5 Bipolar Amplifiers/Notes for Microelectronics (Chapter 5).tex}
+
+
+\renewcommand{\bibname}{Reference}  % 将参考文献标题从 bibliography 改为 Reference
+\nocite{*}
+\bibliography{bibtex}
+\thispagestyle{fancy} 
+\addcontentsline{toc}{chapter}{Reference}
+
+
+\end{document}
+
+
+
+% VScode 常用快捷键：
+
+% F2:                       变量重命名
+% Ctrl + Enter:             行中换行
+% Alt + up/down:            上下移行
+% 鼠标中键 + 移动:           快速多光标
+% Shift + Alt + up/down:    上下复制
+% Ctrl + left/right:        左右跳单词
+% Ctrl + Backspace/Delete:  左右删单词    
+% Shift + Delete:           删除此行
+% Ctrl + J:                 打开 VScode 下栏(输出栏)
+% Ctrl + B:                 打开 VScode 左栏(目录栏)
+% Ctrl + `:                 打开 VScode 终端栏
+% Ctrl + 0:                 定位文件
+% Ctrl + Tab:               切换已打开的文件(切标签)
+% Ctrl + Shift + P:         打开全局命令(设置)
+
+% Latex 常用快捷键
+
+% Ctrl + Alt + J:           由代码定位到PDF
+% 
+
+
+% Git提交规范：
+% update: Linear Algebra 2 notes
+% add: Linear Algebra 2 notes
+% import: Linear Algebra 2 notes
+% delete: Linear Algebra 2 notes

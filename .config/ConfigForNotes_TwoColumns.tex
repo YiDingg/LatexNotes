@@ -205,6 +205,7 @@
         \AtBeginEnvironment{figure}{\boldmath} % 图注中的数学字符为粗体
         \AtBeginEnvironment{table}{\boldmath}  % 表注中的数学字符为粗体
         \AtBeginEnvironment{tabular}{\unboldmath}   % 保证表格中的数学字符不受额外影响
+        %\AtBeginEnvironment{bluebox}{\hspace*{2em} }   % 此语句似乎无作用
 
 % 圆圈序号自定义
     \newcommand*\circled[1]{\tikz[baseline=(char.base)]{\node[shape=circle,draw,inner sep=0.8pt, line width = 0.03em] (char) {\small \bfseries #1};}}   % TikZ solution
@@ -232,7 +233,8 @@
 \usepackage[strict]{changepage}     % 提供一个 adjustwidth 环境
 \usepackage{framed}     % 实现方框效果
     % rgb(0, 0, 0), rgb(100, 100, 100)
-    \definecolor{graybox_color}{rgb}{0.95, 0.95, 0.95} % 这里的 rbg 范围是 [0, 1]
+    %#ECECED 为 0.93, 0.93, 0.93
+    \definecolor{graybox_color}{rgb}{0.93, 0.93, 0.93} % 这里的 rbg 范围是 [0, 1]
     % 文本框颜色。修改此行中的 rgb 数值即可改变方框纹颜色，具体颜色的rgb数值可以在网站https://colordrop.io/ 中获得。（截止目前的尝试还没有成功过，感觉单位不一样）（找到喜欢的颜色，点击下方的小眼睛，找到rgb值，复制修改即可）
     \newenvironment{graybox}{%
     \def\FrameCommand{%

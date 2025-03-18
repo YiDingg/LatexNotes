@@ -24,3 +24,17 @@ Cascode
 capacitively
 cascoding
 satu
+Diodelike-Connected
+diodelike-connected
+Diodelike-connected
+CMRR
+differential-singleended
+pn
+FengJun
+Fengjun
+avogadro
+Schottky
+Zener
+datasheet
+Thevenin
+dc

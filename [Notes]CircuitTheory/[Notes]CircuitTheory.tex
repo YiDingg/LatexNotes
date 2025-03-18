@@ -1064,7 +1064,7 @@ u_o &=u_A - R_f \left[
 代入 $u_A$，整理得到：
 \begin{equation}
 \boxed{
-    u_o= \frac{1 + \frac{R_f}{R_m} \left(\frac{1}{R_3} + \frac{1}{R_4}  \right)}{ \frac{1}{R_p} + \left(\frac{1}{R_1} + \frac{1}{R_2} \right)}\cdot \left( \frac{{\color{red} u_1}}{R_1} + \frac{{\color{red} u_2}}{R_2} \right) - R_f \cdot \left( \frac{{\color{red} u_3}}{R_3} + \frac{{\color{red} u_4}}{R_4} \right)
+    u_o= \frac{1 + R_f \left( \frac{1}{R_m} + \frac{1}{R_3} + \frac{1}{R_4} \right)}{ \frac{1}{R_p} + \frac{1}{R_1} + \frac{1}{R_2}}\cdot \left( \frac{{\color{red} u_1}}{R_1} + \frac{{\color{red} u_2}}{R_2} \right) - R_f \cdot \left( \frac{{\color{red} u_3}}{R_3} + \frac{{\color{red} u_4}}{R_4} \right)
 }
 \end{equation}
 这样，对于所有加法信号，可以通过 $R_1, R_2$ 间的比例来调整它们在加法中的输出比例，类似地，减法信号通过 $R_3, R_4$ 间的比例来调整它们在减法中的输出比例。最后通过 $R_f, R_m, R_p$ 来调整加法、减法之间的输出比例。在 $R_f, R_m, R_p$ 都可变时，易证（减法占比） $R_f \in [0,\ \infty)$，（加法占比）$\frac{1 + R_f \left(\frac{1}{R_3} + \frac{1}{R_4} + \frac{1}{R_m} \right)}{\frac{1}{R_1} + \frac{1}{R_2} + \frac{1}{R_p}} \in [0,\ \infty)$，于是全部系数都具有任意性，此线性运算器能够实现任意的线性运算。

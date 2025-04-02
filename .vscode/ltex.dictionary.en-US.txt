@@ -38,3 +38,4 @@ Zener
 datasheet
 Thevenin
 dc
+triodes

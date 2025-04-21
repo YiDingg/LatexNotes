@@ -15,15 +15,15 @@ Below are some previews of this repository:
 
 
 
-![img](https://gcore.jsdelivr.net/gh/YiDingg/LatexNotes/.assets/pic/fig/Notes for Design of Analog CMOS Integrated Circuits (Razavi) (2nd edition, 2015) Chapter 2 (`).png)
-![img](https://gcore.jsdelivr.net/gh/YiDingg/LatexNotes/.assets/pic/fig/Notes for Design of Analog CMOS Integrated Circuits (Razavi) (2nd edition, 2015) Chapter 2 (2).png)
-![img](https://gcore.jsdelivr.net/gh/YiDingg/LatexNotes/.assets/pic/fig/Notes for Design of Analog CMOS Integrated Circuits (Razavi) (2nd edition, 2015) Chapter 4.png)
+![img](<https://gcore.jsdelivr.net/gh/YiDingg/LatexNotes/.assets/pic/fig/Notes for Design of Analog CMOS Integrated Circuits (Razavi) (2nd edition, 2015) Chapter 2 (1).png>)
+![img](<https://gcore.jsdelivr.net/gh/YiDingg/LatexNotes/.assets/pic/fig/Notes for Design of Analog CMOS Integrated Circuits (Razavi) (2nd edition, 2015) Chapter 2 (2).png>)
+![img](<https://gcore.jsdelivr.net/gh/YiDingg/LatexNotes/.assets/pic/fig/Notes for Design of Analog CMOS Integrated Circuits (Razavi) (2nd edition, 2015) Chapter 4.png>)
 
 ## Notes for Fundamentals of Microelectronics (Razavi) (2nd edition, 2014)
 
-![img](https://gcore.jsdelivr.net/gh/YiDingg/LatexNotes/.assets/pic/fig/Notes for Fundamentals of Microelectronics (Razavi) (2nd edition, 2014) Chapter 5.png)
-![img](https://gcore.jsdelivr.net/gh/YiDingg/LatexNotes/.assets/pic/fig/Notes for Fundamentals of Microelectronics (Razavi) (2nd edition, 2014) Chapter 6.png)
-![img](https://gcore.jsdelivr.net/gh/YiDingg/LatexNotes/.assets/pic/fig/Notes for Fundamentals of Microelectronics (Razavi) (2nd edition, 2014) Chapter 11.png)
+![img](<https://gcore.jsdelivr.net/gh/YiDingg/LatexNotes/.assets/pic/fig/Notes for Fundamentals of Microelectronics (Razavi) (2nd edition, 2014) Chapter 5.png>)
+![img](<https://gcore.jsdelivr.net/gh/YiDingg/LatexNotes/.assets/pic/fig/Notes for Fundamentals of Microelectronics (Razavi) (2nd edition, 2014) Chapter 6.png>)
+![img](<https://gcore.jsdelivr.net/gh/YiDingg/LatexNotes/.assets/pic/fig/Notes for Fundamentals of Microelectronics (Razavi) (2nd edition, 2014) Chapter 11.png>)
 
 
 ## Optics (光学)

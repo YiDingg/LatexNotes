@@ -39,3 +39,8 @@ datasheet
 Thevenin
 dc
 triodes
+NFETs
+PFETs
+capacitances
+tex
+Sziklai

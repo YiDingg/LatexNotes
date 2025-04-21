@@ -10,6 +10,22 @@ Note that only notes written by Latex will be displayed here. Refer to my person
 
 Below are some previews of this repository:
 
+## Notes for Design of Analog CMOS Integrated Circuits (Razavi) (2nd edition, 2015)
+
+
+
+
+![img](https://gcore.jsdelivr.net/gh/YiDingg/LatexNotes/.assets/pic/fig/Notes for Design of Analog CMOS Integrated Circuits (Razavi) (2nd edition, 2015) Chapter 2 (`).png)
+![img](https://gcore.jsdelivr.net/gh/YiDingg/LatexNotes/.assets/pic/fig/Notes for Design of Analog CMOS Integrated Circuits (Razavi) (2nd edition, 2015) Chapter 2 (2).png)
+![img](https://gcore.jsdelivr.net/gh/YiDingg/LatexNotes/.assets/pic/fig/Notes for Design of Analog CMOS Integrated Circuits (Razavi) (2nd edition, 2015) Chapter 4.png)
+
+## Notes for Fundamentals of Microelectronics (Razavi) (2nd edition, 2014)
+
+![img](https://gcore.jsdelivr.net/gh/YiDingg/LatexNotes/.assets/pic/fig/Notes for Fundamentals of Microelectronics (Razavi) (2nd edition, 2014) Chapter 5.png)
+![img](https://gcore.jsdelivr.net/gh/YiDingg/LatexNotes/.assets/pic/fig/Notes for Fundamentals of Microelectronics (Razavi) (2nd edition, 2014) Chapter 6.png)
+![img](https://gcore.jsdelivr.net/gh/YiDingg/LatexNotes/.assets/pic/fig/Notes for Fundamentals of Microelectronics (Razavi) (2nd edition, 2014) Chapter 11.png)
+
+
 ## Optics (光学)
 ### Notes of Optics
 ![img](https://gcore.jsdelivr.net/gh/YiDingg/LatexNotes/.assets/pic/fig/376696542-c85ba4b2-0d12-4737-ad3b-111a62a3475d.png)
@@ -44,7 +60,7 @@ Below are some previews of this repository:
 
 <!-- ![image](https://github.com/user-attachments/assets/d84235e4-fedb-4c3f-9352-e162116b66d0) -->
 
-## Linear Algebra 2 (线性代数 2)
+## Linear Algebra 2 Notes (线性代数 2 笔记)
 
 ![img](https://gcore.jsdelivr.net/gh/YiDingg/LatexNotes/.assets/pic/fig/376700506-1afb25ec-29f7-4b4b-97e3-33d15dc73e34.png)
 

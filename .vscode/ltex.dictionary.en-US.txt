@@ -44,3 +44,4 @@ PFETs
 capacitances
 tex
 Sziklai
+transimpedance

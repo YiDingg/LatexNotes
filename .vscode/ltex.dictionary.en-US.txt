@@ -45,3 +45,11 @@ capacitances
 tex
 Sziklai
 transimpedance
+Nonideal
+Transconductance
+folded-cascode
+Folded-Cascode
+Folded-cascode
+Sallen
+Biquads
+biquad
